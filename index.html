@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Math Class</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Icon library for buttons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Modern button animation */
+        .course-btn {
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .course-btn:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .course-btn .icon {
+            transition: transform 0.3s ease;
+        }
+        .course-btn:hover .icon {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-gray-50 to-blue-50 text-gray-800 min-h-screen flex items-center">
+
+    <!-- Main Container -->
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
+
+        <div class="bg-white/70 backdrop-blur-sm rounded-2xl shadow-lg p-8 sm:p-12">
+            <header class="text-center mb-12">
+                <!-- Main Title -->
+                <h1 class="text-5xl sm:text-6xl font-bold text-gray-900 mb-3 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
+                    Welcome to Math Class
+                </h1>
+                <!-- Subtitle/Welcome Message -->
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    I'm looking forward to a great year of learning and discovery with all of you. Below you'll find the links to our class pages.
+                </p>
+            </header>
+
+            <!-- Courses Section -->
+            <main>
+                <h2 class="text-3xl sm:text-4xl font-semibold text-center text-gray-800 mb-10">My Courses</h2>
+                <!-- 
+                    Grid container for course buttons.
+                    NOTE: The href attributes below have been updated. 
+                    Replace "algebra-1.html", "geometry.html", etc., with the actual URLs or file paths for your course pages.
+                -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-5xl mx-auto">
+                    
+                    <!-- Algebra 1 Button -->
+                    <a href="alg1-info.html" target="_blank" class="course-btn bg-white p-6 rounded-xl shadow-md text-center block border border-gray-100 group">
+                        <div class="icon text-blue-500 mb-3 mx-auto" data-lucide="sigma"></div>
+                        <h3 class="text-xl font-semibold text-gray-800 group-hover:text-blue-600 transition-colors">Algebra 1</h3>
+                    </a>
+                    
+                    <!-- Geometry Button -->
+                    <a href="geo-info.html" target="_blank" class="course-btn bg-white p-6 rounded-xl shadow-md text-center block border border-gray-100 group">
+                        <div class="icon text-green-500 mb-3 mx-auto" data-lucide="compass"></div>
+                        <h3 class="text-xl font-semibold text-gray-800 group-hover:text-green-600 transition-colors">Geometry</h3>
+                    </a>
+
+                    <!-- Algebra 2 Button -->
+                    <a href="alg2-info.html" target="_blank" class="course-btn bg-white p-6 rounded-xl shadow-md text-center block border border-gray-100 group">
+                         <div class="icon text-purple-500 mb-3 mx-auto" data-lucide="function-square"></div>
+                        <h3 class="text-xl font-semibold text-gray-800 group-hover:text-purple-600 transition-colors">Algebra 2</h3>
+                    </a>
+
+                    <!-- Math Foundations Button -->
+                    <a href="math-f-info.html" target="_blank" class="course-btn bg-white p-6 rounded-xl shadow-md text-center block border border-gray-100 group">
+                        <div class="icon text-orange-500 mb-3 mx-auto" data-lucide="book-open"></div>
+                        <h3 class="text-xl font-semibold text-gray-800 group-hover:text-orange-600 transition-colors">Math Foundations</h3>
+                    </a>
+
+                </div>
+            </main>
+
+            <!-- Contact & Office Hours Section -->
+            <footer class="text-center mt-16 pt-8 border-t border-gray-200">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4">Contact & Office Hours</h2>
+                <div class="text-gray-600 space-y-2">
+                    <!-- Updated contact info -->
+                    <p><strong>Email:</strong> <a href="mailto:ahatfield@goodwillvalleys.com" class="text-blue-600 hover:underline">ahatfield@goodwillvalleys.com</a></p>
+                    <p><strong>Office Hours:</strong> Friday, 10:00 AM - 12:00 PM</p>
+                    <p><strong>Room:</strong> 11</p>
+                </div>
+                <!-- Copyright Notice -->
+                <div class="mt-8 text-gray-500">
+                     <p class="text-sm">
+                        &nbsp;&bull;&nbsp; &copy; 2025 Aly Hatfield. All Rights Reserved. &nbsp;&bull;&nbsp; 
+                    </p>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>

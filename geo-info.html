@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geometry Syllabus Infographic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F0F4F8;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 350px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .timeline-item {
+            position: relative;
+            padding-left: 2.5rem; 
+            padding-bottom: 2rem;
+        }
+        .timeline-item:last-child {
+            padding-bottom: 0;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0.75rem;
+            top: 4px;
+            bottom: -4px;
+            width: 4px;
+            background-color: #7FDBFF;
+        }
+         .timeline-item:last-child::before {
+            height: 1rem;
+        }
+        .timeline-item::after {
+            content: attr(data-unit);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 2rem;
+            height: 2rem;
+            background-color: #FF851B;
+            color: white;
+            border: 4px solid #F0F4F8;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-5xl">
+
+        <header class="text-center mb-12 md:mb-16">
+            <h1 class="text-4xl md:text-6xl font-extrabold text-[#003B73]">Welcome to Geometry</h1>
+            <p class="mt-4 text-lg md:text-xl text-[#0074D9]">Your guide to understanding shapes, space, and reasoning in the world around you.</p>
+        </header>
+
+        <section class="bg-[#003B73] p-6 md:p-8 rounded-2xl shadow-xl mb-12 md:mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 text-white">Your Digital Toolkit</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                <a href="geo-syl-site.html" target="_blank" class="block bg-[#0074D9] text-white p-6 rounded-xl shadow-lg hover:bg-[#005ea2] hover:-translate-y-1 transition-all">
+                    <p class="text-4xl mb-2">📚</p>
+                    <h4 class="text-lg font-medium">Class Syllabus</h4>
+                </a>
+                <a href="geo-weekly-pacing.html" target="_blank" class="block bg-[#0074D9] text-white p-6 rounded-xl shadow-lg hover:bg-[#005ea2] hover:-translate-y-1 transition-all">
+                    <p class="text-4xl mb-2">🧠</p>
+                    <h4 class="text-lg font-medium">Weekly Pacing Guide</h4>
+                </a>
+                <a href="extra-practice.html" target="_blank" class="block bg-[#0074D9] text-white p-6 rounded-xl shadow-lg hover:bg-[#005ea2] hover:-translate-y-1 transition-all">
+                    <p class="text-4xl mb-2">📝</p>
+                    <h4 class="text-lg font-medium">Extra Practice</h4>
+                </a>
+            </div>
+        </section>
+
+        <section class="mb-12 md:mb-16">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <p class="text-5xl font-bold text-[#FF851B]">8</p>
+                    <p class="mt-2 text-lg font-medium text-[#003B73]">Weeks to Completion</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <p class="text-5xl font-bold text-[#FF851B]">7</p>
+                    <p class="mt-2 text-lg font-medium text-[#003B73]">Core Units</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <p class="text-5xl font-bold text-[#FF851B]">1</p>
+                    <p class="mt-2 text-lg font-medium text-[#003B73]">Final Exam</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-12 md:mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 text-[#003B73]">Course Roadmap</h2>
+            <p class="text-lg text-slate-600 max-w-3xl mx-auto text-center mb-10">Our 8-week journey is broken down into seven core units. This roadmap outlines the key topics we will explore each step of the way.</p>
+            <div class="bg-white p-6 md:p-8 rounded-2xl shadow-xl">
+                <div class="timeline-item" data-unit="1">
+                    <h3 class="text-xl font-bold text-[#0074D9] mb-1"><strong>Unit 1:</strong> Reasoning, Logic & Venn Diagrams</h3>
+                    <p class="text-gray-600">Understanding logical reasoning and its application in geometry.</p>
+                </div>
+                <div class="timeline-item" data-unit="2">
+                    <h3 class="text-xl font-bold text-[#0074D9] mb-1"><strong>Unit 2:</strong> Lines, Angles, and Parallelism</h3>
+                    <p class="text-gray-600">Properties of lines, angles, and parallel lines, including transversal relationships.</p>
+                </div>
+                <div class="timeline-item" data-unit="3">
+                    <h3 class="text-xl font-bold text-[#0074D9] mb-1"><strong>Unit 3:</strong> Transformations & Symmetry</h3>
+                    <p class="text-gray-600">Exploring translations, reflections, rotations, dilations, and various types of symmetry.</p>
+                </div>
+                <div class="timeline-item" data-unit="4">
+                    <h3 class="text-xl font-bold text-[#0074D9] mb-1"><strong>Unit 4:</strong> Triangles: Properties & Congruence</h3>
+                    <p class="text-gray-600">Classifying triangles, understanding their properties, and proving congruence.</p>
+                </div>
+                <div class="timeline-item" data-unit="5">
+                    <h3 class="text-xl font-bold text-[#0074D9] mb-1"><strong>Unit 5:</strong> Similarity & Trigonometry</h3>
+                    <p class="text-gray-600">Concepts of similar figures and an introduction to right-triangle trigonometry.</p>
+                </div>
+                <div class="timeline-item" data-unit="6">
+                    <h3 class="text-xl font-bold text-[#0074D9] mb-1"><strong>Unit 6:</strong> Polygons & Circles</h3>
+                    <p class="text-gray-600">Properties of various polygons, circumference, area, and equations of circles.</p>
+                </div>
+                <div class="timeline-item" data-unit="7">
+                    <h3 class="text-xl font-bold text-[#0074D9] mb-1"><strong>Unit 7:</strong> 3D Figures</h3>
+                    <p class="text-gray-600">Calculating volume, surface area, and analyzing effects of dimensional change.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-white p-6 md:p-8 rounded-2xl shadow-xl mb-12 md:mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 text-[#003B73]">Understanding Your Grade</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                <div class="chart-container">
+                    <canvas id="gradingChart"></canvas>
+                </div>
+                <div>
+                    <p class="text-lg text-gray-700 mb-6">Your final grade reflects your consistent effort and participation. Daily work is the largest component, ensuring your hard work in class pays off.</p>
+                    <ul class="space-y-3">
+                        <li class="flex items-center"><span class="w-4 h-4 rounded-full bg-gray-800 mr-3"></span><strong>A:</strong> 90-100%</li>
+                        <li class="flex items-center"><span class="w-4 h-4 rounded-full bg-gray-800 mr-3"></span><strong>B:</strong> 80-89%</li>
+                        <li class="flex items-center"><span class="w-4 h-4 rounded-full bg-gray-800 mr-3"></span><strong>C:</strong> 70-79%</li>
+                        <li class="flex items-center"><span class="w-4 h-4 rounded-full bg-gray-800 mr-3"></span><strong>D:</strong> 60-69%</li>
+                        <li class="flex items-center"><span class="w-4 h-4 rounded-full bg-gray-800 mr-3"></span><strong>F:</strong> Below 60%</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-12 md:mb-16">
+             <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 text-[#003B73]">Keys to Success</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-xl shadow-lg h-full">
+                    <h3 class="text-xl font-bold text-[#0074D9] mb-3">Classroom Expectations</h3>
+                    <ol class="list-decimal list-inside space-y-2 text-gray-700">
+                        <li>Be respectful</li>
+                        <li>Come prepared</li>
+                        <li>Follow directions</li>
+                        <li>Stay engaged</li>
+                        <li>Use tech appropriately</li>
+                        <li>Try your best</li>
+                    </ol>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg h-full">
+                    <h3 class="text-xl font-bold text-[#0074D9] mb-3">Policies</h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li>Late work accepted up to 1 week late (max 90% credit).</li>
+                        <li>You are responsible for makeup work when absent.</li>
+                        <li>Schedule makeup tests upon return.</li>
+                    </ul>
+                </div>
+                 <div class="bg-white p-6 rounded-xl shadow-lg h-full">
+                    <h3 class="text-xl font-bold text-[#0074D9] mb-3">Support & Help</h3>
+                    <p class="text-gray-700">This class welcomes all learners. Please share any accommodations you need. Tutoring and one-on-one help is always available—just ask!</p>
+                </div>
+            </div>
+        </section>
+
+<footer class="bg-slate-100 text-slate-500 py-5 mt-16 border-t border-slate-200">
+    <div class="container mx-auto text-center">
+        <!-- Combined single-line footer text -->
+        <p class="text-sm">
+            &nbsp;&bull;&nbsp; &copy; 2025 Aly Hatfield. All Rights Reserved. &nbsp;&bull;&nbsp; 
+        </p>
+    </div>
+</footer>
+        
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const ctx = document.getElementById('gradingChart').getContext('2d');
+            const chartData = {
+                labels: [
+                    'Guided Notes',
+                    'In Class Problem Practice',
+                    'Quizzes & Tests',
+                    'Final Exams'
+                ],
+                datasets: [{
+                    data: [30, 30, 20, 20],
+                    backgroundColor: ['#0074D9', '#7FDBFF', '#FF851B', '#FF4136'],
+                    borderColor: '#FFFFFF',
+                    borderWidth: 4,
+                    hoverOffset: 10,
+                }]
+            };
+
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: chartData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '70%',
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'bottom',
+                            labels: {
+                                color: '#003B73',
+                                padding: 20,
+                                font: {
+                                    size: 12,
+                                    weight: '500',
+                                    family: "'Inter', sans-serif"
+                                }
+                            }
+                        },
+                        tooltip: {
+                            enabled: true,
+                            backgroundColor: '#003B73',
+                            titleFont: { size: 14, weight: 'bold' },
+                            bodyFont: { size: 12 },
+                            padding: 10,
+                            cornerRadius: 8,
+                            callbacks: {
+                                title: function(tooltipItems) {
+                                    const item = tooltipItems[0];
+                                    let label = item.chart.data.labels[item.dataIndex];
+                                    if (Array.isArray(label)) {
+                                      return label.join(' ');
+                                    } else {
+                                      return label;
+                                    }
+                                },
+                                label: function(context) {
+                                    return ` ${context.parsed}% of Final Grade`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

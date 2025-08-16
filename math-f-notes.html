@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Foundations - Coming Soon</title>
+    
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- MathJax for rendering LaTeX -->
+    <script>
+        MathJax = {
+          tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']],
+            processEscapes: true
+          },
+          svg: {
+            fontCache: 'global'
+          }
+        };
+    </script>
+    <script type="text/javascript" id="MathJax-script" async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    </script>
+
+    <style>
+        /* Apply the Inter font family */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Main container -->
+    <div class="container mx-auto px-4 py-12 md:py-20">
+        
+        <!-- Header Section -->
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-blue-600">Math Foundations</h1>
+            <p class="mt-4 text-lg md:text-xl text-gray-600">Mini Lessons & Examples</p>
+            <div class="mt-6 inline-block bg-blue-100 text-blue-800 text-sm font-semibold px-4 py-2 rounded-full">
+                Coming Soon!
+            </div>
+        </header>
+
+        <!-- Main Content Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+
+            <!-- Mini Lessons Section -->
+            <section id="mini-lessons" class="bg-white p-8 rounded-xl shadow-md border border-gray-200">
+                <h2 class="text-2xl font-semibold text-gray-700 border-b-2 border-blue-200 pb-3 mb-6">Mini Lessons</h2>
+                <div class="space-y-4 text-gray-600">
+                    <p>This section will be filled with bite-sized, easy-to-understand lessons on key mathematical concepts.</p>
+                    <p>Topics will range from foundational algebra to the fundamentals of calculus. Each lesson will be designed for clarity and quick learning.</p>
+                    <div class="mt-6 p-4 bg-gray-100 rounded-lg text-center">
+                        <p class="font-medium text-gray-500">Content is currently under construction. Check back soon!</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- My Examples Section -->
+            <section id="my-examples" class="bg-white p-8 rounded-xl shadow-md border border-gray-200">
+                <h2 class="text-2xl font-semibold text-gray-700 border-b-2 border-blue-200 pb-3 mb-6">My Examples</h2>
+                <div class="space-y-4 text-gray-600">
+                    <p>Here, I will be inputting my own worked-out examples to illustrate the concepts from the lessons.</p>
+                    <p>The examples will use MathJax to render mathematical notation clearly, like this sample of the quadratic formula:</p>
+                    
+                    <!-- Sample MathJax Equation -->
+                    <div class="mt-6 p-4 bg-gray-100 rounded-lg text-center text-lg md:text-xl overflow-x-auto">
+                       $$x = \frac{-b \pm \sqrt{b^2-4ac}}{2a}$$
+                    </div>
+                    <p class="mt-4">When the value of $a$ is not zero, the formula provides the roots of the quadratic equation.</p>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- Footer -->
+        <footer class="text-center mt-16 text-gray-500">
+            <p>&nbsp;&bull;&nbsp; &copy; 2025 Aly Hatfield. All rights reserved. &nbsp;&bull;&nbsp;</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
