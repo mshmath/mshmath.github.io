@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geometry Weekly Pacing Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8FAFC; /* Light gray background */
+            color: #1F2937; /* Dark text */
+            line-height: 1.8; /* Increased line height for better readability */
+            font-size: 1.125rem; /* Base font size increased */
+            -webkit-print-color-adjust: exact; /* Ensure colors print */
+            color-adjust: exact;
+        }
+        .container {
+            max-width: 960px; /* Wider container for better readability */
+            margin: 3rem auto; /* More vertical margin */
+            padding: 3.5rem; /* Increased overall padding */
+            background-color: #FFFFFF;
+            border-radius: 16px; /* Rounded corners */
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1); /* Stronger shadow */
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            color: #1F2937;
+            font-weight: 700;
+        }
+        h1 {
+            font-size: 4.5rem; /* Significantly larger main title */
+            font-weight: 800; /* Extra bold */
+            text-align: center;
+            margin-bottom: 2.5rem;
+            color: #1D4ED8; /* Deep blue for main title */
+        }
+        h2 {
+            font-size: 2.25rem; /* Larger section titles */
+            margin-top: 3.5rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #DBEAFE; /* Light blue border */
+            padding-bottom: 0.75rem;
+            color: #2563EB; /* Bright blue for section titles */
+        }
+        h3 {
+            font-size: 1.75rem; /* Larger sub-titles */
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: #1D4ED8;
+        }
+        h4 {
+            font-size: 1.25rem; /* For daily headers */
+            font-weight: 600;
+            color: #312e81; /* Darker blue for daily headers */
+            margin-bottom: 0.75rem;
+        }
+        p, li {
+            font-size: 1.125rem; /* Consistent large text size */
+            color: #374151; /* Slightly darker gray for better contrast */
+            margin-bottom: 1rem;
+        }
+        ul, ol {
+            margin-left: 2rem; /* More indent for lists */
+            margin-bottom: 1.5rem;
+        }
+        a {
+            color: #2563EB; /* Link color */
+            text-decoration: none;
+            font-weight: 600;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Specific Section Styling */
+        .quick-links-section {
+            background-color: #eef2ff; /* Very light blue background */
+            border: 1px solid #bfdbfe; /* Light blue border */
+            padding: 2.5rem; /* Increased padding */
+            border-radius: 12px;
+            margin-bottom: 3.5rem; /* More space below quick links */
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .quick-links-section .part-header {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1D4ED8;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #DBEAFE;
+            padding-bottom: 0.5rem;
+        }
+        .quick-links-section ul {
+            list-style-type: none; /* Remove default bullets */
+            margin-left: 0;
+            padding-left: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid for links */
+            gap: 1rem; /* Space between link items */
+        }
+        .quick-links-section li {
+            margin-bottom: 0.5rem;
+            padding: 0.75rem 1rem;
+            background-color: #DBEAFE; /* Slightly darker blue for link background */
+            border-radius: 8px;
+            transition: background-color 0.2s;
+        }
+        .quick-links-section li:hover {
+            background-color: #BFDBFE; /* Hover state */
+        }
+        .quick-links-section li a {
+            display: block; /* Make the whole list item clickable */
+            color: #1D4ED8; /* Darker blue for link text */
+            font-weight: 600;
+        }
+
+        .daily-pacing-card {
+            background-color: #f8fafc; /* Slightly off-white for daily cards */
+            border: 1px solid #e2e8f0; /* Light border */
+            border-radius: 8px;
+            padding: 2rem; /* Increased padding */
+            margin-bottom: 2.5rem; /* Space between daily cards */
+            box-shadow: 0 1px 4px rgba(0,0,0,0.03); /* Subtle shadow */
+        }
+        .daily-pacing-card ul {
+            list-style-type: disc;
+            margin-left: 1.5rem;
+            margin-bottom: 0; /* Remove extra margin */
+        }
+        .daily-pacing-card li {
+            margin-bottom: 0.5rem; /* Space between list items */
+        }
+
+        .key-info-box {
+            background-color: #eef2ff;
+            border-left: 6px solid #6366f1; /* Stronger accent border */
+            padding: 2rem; /* Increased padding */
+            margin-top: 3.5rem; /* More space above */
+            margin-bottom: 3.5rem; /* More space below */
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08); /* More prominent shadow */
+        }
+        .key-info-box h4 {
+            font-size: 1.4rem; /* Larger font for key info headers */
+            color: #312e81;
+            margin-bottom: 1rem;
+        }
+        .key-info-box p {
+            font-size: 1.15rem; /* Larger text in key info */
+            margin-bottom: 1rem;
+            color: #4B5563;
+        }
+        .key-info-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        .important-notes-section {
+            background-color: #DBEAFE; /* Light blue background */
+            border: 1px solid #BFDBFE;
+            padding: 2.5rem;
+            border-radius: 12px;
+            margin-top: 4rem; /* More space above */
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        .important-notes-section h2 {
+            border-bottom: none; /* No border for this H2 */
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            color: #1D4ED8;
+        }
+        .important-notes-section ul {
+            list-style-type: disc;
+            margin-left: 2rem;
+        }
+        .important-notes-section li {
+            margin-bottom: 1.25rem; /* Increased space between important notes list items */
+            font-size: 1.15rem; /* Slightly larger text for important notes */
+            color: #374151;
+        }
+        .important-notes-section li .emphasis { /* New class for emphasis */
+            font-weight: 800; /* Extra bold for emphasis */
+            color: #1D4ED8; /* Deep blue for emphasis */
+        }
+
+        /* Accordion Styling */
+        .accordion-item {
+            margin-bottom: 1.5rem; /* Space between accordion items */
+            border: 1px solid #BFDBFE;
+            border-radius: 12px;
+            overflow: hidden; /* Ensures rounded corners apply to content */
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .accordion-header {
+            width: 100%;
+            padding: 1.5rem 2rem; /* Generous padding */
+            background-color: #DBEAFE; /* Light blue header */
+            color: #1D4ED8; /* Dark blue text */
+            font-size: 1.5rem; /* Larger header text */
+            font-weight: 700;
+            text-align: left;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.2s ease-in-out;
+        }
+        .accordion-header:hover {
+            background-color: #BFDBFE;
+        }
+        .accordion-header.active {
+            background-color: #93C5FD; /* Slightly darker when active */
+        }
+        .accordion-icon {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease-in-out;
+        }
+        .accordion-header.active .accordion-icon {
+            transform: rotate(180deg); /* Rotate icon when active */
+        }
+        .accordion-content {
+            background-color: #FFFFFF;
+            border-top: 1px solid #E0E7FF; /* Separator line */
+            overflow: hidden; /* For smooth transition */
+            max-height: 0; /* Important for CSS transition */
+            transition: max-height 0.3s ease-out; /* For smooth opening/closing */
+        }
+        .accordion-inner-content { /* New inner div for padding */
+            padding: 2rem; /* Apply padding here */
+        }
+        /* Ensure the last card/box inside accordion-inner-content doesn't add extra bottom margin */
+        .accordion-inner-content > .daily-pacing-card:last-of-type,
+        .accordion-inner-content > .key-info-box:last-of-type {
+            margin-bottom: 0 !important;
+        }
+
+
+        /* Print Styles */
+        @media print {
+            body {
+                font-size: 12pt;
+                line-height: 1.5;
+                color: #000000;
+                background-color: white;
+            }
+            .container {
+                box-shadow: none;
+                border: none;
+                padding: 0.5in;
+                margin: 0;
+                max-width: 100%;
+            }
+            h1 { font-size: 24pt; color: #000000; border-bottom: 2px solid #000000; padding-bottom: 0.25rem; margin-bottom: 1rem; }
+            h2 { font-size: 18pt; color: #000000; border-bottom: 1px solid #000000; padding-bottom: 0.25rem; margin-top: 1.5rem; margin-bottom: 0.75rem; }
+            h3 { font-size: 14pt; color: #000000; margin-top: 1rem; margin-bottom: 0.5rem; }
+            h4 { font-size: 13pt; color: #000000; margin-bottom: 0.5rem; }
+            p, li { font-size: 12pt; color: #000000; margin-bottom: 0.5rem; }
+
+            .quick-links-section, .daily-pacing-card, .key-info-box, .important-notes-section {
+                box-shadow: none;
+                border: 1px solid #cccccc; /* Light border for print */
+                background-color: #f9f9f9 !important; /* Light background for print */
+                padding: 1rem;
+                margin-bottom: 1rem;
+                break-inside: avoid; /* Prevent breaking cards across pages */
+            }
+            .quick-links-section ul {
+                display: block; /* Revert grid to block for print */
+            }
+            .quick-links-section li {
+                background-color: #e0e0e0 !important; /* Light gray for print links */
+                margin-bottom: 0.25rem;
+            }
+            .quick-links-section li a {
+                color: #000000 !important;
+                text-decoration: underline;
+            }
+            .key-info-box {
+                border-left: 4px solid #999999;
+            }
+            .important-notes-section {
+                background-color: #eef2ff !important;
+            }
+            /* Ensure accordion content is visible when printing */
+            .accordion-content {
+                display: block !important;
+                max-height: none !important;
+            }
+            .accordion-header {
+                background-color: #e0e0e0 !important;
+                color: #000000 !important;
+                border-bottom: 1px solid #cccccc !important;
+            }
+            .accordion-icon {
+                display: none !important; /* Hide icons in print */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Geometry: 8-Week Pacing Guide</h1>
+        <p class="text-center text-gray-700 text-2xl font-medium leading-relaxed mb-12">
+            Welcome to your Geometry course! This guide outlines our weekly plan, detailing what we'll cover each day from Monday to Thursday. Fridays are dedicated to personalized support during office hours. Our goal is to build a strong understanding of geometric concepts, prepare you for real-world applications, and boost your math confidence.
+        </p>
+
+        <section class="quick-links-section">
+            <h2>Quick Links to Interactive Unit Notes</h2>
+            <p class="text-lg text-gray-700 mb-6">
+                Click on any unit below to access its interactive notes and quiz. These web pages are designed for easy reading and interaction, and you can also print them for offline use!
+            </p>
+            <ul>
+                <li><a href="geo-unit-1.html" target="_blank">Unit 1: Reasoning, Logic & Venn Diagrams</a></li>
+                <li><a href="geometry-unit2-interactive-notes.html" target="_blank">Unit 2: Lines, Angles, and Parallelism</a></li>
+                <li><a href="geometry-unit3-interactive-notes.html" target="_blank">Unit 3: Transformations & Symmetry</a></li>
+                <li><a href="geometry-unit4-interactive-notes.html" target="_blank">Unit 4: Triangles: Properties & Congruence</a></li>
+                <li><a href="geometry-unit5-interactive-notes.html" target="_blank">Unit 5: Similarity & Trigonometry</a></li>
+                <li><a href="geometry-unit6-interactive-notes.html" target="_blank">Unit 6: Polygons & Circles</a></li>
+                <li><a href="geometry-unit7-interactive-notes.html" target="_blank">Unit 7: 3D Figures: Volume, Surface Area, and Dimensional Change</a></li>
+            </ul>
+        </section>
+
+        <h2>Detailed Weekly Pacing Guide</h2>
+        <p class="text-lg text-gray-700 mb-10">
+            This section provides a day-by-day breakdown of our Geometry course, including key concepts, activities, and essential vocabulary for each unit. Click on any week to expand its details.
+        </p>
+
+        <!-- Week 1 -->
+        <div class="accordion-item">
+            <button class="accordion-header">
+                <h3>Week 1: Reasoning, Logic & Venn Diagrams (G.RLT.1)</h3>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="accordion-content">
+                <div class="accordion-inner-content">
+                    <div class="daily-pacing-card">
+                        <h4><span class="font-semibold text-indigo-700">Monday (Day 1):</span> Conditional Statements & Truth Values</h4>
+                        <ul class="list-disc ml-6">
+                            <li><span class="font-medium text-gray-700">Focus:</span> Introduction to propositions, understanding what makes a statement true or false.</li>
+                            <li><span class="font-medium text-gray-700">Activities:</span> Warm-up, guided notes using our interactive unit, example problems.</li>
+                        </ul>
+                    </div>
+                    <div class="daily-pacing-card">
+                        <h4><span class="font-semibold text-indigo-700">Tuesday (Day 2):</span> Converse, Inverse, Contrapositive, & Biconditional</h4>
+                        <ul class="list-disc ml-6">
+                            <li><span class="font-medium text-gray-700">Focus:</span> Learning how to transform conditional statements and understanding "if and only if" statements.</li>
+                            <li><span class="font-medium text-gray-700">Activities:</span> Guided notes using our interactive unit, in-class practice problems.</li>
+                        </ul>
+                    </div>
+                    <div class="daily-pacing-card">
+                        <h4><span class="font-semibold text-indigo-700">Wednesday (Day 3):</span> Symbolic Logic & Compound Statements</h4>
+                        <ul class="list-disc ml-6">
+                            <li><span class="font-medium text-gray-700">Focus:</span> Translating statements into symbolic form (negation, conjunction, disjunction) and understanding compound statements.</li>
+                            <li><span class="font-medium text-gray-700">Activities:</span> Guided notes using our interactive unit, practice with IXL or released SOL problems.</li>
+                        </ul>
+                    </div>
+                    <div class="daily-pacing-card">
+                        <h4><span class="font-semibold text-indigo-700">Thursday (Day 4):</span> Venn Diagrams & Applications</h4>
+                        <ul class="list-disc ml-6">
+                            <li><span class="font-medium text-gray-700">Focus:</span> Using Venn diagrams to represent and interpret set relationships.</li>
+                            <li><span class="font-medium text-gray-700">Activities:</span> Guided notes using our interactive unit, practice with IXL or released SOL problems, <span style="font-weight: 700; color: #DC2626;">Unit 1 Quiz</span>.</li>
+                        </ul>
+                    </div>
+                    <div class="daily-pacing-card">
+                        <h4><span class="font-semibold text-indigo-700">Friday:</span> Office Hours</h4>
+                        <ul class="list-disc ml-6">
+                            <li><span class="font-medium text-gray-700">Time:</span> 10 AM - 12 PM</li>
+                            <li><span class="font-medium text-gray-700">Purpose:</span> Tutoring, extra help, make-up tests/assignments.</li>
+                        </ul>
+                    </div>
+                    <div class="key-info-box">
+                        <h4>Key Concepts & Topics:</h4>
+                        <p>Logical reasoning, symbolic logic, Venn diagrams.</p>
+                        <h4>Essential Question:</h4>
+                        <p>How can logic be used to justify geometric reasoning?</p>
+                        <h4>Essential Vocabulary:</h4>
+                        <p>conditional, converse, inverse, contrapositive, biconditional, negation, conjunction, disjunction, Venn diagram.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Week 2 -->
+        <div class="accordion-item">
+            <button class="accordion-header">
+                <h3>Week 2: Lines, Angles, and Parallelism (G.RLT.2)</h3>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="accordion-content">
+                <div class="accordion-inner-content">
+                    <div class="daily-pacing-card">
+                        <h4><span class="font-semibold text-indigo-700">Monday (Day 1):</span> Parallel Lines & Transversals</h4>
+                        <ul class="list-disc ml-6">
+                            <li><span class="font-medium text-gray-700">Focus:</span> Identifying parallel lines and the angles formed by a transversal.</li>
+                            <li><span class="font-medium text-gray-700">Activities:</span> Warm-up, guided notes using our interactive unit, example problems.</li>
+                        </ul>
+                    </div>
+                    <div class="daily-pacing-card">
+                        <h4><span class="font-semibold text-indigo-700">Tuesday (Day 2):</span> Angle Relationships</h4>
+                        <ul class="list-disc ml-6">
+                            <li><span class="font-medium text-gray-700">Focus:</span> Understanding alternate interior/exterior, corresponding, and same-side interior/exterior angles.</li>
+                            <li><span class="font-medium text-gray-700">Activities:</span> Guided notes using our interactive unit, in-class practice problems.</li>
+                        </ul>
+                    </div>
+                    <div class="daily-pacing-card">
+                        <h4><span class="font-semibold text-indigo-700">Wednesday (Day 3):</span> Proving Lines Parallel</h4>
+                        <ul class="list-disc ml-6">
+                            <li><span class="font-medium text-gray-700">Focus:</span> Using angle relationships to prove that lines are parallel.</li>
+                            <li><span class="font-medium text-gray-700">Activities:</span> Guided notes using our interactive unit, practice with IXL or released SOL problems.</li>
+                        </ul>
+                    </div>
+                    <div class="daily-pacing-card">
+                        <h4><span class="font-semibold text-indigo-700">Thursday (Day 4):</span> Solving Problems with Angle Relationships</h4>
+                        <ul class="list-disc ml-6">
+                            <li><span class="font-medium text-gray-700">Focus:</span> Applying knowledge of angle relationships to solve geometric problems.</li>
+                            <li><span class="font-medium text-gray-700">Activities:</span> Guided notes using our interactive unit, practice with IXL or released SOL problems, <span style="font-weight: 700; color: #DC2626;">Unit 2 Quiz</span>.</li>
+                        </ul>
+                    </div>
+                    <div class="daily-pacing-card">
+                        <h4><span class="font-semibold text-indigo-700">Friday:</span> Office Hours</h4>
+                        <ul class="list-disc ml-6">
+                            <li><span class="font-medium text-gray-700">Time:</span> 10 AM - 12 PM</li>
+                            <li><span class="font-medium text-gray-700">Purpose:</span> Tutoring, extra help, make-up tests/assignments.</li>
+                        </ul>
+                    </div>
+                    <div class="key-info-box">
+                        <h4>Key Concepts & Topics:</h4>
+                        <p>Angle pairs, transversals, proofs.</p>
+                        <h4>Essential Question:</h4>
+                        <p>What geometric relationships exist between lines and angles?</p>
+                        <h4>Essential Vocabulary:</h4>
+                        <p>transversal, alternate interior/exterior, corresponding angles, same-side interior/exterior, parallel.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Week 3 -->
+        <div class="accordion-item">
+            <button class="accordion-header">
+                <h3>Week 3: Transformations & Symmetry (G.RLT.3)</h3>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="accordion-content">
+                <div class="accordion-inner-content">
+                    <div class="daily-pacing-card">
+                        <h4><span class="font-semibold text-indigo-700">Monday (Day 1):</span> Lines & Point Symmetry</h4>
+                        <ul class="list-disc ml-6">
+                            <li><span class="font-medium text-gray-700">Focus:</span> Introduction to different types of symmetry in geometric figures.</li>
+                            <li><span class="font-medium text-gray-700">Activities:</span> Warm-up, guided notes using our interactive unit, example problems.</li>
+                        </ul>
+                    </div>
+                    <div class="daily-pacing-card">
+                        <h4><span class="font-semibold text-indigo-700">Tuesday (Day 2):</span> Reflections and Rotations</h4>
+                        <ul class="list-disc ml-6">
+                            <li><span class="font-medium text-gray-700">Focus:</span> Understanding how figures are reflected across lines and rotated around points.</li>
+                            <li><span class="font-medium text-gray-700">Activities:</span> Guided notes using our interactive unit, in-class practice problems.</li>
+                        </ul>
+                    </div>
+                    <div class="daily-pacing-card">
+                        <h4><span class="font-semibold text-indigo-700">Wednesday (Day 3):</span> Translations and Dilations</h4>
+                    <ul class="list-disc ml-6">
+                        <li><span class="font-medium text-gray-700">Focus:</span> Learning about sliding figures (translations) and resizing them (dilations).</li>
+                        <li><span class="font-medium text-gray-700">Activities:</span> Guided notes using our interactive unit, practice with IXL or released SOL problems.</li>
+                    </ul>
+                </div>
+                <div class="daily-pacing-card">
+                    <h4><span class="font-semibold text-indigo-700">Thursday (Day 4):</span> Sequences of Transformations</h4>
+                    <ul class="list-disc ml-6">
+                        <li><span class="font-medium text-gray-700">Focus:</span> Combining multiple transformations and analyzing their effects on figures.</li>
+                        <li><span class="font-medium text-gray-700">Activities:</span> Guided notes using our interactive unit, practice with IXL or released SOL problems, <span style="font-weight: 700; color: #DC2626;">Unit 3 Quiz</span>.</li>
+                    </ul>
+                </div>
+                <div class="daily-pacing-card">
+                    <h4><span class="font-semibold text-indigo-700">Friday:</span> Office Hours</h4>
+                    <ul class="list-disc ml-6">
+                        <li><span class="font-medium text-gray-700">Time:</span> 10 AM - 12 PM</li>
+                        <li><span class="font-medium text-gray-700">Purpose:</span> Tutoring, extra help, make-up tests/assignments.</li>
+                    </ul>
+                </div>
+                <div class="key-info-box">
+                    <h4>Key Concepts & Topics:</h4>
+                    <p>Symmetry, rigid motions, transformations.</p>
+                    <h4>Essential Question:</h4>
+                    <p>How do transformations affect geometric figures?</p>
+                    <h4>Essential Vocabulary:</h4>
+                    <p>symmetry, reflection, rotation, translation, dilation, preimage, image.</p>
+                </div>
+            </div>
+        </div>
+	</div>
+
+        <!-- Week 4 -->
+        <div class="accordion-item">
+            <button class="accordion-header">
+                <h3>Week 4: Triangles: Properties & Congruence (G.TR.1, G.TR.2)</h3>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="accordion-content">
+                <div class="accordion-inner-content">
+                    <div class="daily-pacing-card">
+                        <h4><span class="font-semibold text-indigo-700">Monday (Day 1):</span> Triangle Inequality & Side/Angle Relationships</h4>
+                        <ul class="list-disc ml-6">
+                            <li><span class="font-medium text-gray-700">Focus:</span> Determining if three side lengths can form a triangle and understanding angle-side relationships.</li>
+                            <li><span class="font-medium text-gray-700">Activities:</span> Warm-up, guided notes using our interactive unit, example problems.</li>
+                        </ul>
+                    </div>
+                    <div class="daily-pacing-card">
+                        <h4><span class="font-semibold text-indigo-700">Tuesday (Day 2):</span> Triangle Angle Sum & Exterior Angles</h4>
+                        <ul class="list-disc ml-6">
+                            <li><span class="font-medium text-gray-700">Focus:</span> Applying the triangle angle sum theorem and understanding exterior angles.</li>
+                            <li><span class="font-medium text-gray-700">Activities:</span> Guided notes using our interactive unit, in-class practice problems.</li>
+                        </ul>
+                    </div>
+                    <div class="daily-pacing-card">
+                        <h4><span class="font-semibold text-indigo-700">Wednesday (Day 3):</span> Triangle Congruence (SSS, SAS, ASA)</h4>
+                        <ul class="list-disc ml-6">
+                            <li><span class="font-medium text-gray-700">Focus:</span> Learning the postulates and theorems used to prove triangles are congruent.</li>
+                            <li><span class="font-medium text-gray-700">Activities:</span> Guided notes using our interactive unit, practice with IXL or released SOL problems.</li>
+                        </ul>
+                    </div>
+                    <div class="daily-pacing-card">
+                        <h4><span class="font-semibold text-indigo-700">Thursday (Day 4):</span> Congruence Proofs (Algebra/Coordinate Methods)</h4>
+                        <ul class="list-disc ml-6">
+                            <li><span class="font-medium text-gray-700">Focus:</span> Writing proofs to demonstrate triangle congruence using algebraic and coordinate geometry methods.</li>
+                            <li><span class="font-medium text-gray-700">Activities:</span> Guided notes using our interactive unit, practice with IXL or released SOL problems, <span style="font-weight: 700; color: #DC2626;">Unit 4 Quiz</span>.</li>
+                        </ul>
+                    </div>
+                    <div class="daily-pacing-card">
+                        <h4><span class="font-semibold text-indigo-700">Friday:</span> Office Hours</h4>
+                        <ul class="list-disc ml-6">
+                            <li><span class="font-medium text-gray-700">Time:</span> 10 AM - 12 PM</li>
+                            <li><span class="font-medium text-gray-700">Purpose:</span> Tutoring, extra help, make-up tests/assignments.</li>
+                        </ul>
+                    </div>
+                    <div class="key-info-box">
+                        <h4>Key Concepts & Topics:</h4>
+                        <p>Triangle classification, congruent triangles.</p>
+                        <h4>Essential Question:</h4>
+                        <p>How can we prove triangles are congruent and use that information to solve problems?</p>
+                        <h4>Essential Vocabulary:</h4>
+                        <p>congruent, triangle inequality, interior/exterior angle, SSS, SAS, ASA, AAS, HL.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Week 5 -->
+        <div class="accordion-item">
+            <button class="accordion-header">
+                <h3>Week 5: Similarity & Trigonometry (G.TR.3, G.TR.4)</h3>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="accordion-content">
+                <div class="accordion-inner-content">
+                    <div class="daily-pacing-card">
+                        <h4><span class="font-semibold text-indigo-700">Monday (Day 1):</span> Triangle Similarity (AA, SAS, SSS)</h4>
+                        <ul class="list-disc ml-6">
+                            <li><span class="font-medium text-gray-700">Focus:</span> Understanding conditions for similar triangles and using similarity statements.</li>
+                            <li><span class="font-medium text-gray-700">Activities:</span> Warm-up, guided notes using our interactive unit, example problems.</li>
+                        </ul>
+                    </div>
+                    <div class="daily-pacing-card">
+                        <h4><span class="font-semibold text-indigo-700">Tuesday (Day 2):</span> Coordinate/Transformational Similarity Proofs</h4>
+                        <ul class="list-disc ml-6">
+                            <li><span class="font-medium text-gray-700">Focus:</span> Proving triangle similarity using coordinate geometry and transformations.</li>
+                            <li><span class="font-medium text-gray-700">Activities:</span> Guided notes using our interactive unit, in-class practice problems.</li>
+                        </ul>
+                    </div>
+                    <div class="daily-pacing-card">
+                        <h4><span class="font-semibold text-indigo-700">Wednesday (Day 3):</span> Right Triangle Trigonometry (sin, cos, tan)</h4>
+                        <ul class="list-disc ml-6">
+                            <li><span class="font-medium text-gray-700">Focus:</span> Introduction to sine, cosine, and tangent ratios in right triangles.</li>
+                            <li><span class="font-medium text-gray-700">Activities:</span> Guided notes using our interactive unit, practice with IXL or released SOL problems.</li>
+                        </ul>
+                    </div>
+                    <div class="daily-pacing-card">
+                        <h4><span class="font-semibold text-indigo-700">Thursday (Day 4):</span> Special Right Triangles & Pythagorean Theorem</h4>
+                        <ul class="list-disc ml-6">
+                            <li><span class="font-medium text-gray-700">Focus:</span> Applying properties of 45-45-90 and 30-60-90 triangles, and the Pythagorean Theorem.</li>
+                            <li><span class="font-medium text-gray-700">Activities:</span> Guided notes using our interactive unit, practice with IXL or released SOL problems, <span style="font-weight: 700; color: #DC2626;">Unit 5 Quiz</span>.</li>
+                        </ul>
+                    </div>
+                    <div class="daily-pacing-card">
+                        <h4><span class="font-semibold text-indigo-700">Friday:</span> Office Hours</h4>
+                        <ul class="list-disc ml-6">
+                            <li><span class="font-medium text-gray-700">Time:</span> 10 AM - 12 PM</li>
+                            <li><span class="font-medium text-gray-700">Purpose:</span> Tutoring, extra help, make-up tests/assignments.</li>
+                        </ul>
+                    </div>
+                    <div class="key-info-box">
+                        <h4>Key Concepts & Topics:</h4>
+                        <p>Similar triangles, trig ratios, applications.</p>
+                        <h4>Essential Question:</h4>
+                        <p>What is the connection between triangle similarity and trigonometry?</p>
+                        <h4>Essential Vocabulary:</h4>
+                        <p>similar triangles, AA, trigonometry, sine, cosine, tangent, Pythagorean Theorem.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Week 6 -->
+        <div class="accordion-item">
+            <button class="accordion-header">
+                <h3>Week 6: Polygons & Circles (G.PC.1–G.PC.4)</h3>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="accordion-content">
+                <div class="accordion-inner-content">
+                    <div class="daily-pacing-card">
+                        <h4><span class="font-semibold text-indigo-700">Monday (Day 1):</span> Properties of Quadrilaterals</h4>
+                        <ul class="list-disc ml-6">
+                            <li><span class="font-medium text-gray-700">Focus:</span> Understanding the characteristics of parallelograms, rhombuses, trapezoids, and other quadrilaterals.</li>
+                            <li><span class="font-medium text-gray-700">Activities:</span> Warm-up, guided notes using our interactive unit, example problems.</li>
+                        </ul>
+                    </div>
+                    <div class="daily-pacing-card">
+                        <h4><span class="font-semibold text-indigo-700">Tuesday (Day 2):</span> Interior/Exterior Angle Measures of Polygons</h4>
+                        <ul class="list-disc ml-6">
+                            <li><span class="font-medium text-gray-700">Focus:</span> Calculating angle sums and individual angle measures in various polygons.</li>
+                            <li><span class="font-medium text-gray-700">Activities:</span> Guided notes using our interactive unit, in-class practice problems.</li>
+                        </ul>
+                    </div>
+                    <div class="daily-pacing-card">
+                        <h4><span class="font-semibold text-indigo-700">Wednesday (Day 3):</span> Arcs, Sectors, Inscribed/Central Angles</h4>
+                        <ul class="list-disc ml-6">
+                            <li><span class="font-medium text-gray-700">Focus:</span> Exploring relationships between angles and arcs in circles.</li>
+                            <li><span class="font-medium text-gray-700">Activities:</span> Guided notes using our interactive unit, practice with IXL or released SOL problems.</li>
+                        </ul>
+                    </div>
+                    <div class="daily-pacing-card">
+                        <h4><span class="font-semibold text-indigo-700">Thursday (Day 4):</span> Equations and Graphs of Circles</h4>
+                        <ul class="list-disc ml-6">
+                            <li><span class="font-medium text-gray-700">Focus:</span> Writing and graphing equations of circles in the coordinate plane.</li>
+                            <li><span class="font-medium text-gray-700">Activities:</span> Guided notes using our interactive unit, practice with IXL or released SOL problems, <span style="font-weight: 700; color: #DC2626;">Unit 6 Quiz</span>.</li>
+                        </ul>
+                    </div>
+                    <div class="daily-pacing-card">
+                        <h4><span class="font-semibold text-indigo-700">Friday:</span> Office Hours</h4>
+                        <ul class="list-disc ml-6">
+                            <li><span class="font-medium text-gray-700">Time:</span> 10 AM - 12 PM</li>
+                            <li><span class="font-medium text-gray-700">Purpose:</span> Tutoring, extra help, make-up tests/assignments.</li>
+                        </ul>
+                    </div>
+                    <div class="key-info-box">
+                        <h4>Key Concepts & Topics:</h4>
+                        <p>Properties of polygons and circles, angle and arc relationships.</p>
+                        <h4>Essential Question:</h4>
+                        <p>How can we use the properties of polygons and circles to solve geometric problems?</p>
+                        <h4>Essential Vocabulary:</h4>
+                        <p>parallelogram, rhombus, trapezoid, sector, arc, inscribed angle, central angle, circle equation.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Week 7 -->
+        <div class="accordion-item">
+            <button class="accordion-header">
+                <h3>Week 7: 3D Figures: Volume, Surface Area, and Dimensional Change (G.DF.1, G.DF.2)</h3>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="accordion-content">
+                <div class="accordion-inner-content">
+                    <div class="daily-pacing-card">
+                        <h4><span class="font-semibold text-indigo-700">Monday (Day 1):</span> Surface Area and Volume of Prisms, Cylinders</h4>
+                        <ul class="list-disc ml-6">
+                            <li><span class="font-medium text-gray-700">Focus:</span> Calculating the surface area and volume of common three-dimensional shapes.</li>
+                            <li><span class="font-medium text-gray-700">Activities:</span> Warm-up, guided notes using our interactive unit, example problems.</li>
+                        </ul>
+                    </div>
+                    <div class="daily-pacing-card">
+                        <h4><span class="font-semibold text-indigo-700">Tuesday (Day 2):</span> Cones, Pyramids, and Spheres</h4>
+                        <ul class="list-disc ml-6">
+                            <li><span class="font-medium text-gray-700">Focus:</span> Extending surface area and volume calculations to cones, pyramids, and spheres.</li>
+                            <li><span class="font-medium text-gray-700">Activities:</span> Guided notes using our interactive unit, in-class practice problems.</li>
+                        </ul>
+                    </div>
+                    <div class="daily-pacing-card">
+                        <h4><span class="font-semibold text-indigo-700">Wednesday (Day 3):</span> Effects of Changing Dimensions</h4>
+                        <ul class="list-disc ml-6">
+                            <li><span class="font-medium text-gray-700">Focus:</span> Analyzing how scaling dimensions affects surface area and volume.</li>
+                            <li><span class="font-medium text-gray-700">Activities:</span> Guided notes using our interactive unit, practice with IXL or released SOL problems.</li>
+                        </ul>
+                    </div>
+                    <div class="daily-pacing-card">
+                        <h4><span class="font-semibold text-indigo-700">Thursday (Day 4):</span> Similar 3D Figures & Ratio Relationships</h4>
+                        <ul class="list-disc ml-6">
+                            <li><span class="font-medium text-gray-700">Focus:</span> Understanding similarity in three-dimensional figures and applying ratio relationships.</li>
+                            <li><span class="font-medium text-gray-700">Activities:</span> Guided notes using our interactive unit, practice with IXL or released SOL problems, <span style="font-weight: 700; color: #DC2626;">Unit 7 Quiz</span>.</li>
+                        </ul>
+                    </div>
+                    <div class="daily-pacing-card">
+                        <h4><span class="font-semibold text-indigo-700">Friday:</span> Office Hours</h4>
+                        <ul class="list-disc ml-6">
+                            <li><span class="font-medium text-gray-700">Time:</span> 10 AM - 12 PM</li>
+                            <li><span class="font-medium text-gray-700">Purpose:</span> Tutoring, extra help, make-up tests/assignments.</li>
+                        </ul>
+                    </div>
+                    <div class="key-info-box">
+                        <h4>Key Concepts & Topics:</h4>
+                        <p>Modeling with 3D shapes, dimensional analysis.</p>
+                        <h4>Essential Question:</h4>
+                        <p>How do changes in dimensions affect area and volume?</p>
+                        <h4>Essential Vocabulary:</h4>
+                        <p>surface area, volume, cross-section, prism, pyramid, sphere, scaling, similarity ratio.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Week 8 -->
+        <div class="accordion-item">
+            <button class="accordion-header">
+                <h3>Week 8: Review & Exam Preparation</h3>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="accordion-content">
+                <div class="accordion-inner-content">
+                    <div class="daily-pacing-card">
+                        <h4><span class="font-semibold text-indigo-700">Monday - Thursday:</span> Comprehensive Review</h4>
+                        <ul class="list-disc ml-6">
+                            <li><span class="font-medium text-gray-700">Focus:</span> This week is dedicated to comprehensive review, addressing any topics that need more attention, and intensive preparation for the Geometry SOL exam.</li>
+                            <li><span class="font-medium text-gray-700">Activities:</span> Review of all units, targeted practice with released SOL test problems, Q&A sessions, potential make-up days for any missed class time due to weather or other unforeseen circumstances.</li>
+                        </ul>
+                    </div>
+                    <div class="daily-pacing-card">
+                        <h4><span class="font-semibold text-indigo-700">Friday:</span> Office Hours</h4>
+                        <ul class="list-disc ml-6">
+                            <li><span class="font-medium text-gray-700">Time:</span> 10 AM - 12 PM</li>
+                            <li><span class="font-medium text-gray-700">Purpose:</span> Final questions, last-minute tutoring, and any remaining make-up work.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="important-notes-section">
+            <h2>Important Notes:</h2>
+            <ul class="list-disc ml-6 space-y-3">
+                <li>
+                    <span class="emphasis">LMS:</span> We will be using <a href="YOUR_SYNERGY_LINK_HERE" target="_blank" class="text-blue-700 hover:underline">Synergy Gradebook</a> as our Learning Management System. This is where you'll find grades and official course communications.
+                </li>
+                <li>
+                    <span class="emphasis">Interactive Units:</span> For each unit, we will utilize interactive notes and practice problems to guide our learning. These are designed for active engagement.
+                </li>
+                <li>
+                    <span class="emphasis">In-Class Practice:</span> We will regularly work on problems from IXL and previous released SOL test materials during class to solidify understanding and prepare you for the exam.
+                </li>
+                <li>
+                    <span class="emphasis">Quizzes:</span> A unit quiz will be given on the last day (Thursday) of each unit to check your progress.
+                </li>
+                <li>
+                    <span class="emphasis">Final Exam:</span> The comprehensive Geometry SOL exam will be administered separately after Week 8.
+                </li>
+                <li>
+                    <span class="emphasis">Flexibility:</span> While this guide provides a clear structure, please note that it is subject to minor adjustments based on class progress and needs.
+                </li>
+                <li>
+                    <span class="emphasis">Support:</span> Remember to utilize Friday office hours (10 AM - 12 PM) for any additional support you need, including tutoring, extra help, or make-up tests/assignments.
+                </li>
+            </ul>
+        </section>
+    </div>
+
+<footer class="bg-slate-100 text-slate-500 py-5 mt-16 border-t border-slate-200">
+    <div class="container mx-auto text-center">
+        <!-- Combined single-line footer text -->
+        <p class="text-sm">
+            &nbsp;&bull;&nbsp; &copy; 2025 Aly Hatfield. All Rights Reserved. &nbsp;&bull;&nbsp; 
+        </p>
+    </div>
+
+</footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    const content = this.nextElementSibling; // The accordion-content div
+                    const icon = this.querySelector('.accordion-icon');
+
+                    // Close all other open accordion items
+                    accordionHeaders.forEach(otherHeader => {
+                        if (otherHeader !== this) {
+                            otherHeader.classList.remove('active');
+                            otherHeader.nextElementSibling.classList.remove('open');
+                            otherHeader.nextElementSibling.style.maxHeight = null; // Collapse content
+                            otherHeader.querySelector('.accordion-icon').style.transform = 'rotate(0deg)';
+                        }
+                    });
+
+                    // Toggle the clicked accordion item
+                    this.classList.toggle('active');
+                    content.classList.toggle('open');
+
+                    if (content.classList.contains('open')) {
+                        // Set max-height to the scrollHeight of the inner content to allow proper transition
+                        content.style.maxHeight = content.querySelector('.accordion-inner-content').scrollHeight + "px";
+                        icon.style.transform = 'rotate(180deg)';
+                    } else {
+                        content.style.maxHeight = null; // Collapse content
+                        icon.style.transform = 'rotate(0deg)';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
