@@ -22,22 +22,22 @@
             border: 1px solid #e2e8f0;
         }
         h1 {
-            font-size: 3rem; /* Adjusted for longer title */
+            font-size: 3rem; /* Set to 3rem as requested */
             font-weight: 800;
             color: #1a202c;
             text-align: center;
-            margin-bottom: 1.5rem; /* Adjusted margin */
+            margin-bottom: 1.5rem;
             border-bottom: 3px solid #4f46e5; 
-            padding-bottom: 0.75rem; /* Adjusted padding */
+            padding-bottom: 0.75rem;
         }
         h2 {
-            font-size: 2.5rem;
-            font-weight: 700; /* Made bolder */
+            font-size: 2.8rem; /* Increased font size */
+            font-weight: 700;
             color: #2d3748;
-            margin-top: 2.5rem;
-            margin-bottom: 1.5rem; /* Increased bottom margin */
+            margin-top: 3rem; /* Increased top margin for more space */
+            margin-bottom: 2rem; /* Increased bottom margin for more space */
             border-bottom: 2px solid #cbd5e0;
-            padding-bottom: 0.5rem; /* Adjusted padding */
+            padding-bottom: 0.75rem; /* Increased padding */
         }
         p, li {
             font-size: 1rem;
@@ -55,7 +55,7 @@
             margin-bottom: 1rem;
         }
         strong {
-            font-weight: 600; /* Adjusted for consistency */
+            font-weight: 600;
             color: #2d3748;
         }
         a {
@@ -73,11 +73,16 @@
             margin-top: 1.5rem;
             margin-bottom: 1.5rem;
         }
+        .instructor-info-list { /* Style to remove bullets for instructor info */
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
         hr {
             border: 0;
             height: 1px;
             background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(79, 70, 229, 0.75), rgba(0, 0, 0, 0));
-            margin: 3rem 0; /* Increased margin */
+            margin: 3rem 0;
         }
         .print-button {
             display: inline-block;
@@ -99,18 +104,19 @@
     <div class="container">
         <h1><strong>Math Foundations Syllabus</strong></h1>
         
-        <div class="my-10 text-center"> <!-- Increased margin around button -->
+        <div class="my-10 text-center">
             <a href="math-f-syl.pdf" target="_blank" class="print-button">
                 Print Syllabus (PDF)
-                <!-- Replace '#' with the link to your PDF file -->
             </a>
         </div>
         
         <div class="mb-8 text-center text-gray-700">
-            <p><strong>Instructor:</strong> Alexandra Hatfield (“Aly”)</p>
-            <p><strong>Contact:</strong> <a href="mailto:ahatfield@goodwillvalleys.com">ahatfield@goodwillvalleys.com</a></p>
-            <p><strong>Office Hours for Extra Help:</strong> Fridays 10:00 AM - 12:00 PM</p>
-            <p><strong>Communication:</strong> Please email for questions. Responses are within 24 hours on school days.</p>
+            <ul class="instructor-info-list">
+                <li><strong>Instructor:</strong> Alexandra Hatfield (“Aly”)</li>
+                <li><strong>Contact:</strong> <a href="mailto:ahatfield@goodwillvalleys.com">ahatfield@goodwillvalleys.com</a></li>
+                <li><strong>Office Hours for Extra Help:</strong> Fridays 10:00 AM - 12:00 PM</li>
+                <li><strong>Communication:</strong> Please email for questions. Responses are within 24 hours on school days.</li>
+            </ul>
         </div>
 
         <hr>
@@ -118,62 +124,60 @@
         <h2><strong>Course Overview</strong></h2>
         <p>Welcome to Math Foundations! This course is designed to help you build a strong and confident understanding of the essential pre-algebra skills needed to succeed in Algebra 1. The course is delivered through a self-paced online program, allowing you to learn at a pace that works best for you.</p>
         <p class="mt-4">My role in this class is to be your guide and support system. While the primary lessons and assignments are provided by the online program, I am here to proctor, offer one-on-one help, provide examples, and lead mini-lessons whenever you need clarification or extra practice on a topic.</p>
-	<br>
+        
         <hr>
-
+	<br>
         <h2><strong>Materials Needed</strong></h2>
-        <ul>
+        <ul class="list-disc ml-6">
             <li>Notebook or binder with paper for notes and practice problems</li>
             <li>Pencils and erasers</li>
             <li>Calculator (scientific or Desmos online calculator recommended)</li>
             <li>Access to a laptop or computer with a reliable internet connection</li>
         </ul>
-	<br>
 
         <hr>
+	<br>
 
         <h2><strong>Units & Topics Covered</strong></h2>
         <p>All units are aligned with the Virginia Standards of Learning (SOL) for pre-algebra to prepare you for Algebra I.</p>
-        <ol>
-            <li><strong>Unit 1:</strong>The Real Number System</li>
-            <li><strong>Unit 2:</strong>Algebraic Expressions</li>
-            <li><strong>Unit 3:</strong>Solving Equations</li>
-            <li><strong>Unit 4:</strong>Solving Inequalities</li>
-            <li><strong>Unit 5:</strong>Ratios, Proportions & Percentages</li>
-            <li><strong>Unit 7:</strong>Introduction to Functions</li>
-            <li><strong>Unit 8:</strong>Basic Geometry Concepts</li>
-        </ol>
-	<br>
-  
+        <ul class="list-disc ml-6">
+            <li><strong>Unit 1:</strong> The Real Number System</li>
+            <li><strong>Unit 2:</strong> Algebraic Expressions</li>
+            <li><strong>Unit 3:</strong> Solving Equations</li>
+            <li><strong>Unit 4:</strong> Solving Inequalities</li>
+            <li><strong>Unit 5:</strong> Ratios, Proportions & Percentages</li>
+            <li><strong>Unit 7:</strong> Introduction to Functions</li>
+            <li><strong>Unit 8:</strong> Basic Geometry Concepts</li>
+        </ul>
+    
         <hr>
+	<br>
 
         <h2><strong>Course Completion & Progress</strong></h2>
         <p>Your progress is determined by your completion of the modules within our online learning program. Successful completion is based on finishing all required lessons, practice problems, and assessments in the online system. It is important to work consistently to stay on track.</p>
-	<br>
 
         <hr>
 	<br>
 
         <h2><strong>Expectations for Success</strong></h2>
-        <ol>
+        <ol class="list-decimal ml-6">
             <li><strong>Work Consistently:</strong> Dedicate regular time each week to the online modules.</li>
             <li><strong>Ask for Help:</strong> Don't hesitate to reach out to me when you're stuck. My job is to help you succeed!</li>
             <li><strong>Stay Engaged:</strong> Take notes as you go through the online lessons.</li>
             <li><strong>Use Your Resources:</strong> Make full use of the class resource page.</li>
             <li><strong>Try Your Best:</strong> A positive attitude is key to success.</li>
         </ol>
-	<br>
 
         <hr>
+	<br>
 
         <h2><strong>Class Resources</strong></h2>
-        <ul>
+        <ul class="list-disc ml-6">
             <li><strong>Main Learning Platform:</strong> All primary lessons and assignments are on our main online program, accessible at: [Insert URL Here]</li>
-            <li><strong>Class Resource Page:</strong> Your central hub for support materials like extra practice and mini-lessons.</li>
+            <li><strong> Class Site:</strong>This is your central hub for all course information. <strong><a href="https://www.ahatmath.com" target="_blank" class="hover:underline">ahatmath.com</a></strong></li>
             <li><strong>Desmos Calculator:</strong> A free online graphing calculator for visualizing problems.</li>
         </ul>
-    </div>
-
+</div>
     <footer class="text-center text-gray-500 text-sm py-5 mt-4">
         <p>&nbsp;&bull;&nbsp; &copy; <span id="year"></span> Aly Hatfield. All Rights Reserved. &nbsp;&bull;&nbsp;</p>
     </footer>
@@ -181,6 +185,5 @@
     <script>
         document.getElementById("year").textContent = new Date().getFullYear();
     </script>
-
 </body>
 </html>
