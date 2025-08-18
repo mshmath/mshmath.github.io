@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Notes Template</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .note-container {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e2e8f0;
+            margin-bottom: 2rem;
+        }
+        .note-header {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+        }
+        .note-header input {
+            border: none;
+            border-bottom: 1px solid #cbd5e1;
+            padding: 0.25rem 0;
+            background-color: transparent;
+        }
+        .note-header input:focus {
+            outline: none;
+            border-bottom-color: #6366f1;
+        }
+        .note-body {
+            padding: 1.5rem;
+        }
+        textarea {
+            width: 100%;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1rem;
+            resize: vertical;
+            min-height: 150px;
+        }
+        textarea:focus {
+            outline: none;
+            border-color: #6366f1;
+            box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+        }
+        @media print {
+            body {
+                background-color: white;
+            }
+            .no-print {
+                display: none;
+            }
+            .note-container {
+                box-shadow: none;
+                border: 1px solid #94a3b8;
+                page-break-inside: avoid;
+            }
+            textarea {
+                border: 1px solid #94a3b8;
+                height: 300px; /* Set a fixed height for printing */
+            }
+            .print-full-page {
+                height: 80vh;
+            }
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-6 lg:p-8">
+    <div class="max-w-4xl mx-auto">
+        <h1 class="text-3xl font-bold text-center text-slate-800 mb-4">Class Notes</h1>
+        <div class="text-center mb-8 no-print">
+            <button onclick="window.print()" class="bg-indigo-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-indigo-700 transition-colors">
+                Print Blank Notes
+            </button>
+        </div>
+
+        <!-- Cornell Notes Template -->
+        <div class="note-container">
+            <div class="note-header bg-slate-50">
+                <h2 class="text-2xl font-semibold text-slate-700 mr-auto">Math Class Notes</h2>
+                <input type="text" placeholder="Name..." class="w-40">
+                <input type="text" placeholder="Date..." class="w-32">
+                <input type="text" placeholder="Class..." class="w-32">
+                <input type="text" placeholder="Unit/Topic..." class="w-48">
+            </div>
+            <div class="note-body grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="md:col-span-1">
+                    <h3 class="font-semibold text-lg text-slate-800 mb-2">Cues & Questions</h3>
+                    <p class="text-sm text-slate-500 mb-2">Write main ideas, key questions, and vocabulary here.</p>
+                    <textarea placeholder="e.g., What is the product rule for exponents?"></textarea>
+                </div>
+                <div class="md:col-span-2">
+                    <h3 class="font-semibold text-lg text-slate-800 mb-2">Main Notes</h3>
+                    <p class="text-sm text-slate-500 mb-2">Record what the teacher writes on the board: definitions, examples, diagrams, etc.</p>
+                    <textarea placeholder="aᵐ ⋅ aⁿ = aᵐ⁺ⁿ ..."></textarea>
+                </div>
+                <div class="md:col-span-3">
+                    <h3 class="font-semibold text-lg text-slate-800 mb-2">Summary & Reflection</h3>
+                    <p class="text-sm text-slate-500 mb-2">After class, summarize the main points of the lesson in your own words.</p>
+                    <textarea placeholder="Today I learned how to use the laws of exponents to simplify expressions..."></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- Warm-Up Template -->
+        <div class="note-container">
+            <div class="note-header bg-blue-50">
+                <h2 class="text-2xl font-semibold text-blue-700 mr-auto">Warm-Up</h2>
+                <input type="text" placeholder="Name..." class="w-40">
+                <input type="text" placeholder="Date..." class="w-32">
+                <input type="text" placeholder="Class..." class="w-32">
+            </div>
+            <div class="note-body">
+                <h3 class="font-semibold text-lg text-slate-800 mb-2">Problem / Question:</h3>
+                <textarea class="print-full-page" placeholder="Write the warm-up problem here, or leave blank for students to copy from the board..."></textarea>
+            </div>
+        </div>
+
+        <!-- Cool-Down / Exit Ticket Template -->
+        <div class="note-container">
+            <div class="note-header bg-purple-50">
+                <h2 class="text-2xl font-semibold text-purple-700 mr-auto">Cool-Down / Exit Ticket</h2>
+                <input type="text" placeholder="Name..." class="w-40">
+                <input type="text" placeholder="Date..." class="w-32">
+                <input type="text" placeholder="Class..." class="w-32">
+            </div>
+            <div class="note-body">
+                <h3 class="font-semibold text-lg text-slate-800 mb-2">Reflection / Question:</h3>
+                <textarea class="print-full-page" placeholder="Write the cool-down question here, or leave blank for students to answer..."></textarea>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
