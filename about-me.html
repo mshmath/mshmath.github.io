@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me - Ms. Hatfield</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .info-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 1rem;
+            padding: 2rem;
+            background-color: white;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .info-header {
+            background-color: #f8fafc;
+            padding: 1rem 1.5rem;
+            border-radius: 0.75rem;
+            border: 1px solid #e2e8f0;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-gray-50 to-purple-50 text-gray-800 min-h-screen py-12 px-4">
+
+    <!-- Main Container -->
+    <div class="container mx-auto max-w-4xl">
+        
+        <header class="text-center mb-10">
+            <h1 class="text-5xl font-bold text-gray-900 bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-blue-600">
+                Meet the Teacher
+            </h1>
+        </header>
+
+        <!-- About Me Card -->
+        <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg p-8">
+            
+            <!-- Basic Info Section -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center md:text-left border-b pb-8 mb-8">
+                <div>
+                    <p class="text-sm text-gray-500 font-medium">NAME</p>
+                    <p class="text-lg font-semibold">Alexandra Hatfield (Ms. Hatfield or Ms. H)</p>
+                </div>
+                <div>
+                    <p class="text-sm text-gray-500 font-medium">BIRTHDAY</p>
+                    <p class="text-lg font-semibold">July 18, Cancer</p>
+                </div>
+                <div>
+                    <p class="text-sm text-gray-500 font-medium">WHERE I'M FROM</p>
+                    <p class="text-lg font-semibold">All over - West Virginia, Detroit</p>
+                </div>
+            </div>
+
+            <!-- Details Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                <!-- Left Column -->
+                <div>
+                    <div class="info-card h-full">
+                        <h3 class="info-header">My Hobbies</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700">
+                            <li>Weightlifting</li>
+                            <li>Fishing</li>
+                            <li>Making stained glass</li>
+                            <li>Hiking</li>
+                            <li>Cooking/baking</li>
+                            <li>Learning new things</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Right Column -->
+                <div>
+                    <div class="info-card h-full">
+                        <h3 class="info-header">Things I Like</h3>
+                        <div class="grid grid-cols-2 gap-x-4 gap-y-2 text-gray-700">
+                            <p><strong>Color:</strong> Blue, Green, Orange</p>
+                            <p><strong>Food:</strong> Asian or Latin Food</p>
+                            <p><strong>Pet:</strong> I have two cats</p>
+                            <p><strong>Music:</strong> Rock, R&B, Rap</p>
+                            <p><strong>Movies:</strong> Beach or the mountains</p>
+                            <p><strong>Season:</strong> Spring and summer</p>
+                            <p><strong>Place:</strong> Beach or the mountains</p>
+                            <p><strong>Sports:</strong> Boxing, Weightlifting</p>
+                            <p><strong>Subject:</strong> Math, tech, art</p>
+                        </div>
+                    </div>
+                </div>
+                 <!-- Facts Section -->
+                <div class="lg:col-span-2">
+                    <div class="info-card">
+                        <h3 class="info-header">Facts About Me</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700">
+                           <li>I am a first generation college student</li>
+                           <li>I used to work in healthcare</li>
+                           <li>I volunteer with prisons and incarcerated people</li>
+                           <li>I am new to Roanoke</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Goals Section -->
+            <div class="info-card">
+                <h3 class="info-header">My Career and Life Goals...</h3>
+                <p class="text-gray-700 leading-relaxed">
+                    To get my master's and PhD eventually, to travel the around the world, to make a positive impact on those around me, and to teach to the best of my ability.
+                </p>
+            </div>
+
+            <!-- Button to Student Page -->
+             <div class="text-center mt-12">
+                <a href="student-about-me.html" target="_blank" class="inline-flex items-center gap-2 bg-blue-600 text-white font-semibold px-8 py-3 rounded-lg shadow-md hover:bg-blue-700 transition-transform transform hover:-translate-y-1">
+                    <i data-lucide="user-check"></i>
+                    Student 'About Me' Form
+                </a>
+             </div>
+        </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
