@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algebra 1: Evaluating Expressions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5;
+        }
+        .slide-container {
+            width: 100%;
+            max-width: 900px;
+            aspect-ratio: 16 / 9;
+            margin: 2rem auto;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        .slide {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 3rem;
+            text-align: center;
+            background-color: white;
+            height: 100%;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .slide.active {
+            display: flex;
+        }
+        .nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.3);
+            color: white;
+            border: none;
+            padding: 0.75rem;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .nav-button:hover {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        #prevBtn { left: 1rem; }
+        #nextBtn { right: 1rem; }
+        .slide-counter {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.875rem;
+            z-index: 10;
+        }
+        .title-slide {
+            background: linear-gradient(135deg, #4338ca, #818cf8);
+            color: white;
+        }
+        .emphasis-highlight {
+            background-color: #fef9c3; /* yellow-100 */
+            padding: 0.1em 0.3em;
+            border-radius: 0.25em;
+            font-weight: 500;
+        }
+        .expression { 
+            font-family: monospace; 
+            font-size: 1.5rem; 
+            background-color: #e5e7eb; 
+            padding: 0.25rem 0.75rem; 
+            border-radius: 0.5rem; 
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen p-4">
+
+    <h1 class="text-3xl font-bold text-gray-800 mb-4">Algebra 1 Presentation</h1>
+    <p class="text-gray-600 mb-4 text-center">Use the arrows to navigate through the slides.</p>
+
+    <div class="slide-container">
+        <!-- Slide 1: Title -->
+        <div class="slide active title-slide">
+            <h1 class="text-5xl font-bold mb-4">Algebraic Expressions</h1>
+            <p class="text-2xl">Day 2: Evaluate with Substitution</p>
+        </div>
+
+        <!-- Slide 2: Objectives -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Today's Objectives</h2>
+            <ul class="list-disc text-left text-xl space-y-4 text-gray-700">
+                <li><span class="emphasis-highlight">Substitute</span> given values for variables.</li>
+                <li>Apply the <span class="emphasis-highlight">Order of Operations</span> to evaluate expressions.</li>
+                <li>Evaluate expressions with absolute value and square roots.</li>
+            </ul>
+        </div>
+
+        <!-- Slide 3: Warm-Up -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Warm-Up: Order of Operations</h2>
+            <p class="text-2xl text-gray-700 mb-4">Simplify each expression:</p>
+            <ol class="text-2xl space-y-3 list-decimal">
+                <li>5 + 2 × 10</li>
+                <li>(8 - 3)²</li>
+                <li>16 ÷ 4 + 2</li>
+            </ol>
+        </div>
+
+        <!-- Slide 4: The Process -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">The 2-Step Process: Plug and Chug!</h2>
+            <div class="w-full text-2xl space-y-6">
+                <div class="p-4 bg-indigo-50 rounded-lg border-l-4 border-indigo-500">
+                    <h3 class="font-bold text-indigo-800">Step 1: Substitute (Plug)</h3>
+                    <p>Replace the variable with its given value. Use parentheses!</p>
+                </div>
+                <div class="p-4 bg-teal-50 rounded-lg border-l-4 border-teal-500">
+                    <h3 class="font-bold text-teal-800">Step 2: Simplify (Chug)</h3>
+                    <p>Use the Order of Operations (PEMDAS) to find the final value.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: I Do Example -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Example 1: I Do</h2>
+            <p class="text-2xl text-gray-700 mb-4">Evaluate <span class="expression">3x + 5</span> when <span class="expression">x = 4</span></p>
+            <div class="text-2xl space-y-3">
+                <p>1. Substitute: <span class="expression">3(4) + 5</span></p>
+                <p>2. Multiply: <span class="expression">12 + 5</span></p>
+                <p>3. Add: <span class="expression">17</span></p>
+            </div>
+        </div>
+
+        <!-- Slide 6: Guided Practice -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Example 2: We Do</h2>
+            <p class="text-2xl text-gray-700 mb-4">Evaluate <span class="expression">k² + 4m</span> when <span class="expression">k = 5</span> and <span class="expression">m = -2</span></p>
+            <div class="text-2xl space-y-3">
+                <p>1. Substitute: <span class="expression">(5)² + 4(-2)</span></p>
+                <p>2. Exponent: <span class="expression">25 + 4(-2)</span></p>
+                <p>3. Multiply: <span class="expression">25 - 8</span></p>
+                <p>4. Subtract: <span class="expression">17</span></p>
+            </div>
+        </div>
+        
+        <!-- Slide 7: Independent Practice -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Independent Practice</h2>
+            <p class="text-xl text-gray-700 mb-6">Choose your level and evaluate each expression.</p>
+            <div class="flex space-x-4 text-left w-full">
+                <div class="flex-1 p-4 border-2 border-red-400 rounded-lg bg-red-50">
+                    <h3 class="text-xl font-bold text-red-600">RED</h3>
+                    <ol class="list-decimal pl-5 text-sm mt-2 space-y-2">
+                        <li>Evaluate `x + 10` when `x = 7`.</li>
+                        <li>Evaluate `4y` when `y = 6`.</li>
+                        <li>Evaluate `z - 3` when `z = 15`.</li>
+                    </ol>
+                </div>
+                <div class="flex-1 p-4 border-2 border-yellow-400 rounded-lg bg-yellow-50">
+                    <h3 class="text-xl font-bold text-yellow-600">YELLOW</h3>
+                    <ol class="list-decimal pl-5 text-sm mt-2 space-y-2">
+                        <li>Evaluate `2a + 3b` when `a = 5` and `b = 2`.</li>
+                        <li>Evaluate `c² - 1` when `c = 8`.</li>
+                        <li>Evaluate `(d + 4) / 2` when `d = 10`.</li>
+                    </ol>
+                </div>
+                <div class="flex-1 p-4 border-2 border-green-400 rounded-lg bg-green-50">
+                    <h3 class="text-xl font-bold text-green-600">GREEN</h3>
+                    <ol class="list-decimal pl-5 text-sm mt-2 space-y-2">
+                        <li>Evaluate `|m - n|` when `m = 5` and `n = 12`.</li>
+                        <li>Evaluate `√p + q²` when `p = 36` and `q = -3`.</li>
+                        <li>Cost for friends is `12f + 5f`. Find the cost for 4 friends.</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Exit Ticket -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Exit Ticket</h2>
+            <p class="text-2xl text-gray-700 mb-6">Evaluate each expression for the given values:</p>
+            <ol class="text-2xl space-y-3 list-decimal text-left">
+                <li>`5x - 2` when `x = 6`.</li>
+                <li>`a² + 9` when `a = 4`.</li>
+            </ol>
+        </div>
+
+        <!-- Navigation -->
+        <button id="prevBtn" class="nav-button">&lt;</button>
+        <button id="nextBtn" class="nav-button">&gt;</button>
+        <div id="slideCounter" class="slide-counter">1 / 8</div>
+    </div>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const slideCounter = document.getElementById('slideCounter');
+        let currentSlide = 0;
+
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[n].classList.add('active');
+            slideCounter.textContent = `${n + 1} / ${slides.length}`;
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        nextBtn.addEventListener('click', nextSlide);
+        prevBtn.addEventListener('click', prevSlide);
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                prevSlide();
+            }
+        });
+
+        showSlide(currentSlide);
+    </script>
+</body>
+</html>
