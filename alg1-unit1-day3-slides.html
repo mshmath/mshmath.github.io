@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algebra 1: Laws of Exponents</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        }
+      };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5;
+        }
+        .slide-container {
+            width: 100%;
+            max-width: 900px;
+            aspect-ratio: 16 / 9;
+            margin: 2rem auto;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        .slide {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 3rem;
+            text-align: center;
+            background-color: white;
+            height: 100%;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .slide.active {
+            display: flex;
+        }
+        .nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.3);
+            color: white;
+            border: none;
+            padding: 0.75rem;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .nav-button:hover {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        #prevBtn { left: 1rem; }
+        #nextBtn { right: 1rem; }
+        .slide-counter {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.875rem;
+            z-index: 10;
+        }
+        .title-slide {
+            background: linear-gradient(135deg, #be185d, #f9a8d4);
+            color: white;
+        }
+        .emphasis-highlight {
+            background-color: #fef9c3; /* yellow-100 */
+            padding: 0.1em 0.3em;
+            border-radius: 0.25em;
+            font-weight: 500;
+        }
+        .expression { 
+            font-family: monospace; 
+            font-size: 1.5rem; 
+            background-color: #e5e7eb; 
+            padding: 0.25rem 0.75rem; 
+            border-radius: 0.5rem; 
+        }
+        .rule-box {
+            background-color: #f3f4f6;
+            border-left: 6px solid #be185d;
+            padding: 1rem;
+            border-radius: 0.5rem;
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen p-4">
+
+    <h1 class="text-3xl font-bold text-gray-800 mb-4">Algebra 1 Presentation</h1>
+    <p class="text-gray-600 mb-4 text-center">Use the arrows to navigate through the slides.</p>
+
+    <div class="slide-container">
+        <!-- Slide 1: Title -->
+        <div class="slide active title-slide">
+            <h1 class="text-5xl font-bold mb-4">Laws of Exponents</h1>
+            <p class="text-2xl">Day 3: Product, Quotient, and Power Rules</p>
+        </div>
+
+        <!-- Slide 2: Objectives -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Today's Objectives</h2>
+            <ul class="list-disc text-left text-xl space-y-4 text-gray-700">
+                <li>Apply the <span class="emphasis-highlight">Product Rule</span> when multiplying powers.</li>
+                <li>Apply the <span class="emphasis-highlight">Quotient Rule</span> when dividing powers.</li>
+                <li>Apply the <span class="emphasis-highlight">Power Rule</span> when raising a power to a power.</li>
+            </ul>
+        </div>
+
+        <!-- Slide 3: Warm-Up -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Warm-Up: Discover the Pattern</h2>
+            <p class="text-2xl text-gray-700 mb-4">Write in expanded form and simplify:</p>
+            <div class="text-2xl space-y-3">
+                <p>1. $x^3 \cdot x^2 = (x \cdot x \cdot x) \cdot (x \cdot x) = ?$</p>
+                <p>2. $y^5 / y^3 = (y \cdot y \cdot y \cdot y \cdot y) / (y \cdot y \cdot y) = ?$</p>
+            </div>
+        </div>
+
+        <!-- Slide 4: Product Rule -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Product Rule</h2>
+            <p class="text-2xl text-gray-700 mb-4">When multiplying powers with the same base, <span class="emphasis-highlight">ADD</span> the exponents.</p>
+            <div class="rule-box text-2xl w-full">
+                <p class="expression">$a^m \cdot a^n = a^{m+n}$</p>
+                <p class="mt-4">Example: $(2y^4)(3y^2) = 6y^{4+2} = 6y^6$</p>
+            </div>
+        </div>
+        
+        <!-- Slide 5: Quotient Rule -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Quotient Rule</h2>
+            <p class="text-2xl text-gray-700 mb-4">When dividing powers with the same base, <span class="emphasis-highlight">SUBTRACT</span> the exponents.</p>
+            <div class="rule-box text-2xl w-full">
+                <p class="expression">$a^m / a^n = a^{m-n}$</p>
+                <p class="mt-4">Example: $10b^8 / 2b^3 = 5b^{8-3} = 5b^5$</p>
+            </div>
+        </div>
+
+        <!-- Slide 6: Power Rule -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Power Rule</h2>
+            <p class="text-2xl text-gray-700 mb-4">When raising a power to another power, <span class="emphasis-highlight">MULTIPLY</span> the exponents.</p>
+            <div class="rule-box text-2xl w-full">
+                <p class="expression">$(a^m)^n = a^{m \cdot n}$</p>
+                <p class="mt-4">Example: $(3k^4)^2 = 3^2k^{4 \cdot 2} = 9k^8$</p>
+            </div>
+        </div>
+        
+        <!-- Slide 7: Independent Practice -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Independent Practice</h2>
+            <p class="text-xl text-gray-700 mb-6">Choose your level and simplify each expression.</p>
+            <div class="flex space-x-4 text-left w-full">
+                <div class="flex-1 p-4 border-2 border-red-400 rounded-lg bg-red-50">
+                    <h3 class="text-xl font-bold text-red-600">RED</h3>
+                    <ol class="list-decimal pl-5 text-lg mt-2 space-y-2">
+                        <li>Simplify: $x^5 \cdot x^2$</li>
+                        <li>Simplify: $y^9 / y^3$</li>
+                        <li>Simplify: $(a^3)^4$</li>
+                    </ol>
+                </div>
+                <div class="flex-1 p-4 border-2 border-yellow-400 rounded-lg bg-yellow-50">
+                    <h3 class="text-xl font-bold text-yellow-600">YELLOW</h3>
+                    <ol class="list-decimal pl-5 text-lg mt-2 space-y-2">
+                        <li>Simplify: $(4n^2)(5n^6)$</li>
+                        <li>Simplify: $12b^7 / 3b$</li>
+                        <li>Simplify: $(2c^3)^3$</li>
+                    </ol>
+                </div>
+                <div class="flex-1 p-4 border-2 border-green-400 rounded-lg bg-green-50">
+                    <h3 class="text-xl font-bold text-green-600">GREEN</h3>
+                    <ol class="list-decimal pl-5 text-lg mt-2 space-y-2">
+                        <li>Simplify: $(3x^2y^5)(4xy^2)$</li>
+                        <li>Simplify: $(10a^8b^3) / (2a^2b)$</li>
+                        <li>Simplify: $(x^4)^3 \cdot x^2$</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Exit Ticket -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Exit Ticket</h2>
+            <p class="text-2xl text-gray-700 mb-6">Simplify each expression:</p>
+            <ol class="text-2xl space-y-3 list-decimal text-left">
+                <li>$n^3 \cdot n^8$</li>
+                <li>$20k^{10} / 5k^2$</li>
+                <li>$(p^5)^4$</li>
+            </ol>
+        </div>
+
+        <!-- Navigation -->
+        <button id="prevBtn" class="nav-button">&lt;</button>
+        <button id="nextBtn" class="nav-button">&gt;</button>
+        <div id="slideCounter" class="slide-counter">1 / 8</div>
+    </div>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const slideCounter = document.getElementById('slideCounter');
+        let currentSlide = 0;
+
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[n].classList.add('active');
+            slideCounter.textContent = `${n + 1} / ${slides.length}`;
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        nextBtn.addEventListener('click', nextSlide);
+        prevBtn.addEventListener('click', prevSlide);
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                prevSlide();
+            }
+        });
+
+        showSlide(currentSlide);
+    </script>
+</body>
+</html>
