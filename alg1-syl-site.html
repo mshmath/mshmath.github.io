@@ -23,7 +23,7 @@
         }
         h1 {
             font-size: 3rem;
-            font-weight: 700;
+            font-weight: 800;
             color: #1a202c; /* Dark text for headings */
             text-align: center;
             margin-bottom: 2rem;
@@ -31,25 +31,30 @@
             padding-bottom: 0.5rem;
         }
         h2 {
-            font-size: 1.75rem;
-            font-weight: 600;
+            font-size: 2.5rem;
+            font-weight: 800;
             color: #2d3748; /* Slightly lighter dark text for subheadings */
             margin-top: 2.5rem;
-            margin-bottom: 1rem;
+            margin-bottom: 2.5rem;
             border-bottom: 2px solid #cbd5e0; /* Light gray underline for subheadings */
-            padding-bottom: 0.3rem;
+            padding-bottom: 0.5rem;
+			padding-top: 0.5rem;
+
         }
         h3 {
-            font-size: 1.25rem;
-            font-weight: 600;
+            font-size: 1.5rem;
+            font-weight: 800;
             color: #4a5568;
-            margin-top: 1.5rem;
-            margin-bottom: 0.75rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+	padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+
         }
         p, li {
             font-size: 1rem;
             color: #4a5568;
-            margin-bottom: 0.75rem;
+            margin-bottom: 1rem;
         }
         ul {
             list-style-type: disc;
@@ -79,14 +84,23 @@
             margin-top: 1.5rem;
             margin-bottom: 1.5rem;
         }
-        .info-box p {
-            margin-bottom: 0.5rem;
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1.5rem;
         }
-        hr {
-            border: 0;
-            height: 1px;
-            background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(99, 102, 241, 0.75), rgba(0, 0, 0, 0));
-            margin: 2.5rem 0;
+        th, td {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        th {
+            background-color: #f1f5f9;
+            font-weight: 600;
+            color: #334155;
+        }
+        tr:hover {
+            background-color: #f8fafc;
         }
         .print-button {
             display: inline-block;
@@ -106,161 +120,196 @@
 </head>
 <body class="p-4 sm:p-6 lg:p-8">
     <div class="container">
-        <h1><strong>Algebra I Course Syllabus</strong></h1>
-        <br>
-        <div class="mb-8 text-center">
-             <a href="alg-1-syl.pdf" target="_blank" class="print-button">
+        <h1>Algebra I Course Syllabus</h1>
+        
+        <div class="my-8 text-center">
+             <a href="alg1-syl.pdf" target="_blank" class="print-button">
                 Print Syllabus (PDF)
             </a>
         </div>
-        <div class="mb-8 text-center text-gray-700">
-            <p><strong>Instructor:</strong> Alexandra Hatfield (“Aly”)</p>
+
+        <h2>Course Information</h2>
+        <div class="info-box">
+<p><strong>Instructor:</strong> Alexandra Hatfield (“Aly”)</p>
             <p><strong>Contact:</strong> <a href="mailto:ahatfield@goodwillvalleys.com" class="hover:underline">ahatfield@goodwillvalleys.com</a></p>
             <p><strong>Office Hours:</strong> Fridays 10:00 AM - 12:00 PM</p>
-            <p><strong>Communication Expectations:</strong> Please feel free to reach out via email for any questions or concerns. I will respond within 24 hours during the school week.</p>
-        </div>
+            <p><strong>Communication Expectations:</strong> Please feel free to reach out via email for any questions or concerns. I will respond within 24 hours during the school week.</p>        
+</div>
 
-        <hr>
-
-        <h2><b>Course Overview</b></h2>
-        <p>Welcome to Algebra 1! This course is specifically designed for adult learners (ages 21+) who are completing their high school credit requirement. This course is <strong>16 weeks</strong> in length. The first 8 weeks of the course will be 'Part A', and the last 8 weeks will be 'Part B.' There will be an <strong>SOL Exam</strong> at the end of this class!</p><br>
-        <p>Each class will begin with a warm-up or topic overview to introduce the day’s concepts. This will be followed by guided notes and example problems that we will complete together as a class. Students will then have dedicated time to work independently or in small groups on practice problems, allowing for hands-on problem-solving and targeted skill development.</p><br>
-        <p>Our focus is on building understanding through clear explanations, gaining math confidence, hands-on problem-solving, and targeted practice to prepare for success and application in the real world. Another important part of this class is preparing you to pass the VA SOL State Exam.</p>
-
-        <hr>
-        <br>
-
-        <h2><b>Materials Needed</b></h2>
-        <p>To ensure your success in this course, please come prepared with the following materials:</p>
-        <ul class="list-disc ml-6">
-            <li>Notebook or binder with paper for notes and practice problems</li>
+        <h2>Course Description</h2>
+        <p>Welcome to Algebra 1! This course is specifically designed for adult learners (ages 21+) who are completing their high school credit requirement. The course is 16 weeks in length, divided into two 8-week parts (Part A and Part B). Our focus is on building a strong understanding of algebraic concepts through clear explanations, hands-on problem-solving, and targeted practice.</p>
+        <p>A key goal of this class is to gain math confidence and prepare you to successfully pass the Virginia SOL State Exam. Each class will begin with a warm-up, followed by guided notes and collaborative practice time.</p>
+<br>
+        <h2>Required Materials & Resources</h2>
+        <h3>Physical Materials:</h3>
+<ul class="list-disc ml-6">
+            <li>Notebook or binder with paper</li>
             <li>Pencils and erasers</li>
             <li>Ruler and protractor</li>
-            <li>Calculator</li>
+        </ul>
+        <h3>Technology Tools:</h3>
+<ul class="list-disc ml-6">
             <li>Access to a laptop</li>
+            <li><strong>Desmos Calculator:</strong> A free online graphing calculator that we will use regularly.</li>
+            <li><strong>Class Website:</strong> <a href="https://ahatmath.com" target="_blank">ahatmath.com</a></li>
+            <li><strong>Online Practice Tools:</strong> IXL, DeltaMath, Brilliant, CK-12, MyOpenMath, Mathplanet</li>
         </ul>
-        <div class="info-box">
-            <p class="text-indigo-800"><em>If you do not have these supplies, please let us know so we can assist you in acquiring them!</em></p>
-        </div>
-        <br>
-        <hr>
+<br>
 
-        <h2><b>Units & Topics Covered</b></h2>
-        <p>All units and topics in this course are directly aligned with the Virginia Standards of Learning (SOL) for Algebra I, ensuring a comprehensive and relevant curriculum.</p>
-        <br>
-        <ul class="list-disc ml-6">
-            <li><strong>Unit 1: Algebraic Expressions & Evaluation:</strong> Understanding variables, expressions, and order of operations.</li>
-            <li><strong>Unit 2: Polynomial Operations:</strong> Adding, subtracting, and multiplying polynomials.</li>
-            <li><strong>Unit 3: Factoring Polynomials:</strong> Techniques for factoring various types of polynomials.</li>
-            <li><strong>Unit 4: Polynomial Division & Quadratic Forms:</strong> Dividing polynomials and recognizing quadratic forms.</li>
-            <li><strong>Unit 5: Radical Expressions:</strong> Simplifying and operating with square roots and other radicals.</li>
-            <li><strong>Unit 6: Linear Equations & Literal Equations:</strong> Solving one-step, multi-step, and literal equations.</li>
-            
-            <br>
-            <h3>Unit 6 is the end of Part A; Unit 7 is the start of Part B</h3>
-            <br>
+        <h2>Course Outline & Pacing (Tentative)</h2>
+        <p>The course is divided into two parts. Part A will be completed in Term 1, and Part B will be completed in Term 2.</p>
+        <table class="mb-6">
+            <thead>
+                <tr>
+                    <th>Unit</th>
+                    <th>Key Concepts</th>
+                    <th>Estimated Dates</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td colspan="3" class="font-bold bg-slate-50">Part A: Term 1 (August 25 - October 17)</td></tr>
+                <tr>
+                    <td>Unit 1</td>
+                    <td>Algebraic Expressions & Evaluation</td>
+                    <td>Aug 25 - Sep 4</td>
+                </tr>
+                <tr>
+                    <td>Unit 2</td>
+                    <td>Polynomial Operations</td>
+                    <td>Sep 8 - Sep 11</td>
+                </tr>
+                <tr>
+                    <td>Unit 3</td>
+                    <td>Factoring Polynomials</td>
+                    <td>Sep 15 - Sep 18</td>
+                </tr>
+                <tr>
+                    <td>Unit 4</td>
+                    <td>Polynomial Division & Quadratic Forms</td>
+                    <td>Sep 22 - Sep 25</td>
+                </tr>
+                <tr>
+                    <td>Unit 5</td>
+                    <td>Radical Expressions</td>
+                    <td>Sep 29 - Oct 2</td>
+                </tr>
+                <tr>
+                    <td>Unit 6</td>
+                    <td>Linear Equations & Literal Equations</td>
+                    <td>Oct 6 - Oct 16</td>
+                </tr>
+                <tr><td colspan="3" class="font-bold bg-slate-50">Part B: Term 2 (October 27 - December 19)</td></tr>
+                <tr>
+                    <td>Unit 7</td>
+                    <td>Linear Inequalities</td>
+                    <td>Oct 27 - Nov 6</td>
+                </tr>
+                <tr>
+                    <td>Unit 8</td>
+                    <td>Systems of Equations</td>
+                    <td>Nov 10 - Nov 13</td>
+                </tr>
+                <tr>
+                    <td>Unit 9</td>
+                    <td>Systems of Inequalities</td>
+                    <td>Nov 17 - Nov 20</td>
+                </tr>
+                <tr>
+                    <td>Unit 10</td>
+                    <td>Linear Functions</td>
+                    <td>Nov 24 - Dec 2</td>
+                </tr>
+                <tr>
+                    <td>Unit 11</td>
+                    <td>Function Types & Comparisons</td>
+                    <td>Dec 3 - Dec 9</td>
+                </tr>
+                <tr>
+                    <td>Unit 12</td>
+                    <td>Quadratic Functions</td>
+                    <td>Dec 10 - Dec 16</td>
+                </tr>
+                 <tr>
+                    <td>Unit 13 & 14</td>
+                    <td>Exponential Functions & Bivariate Data</td>
+                    <td>Dec 17 - Dec 18</td>
+                </tr>
+                 <tr>
+                    <td><strong>SOL Exam</strong></td>
+                    <td><strong>Review and Final Exam</strong></td>
+                    <td><strong>TBD</strong></td>
+                </tr>
+            </tbody>
+        </table>
 
-            <li><strong>Unit 7: Linear Inequalities:</strong> Solving and graphing linear inequalities.</li>
-            <li><strong>Unit 8: Systems of Equations:</strong> Solving systems of linear equations using graphing, substitution, and elimination.</li>
-            <li><strong>Unit 9: Systems of Inequalities:</strong> Graphing and solving systems of linear inequalities.</li>
-            <li><strong>Unit 10: Linear Functions:</strong> Understanding slope, intercepts, and different forms of linear functions.</li>
-            <li><strong>Unit 11: Function Types & Comparisons:</strong> Differentiating between various types of functions and comparing their characteristics.</li>
-            <li><strong>Unit 12: Quadratic Functions:</strong> Graphing parabolas, identifying key features, and solving quadratic equations.</li>
-            <li><strong>Unit 13: Exponential Functions:</strong> Understanding exponential growth and decay and their applications.</li>
-            <li><strong>Unit 14: Bivariate Data & Statistics:</strong> Analyzing relationships between two variables and introductory statistical concepts.</li>
+        <h2>Grading Policy</h2>
+        <table class="mb-6">
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Weight</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Guided Notes</td>
+                    <td>30%</td>
+                </tr>
+                <tr>
+                    <td>In-Class Problem Practice</td>
+                    <td>30%</td>
+                </tr>
+                <tr>
+                    <td>Quizzes & Tests</td>
+                    <td>20%</td>
+                </tr>
+                <tr>
+                    <td>SOL Practice Exams</td>
+                    <td>20%</td>
+                </tr>
+            </tbody>
+        </table>
+        <h3>Grading Scale:</h3>
+<ul class="list-disc ml-6">
+            <li><strong>A:</strong> 90-100%</li>
+            <li><strong>B:</strong> 80-89%</li>
+            <li><strong>C:</strong> 70-79%</li>
+            <li><strong>D:</strong> 60-69%</li>
+            <li><strong>F:</strong> Below 60%</li>
         </ul>
-        <br>
-        <hr>
+<br>
 
-        <h2><b>Grading Policy</b></h2>
-        <p>Your final grade in this course will be calculated based on the following breakdown:</p>
-        <ul class="list-disc ml-6">
-            <li><b>Guided Notes:</b> 30%</li>
-            <li><b>In Class Problem Practice:</b> 30%</li>
-            <li><b>Quizzes & Tests:</b> 20%</li>
-            <li><b>SOL Practice Exams:</b> 20%</li>
-        </ul>
 
-        <h3><b>Grade Scale:</b></h3>
-        <ul class="list-disc ml-6">
-            <li>A: 90-100%</li>
-            <li>B: 80-90%</li>
-            <li>C: 70-80%</li>
-            <li>D: 60-70%</li>
-            <li>F: 50-60%</li>
-        </ul>
-        <br>
-        <hr>
-
-        <h2><b>Classroom Expectations</b></h2>
+        <h2>Class Expectations & Norms</h2>
         <p>To foster a positive and productive learning environment, all students are expected to:</p>
-        <ol class="list-decimal ml-6">
+        <ol class="mb-6">
             <li><strong>Be respectful:</strong> To yourself, your peers, and the learning environment.</li>
-            <li><strong>Come prepared:</strong> Bring all required materials and be ready to engage with the day's lesson.</li>
+            <li><strong>Come prepared:</strong> Bring all required materials and be ready to engage.</li>
             <li><strong>Follow directions:</strong> For all activities, assignments, and assessments.</li>
-            <li><strong>Stay engaged:</strong> Participate actively in lessons and dedicated practice time.</li>
-            <li><strong>Use technology appropriately:</strong> Laptops and other devices should only be used for class-related work.</li>
-            <li><strong>Try your best:</strong> Don't be afraid to ask for help and utilize the support systems available to you.</li>
+            <li><strong>Stay engaged:</strong> Participate actively in lessons and practice time.</li>
+            <li><strong>Use technology appropriately:</strong> Laptops and devices should only be used for class-related work.</li>
+            <li><strong>Try your best:</strong> Don't be afraid to ask for help and use the support systems available.</li>
         </ol>
-        <br>
-        <hr>
+<br>
 
-        <h2><b>Late Work and Makeup Policy</b></h2>
-        <ul class="list-disc ml-6">
+        <h2>Assessment & Feedback</h2>
+<ul class="list-disc ml-6">
             <li><strong>Late Work:</strong> Late assignments will be accepted within one week of the original due date for partial credit (up to 90%).</li>
-            <li><strong>Absences:</strong> If you are absent, it is your responsibility to check with the instructor (via email or in person) for any missed notes, assignments, or materials.</li>
-            <li><strong>Make-up Assessments:</strong> Make-up assignments, tests, and quizzes must be scheduled with the instructor as soon as you return to class.</li>
+            <li><strong>Make-Up Work:</strong> If you are absent, it is your responsibility to check with me for any missed notes or assignments. Make-up tests and quizzes must be scheduled with me as soon as you return.</li>
+            <li><strong>Feedback:</strong> Feedback on assignments and assessments will be provided in a timely manner to help you track your progress.</li>
         </ul>
-        <br>
-        <hr>
+<br>
 
-        <h2><b>Support and Accommodations</b></h2>
-        <p>This class welcomes all learners, and my goal is to help everyone succeed.</p>
-        <ul class="list-disc ml-6">
-            <li>If you have documented accommodations or specific learning needs, please share them with me as soon as possible so we can work together to ensure your success.</li>
-            <li>Additional tutoring or one-on-one help is available. Please do not hesitate to talk with me if you feel you need extra support.</li>
+        <h2>Communication</h2>
+<ul class="list-disc ml-6">
+            <li><strong>Best way to contact me:</strong> The best way to reach me is via email at <a href="mailto:ahatfield@goodwillvalleys.com">ahatfield@goodwillvalleys.com</a>.</li>
+            <li><strong>Response time:</strong> I will respond to emails within 24 hours during the school week (Monday-Thursday).</li>
+            <li><strong>Extra Help:</strong> Additional tutoring or one-on-one help is available during office hours or by appointment. Please don't hesitate to talk with me if you feel you need extra support.</li>
         </ul>
-        <br>
-        <hr>
+<br>
 
-        <h2><b>Class Resources</b></h2>
-        <p>Several resources are available to support your learning throughout this course:</p>
-        <ul class="list-disc ml-6">
-            <li><strong>Class Website:</strong> This is your central hub for all course information. You can find the school schedule and calendar, our weekly class calendar, unit guided notes (interactive notebook), and extra learning resources here.
-                <ul class="list-none ml-4">
-                    <li><strong>URL:</strong> <a href="https://www.ahatmath.com" target="_blank" class="hover:underline">ahatmath.com</a></li>
-                </ul>
-            </li>
-            <li><strong>Synergy:</strong> The official platform for checking your grades, attendance, and assignment scores. Please monitor it regularly to stay updated on your progress.
-                <ul class="list-none ml-4">
-                    <li><strong>URL:</strong> <a href="your_synergy_portal_link_here" target="_blank" class="hover:underline">Link to Synergy Portal</a></li>
-                </ul>
-            </li>
-            <li><strong>Desmos Calculator:</strong> A free online graphing calculator that you can use for in-class work and on the SOL tests. Familiarity with Desmos will be a significant asset.</li>
-            <li><strong>Weekly Class Calendar:</strong> This calendar will outline everything we will be doing throughout the week. It has a link to each unit’s interactive notebook.</li>
-            <li><strong>Guided Notes:</strong> This is our interactive notebook for each unit. This is our primary form of learning new concepts. We will complete these together as a class. I highly recommend you write down any problems or formulas I work out on the board directly into your notes.</li>
-            <li><strong>Practice Problems:</strong> We will work on these problems together, with partners or in small groups, or independently. We’ll utilize several different online tools for practice, including:
-                <ul class="list-disc ml-4">
-                    <li>IXL</li>
-                    <li>DeltaMath</li>
-                    <li>Brilliant</li>
-                    <li>MyOpenMath</li>
-                    <li>Ck12</li>
-                    <li>Mathplanet</li>
-                </ul>
-            </li>
-        </ul>
+        <h2>Support and Accommodations</h2>
+        <p>This class welcomes all learners, and my goal is to help everyone succeed. If you have documented accommodations or specific learning needs, please share them with me as soon as possible so we can work together to ensure your success.</p>
     </div>
-
-<footer class="bg-slate-100 text-slate-500 py-5 mt-16 border-t border-slate-200">
-    <div class="container mx-auto text-center">
-        <!-- Combined single-line footer text -->
-        <p class="text-sm">
-            &nbsp;&bull;&nbsp; &copy; 2025 Aly Hatfield. All Rights Reserved. &nbsp;&bull;&nbsp; 
-        </p>
-    </div>
-</footer>
-
 </body>
-
 </html>
