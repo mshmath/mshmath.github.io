@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algebra 1: Simplifying Multivariable Expressions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        }
+      };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5;
+        }
+        .slide-container {
+            width: 100%;
+            max-width: 900px;
+            aspect-ratio: 16 / 9;
+            margin: 2rem auto;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        .slide {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 3rem;
+            text-align: center;
+            background-color: white;
+            height: 100%;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .slide.active {
+            display: flex;
+        }
+        .nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.3);
+            color: white;
+            border: none;
+            padding: 0.75rem;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .nav-button:hover {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        #prevBtn { left: 1rem; }
+        #nextBtn { right: 1rem; }
+        .slide-counter {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.875rem;
+            z-index: 10;
+        }
+        .title-slide {
+            background: linear-gradient(135deg, #0369a1, #7dd3fc);
+            color: white;
+        }
+        .emphasis-highlight {
+            background-color: #fef9c3; /* yellow-100 */
+            padding: 0.1em 0.3em;
+            border-radius: 0.25em;
+            font-weight: 500;
+        }
+        .rule-box {
+            background-color: #f3f4f6;
+            border-left: 6px solid #0369a1;
+            padding: 1rem;
+            border-radius: 0.5rem;
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen p-4">
+
+    <h1 class="text-3xl font-bold text-gray-800 mb-4">Algebra 1 Presentation</h1>
+    <p class="text-gray-600 mb-4 text-center">Use the arrows to navigate through the slides.</p>
+
+    <div class="slide-container">
+        <!-- Slide 1: Title -->
+        <div class="slide active title-slide">
+            <h1 class="text-5xl font-bold mb-4">Simplifying Expressions</h1>
+            <p class="text-2xl">Day 4: Zero, Negative, & Multivariable Exponents</p>
+        </div>
+
+        <!-- Slide 2: Objectives -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Today's Objectives</h2>
+            <ul class="list-disc text-left text-xl space-y-4 text-gray-700">
+                <li>Apply the <span class="emphasis-highlight">Zero Exponent Rule</span>.</li>
+                <li>Apply the <span class="emphasis-highlight">Negative Exponent Rule</span>.</li>
+                <li>Simplify expressions with multiple variables.</li>
+            </ul>
+        </div>
+
+        <!-- Slide 3: Warm-Up -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Warm-Up: Review the Rules</h2>
+            <p class="text-2xl text-gray-700 mb-4">Simplify each expression:</p>
+            <div class="text-2xl space-y-3">
+                <p>1. $(x^4)(x^5)$</p>
+                <p>2. $y^8 / y^2$</p>
+                <p>3. $(2a^3)^4$</p>
+            </div>
+        </div>
+
+        <!-- Slide 4: Zero Exponent Rule -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Zero Exponent Rule</h2>
+            <p class="text-2xl text-gray-700 mb-4">Anything divided by itself is 1. Let's see what that means for exponents:</p>
+            <p class="text-2xl mb-4">$x^3 / x^3 = x^{3-3} = x^0$. Also, $x^3 / x^3 = 1$.</p>
+            <div class="rule-box text-2xl w-full">
+                <p class="text-center">So, $a^0 = 1$ (for any non-zero a)</p>
+            </div>
+        </div>
+        
+        <!-- Slide 5: Negative Exponent Rule -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Negative Exponent Rule</h2>
+            <p class="text-2xl text-gray-700 mb-4">A negative exponent means "move it across the fraction bar" to make it positive.</p>
+            <div class="rule-box text-2xl w-full">
+                <p class="text-center">$a^{-n} = 1/a^n$</p>
+                <p class="mt-4 text-center">Example: $x^{-3} = 1/x^3$</p>
+            </div>
+        </div>
+
+        <!-- Slide 6: Putting It All Together -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Putting It All Together</h2>
+            <p class="text-2xl text-gray-700 mb-4">Simplify: $(10a^5b^3) / (2a^2b^7)$</p>
+            <div class="text-2xl space-y-2 text-left">
+                <p>1. Group like terms: $(10/2) \cdot (a^5/a^2) \cdot (b^3/b^7)$</p>
+                <p>2. Quotient Rule: $5 \cdot a^{5-2} \cdot b^{3-7} = 5a^3b^{-4}$</p>
+                <p>3. Negative Exponent Rule: $5a^3 / b^4$</p>
+            </div>
+        </div>
+        
+        <!-- Slide 7: Independent Practice -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Independent Practice</h2>
+            <p class="text-xl text-gray-700 mb-6">Choose your level and simplify. Write answers with positive exponents.</p>
+            <div class="flex space-x-4 text-left w-full">
+                <div class="flex-1 p-4 border-2 border-red-400 rounded-lg bg-red-50">
+                    <h3 class="text-xl font-bold text-red-600">RED</h3>
+                    <ol class="list-decimal pl-5 text-lg mt-2 space-y-2">
+                        <li>$(5y)^0$</li>
+                        <li>$x^{-7}$</li>
+                        <li>$z^5 / z^5$</li>
+                    </ol>
+                </div>
+                <div class="flex-1 p-4 border-2 border-yellow-400 rounded-lg bg-yellow-50">
+                    <h3 class="text-xl font-bold text-yellow-600">YELLOW</h3>
+                    <ol class="list-decimal pl-5 text-lg mt-2 space-y-2">
+                        <li>$(x^{-3})(x^8)$</li>
+                        <li>$(15a^2) / (3a^5)$</li>
+                        <li>$(b^{-2})^3$</li>
+                    </ol>
+                </div>
+                <div class="flex-1 p-4 border-2 border-green-400 rounded-lg bg-green-50">
+                    <h3 class="text-xl font-bold text-green-600">GREEN</h3>
+                    <ol class="list-decimal pl-5 text-lg mt-2 space-y-2">
+                        <li>$(4x^3y^{-2})(2x^2y^6)$</li>
+                        <li>$(20c^5d^2) / (5c^2d^{-3})$</li>
+                        <li>$((2w^3)^2) / (w^{10})$</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Exit Ticket -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Exit Ticket</h2>
+            <p class="text-2xl text-gray-700 mb-6">Simplify. Write answers with positive exponents.</p>
+            <ol class="text-2xl space-y-3 list-decimal text-left">
+                <li>$(y^{-4})(y^{10})$</li>
+                <li>$(8a^9) / (2a^{11})$</li>
+            </ol>
+        </div>
+
+        <!-- Navigation -->
+        <button id="prevBtn" class="nav-button">&lt;</button>
+        <button id="nextBtn" class="nav-button">&gt;</button>
+        <div id="slideCounter" class="slide-counter">1 / 8</div>
+    </div>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const slideCounter = document.getElementById('slideCounter');
+        let currentSlide = 0;
+
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[n].classList.add('active');
+            slideCounter.textContent = `${n + 1} / ${slides.length}`;
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        nextBtn.addEventListener('click', nextSlide);
+        prevBtn.addEventListener('click', prevSlide);
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                prevSlide();
+            }
+        });
+
+        showSlide(currentSlide);
+    </script>
+</body>
+</html>

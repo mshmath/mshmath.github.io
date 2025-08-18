@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Printable Slides: Simplifying Multivariable Expressions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        }
+      };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #e5e7eb; /* gray-200 */
+        }
+        .printable-page {
+            width: 100%;
+            max-width: 8.5in;
+            min-height: 11in;
+            margin: 2rem auto;
+            padding: 1in;
+            background-color: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .page-header {
+            text-align: right;
+            color: #6b7280;
+            font-size: 0.9rem;
+            border-bottom: 1px solid #d1d5db;
+            padding-bottom: 0.5rem;
+            margin-bottom: 2rem;
+        }
+        .title-slide-content {
+            text-align: center;
+            color: white;
+            background: linear-gradient(135deg, #0369a1, #7dd3fc);
+            padding: 4rem 2rem;
+            border-radius: 0.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .emphasis-highlight {
+            background-color: #fef9c3; /* yellow-100 */
+            padding: 0.1em 0.3em;
+            border-radius: 0.25em;
+            font-weight: 500;
+        }
+        .rule-box {
+            background-color: #f3f4f6;
+            border-left: 6px solid #0369a1;
+            padding: 1rem;
+            border-radius: 0.5rem;
+        }
+
+        @media print {
+            body {
+                background-color: white;
+            }
+            .printable-page {
+                margin: 0;
+                box-shadow: none;
+                border: none;
+                page-break-after: always;
+                padding: 0.5in;
+            }
+            .no-print {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <div class="text-center mb-8 no-print">
+        <h1 class="text-3xl font-bold text-gray-800 mb-2">Printable Slides</h1>
+        <p class="text-gray-600">Each slide is formatted as a separate page below.</p>
+        <button onclick="window.print()" class="mt-4 bg-blue-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-blue-700 transition">
+            Print Slides
+        </button>
+    </div>
+
+    <!-- Slide 1: Title -->
+    <div class="printable-page">
+        <div class="title-slide-content">
+            <h1 class="text-6xl font-bold mb-4">Simplifying Expressions</h1>
+            <p class="text-3xl">Day 4: Zero, Negative, & Multivariable Exponents</p>
+        </div>
+    </div>
+
+    <!-- Slide 2: Objectives -->
+    <div class="printable-page">
+        <div class="page-header">Slide 2</div>
+        <h2 class="text-4xl font-bold text-gray-800 mb-8 text-center">Today's Objectives</h2>
+        <ul class="list-disc text-left text-2xl space-y-6 text-gray-700 pl-12">
+            <li>Apply the <span class="emphasis-highlight">Zero Exponent Rule</span>.</li>
+            <li>Apply the <span class="emphasis-highlight">Negative Exponent Rule</span>.</li>
+            <li>Simplify expressions with multiple variables.</li>
+        </ul>
+    </div>
+
+    <!-- Slide 3: Warm-Up -->
+    <div class="printable-page">
+        <div class="page-header">Slide 3</div>
+        <h2 class="text-4xl font-bold text-gray-800 mb-8 text-center">Warm-Up: Review the Rules</h2>
+        <p class="text-3xl text-gray-700 mb-6 text-center">Simplify each expression:</p>
+        <div class="text-3xl space-y-4 text-center">
+            <p>1. $(x^4)(x^5)$</p>
+            <p>2. $y^8 / y^2$</p>
+            <p>3. $(2a^3)^4$</p>
+        </div>
+    </div>
+
+    <!-- Slide 4: Zero Exponent Rule -->
+    <div class="printable-page">
+        <div class="page-header">Slide 4</div>
+        <h2 class="text-4xl font-bold text-gray-800 mb-8 text-center">Zero Exponent Rule</h2>
+        <p class="text-3xl text-gray-700 mb-6 text-center">Anything divided by itself is 1. Let's see what that means for exponents:</p>
+        <p class="text-3xl mb-6 text-center">$x^3 / x^3 = x^{3-3} = x^0$. Also, $x^3 / x^3 = 1$.</p>
+        <div class="rule-box text-3xl w-full">
+            <p class="text-center">So, $a^0 = 1$ (for any non-zero a)</p>
+        </div>
+    </div>
+    
+    <!-- Slide 5: Negative Exponent Rule -->
+    <div class="printable-page">
+        <div class="page-header">Slide 5</div>
+        <h2 class="text-4xl font-bold text-gray-800 mb-8 text-center">Negative Exponent Rule</h2>
+        <p class="text-3xl text-gray-700 mb-6 text-center">A negative exponent means "move it across the fraction bar" to make it positive.</p>
+        <div class="rule-box text-3xl w-full">
+            <p class="text-center">$a^{-n} = 1/a^n$</p>
+            <p class="mt-6 text-center">Example: $x^{-3} = 1/x^3$</p>
+        </div>
+    </div>
+
+    <!-- Slide 6: Putting It All Together -->
+    <div class="printable-page">
+        <div class="page-header">Slide 6</div>
+        <h2 class="text-4xl font-bold text-gray-800 mb-8 text-center">Putting It All Together</h2>
+        <p class="text-3xl text-gray-700 mb-6 text-center">Simplify: $(10a^5b^3) / (2a^2b^7)$</p>
+        <div class="text-2xl space-y-4 text-left">
+            <p>1. Group like terms: $(10/2) \cdot (a^5/a^2) \cdot (b^3/b^7)$</p>
+            <p>2. Quotient Rule: $5 \cdot a^{5-2} \cdot b^{3-7} = 5a^3b^{-4}$</p>
+            <p>3. Negative Exponent Rule: $5a^3 / b^4$</p>
+        </div>
+    </div>
+    
+    <!-- Slide 7: Independent Practice -->
+    <div class="printable-page">
+        <div class="page-header">Slide 7</div>
+        <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Independent Practice</h2>
+        <p class="text-xl text-gray-700 mb-6 text-center">Choose your level and simplify. Write answers with positive exponents.</p>
+        <div class="space-y-4 text-left">
+            <div class="p-4 border-2 border-red-400 rounded-lg bg-red-50">
+                <h3 class="text-2xl font-bold text-red-600">RED (Developing)</h3>
+                <ol class="list-decimal pl-6 text-lg mt-2 space-y-2">
+                    <li>$(5y)^0$</li>
+                    <li>$x^{-7}$</li>
+                    <li>$z^5 / z^5$</li>
+                </ol>
+            </div>
+            <div class="p-4 border-2 border-yellow-400 rounded-lg bg-yellow-50">
+                <h3 class="text-2xl font-bold text-yellow-600">YELLOW (Applying)</h3>
+                <ol class="list-decimal pl-6 text-lg mt-2 space-y-2">
+                    <li>$(x^{-3})(x^8)$</li>
+                    <li>$(15a^2) / (3a^5)$</li>
+                    <li>$(b^{-2})^3$</li>
+                </ol>
+            </div>
+            <div class="p-4 border-2 border-green-400 rounded-lg bg-green-50">
+                <h3 class="text-2xl font-bold text-green-600">GREEN (Securing)</h3>
+                 <ol class="list-decimal pl-6 text-lg mt-2 space-y-2">
+                    <li>$(4x^3y^{-2})(2x^2y^6)$</li>
+                    <li>$(20c^5d^2) / (5c^2d^{-3})$</li>
+                    <li>$((2w^3)^2) / (w^{10})$</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 8: Exit Ticket -->
+    <div class="printable-page">
+        <div class="page-header">Slide 8</div>
+        <div class="text-center">
+            <h2 class="text-4xl font-bold text-gray-800 mb-8">Exit Ticket</h2>
+            <p class="text-3xl text-gray-700 mb-8">Simplify. Write answers with positive exponents.</p>
+            <ol class="text-3xl space-y-4 list-decimal text-left pl-12">
+                <li>$(y^{-4})(y^{10})$</li>
+                <li>$(8a^9) / (2a^{11})$</li>
+            </ol>
+        </div>
+    </div>
+
+</body>
+</html>
