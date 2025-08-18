@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algebra 1 Unit 1 Graphic Organizer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .card {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e2e8f0;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+        .card-header {
+            background-color: #f1f5f9;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .card-body {
+            padding: 1.5rem;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        th {
+            background-color: #f8fafc;
+            font-weight: 600;
+            color: #334155;
+        }
+        tr:last-child td {
+            border-bottom: none;
+        }
+        code {
+            background-color: #eef2ff;
+            color: #4338ca;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        .essential-question {
+            background-color: #f0f9ff;
+            color: #0284c7;
+            border: 1px solid #bae6fd;
+        }
+        @media print {
+            body {
+                background-color: white;
+            }
+            .no-print {
+                display: none;
+            }
+            .card {
+                box-shadow: none;
+                border: 1px solid #cbd5e1;
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-6 lg:p-8">
+    <div class="max-w-4xl mx-auto">
+        <h1 class="text-4xl font-bold text-center text-slate-800 mb-4">Algebra 1 Unit 1: Expressions & Operations</h1>
+
+        <div class="text-center mb-8 no-print">
+            <button onclick="window.print()" class="bg-indigo-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-indigo-700 transition-colors">
+                Print Graphic Organizer
+            </button>
+        </div>
+
+        <!-- Essential Question -->
+        <div class="card essential-question">
+            <div class="card-body text-center">
+                <h3 class="text-lg font-semibold mb-2">Essential Question for the Unit:</h3>
+                <p class="text-xl italic">"How can algebraic expressions be used to represent and evaluate real-world situations?"</p>
+            </div>
+        </div>
+        
+        <!-- Pacing Guide -->
+        <div class="card">
+            <div class="card-header">
+                <h2 class="text-2xl font-semibold text-slate-700">Weekly Pacing at a Glance</h2>
+            </div>
+            <div class="card-body">
+                 <ul class="list-disc list-inside space-y-2">
+                    <li><strong>Day 1:</strong> Translate verbal quantitative situations into algebraic expressions.</li>
+                    <li><strong>Day 2:</strong> Evaluate algebraic expressions using substitution and the order of operations.</li>
+                    <li><strong>Day 3:</strong> Derive and apply the laws of exponents (product, quotient, power rules).</li>
+                    <li><strong>Day 4:</strong> Simplify multivariable and monomial expressions using all laws of exponents.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Translating Expressions -->
+        <div class="card">
+            <div class="card-header">
+                <h2 class="text-2xl font-semibold text-slate-700">1. Translating Verbal to Algebraic Expressions</h2>
+            </div>
+            <div class="card-body">
+                <p class="mb-4">Translating words into mathematical symbols is a crucial first step in solving problems.</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Verbal Phrase</th>
+                            <th>Operation</th>
+                            <th>Example</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Sum, plus, more than, increased by</td>
+                            <td>Addition (+)</td>
+                            <td>The sum of a number and 5 → <code>n + 5</code></td>
+                        </tr>
+                        <tr>
+                            <td>Difference, minus, less than, decreased by</td>
+                            <td>Subtraction (-)</td>
+                            <td>7 less than a number → <code>x - 7</code> (Order matters!)</td>
+                        </tr>
+                        <tr>
+                            <td>Product, times, of</td>
+                            <td>Multiplication (⋅, (), x)</td>
+                            <td>The product of 4 and y → <code>4y</code></td>
+                        </tr>
+                        <tr>
+                            <td>Quotient, divided by, ratio of</td>
+                            <td>Division (/, ÷)</td>
+                            <td>The quotient of z and 10 → <code>z / 10</code></td>
+                        </tr>
+                         <tr>
+                            <td>Squared, to the power of 2</td>
+                            <td>Exponent (²)</td>
+                            <td>A number squared → <code>b²</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Evaluating Expressions -->
+        <div class="card">
+            <div class="card-header">
+                <h2 class="text-2xl font-semibold text-slate-700">2. Evaluating Expressions & Order of Operations</h2>
+            </div>
+            <div class="card-body">
+                <p class="mb-4">To evaluate an expression, substitute the given numbers for the variables and simplify using the Order of Operations.</p>
+                <div class="bg-slate-50 p-4 rounded-lg border border-slate-200 mb-6">
+                    <h3 class="font-semibold text-lg text-slate-800 mb-2">Order of Operations (PEMDAS)</h3>
+                    <ol class="list-decimal list-inside space-y-1">
+                        <li><strong>P</strong>arentheses (or any grouping symbols like | |, √ )</li>
+                        <li><strong>E</strong>xponents</li>
+                        <li><strong>M</strong>ultiplication and <strong>D</strong>ivision (from left to right)</li>
+                        <li><strong>A</strong>ddition and <strong>S</strong>ubtraction (from left to right)</li>
+                    </ol>
+                </div>
+                <h3 class="font-semibold text-lg text-slate-800 mb-2">Worked Example:</h3>
+                <p>Evaluate <code>3x² - |y - 10|</code> when <code>x = -2</code> and <code>y = 4</code>.</p>
+                 <ul class="list-disc list-inside mt-2 bg-slate-50 p-4 rounded-lg border">
+                    <li><strong>Substitute:</strong> <code>3(-2)² - |4 - 10|</code></li>
+                    <li><strong>Parentheses/Grouping:</strong> <code>3(-2)² - |-6|</code> → <code>3(-2)² - 6</code></li>
+                    <li><strong>Exponents:</strong> <code>3(4) - 6</code></li>
+                    <li><strong>Multiplication:</strong> <code>12 - 6</code></li>
+                    <li><strong>Subtraction:</strong> <code>6</code></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Laws of Exponents -->
+        <div class="card">
+            <div class="card-header">
+                <h2 class="text-2xl font-semibold text-slate-700">3. Laws of Exponents</h2>
+            </div>
+            <div class="card-body">
+                <p class="mb-4">These rules help simplify expressions with exponents. Assume <code>a, b ≠ 0</code>.</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Law</th>
+                            <th>Rule</th>
+                            <th>Example</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Product of Powers</strong></td>
+                            <td><code>aᵐ ⋅ aⁿ = aᵐ⁺ⁿ</code></td>
+                            <td><code>x⁵ ⋅ x² = x⁵⁺² = x⁷</code></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Quotient of Powers</strong></td>
+                            <td><code>aᵐ / aⁿ = aᵐ⁻ⁿ</code></td>
+                            <td><code>y⁸ / y³ = y⁸⁻³ = y⁵</code></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Power of a Power</strong></td>
+                            <td><code>(aᵐ)ⁿ = aᵐⁿ</code></td>
+                            <td><code>(b⁴)² = b⁴*² = b⁸</code></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Power of a Product</strong></td>
+                            <td><code>(ab)ᵐ = aᵐbᵐ</code></td>
+                            <td><code>(2z)³ = 2³z³ = 8z³</code></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Power of a Quotient</strong></td>
+                            <td><code>(a/b)ᵐ = aᵐ/bᵐ</code></td>
+                            <td><code>(c/5)² = c²/5² = c²/25</code></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Zero Exponent</strong></td>
+                            <td><code>a⁰ = 1</code></td>
+                            <td><code>(-5)⁰ = 1</code></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Negative Exponent</strong></td>
+                            <td><code>a⁻ᵐ = 1/aᵐ</code></td>
+                            <td><code>d⁻³ = 1/d³</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Key Vocabulary -->
+        <div class="card">
+            <div class="card-header">
+                <h2 class="text-2xl font-semibold text-slate-700">Key Vocabulary</h2>
+            </div>
+            <div class="card-body">
+                <ul class="list-disc list-inside grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2">
+                    <li><strong>Expression:</strong> A mix of numbers, variables, and operations (no equal sign).</li>
+                    <li><strong>Variable:</strong> A symbol (like x) that represents an unknown number.</li>
+                    <li><strong>Coefficient:</strong> The number multiplied in front of a variable.</li>
+                    <li><strong>Term:</strong> Parts of an expression separated by + or -.</li>
+                    <li><strong>Evaluate:</strong> To find the numerical value of an expression.</li>
+                    <li><strong>Base:</strong> The number being multiplied in an exponential expression.</li>
+                    <li><strong>Exponent:</strong> Shows how many times to multiply the base by itself.</li>
+                    <li><strong>Absolute Value:</strong> A number's distance from zero.</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+    <!-- For rendering math symbols if needed -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</body>
+</html>
