@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Algebra 1 Unit 1: Expressions & Exponents</title>
+    <title>Unit 1: Algebraic Expressions & Evaluation</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,11 +18,12 @@
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #F8FAFC; color: #1F2937; line-height: 1.9; font-size: 1.125rem; }
         .container { max-width: 900px; margin: 3rem auto; padding: 3rem 3.5rem; background-color: #FFFFFF; border-radius: 16px; box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
-        h1 { font-size: 2.75rem; text-align: center; margin-bottom: 0.5rem; color: #1D4ED8; font-weight: 700; }
-        .subtitle { font-size: 1.25rem; text-align: center; color: #4B5563; margin-bottom: 2rem; font-weight: 500; }
-        h2 { font-size: 2.25rem; margin-top: 4.5rem; margin-bottom: 2.5rem; border-bottom: 2px solid #DBEAFE; padding-bottom: 1rem; color: #2563EB; font-weight: 700; }
-        h3 { font-size: 1.75rem; margin-top: 3rem; margin-bottom: 1.5rem; color: #1D4ED8; font-weight: 700; }
-        p, li { color: #374151; margin-bottom: 1.5rem; }
+        h1 { font-size: 3rem; text-align: center; margin-bottom: 0.5rem; color: #1D4ED8; font-weight: 700; }
+        .subtitle { font-size: 1.5rem; text-align: center; color: #4B5563; margin-bottom: 2rem; font-weight: 500; }
+        h2 { font-size: 2.5rem; margin-top: 4.5rem; margin-bottom: 2.5rem; border-bottom: 2px solid #DBEAFE; padding-bottom: 1.5rem; color: #2563EB; font-weight: 700; }
+        h3 { font-size: 2rem; margin-top: 3rem; margin-bottom: 1.5rem; color: #1E3A8A; font-weight: 800; border-bottom: 1px solid #E0E7FF; padding-top:1rem; padding-bottom:1rem; }
+        .card > h3:first-of-type, .warm-up > h3:first-of-type, .cool-down > h3:first-of-type { margin-top: 0; }
+        p, li, span { color: #374151; margin-bottom: 1.5rem; }
         .day-divider { border-top: 2px dashed #D1D5DB; margin: 5rem 0; }
         .card { background-color: #F0F9FF; border: 1px solid #BFDBFE; border-radius: 12px; padding: 2.5rem; margin-bottom: 3rem; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
         .warm-up { background-color: #F0FDF4; border-left: 6px solid #22C55E; padding: 1.5rem 2rem; border-radius: 8px; margin-bottom: 2.5rem; }
@@ -32,14 +33,15 @@
         .button:hover { background-color: #1D4ED8; box-shadow: 0 4px 8px rgba(0,0,0,0.15); }
         .nav-button { background-color: #4B5563; padding: 0.5rem 1rem; font-size: 0.9rem; }
         .nav-button:hover { background-color: #1F2937; }
+        .resource-button { padding: 0.5rem 1rem; font-size: 0.9rem; }
         .reflection-card { background-color: #FFFBEB; border-left: 6px solid #F59E0B; padding: 1.5rem 2rem; border-radius: 8px; margin-top: 2rem; }
         .extra-notes-card { background-color: #F1F5F9; border-left: 6px solid #64748B; padding: 1.5rem 2rem; border-radius: 8px; margin-top: 2rem; }
         .note-input { border: 2px solid #D1D5DB; padding: 0.25rem 0.5rem; border-radius: 6px; transition: all 0.2s; min-width: 200px; }
         .note-input.correct { border-color: #16A34A; background-color: #F0FDF4; }
         .note-input.incorrect { border-color: #DC2626; background-color: #FEF2F2; }
-        .interactive-line { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; margin-bottom: 1.25rem; margin-top:1.25rem;}
+        .interactive-line { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; margin-bottom: 1rem; }
         .key-term { color: #1d4ed8; font-weight: 600; }
-        .symbol { color: #4338ca; font-weight: 600; font-family: monospace; font-size: 1.2em; margin: 0 0.25em; vertical-align: middle; }
+        .symbol { color: #4338ca; font-weight: 600; font-family: monospace; font-size: 1.1em; margin: 0 0.15em; }
         .quiz-option { display: block; padding: 1rem; border: 1px solid #D1D5DB; border-radius: 8px; margin-bottom: 0.75rem; cursor: pointer; background-color: #F9FAFB; transition: all 0.2s; }
         .quiz-option:hover { background-color: #EFF6FF; border-color: #2563EB; }
         .quiz-option.selected { background-color: #DBEAFE; border-color: #2563EB; font-weight: 600; }
@@ -49,13 +51,13 @@
         .feedback.correct { color: #047857; background-color: #D1FAE5; }
         .feedback.incorrect { color: #B91C1C; background-color: #FEF2F2; }
 
-        @media print {
+          @media print {
             body, .container { margin: 0 !important; padding: 1rem !important; width: 100%; box-shadow: none !important; border: none !important; }
             .no-print { display: none !important; }
             h1, .subtitle { text-align: left; }
-            h2 { font-size: 18pt; margin-top: 1.5rem; page-break-before: always; page-break-after: avoid; }
+            h2 { font-size: 18pt; margin-top: 1rem; page-break-before: always; page-break-after: avoid; }
             h2:first-of-type { page-break-before: auto; }
-            h3 { font-size: 14pt; }
+            h3 { font-size: 14pt; border-bottom: 1px solid #ccc; }
             p, li { font-size: 12pt; line-height: 1.5; margin-bottom: 0.5rem; }
             .card, .example, .warm-up, .cool-down { padding: 1rem; margin-bottom: 1rem; border: 1px solid #ccc !important; background: #fff !important; page-break-inside: avoid; }
             .day-divider, .reflection-card, .extra-notes-card { display: none !important; }
@@ -65,7 +67,7 @@
             body.printing-notes #quiz, body.printing-quiz #notes { display: none; }
             body.printing-quiz h1, body.printing-quiz .subtitle { display: none; }
             body.printing-quiz #quiz h2 { page-break-before: auto; }
-        }
+
     </style>
 </head>
 <body>
@@ -76,7 +78,7 @@
     <div class="card bg-gray-50 no-print">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
-                <h3 class="mt-0 text-center text-gray-700">Jump To Section</h3>
+                <h3 class="mt-0 text-center text-gray-700">Navigation & Printing</h3>
                 <div class="flex flex-wrap justify-center gap-3 mt-4">
                     <a href="#day1"><button class="button nav-button">Day 1</button></a>
                     <a href="#day2"><button class="button nav-button">Day 2</button></a>
@@ -84,13 +86,47 @@
                     <a href="#day4"><button class="button nav-button">Day 4</button></a>
                     <a href="#quiz"><button class="button nav-button bg-purple-600 hover:bg-purple-800">Unit Quiz</button></a>
                 </div>
-            </div>
-            <div>
-                 <h3 class="mt-0 text-center text-gray-700">Print Options</h3>
-                <div class="flex flex-wrap justify-center gap-3 mt-4">
+                <div class="flex flex-wrap justify-center gap-3 mt-6">
                     <button class="button" onclick="printContent('notes')">Print Notes (Worksheet)</button>
                     <button class="button" onclick="printContent('quiz')">Print Quiz</button>
                 </div>
+            </div>
+            <div>
+                 <h3 class="mt-0 text-center text-gray-700">Lesson Slides</h3>
+                 <div class="space-y-2 mt-4">
+                    <!-- Day 1 Resources -->
+                    <div class="flex items-center justify-between bg-gray-100 p-2 rounded-lg">
+                        <span class="font-semibold text-gray-600 text-base pl-2">Day 1: Translating Expressions</span>
+                        <div class="flex gap-2">
+                            <a href="alg1-unit1-day1-slides.html" target="_blank"><button class="button resource-button">View</button></a>
+                            <a href="alg1-unit1-day1-slides-print.html" target="_blank"><button class="button resource-button bg-gray-600 hover:bg-gray-700">Print</button></a>
+                        </div>
+                    </div>
+                    <!-- Day 2 Resources -->
+                    <div class="flex items-center justify-between bg-gray-100 p-2 rounded-lg">
+                        <span class="font-semibold text-gray-600 text-base pl-2">Day 2: Evaluating Expressions</span>
+                        <div class="flex gap-2">
+                            <a href="alg1-unit1-day2-slides.html" target="_blank"><button class="button resource-button">View</button></a>
+                            <a href="alg1-unit1-day2-slides-print.html" target="_blank"><button class="button resource-button bg-gray-600 hover:bg-gray-700">Print</button></a>
+                        </div>
+                    </div>
+                    <!-- Day 3 Resources -->
+                    <div class="flex items-center justify-between bg-gray-100 p-2 rounded-lg">
+                        <span class="font-semibold text-gray-600 text-base pl-2">Day 3: Laws of Exponents</span>
+                        <div class="flex gap-2">
+                            <a href="alg1-unit1-day3-slides.html" target="_blank"><button class="button resource-button">View</button></a>
+                            <a href="alg1-unit1-day3-slides-print.html" target="_blank"><button class="button resource-button bg-gray-600 hover:bg-gray-700">Print</button></a>
+                        </div>
+                    </div>
+                    <!-- Day 4 Resources -->
+                    <div class="flex items-center justify-between bg-gray-100 p-2 rounded-lg">
+                        <span class="font-semibold text-gray-600 text-base pl-2">Day 4: Simplifying Expressions</span>
+                        <div class="flex gap-2">
+                            <a href="alg1-unit1-day4-slides.html" target="_blank"><button class="button resource-button">View</button></a>
+                            <a href="alg1-unit1-day4-slides-print.html" target="_blank"><button class="button resource-button bg-gray-600 hover:bg-gray-700">Print</button></a>
+                        </div>
+                    </div>
+                 </div>
             </div>
         </div>
     </div>
@@ -364,4 +400,5 @@
     document.querySelectorAll('.quiz-option').forEach(option => { option.addEventListener('click', function() { if(this.querySelector('input').disabled) return; const name = this.querySelector('input').name; document.querySelectorAll(`input[name="${name}"]`).forEach(r => r.closest('.quiz-option').classList.remove('selected')); this.classList.add('selected'); this.querySelector('input').checked = true; }); });
 </script>
 </body>
+
 </html>
