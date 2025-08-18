@@ -104,13 +104,13 @@
 
     <div class="slide-container">
         <!-- Slide 1: Title -->
-        <div id="slide1" class="slide active title-slide">
+        <div class="slide active title-slide">
             <h1 class="text-5xl font-bold mb-4">Reasoning and Logic</h1>
             <p class="text-2xl">Day 1: Conditional Statements</p>
         </div>
 
         <!-- Slide 2: Objectives -->
-        <div id="slide2" class="slide">
+        <div class="slide">
             <h2 class="text-3xl font-bold text-gray-800 mb-6">Today's Objectives</h2>
             <ul class="list-disc text-left text-xl space-y-4 text-gray-700">
                 <li>Identify the <span class="hypothesis">hypothesis</span> and <span class="conclusion">conclusion</span> of a conditional statement.</li>
@@ -120,7 +120,7 @@
         </div>
 
         <!-- Slide 3: Essential Question & Vocab -->
-        <div id="slide3" class="slide">
+        <div class="slide">
              <h2 class="text-3xl font-bold text-gray-800 mb-4">Essential Question</h2>
              <p class="text-2xl text-gray-700 mb-8">How can logic be used to justify geometric reasoning?</p>
              <h3 class="text-2xl font-semibold text-gray-800 mb-4">Key Vocabulary</h3>
@@ -128,7 +128,7 @@
         </div>
 
         <!-- Slide 4: What is a Conditional Statement? -->
-        <div id="slide4" class="slide">
+        <div class="slide">
             <h2 class="text-3xl font-bold text-gray-800 mb-6">What is a Conditional Statement?</h2>
             <p class="text-2xl text-gray-700 mb-4">A logical statement with two parts, written in <span class="emphasis-highlight">"if-then"</span> form.</p>
             <div class="bg-blue-50 border border-blue-200 p-6 rounded-lg text-2xl">
@@ -137,7 +137,7 @@
         </div>
 
         <!-- Slide 5: Parts of a Conditional -->
-        <div id="slide5" class="slide">
+        <div class="slide">
             <h2 class="text-3xl font-bold text-gray-800 mb-6">The Two Parts</h2>
             <p class="text-2xl text-gray-700 mb-6">If <span class="hypothesis">hypothesis</span>, then <span class="conclusion">conclusion</span>.</p>
             <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
@@ -153,7 +153,7 @@
         </div>
 
         <!-- Slide 6: Example 1 (I Do) -->
-        <div id="slide6" class="slide">
+        <div class="slide">
             <h2 class="text-3xl font-bold text-gray-800 mb-6">Let's Break It Down</h2>
             <p class="text-2xl text-gray-700 mb-6 bg-gray-100 p-4 rounded-lg">If <span class="hypothesis">it is raining</span>, then <span class="conclusion">the ground is wet</span>.</p>
             <div class="w-full text-left space-y-4">
@@ -163,7 +163,7 @@
         </div>
 
         <!-- Slide 7: Symbolic Notation -->
-        <div id="slide7" class="slide">
+        <div class="slide">
             <h2 class="text-3xl font-bold text-gray-800 mb-6">Symbolic Notation</h2>
             <p class="text-2xl text-gray-700 mb-4">We can write conditional statements using symbols to save time.</p>
             <p class="text-2xl text-gray-700 mb-6">"If p, then q" is written as:</p>
@@ -172,7 +172,7 @@
         </div>
 
         <!-- Slide 8: Truth Value -->
-        <div id="slide8" class="slide">
+        <div class="slide">
             <h2 class="text-3xl font-bold text-gray-800 mb-6">Is It True or False?</h2>
             <p class="text-2xl text-gray-700 mb-4">This is called the <span class="emphasis-highlight">Truth Value</span> of the statement.</p>
             <ul class="list-disc text-left text-xl space-y-4 text-gray-700">
@@ -182,8 +182,8 @@
              <p class="text-lg text-gray-600 mt-6 bg-yellow-100 p-3 rounded-lg">A <span class="emphasis-highlight">counterexample</span> is an example where the hypothesis is true, but the conclusion is false.</p>
         </div>
 
-        <!-- Slide 9: Example 2 (We Do) -->
-        <div id="slide9" class="slide">
+        <!-- Slide 9: Guided Practice: True or False? -->
+        <div class="slide">
             <h2 class="text-3xl font-bold text-gray-800 mb-6">Guided Practice: True or False?</h2>
             <p class="text-2xl text-gray-700 mb-6 bg-gray-100 p-4 rounded-lg">If <span class="hypothesis">a shape has four sides</span>, then <span class="conclusion">it is a square</span>.</p>
             <p class="text-2xl font-bold mb-4">Is this statement TRUE or FALSE?</p>
@@ -193,34 +193,39 @@
         </div>
 
         <!-- Slide 10: Independent Practice -->
-        <div id="slide10" class="slide">
+        <div class="slide">
             <h2 class="text-3xl font-bold text-gray-800 mb-6">Independent Practice</h2>
-            <p class="text-2xl text-gray-700 mb-6">Time to practice on your own! Choose the level that feels right for you.</p>
-            <div class="flex space-x-4">
-                <div class="flex-1 p-4 border-4 border-red-400 rounded-lg bg-red-50">
-                    <h3 class="text-2xl font-bold text-red-600">RED</h3>
-                    <p>Developing</p>
+            <p class="text-xl text-gray-700 mb-6">Choose your level and solve the problems.</p>
+            <div class="flex space-x-4 text-left">
+                <div class="flex-1 p-4 border-2 border-red-400 rounded-lg bg-red-50">
+                    <h3 class="text-xl font-bold text-red-600">RED</h3>
+                    <p class="text-sm">1. <b>Statement:</b> "If an angle measures 90°, then it is a right angle."<br>Identify the hypothesis and conclusion.</p>
+                    <p class="text-sm mt-2">2. <b>Statement:</b> "If x = 5, then 2x = 10."<br>Identify the hypothesis and conclusion.</p>
                 </div>
-                <div class="flex-1 p-4 border-4 border-yellow-400 rounded-lg bg-yellow-50">
-                    <h3 class="text-2xl font-bold text-yellow-600">YELLOW</h3>
-                    <p>Applying</p>
+                <div class="flex-1 p-4 border-2 border-yellow-400 rounded-lg bg-yellow-50">
+                    <h3 class="text-xl font-bold text-yellow-600">YELLOW</h3>
+                    <p class="text-sm">1. Rewrite in "if-then" form: "All squares are rectangles."</p>
+                    <p class="text-sm mt-2">2. True or False? If false, give a counterexample: "If a shape has four equal sides, then it is a square."</p>
                 </div>
-                <div class="flex-1 p-4 border-4 border-green-400 rounded-lg bg-green-50">
-                    <h3 class="text-2xl font-bold text-green-600">GREEN</h3>
-                    <p>Securing</p>
+                <div class="flex-1 p-4 border-2 border-green-400 rounded-lg bg-green-50">
+                    <h3 class="text-xl font-bold text-green-600">GREEN</h3>
+                    <p class="text-sm">1. Create your own <b>true</b> conditional statement about a geometric figure.</p>
+                    <p class="text-sm mt-2">2. Create your own <b>false</b> conditional statement about numbers. Provide a counterexample.</p>
                 </div>
             </div>
         </div>
 
         <!-- Slide 11: Exit Ticket -->
-        <div id="slide11" class="slide">
+        <div class="slide">
             <h2 class="text-3xl font-bold text-gray-800 mb-6">Exit Ticket</h2>
-            <p class="text-2xl text-gray-700 mb-6">On your notecard, analyze the following statement:</p>
+            <p class="text-2xl text-gray-700 mb-6">On your notecard, analyze the statement:</p>
             <div class="bg-gray-100 p-6 rounded-lg text-2xl">
                 <p>"If a student plays basketball, then they are tall."</p>
             </div>
-            <p class="text-xl text-gray-700 mt-6">1. Identify the hypothesis and conclusion.</p>
-            <p class="text-xl text-gray-700">2. Is this statement true or false? Why?</p>
+            <div class="text-left text-xl mt-6 space-y-2">
+                <p>1. Identify the hypothesis and conclusion.</p>
+                <p>2. Is this statement true or false? Why?</p>
+            </div>
         </div>
 
         <!-- Navigation -->
