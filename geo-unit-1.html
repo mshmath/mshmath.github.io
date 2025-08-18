@@ -57,6 +57,43 @@
         th, td { border: 1px solid #BFDBFE; padding: 0.5rem; }
         th { background-color: #DBEAFE; }
 
+        
+        /* --- ACCORDION STYLES START --- */
+        .accordion-toggle {
+            font-size: 2.5rem;
+            margin-top: 2.5rem;
+            border-bottom: 2px solid #DBEAFE;
+            padding-bottom: 1.5rem;
+            color: #2563EB;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: none;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            text-align: left;
+        }
+        .accordion-toggle:hover {
+            background-color: #F9FAFB;
+        }
+        .accordion-icon {
+            font-size: 2rem;
+            transition: transform 0.3s ease-in-out;
+            color: #3B82F6;
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out;
+        }
+        /* --- ACCORDION STYLES END --- */
+
+
           @media print {
             body, .container { margin: 0 !important; padding: 1rem !important; width: 100%; box-shadow: none !important; border: none !important; }
             .no-print { display: none !important; }
@@ -64,6 +101,10 @@
             h2 { font-size: 18pt; margin-top: 1rem; page-break-before: always; page-break-after: avoid; }
             h2:first-of-type { page-break-before: auto; }
             h3 { font-size: 14pt; border-bottom: 1px solid #ccc; }
+            .accordion-toggle { font-size: 18pt; margin-top: 1rem; page-break-before: always; page-break-after: avoid; background: none !important; border-bottom: 2px solid #ccc !important; }
+            .accordion-toggle:first-of-type { page-break-before: auto; }
+            .accordion-icon { display: none; }
+            .accordion-content { max-height: none !important; }
             p, li { font-size: 12pt; line-height: 1.5; margin-bottom: 0.5rem; }
             .card, .example, .warm-up, .cool-down { padding: 1rem; margin-bottom: 1rem; border: 1px solid #ccc !important; background: #fff !important; page-break-inside: avoid; }
             .day-divider, .reflection-card, .extra-notes-card { display: none !important; }
@@ -138,7 +179,12 @@
 <section id="notes">
         <div>
             <div>
-            <h2 id="day1">Day 1: Conditional & Compound Statements</h2>
+                <div class="accordion-item" id="day1">
+        <button class="accordion-toggle">
+            <span>Day 1: Conditional & Compound Statements</span>
+            <span class="accordion-icon">+</span>
+        </button>
+        <div class="accordion-content">
             <div class="card" id="day1-card">
                  <div class="warm-up">
                     <h3 class="mt-0">Warm-Up</h3>
@@ -250,7 +296,7 @@
                     <p>Let $p:$ "It is a weekday" and $q:$ "I go to school". Translate the symbolic statement <span class="symbol">~p → ~q</span> into a sentence.</p>
                     <div class="interactive-line"><input type="text" data-answer="If it is not a weekday, then I do not go to school" placeholder="Type the sentence..." class="note-input flex-grow"></div>
                 </div>
-                
+            </div>
                 <div class="text-center mt-8 no-print flex justify-center gap-4">
                     <button class="button" onclick="checkAnswers('day1-card')">Check My Work</button>
                     <button class="button bg-gray-500 hover:bg-gray-700" onclick="resetAnswers('day1-card')">Try Again</button>
@@ -264,7 +310,7 @@
             <div class="extra-notes-card no-print">
                 <h3 class="mt-0">My Extra Notes for Day 1</h3>
                 <textarea rows="3" class="w-full p-2 border rounded" placeholder="Jot down any extra thoughts or questions here..."></textarea></div>
-            </div>
+            </div></div>
 
         <div class="day-divider"></div>
 
@@ -631,6 +677,7 @@
 </body>
 
 </html>
+
 
 
 
