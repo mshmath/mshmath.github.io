@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geometry Unit 1 Graphic Organizer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .card {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e2e8f0;
+            margin-bottom: 2rem;
+            overflow: hidden; /* Ensures table borders don't spill out */
+        }
+        .card-header {
+            background-color: #f1f5f9;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .card-body {
+            padding: 1.5rem;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        th {
+            background-color: #f8fafc;
+            font-weight: 600;
+            color: #334155;
+        }
+        tr:last-child td {
+            border-bottom: none;
+        }
+        code {
+            background-color: #eef2ff;
+            color: #4338ca;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        .essential-question {
+            background-color: #faf5ff;
+            color: #9333ea;
+            border: 1px solid #e9d5ff;
+        }
+        @media print {
+            body {
+                background-color: white;
+            }
+            .no-print {
+                display: none;
+            }
+            .card {
+                box-shadow: none;
+                border: 1px solid #cbd5e1;
+            }
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-6 lg:p-8">
+    <div class="max-w-4xl mx-auto">
+        <h1 class="text-4xl font-bold text-center text-slate-800 mb-4">Geometry Unit 1: Reasoning, Logic & Venn Diagrams</h1>
+
+        <div class="text-center mb-8 no-print">
+            <button onclick="window.print()" class="bg-indigo-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-indigo-700 transition-colors">
+                Print Graphic Organizer
+            </button>
+        </div>
+
+        <!-- Essential Question -->
+        <div class="card essential-question">
+            <div class="card-body text-center">
+                <h3 class="text-lg font-semibold mb-2">Essential Question for the Unit:</h3>
+                <p class="text-xl italic">"How can logic be used to justify geometric reasoning?"</p>
+            </div>
+        </div>
+        
+        <!-- Pacing Guide -->
+        <div class="card">
+            <div class="card-header">
+                <h2 class="text-2xl font-semibold text-slate-700">Weekly Pacing at a Glance</h2>
+            </div>
+            <div class="card-body">
+                 <ul class="list-disc list-inside space-y-2">
+                    <li><strong>Day 1:</strong> Conditional statements and their truth values.</li>
+                    <li><strong>Day 2:</strong> Converse, inverse, contrapositive, and biconditional statements.</li>
+                    <li><strong>Day 3:</strong> Symbolic logic (negation, conjunction, disjunction) and compound statements.</li>
+                    <li><strong>Day 4:</strong> Venn diagrams and their applications in contextual situations.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Conditional Statements -->
+        <div class="card">
+            <div class="card-header">
+                <h2 class="text-2xl font-semibold text-slate-700">1. Conditional Statements (If-Then Statements)</h2>
+            </div>
+            <div class="card-body">
+                <p class="mb-4">A conditional statement is a logical statement with two parts: a <strong>hypothesis</strong> and a <strong>conclusion</strong>.</p>
+                <p class="mb-4"><strong>Structure:</strong> If [hypothesis], then [conclusion].</p>
+                <p class="mb-6"><strong>Symbolic Form:</strong> <code>p → q</code> (Read as "p implies q" or "if p, then q")</p>
+                
+                <div class="bg-slate-50 p-4 rounded-lg border border-slate-200 mb-6">
+                    <p class="font-semibold">Example: "If an angle is a right angle, then its measure is 90°."</p>
+                    <ul class="list-disc list-inside mt-2">
+                        <li><strong>Hypothesis (p):</strong> An angle is a right angle.</li>
+                        <li><strong>Conclusion (q):</strong> Its measure is 90°.</li>
+                    </ul>
+                </div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Description</th>
+                            <th>Symbolic Form</th>
+                            <th>Example</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Conditional</strong></td>
+                            <td>The original statement.</td>
+                            <td><code>p → q</code></td>
+                            <td>If an angle is a right angle, then it is 90°.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Converse</strong></td>
+                            <td>Switch the hypothesis and conclusion.</td>
+                            <td><code>q → p</code></td>
+                            <td>If an angle is 90°, then it is a right angle.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Inverse</strong></td>
+                            <td>Negate the original hypothesis and conclusion.</td>
+                            <td><code>~p → ~q</code></td>
+                            <td>If an angle is <strong>not</strong> a right angle, then it is <strong>not</strong> 90°.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Contrapositive</strong></td>
+                            <td>Negate AND switch the hypothesis and conclusion.</td>
+                            <td><code>~q → ~p</code></td>
+                            <td>If an angle is <strong>not</strong> 90°, then it is <strong>not</strong> a right angle.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                 <div class="bg-indigo-50 text-indigo-800 p-4 rounded-lg border border-indigo-200 mt-6">
+                    <p><strong>Key Connection:</strong> A conditional statement is logically equivalent to its <strong>contrapositive</strong>. The <strong>converse</strong> is logically equivalent to the <strong>inverse</strong>.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Symbolic Logic -->
+        <div class="card">
+            <div class="card-header">
+                <h2 class="text-2xl font-semibold text-slate-700">2. Symbolic Logic & Compound Statements</h2>
+            </div>
+            <div class="card-body">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Symbol</th>
+                            <th>Name</th>
+                            <th>Reads As...</th>
+                            <th>Meaning</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>~p</code></td>
+                            <td>Negation</td>
+                            <td>"not p"</td>
+                            <td>The opposite of statement p.</td>
+                        </tr>
+                        <tr>
+                            <td><code>p ∧ q</code></td>
+                            <td>Conjunction</td>
+                            <td>"p and q"</td>
+                            <td>True only when BOTH p and q are true.</td>
+                        </tr>
+                        <tr>
+                            <td><code>p ∨ q</code></td>
+                            <td>Disjunction</td>
+                            <td>"p or q"</td>
+                            <td>True when AT LEAST ONE of p or q is true.</td>
+                        </tr>
+                        <tr>
+                            <td><code>p ↔ q</code></td>
+                            <td>Biconditional</td>
+                            <td>"p if and only if q"</td>
+                            <td>True only when p and q have the same truth value. (The conditional and converse are both true).</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Laws of Deductive Reasoning -->
+        <div class="card">
+            <div class="card-header">
+                <h2 class="text-2xl font-semibold text-slate-700">3. Laws of Deductive Reasoning</h2>
+            </div>
+            <div class="card-body">
+                <p class="mb-4">Deductive reasoning uses facts, definitions, and accepted properties in a logical order to draw a conclusion.</p>
+                <div class="space-y-6">
+                    <div>
+                        <h3 class="font-semibold text-lg text-slate-800">Law of Detachment</h3>
+                        <p>If a conditional statement (<code>p → q</code>) is true and its hypothesis (<code>p</code>) is true, then its conclusion (<code>q</code>) must be true.</p>
+                        <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 mt-2">
+                            <p><strong>Example:</strong></p>
+                            <p>1. If it is Friday, then Aly wears jeans. (True conditional)</p>
+                            <p>2. Today is Friday. (Hypothesis is true)</p>
+                            <p><strong>Conclusion:</strong> Therefore, Aly is wearing jeans.</p>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-lg text-slate-800">Law of Syllogism</h3>
+                        <p>If <code>p → q</code> and <code>q → r</code> are true conditional statements, then <code>p → r</code> is also true. (Think of it as a chain reaction).</p>
+                        <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 mt-2">
+                            <p><strong>Example:</strong></p>
+                            <p>1. If you get a driver's license (p), then you must pass a written test (q).</p>
+                            <p>2. If you pass a written test (q), then you have studied the handbook (r).</p>
+                            <p><strong>Conclusion:</strong> Therefore, if you get a driver's license (p), then you have studied the handbook (r).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Venn Diagrams -->
+        <div class="card">
+            <div class="card-header">
+                <h2 class="text-2xl font-semibold text-slate-700">4. Venn Diagrams: Visualizing Set Relationships</h2>
+            </div>
+            <div class="card-body">
+                <p class="mb-4">Venn diagrams use circles to represent sets and show the relationships between them.</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Relationship</th>
+                            <th>Description</th>
+                            <th>Symbolic</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Intersection</strong></td>
+                            <td>Elements that are in <strong>BOTH</strong> set A <strong>AND</strong> set B.</td>
+                            <td><code>A ∧ B</code></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Union</strong></td>
+                            <td>Elements that are in set A <strong>OR</strong> set B (or both).</td>
+                            <td><code>A ∨ B</code></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Complement</strong></td>
+                            <td>Elements that are <strong>NOT</strong> in set A.</td>
+                            <td><code>~A</code></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Subset</strong></td>
+                            <td>All elements of set A are also in set B.</td>
+                            <td><code>A ⊂ B</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="bg-slate-50 p-4 rounded-lg border border-slate-200 mt-6">
+                    <p class="font-semibold mb-2">Worked Example:</p>
+                    <p>A survey asks students if they like Comedy movies (C) or Horror movies (H). The diagram shows the results.</p>
+                    <!-- Fixed HTML/CSS Venn Diagram -->
+                    <div class="flex justify-center items-center p-4">
+                        <div class="relative w-64 h-40">
+                            <div class="absolute top-4 left-4 w-32 h-32 bg-blue-300 rounded-full opacity-75"></div>
+                            <div class="absolute top-4 right-4 w-32 h-32 bg-red-300 rounded-full opacity-75"></div>
+                            <div class="absolute top-2 left-10 text-xl font-bold text-blue-800">C</div>
+                            <div class="absolute top-2 right-10 text-xl font-bold text-red-800">H</div>
+                            <div class="absolute top-1/2 left-12 -translate-y-1/2 text-2xl font-bold text-slate-800">8</div>
+                            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-2xl font-bold text-slate-800">2</div>
+                            <div class="absolute top-1/2 right-12 -translate-y-1/2 text-2xl font-bold text-slate-800">5</div>
+                        </div>
+                    </div>
+                    <ul class="list-disc list-inside">
+                        <li><strong>How many students like Comedy?</strong> 8 (only C) + 2 (both) = 10 students.</li>
+                        <li><strong>How many students like Horror?</strong> 5 (only H) + 2 (both) = 7 students.</li>
+                        <li><strong>Comedy AND Horror (Intersection <code>C ∧ H</code>):</strong> 2 students.</li>
+                        <li><strong>Comedy OR Horror (Union <code>C ∨ H</code>):</strong> 8 + 2 + 5 = 15 students.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- For rendering math symbols if needed -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</body>
+</html>
