@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 1 Quiz: Reasoning & Logic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+      MathJax = { tex: { inlineMath: [['$', '$']] } };
+    </script>
+    <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #F8FAFC; color: #1F2937; line-height: 1.9; font-size: 1.125rem; }
+        .container { max-width: 900px; margin: 3rem auto; padding: 3rem 3.5rem; background-color: #FFFFFF; border-radius: 16px; box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+        h1 { font-size: 3rem; text-align: center; margin-bottom: 0.5rem; color: #1D4ED8; font-weight: 700; }
+        .subtitle { font-size: 1.5rem; text-align: center; color: #4B5563; margin-bottom: 2rem; font-weight: 500; }
+        p, li, span { color: #374151; margin-bottom: 1.5rem; }
+        .card { background-color: #F0F9FF; border: 1px solid #BFDBFE; border-radius: 12px; padding: 2.5rem; margin-bottom: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .button { background-color: #2563EB; color: white; padding: 0.75rem 1.5rem; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.2s; border: none; }
+        .button:hover { background-color: #1D4ED8; box-shadow: 0 4px 8px rgba(0,0,0,0.15); }
+        .key-term { color: #1d4ed8; font-weight: 600; }
+        .symbol { color: #4338ca; font-weight: 600; font-family: monospace; font-size: 1.1em; margin: 0 0.15em; }
+        .quiz-option { display: block; padding: 1rem; border: 1px solid #D1D5DB; border-radius: 8px; margin-bottom: 0.75rem; cursor: pointer; background-color: #F9FAFB; transition: all 0.2s; }
+        .quiz-option:hover { background-color: #EFF6FF; border-color: #2563EB; }
+        .quiz-option.selected { background-color: #DBEAFE; border-color: #2563EB; font-weight: 600; }
+        .quiz-option.correct { background-color: #D1FAE5 !important; border-color: #059669 !important; font-weight: 600; }
+        .quiz-option.incorrect { background-color: #FEF2E2 !important; border-color: #DC2626 !important; font-weight: 600; }
+        .feedback { margin-top: 1rem; padding: 0.75rem; border-radius: 8px; font-weight: 600; }
+        .feedback.correct { color: #047857; background-color: #D1FAE5; }
+        .feedback.incorrect { color: #B91C1C; background-color: #FEF2F2; }
+        
+        /* --- PRINT STYLES START --- */
+        @media print {
+            body, .container {
+                margin: 0 !important;
+                padding: 1rem !important;
+                width: 100%;
+                box-shadow: none !important;
+                border: none !important;
+                font-size: 12pt;
+            }
+            .no-print {
+                display: none !important;
+            }
+            .container {
+                padding: 0 1.5rem !important;
+            }
+            h1 {
+                font-size: 24pt;
+                text-align: left;
+            }
+            .subtitle {
+                text-align: left;
+                font-size: 14pt;
+            }
+            .card {
+                background: none !important;
+                border:
