@@ -33,6 +33,7 @@
         .button:hover { background-color: #1D4ED8; box-shadow: 0 4px 8px rgba(0,0,0,0.15); }
         .nav-button { background-color: #4B5563; padding: 0.5rem 1rem; font-size: 0.9rem; }
         .nav-button:hover { background-color: #1F2937; }
+        .resource-button { padding: 0.5rem 1rem; font-size: 0.9rem; }
         .reflection-card { background-color: #FFFBEB; border-left: 6px solid #F59E0B; padding: 1.5rem 2rem; border-radius: 8px; margin-top: 2rem; }
         .extra-notes-card { background-color: #F1F5F9; border-left: 6px solid #64748B; padding: 1.5rem 2rem; border-radius: 8px; margin-top: 2rem; }
         .note-input { border: 2px solid #D1D5DB; padding: 0.25rem 0.5rem; border-radius: 6px; transition: all 0.2s; min-width: 200px; }
@@ -81,9 +82,9 @@
     <p class="subtitle">VA SOL Standard G.RLT.1</p>
 
     <div class="card bg-gray-50 no-print">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
-                <h3 class="mt-0 text-center text-gray-700">Jump To Section</h3>
+                <h3 class="mt-0 text-center text-gray-700">Navigation & Printing</h3>
                 <div class="flex flex-wrap justify-center gap-3 mt-4">
                     <a href="#day1"><button class="button nav-button">Day 1</button></a>
                     <a href="#day2"><button class="button nav-button">Day 2</button></a>
@@ -91,21 +92,47 @@
                     <a href="#day4"><button class="button nav-button">Day 4</button></a>
                     <a href="#quiz"><button class="button nav-button bg-purple-600 hover:bg-purple-800">Unit Quiz</button></a>
                 </div>
-            </div>
-            <div>
-                 <h3 class="mt-0 text-center text-gray-700">Lesson Resources</h3>
-                 <div class="flex flex-wrap justify-center gap-3 mt-4">
-                     <!-- This link is a placeholder. In a real project, you would replace 'presentation_logic_day1.html' with the actual path to your slides file. -->
-                     <a href="geo-unt1-slides.html" target="_blank"><button class="button">View Day 1 Slides</button></a>
-                     <a href="geo-unt1-slides-print.html" target="_blank"><button class="button">Printable Slides</button>
-                 </div>
-            </div>
-            <div>
-                <h3 class="mt-0 text-center text-gray-700">Print Options</h3>
-                <div class="flex flex-wrap justify-center gap-3 mt-4">
+                <div class="flex flex-wrap justify-center gap-3 mt-6">
                     <button class="button" onclick="printContent('notes')">Print Notes (Worksheet)</button>
                     <button class="button" onclick="printContent('quiz')">Print Quiz</button>
                 </div>
+            </div>
+            <div>
+                 <h3 class="mt-0 text-center text-gray-700">Lesson Slides</h3>
+                 <div class="space-y-2 mt-4">
+                    <!-- Day 1 Resources -->
+                    <div class="flex items-center justify-between bg-gray-100 p-2 rounded-lg">
+                        <span class="font-semibold text-gray-600 text-base pl-2">Day 1: Conditionals</span>
+                        <div class="flex gap-2">
+                            <a href="geo-unit1-day1-slides.html" target="_blank"><button class="button resource-button">View</button></a>
+                            <a href="geo-unit1-day1-slides-print.html" target="_blank"><button class="button resource-button bg-gray-600 hover:bg-gray-700">Print</button></a>
+                        </div>
+                    </div>
+                    <!-- Day 2 Resources -->
+                    <div class="flex items-center justify-between bg-gray-100 p-2 rounded-lg">
+                        <span class="font-semibold text-gray-600 text-base pl-2">Day 2: Related Conditionals</span>
+                        <div class="flex gap-2">
+                            <a href="geo-unit1-day2-slides.html" target="_blank"><button class="button resource-button">View</button></a>
+                            <a href="geo-unit1-day1-slides-print.html" target="_blank"><button class="button resource-button bg-gray-600 hover:bg-gray-700">Print</button></a>
+                        </div>
+                    </div>
+                    <!-- Day 3 Resources -->
+                    <div class="flex items-center justify-between bg-gray-100 p-2 rounded-lg">
+                        <span class="font-semibold text-gray-600 text-base pl-2">Day 3: Symbolic Logic</span>
+                        <div class="flex gap-2">
+                            <a href="geo-unit1-day3-slides.html" target="_blank"><button class="button resource-button">View</button></a>
+                            <a href="geo-unit1-day3-slides-print.html" target="_blank"><button class="button resource-button bg-gray-600 hover:bg-gray-700">Print</button></a>
+                        </div>
+                    </div>
+                    <!-- Day 4 Resources -->
+                    <div class="flex items-center justify-between bg-gray-100 p-2 rounded-lg">
+                        <span class="font-semibold text-gray-600 text-base pl-2">Day 4: Venn Diagrams</span>
+                        <div class="flex gap-2">
+                            <a href="geo-unit1-day4-slides.html" target="_blank"><button class="button resource-button">View</button></a>
+                            <a href="geo-unit1-day1-slides-print.html" target="_blank"><button class="button resource-button bg-gray-600 hover:bg-gray-700">Print</button></a>
+                        </div>
+                    </div>
+                 </div>
             </div>
         </div>
     </div>
@@ -586,5 +613,6 @@
 </body>
 
 </html>
+
 
 
