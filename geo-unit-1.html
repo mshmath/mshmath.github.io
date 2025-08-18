@@ -131,7 +131,7 @@
                     <a href="#day2"><button class="button nav-button">Day 2</button></a>
                     <a href="#day3"><button class="button nav-button">Day 3</button></a>
                     <a href="#day4"><button class="button nav-button">Day 4</button></a>
-                    <a href="#quiz"><button class="button nav-button bg-purple-600 hover:bg-purple-800">Unit Quiz</button></a>
+                    <a href="geo-unit1-quiz.html" target="_blank"><button class="button nav-button bg-purple-600 hover:bg-purple-800">Unit Quiz</button></a>
                 </div>
                 <div class="flex flex-wrap justify-center gap-3 mt-6">
                     <button class="button" onclick="printContent('notes')">Print Unit Notes/Examples</button>
@@ -177,9 +177,8 @@
     </div>
 
 <section id="notes">
-        <div>
-            <div>
-                <div class="accordion-item" id="day1">
+        <div>                
+            <div class="accordion-item" id="day1">
         <button class="accordion-toggle">
             <span>Day 1: Conditional & Compound Statements</span>
             <span class="accordion-icon">+</span>
@@ -315,7 +314,12 @@
         <div class="day-divider"></div>
 
         <div>
-            <h2 id="day2">Day 2: Related & Biconditional Statements</h2>
+            <div class="accordion-item" id="day2">
+        <button class="accordion-toggle">
+            <span>Day 2: Related & Biconditional Statements</span>
+            <span class="accordion-icon">+</span>
+        </button>
+        <div class="accordion-content">
             <div class="card" id="day2-card">
                 <div class="warm-up"><h3 class="mt-0">Warm-Up</h3><p>A true statement is: "If a pet is a dog, then it is a mammal." Is the statement "If a pet is a mammal, then it is a dog" also always true?</p><div class="interactive-line"><span>Why or why not? Give an example.</span><input type="text" data-answer="No, a cat is a mammal but not a dog" placeholder="Your reasoning..." class="note-input flex-grow"></div></div>
                 <h3>Related Conditionals</h3>
@@ -372,12 +376,17 @@
             </div>
             <div class="reflection-card no-print"><h3 class="mt-0">Day 2 Reflection</h3><p class="text-sm">What was the most important concept you learned today? What concept is still confusing, or what questions do you have?</p><textarea rows="2" class="w-full p-2 border rounded" placeholder="Type your reflection here..."></textarea></div>
             <div class="extra-notes-card no-print"><h3 class="mt-0">My Extra Notes for Day 2</h3><textarea rows="3" class="w-full p-2 border rounded" placeholder="Jot down any extra thoughts or questions here..."></textarea></div>
-        </div>
+        </div></div>
 
  <div class="day-divider"></div>
 
         <div>
-            <h2 id="day3">Day 3: Deductive Reasoning & Proof</h2>
+            <div class="accordion-item" id="day3">
+        <button class="accordion-toggle">
+            <span>Day 3: Deductive Reasoning & Proof</span>
+            <span class="accordion-icon">+</span>
+        </button>
+        <div class="accordion-content">
             <div class="card" id="day3-card">
                  <div class="warm-up"><h3 class="mt-0">Warm-Up</h3><p>You see muddy footprints leading away from the kitchen door. You also know that it rained earlier. What is a logical conclusion you can make?</p><div class="interactive-line"><input type="text" data-answer="Someone with muddy shoes came in from outside" placeholder="Your conclusion..." class="note-input flex-grow"></div></div>
                 
@@ -485,11 +494,16 @@
             </div>
              <div class="reflection-card no-print"><h3 class="mt-0">Day 3 Reflection</h3><p class="text-sm">What was the most important concept you learned today? What concept is still confusing, or what questions do you have?</p><textarea rows="2" class="w-full p-2 border rounded" placeholder="Type your reflection here..."></textarea></div>
             <div class="extra-notes-card no-print"><h3 class="mt-0">My Extra Notes for Day 3</h3><textarea rows="3" class="w-full p-2 border rounded" placeholder="Jot down any extra thoughts or questions here..."></textarea></div></div>
-
+        </div>
         <div class="day-divider"></div>
 
         <div>
-            <h2 id="day4">Day 4: Venn Diagrams & Applications</h2>
+            <div class="accordion-item" id="day4">
+        <button class="accordion-toggle">
+            <span>Day 4: Venn Diagrams & Applications</span>
+            <span class="accordion-icon">+</span>
+        </button>
+        <div class="accordion-content">
             <div class="card" id="day4-card">
                 <div class="warm-up"><h3 class="mt-0">Warm-Up</h3><p>Think about your friends. Some play video games, and some play sports. Some do both. How would you draw a picture to show this relationship?</p><div class="interactive-line"><input type="text" data-answer="Two overlapping circles" placeholder="Describe your drawing..." class="note-input flex-grow"></div></div>
                 
@@ -558,96 +572,17 @@
             <div class="extra-notes-card no-print"><h3 class="mt-0">My Extra Notes for Day 4</h3><textarea rows="3" class="w-full p-2 border rounded" placeholder="Jot down any extra thoughts or questions here..."></textarea></div>
         </div>
         </div>
+        </div>
     </section>
 
     <div class="day-divider no-print"></div>
     
-  <section id="quiz">
-        <h2 class="mt-0">Unit 1 Quiz</h2>
-        <div class="flex justify-between items-center bg-gray-100 p-4 rounded-lg mb-8 no-print">
-            <p class="text-lg font-semibold">Test your knowledge. You have 3 attempts.</p>
-            <div id="attempt-counter" class="text-lg font-bold px-4 py-2 bg-blue-200 text-blue-800 rounded-md">Attempt 1 of 3</div>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            
-            <div class="card quiz-question" data-correct-answer="False">
-                <p class="font-semibold mb-4">1. Let p: "Roanoke is in Virginia" (True) and q: "The Mill Mountain Star is blue" (False). What is the truth value of the conjunction $p \land q ? $</p>
-                <label class="quiz-option"><input type="radio" name="q1" value="True" class="hidden"> A. True</label>
-                <label class="quiz-option"><input type="radio" name="q1" value="False" class="hidden"> B. False</label>
-                <div class="feedback"></div>
-            </div>
-
-            <div class="card quiz-question" data-correct-answer="p → ~q">
-                <p class="font-semibold mb-4">2. Let p: "It is raining" and q: "I will take an umbrella." Which symbolic statement represents "If it is raining, then I will NOT take an umbrella"?</p>
-                <label class="quiz-option"><input type="radio" name="q2" value="~p → q" class="hidden"> A. $\sim p \rightarrow q$</label>
-                <label class="quiz-option"><input type="radio" name="q2" value="p → ~q" class="hidden"> B. $p \rightarrow \sim q$</label>
-                <label class="quiz-option"><input type="radio" name="q2" value="p ∧ ~q" class="hidden"> C. $p \land \sim q$</label>
-                <div class="feedback"></div>
-            </div>
-
-            <div class="card quiz-question" data-correct-answer="If it does not have four sides, then it is not a rectangle.">
-                <p class="font-semibold mb-4">3. What is the <b class="key-term">contrapositive</b> of the statement "If a shape is a rectangle, then it has four sides"?</p>
-                <label class="quiz-option"><input type="radio" name="q3" value="If it has four sides, then it is a rectangle." class="hidden"> A. If it has four sides, then it is a rectangle.</label>
-                <label class="quiz-option"><input type="radio" name="q3" value="If it is not a rectangle, then it does not have four sides." class="hidden"> B. If it is not a rectangle, then it does not have four sides.</label>
-                <label class="quiz-option"><input type="radio" name="q3" value="If it does not have four sides, then it is not a rectangle." class="hidden"> C. If it does not have four sides, then it is not a rectangle.</label>
-                <div class="feedback"></div>
-            </div>
-
-            <div class="card quiz-question" data-correct-answer="converse">
-                <p class="font-semibold mb-4">4. A statement can be written as a true biconditional if the original conditional is true and its ______ is also true.</p>
-                <input type="text" name="q4" placeholder="Enter the logical term..." class="w-full p-2 border rounded">
-                <div class="feedback"></div>
-            </div>
-
-            <div class="card quiz-question" data-correct-answer="Deductive">
-                <p class="font-semibold mb-4">5. Using definitions, postulates, and theorems to prove a conclusion is an example of what type of reasoning?</p>
-                <input type="text" name="q5" placeholder="Enter reasoning type..." class="w-full p-2 border rounded">
-                <div class="feedback"></div>
-            </div>
-
-            <div class="card quiz-question" data-correct-answer="∠A and ∠B are congruent.">
-                <p class="font-semibold mb-4">6. Given: "If two angles are vertical, then they are congruent." and "∠A and ∠B are vertical." What is the logical conclusion by the Law of Detachment?</p>
-                <label class="quiz-option"><input type="radio" name="q6" value="∠A and ∠B are congruent." class="hidden"> A. ∠A and ∠B are congruent.</label>
-                <label class="quiz-option"><input type="radio" name="q6" value="∠A and ∠B are supplementary." class="hidden"> B. ∠A and ∠B are supplementary.</label>
-                <label class="quiz-option"><input type="radio" name="q6" value="No conclusion is possible." class="hidden"> C. No conclusion is possible.</label>
-                <div class="feedback"></div>
-            </div>
-
-            <div class="card quiz-question" data-correct-answer="If I save money, I will drive to work.">
-                 <p class="font-semibold mb-4">7. Given: "If I save money, I can buy a car." and "If I buy a car, I will drive to work." What can you conclude by the Law of Syllogism?</p>
-                <label class="quiz-option"><input type="radio" name="q7" value="If I drive to work, I bought a car." class="hidden"> A. If I drive to work, I bought a car.</label>
-                <label class="quiz-option"><input type="radio" name="q7" value="If I save money, I will drive to work." class="hidden"> B. If I save money, I will drive to work.</label>
-                <label class="quiz-option"><input type="radio" name="q7" value="I will save money." class="hidden"> C. I will save money.</label>
-                <div class="feedback"></div>
-            </div>
-
-            <div class="card quiz-question" data-correct-answer="12">
-                <p class="font-semibold mb-4">8. A survey of 50 students found 20 play soccer and 28 play baseball. If 8 students play both sports, how many students play <b>only</b> soccer?</p>
-                <input type="text" name="q8" placeholder="Enter number..." class="w-full p-2 border rounded">
-                <div class="feedback"></div>
-            </div>
-
-            <div class="card quiz-question" data-correct-answer="Union">
-                <p class="font-semibold mb-4">9. The set of all elements that are in Set A OR Set B is called the...</p>
-                <label class="quiz-option"><input type="radio" name="q9" value="Intersection" class="hidden"> A. Intersection</label>
-                <label class="quiz-option"><input type="radio" name="q9" value="Union" class="hidden"> B. Union</label>
-                <label class="quiz-option"><input type="radio" name="q9" value="Complement" class="hidden"> C. Complement</label>
-                <div class="feedback"></div>
-            </div>
-
-            <div class="card quiz-question" data-correct-answer="If you do not live in the USA, then you do not live in Virginia.">
-                <p class="font-semibold mb-4">10. Which statement is logically equivalent to "If you live in Virginia, then you live in the USA"?</p>
-                <label class="quiz-option"><input type="radio" name="q10" value="If you live in the USA, then you live in Virginia." class="hidden"> A. If you live in the USA, then you live in Virginia.</label>
-                <label class="quiz-option"><input type="radio" name="q10" value="If you do not live in Virginia, then you do not live in the USA." class="hidden"> B. If you do not live in Virginia, then you do not live in the USA.</label>
-                <label class="quiz-option"><input type="radio" name="q10" value="If you do not live in the USA, then you do not live in Virginia." class="hidden"> C. If you do not live in the USA, then you do not live in Virginia.</label>
-                <div class="feedback"></div>
-            </div>
-        </div>
-        <div id="quiz-score-container" class="text-center mt-8 text-2xl font-bold hidden no-print"></div>
-        <div class="flex justify-center gap-6 mt-10 no-print">
-            <button id="check-answers-btn" class="button" onclick="checkQuizAnswers()">Check Answers</button>
-            <button id="retake-quiz-btn" class="button bg-gray-600 hover:bg-gray-800" onclick="resetQuiz()">Retake Quiz</button>
-        </div>
+  <section id="quiz-link" class="text-center py-10 mt-10 border-t-2 border-dashed border-gray-300">
+        <h2 class="text-3xl font-bold text-gray-800">Ready to test your knowledge?</h2>
+        <p class="text-lg text-gray-600 my-4">You have completed the notes for Unit 1. Click the button below to take the quiz.</p>
+        <a href="geo-unit1-quiz.html" target="_blank" class="button text-xl px-8 py-4 bg-purple-600 hover:bg-purple-800">
+            Take the Unit 1 Quiz
+        </a>
     </section>
 </div>
 
@@ -717,6 +652,7 @@
 </body>
 
 </html>
+
 
 
 
