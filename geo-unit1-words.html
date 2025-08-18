@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geometry - Unit 1 Word Wall</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- KaTeX for beautiful math rendering -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" xintegrity="sha384-n8MVd4RsNIU0KOVEMckDpbOc7ymOqrASb/aWd8doAXXFAVbaXpU5S/rawLddJCEa" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" xintegrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctMQanyESAC" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" xintegrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+    <script>
+        // Wait for the DOM to be fully loaded before rendering math
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '\\[', right: '\\]', display: true},
+                    {left: '$', right: '$', display: false},
+                    {left: '\\(', right: '\\)', display: false}
+                ]
+            });
+        });
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .katex { font-size: 1.1em; }
+        @media print {
+            .no-print {
+                display: none;
+            }
+            body {
+                -webkit-print-color-adjust: exact; /* Chrome, Safari */
+                color-adjust: exact; /* Firefox */
+            }
+            .word-card {
+                page-break-inside: avoid;
+                border: 2px solid #e5e7eb;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <div class="container mx-auto p-4 sm:p-6 md:p-8">
+        
+        <!-- Header and Print Button -->
+        <div class="text-center mb-8 no-print">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-900">Geometry - Unit 1 Word Wall</h1>
+            <p class="text-gray-600 mt-2">Key vocabulary for Basics of Geometry, Logic, and Reasoning.</p>
+            <button onclick="window.print()" class="mt-4 bg-green-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 transition-transform transform hover:scale-105">
+                Print Word Wall
+            </button>
+        </div>
+
+        <!-- Vocabulary Cards Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            <!-- Point, Line, Plane Card -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden word-card">
+                <div class="p-6">
+                    <h2 class="text-xl font-bold text-green-800 mb-2">Point, Line, Plane</h2>
+                    <p class="text-gray-600 mb-4">The undefined terms that are the building blocks of geometry.</p>
+                    <div class="space-y-4">
+                        <p><strong class="text-blue-600">Point:</strong> A location with no dimension. <svg width="20" height="20" class="inline -mb-1"><circle cx="10" cy="10" r="3" fill="black"/></svg> A</p>
+                        <p><strong class="text-purple-600">Line:</strong> A one-dimensional path extending forever. <svg width="50" height="10" class="inline -mb-1"><line x1="0" y1="5" x2="50" y2="5" stroke="black" stroke-width="2" marker-start="url(#arrow)" marker-end="url(#arrow)"/></svg></p>
+                        <p><strong class="text-orange-600">Plane:</strong> A two-dimensional flat surface extending forever.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Segment & Ray Card -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden word-card">
+                <div class="p-6">
+                    <h2 class="text-xl font-bold text-green-800 mb-2">Line Segment & Ray</h2>
+                    <p class="text-gray-600 mb-4">Parts of a line with defined endpoints.</p>
+                    <div class="space-y-4">
+                        <p><strong class="text-blue-600">Line Segment:</strong> Part of a line with two endpoints. Notation: $\overline{AB}$</p>
+                        <p><strong class="text-purple-600">Ray:</strong> Part of a line with one endpoint. Notation: $\vec{AB}$</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Conditional Statement Card -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden word-card">
+                <div class="p-6">
+                    <h2 class="text-xl font-bold text-green-800 mb-2">Conditional Statement</h2>
+                    <p class="text-gray-600 mb-4">A logical statement with a hypothesis and a conclusion, often in "if-then" form.</p>
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <p class="text-sm">If <span class="font-semibold text-red-600">p (hypothesis)</span>, then <span class="font-semibold text-indigo-600">q (conclusion)</span>.</p>
+                        <p class="text-center text-2xl mt-2">$p \rightarrow q$</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Converse Card -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden word-card">
+                <div class="p-6">
+                    <h2 class="text-xl font-bold text-green-800 mb-2">Converse</h2>
+                    <p class="text-gray-600 mb-4">Formed by switching the hypothesis and conclusion of a conditional statement.</p>
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <p class="text-sm">If <span class="font-semibold text-indigo-600">q</span>, then <span class="font-semibold text-red-600">p</span>.</p>
+                        <p class="text-center text-2xl mt-2">$q \rightarrow p$</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Inverse Card -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden word-card">
+                <div class="p-6">
+                    <h2 class="text-xl font-bold text-green-800 mb-2">Inverse</h2>
+                    <p class="text-gray-600 mb-4">Formed by negating both the hypothesis and conclusion of a conditional statement.</p>
+                     <div class="bg-gray-50 p-4 rounded-lg">
+                        <p class="text-sm">If <span class="font-semibold text-red-600">not p</span>, then <span class="font-semibold text-indigo-600">not q</span>.</p>
+                        <p class="text-center text-2xl mt-2">$\sim p \rightarrow \sim q$</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contrapositive Card -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden word-card">
+                <div class="p-6">
+                    <h2 class="text-xl font-bold text-green-800 mb-2">Contrapositive</h2>
+                    <p class="text-gray-600 mb-4">Formed by switching AND negating the hypothesis and conclusion.</p>
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <p class="text-sm">If <span class="font-semibold text-indigo-600">not q</span>, then <span class="font-semibold text-red-600">not p</span>.</p>
+                        <p class="text-center text-2xl mt-2">$\sim q \rightarrow \sim p$</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Inductive Reasoning Card -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden word-card">
+                <div class="p-6">
+                    <h2 class="text-xl font-bold text-green-800 mb-2">Inductive Reasoning</h2>
+                    <p class="text-gray-600 mb-4">Making a conclusion based on observing a pattern.</p>
+                    <div class="bg-gray-50 p-4 rounded-lg text-center">
+                        <p class="text-sm">Example: Seeing the sequence 2, 4, 6, 8,... and concluding the next number is 10.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Deductive Reasoning Card -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden word-card">
+                <div class="p-6">
+                    <h2 class="text-xl font-bold text-green-800 mb-2">Deductive Reasoning</h2>
+                    <p class="text-gray-600 mb-4">Using facts, definitions, and logic to reach a conclusion.</p>
+                    <div class="bg-gray-50 p-4 rounded-lg text-sm">
+                        <p>Example: All squares are rectangles. ABCD is a square. Therefore, ABCD is a rectangle.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Counterexample Card -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden word-card">
+                <div class="p-6">
+                    <h2 class="text-xl font-bold text-green-800 mb-2">Counterexample</h2>
+                    <p class="text-gray-600 mb-4">A specific example that proves a statement is false.</p>
+                    <div class="bg-gray-50 p-4 rounded-lg text-sm">
+                        <p>Statement: "All birds can fly."</p>
+                        <p class="font-semibold mt-1">Counterexample: A penguin.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Parallel & Perpendicular Lines Card -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden word-card">
+                <div class="p-6">
+                    <h2 class="text-xl font-bold text-green-800 mb-2">Parallel & Perpendicular</h2>
+                    <p class="text-gray-600 mb-4">Relationships between two lines.</p>
+                    <div class="space-y-4">
+                        <p><strong class="text-blue-600">Parallel Lines ($\|$):</strong> Coplanar lines that never intersect. They have the same slope.</p>
+                        <p><strong class="text-purple-600">Perpendicular Lines ($\perp$):</strong> Lines that intersect at a 90° angle. Their slopes are negative reciprocals.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
+    <!-- SVG Definitions for markers -->
+    <svg width="0" height="0">
+      <defs>
+        <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="black" />
+        </marker>
+      </defs>
+    </svg>
+
+</body>
+</html>
