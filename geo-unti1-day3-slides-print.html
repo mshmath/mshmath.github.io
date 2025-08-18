@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Printable Slides: Symbolic Logic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #e5e7eb; /* gray-200 */
+        }
+        .printable-page {
+            width: 100%;
+            max-width: 8.5in;
+            min-height: 11in;
+            margin: 2rem auto;
+            padding: 1in;
+            background-color: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .page-header {
+            text-align: right;
+            color: #6b7280;
+            font-size: 0.9rem;
+            border-bottom: 1px solid #d1d5db;
+            padding-bottom: 0.5rem;
+            margin-bottom: 2rem;
+        }
+        .title-slide-content {
+            text-align: center;
+            color: white;
+            background: linear-gradient(135deg, #7c3aed, #a78bfa);
+            padding: 4rem 2rem;
+            border-radius: 0.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .emphasis-highlight {
+            background-color: #fef9c3; /* yellow-100 */
+            padding: 0.1em 0.3em;
+            border-radius: 0.25em;
+            font-weight: 500;
+        }
+        .symbol { font-family: monospace; font-size: 2.5rem; background-color: #e5e7eb; padding: 0.25rem 0.75rem; border-radius: 0.5rem; }
+        .truth-value-true { color: #059669; font-weight: 700; }
+        .truth-value-false { color: #DC2626; font-weight: 700; }
+
+        @media print {
+            body {
+                background-color: white;
+            }
+            .printable-page {
+                margin: 0;
+                box-shadow: none;
+                border: none;
+                page-break-after: always;
+                padding: 0.5in;
+            }
+            .no-print {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <div class="text-center mb-8 no-print">
+        <h1 class="text-3xl font-bold text-gray-800 mb-2">Printable Slides</h1>
+        <p class="text-gray-600">Each slide is formatted as a separate page below.</p>
+        <button onclick="window.print()" class="mt-4 bg-blue-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-blue-700 transition">
+            Print Slides
+        </button>
+    </div>
+
+    <!-- Slide 1: Title -->
+    <div class="printable-page">
+        <div class="title-slide-content">
+            <h1 class="text-6xl font-bold mb-4">Reasoning and Logic</h1>
+            <p class="text-3xl">Day 3: Symbolic Logic & Compound Statements</p>
+        </div>
+    </div>
+
+    <!-- Slide 2: Objectives -->
+    <div class="printable-page">
+        <div class="page-header">Slide 2</div>
+        <h2 class="text-4xl font-bold text-gray-800 mb-8 text-center">Today's Objectives</h2>
+        <ul class="list-disc text-left text-2xl space-y-6 text-gray-700 pl-12">
+            <li>Translate statements to and from symbolic form.</li>
+            <li>Understand and use the symbols for <span class="emphasis-highlight">NOT</span>, <span class="emphasis-highlight">AND</span>, and <span class="emphasis-highlight">OR</span>.</li>
+            <li>Determine the truth value of compound statements.</li>
+        </ul>
+    </div>
+
+    <!-- Slide 3: Warm-Up -->
+    <div class="printable-page">
+        <div class="page-header">Slide 3</div>
+        <h2 class="text-4xl font-bold text-gray-800 mb-8 text-center">Warm-Up: True or False?</h2>
+        <ol class="text-3xl space-y-6 list-decimal text-center">
+            <li>Roanoke is in Virginia.</li>
+            <li>A square has 5 sides.</li>
+            <li>2 + 3 = 5.</li>
+        </ol>
+    </div>
+
+    <!-- Slide 4: Compound Statements -->
+    <div class="printable-page">
+        <div class="page-header">Slide 4</div>
+        <h2 class="text-4xl font-bold text-gray-800 mb-8 text-center">Compound Statements</h2>
+        <p class="text-3xl text-gray-700 mb-6 text-center">A compound statement is formed by joining two or more statements with logical operators.</p>
+        <p class="text-3xl text-gray-700 text-center">Today's operators are:</p>
+        <div class="flex justify-center space-x-12 mt-8">
+            <div class="text-center">
+                <p class="symbol">~</p>
+                <p class="text-2xl font-semibold mt-2">NOT</p>
+            </div>
+            <div class="text-center">
+                <p class="symbol">∧</p>
+                <p class="text-2xl font-semibold mt-2">AND</p>
+            </div>
+            <div class="text-center">
+                <p class="symbol">∨</p>
+                <p class="text-2xl font-semibold mt-2">OR</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Negation -->
+    <div class="printable-page">
+        <div class="page-header">Slide 5</div>
+        <h2 class="text-4xl font-bold text-gray-800 mb-8 text-center">Negation (NOT)</h2>
+        <p class="text-3xl text-gray-700 text-center mb-6">The <span class="emphasis-highlight">negation</span> of a statement has the opposite truth value.</p>
+        <p class="symbol text-5xl text-center mb-8">~p</p>
+        <div class="text-2xl p-6 bg-gray-100 rounded-lg w-full">
+            <p>Let p: "The sky is blue." (<span class="truth-value-true">True</span>)</p>
+            <p class="mt-2">~p: "The sky is <span class="font-bold">not</span> blue." (<span class="truth-value-false">False</span>)</p>
+        </div>
+    </div>
+
+    <!-- Slide 6: Conjunction -->
+    <div class="printable-page">
+        <div class="page-header">Slide 6</div>
+        <h2 class="text-4xl font-bold text-gray-800 mb-8 text-center">Conjunction (AND)</h2>
+        <p class="text-3xl text-gray-700 text-center mb-6">A <span class="emphasis-highlight">conjunction</span> is only true when <span class="font-bold">BOTH</span> parts are true.</p>
+        <p class="symbol text-5xl text-center mb-8">p ∧ q</p>
+        <div class="text-2xl p-6 bg-blue-50 rounded-lg w-full">
+            <p>Let p: "A triangle has 3 sides." (<span class="truth-value-true">True</span>)</p>
+            <p>Let q: "A square has 5 sides." (<span class="truth-value-false">False</span>)</p>
+            <p class="mt-2">p ∧ q: "A triangle has 3 sides <span class="font-bold">and</span> a square has 5 sides." (<span class="truth-value-false">False</span>)</p>
+        </div>
+    </div>
+
+    <!-- Slide 7: Disjunction -->
+    <div class="printable-page">
+        <div class="page-header">Slide 7</div>
+        <h2 class="text-4xl font-bold text-gray-800 mb-8 text-center">Disjunction (OR)</h2>
+        <p class="text-3xl text-gray-700 text-center mb-6">A <span class="emphasis-highlight">disjunction</span> is true if <span class="font-bold">AT LEAST ONE</span> part is true.</p>
+        <p class="symbol text-5xl text-center mb-8">p ∨ q</p>
+        <div class="text-2xl p-6 bg-green-50 rounded-lg w-full">
+            <p>Let p: "A triangle has 3 sides." (<span class="truth-value-true">True</span>)</p>
+            <p>Let q: "A square has 5 sides." (<span class="truth-value-false">False</span>)</p>
+            <p class="mt-2">p ∨ q: "A triangle has 3 sides <span class="font-bold">or</span> a square has 5 sides." (<span class="truth-value-true">True</span>)</p>
+        </div>
+    </div>
+    
+    <!-- Slide 8: Guided Practice -->
+    <div class="printable-page">
+        <div class="page-header">Slide 8</div>
+        <h2 class="text-4xl font-bold text-gray-800 mb-8 text-center">Guided Practice</h2>
+        <div class="text-2xl p-6 bg-gray-100 rounded-lg w-full mb-6">
+            <p>Let p: "Rectangles have 4 right angles." (<span class="truth-value-true">True</span>)</p>
+            <p>Let q: "Triangles have 4 sides." (<span class="truth-value-false">False</span>)</p>
+        </div>
+        <ol class="list-decimal text-left text-3xl space-y-6 pl-8">
+            <li>What is the truth value of <span class="symbol text-2xl">p ∧ q</span>?</li>
+            <li>What is the truth value of <span class="symbol text-2xl">p ∨ q</span>?</li>
+            <li>What is the truth value of <span class="symbol text-2xl">~p ∨ q</span>?</li>
+        </ol>
+    </div>
+
+    <!-- Slide 9: Independent Practice -->
+    <div class="printable-page">
+        <div class="page-header">Slide 9</div>
+        <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Independent Practice</h2>
+        <p class="text-xl text-gray-700 mb-6 text-center">Choose your level and solve the problems.</p>
+        <div class="space-y-4 text-left">
+            <div class="p-4 border-2 border-red-400 rounded-lg bg-red-50">
+                <h3 class="text-2xl font-bold text-red-600">RED (Developing)</h3>
+                <p class="text-lg mt-2">Given p: "It is sunny" and q: "We go to the park."</p>
+                <ol class="list-decimal pl-6 text-lg mt-2 space-y-2">
+                    <li>Write the words for p ∧ q.</li>
+                    <li>Write the words for p ∨ ~q.</li>
+                </ol>
+            </div>
+            <div class="p-4 border-2 border-yellow-400 rounded-lg bg-yellow-50">
+                <h3 class="text-2xl font-bold text-yellow-600">YELLOW (Applying)</h3>
+                <p class="text-lg mt-2">Given p: "5 is an odd number" (True) and q: "4 is an odd number" (False).</p>
+                <ol class="list-decimal pl-6 text-lg mt-2 space-y-2">
+                    <li>What is the truth value of p ∧ q?</li>
+                    <li>What is the truth value of p ∨ q?</li>
+                    <li>What is the truth value of ~p ∨ q?</li>
+                </ol>
+            </div>
+            <div class="p-4 border-2 border-green-400 rounded-lg bg-green-50">
+                <h3 class="text-2xl font-bold text-green-600">GREEN (Securing)</h3>
+                <p class="text-lg mt-2">Let p represent "x > 10" and q represent "x is even."</p>
+                 <ol class="list-decimal pl-6 text-lg mt-2 space-y-2">
+                    <li>Translate "x > 10 and x is even" into symbols.</li>
+                    <li>If x = 12, what is the truth value of p ∧ q?</li>
+                    <li>If x = 7, what is the truth value of ~p ∨ q?</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 10: Exit Ticket -->
+    <div class="printable-page">
+        <div class="page-header">Slide 10</div>
+        <div class="text-center">
+            <h2 class="text-4xl font-bold text-gray-800 mb-8">Exit Ticket</h2>
+            <p class="text-3xl text-gray-700 mb-8">On your notecard:</p>
+            <div class="bg-gray-100 p-8 rounded-lg text-2xl">
+                <p>Let p: "A square is a rectangle." (<span class="truth-value-true">True</span>)</p>
+                <p>Let q: "A rectangle is a square." (<span class="truth-value-false">False</span>)</p>
+            </div>
+            <div class="text-left text-2xl mt-8 space-y-4 pl-4">
+                <p>1. Write the words for p ∧ q.</p>
+                <p>2. What is the truth value of p ∧ q?</p>
+                <p>3. What is the truth value of p ∨ q?</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
