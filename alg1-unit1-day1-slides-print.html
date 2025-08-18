@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Printable Slides: Translating Expressions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #e5e7eb; /* gray-200 */
+        }
+        .printable-page {
+            width: 100%;
+            max-width: 8.5in;
+            min-height: 11in;
+            margin: 2rem auto;
+            padding: 1in;
+            background-color: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .page-header {
+            text-align: right;
+            color: #6b7280;
+            font-size: 0.9rem;
+            border-bottom: 1px solid #d1d5db;
+            padding-bottom: 0.5rem;
+            margin-bottom: 2rem;
+        }
+        .title-slide-content {
+            text-align: center;
+            color: white;
+            background: linear-gradient(135deg, #0f766e, #5eead4);
+            padding: 4rem 2rem;
+            border-radius: 0.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .emphasis-highlight {
+            background-color: #fef9c3; /* yellow-100 */
+            padding: 0.1em 0.3em;
+            border-radius: 0.25em;
+            font-weight: 500;
+        }
+        .keyword {
+            color: #991b1b; /* red-800 */
+            font-style: italic;
+        }
+        .expression { 
+            font-family: monospace; 
+            font-size: 1.5rem; 
+            background-color: #e5e7eb; 
+            padding: 0.25rem 0.75rem; 
+            border-radius: 0.5rem; 
+        }
+        .variable-emphasis {
+            color: #0f766e; /* teal-700 */
+            font-weight: 600;
+        }
+
+        @media print {
+            body {
+                background-color: white;
+            }
+            .printable-page {
+                margin: 0;
+                box-shadow: none;
+                border: none;
+                page-break-after: always;
+                padding: 0.5in;
+            }
+            .no-print {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <div class="text-center mb-8 no-print">
+        <h1 class="text-3xl font-bold text-gray-800 mb-2">Printable Slides</h1>
+        <p class="text-gray-600">Each slide is formatted as a separate page below.</p>
+        <button onclick="window.print()" class="mt-4 bg-blue-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-blue-700 transition">
+            Print Slides
+        </button>
+    </div>
+
+    <!-- Slide 1: Title -->
+    <div class="printable-page">
+        <div class="title-slide-content">
+            <h1 class="text-6xl font-bold mb-4">Algebraic Expressions</h1>
+            <p class="text-3xl">Day 1: Translating Verbal to Algebraic</p>
+        </div>
+    </div>
+
+    <!-- Slide 2: Objectives -->
+    <div class="printable-page">
+        <div class="page-header">Slide 2</div>
+        <h2 class="text-4xl font-bold text-gray-800 mb-8 text-center">Today's Objectives</h2>
+        <ul class="list-disc text-left text-2xl space-y-6 text-gray-700 pl-12">
+            <li>Identify <span class="emphasis-highlight">keywords</span> for math operations.</li>
+            <li>Translate verbal phrases into <span class="emphasis-highlight">algebraic expressions</span>.</li>
+            <li>Use a <span class="emphasis-highlight">variable</span> to represent an unknown quantity.</li>
+        </ul>
+    </div>
+
+    <!-- Slide 3: Warm-Up -->
+    <div class="printable-page">
+        <div class="page-header">Slide 3</div>
+        <h2 class="text-4xl font-bold text-gray-800 mb-8 text-center">Warm-Up: Numerical Expressions</h2>
+        <p class="text-3xl text-gray-700 mb-6 text-center">Write a numerical expression for each phrase:</p>
+        <ol class="text-3xl space-y-4 list-decimal text-center">
+            <li>The <span class="keyword">sum</span> of 8 and 5.</li>
+            <li>The <span class="keyword">product</span> of 10 and 3.</li>
+            <li>12 <span class="keyword">less than</span> 20.</li>
+        </ol>
+    </div>
+
+    <!-- Slide 4: Keywords Chart -->
+    <div class="printable-page">
+        <div class="page-header">Slide 4</div>
+        <h2 class="text-4xl font-bold text-gray-800 mb-8 text-center">Keywords are Clues!</h2>
+        <div class="grid grid-cols-2 gap-6 w-full text-xl">
+            <div class="bg-blue-50 p-4 rounded-lg border-2 border-blue-200">
+                <h3 class="font-bold text-blue-800 text-2xl">ADDITION (+)</h3>
+                <p>sum, plus, more than, increased by</p>
+            </div>
+            <div class="bg-red-50 p-4 rounded-lg border-2 border-red-200">
+                <h3 class="font-bold text-red-800 text-2xl">SUBTRACTION (-)</h3>
+                <p>difference, minus, less than, decreased by</p>
+            </div>
+            <div class="bg-green-50 p-4 rounded-lg border-2 border-green-200">
+                <h3 class="font-bold text-green-800 text-2xl">MULTIPLICATION (×)</h3>
+                <p>product, times, of, twice</p>
+            </div>
+            <div class="bg-yellow-50 p-4 rounded-lg border-2 border-yellow-200">
+                <h3 class="font-bold text-yellow-800 text-2xl">DIVISION (÷)</h3>
+                <p>quotient, divided by, ratio of</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Turn-Around Words -->
+    <div class="printable-page">
+        <div class="page-header">Slide 5</div>
+        <h2 class="text-4xl font-bold text-gray-800 mb-8 text-center">Watch Out! Turn-Around Words</h2>
+        <p class="text-3xl text-gray-700 mb-6 text-center">Phrases with <span class="keyword">"than"</span> reverse the order.</p>
+        <div class="w-full space-y-6">
+            <div class="p-6 bg-gray-100 rounded-lg">
+                <p class="text-2xl">"10 <span class="keyword">less than</span> a number n"</p>
+                <p class="expression text-4xl mt-2">n - 10</p>
+            </div>
+            <div class="p-6 bg-gray-100 rounded-lg">
+                <p class="text-2xl">"8 <span class="keyword">more than</span> a number y"</p>
+                <p class="expression text-4xl mt-2">y + 8</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: Guided Practice -->
+    <div class="printable-page">
+        <div class="page-header">Slide 6</div>
+        <h2 class="text-4xl font-bold text-gray-800 mb-8 text-center">Let's Practice Together</h2>
+        <ol class="text-3xl space-y-6 list-decimal text-left pl-8">
+            <li>A number <span class="keyword">decreased by</span> 12</li>
+            <li>The <span class="keyword">sum</span> of <span class="keyword">twice</span> a number and 7</li>
+            <li>5 <span class="keyword">less than</span> the <span class="keyword">product</span> of 3 and a number</li>
+        </ol>
+    </div>
+    
+    <!-- Slide 7: Independent Practice -->
+    <div class="printable-page">
+        <div class="page-header">Slide 7</div>
+        <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Independent Practice</h2>
+        <p class="text-xl text-gray-700 mb-6 text-center">Choose your level and write the expression for each phrase.</p>
+        <div class="space-y-4 text-left">
+            <div class="p-4 border-2 border-red-400 rounded-lg bg-red-50">
+                <h3 class="text-2xl font-bold text-red-600">RED (Developing)</h3>
+                <ol class="list-decimal pl-6 text-lg mt-2 space-y-2">
+                    <li>The sum of a number and 9.</li>
+                    <li>The product of 6 and a number.</li>
+                    <li>A number minus 4.</li>
+                </ol>
+            </div>
+            <div class="p-4 border-2 border-yellow-400 rounded-lg bg-yellow-50">
+                <h3 class="text-2xl font-bold text-yellow-600">YELLOW (Applying)</h3>
+                <ol class="list-decimal pl-6 text-lg mt-2 space-y-2">
+                    <li>15 less than a number.</li>
+                    <li>Twice a number increased by 1.</li>
+                    <li>The quotient of a number and 8.</li>
+                </ol>
+            </div>
+            <div class="p-4 border-2 border-green-400 rounded-lg bg-green-50">
+                <h3 class="text-2xl font-bold text-green-600">GREEN (Securing)</h3>
+                 <ol class="list-decimal pl-6 text-lg mt-2 space-y-2">
+                    <li>You buy <span class="variable-emphasis">x</span> sodas for $2 each and a bag of chips for $4. Write an expression for the total cost.</li>
+                    <li>The product of 4 and the sum of a number and 6.</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 8: Exit Ticket -->
+    <div class="printable-page">
+        <div class="page-header">Slide 8</div>
+        <div class="text-center">
+            <h2 class="text-4xl font-bold text-gray-800 mb-8">Exit Ticket</h2>
+            <p class="text-3xl text-gray-700 mb-8">Write an algebraic expression for each phrase:</p>
+            <ol class="text-3xl space-y-4 list-decimal text-left pl-12">
+                <li>7 more than a number <span class="variable-emphasis">x</span>.</li>
+                <li>The product of 10 and a number <span class="variable-emphasis">y</span>.</li>
+                <li>2 less than twice a number <span class="variable-emphasis">k</span>.</li>
+            </ol>
+        </div>
+    </div>
+
+</body>
+</html>
