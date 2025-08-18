@@ -58,4 +58,148 @@
             }
             .card {
                 background: none !important;
-                border:
+                border: 1px solid #ccc !important;
+                box-shadow: none !important;
+                padding: 1.5rem;
+                page-break-inside: avoid;
+            }
+            .grid {
+                grid-template-columns: 1fr !important;
+            }
+            .quiz-option {
+                border: 1px solid #999;
+                padding: 0.75rem;
+            }
+            input[type="text"] {
+                border: none !important;
+                border-bottom: 1px solid #333 !important;
+                border-radius: 0 !important;
+                background: transparent !important;
+            }
+            .feedback {
+                display: none;
+            }
+            footer {
+                display: none;
+            }
+        }
+        /* --- PRINT STYLES END --- */
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Unit 1 Quiz</h1>
+    <p class="subtitle">Reasoning, Logic, and Venn Diagrams</p>
+
+    <section id="quiz">
+        <div class="flex flex-wrap justify-between items-center bg-gray-100 p-4 rounded-lg mb-8 no-print">
+            <div id="attempt-counter" class="text-lg font-bold px-4 py-2 bg-blue-200 text-blue-800 rounded-md">Attempt 1 of 3</div>
+            <button class="button bg-gray-600 hover:bg-gray-700" onclick="window.print()">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block mr-2" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M5 4v3H4a2 2 0 00-2 2v6a2 2 0 002 2h12a2 2 0 002-2V9a2 2 0 00-2-2h-1V4a2 2 0 00-2-2H7a2 2 0 00-2 2zm8 0H7v3h6V4zm0 8H7v4h6v-4z" clip-rule="evenodd" />
+                </svg>
+                Print Quiz
+            </button>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            
+            <div class="card quiz-question" data-correct-answer="False">
+                <p class="font-semibold mb-4">1. Let p: "Roanoke is in Virginia" (True) and q: "The Mill Mountain Star is blue" (False). What is the truth value of the conjunction $p \land q ? $</p>
+                <label class="quiz-option"><input type="radio" name="q1" value="True" class="hidden"> A. True</label>
+                <label class="quiz-option"><input type="radio" name="q1" value="False" class="hidden"> B. False</label>
+                <div class="feedback"></div>
+            </div>
+
+            <div class="card quiz-question" data-correct-answer="p → ~q">
+                <p class="font-semibold mb-4">2. Let p: "It is raining" and q: "I will take an umbrella." Which symbolic statement represents "If it is raining, then I will NOT take an umbrella"?</p>
+                <label class="quiz-option"><input type="radio" name="q2" value="~p → q" class="hidden"> A. $\sim p \rightarrow q$</label>
+                <label class="quiz-option"><input type="radio" name="q2" value="p → ~q" class="hidden"> B. $p \rightarrow \sim q$</label>
+                <label class="quiz-option"><input type="radio" name="q2" value="p ∧ ~q" class="hidden"> C. $p \land \sim q$</label>
+                <div class="feedback"></div>
+            </div>
+
+            <div class="card quiz-question" data-correct-answer="If it does not have four sides, then it is not a rectangle.">
+                <p class="font-semibold mb-4">3. What is the <b class="key-term">contrapositive</b> of the statement "If a shape is a rectangle, then it has four sides"?</p>
+                <label class="quiz-option"><input type="radio" name="q3" value="If it has four sides, then it is a rectangle." class="hidden"> A. If it has four sides, then it is a rectangle.</label>
+                <label class="quiz-option"><input type="radio" name="q3" value="If it is not a rectangle, then it does not have four sides." class="hidden"> B. If it is not a rectangle, then it does not have four sides.</label>
+                <label class="quiz-option"><input type="radio" name="q3" value="If it does not have four sides, then it is not a rectangle." class="hidden"> C. If it does not have four sides, then it is not a rectangle.</label>
+                <div class="feedback"></div>
+            </div>
+
+            <div class="card quiz-question" data-correct-answer="converse">
+                <p class="font-semibold mb-4">4. A statement can be written as a true biconditional if the original conditional is true and its ______ is also true.</p>
+                <input type="text" name="q4" placeholder="Enter the logical term..." class="w-full p-2 border rounded">
+                <div class="feedback"></div>
+            </div>
+
+            <div class="card quiz-question" data-correct-answer="Deductive">
+                <p class="font-semibold mb-4">5. Using definitions, postulates, and theorems to prove a conclusion is an example of what type of reasoning?</p>
+                <input type="text" name="q5" placeholder="Enter reasoning type..." class="w-full p-2 border rounded">
+                <div class="feedback"></div>
+            </div>
+
+            <div class="card quiz-question" data-correct-answer="∠A and ∠B are congruent.">
+                <p class="font-semibold mb-4">6. Given: "If two angles are vertical, then they are congruent." and "∠A and ∠B are vertical." What is the logical conclusion by the Law of Detachment?</p>
+                <label class="quiz-option"><input type="radio" name="q6" value="∠A and ∠B are congruent." class="hidden"> A. ∠A and ∠B are congruent.</label>
+                <label class="quiz-option"><input type="radio" name="q6" value="∠A and ∠B are supplementary." class="hidden"> B. ∠A and ∠B are supplementary.</label>
+                <label class="quiz-option"><input type="radio" name="q6" value="No conclusion is possible." class="hidden"> C. No conclusion is possible.</label>
+                <div class="feedback"></div>
+            </div>
+
+            <div class="card quiz-question" data-correct-answer="If I save money, I will drive to work.">
+                 <p class="font-semibold mb-4">7. Given: "If I save money, I can buy a car." and "If I buy a car, I will drive to work." What can you conclude by the Law of Syllogism?</p>
+                <label class="quiz-option"><input type="radio" name="q7" value="If I drive to work, I bought a car." class="hidden"> A. If I drive to work, I bought a car.</label>
+                <label class="quiz-option"><input type="radio" name="q7" value="If I save money, I will drive to work." class="hidden"> B. If I save money, I will drive to work.</label>
+                <label class="quiz-option"><input type="radio" name="q7" value="I will save money." class="hidden"> C. I will save money.</label>
+                <div class="feedback"></div>
+            </div>
+
+            <div class="card quiz-question" data-correct-answer="12">
+                <p class="font-semibold mb-4">8. A survey of 50 students found 20 play soccer and 28 play baseball. If 8 students play both sports, how many students play <b>only</b> soccer?</p>
+                <input type="text" name="q8" placeholder="Enter number..." class="w-full p-2 border rounded">
+                <div class="feedback"></div>
+            </div>
+
+            <div class="card quiz-question" data-correct-answer="Union">
+                <p class="font-semibold mb-4">9. The set of all elements that are in Set A OR Set B is called the...</p>
+                <label class="quiz-option"><input type="radio" name="q9" value="Intersection" class="hidden"> A. Intersection</label>
+                <label class="quiz-option"><input type="radio" name="q9" value="Union" class="hidden"> B. Union</label>
+                <label class="quiz-option"><input type="radio" name="q9" value="Complement" class="hidden"> C. Complement</label>
+                <div class="feedback"></div>
+            </div>
+
+            <div class="card quiz-question" data-correct-answer="If you do not live in the USA, then you do not live in Virginia.">
+                <p class="font-semibold mb-4">10. Which statement is logically equivalent to "If you live in Virginia, then you live in the USA"?</p>
+                <label class="quiz-option"><input type="radio" name="q10" value="If you live in the USA, then you live in Virginia." class="hidden"> A. If you live in the USA, then you live in Virginia.</label>
+                <label class="quiz-option"><input type="radio" name="q10" value="If you do not live in Virginia, then you do not live in the USA." class="hidden"> B. If you do not live in Virginia, then you do not live in the USA.</label>
+                <label class="quiz-option"><input type="radio" name="q10" value="If you do not live in the USA, then you do not live in Virginia." class="hidden"> C. If you do not live in the USA, then you do not live in Virginia.</label>
+                <div class="feedback"></div>
+            </div>
+        </div>
+        <div id="quiz-score-container" class="text-center mt-8 text-2xl font-bold hidden no-print"></div>
+        <div class="flex justify-center gap-6 mt-10 no-print">
+            <button id="check-answers-btn" class="button" onclick="checkQuizAnswers()">Check Answers</button>
+            <button id="retake-quiz-btn" class="button bg-gray-600 hover:bg-gray-800" onclick="resetQuiz()">Retake Quiz</button>
+        </div>
+    </section>
+</div>
+
+<footer class="bg-slate-100 text-slate-500 py-5 mt-16 border-t border-slate-200 no-print">
+    <div class="container mx-auto text-center">
+        <p class="text-sm">&nbsp;&bull;&nbsp; &copy; 2025 Aly Hatfield. All Rights Reserved. &nbsp;&bull;&nbsp;</p>
+    </div>
+</footer>
+
+<script>
+    // All of the JavaScript from the previous step remains the same.
+    let attemptCount = localStorage.getItem('geometryQuizAttempts') ? parseInt(localStorage.getItem('geometryQuizAttempts')) : 0;
+    const maxAttempts = 3;
+    document.addEventListener('DOMContentLoaded', () => { updateAttemptCounter(); if (attemptCount >= maxAttempts) disableQuiz(); });
+    function updateAttemptCounter() { const counter = document.getElementById('attempt-counter'); if (!counter) return; counter.textContent = `Attempt ${Math.min(attemptCount + 1, maxAttempts)} of ${maxAttempts}`; }
+    function disableQuiz() { document.getElementById('check-answers-btn').disabled = true; document.getElementById('retake-quiz-btn').disabled = true; document.getElementById('attempt-counter').textContent = 'All attempts used.'; document.querySelectorAll('#quiz input').forEach(input => input.disabled = true); }
+    function checkQuizAnswers() { if (attemptCount >= maxAttempts) return; attemptCount++; localStorage.setItem('geometryQuizAttempts', attemptCount); updateAttemptCounter(); let score = 0; const questions = document.querySelectorAll('.quiz-question'); const totalQuestions = questions.length; questions.forEach(q => { const correctAnswer = q.dataset.correctAnswer; const feedbackDiv = q.querySelector('.feedback'); feedbackDiv.innerHTML = '', feedbackDiv.className = 'feedback'; if (q.querySelector('input[type="radio"]')) { const selected = q.querySelector('input[type="radio"]:checked'); if (selected) { if (selected.value.toLowerCase() === correctAnswer.toLowerCase()) { feedbackDiv.innerHTML = 'Correct!'; feedbackDiv.classList.add('correct'); selected.closest('.quiz-option').classList.add('correct'); score++; } else { feedbackDiv.innerHTML = 'Incorrect. Review the notes to prepare for your retake.'; feedbackDiv.classList.add('incorrect'); selected.closest('.quiz-option').classList.add('incorrect'); } } else { feedbackDiv.innerHTML = 'Please select an answer.'; feedbackDiv.classList.add('incorrect'); } } else if (q.querySelector('input[type="text"]')) { const input = q.querySelector('input[type="text"]'); if (input.value.trim().toLowerCase() === correctAnswer.toLowerCase()) { feedbackDiv.innerHTML = 'Correct!'; feedbackDiv.classList.add('correct'); score++; } else { feedbackDiv.innerHTML = 'Incorrect. Review the notes to prepare for your retake.'; feedbackDiv.classList.add('incorrect'); } } }); const scoreContainer = document.getElementById('quiz-score-container'); scoreContainer.innerHTML = `Your Score: ${score} / ${totalQuestions}`; scoreContainer.classList.remove('hidden'); if ((score / totalQuestions) >= 0.8) { scoreContainer.className = 'text-center mt-8 text-2xl font-bold text-green-600 no-print'; } else if ((score / totalQuestions) >= 0.6) { scoreContainer.className = 'text-center mt-8 text-2xl font-bold text-yellow-600 no-print'; } else { scoreContainer.className = 'text-center mt-8 text-2xl font-bold text-red-600 no-print'; } if (attemptCount >= maxAttempts) disableQuiz(); }
+    function resetQuiz() { if (attemptCount >= maxAttempts) { alert("You cannot retake the quiz after using all attempts."); return; } document.querySelectorAll('.quiz-question').forEach(q => { q.querySelector('.feedback').innerHTML = ''; q.querySelectorAll('.quiz-option').forEach(opt => opt.className = 'quiz-option'); q.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false); q.querySelectorAll('input[type="text"]').forEach(i => i.value = ''); }); document.getElementById('quiz-score-container').classList.add('hidden'); alert('Quiz has been reset. Checking answers again will use another attempt.'); }
+    document.querySelectorAll('.quiz-option').forEach(option => { option.addEventListener('click', function() { if(this.querySelector('input').disabled) return; const name = this.querySelector('input').name; document.querySelectorAll(`input[name="${name}"]`).forEach(r => r.closest('.quiz-option').classList.remove('selected')); this.classList.add('selected'); this.querySelector('input').checked = true; }); });
+</script>
+</body>
+</html>
