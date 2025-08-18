@@ -659,8 +659,48 @@
         </p>
     </div>
 </footer>
-
+    
 <script>
+     // --- ACCORDION SCRIPT START ---
+    document.addEventListener('DOMContentLoaded', () => {
+        const accordionToggles = document.querySelectorAll('.accordion-toggle');
+
+        accordionToggles.forEach(button => {
+            button.addEventListener('click', () => {
+                const content = button.nextElementSibling;
+                const icon = button.querySelector('.accordion-icon');
+                const isOpen = content.style.maxHeight;
+
+                if (isOpen) {
+                    content.style.maxHeight = null;
+                    icon.textContent = '+';
+                    icon.style.transform = 'rotate(0deg)';
+                } else {
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                    icon.textContent = '-';
+                    icon.style.transform = 'rotate(45deg)';
+                }
+            });
+        });
+
+        const navLinks = document.querySelectorAll('.day-nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', (event) => {
+                const targetId = link.getAttribute('href').substring(1);
+                const targetAccordion = document.getElementById(targetId);
+                if (targetAccordion) {
+                    const toggleButton = targetAccordion.querySelector('.accordion-toggle');
+                    const content = toggleButton.nextElementSibling;
+                    // Open the accordion if it's not already open
+                    if (!content.style.maxHeight) {
+                        toggleButton.click();
+                    }
+                }
+            });
+        });
+    });
+    // --- ACCORDION SCRIPT END ---
+
     let attemptCount = localStorage.getItem('geometryQuizAttempts') ? parseInt(localStorage.getItem('geometryQuizAttempts')) : 0;
     const maxAttempts = 3;
     document.addEventListener('DOMContentLoaded', () => { updateAttemptCounter(); if (attemptCount >= maxAttempts) disableQuiz(); });
@@ -677,6 +717,7 @@
 </body>
 
 </html>
+
 
 
 
