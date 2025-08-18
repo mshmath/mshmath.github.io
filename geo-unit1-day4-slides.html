@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geometry: Venn Diagrams</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5;
+        }
+        .slide-container {
+            width: 100%;
+            max-width: 900px;
+            aspect-ratio: 16 / 9;
+            margin: 2rem auto;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        .slide {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 3rem;
+            text-align: center;
+            background-color: white;
+            height: 100%;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .slide.active {
+            display: flex;
+        }
+        .nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.3);
+            color: white;
+            border: none;
+            padding: 0.75rem;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .nav-button:hover {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        #prevBtn { left: 1rem; }
+        #nextBtn { right: 1rem; }
+        .slide-counter {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.875rem;
+            z-index: 10;
+        }
+        .title-slide {
+            background: linear-gradient(135deg, #db2777, #f9a8d4);
+            color: white;
+        }
+        .emphasis-highlight {
+            background-color: #fef9c3; /* yellow-100 */
+            padding: 0.1em 0.3em;
+            border-radius: 0.25em;
+            font-weight: 500;
+        }
+        .symbol { font-family: monospace; font-size: 1.5rem; background-color: #e5e7eb; padding: 0.25rem 0.75rem; border-radius: 0.5rem; }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen p-4">
+
+    <h1 class="text-3xl font-bold text-gray-800 mb-4">Geometry Presentation</h1>
+    <p class="text-gray-600 mb-4 text-center">Use the arrows to navigate through the slides.</p>
+
+    <div class="slide-container">
+        <!-- Slide 1: Title -->
+        <div class="slide active title-slide">
+            <h1 class="text-5xl font-bold mb-4">Reasoning and Logic</h1>
+            <p class="text-2xl">Day 4: Venn Diagrams & Applications</p>
+        </div>
+
+        <!-- Slide 2: Objectives -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Today's Objectives</h2>
+            <ul class="list-disc text-left text-xl space-y-4 text-gray-700">
+                <li>Define and identify parts of a Venn diagram.</li>
+                <li>Connect Venn diagrams to the logical operators <span class="emphasis-highlight">AND</span> & <span class="emphasis-highlight">OR</span>.</li>
+                <li>Represent and interpret data using Venn diagrams.</li>
+            </ul>
+        </div>
+
+        <!-- Slide 3: Warm-Up -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Warm-Up: Sorting Groups</h2>
+            <p class="text-2xl text-gray-700">Think about the students in this class.</p>
+            <ol class="text-xl space-y-2 list-decimal mt-4">
+                <li>List two groups you could sort students into.</li>
+                <li>Can a student be in BOTH groups?</li>
+                <li>Can a student be in NEITHER group?</li>
+            </ol>
+        </div>
+
+        <!-- Slide 4: What is a Venn Diagram? -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">What is a Venn Diagram?</h2>
+            <p class="text-2xl text-gray-700 mb-4">A diagram that uses circles to show relationships between sets of items.</p>
+            <svg width="350" height="200" viewBox="0 0 350 200" font-family="Inter, sans-serif">
+                <rect x="1" y="1" width="348" height="198" fill="#F9FAFB" stroke="#D1D5DB" stroke-width="2" rx="8"/>
+                <circle cx="130" cy="100" r="80" fill="rgba(59, 130, 246, 0.3)" stroke="#3B82F6" stroke-width="2"/>
+                <circle cx="220" cy="100" r="80" fill="rgba(239, 68, 68, 0.3)" stroke="#EF4444" stroke-width="2"/>
+                <text x="130" y="50" font-size="20" font-weight="bold" text-anchor="middle">Set A</text>
+                <text x="220" y="50" font-size="20" font-weight="bold" text-anchor="middle">Set B</text>
+                <text x="320" y="180" font-size="18" font-weight="bold">U</text>
+            </svg>
+        </div>
+
+        <!-- Slide 5: Key Vocabulary -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Key Vocabulary</h2>
+            <ul class="list-disc text-left text-xl space-y-3 text-gray-700">
+                <li><b class="text-pink-700">Universal Set (U):</b> The rectangle containing everything.</li>
+                <li><b class="text-pink-700">Intersection (A ∩ B):</b> The overlap. Items in A <span class="emphasis-highlight">AND</span> B.</li>
+                <li><b class="text-pink-700">Union (A ∪ B):</b> Everything in the circles. Items in A <span class="emphasis-highlight">OR</span> B.</li>
+                <li><b class="text-pink-700">Complement (A'):</b> Everything <span class="emphasis-highlight">NOT</span> in A.</li>
+            </ul>
+        </div>
+
+        <!-- Slide 6: I Do Example -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Example: How to Fill It In</h2>
+            <p class="text-lg text-gray-700 mb-4">25 students: 15 like Soccer (S), 12 like Basketball (B), 7 like both.</p>
+            <div class="flex items-center space-x-4">
+                <svg width="250" height="160" viewBox="0 0 250 160" font-family="Inter, sans-serif">
+                    <rect x="1" y="1" width="248" height="158" fill="#F9FAFB" stroke="#D1D5DB" stroke-width="2" rx="8"/>
+                    <circle cx="100" cy="80" r="65" fill="rgba(59, 130, 246, 0.3)" stroke="#3B82F6" stroke-width="2"/>
+                    <circle cx="150" cy="80" r="65" fill="rgba(239, 68, 68, 0.3)" stroke="#EF4444" stroke-width="2"/>
+                    <text x="65" y="85" font-size="24" font-weight="bold" text-anchor="middle">8</text>
+                    <text x="185" y="85" font-size="24" font-weight="bold" text-anchor="middle">5</text>
+                    <text x="125" y="85" font-size="24" font-weight="bold" text-anchor="middle">7</text>
+                    <text x="25" y="140" font-size="24" font-weight="bold">5</text>
+                    <text x="100" y="40" font-size="16" font-weight="bold" text-anchor="middle">Soccer</text>
+                    <text x="150" y="40" font-size="16" font-weight="bold" text-anchor="middle">Basketball</text>
+                </svg>
+                <ol class="list-decimal text-left text-lg space-y-1">
+                    <li>Start with BOTH (Intersection): <b>7</b></li>
+                    <li>Soccer ONLY: 15 - 7 = <b>8</b></li>
+                    <li>Basketball ONLY: 12 - 7 = <b>5</b></li>
+                    <li>NEITHER: 25 - (8+7+5) = <b>5</b></li>
+                </ol>
+            </div>
+        </div>
+        
+        <!-- Slide 7: Guided Practice -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Guided Practice</h2>
+            <p class="text-lg text-gray-700 mb-4">50 people: 30 own a dog (D), 22 own a cat (C), 10 own both.</p>
+            <ol class="list-decimal text-left text-2xl space-y-3">
+                <li>Where do we start?</li>
+                <li>How many own ONLY a dog?</li>
+                <li>How many own ONLY a cat?</li>
+                <li>How many own neither?</li>
+                <li>How many own a dog OR a cat?</li>
+            </ol>
+        </div>
+
+        <!-- Slide 8: Independent Practice -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Independent Practice</h2>
+            <p class="text-xl text-gray-700 mb-6">Choose your level and solve the problems.</p>
+            <div class="flex space-x-4 text-left">
+                <div class="flex-1 p-4 border-2 border-red-400 rounded-lg bg-red-50">
+                    <h3 class="text-xl font-bold text-red-600">RED</h3>
+                    <p class="text-sm">Use diagram: 10 in Band only, 5 in both, 12 in Chorus only.<br>1. How many in Band?<br>2. How many in Chorus?<br>3. How many in Band AND Chorus?</p>
+                </div>
+                <div class="flex-1 p-4 border-2 border-yellow-400 rounded-lg bg-yellow-50">
+                    <h3 class="text-xl font-bold text-yellow-600">YELLOW</h3>
+                    <p class="text-sm">30 students: 18 like vanilla, 14 like chocolate, 6 like both.<br>1. Draw the diagram.<br>2. How many like ONLY vanilla?<br>3. How many like neither?</p>
+                </div>
+                <div class="flex-1 p-4 border-2 border-green-400 rounded-lg bg-green-50">
+                    <h3 class="text-xl font-bold text-green-600">GREEN</h3>
+                    <p class="text-sm">Create a 3-circle diagram for a complex problem and find the number of people who do none of the activities.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Exit Ticket -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Exit Ticket</h2>
+            <p class="text-2xl text-gray-700 mb-6">On your notecard:</p>
+            <div class="bg-gray-100 p-6 rounded-lg text-xl w-full">
+                <p>20 customers were surveyed. 13 own a dog. 9 own a cat. 5 own both.</p>
+            </div>
+            <div class="text-left text-xl mt-6 space-y-2">
+                <p>1. Draw a Venn diagram to represent this.</p>
+                <p>2. How many customers own neither a dog nor a cat?</p>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <button id="prevBtn" class="nav-button">&lt;</button>
+        <button id="nextBtn" class="nav-button">&gt;</button>
+        <div id="slideCounter" class="slide-counter">1 / 9</div>
+    </div>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const slideCounter = document.getElementById('slideCounter');
+        let currentSlide = 0;
+
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[n].classList.add('active');
+            slideCounter.textContent = `${n + 1} / ${slides.length}`;
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        nextBtn.addEventListener('click', nextSlide);
+        prevBtn.addEventListener('click', prevSlide);
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                prevSlide();
+            }
+        });
+
+        showSlide(currentSlide);
+    </script>
+</body>
+</html>

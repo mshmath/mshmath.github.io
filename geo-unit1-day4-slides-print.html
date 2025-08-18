@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Printable Slides: Venn Diagrams</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #e5e7eb; /* gray-200 */
+        }
+        .printable-page {
+            width: 100%;
+            max-width: 8.5in;
+            min-height: 11in;
+            margin: 2rem auto;
+            padding: 1in;
+            background-color: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .page-header {
+            text-align: right;
+            color: #6b7280;
+            font-size: 0.9rem;
+            border-bottom: 1px solid #d1d5db;
+            padding-bottom: 0.5rem;
+            margin-bottom: 2rem;
+        }
+        .title-slide-content {
+            text-align: center;
+            color: white;
+            background: linear-gradient(135deg, #db2777, #f9a8d4);
+            padding: 4rem 2rem;
+            border-radius: 0.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .emphasis-highlight {
+            background-color: #fef9c3; /* yellow-100 */
+            padding: 0.1em 0.3em;
+            border-radius: 0.25em;
+            font-weight: 500;
+        }
+        .symbol { font-family: monospace; font-size: 1.5rem; background-color: #e5e7eb; padding: 0.25rem 0.75rem; border-radius: 0.5rem; }
+
+        @media print {
+            body {
+                background-color: white;
+            }
+            .printable-page {
+                margin: 0;
+                box-shadow: none;
+                border: none;
+                page-break-after: always;
+                padding: 0.5in;
+            }
+            .no-print {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <div class="text-center mb-8 no-print">
+        <h1 class="text-3xl font-bold text-gray-800 mb-2">Printable Slides</h1>
+        <p class="text-gray-600">Each slide is formatted as a separate page below.</p>
+        <button onclick="window.print()" class="mt-4 bg-blue-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-blue-700 transition">
+            Print Slides
+        </button>
+    </div>
+
+    <!-- Slide 1: Title -->
+    <div class="printable-page">
+        <div class="title-slide-content">
+            <h1 class="text-6xl font-bold mb-4">Reasoning and Logic</h1>
+            <p class="text-3xl">Day 4: Venn Diagrams & Applications</p>
+        </div>
+    </div>
+
+    <!-- Slide 2: Objectives -->
+    <div class="printable-page">
+        <div class="page-header">Slide 2</div>
+        <h2 class="text-4xl font-bold text-gray-800 mb-8 text-center">Today's Objectives</h2>
+        <ul class="list-disc text-left text-2xl space-y-6 text-gray-700 pl-12">
+            <li>Define and identify parts of a Venn diagram.</li>
+            <li>Connect Venn diagrams to the logical operators <span class="emphasis-highlight">AND</span> & <span class="emphasis-highlight">OR</span>.</li>
+            <li>Represent and interpret data using Venn diagrams.</li>
+        </ul>
+    </div>
+
+    <!-- Slide 3: Warm-Up -->
+    <div class="printable-page">
+        <div class="page-header">Slide 3</div>
+        <h2 class="text-4xl font-bold text-gray-800 mb-8 text-center">Warm-Up: Sorting Groups</h2>
+        <p class="text-3xl text-gray-700 text-center">Think about the students in this class.</p>
+        <ol class="text-2xl space-y-4 list-decimal mt-6 text-center">
+            <li>List two groups you could sort students into.</li>
+            <li>Can a student be in BOTH groups?</li>
+            <li>Can a student be in NEITHER group?</li>
+        </ol>
+    </div>
+
+    <!-- Slide 4: What is a Venn Diagram? -->
+    <div class="printable-page">
+        <div class="page-header">Slide 4</div>
+        <h2 class="text-4xl font-bold text-gray-800 mb-8 text-center">What is a Venn Diagram?</h2>
+        <p class="text-3xl text-gray-700 mb-6 text-center">A diagram that uses circles to show relationships between sets of items.</p>
+        <div class="flex justify-center">
+            <svg width="450" height="250" viewBox="0 0 350 200" font-family="Inter, sans-serif">
+                <rect x="1" y="1" width="348" height="198" fill="#F9FAFB" stroke="#D1D5DB" stroke-width="2" rx="8"/>
+                <circle cx="130" cy="100" r="80" fill="rgba(59, 130, 246, 0.3)" stroke="#3B82F6" stroke-width="2"/>
+                <circle cx="220" cy="100" r="80" fill="rgba(239, 68, 68, 0.3)" stroke="#EF4444" stroke-width="2"/>
+                <text x="130" y="50" font-size="20" font-weight="bold" text-anchor="middle">Set A</text>
+                <text x="220" y="50" font-size="20" font-weight="bold" text-anchor="middle">Set B</text>
+                <text x="320" y="180" font-size="18" font-weight="bold">U</text>
+            </svg>
+        </div>
+    </div>
+
+    <!-- Slide 5: Key Vocabulary -->
+    <div class="printable-page">
+        <div class="page-header">Slide 5</div>
+        <h2 class="text-4xl font-bold text-gray-800 mb-8 text-center">Key Vocabulary</h2>
+        <ul class="list-disc text-left text-2xl space-y-6 text-gray-700 pl-12">
+            <li><b class="text-pink-700">Universal Set (U):</b> The rectangle containing everything.</li>
+            <li><b class="text-pink-700">Intersection (A ∩ B):</b> The overlap. Items in A <span class="emphasis-highlight">AND</span> B.</li>
+            <li><b class="text-pink-700">Union (A ∪ B):</b> Everything in the circles. Items in A <span class="emphasis-highlight">OR</span> B.</li>
+            <li><b class="text-pink-700">Complement (A'):</b> Everything <span class="emphasis-highlight">NOT</span> in A.</li>
+        </ul>
+    </div>
+
+    <!-- Slide 6: I Do Example -->
+    <div class="printable-page">
+        <div class="page-header">Slide 6</div>
+        <h2 class="text-4xl font-bold text-gray-800 mb-6 text-center">Example: How to Fill It In</h2>
+        <p class="text-xl text-gray-700 mb-6 text-center">25 students: 15 like Soccer (S), 12 like Basketball (B), 7 like both.</p>
+        <div class="flex items-center justify-center space-x-8">
+            <svg width="300" height="200" viewBox="0 0 250 160" font-family="Inter, sans-serif">
+                <rect x="1" y="1" width="248" height="158" fill="#F9FAFB" stroke="#D1D5DB" stroke-width="2" rx="8"/>
+                <circle cx="100" cy="80" r="65" fill="rgba(59, 130, 246, 0.3)" stroke="#3B82F6" stroke-width="2"/>
+                <circle cx="150" cy="80" r="65" fill="rgba(239, 68, 68, 0.3)" stroke="#EF4444" stroke-width="2"/>
+                <text x="65" y="85" font-size="24" font-weight="bold" text-anchor="middle">8</text>
+                <text x="185" y="85" font-size="24" font-weight="bold" text-anchor="middle">5</text>
+                <text x="125" y="85" font-size="24" font-weight="bold" text-anchor="middle">7</text>
+                <text x="25" y="140" font-size="24" font-weight="bold">5</text>
+                <text x="100" y="40" font-size="16" font-weight="bold" text-anchor="middle">Soccer</text>
+                <text x="150" y="40" font-size="16" font-weight="bold" text-anchor="middle">Basketball</text>
+            </svg>
+            <ol class="list-decimal text-left text-2xl space-y-2">
+                <li>Start with BOTH (Intersection): <b>7</b></li>
+                <li>Soccer ONLY: 15 - 7 = <b>8</b></li>
+                <li>Basketball ONLY: 12 - 7 = <b>5</b></li>
+                <li>NEITHER: 25 - (8+7+5) = <b>5</b></li>
+            </ol>
+        </div>
+    </div>
+    
+    <!-- Slide 7: Guided Practice -->
+    <div class="printable-page">
+        <div class="page-header">Slide 7</div>
+        <h2 class="text-4xl font-bold text-gray-800 mb-6 text-center">Guided Practice</h2>
+        <p class="text-2xl text-gray-700 mb-6 text-center">50 people: 30 own a dog (D), 22 own a cat (C), 10 own both.</p>
+        <ol class="list-decimal text-left text-3xl space-y-6 pl-8">
+            <li>Where do we start?</li>
+            <li>How many own ONLY a dog?</li>
+            <li>How many own ONLY a cat?</li>
+            <li>How many own neither?</li>
+            <li>How many own a dog OR a cat?</li>
+        </ol>
+    </div>
+
+    <!-- Slide 8: Independent Practice -->
+    <div class="printable-page">
+        <div class="page-header">Slide 8</div>
+        <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Independent Practice</h2>
+        <p class="text-xl text-gray-700 mb-6 text-center">Choose your level and solve the problems.</p>
+        <div class="space-y-4 text-left">
+            <div class="p-4 border-2 border-red-400 rounded-lg bg-red-50">
+                <h3 class="text-2xl font-bold text-red-600">RED (Developing)</h3>
+                <p class="text-lg mt-2">Use a given Venn diagram showing 10 students in Band only, 5 in both Band and Chorus, and 12 in Chorus only.</p>
+                <ol class="list-decimal pl-6 text-lg mt-2 space-y-2">
+                    <li>How many students are in Band?</li>
+                    <li>How many students are in Chorus?</li>
+                    <li>How many students are in Band AND Chorus?</li>
+                </ol>
+            </div>
+            <div class="p-4 border-2 border-yellow-400 rounded-lg bg-yellow-50">
+                <h3 class="text-2xl font-bold text-yellow-600">YELLOW (Applying)</h3>
+                <p class="text-lg mt-2">In a class of 30, 18 students like vanilla ice cream, 14 like chocolate, and 6 like both.</p>
+                <ol class="list-decimal pl-6 text-lg mt-2 space-y-2">
+                    <li>Draw a Venn diagram to represent this data.</li>
+                    <li>How many students like ONLY vanilla?</li>
+                    <li>How many students like neither?</li>
+                </ol>
+            </div>
+            <div class="p-4 border-2 border-green-400 rounded-lg bg-green-50">
+                <h3 class="text-2xl font-bold text-green-600">GREEN (Securing)</h3>
+                 <p class="text-lg mt-2">Create a 3-circle diagram for a complex problem and find the number of people who do none of the activities.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 9: Exit Ticket -->
+    <div class="printable-page">
+        <div class="page-header">Slide 9</div>
+        <div class="text-center">
+            <h2 class="text-4xl font-bold text-gray-800 mb-8">Exit Ticket</h2>
+            <p class="text-3xl text-gray-700 mb-8">On your notecard:</p>
+            <div class="bg-gray-100 p-8 rounded-lg text-2xl">
+                <p>At a pet store, 20 customers were surveyed. 13 said they own a dog. 9 said they own a cat. 5 said they own both.</p>
+            </div>
+            <div class="text-left text-2xl mt-8 space-y-4 pl-4">
+                <p>1. Draw a Venn diagram to represent this.</p>
+                <p>2. How many customers own neither a dog nor a cat?</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
