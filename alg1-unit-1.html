@@ -194,10 +194,10 @@
                 <div class="example">
                     <p><b>Example (I Do):</b></p>
                     <ul class="list-disc ml-8">
-                        <li>"The sum of a number and 5" translates to <span class="symbol">n + 5</span>.</li>
-                        <li>"The product of 3 and a number" translates to <span class="symbol">3n</span>.</li>
-                        <li>"7 less than a number" translates to <span class="symbol">x - 7</span>. <span class="commentary">(The 'than' flips the order!)</span></li>
-                         <li>"The quotient of a number and 10" translates to <span class="symbol">n/10</span>.</li>
+                        <li>"The sum of a number and 5" translates to <span class="symbol">$n + 5.$</span></li>
+                        <li>"The product of 3 and a number" translates to <span class="symbol">$3n$</span></li>
+                        <li>"7 less than a number" translates to <span class="symbol">$x - 7.$</span><span class="commentary">(The 'than' flips the order!)</span></li>
+                         <li>"The quotient of a number and 10" translates to <span class="symbol">$\frac{n}{10}.$</span></li>
                     </ul>
                 </div>
                 <div class="example">
@@ -251,7 +251,7 @@
 
                 <h3 class="mt-8">Evaluating Expressions in Practice</h3>
                 <div class="example">
-                    <p><b>Example (I Do):</b> Evaluate $3x^2 - 5y$ when $x=2$ and $y=4$.</p>
+                    <p><b>Example (I Do):</b> Evaluate $3x^2 - 5y$ when $x=2$ and $y=4.$</p>
                     <ol class="list-decimal ml-8">
                         <li><b>Substitute:</b> $3(2)^2 - 5(4)$</li>
                         <li><b>Exponents:</b> $3(4) - 5(4)$</li>
@@ -260,17 +260,17 @@
                     </ol>
                 </div>
                 <div class="example">
-                    <p><b>Your Turn 1:</b> Evaluate $5a + |b - c|$ when $a=3$, $b=2$, and $c=10$.</p>
+                    <p><b>Your Turn 1:</b> Evaluate $5a + |b - c|$ when $a=3,$ $b=2,$ and $c=10.$</p>
                     <p class="commentary">Remember that absolute value bars act like grouping symbols (parentheses).</p>
                     <div class="interactive-line"><span>The value is</span><input type="text" data-answer="23" placeholder="Answer..." class="note-input w-24">.</div>
                 </div>
                 <div class="example">
-                    <p><b>Your Turn 2:</b> Evaluate $\sqrt{a^2 + b^2}$ when $a=3$ and $b=4$.</p>
+                    <p><b>Your Turn 2:</b> Evaluate $\sqrt{a^2 + b^2}$ when $a=3$ and $b=4.$</p>
                      <p class="commentary">The square root symbol also acts like a grouping symbol. Simplify everything inside it first.</p>
                     <div class="interactive-line"><span>The value is</span><input type="text" data-answer="5" placeholder="Answer..." class="note-input w-24">.</div>
                 </div>
 
-                <div class="cool-down"><h3 class="mt-0">Cool-Down</h3><p>The formula for the area of a trapezoid is $\frac{1}{2}h(b_1 + b_2)$. Find the area if the height $h$ is 6 cm, base $b_1$ is 10 cm, and base $b_2$ is 8 cm.</p><div class="interactive-line"><span>Area =</span><input type="text" data-answer="54" placeholder="Answer..." class="note-input w-24"><span>cm².</span></div></div>
+                <div class="cool-down"><h3 class="mt-0">Cool-Down</h3><p>The formula for the area of a trapezoid is $\frac{1}{2}h(b_1 + b_2).$ Find the area if the height $h$ is 6 cm, base $b_1$ is 10 cm, and base $b_2$ is 8 cm.</p><div class="interactive-line"><span>Area =</span><input type="text" data-answer="54" placeholder="Answer..." class="note-input w-24"><span>cm².</span></div></div>
                 <div class="text-center mt-8 no-print flex justify-center gap-4"><button class="button" onclick="checkAnswers('day2-card')">Check My Work</button><button class="button bg-gray-500 hover:bg-gray-700" onclick="resetAnswers('day2-card')">Try Again</button></div>
             </div>
             <div class="reflection-card no-print"><h3 class="mt-0">Day 2 Reflection</h3><p class="text-sm">What was the most important concept you learned today? What concept is still confusing, or what questions do you have?</p><textarea rows="2" class="w-full p-2 border rounded" placeholder="Type your reflection here..."></textarea></div>
@@ -288,33 +288,33 @@
         </button>
         <div class="accordion-content">
             <div class="card" id="day3-card">
-                 <div class="warm-up"><h3 class="mt-0">Warm-Up</h3><p>What is a shorter way to write $2 \times 2 \times 2 \times 2$?</p><div class="interactive-line"><input type="text" data-answer="2^4" placeholder="Expression..." class="note-input"></div></div>
+                 <div class="warm-up"><h3 class="mt-0">Warm-Up</h3><p>What is a shorter way to write $2 \times 2 \times 2 \times 2?$</p><div class="interactive-line"><input type="text" data-answer="2^4" placeholder="Expression..." class="note-input"></div></div>
                 
                 <h3>Key Vocabulary</h3>
                 <p>In the expression $x^a$, $x$ is the <b class="key-term">base</b> and $a$ is the <b class="key-term">exponent</b>.</p>
                 <div class="interactive-line"><span>The exponent tells you how many times to multiply the</span><input type="text" data-answer="base" placeholder="Enter term..." class="note-input"><span>by itself.</span></div>
 
                 <h3>Product of Powers Rule</h3>
-                <div class="interactive-line"><span>To multiply powers with the same base, you</span><input type="text" data-answer="add" placeholder="add/subtract/multiply..." class="note-input"><span>the exponents. <span class="symbol">x^a \cdot x^b = x^{a+b}</span></span></div>
+                <div class="interactive-line"><span>To multiply powers with the same base, you</span><input type="text" data-answer="add" placeholder="add/subtract/multiply..." class="note-input"><span>the exponents. <span class="symbol">$$x^a \cdot x^b = x^{a+b}$$</span></span></div>
                 <div class="example"><p><b>Example (I Do):</b> $y^5 \cdot y^3 = y^{5+3} = y^8$</p></div>
-                <div class="example"><p><b>Your Turn 1:</b> Simplify $a^7 \cdot a^2$</p><div class="interactive-line"><input type="text" data-answer="a^9" placeholder="Answer..." class="note-input"></div></div>
-                <div class="example"><p><b>Your Turn 2:</b> Simplify $2x^4 \cdot 5x^3$</p><div class="interactive-line"><input type="text" data-answer="10x^7" placeholder="Answer..." class="note-input"></div></div>
+                <div class="example"><p><b>Your Turn 1:</b> Simplify $a^{7} \cdot a^{2}$</p><div class="interactive-line"><input type="text" data-answer="a^9" placeholder="Answer..." class="note-input"></div></div>
+                <div class="example"><p><b>Your Turn 2:</b> Simplify $2x^{4} \cdot 5x^{3}$</p><div class="interactive-line"><input type="text" data-answer="10x^7" placeholder="Answer..." class="note-input"></div></div>
 
                 <h3>Quotient of Powers Rule</h3>
-                <div class="interactive-line"><span>To divide powers with the same base, you</span><input type="text" data-answer="subtract" placeholder="add/subtract/multiply..." class="note-input"><span>the exponents. <span class="symbol">\frac{x^a}{x^b} = x^{a-b}</span></span></div>
+                <div class="interactive-line"><span>To divide powers with the same base, you</span><input type="text" data-answer="subtract" placeholder="add/subtract/multiply..." class="note-input"><span>the exponents. <span class="symbol">$$\frac{x^a}{x^b} = x^{a-b}$$</span></span></div>
                 <div class="example"><p><b>Example (I Do):</b> $\frac{m^{10}}{m^2} = m^{10-2} = m^8$</p></div>
                 <div class="example"><p><b>Your Turn 1:</b> Simplify $\frac{z^{12}}{z^5}$</p><div class="interactive-line"><input type="text" data-answer="z^7" placeholder="Answer..." class="note-input"></div></div>
                 <div class="example"><p><b>Your Turn 2:</b> Simplify $\frac{12b^7}{4b^3}$</p><div class="interactive-line"><input type="text" data-answer="3b^4" placeholder="Answer..." class="note-input"></div></div>
 
                 <h3>Power of a Power Rule</h3>
-                <div class="interactive-line"><span>To raise a power to another power, you</span><input type="text" data-answer="multiply" placeholder="add/subtract/multiply..." class="note-input"><span>the exponents. <span class="symbol">(x^a)^b = x^{ab}</span></span></div>
+                <div class="interactive-line"><span>To raise a power to another power, you</span><input type="text" data-answer="multiply" placeholder="add/subtract/multiply..." class="note-input"><span>the exponents. <span class="symbol">$$(x^a)^b = x^{ab}$$</span></span></div>
                 <div class="example"><p><b>Example (I Do):</b> $(c^4)^5 = c^{4 \cdot 5} = c^{20}$</p></div>
                 <div class="example"><p><b>Your Turn 1:</b> Simplify $(b^6)^3$</p><div class="interactive-line"><input type="text" data-answer="b^18" placeholder="Answer..." class="note-input"></div></div>
                 <div class="example"><p><b>Your Turn 2:</b> Simplify $(2x^3)^4$ <span class="commentary">(Hint: Distribute the exponent to the coefficient too!)</span></p><div class="interactive-line"><input type="text" data-answer="16x^12" placeholder="Answer..." class="note-input"></div></div>
 
                 <h3>Zero and Negative Exponents</h3>
-                <div class="interactive-line"><span>Any non-zero number raised to the zero power is equal to</span><input type="text" data-answer="1" placeholder="Enter number..." class="note-input w-24">. <span class="symbol">x^0 = 1</span></div>
-                <div class="interactive-line"><span>A negative exponent means to take the</span><input type="text" data-answer="reciprocal" placeholder="Enter term..." class="note-input"><span>of the base. <span class="symbol">x^{-a} = \frac{1}{x^a}</span></span></div>
+                <div class="interactive-line"><span>Any non-zero number raised to the zero power is equal to</span><input type="text" data-answer="1" placeholder="Enter number..." class="note-input w-24">. <span class="symbol">$$x^{0} = 1$$</span></div>
+                <div class="interactive-line"><span>A negative exponent means to take the</span><input type="text" data-answer="reciprocal" placeholder="Enter term..." class="note-input"><span>of the base. <span class="symbol">$$x^{-a} = \frac{1}{x^a}$$</span></span></div>
                 <div class="example"><p><b>Example (I Do):</b> $5^0 = 1$ and $y^{-3} = \frac{1}{y^3}$</p></div>
                 <div class="example"><p><b>Your Turn 1:</b> Simplify $100^0$</p><div class="interactive-line"><input type="text" data-answer="1" placeholder="Answer..." class="note-input"></div></div>
                 <div class="example"><p><b>Your Turn 2:</b> Simplify $4^{-2}$</p><div class="interactive-line"><input type="text" data-answer="1/16" placeholder="Answer..." class="note-input"></div></div>
@@ -364,7 +364,7 @@
                 </div>
 
                 <h3>The Distributive Property</h3>
-                <div class="interactive-line"><span>The <b class="key-term">Distributive Property</b> allows you to <input type="text" data-answer="multiply" placeholder="Enter action..." class="note-input"> a term across parentheses. <span class="symbol">a(b+c) = ab + ac</span></span></div>
+                <div class="interactive-line"><span>The <b class="key-term">Distributive Property</b> allows you to <input type="text" data-answer="multiply" placeholder="Enter action..." class="note-input"> a term across parentheses. <span class="symbol">$$a(b+c) = a \cdot b + a \cdot c$$</span></span></div>
                 <div class="example">
                     <p><b>Example (I Do):</b> Simplify $5(2x + 3)$</p>
                     <p>$5 \cdot 2x + 5 \cdot 3 = 10x + 15$</p>
@@ -483,6 +483,7 @@
 </body>
 
 </html>
+
 
 
 
