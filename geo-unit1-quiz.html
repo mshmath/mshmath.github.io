@@ -88,21 +88,21 @@
 </head>
 <body>
 <div class="container">
+
+     <div class="no-print mb-8 flex justify-between items-center">
+        <a href="geo-unit-1.html" class="button bg-gray-600 hover:bg-gray-800">&larr; Back to Notes</a>
+        <button class="button" onclick="window.print()">Print Quiz</button>
+    </div>
+    
     <h1>Unit 1 Quiz</h1>
     <p class="subtitle">Reasoning, Logic, and Venn Diagrams</p>
 
     <section id="quiz">
-        <div class="flex flex-wrap justify-between items-center bg-gray-100 p-4 rounded-lg mb-8 no-print">
+        <div class="flex justify-between items-center bg-gray-100 p-4 rounded-lg mb-8 no-print">
+            <p class="text-lg font-semibold">Test your knowledge. You have 3 attempts.</p>
             <div id="attempt-counter" class="text-lg font-bold px-4 py-2 bg-blue-200 text-blue-800 rounded-md">Attempt 1 of 3</div>
-            <button class="button bg-gray-600 hover:bg-gray-700" onclick="window.print()">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block mr-2" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M5 4v3H4a2 2 0 00-2 2v6a2 2 0 002 2h12a2 2 0 002-2V9a2 2 0 00-2-2h-1V4a2 2 0 00-2-2H7a2 2 0 00-2 2zm8 0H7v3h6V4zm0 8H7v4h6v-4z" clip-rule="evenodd" />
-                </svg>
-                Print Quiz
-            </button>
-            <a href="geo-unit-1.html" class="button bg-gray-600 hover:bg-gray-800">&larr; Back to Notes</a>
-
         </div>
+        
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             
             <div class="card quiz-question" data-correct-answer="False">
@@ -205,4 +205,5 @@
 </script>
 </body>
 </html>
+
 
