@@ -9,17 +9,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        MathJax = { tex: { inlineMath: [['$', '$']] } };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
     <style>
         body {
             font-family: 'Inter', sans-serif;
-        }
-        .content-editable {
-            outline: 2px dashed transparent;
-            transition: all 0.2s ease-in-out;
-        }
-        .content-editable:focus {
-            outline-color: #4f46e5;
-            background-color: rgba(239, 246, 255, 0.7);
         }
         .subject-tab.active {
             border-color: #4f46e5;
@@ -36,10 +32,16 @@
             transition: max-height 0.4s ease-in-out;
         }
         .accordion-header.active + .accordion-panel {
-            max-height: 5000px; /* Adjust as needed */
+            max-height: 5000px; /* A large value to accommodate content */
         }
         .accordion-header.active .chevron-icon {
             transform: rotate(90deg);
+        }
+        .nested-accordion-header {
+            background-color: #f9fafb; /* gray-50 */
+        }
+        .nested-accordion-header:hover {
+            background-color: #f3f4f6; /* gray-100 */
         }
         /* Print Styles */
         @media print {
@@ -60,7 +62,7 @@
             <div class="flex justify-between items-center">
                 <div>
                     <h1 class="text-4xl font-bold text-gray-800">Master Answer Key</h1>
-                    <p contenteditable="true" class="content-editable text-lg text-gray-500 mt-1 px-2 rounded-md">All Subjects & Units</p>
+                    <p class="text-lg text-gray-500 mt-1">Algebra 1,Geometry, Algebra II </p>
                 </div>
                 <button onclick="window.print()" class="no-print flex items-center bg-indigo-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors shadow-sm">
                     <i data-lucide="printer" class="w-5 h-5 mr-2"></i>
@@ -80,11 +82,8 @@
         <div class="grid grid-cols-1 md:grid-cols-[240px_1fr] gap-8">
             <aside class="no-print">
                 <div class="bg-white rounded-xl shadow-md p-4 border border-gray-200 space-y-2">
-                    <a href="#" class="content-nav-link active flex items-center w-full text-left font-semibold p-3 rounded-lg hover:bg-gray-100" data-content="slides">
-                        <i data-lucide="layout-template" class="w-5 h-5 mr-3"></i>Slides
-                    </a>
-                    <a href="#" class="content-nav-link flex items-center w-full text-left font-semibold p-3 rounded-lg hover:bg-gray-100" data-content="notes">
-                        <i data-lucide="file-pen-line" class="w-5 h-5 mr-3"></i>Notes/Examples
+                    <a href="#" class="content-nav-link active flex items-center w-full text-left font-semibold p-3 rounded-lg hover:bg-gray-100" data-content="materials">
+                        <i data-lucide="folder-open" class="w-5 h-5 mr-3"></i>Unit 1 Materials
                     </a>
                     <a href="#" class="content-nav-link flex items-center w-full text-left font-semibold p-3 rounded-lg hover:bg-gray-100" data-content="tests">
                         <i data-lucide="file-check" class="w-5 h-5 mr-3"></i>Quizzes/Tests
@@ -94,69 +93,67 @@
 
             <main>
                 <div class="subject-content" id="algebra1">
-                    <div class="content-pane active" id="algebra1-slides">
-                        <div class="bg-white rounded-xl shadow-md p-6 border border-gray-200 printable-content">
-                             <h2 class="text-2xl font-bold text-indigo-700 mb-4">Algebra 1 - Slides Key</h2>
-                             <div class="space-y-2">
-                                <div class="accordion-item border rounded-lg">
-                                    <button class="accordion-header w-full flex justify-between items-center text-left p-4 font-semibold text-lg">
-                                        <span>Unit 1: Foundations of Algebra</span>
-                                        <i data-lucide="chevron-right" class="chevron-icon transition-transform duration-300"></i>
-                                    </button>
-                                    <div class="accordion-panel"><div class="p-4 border-t bg-gray-50/70"><div contenteditable="true" class="content-editable bg-white p-3 rounded-md min-h-[40px]">Add your slide answers for Unit 1 here...</div></div></div>
-                                </div>
-                                <div class="accordion-item border rounded-lg">
-                                    <button class="accordion-header w-full flex justify-between items-center text-left p-4 font-semibold text-lg">
-                                        <span>Unit 2: Linear Equations</span>
-                                        <i data-lucide="chevron-right" class="chevron-icon transition-transform duration-300"></i>
-                                    </button>
-                                    <div class="accordion-panel"><div class="p-4 border-t bg-gray-50/70"><div contenteditable="true" class="content-editable bg-white p-3 rounded-md min-h-[40px]">Add your slide answers for Unit 2 here...</div></div></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="content-pane hidden" id="algebra1-notes">
+                    <div class="content-pane active" id="algebra1-materials"></div>
+                    <div class="content-pane hidden" id="algebra1-tests"></div>
+                </div>
+
+                <div class="subject-content hidden" id="geometry">
+                    <div class="content-pane" id="geometry-materials">
                          <div class="bg-white rounded-xl shadow-md p-6 border border-gray-200 printable-content">
-                            <h2 class="text-2xl font-bold text-green-700 mb-4">Algebra 1 - Notes & Examples Key</h2>
+                            <h2 class="text-2xl font-bold text-indigo-700 mb-4">Geometry - Unit 1 Materials Key</h2>
                             <div class="space-y-2">
                                 <div class="accordion-item border rounded-lg">
                                     <button class="accordion-header w-full flex justify-between items-center text-left p-4 font-semibold text-lg">
-                                        <span>Unit 1, Day 1: Translating Algebraic Phrases</span>
+                                        <span>Unit 1 - All Notes, Examples & Slides</span>
                                         <i data-lucide="chevron-right" class="chevron-icon transition-transform duration-300"></i>
                                     </button>
                                     <div class="accordion-panel">
-                                        <div class="p-4 space-y-4 border-t bg-gray-50/70">
-                                            <div class="bg-white p-3 rounded-lg border">
-                                                <h4 class="font-semibold text-gray-700 mb-2">Warm-Up</h4>
-                                                <div class="grid grid-cols-[1fr_auto] items-center gap-x-4">
-                                                    <span class="text-gray-600">Total Cost = 12 ___</span>
-                                                    <div contenteditable="true" class="content-editable bg-indigo-50 border border-indigo-200 p-2 rounded-md font-mono text-center w-20">x</div>
-                                                </div>
+                                        <div class="p-4 border-t bg-gray-50/70 space-y-2">
+                                            <div class="accordion-item border rounded-lg bg-white">
+                                                <button class="accordion-header nested-accordion-header w-full flex justify-between items-center text-left p-3 font-semibold text-base"><span>Day 1: Conditional Statements</span><i data-lucide="chevron-right" class="chevron-icon transition-transform duration-300 w-5 h-5"></i></button>
+                                                <div class="accordion-panel"><div class="p-4 border-t prose max-w-none">
+                                                    <h4 class="font-semibold text-indigo-600 mb-2">Slides Key</h4>
+                                                    <h5 class="font-semibold mt-3 mb-1">Slide 10: Independent Practice</h5><div class="text-sm"><b>RED 1:</b> H: an angle measures 90°, C: it is a right angle.<br><b>RED 2:</b> H: $x = 5$, C: $2x = 10$.<br><b>YELLOW 1:</b> If a shape is a square, then it is a rectangle.<br><b>YELLOW 2:</b> False. Counterexample: A rhombus.<br><b>GREEN:</b> (Answers vary) Ex: If a figure is a triangle, it has 3 sides.</div>
+                                                    <h5 class="font-semibold mt-3 mb-1">Slide 11: Exit Ticket</h5><div class="text-sm">H: a student plays basketball, C: they are tall. False, a short person can play basketball (e.g., Muggsy Bogues).</div>
+                                                    <hr class="my-4">
+                                                    <h4 class="font-semibold text-green-600 mb-2">Notes/Examples Key</h4>
+                                                    <ul class="text-sm space-y-2 list-disc pl-5"><li><b>Warm-Up:</b> Clean my room.</li><li><b>Propositions:</b> <b>true</b> or <b>false</b>. Truth Value is <b>True (T)</b> or <b>False (F)</b>. YT1: No. YT2: True.</li><li><b>Negation:</b> <b>opposite</b> truth value. YT1: It is not raining. YT2: Not all angles are acute.</li><li><b>Compound Statements:</b> Conjunction ($p \land q$) is true if <b>both</b> true. Disjunction ($p \lor q$) is true if <b>at least one</b> is true. YT1: True. YT2: I will study or I will not fail.</li><li><b>Conditionals:</b> Hypothesis is <b>$p$</b>, Conclusion is <b>$q$</b>. YT1: If an animal is a <b>bird</b>, then it has <b>feathers</b>. YT2: H: you have a driver's license, C: you can drive in Virginia.</li><li><b>Truth Values of Conditionals:</b> False only when a <b>true</b> hypothesis leads to a <b>false</b> conclusion. YT1: False. YT2: True.</li><li><b>Cool-Down:</b> If it is not a weekday, then I do not go to school. ($\sim p \rightarrow \sim q$)</li></ul>
+                                                </div></div>
                                             </div>
-                                            <div class="bg-white p-3 rounded-lg border">
-                                                <h4 class="font-semibold text-gray-700 mb-2">Key Vocabulary</h4>
-                                                <div class="space-y-2">
-                                                    <div class="grid grid-cols-[1fr_auto] items-center gap-x-4"><span class="text-gray-600">1. represent an ___ number</span><div contenteditable="true" class="content-editable bg-indigo-50 border border-indigo-200 p-2 rounded-md w-full sm:w-48 text-center">unknown</div></div>
-                                                    <div class="grid grid-cols-[1fr_auto] items-center gap-x-4"><span class="text-gray-600">2. number ___ by a variable</span><div contenteditable="true" class="content-editable bg-indigo-50 border border-indigo-200 p-2 rounded-md w-full sm:w-48 text-center">multiplied</div></div>
-                                                    <div class="grid grid-cols-[1fr_auto] items-center gap-x-4"><span class="text-gray-600">3. ___ of a number and variable</span><div contenteditable="true" class="content-editable bg-indigo-50 border border-indigo-200 p-2 rounded-md w-full sm:w-48 text-center">product</div></div>
-                                                    <div class="grid grid-cols-[1fr_auto] items-center gap-x-4"><span class="text-gray-600">4. contains one or more ___</span><div contenteditable="true" class="content-editable bg-indigo-50 border border-indigo-200 p-2 rounded-md w-full sm:w-48 text-center">variables</div></div>
-                                                </div>
+                                            <div class="accordion-item border rounded-lg bg-white">
+                                                <button class="accordion-header nested-accordion-header w-full flex justify-between items-center text-left p-3 font-semibold text-base"><span>Day 2: Related & Biconditional Statements</span><i data-lucide="chevron-right" class="chevron-icon transition-transform duration-300 w-5 h-5"></i></button>
+                                                <div class="accordion-panel"><div class="p-4 border-t prose max-w-none">
+                                                    <h4 class="font-semibold text-indigo-600 mb-2">Slides Key</h4>
+                                                    <h5 class="font-semibold mt-3 mb-1">Slide 10: Independent Practice</h5><div class="text-sm"><b>RED:</b> Conv: If it is cold, then it is snowing. Inv: If it is not snowing, then it is not cold.<br><b>YELLOW:</b> Conv: If a number is divisible by 5, then it is divisible by 10. (False). Not a biconditional.<br><b>GREEN:</b> (Answers vary)</div>
+                                                    <h5 class="font-semibold mt-3 mb-1">Slide 11: Exit Ticket</h5><div class="text-sm"><b>Converse:</b> If two angles are congruent, then they are vertical angles.<br><b>Contrapositive:</b> If two angles are not congruent, then they are not vertical angles.</div>
+                                                    <hr class="my-4">
+                                                    <h4 class="font-semibold text-green-600 mb-2">Notes/Examples Key</h4>
+                                                    <ul class="text-sm space-y-2 list-disc pl-5"><li><b>Warm-Up:</b> No, a cat is a mammal but not a dog.</li><li><b>Related Conditionals:</b> Converse (<b>interchanging</b>), Inverse (<b>negating</b>), Contrapositive (interchanging and <b>negating</b>).</li><li><b>Logical Equivalence:</b> Conditional is equivalent to its <b>contrapositive</b>. Converse is equivalent to the <b>inverse</b>.</li><li><b>Biconditionals:</b> True when conditional and <b>converse</b> are true. YT1: Yes; they form congruent adjacent angles. YT2: Yes; No; No, because the converse is false.</li><li><b>Cool-Down:</b> Converse: If the sum of two angles is 90°, then they are complementary. Contrapositive: If the sum of two angles is not 90°, then they are not complementary.</li></ul>
+                                                </div></div>
                                             </div>
-                                            <div class="bg-white p-3 rounded-lg border">
-                                                <h4 class="font-semibold text-gray-700 mb-2">Translating Phrases</h4>
-                                                 <div class="space-y-2">
-                                                    <div class="grid grid-cols-[1fr_auto] items-center gap-x-4"><span class="text-gray-600">"12 decreased by a number x"</span><div contenteditable="true" class="content-editable bg-indigo-50 border border-indigo-200 p-2 rounded-md font-mono w-full sm:w-48 text-center">12 - x</div></div>
-                                                    <div class="grid grid-cols-[1fr_auto] items-center gap-x-4"><span class="text-gray-600">"the sum of 6 and the product of 2 and y"</span><div contenteditable="true" class="content-editable bg-indigo-50 border border-indigo-200 p-2 rounded-md font-mono w-full sm:w-48 text-center">6 + 2y</div></div>
-                                                    <div class="grid grid-cols-[1fr_auto] items-center gap-x-4"><span class="text-gray-600">"a number cubed"</span><div contenteditable="true" class="content-editable bg-indigo-50 border border-indigo-200 p-2 rounded-md font-mono w-full sm:w-48 text-center">n^3</div></div>
-                                                    <div class="grid grid-cols-[1fr_auto] items-center gap-x-4"><span class="text-gray-600">"9 less than the quotient of 6 and a number"</span><div contenteditable="true" class="content-editable bg-indigo-50 border border-indigo-200 p-2 rounded-md font-mono w-full sm:w-48 text-center">6/n - 9</div></div>
-                                                </div>
+                                            <div class="accordion-item border rounded-lg bg-white">
+                                                <button class="accordion-header nested-accordion-header w-full flex justify-between items-center text-left p-3 font-semibold text-base"><span>Day 3: Deductive Reasoning & Proof</span><i data-lucide="chevron-right" class="chevron-icon transition-transform duration-300 w-5 h-5"></i></button>
+                                                <div class="accordion-panel"><div class="p-4 border-t prose max-w-none">
+                                                    <h4 class="font-semibold text-indigo-600 mb-2">Slides Key</h4>
+                                                    <h5 class="font-semibold mt-3 mb-1">Slide 8: Guided Practice</h5><div class="text-sm">1. $p \land q$: False. 2. $p \lor q$: True. 3. $\sim p \lor q$: False.</div>
+                                                    <h5 class="font-semibold mt-3 mb-1">Slide 9: Independent Practice</h5><div class="text-sm"><b>RED:</b> 1. It is sunny and we go to the park. 2. It is sunny or we do not go to the park.<br><b>YELLOW:</b> 1. False. 2. True. 3. False.<br><b>GREEN:</b> 1. $p \land q$. 2. True. 3. True.</div>
+                                                    <h5 class="font-semibold mt-3 mb-1">Slide 10: Exit Ticket</h5><div class="text-sm">1. "A square is a rectangle and a rectangle is a square." 2. False. 3. True.</div>
+                                                    <hr class="my-4">
+                                                    <h4 class="font-semibold text-green-600 mb-2">Notes/Examples Key</h4>
+                                                    <ul class="text-sm space-y-2 list-disc pl-5"><li><b>Warm-Up:</b> Someone with muddy shoes came in from outside.</li><li><b>Truth vs Validity:</b> Valid if it follows <b>logically</b>. True if it is <b>factually correct</b>.</li><li><b>Reasoning Types:</b> Inductive (<b>examples</b>), Deductive (<b>logic</b>). YT1: Inductive. YT2: Deductive.</li><li><b>Law of Syllogism:</b> YT1: diagonals are perpendicular. YT2: I can get a job.</li><li><b>Law of Detachment:</b> YT1: has four right angles. YT2: live in Virginia.</li><li><b>Counterexamples:</b> Conclusion is <b>false</b>. YT1: rectangle. YT2: Richmond.</li><li><b>Cool-Down:</b> Maria will buy shoes.</li></ul>
+                                                </div></div>
                                             </div>
-                                             <div class="bg-white p-3 rounded-lg border">
-                                                <h4 class="font-semibold text-gray-700 mb-2">Cool-Down</h4>
-                                                <div class="grid grid-cols-[1fr_auto] items-center gap-x-4">
-                                                    <span class="text-gray-600">Total cans collected:</span>
-                                                    <div contenteditable="true" class="content-editable bg-indigo-50 border border-indigo-200 p-2 rounded-md font-mono w-full sm:w-48 text-center">s + (s + 50)</div>
-                                                </div>
+                                            <div class="accordion-item border rounded-lg bg-white">
+                                                <button class="accordion-header nested-accordion-header w-full flex justify-between items-center text-left p-3 font-semibold text-base"><span>Day 4: Venn Diagrams & Applications</span><i data-lucide="chevron-right" class="chevron-icon transition-transform duration-300 w-5 h-5"></i></button>
+                                                <div class="accordion-panel"><div class="p-4 border-t prose max-w-none">
+                                                    <h4 class="font-semibold text-indigo-600 mb-2">Slides Key</h4>
+                                                    <h5 class="font-semibold mt-3 mb-1">Slide 7: Guided Practice</h5><div class="text-sm">1. Start with Both (10). 2. Only Dog: $30-10=20$. 3. Only Cat: $22-10=12$. 4. Neither: $50-(20+10+12)=8$. 5. Dog or Cat (Union): $20+10+12=42$.</div>
+                                                    <h5 class="font-semibold mt-3 mb-1">Slide 8: Independent Practice</h5><div class="text-sm"><b>RED:</b> 1. In Band: $10+5=15$. 2. In Chorus: $12+5=17$. 3. In Band AND Chorus: 5.<br><b>YELLOW:</b> 2. Only Vanilla: $18-6=12$. 3. Neither: $30-(12+6+8)=4$.<br><b>GREEN:</b> (Answers vary)</div>
+                                                    <h5 class="font-semibold mt-3 mb-1">Slide 9: Exit Ticket</h5><div class="text-sm">Only Dog: $13-5=8$. Only Cat: $9-5=4$. Neither: $20-(8+5+4)=3$. Answer: 3.</div>
+                                                    <hr class="my-4">
+                                                    <h4 class="font-semibold text-green-600 mb-2">Notes/Examples Key</h4>
+                                                    <ul class="text-sm space-y-2 list-disc pl-5"><li><b>Warm-Up:</b> Two overlapping circles.</li><li><b>Vocabulary:</b> Universal Set (all <b>elements</b>), Subset (within <b>another set</b>), Complement (<b>not</b> in Set A).</li><li><b>Your Turn 1:</b> Only Art: <b>11</b>. Neither: <b>4</b>.</li><li><b>Your Turn 2:</b> Only Summer: <b>18</b>. At least one: <b>43</b>. Neither: <b>7</b>.</li><li><b>Cool-Down:</b> <b>15</b> students do neither.</li></ul>
+                                                </div></div>
                                             </div>
                                         </div>
                                     </div>
@@ -164,60 +161,40 @@
                             </div>
                         </div>
                     </div>
-                    <div class="content-pane hidden" id="algebra1-tests">
+                    <div class="content-pane hidden" id="geometry-tests">
                         <div class="bg-white rounded-xl shadow-md p-6 border border-gray-200 printable-content">
-                            <h2 class="text-2xl font-bold text-red-700 mb-4">Algebra 1 - Quizzes & Tests Key</h2>
+                             <h2 class="text-2xl font-bold text-red-700 mb-4">Geometry - Quizzes & Tests Key</h2>
                              <div class="space-y-2">
-                                <div class="accordion-item border rounded-lg">
-                                    <button class="accordion-header w-full flex justify-between items-center text-left p-4 font-semibold text-lg">
-                                        <span>Unit 1 Test</span>
-                                        <i data-lucide="chevron-right" class="chevron-icon transition-transform duration-300"></i>
-                                    </button>
-                                    <div class="accordion-panel"><div class="p-4 border-t bg-gray-50/70"><div contenteditable="true" class="content-editable bg-white p-3 rounded-md min-h-[40px]">Add your test answers for Unit 1 here...</div></div></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="subject-content hidden" id="geometry">
-                     <div class="content-pane active" id="geometry-slides">
-                        <div class="bg-white rounded-xl shadow-md p-6 border border-gray-200 printable-content">
-                            <h2 class="text-2xl font-bold text-indigo-700 mb-4">Geometry - Slides Key</h2>
-                            <div class="p-4 border rounded-lg bg-gray-50/70"><div contenteditable="true" class="content-editable bg-white p-3 rounded-md">Geometry slide content will go here, organized by unit in accordions.</div></div>
-                        </div>
-                    </div>
-                     <div class="content-pane hidden" id="geometry-notes">
-                        <div class="bg-white rounded-xl shadow-md p-6 border border-gray-200 printable-content">
-                            <h2 class="text-2xl font-bold text-green-700 mb-4">Geometry - Notes & Examples Key</h2>
-                            <div class="p-4 border rounded-lg bg-gray-50/70"><div contenteditable="true" class="content-editable bg-white p-3 rounded-md">Geometry notes content will go here, organized by unit in accordions.</div></div>
-                        </div>
-                    </div>
-                     <div class="content-pane hidden" id="geometry-tests">
-                        <div class="bg-white rounded-xl shadow-md p-6 border border-gray-200 printable-content">
-                            <h2 class="text-2xl font-bold text-red-700 mb-4">Geometry - Quizzes & Tests Key</h2>
-                            <div class="p-4 border rounded-lg bg-gray-50/70"><div contenteditable="true" class="content-editable bg-white p-3 rounded-md">Geometry test content will go here, organized by unit in accordions.</div></div>
+                                 <div class="accordion-item border rounded-lg">
+                                     <button class="accordion-header w-full flex justify-between items-center text-left p-4 font-semibold text-lg">
+                                         <span>Unit 1 Quiz</span>
+                                         <i data-lucide="chevron-right" class="chevron-icon transition-transform duration-300"></i>
+                                     </button>
+                                     <div class="accordion-panel">
+                                        <div class="p-4 border-t bg-gray-50/70"><div class="prose"><ol class="list-decimal list-inside space-y-4">
+                                            <li><b>Truth value of $p \land q$:</b> B. False</li>
+                                            <li><b>Symbolic for "If it is raining, then I will NOT take an umbrella":</b> B. $p \rightarrow \sim q$</li>
+                                            <li><b>Contrapositive of "If a shape is a rectangle, then it has four sides":</b> C. If it does not have four sides, then it is not a rectangle.</li>
+                                            <li><b>A biconditional is true if the conditional and its ______ are true:</b> converse</li>
+                                            <li><b>Using definitions, postulates, etc. is what type of reasoning?</b> Deductive</li>
+                                            <li><b>Conclusion by Law of Detachment:</b> A. $\angle A$ and $\angle B$ are congruent.</li>
+                                            <li><b>Conclusion by Law of Syllogism:</b> B. If I save money, I will drive to work.</li>
+                                            <li><b>How many students play only soccer?</b> 12</li>
+                                            <li><b>Set A OR Set B is called the...</b> B. Union</li>
+                                            <li><b>Logically equivalent to "If you live in Virginia, then you live in the USA":</b> C. If you do not live in the USA, then you do not live in Virginia.</li>
+                                        </ol></div></div>
+                                     </div>
+                                 </div>
+                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="subject-content hidden" id="algebra2">
-                     <div class="content-pane active" id="algebra2-slides">
-                        <div class="bg-white rounded-xl shadow-md p-6 border border-gray-200 printable-content">
-                            <h2 class="text-2xl font-bold text-indigo-700 mb-4">Algebra 2 - Slides Key</h2>
-                             <div class="p-4 border rounded-lg bg-gray-50/70"><div contenteditable="true" class="content-editable bg-white p-3 rounded-md">Algebra 2 slide content will go here, organized by unit in accordions.</div></div>
-                        </div>
-                    </div>
-                     <div class="content-pane hidden" id="algebra2-notes">
-                        <div class="bg-white rounded-xl shadow-md p-6 border border-gray-200 printable-content">
-                            <h2 class="text-2xl font-bold text-green-700 mb-4">Algebra 2 - Notes & Examples Key</h2>
-                            <div class="p-4 border rounded-lg bg-gray-50/70"><div contenteditable="true" class="content-editable bg-white p-3 rounded-md">Algebra 2 notes content will go here, organized by unit in accordions.</div></div>
-                        </div>
-                    </div>
-                     <div class="content-pane hidden" id="algebra2-tests">
-                        <div class="bg-white rounded-xl shadow-md p-6 border border-gray-200 printable-content">
-                            <h2 class="text-2xl font-bold text-red-700 mb-4">Algebra 2 - Quizzes & Tests Key</h2>
-                            <div class="p-4 border rounded-lg bg-gray-50/70"><div contenteditable="true" class="content-editable bg-white p-3 rounded-md">Algebra 2 test content will go here, organized by unit in accordions.</div></div>
+                     <div class="bg-white rounded-xl shadow-md p-6 border border-gray-200 h-full flex items-center justify-center">
+                        <div class="text-center">
+                            <h2 class="text-4xl font-bold text-indigo-400">Coming Soon!</h2>
+                            <p class="text-lg text-indigo-500 mt-2">Algebra 2 content will be available next semester.</p>
                         </div>
                     </div>
                 </div>
@@ -227,33 +204,17 @@
 
     <script>
         lucide.createIcons();
-
         const subjectTabs = document.querySelectorAll('.subject-tab');
         const contentNavLinks = document.querySelectorAll('.content-nav-link');
         const subjectContents = document.querySelectorAll('.subject-content');
         const accordionHeaders = document.querySelectorAll('.accordion-header');
-
         let activeSubject = 'algebra1';
-        let activeContent = 'slides';
+        let activeContent = 'materials';
 
         function updateView() {
-            // Update Subject view
-            subjectContents.forEach(content => {
-                content.classList.add('hidden');
-                if (content.id === activeSubject) {
-                    content.classList.remove('hidden');
-                }
-            });
-
-            // Update Content view within the active subject
+            subjectContents.forEach(content => content.classList.toggle('hidden', content.id !== activeSubject));
             const contentPanes = document.querySelectorAll(`#${activeSubject} .content-pane`);
-            contentPanes.forEach(pane => {
-                pane.classList.add('hidden');
-                const paneId = `${activeSubject}-${activeContent}`;
-                if (pane.id === paneId) {
-                    pane.classList.remove('hidden');
-                }
-            });
+            contentPanes.forEach(pane => pane.classList.toggle('hidden', pane.id !== `${activeSubject}-${activeContent}`));
         }
 
         subjectTabs.forEach(tab => {
@@ -261,14 +222,10 @@
                 subjectTabs.forEach(t => t.classList.remove('active'));
                 tab.classList.add('active');
                 activeSubject = tab.dataset.subject;
-                // Reset to the first content type when switching subjects for predictable behavior
                 contentNavLinks.forEach((link, index) => {
-                    if (index === 0) {
-                        link.classList.add('active');
-                        activeContent = link.dataset.content;
-                    } else {
-                        link.classList.remove('active');
-                    }
+                    const isActive = index === 0;
+                    link.classList.toggle('active', isActive);
+                    if (isActive) activeContent = link.dataset.content;
                 });
                 updateView();
             });
@@ -290,7 +247,7 @@
             });
         });
 
-        // Set initial state
+        // Initialize view
         updateView();
     </script>
 </body>
