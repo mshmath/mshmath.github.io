@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Answer Key Template</title>
+    <title>Comprehensive Answer Key</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,142 +18,280 @@
             transition: all 0.2s ease-in-out;
         }
         .content-editable:focus {
-            outline-color: #4f46e5; /* Indigo */
-            background-color: rgba(239, 246, 255, 0.7); /* Blue-50/70 */
+            outline-color: #4f46e5;
+            background-color: rgba(239, 246, 255, 0.7);
         }
-        .tab-button.active {
+        .subject-tab.active {
+            border-color: #4f46e5;
+            color: #4f46e5;
+            background-color: #eef2ff;
+        }
+        .content-nav-link.active {
             background-color: #4f46e5;
             color: white;
         }
+        .accordion-panel {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-in-out;
+        }
+        .accordion-header.active + .accordion-panel {
+            max-height: 5000px; /* Adjust as needed */
+        }
+        .accordion-header.active .chevron-icon {
+            transform: rotate(90deg);
+        }
         /* Print Styles */
         @media print {
-            body {
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
-            }
-            .no-print {
-                display: none;
-            }
-            .printable-content {
-                display: block !important;
-                box-shadow: none;
-                border: 1px solid #e5e7eb;
-            }
-            .main-container {
-                 padding: 0 !important;
-            }
+            body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .no-print { display: none; }
+            .printable-content { box-shadow: none; border: none; padding: 0; }
+            .main-container { padding: 0 !important; }
+            .accordion-panel { max-height: none !important; overflow: visible !important; }
+            aside { display: none; }
+            main { grid-column: span 2 / span 2; }
         }
     </style>
 </head>
 <body class="bg-gray-100">
 
     <div class="main-container container mx-auto p-4 sm:p-8">
-        <!-- Header Section -->
         <header class="bg-white rounded-xl shadow-md p-6 mb-8 border border-gray-200">
             <div class="flex justify-between items-center">
                 <div>
-                    <h1 class="text-4xl font-bold text-gray-800">Answer Key</h1>
-                    <p contenteditable="true" class="content-editable text-lg text-gray-500 mt-1 px-2 rounded-md">Algebra 1 - Unit 2: Linear Equations</p>
+                    <h1 class="text-4xl font-bold text-gray-800">Master Answer Key</h1>
+                    <p contenteditable="true" class="content-editable text-lg text-gray-500 mt-1 px-2 rounded-md">All Subjects & Units</p>
                 </div>
                 <button onclick="window.print()" class="no-print flex items-center bg-indigo-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors shadow-sm">
                     <i data-lucide="printer" class="w-5 h-5 mr-2"></i>
-                    Print
+                    Print Current View
                 </button>
             </div>
         </header>
 
-        <!-- Tabs Navigation -->
-        <nav class="no-print mb-6">
-            <div class="flex space-x-2 border-b-2 border-gray-200">
-                <button class="tab-button active py-3 px-6 font-semibold text-gray-600 hover:bg-gray-200 rounded-t-lg" onclick="showTab('slides')">Slides</button>
-                <button class="tab-button py-3 px-6 font-semibold text-gray-600 hover:bg-gray-200 rounded-t-lg" onclick="showTab('notes')">Interactive Notes</button>
-                <button class="tab-button py-3 px-6 font-semibold text-gray-600 hover:bg-gray-200 rounded-t-lg" onclick="showTab('quiz')">Quiz</button>
+        <nav class="no-print bg-white rounded-xl shadow-md p-2 mb-8 border border-gray-200">
+            <div class="flex space-x-2">
+                <button class="subject-tab active flex-1 text-center font-semibold p-3 rounded-lg border-b-4 border-transparent" data-subject="algebra1">Algebra 1</button>
+                <button class="subject-tab flex-1 text-center font-semibold p-3 rounded-lg border-b-4 border-transparent" data-subject="geometry">Geometry</button>
+                <button class="subject-tab flex-1 text-center font-semibold p-3 rounded-lg border-b-4 border-transparent" data-subject="algebra2">Algebra 2</button>
             </div>
         </nav>
 
-        <!-- Main Content -->
-        <main>
-            <!-- Slides Content -->
-            <div id="slides" class="printable-content space-y-6">
-                <div class="bg-white rounded-xl shadow-md p-6 border border-gray-200">
-                    <h2 class="text-2xl font-bold text-indigo-700 mb-4">Slides Key</h2>
-                    <!-- Example Answer Item -->
-                    <div class="grid grid-cols-[auto_1fr] items-start gap-4 mb-4">
-                        <span class="font-bold text-gray-700 text-lg">Slide 3:</span>
-                        <div contenteditable="true" class="content-editable bg-gray-50 p-3 rounded-md min-h-[40px]">The slope represents the rate of change.</div>
-                    </div>
-                    <div class="grid grid-cols-[auto_1fr] items-start gap-4 mb-4">
-                        <span class="font-bold text-gray-700 text-lg">Slide 5:</span>
-                        <div contenteditable="true" class="content-editable bg-gray-50 p-3 rounded-md min-h-[40px]">The y-intercept is the starting value, where x=0.</div>
-                    </div>
-                     <div class="grid grid-cols-[auto_1fr] items-start gap-4">
-                        <span class="font-bold text-gray-700 text-lg">Slide 8:</span>
-                        <div contenteditable="true" class="content-editable bg-gray-50 p-3 rounded-md min-h-[40px]">Final Answer: y = 2x + 5</div>
-                    </div>
+        <div class="grid grid-cols-1 md:grid-cols-[240px_1fr] gap-8">
+            <aside class="no-print">
+                <div class="bg-white rounded-xl shadow-md p-4 border border-gray-200 space-y-2">
+                    <a href="#" class="content-nav-link active flex items-center w-full text-left font-semibold p-3 rounded-lg hover:bg-gray-100" data-content="slides">
+                        <i data-lucide="layout-template" class="w-5 h-5 mr-3"></i>Slides
+                    </a>
+                    <a href="#" class="content-nav-link flex items-center w-full text-left font-semibold p-3 rounded-lg hover:bg-gray-100" data-content="notes">
+                        <i data-lucide="file-pen-line" class="w-5 h-5 mr-3"></i>Notes/Examples
+                    </a>
+                    <a href="#" class="content-nav-link flex items-center w-full text-left font-semibold p-3 rounded-lg hover:bg-gray-100" data-content="tests">
+                        <i data-lucide="file-check" class="w-5 h-5 mr-3"></i>Quizzes/Tests
+                    </a>
                 </div>
-            </div>
+            </aside>
 
-            <!-- Interactive Notes Content -->
-            <div id="notes" class="printable-content hidden space-y-6">
-                 <div class="bg-white rounded-xl shadow-md p-6 border border-gray-200">
-                    <h2 class="text-2xl font-bold text-green-700 mb-4">Interactive Notes Key</h2>
-                    <div class="grid grid-cols-[auto_1fr] items-start gap-4 mb-4">
-                        <span class="font-bold text-gray-700 text-lg">Page 1:</span>
-                        <div contenteditable="true" class="content-editable bg-gray-50 p-3 rounded-md min-h-[40px]">Example 1 Answer: x = 7</div>
+            <main>
+                <div class="subject-content" id="algebra1">
+                    <div class="content-pane active" id="algebra1-slides">
+                        <div class="bg-white rounded-xl shadow-md p-6 border border-gray-200 printable-content">
+                             <h2 class="text-2xl font-bold text-indigo-700 mb-4">Algebra 1 - Slides Key</h2>
+                             <div class="space-y-2">
+                                <div class="accordion-item border rounded-lg">
+                                    <button class="accordion-header w-full flex justify-between items-center text-left p-4 font-semibold text-lg">
+                                        <span>Unit 1: Foundations of Algebra</span>
+                                        <i data-lucide="chevron-right" class="chevron-icon transition-transform duration-300"></i>
+                                    </button>
+                                    <div class="accordion-panel"><div class="p-4 border-t bg-gray-50/70"><div contenteditable="true" class="content-editable bg-white p-3 rounded-md min-h-[40px]">Add your slide answers for Unit 1 here...</div></div></div>
+                                </div>
+                                <div class="accordion-item border rounded-lg">
+                                    <button class="accordion-header w-full flex justify-between items-center text-left p-4 font-semibold text-lg">
+                                        <span>Unit 2: Linear Equations</span>
+                                        <i data-lucide="chevron-right" class="chevron-icon transition-transform duration-300"></i>
+                                    </button>
+                                    <div class="accordion-panel"><div class="p-4 border-t bg-gray-50/70"><div contenteditable="true" class="content-editable bg-white p-3 rounded-md min-h-[40px]">Add your slide answers for Unit 2 here...</div></div></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="grid grid-cols-[auto_1fr] items-start gap-4">
-                        <span class="font-bold text-gray-700 text-lg">Page 2:</span>
-                        <div contenteditable="true" class="content-editable bg-gray-50 p-3 rounded-md min-h-[40px]">Vocabulary: A variable is a symbol for a number we don't know yet.</div>
+                    <div class="content-pane hidden" id="algebra1-notes">
+                         <div class="bg-white rounded-xl shadow-md p-6 border border-gray-200 printable-content">
+                            <h2 class="text-2xl font-bold text-green-700 mb-4">Algebra 1 - Notes & Examples Key</h2>
+                            <div class="space-y-2">
+                                <div class="accordion-item border rounded-lg">
+                                    <button class="accordion-header w-full flex justify-between items-center text-left p-4 font-semibold text-lg">
+                                        <span>Unit 1, Day 1: Translating Algebraic Phrases</span>
+                                        <i data-lucide="chevron-right" class="chevron-icon transition-transform duration-300"></i>
+                                    </button>
+                                    <div class="accordion-panel">
+                                        <div class="p-4 space-y-4 border-t bg-gray-50/70">
+                                            <div class="bg-white p-3 rounded-lg border">
+                                                <h4 class="font-semibold text-gray-700 mb-2">Warm-Up</h4>
+                                                <div class="grid grid-cols-[1fr_auto] items-center gap-x-4">
+                                                    <span class="text-gray-600">Total Cost = 12 ___</span>
+                                                    <div contenteditable="true" class="content-editable bg-indigo-50 border border-indigo-200 p-2 rounded-md font-mono text-center w-20">x</div>
+                                                </div>
+                                            </div>
+                                            <div class="bg-white p-3 rounded-lg border">
+                                                <h4 class="font-semibold text-gray-700 mb-2">Key Vocabulary</h4>
+                                                <div class="space-y-2">
+                                                    <div class="grid grid-cols-[1fr_auto] items-center gap-x-4"><span class="text-gray-600">1. represent an ___ number</span><div contenteditable="true" class="content-editable bg-indigo-50 border border-indigo-200 p-2 rounded-md w-full sm:w-48 text-center">unknown</div></div>
+                                                    <div class="grid grid-cols-[1fr_auto] items-center gap-x-4"><span class="text-gray-600">2. number ___ by a variable</span><div contenteditable="true" class="content-editable bg-indigo-50 border border-indigo-200 p-2 rounded-md w-full sm:w-48 text-center">multiplied</div></div>
+                                                    <div class="grid grid-cols-[1fr_auto] items-center gap-x-4"><span class="text-gray-600">3. ___ of a number and variable</span><div contenteditable="true" class="content-editable bg-indigo-50 border border-indigo-200 p-2 rounded-md w-full sm:w-48 text-center">product</div></div>
+                                                    <div class="grid grid-cols-[1fr_auto] items-center gap-x-4"><span class="text-gray-600">4. contains one or more ___</span><div contenteditable="true" class="content-editable bg-indigo-50 border border-indigo-200 p-2 rounded-md w-full sm:w-48 text-center">variables</div></div>
+                                                </div>
+                                            </div>
+                                            <div class="bg-white p-3 rounded-lg border">
+                                                <h4 class="font-semibold text-gray-700 mb-2">Translating Phrases</h4>
+                                                 <div class="space-y-2">
+                                                    <div class="grid grid-cols-[1fr_auto] items-center gap-x-4"><span class="text-gray-600">"12 decreased by a number x"</span><div contenteditable="true" class="content-editable bg-indigo-50 border border-indigo-200 p-2 rounded-md font-mono w-full sm:w-48 text-center">12 - x</div></div>
+                                                    <div class="grid grid-cols-[1fr_auto] items-center gap-x-4"><span class="text-gray-600">"the sum of 6 and the product of 2 and y"</span><div contenteditable="true" class="content-editable bg-indigo-50 border border-indigo-200 p-2 rounded-md font-mono w-full sm:w-48 text-center">6 + 2y</div></div>
+                                                    <div class="grid grid-cols-[1fr_auto] items-center gap-x-4"><span class="text-gray-600">"a number cubed"</span><div contenteditable="true" class="content-editable bg-indigo-50 border border-indigo-200 p-2 rounded-md font-mono w-full sm:w-48 text-center">n^3</div></div>
+                                                    <div class="grid grid-cols-[1fr_auto] items-center gap-x-4"><span class="text-gray-600">"9 less than the quotient of 6 and a number"</span><div contenteditable="true" class="content-editable bg-indigo-50 border border-indigo-200 p-2 rounded-md font-mono w-full sm:w-48 text-center">6/n - 9</div></div>
+                                                </div>
+                                            </div>
+                                             <div class="bg-white p-3 rounded-lg border">
+                                                <h4 class="font-semibold text-gray-700 mb-2">Cool-Down</h4>
+                                                <div class="grid grid-cols-[1fr_auto] items-center gap-x-4">
+                                                    <span class="text-gray-600">Total cans collected:</span>
+                                                    <div contenteditable="true" class="content-editable bg-indigo-50 border border-indigo-200 p-2 rounded-md font-mono w-full sm:w-48 text-center">s + (s + 50)</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content-pane hidden" id="algebra1-tests">
+                        <div class="bg-white rounded-xl shadow-md p-6 border border-gray-200 printable-content">
+                            <h2 class="text-2xl font-bold text-red-700 mb-4">Algebra 1 - Quizzes & Tests Key</h2>
+                             <div class="space-y-2">
+                                <div class="accordion-item border rounded-lg">
+                                    <button class="accordion-header w-full flex justify-between items-center text-left p-4 font-semibold text-lg">
+                                        <span>Unit 1 Test</span>
+                                        <i data-lucide="chevron-right" class="chevron-icon transition-transform duration-300"></i>
+                                    </button>
+                                    <div class="accordion-panel"><div class="p-4 border-t bg-gray-50/70"><div contenteditable="true" class="content-editable bg-white p-3 rounded-md min-h-[40px]">Add your test answers for Unit 1 here...</div></div></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Quiz Content -->
-            <div id="quiz" class="printable-content hidden space-y-6">
-                <div class="bg-white rounded-xl shadow-md p-6 border border-gray-200">
-                    <h2 class="text-2xl font-bold text-red-700 mb-4">Quiz Key</h2>
-                    <div class="grid grid-cols-[auto_1fr] items-start gap-4 mb-4">
-                        <span class="font-bold text-gray-700 text-lg">1.</span>
-                        <div contenteditable="true" class="content-editable bg-gray-50 p-3 rounded-md min-h-[40px]">B) 12</div>
+                <div class="subject-content hidden" id="geometry">
+                     <div class="content-pane active" id="geometry-slides">
+                        <div class="bg-white rounded-xl shadow-md p-6 border border-gray-200 printable-content">
+                            <h2 class="text-2xl font-bold text-indigo-700 mb-4">Geometry - Slides Key</h2>
+                            <div class="p-4 border rounded-lg bg-gray-50/70"><div contenteditable="true" class="content-editable bg-white p-3 rounded-md">Geometry slide content will go here, organized by unit in accordions.</div></div>
+                        </div>
                     </div>
-                    <div class="grid grid-cols-[auto_1fr] items-start gap-4 mb-4">
-                        <span class="font-bold text-gray-700 text-lg">2.</span>
-                        <div contenteditable="true" class="content-editable bg-gray-50 p-3 rounded-md min-h-[40px]">C) y = 3x - 2</div>
+                     <div class="content-pane hidden" id="geometry-notes">
+                        <div class="bg-white rounded-xl shadow-md p-6 border border-gray-200 printable-content">
+                            <h2 class="text-2xl font-bold text-green-700 mb-4">Geometry - Notes & Examples Key</h2>
+                            <div class="p-4 border rounded-lg bg-gray-50/70"><div contenteditable="true" class="content-editable bg-white p-3 rounded-md">Geometry notes content will go here, organized by unit in accordions.</div></div>
+                        </div>
                     </div>
-                    <div class="grid grid-cols-[auto_1fr] items-start gap-4">
-                        <span class="font-bold text-gray-700 text-lg">3.</span>
-                        <div contenteditable="true" class="content-editable bg-gray-50 p-3 rounded-md min-h-[40px]">A) 5.5</div>
+                     <div class="content-pane hidden" id="geometry-tests">
+                        <div class="bg-white rounded-xl shadow-md p-6 border border-gray-200 printable-content">
+                            <h2 class="text-2xl font-bold text-red-700 mb-4">Geometry - Quizzes & Tests Key</h2>
+                            <div class="p-4 border rounded-lg bg-gray-50/70"><div contenteditable="true" class="content-editable bg-white p-3 rounded-md">Geometry test content will go here, organized by unit in accordions.</div></div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </main>
+
+                <div class="subject-content hidden" id="algebra2">
+                     <div class="content-pane active" id="algebra2-slides">
+                        <div class="bg-white rounded-xl shadow-md p-6 border border-gray-200 printable-content">
+                            <h2 class="text-2xl font-bold text-indigo-700 mb-4">Algebra 2 - Slides Key</h2>
+                             <div class="p-4 border rounded-lg bg-gray-50/70"><div contenteditable="true" class="content-editable bg-white p-3 rounded-md">Algebra 2 slide content will go here, organized by unit in accordions.</div></div>
+                        </div>
+                    </div>
+                     <div class="content-pane hidden" id="algebra2-notes">
+                        <div class="bg-white rounded-xl shadow-md p-6 border border-gray-200 printable-content">
+                            <h2 class="text-2xl font-bold text-green-700 mb-4">Algebra 2 - Notes & Examples Key</h2>
+                            <div class="p-4 border rounded-lg bg-gray-50/70"><div contenteditable="true" class="content-editable bg-white p-3 rounded-md">Algebra 2 notes content will go here, organized by unit in accordions.</div></div>
+                        </div>
+                    </div>
+                     <div class="content-pane hidden" id="algebra2-tests">
+                        <div class="bg-white rounded-xl shadow-md p-6 border border-gray-200 printable-content">
+                            <h2 class="text-2xl font-bold text-red-700 mb-4">Algebra 2 - Quizzes & Tests Key</h2>
+                            <div class="p-4 border rounded-lg bg-gray-50/70"><div contenteditable="true" class="content-editable bg-white p-3 rounded-md">Algebra 2 test content will go here, organized by unit in accordions.</div></div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
     </div>
 
     <script>
         lucide.createIcons();
 
-        function showTab(tabId) {
-            // Hide all content
-            document.getElementById('slides').style.display = 'none';
-            document.getElementById('notes').style.display = 'none';
-            document.getElementById('quiz').style.display = 'none';
+        const subjectTabs = document.querySelectorAll('.subject-tab');
+        const contentNavLinks = document.querySelectorAll('.content-nav-link');
+        const subjectContents = document.querySelectorAll('.subject-content');
+        const accordionHeaders = document.querySelectorAll('.accordion-header');
 
-            // Deactivate all buttons
-            document.querySelectorAll('.tab-button').forEach(button => {
-                button.classList.remove('active');
+        let activeSubject = 'algebra1';
+        let activeContent = 'slides';
+
+        function updateView() {
+            // Update Subject view
+            subjectContents.forEach(content => {
+                content.classList.add('hidden');
+                if (content.id === activeSubject) {
+                    content.classList.remove('hidden');
+                }
             });
 
-            // Show the selected content
-            document.getElementById(tabId).style.display = 'block';
-
-            // Activate the selected button
-            document.querySelector(`.tab-button[onclick="showTab('${tabId}')"]`).classList.add('active');
+            // Update Content view within the active subject
+            const contentPanes = document.querySelectorAll(`#${activeSubject} .content-pane`);
+            contentPanes.forEach(pane => {
+                pane.classList.add('hidden');
+                const paneId = `${activeSubject}-${activeContent}`;
+                if (pane.id === paneId) {
+                    pane.classList.remove('hidden');
+                }
+            });
         }
 
-        // Set initial tab
-        document.addEventListener('DOMContentLoaded', () => {
-            showTab('slides');
+        subjectTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                subjectTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                activeSubject = tab.dataset.subject;
+                // Reset to the first content type when switching subjects for predictable behavior
+                contentNavLinks.forEach((link, index) => {
+                    if (index === 0) {
+                        link.classList.add('active');
+                        activeContent = link.dataset.content;
+                    } else {
+                        link.classList.remove('active');
+                    }
+                });
+                updateView();
+            });
         });
+
+        contentNavLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                contentNavLinks.forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+                activeContent = link.dataset.content;
+                updateView();
+            });
+        });
+        
+        accordionHeaders.forEach(header => {
+            header.addEventListener('click', () => {
+                header.classList.toggle('active');
+            });
+        });
+
+        // Set initial state
+        updateView();
     </script>
 </body>
 </html>
