@@ -51,6 +51,41 @@
         .feedback.correct { color: #047857; background-color: #D1FAE5; }
         .feedback.incorrect { color: #B91C1C; background-color: #FEF2F2; }
 
+        /* --- ACCORDION STYLES START --- */
+        .accordion-toggle {
+            font-size: 2.5rem;
+            margin-top: 2.5rem;
+            padding-bottom: 0rem;
+            color: #2563EB;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: none;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            text-align: left;
+        }
+        .accordion-toggle:hover {
+            background-color: #F9FAFB;
+        }
+        .accordion-icon {
+            font-size: 2rem;
+            transition: transform 0.3s ease-in-out;
+            color: #3B82F6;
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out;
+        }
+        /* --- ACCORDION STYLES END --- */
+
+
           @media print {
             body, .container { margin: 0 !important; padding: 1rem !important; width: 100%; box-shadow: none !important; border: none !important; }
             .no-print { display: none !important; }
@@ -59,6 +94,10 @@
             h2:first-of-type { page-break-before: auto; }
             h3 { font-size: 14pt; border-bottom: 1px solid #ccc; }
             p, li { font-size: 12pt; line-height: 1.5; margin-bottom: 0.5rem; }
+               .accordion-toggle { font-size: 18pt; margin-top: 1rem; page-break-before: always; page-break-after: avoid; background: none !important; border-bottom: 2px solid #ccc !important; }
+            .accordion-toggle:first-of-type { page-break-before: auto; }
+            .accordion-icon { display: none; }
+            .accordion-content { max-height: none !important; }
             .card, .example, .warm-up, .cool-down { padding: 1rem; margin-bottom: 1rem; border: 1px solid #ccc !important; background: #fff !important; page-break-inside: avoid; }
             .day-divider, .reflection-card, .extra-notes-card { display: none !important; }
             .note-input { border: none !important; border-bottom: 1px solid #333 !important; border-radius: 0 !important; background: transparent !important; color: #fff !important; }
@@ -84,7 +123,7 @@
                     <a href="#day2"><button class="button nav-button">Day 2</button></a>
                     <a href="#day3"><button class="button nav-button">Day 3</button></a>
                     <a href="#day4"><button class="button nav-button">Day 4</button></a>
-                    <a href="#quiz"><button class="button nav-button bg-purple-600 hover:bg-purple-800">Unit Quiz</button></a>
+                    <a href="#quiz-link"><button class="button nav-button bg-purple-600 hover:bg-purple-800">Unit Quiz</button></a>
                 </div>
                 <div class="flex flex-wrap justify-center gap-3 mt-6">
                     <button class="button" onclick="printContent('notes')">Print Unit Notes/Examples</button>
@@ -132,7 +171,12 @@
     <section id="notes">
         <!-- Day 1 Content -->
          <div>
+             <div class="accordion-item" id="day1">
+        <button class="accordion-toggle">
             <h2 id="day1">Day 1: Translating Verbal to Algebraic Expressions</h2>
+            <span class="accordion-icon">+</span>
+        </button>
+        <div class="accordion-content">
             <div class="card" id="day1-card">
                  <div class="warm-up">
                     <h3 class="mt-0">Warm-Up</h3>
@@ -178,13 +222,18 @@
             </div>
             <div class="reflection-card no-print"><h3 class="mt-0">Day 1 Reflection</h3><p class="text-sm">What was the most important concept you learned today? What concept is still confusing, or what questions do you have?</p><textarea rows="2" class="w-full p-2 border rounded" placeholder="Type your reflection here..."></textarea></div>
             <div class="extra-notes-card no-print"><h3 class="mt-0">My Extra Notes for Day 1</h3><textarea rows="3" class="w-full p-2 border rounded" placeholder="Jot down any extra thoughts or questions here..."></textarea></div>
-        </div>
+        </div></div>
 
         <div class="day-divider"></div>
 
         <!-- Day 2 Content -->
 <div>
+    <div class="accordion-item" id="day2">
+        <button class="accordion-toggle">
             <h2 id="day2">Day 2: Evaluating Expressions</h2>
+            <span class="accordion-icon">+</span>
+        </button>
+        <div class="accordion-content">
             <div class="card" id="day2-card">
                 <div class="warm-up"><h3 class="mt-0">Warm-Up</h3><p>If a pizza costs \$15 and you have a coupon for \$3 off, how much would you pay?</p><div class="interactive-line"><input type="text" data-answer="12" placeholder="Answer..." class="note-input w-24"><span>dollars.</span></div></div>
                 
@@ -227,13 +276,18 @@
             </div>
             <div class="reflection-card no-print"><h3 class="mt-0">Day 2 Reflection</h3><p class="text-sm">What was the most important concept you learned today? What concept is still confusing, or what questions do you have?</p><textarea rows="2" class="w-full p-2 border rounded" placeholder="Type your reflection here..."></textarea></div>
             <div class="extra-notes-card no-print"><h3 class="mt-0">My Extra Notes for Day 2</h3><textarea rows="3" class="w-full p-2 border rounded" placeholder="Jot down any extra thoughts or questions here..."></textarea></div>
-        </div>
+        </div></div>
 
         <div class="day-divider"></div>
 
         <!-- Day 3 Content -->
         <div>
+            <div class="accordion-item" id="day3">
+        <button class="accordion-toggle">
             <h2 id="day3">Day 3: Laws of Exponents</h2>
+            <span class="accordion-icon">+</span>
+        </button>
+        <div class="accordion-content">
             <div class="card" id="day3-card">
                  <div class="warm-up"><h3 class="mt-0">Warm-Up</h3><p>What is a shorter way to write $2 \times 2 \times 2 \times 2$?</p><div class="interactive-line"><input type="text" data-answer="2^4" placeholder="Expression..." class="note-input"></div></div>
                 
@@ -271,13 +325,18 @@
             </div>
              <div class="reflection-card no-print"><h3 class="mt-0">Day 3 Reflection</h3><p class="text-sm">What was the most important concept you learned today? What concept is still confusing, or what questions do you have?</p><textarea rows="2" class="w-full p-2 border rounded" placeholder="Type your reflection here..."></textarea></div>
             <div class="extra-notes-card no-print"><h3 class="mt-0">My Extra Notes for Day 3</h3><textarea rows="3" class="w-full p-2 border rounded" placeholder="Jot down any extra thoughts or questions here..."></textarea></div>
-        </div>
+        </div></div>
 
         <div class="day-divider"></div>
 
         <!-- Day 4 Content -->
           <div>
+              <div class="accordion-item" id="day4">
+        <button class="accordion-toggle">
             <h2 id="day4">Day 4: Simplifying Multivariable Expressions</h2>
+            <span class="accordion-icon">+</span>
+        </button>
+        <div class="accordion-content">
             <div class="card" id="day4-card">
                 <div class="warm-up"><h3 class="mt-0">Warm-Up</h3><p>If you have 3 apples and your friend gives you 2 more apples, how many apples do you have?</p><div class="interactive-line"><input type="text" data-answer="5" placeholder="Answer..." class="note-input w-24"><span>. Can you add 3 apples and 2 oranges?</span><input type="text" data-answer="No" placeholder="Yes/No" class="note-input w-24">.</div></div>
                 
@@ -344,34 +403,25 @@
             </div>
             <div class="reflection-card no-print"><h3 class="mt-0">Day 4 Reflection</h3><p class="text-sm">What was the most important concept you learned today? What concept is still confusing, or what questions do you have?</p><textarea rows="2" class="w-full p-2 border rounded" placeholder="Type your reflection here..."></textarea></div>
             <div class="extra-notes-card no-print"><h3 class="mt-0">My Extra Notes for Day 4</h3><textarea rows="3" class="w-full p-2 border rounded" placeholder="Jot down any extra thoughts or questions here..."></textarea></div>
-        </div>
+        </div></div>
     </section>
 
     <div class="day-divider no-print"></div>
     
-    <section id="quiz">
+    <section id="quiz-link">
         <h2 class="mt-0">Unit 1 Quiz</h2>
         <div class="flex justify-between items-center bg-gray-100 p-4 rounded-lg mb-8 no-print">
             <p class="text-lg font-semibold">Test your knowledge. You have 3 attempts.</p>
             <div id="attempt-counter" class="text-lg font-bold px-4 py-2 bg-blue-200 text-blue-800 rounded-md">Attempt 1 of 3</div>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div class="card quiz-question" data-correct-answer="C"><p class="font-semibold mb-4">1. Which expression represents "5 less than the product of 3 and a number x"?</p><label class="quiz-option"><input type="radio" name="q1" value="A" class="hidden"> A. $5 - 3x$</label><label class="quiz-option"><input type="radio" name="q1" value="B" class="hidden"> B. $3(x-5)$</label><label class="quiz-option"><input type="radio" name="q1" value="C" class="hidden"> C. $3x - 5$</label><div class="feedback"></div></div>
-            <div class="card quiz-question" data-correct-answer="A"><p class="font-semibold mb-4">2. Evaluate the expression $2a^2 - 4b$ when $a=3$ and $b=2$.</p><label class="quiz-option"><input type="radio" name="q2" value="A" class="hidden"> A. 10</label><label class="quiz-option"><input type="radio" name="q2" value="B" class="hidden"> B. 28</label><label class="quiz-option"><input type="radio" name="q2" value="C" class="hidden"> C. 2</label><div class="feedback"></div></div>
-            <div class="card quiz-question" data-correct-answer="B"><p class="font-semibold mb-4">3. What is the value of $|x - y| + \sqrt{z}$ when $x=5$, $y=10$, and $z=16$?</p><label class="quiz-option"><input type="radio" name="q3" value="A" class="hidden"> A. -1</label><label class="quiz-option"><input type="radio" name="q3" value="B" class="hidden"> B. 9</label><label class="quiz-option"><input type="radio" name="q3" value="C" class="hidden"> C. 19</label><div class="feedback"></div></div>
-            <div class="card quiz-question" data-correct-answer="x^10"><p class="font-semibold mb-4">4. Simplify the expression $x^4 \cdot x^6$.</p><input type="text" name="q4" placeholder="Enter simplified expression..." class="w-full p-2 border rounded"><div class="feedback"></div></div>
-            <div class="card quiz-question" data-correct-answer="y^4"><p class="font-semibold mb-4">5. Simplify the expression $\frac{y^8}{y^4}$.</p><input type="text" name="q5" placeholder="Enter simplified expression..." class="w-full p-2 border rounded"><div class="feedback"></div></div>
-            <div class="card quiz-question" data-correct-answer="C"><p class="font-semibold mb-4">6. Simplify the expression $(a^5)^3$.</p><label class="quiz-option"><input type="radio" name="q6" value="A" class="hidden"> A. $a^8$</label><label class="quiz-option"><input type="radio" name="q6" value="B" class="hidden"> B. $a^2$</label><label class="quiz-option"><input type="radio" name="q6" value="C" class="hidden"> C. $a^{15}$</label><div class="feedback"></div></div>
-            <div class="card quiz-question" data-correct-answer="8x^6"><p class="font-semibold mb-4">7. Simplify the expression $(2x^2)^3$.</p><input type="text" name="q7" placeholder="Enter simplified expression..." class="w-full p-2 border rounded"><div class="feedback"></div></div>
-            <div class="card quiz-question" data-correct-answer="B"><p class="font-semibold mb-4">8. Simplify the expression $5x + 3y + 2x - y$.</p><label class="quiz-option"><input type="radio" name="q8" value="A" class="hidden"> A. $7x + 3y$</label><label class="quiz-option"><input type="radio" name="q8" value="B" class="hidden"> B. $7x + 2y$</label><label class="quiz-option"><input type="radio" name="q8" value="C" class="hidden"> C. $9xy$</label><div class="feedback"></div></div>
-            <div class="card quiz-question" data-correct-answer="5x^2 + 2x"><p class="font-semibold mb-4">9. Simplify the expression $8x^2 - 3x^2 + 6x - 4x$.</p><input type="text" name="q9" placeholder="Enter simplified expression..." class="w-full p-2 border rounded"><div class="feedback"></div></div>
-            <div class="card quiz-question" data-correct-answer="A"><p class="font-semibold mb-4">10. A rectangle has a length of $3x+2$ and a width of 5. What is the expression for its perimeter?</p><label class="quiz-option"><input type="radio" name="q10" value="A" class="hidden"> A. $6x + 14$</label><label class="quiz-option"><input type="radio" name="q10" value="B" class="hidden"> B. $15x + 10$</label><label class="quiz-option"><input type="radio" name="q10" value="C" class="hidden"> C. $3x + 7$</label><div class="feedback"></div></div>
-        </div>
-        <div id="quiz-score-container" class="text-center mt-8 text-2xl font-bold hidden no-print"></div>
-        <div class="flex justify-center gap-6 mt-10 no-print">
-            <button id="check-answers-btn" class="button" onclick="checkQuizAnswers()">Check Answers</button>
-            <button id="retake-quiz-btn" class="button bg-gray-600 hover:bg-gray-800" onclick="resetQuiz()">Retake Quiz</button>
-        </div>
+
+               <section id="quiz-link" class="text-center py-0 mt-0">
+        <h2 class="text-3xl font-bold text-gray-800">Ready to test your knowledge?</h2>
+        <p class="text-lg text-gray-600 my-4">You have completed the notes for Unit 1. Click the button below to take the quiz.</p>
+        <br>
+      <a href="alg1-unit1-quiz.html" target="_blank" class="button text-xl px-8 py-4 bg-purple-600 hover:bg-purple-800">
+            Take the Unit 1 Quiz
+        </a>
     </section>
 </div>
 
@@ -385,6 +435,47 @@
 </footer>
 
 <script>
+
+// --- ACCORDION SCRIPT START ---
+    document.addEventListener('DOMContentLoaded', () => {
+        const accordionToggles = document.querySelectorAll('.accordion-toggle');
+
+        accordionToggles.forEach(button => {
+            button.addEventListener('click', () => {
+                const content = button.nextElementSibling;
+                const icon = button.querySelector('.accordion-icon');
+                const isOpen = content.style.maxHeight;
+
+                if (isOpen) {
+                    content.style.maxHeight = null;
+                    icon.textContent = '+';
+                    icon.style.transform = 'rotate(0deg)';
+                } else {
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                    icon.textContent = '-';
+                    icon.style.transform = 'rotate(45deg)';
+                }
+            });
+        });
+
+        const navLinks = document.querySelectorAll('.day-nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', (event) => {
+                const targetId = link.getAttribute('href').substring(1);
+                const targetAccordion = document.getElementById(targetId);
+                if (targetAccordion) {
+                    const toggleButton = targetAccordion.querySelector('.accordion-toggle');
+                    const content = toggleButton.nextElementSibling;
+                    // Open the accordion if it's not already open
+                    if (!content.style.maxHeight) {
+                        toggleButton.click();
+                    }
+                }
+            });
+        });
+    });
+    // --- ACCORDION SCRIPT END ---
+    
     let attemptCount = localStorage.getItem('algebraQuizAttempts') ? parseInt(localStorage.getItem('algebraQuizAttempts')) : 0;
     const maxAttempts = 3;
     document.addEventListener('DOMContentLoaded', () => { updateAttemptCounter(); if (attemptCount >= maxAttempts) disableQuiz(); });
@@ -400,5 +491,6 @@
 </body>
 
 </html>
+
 
 
