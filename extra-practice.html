@@ -6,6 +6,7 @@
     <title>Extra Practice - Free Math Tools</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -37,7 +38,7 @@
                         <h3 class="text-xl font-bold text-blue-600">Desmos Graphing Calculator</h3>
                         <p class="mt-3 text-gray-600"><strong class="font-semibold text-gray-700">What it is:</strong> The best online graphing calculator, hands down. Just type in an equation and it shows you the graph instantly. You can plot points, make tables, and play with sliders to see how graphs change.</p>
                         <p class="mt-2 text-gray-600"><strong class="font-semibold text-gray-700">Use it for:</strong> Visualizing your algebra homework, understanding functions, and making sense of graphs.</p>
-                        <a href="https://www.desmos.com/calculator" target="_blank" class="inline-block mt-4 bg-blue-500 text-white font-semibold px-5 py-2 rounded-lg hover:bg-blue-600 transition-colors">Go to Desmos &rarr;</a>
+                        <a href="https://www.desmos.com/testing/virginia/graphing" target="_blank" class="inline-block mt-4 bg-blue-500 text-white font-semibold px-5 py-2 rounded-lg hover:bg-blue-600 transition-colors">Go to Desmos &rarr;</a>
                     </div>
                 </div>
             </section>
@@ -70,6 +71,41 @@
                     </div>
                 </div>
             </section>
+            
+            <!-- ======= NEW SOL PRACTICE SECTION ======= -->
+            <section class="mb-12">
+                <h2 class="text-2xl md:text-3xl font-bold border-b-2 border-red-500 pb-2 mb-6 text-gray-800">Algebra 1 SOL Practice</h2>
+                <p class="text-gray-600 mb-8">Official resources to help you prepare for the Virginia Standards of Learning (SOL) test.</p>
+                <div class="bg-white rounded-xl shadow-md p-6 border border-gray-200 transition-all duration-300 card-hover">
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <i data-lucide="edit-3" class="w-6 h-6 mr-4 text-red-500 flex-shrink-0 mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-lg text-red-600">VDOE Practice Tool (Pearson)</h4>
+                                <p class="text-gray-600">The official online practice tool. This is exactly what the test will look and feel like.</p>
+                                <a href="https://download.pearsonaccessnext.com/virginia/va-practicetest.html?links=1" target="_blank" class="inline-block mt-2 text-red-500 font-semibold hover:underline">Open Practice Tool &rarr;</a>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                             <i data-lucide="archive" class="w-6 h-6 mr-4 text-red-500 flex-shrink-0 mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-lg text-red-600">SOLpass Released Tests</h4>
+                                <p class="text-gray-600">Practice with actual tests from previous years to see real examples of questions.</p>
+                                <a href="https://www.solpass.org/released.php" target="_blank" class="inline-block mt-2 text-red-500 font-semibold hover:underline">View Released Tests &rarr;</a>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-lucide="file-text" class="w-6 h-6 mr-4 text-red-500 flex-shrink-0 mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-lg text-red-600">Algebra 1 Formula Sheet</h4>
+                                <p class="text-gray-600">The official formula sheet you will be allowed to use on the SOL test.</p>
+                                <a href="alg%201%20sol%20formula%20sheet.pdf" target="_blank" class="inline-block mt-2 text-red-500 font-semibold hover:underline">Download Formula Sheet &rarr;</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            <!-- ======= END OF NEW SECTION ======= -->
 
             <!-- Section: For a Fun Challenge -->
             <section>
@@ -108,6 +144,10 @@
 </footer>
 
     </div>
-
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
 </body>
+
 </html>
