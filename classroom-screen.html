@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classroom Screen</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Kalam:wght@700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.77/Tone.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            /* New nature background image */
+            background-image: url('https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?q=80&w=2940&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Keeps background stationary on scroll */
+        }
+        .handwriting-font {
+            font-family: 'Kalam', cursive;
+        }
+        .card {
+            background-color: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(12px);
+            border-radius: 1rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            padding: 1.5rem;
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .editable {
+            outline: none;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.2s;
+        }
+        .editable:focus {
+            background-color: rgba(254, 249, 195, 0.7); /* Light yellow */
+        }
+        .tab-button {
+            transition: all 0.3s ease;
+        }
+        .tab-button.active {
+            background-color: #4f46e5; /* Indigo-600 */
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .todo-item {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            padding: 0.5rem 0;
+        }
+        .todo-item .checkbox {
+            width: 1.25rem;
+            height: 1.25rem;
+            border: 2px solid #6b7280;
+            border-radius: 0.375rem;
+            margin-right: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: background-color 0.2s, border-color 0.2s;
+        }
+        .todo-item.completed .checkbox {
+            background-color: #4f46e5;
+            border-color: #4f46e5;
+        }
+        .todo-item.completed .checkbox::after {
+            content: '✔';
+            color: white;
+            font-size: 0.8rem;
+        }
+        .todo-item.completed .editable {
+            text-decoration: line-through;
+            color: #6b7280;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <div id="app" class="min-h-screen p-4 sm:p-6 lg:p-8 flex flex-col">
+        <!-- Header: Tabs -->
+        <header class="flex justify-center items-center mb-4">
+            <div class="flex space-x-2 bg-white/70 backdrop-blur-sm p-2 rounded-full shadow-md">
+                <button id="mon-tab" class="tab-button active px-4 py-2 rounded-full font-semibold text-gray-700">Monday</button>
+                <button id="tue-tab" class="tab-button px-4 py-2 rounded-full font-semibold text-gray-700">Tuesday</button>
+                <button id="wed-tab" class="tab-button px-4 py-2 rounded-full font-semibold text-gray-700">Wednesday</button>
+                <button id="thu-tab" class="tab-button px-4 py-2 rounded-full font-semibold text-gray-700">Thursday</button>
+            </div>
+        </header>
+
+        <!-- Welcome Header -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
+            <div class="card flex justify-center items-center">
+                <!-- Date format and font size updated -->
+                <h1 id="day-title" class="handwriting-font text-5xl font-bold text-center"></h1>
+            </div>
+            <div class="card flex justify-center items-center">
+                <h1 contenteditable="true" class="handwriting-font text-5xl font-bold text-center text-gray-700 editable">Good Morning!</h1>
+            </div>
+        </div>
+
+        <!-- Main Content Grid -->
+        <main>
+            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                
+                <!-- Column 1: Agenda -->
+                <div class="lg:col-span-1 md:col-span-1 flex flex-col gap-6">
+                    <div class="card flex-grow flex flex-col">
+                        <h2 class="text-xl font-bold mb-3 text-indigo-700">What's on today?</h2>
+                        <ul id="todo-list" class="space-y-1">
+                            <!-- JS will populate this -->
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Column 2: Objectives, Done Next, Reminders, Music -->
+                <div class="lg:col-span-2 md:col-span-2 flex flex-col gap-6">
+                     <div class="card">
+                        <h2 class="text-xl font-bold mb-3 text-green-700">Learning Objectives</h2>
+                        <div contenteditable="true" class="editable text-gray-600 min-h-[100px] bg-white/50">
+                            <ul>
+                                <li>- Apply the order of operations (PEMDAS) to simplify expressions.</li>
+                                <li>- Isolate a variable to solve two-step linear equations.</li>
+                                <li>- Justify the steps taken to solve an equation.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h2 class="text-xl font-bold mb-3 text-blue-700">Done? What's next?</h2>
+                        <div contenteditable="true" class="editable text-gray-600 min-h-[70px] bg-white/50">
+                            Try the challenge problem on the back of the worksheet or practice on Khan Academy.
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h2 class="text-xl font-bold mb-3 text-red-700">Reminders</h2>
+                        <div contenteditable="true" class="editable text-gray-600 min-h-[70px] bg-white/50">
+                            Chapter 4 Test this Friday! Review session on Thursday after school.
+                        </div>
+                    </div>
+                    <!-- Lofi Music Player Card -->
+                    <div class="card">
+                        <h2 class="text-xl font-bold mb-3 text-cyan-700">Focus Music</h2>
+                        <div class="w-full h-24 rounded-lg overflow-hidden">
+                            <iframe 
+                                class="w-full h-full"
+                                src="https://www.youtube.com/embed/5qap5aO4i9A" 
+                                title="Lofi Music Player" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Column 3: Timer & Materials -->
+                <div class="lg:col-span-1 md:col-span-3 flex flex-col gap-6">
+                    <div class="card text-center">
+                        <h2 class="text-xl font-bold mb-3 text-purple-700">Work Timer</h2>
+                        <div id="timer-display" class="text-6xl font-bold tracking-tighter my-4">15:00</div>
+                        <div class="flex justify-center items-center space-x-2 mb-4">
+                            <input id="minutes-input" type="number" value="15" class="w-16 p-2 text-center rounded-md border-2 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500">
+                            <span class="font-bold">:</span>
+                            <input id="seconds-input" type="number" value="0" class="w-16 p-2 text-center rounded-md border-2 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500">
+                        </div>
+                        <div class="flex justify-center space-x-2">
+                            <button id="start-btn" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg">Start</button>
+                            <button id="pause-btn" class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded-lg">Pause</button>
+                            <button id="reset-btn" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg">Reset</button>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h2 class="text-xl font-bold mb-3 text-yellow-700">Materials Needed</h2>
+                        <div contenteditable="true" class="editable text-gray-600 min-h-[80px] bg-white/50">
+                           - Math Notebook
+                           <br>- Pencil & Eraser
+                           <br>- Calculator
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Elements ---
+            const dayTitle = document.getElementById('day-title');
+            const tabs = document.querySelectorAll('.tab-button');
+            const todoList = document.getElementById('todo-list');
+
+            // --- Tab Functionality ---
+            const dayHeadings = {
+                'mon-tab': 'Mon',
+                'tue-tab': 'Tues',
+                'wed-tab': 'Wed',
+                'thu-tab': 'Thurs'
+            };
+
+            const dayColors = {
+                'mon-tab': 'text-blue-500',
+                'tue-tab': 'text-teal-500',
+                'wed-tab': 'text-orange-500',
+                'thu-tab': 'text-purple-500'
+            };
+
+            function updateDayDisplay(tabId) {
+                const today = new Date();
+                const date = today.getDate();
+                const month = today.toLocaleDateString('en-US', { month: 'short' });
+                const dayName = dayHeadings[tabId];
+                
+                // Update text to new format: "Tues, Aug 19"
+                dayTitle.textContent = `${dayName}, ${month} ${date}`;
+                
+                // Update color
+                Object.values(dayColors).forEach(colorClass => {
+                    dayTitle.classList.remove(colorClass);
+                });
+                dayTitle.classList.add(dayColors[tabId]);
+            }
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    updateDayDisplay(tab.id);
+                });
+            });
+            
+            // Set initial state for Monday on page load
+            updateDayDisplay('mon-tab');
+
+            // --- To-Do List Functionality ---
+            const initialTodos = [
+                'Warm-up: Order of Operations',
+                'Homework Review',
+                'Lesson: Solving Two-Step Equations',
+                'Partner Practice',
+                'Exit Ticket: Equation Solving'
+            ];
+
+            function renderTodos() {
+                todoList.innerHTML = '';
+                initialTodos.forEach(todoText => {
+                    const li = document.createElement('li');
+                    li.className = 'todo-item';
+                    li.innerHTML = `
+                        <div class="checkbox"></div>
+                        <div contenteditable="true" class="editable flex-grow">${todoText}</div>
+                    `;
+                    todoList.appendChild(li);
+
+                    li.addEventListener('click', (e) => {
+                        if (e.target.getAttribute('contenteditable') !== 'true') {
+                            li.classList.toggle('completed');
+                        }
+                    });
+                });
+            }
+            renderTodos();
+
+            // --- Timer Functionality ---
+            const timerDisplay = document.getElementById('timer-display');
+            const minutesInput = document.getElementById('minutes-input');
+            const secondsInput = document.getElementById('seconds-input');
+            const startBtn = document.getElementById('start-btn');
+            const pauseBtn = document.getElementById('pause-btn');
+            const resetBtn = document.getElementById('reset-btn');
+
+            let countdown;
+            let timerSeconds;
+            let isPaused = false;
+
+            function displayTimeLeft(seconds) {
+                const minutes = Math.floor(seconds / 60);
+                const remainderSeconds = seconds % 60;
+                const display = `${minutes < 10 ? '0' : ''}${minutes}:${remainderSeconds < 10 ? '0' : ''}${remainderSeconds}`;
+                timerDisplay.textContent = display;
+                document.title = display;
+            }
+
+            function timer(seconds) {
+                clearInterval(countdown);
+                isPaused = false;
+                const now = Date.now();
+                const then = now + seconds * 1000;
+                displayTimeLeft(seconds);
+
+                countdown = setInterval(() => {
+                    if (isPaused) return;
+                    const secondsLeft = Math.round((then - Date.now()) / 1000);
+                    if (secondsLeft < 0) {
+                        clearInterval(countdown);
+                        playAlarm();
+                        return;
+                    }
+                    timerSeconds = secondsLeft;
+                    displayTimeLeft(secondsLeft);
+                }, 1000);
+            }
+            
+            function startTimer() {
+                const minutes = parseInt(minutesInput.value) || 0;
+                const seconds = parseInt(secondsInput.value) || 0;
+                timerSeconds = (minutes * 60) + seconds;
+                if (timerSeconds > 0) {
+                    timer(timerSeconds);
+                }
+            }
+
+            function pauseTimer() {
+                isPaused = !isPaused;
+                pauseBtn.textContent = isPaused ? 'Resume' : 'Pause';
+            }
+
+            function resetTimer() {
+                clearInterval(countdown);
+                isPaused = false;
+                pauseBtn.textContent = 'Pause';
+                const minutes = parseInt(minutesInput.value) || 0;
+                const seconds = parseInt(secondsInput.value) || 0;
+                displayTimeLeft((minutes * 60) + seconds);
+                document.title = 'Classroom Screen';
+            }
+
+            function playAlarm() {
+                const synth = new Tone.Synth().toDestination();
+                synth.triggerAttackRelease("C5", "8n", Tone.now());
+                synth.triggerAttackRelease("G5", "8n", Tone.now() + 0.2);
+                synth.triggerAttackRelease("C6", "8n", Tone.now() + 0.4);
+            }
+
+            startBtn.addEventListener('click', startTimer);
+            pauseBtn.addEventListener('click', pauseTimer);
+            resetBtn.addEventListener('click', resetTimer);
+            
+            resetTimer();
+        });
+    </script>
+</body>
+</html>
