@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 1 Quiz: Algebraic Expressions</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        MathJax = { tex: { inlineMath: [['$', '$']] } };
+    </script>
+    <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #F8FAFC; color: #1F2937; line-height: 1.9; font-size: 1.125rem; }
+        .container { max-width: 900px; margin: 3rem auto; padding: 3rem 3.5rem; background-color: #FFFFFF; border-radius: 16px; box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+        h1 { font-size: 3rem; text-align: center; margin-bottom: 0.5rem; color: #1D4ED8; font-weight: 700; }
+        .subtitle { font-size: 1.5rem; text-align: center; color: #4B5563; margin-bottom: 2rem; font-weight: 500; }
+        .card { background-color: #F0F9FF; border: 1px solid #BFDBFE; border-radius: 12px; padding: 2.5rem; margin-bottom: 3rem; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .button { background-color: #2563EB; color: white; padding: 0.75rem 1.5rem; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.2s; border: none; text-decoration: none; }
+        .button:hover { background-color: #1D4ED8; box-shadow: 0 4px 8px rgba(0,0,0,0.15); }
+        .quiz-option { display: block; padding: 1rem; border: 1px solid #D1D5DB; border-radius: 8px; margin-bottom: 0.75rem; cursor: pointer; background-color: #F9FAFB; transition: all 0.2s; }
+        .quiz-option:hover { background-color: #EFF6FF; border-color: #2563EB; }
+        .quiz-option.selected { background-color: #DBEAFE; border-color: #2563EB; font-weight: 600; }
+        .quiz-option.correct { background-color: #D1FAE5 !important; border-color: #059669 !important; font-weight: 600; }
+        .quiz-option.incorrect { background-color: #FEF2F2 !important; border-color: #DC2626 !important; font-weight: 600; }
+        .feedback { margin-top: 1rem; padding: 0.75rem; border-radius: 8px; font-weight: 600; }
+        .feedback.correct { color: #047857; background-color: #D1FAE5; }
+        .feedback.incorrect { color: #B91C1C; background-color: #FEF2F2; }
+
+        @media print {
+            body, .container { margin: 0 !important; padding: 1rem !important; width: 100%; box-shadow: none !important; border: none !important; }
+            .no-print { display: none !important; }
+            h1 { font-size: 24pt; text-align: left; }
+            .subtitle { font-size: 16pt; text-align: left; margin-bottom: 1rem;}
+            p { font-size: 12pt; line-height: 1.5; margin-bottom: 0.5rem; }
+            .card { padding: 1rem; margin-bottom: 1rem; border: 1px solid #ccc !important; background: #fff !important; page-break-inside: avoid; }
+            .feedback { display: none; }
+            input[type="text"] { border-bottom: 1px solid #333 !important; border-top: none; border-left: none; border-right: none; background: #fff; }
+            .quiz-option { border: 1px solid #ccc; padding: 0.5rem; }
+            .quiz-option input[type="radio"] { display: inline-block !important; }
+            .quiz-option.selected, .quiz-option.correct, .quiz-option.incorrect { background: #fff !important; border-color: #ccc !important; font-weight: normal; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="no-print mb-8 flex justify-between items-center">
+        <a href="alg1-unit1.html" class="button bg-gray-600 hover:bg-gray-800">&larr; Back to Notes</a>
+        <button class="button" onclick="window.print()">Print Quiz</button>
+    </div>
+    
+    <h1>Unit 1 Quiz</h1>
+    <p class="subtitle">Algebraic Expressions & Evaluation</p>
+    
+    <section id="quiz">
+        <div class="flex justify-between items-center bg-gray-100 p-4 rounded-lg mb-8 no-print">
+            <p class="text-lg font-semibold">Test your knowledge. You have 3 attempts.</p>
+            <div id="attempt-counter" class="text-lg font-bold px-4 py-2 bg-blue-200 text-blue-800 rounded-md">Attempt 1 of 3</div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="card quiz-question" data-correct-answer="C"><p class="font-semibold mb-4">1. Which expression represents "5 less than the product of 3 and a number x"?</p><label class="quiz-option"><input type="radio" name="q1" value="A" class="hidden"> A. $5 - 3x$</label><label class="quiz-option"><input type="radio" name="q1" value="B" class="hidden"> B. $3(x-5)$</label><label class="quiz-option"><input type="radio" name="q1" value="C" class="hidden"> C. $3x - 5$</label><div class="feedback"></div></div>
+            <div class="card quiz-question" data-correct-answer="A"><p class="font-semibold mb-4">2. Evaluate the expression $2a^2 - 4b$ when $a=3$ and $b=2$.</p><label class="quiz-option"><input type="radio" name="q2" value="A" class="hidden"> A. 10</label><label class="quiz-option"><input type="radio" name="q2" value="B" class="hidden"> B. 28</label><label class="quiz-option"><input type="radio" name="q2" value="C" class="hidden"> C. 2</label><div class="feedback"></div></div>
+            <div class="card quiz-question" data-correct-answer="B"><p class="font-semibold mb-4">3. What is the value of $|x - y| + \sqrt{z}$ when $x=5$, $y=10$, and $z=16$?</p><label class="quiz-option"><input type="radio" name="q3" value="A" class="hidden"> A. -1</label><label class="quiz-option"><input type="radio" name="q3" value="B" class="hidden"> B. 9</label><label class="quiz-option"><input type="radio" name="q3" value="C" class="hidden"> C. 19</label><div class="feedback"></div></div>
+            <div class="card quiz-question" data-correct-answer="x^10"><p class="font-semibold mb-4">4. Simplify the expression $x^4 \cdot x^6$.</p><input type="text" name="q4" placeholder="Enter simplified expression..." class="w-full p-2 border rounded"><div class="feedback"></div></div>
+            <div class="card quiz-question" data-correct-answer="y^4"><p class="font-semibold mb-4">5. Simplify the expression $\frac{y^8}{y^4}$.</p><input type="text" name="q5" placeholder="Enter simplified expression..." class="w-full p-2 border rounded"><div class="feedback"></div></div>
+            <div class="card quiz-question" data-correct-answer="C"><p class="font-semibold mb-4">6. Simplify the expression $(a^5)^3$.</p><label class="quiz-option"><input type="radio" name="q6" value="A" class="hidden"> A. $a^8$</label><label class="quiz-option"><input type="radio" name="q6" value="B" class="hidden"> B. $a^2$</label><label class="quiz-option"><input type="radio" name="q6" value="C" class="hidden"> C. $a^{15}$</label><div class="feedback"></div></div>
+            <div class="card quiz-question" data-correct-answer="8x^6"><p class="font-semibold mb-4">7. Simplify the expression $(2x^2)^3$.</p><input type="text" name="q7" placeholder="Enter simplified expression..." class="w-full p-2 border rounded"><div class="feedback"></div></div>
+            <div class="card quiz-question" data-correct-answer="B"><p class="font-semibold mb-4">8. Simplify the expression $5x + 3y + 2x - y$.</p><label class="quiz-option"><input type="radio" name="q8" value="A" class="hidden"> A. $7x + 3y$</label><label class="quiz-option"><input type="radio" name="q8" value="B" class="hidden"> B. $7x + 2y$</label><label class="quiz-option"><input type="radio" name="q8" value="C" class="hidden"> C. $9xy$</label><div class="feedback"></div></div>
+            <div class="card quiz-question" data-correct-answer="5x^2 + 2x"><p class="font-semibold mb-4">9. Simplify the expression $8x^2 - 3x^2 + 6x - 4x$.</p><input type="text" name="q9" placeholder="Enter simplified expression..." class="w-full p-2 border rounded"><div class="feedback"></div></div>
+            <div class="card quiz-question" data-correct-answer="A"><p class="font-semibold mb-4">10. A rectangle has a length of $3x+2$ and a width of 5. What is the expression for its perimeter?</p><label class="quiz-option"><input type="radio" name="q10" value="A" class="hidden"> A. $6x + 14$</label><label class="quiz-option"><input type="radio" name="q10" value="B" class="hidden"> B. $15x + 10$</label><label class="quiz-option"><input type="radio" name="q10" value="C" class="hidden"> C. $3x + 7$</label><div class="feedback"></div></div>
+        </div>
+        <div id="quiz-score-container" class="text-center mt-8 text-2xl font-bold hidden no-print"></div>
+        <div class="flex justify-center gap-6 mt-10 no-print">
+            <button id="check-answers-btn" class="button" onclick="checkQuizAnswers()">Check Answers</button>
+            <button id="retake-quiz-btn" class="button bg-gray-600 hover:bg-gray-800" onclick="resetQuiz()">Retake Quiz</button>
+        </div>
+    </section>
+</div>
+
+<footer class="bg-slate-100 text-slate-500 py-5 mt-16 border-t border-slate-200">
+    <div class="container mx-auto text-center">
+        <p class="text-sm">
+            &nbsp;&bull;&nbsp; &copy; 2025 Aly Hatfield. All Rights Reserved. &nbsp;&bull;&nbsp; 
+        </p>
+    </div>
+</footer>
+
+<script>
+    let attemptCount = localStorage.getItem('algebraQuizAttempts') ? parseInt(localStorage.getItem('algebraQuizAttempts')) : 0;
+    const maxAttempts = 3;
+    
+    document.addEventListener('DOMContentLoaded', () => {
+        updateAttemptCounter();
+        if (attemptCount >= maxAttempts) {
+            disableQuiz();
+        }
+    });
+
+    function updateAttemptCounter() {
+        const counter = document.getElementById('attempt-counter');
+        if (!counter) return;
+        counter.textContent = `Attempt ${Math.min(attemptCount + 1, maxAttempts)} of ${maxAttempts}`;
+    }
+
+    function disableQuiz() {
+        document.getElementById('check-answers-btn').disabled = true;
+        document.getElementById('check-answers-btn').classList.add('opacity-50', 'cursor-not-allowed');
+        document.getElementById('retake-quiz-btn').disabled = true;
+        document.getElementById('retake-quiz-btn').classList.add('opacity-50', 'cursor-not-allowed');
+        document.getElementById('attempt-counter').textContent = 'All attempts used.';
+        document.querySelectorAll('#quiz input').forEach(input => input.disabled = true);
+    }
+
+    function checkQuizAnswers() {
+        if (attemptCount >= maxAttempts) return;
+        attemptCount++;
+        localStorage.setItem('algebraQuizAttempts', attemptCount);
+        updateAttemptCounter();
+        let score = 0;
+        const questions = document.querySelectorAll('.quiz-question');
+        const totalQuestions = questions.length;
+        questions.forEach(q => {
+            const correctAnswer = q.dataset.correctAnswer;
+            const feedbackDiv = q.querySelector('.feedback');
+            feedbackDiv.innerHTML = '', feedbackDiv.className = 'feedback';
+            if (q.querySelector('input[type="radio"]')) {
+                const selected = q.querySelector('input[type="radio"]:checked');
+                if (selected) {
+                    if (selected.value.toLowerCase() === correctAnswer.toLowerCase()) {
+                        feedbackDiv.innerHTML = 'Correct!';
+                        feedbackDiv.classList.add('correct');
+                        selected.closest('.quiz-option').classList.add('correct');
+                        score++;
+                    } else {
+                        feedbackDiv.innerHTML = 'Incorrect. Review this topic in the notes.';
+                        feedbackDiv.classList.add('incorrect');
+                        selected.closest('.quiz-option').classList.add('incorrect');
+                    }
+                } else {
+                    feedbackDiv.innerHTML = 'Please select an answer.';
+                    feedbackDiv.classList.add('incorrect');
+                }
+            } else if (q.querySelector('input[type="text"]')) {
+                const input = q.querySelector('input[type="text"]');
+                if (input.value.trim().toLowerCase().replace(/\s/g, '') === correctAnswer.toLowerCase().replace(/\s/g, '')) {
+                    feedbackDiv.innerHTML = 'Correct!';
+                    feedbackDiv.classList.add('correct');
+                    score++;
+                } else {
+                    feedbackDiv.innerHTML = 'Incorrect. Review this topic in the notes.';
+                    feedbackDiv.classList.add('incorrect');
+                }
+            }
+        });
+        const scoreContainer = document.getElementById('quiz-score-container');
+        scoreContainer.innerHTML = `Your Score: ${score} / ${totalQuestions}`;
+        scoreContainer.classList.remove('hidden');
+        if ((score / totalQuestions) >= 0.8) {
+            scoreContainer.className = 'text-center mt-8 text-2xl font-bold text-green-600 no-print';
+        } else if ((score / totalQuestions) >= 0.6) {
+            scoreContainer.className = 'text-center mt-8 text-2xl font-bold text-yellow-600 no-print';
+        } else {
+            scoreContainer.className = 'text-center mt-8 text-2xl font-bold text-red-600 no-print';
+        }
+        if (attemptCount >= maxAttempts) {
+            disableQuiz();
+        }
+    }
+
+    function resetQuiz() {
+        if (attemptCount >= maxAttempts) {
+            alert("You cannot retake the quiz after using all attempts.");
+            return;
+        }
+        document.querySelectorAll('.quiz-question').forEach(q => {
+            q.querySelector('.feedback').innerHTML = '';
+            q.querySelectorAll('.quiz-option').forEach(opt => opt.className = 'quiz-option');
+            q.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
+            q.querySelectorAll('input[type="text"]').forEach(i => i.value = '');
+        });
+        document.getElementById('quiz-score-container').classList.add('hidden');
+        alert('Quiz has been reset. Checking answers again will use another attempt.');
+    }
+
+    document.querySelectorAll('.quiz-option').forEach(option => {
+        option.addEventListener('click', function() {
+            if (this.querySelector('input').disabled) return;
+            const name = this.querySelector('input').name;
+            document.querySelectorAll(`input[name="${name}"]`).forEach(r => r.closest('.quiz-option').classList.remove('selected'));
+            this.classList.add('selected');
+            this.querySelector('input').checked = true;
+        });
+    });
+</script>
+</body>
+</html>
