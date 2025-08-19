@@ -26,6 +26,8 @@
             border: 2px solid #cbd5e1;
             border-radius: 0.5rem;
             padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
         }
         .form-header {
             background-color: #e2e8f0;
@@ -36,17 +38,34 @@
             margin: -1.5rem -1.5rem 1.5rem -1.5rem;
             border-bottom: 2px solid #cbd5e1;
         }
-        .form-line {
-            border-bottom: 1px solid #94a3b8;
-            height: 1.5rem;
-            flex-grow: 1;
-            margin-left: 0.5rem;
-        }
         .label-line {
             display: flex;
             align-items: baseline;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            gap: 0.5rem;
         }
+        .interactive-input {
+            border: none;
+            border-bottom: 1px solid #94a3b8;
+            flex-grow: 1;
+            outline: none;
+            padding: 0.1rem 0.2rem;
+            background-color: transparent;
+            transition: border-color 0.3s;
+        }
+        .interactive-input:focus {
+            border-bottom: 2px solid #6366f1;
+        }
+        .interactive-textarea {
+            border: none;
+            outline: none;
+            flex-grow: 1;
+            resize: none;
+            background-color: transparent;
+            padding: 0.5rem;
+            margin: -0.5rem; /* Counteract padding */
+        }
+
         /* Styles for printing */
         @media print {
             body {
@@ -59,6 +78,20 @@
                 box-shadow: none;
                 margin: 0;
                 max-width: 100%;
+                border: 1px solid #ccc;
+            }
+            .interactive-input, .interactive-textarea {
+                border-bottom: 1px solid #94a3b8 !important;
+                color: black !important;
+                -webkit-print-color-adjust: exact; /* Ensures text color prints */
+            }
+            .interactive-textarea {
+                border: none !important;
+                overflow: visible; /* Show all content */
+                height: auto;
+            }
+            ::placeholder {
+                color: transparent !important;
             }
         }
     </style>
@@ -76,44 +109,47 @@
         <h1 class="text-4xl font-bold text-center mb-8">About Me</h1>
 
         <!-- Basic Info -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-            <div class="label-line md:col-span-1"><label>Name:</label><div class="form-line"></div></div>
-            <div class="label-line"><label>Age:</label><div class="form-line"></div></div>
-            <div class="label-line"><label>Birthday:</label><div class="form-line"></div></div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-2 mb-6">
+            <div class="label-line md:col-span-1"><label>Name:</label><input type="text" class="interactive-input"></div>
+            <div class="label-line"><label>Age:</label><input type="text" class="interactive-input"></div>
+            <div class="label-line"><label>Birthday:</label><input type="text" class="interactive-input"></div>
         </div>
-        <div class="label-line mb-8"><label>Where I'm from:</label><div class="form-line"></div></div>
+        <div class="label-line mb-8"><label>Where I'm from:</label><input type="text" class="interactive-input"></div>
 
         <!-- Main Grid -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <!-- Left Column -->
             <div class="space-y-6">
-                <div class="form-section h-64">
+                <div class="form-section min-h-[250px]">
                     <h3 class="form-header">My Hobbies</h3>
+                    <textarea class="interactive-textarea" placeholder="In my free time, I enjoy..."></textarea>
                 </div>
-                <div class="form-section h-64">
+                <div class="form-section min-h-[250px]">
                     <h3 class="form-header">Facts About Me</h3>
+                    <textarea class="interactive-textarea" placeholder="Some interesting things about me are..."></textarea>
                 </div>
             </div>
             <!-- Right Column -->
             <div class="form-section">
                 <h3 class="form-header">Things I Like</h3>
                 <div class="space-y-4 mt-2">
-                    <div class="label-line"><label>Color:</label><div class="form-line"></div></div>
-                    <div class="label-line"><label>Food:</label><div class="form-line"></div></div>
-                    <div class="label-line"><label>Pet:</label><div class="form-line"></div></div>
-                    <div class="label-line"><label>Music:</label><div class="form-line"></div></div>
-                    <div class="label-line"><label>Movies:</label><div class="form-line"></div></div>
-                    <div class="label-line"><label>Season:</label><div class="form-line"></div></div>
-                    <div class="label-line"><label>Place:</label><div class="form-line"></div></div>
-                    <div class="label-line"><label>Sports:</label><div class="form-line"></div></div>
-                    <div class="label-line"><label>Subject:</label><div class="form-line"></div></div>
+                    <div class="label-line"><label>Color:</label><input type="text" class="interactive-input"></div>
+                    <div class="label-line"><label>Food:</label><input type="text" class="interactive-input"></div>
+                    <div class="label-line"><label>Pet:</label><input type="text" class="interactive-input"></div>
+                    <div class="label-line"><label>Music:</label><input type="text" class="interactive-input"></div>
+                    <div class="label-line"><label>Movies:</label><input type="text" class="interactive-input"></div>
+                    <div class="label-line"><label>Season:</label><input type="text" class="interactive-input"></div>
+                    <div class="label-line"><label>Place:</label><input type="text" class="interactive-input"></div>
+                    <div class="label-line"><label>Sports:</label><input type="text" class="interactive-input"></div>
+                    <div class="label-line"><label>Subject:</label><input type="text" class="interactive-input"></div>
                 </div>
             </div>
         </div>
 
         <!-- Goals Section -->
-        <div class="form-section mt-6 h-48">
+        <div class="form-section mt-6 min-h-[200px]">
             <h3 class="form-header">My Career and Life Goals...</h3>
+            <textarea class="interactive-textarea" placeholder="In the future, I hope to..."></textarea>
         </div>
     </div>
     <script>
@@ -121,4 +157,3 @@
     </script>
 </body>
 </html>
-
