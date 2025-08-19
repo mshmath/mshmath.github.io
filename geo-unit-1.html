@@ -110,9 +110,6 @@
             .note-input { border: none !important; border-bottom: 1px solid #333 !important; border-radius: 0 !important; background: transparent !important; color: #fff !important; }
             .note-input::placeholder { color: transparent !important; }
             .key-term, .symbol { color: #000 !important; font-weight: bold; }
-            body.printing-notes #quiz-link, body.printing-quiz #notes { display: none; }
-            body.printing-quiz h1, body.printing-quiz .subtitle { display: none; }
-            body.printing-quiz #quiz-link h2 { page-break-before: auto; }
 
     </style>
 </head>
@@ -133,9 +130,9 @@
                     <a href="#quiz-link"><button class="button nav-button bg-purple-600 hover:bg-purple-800">Unit 1 Quiz</button></a>
                 </div>
                 <div class="flex flex-wrap justify-center gap-3 mt-6">
-                    <button class="button" onclick="printContent('notes')">Print Unit Notes/Examples</button>
-                    <a href="geo-unit1-words.html" target="_blank"><button class="button">Print Vocabulary Words</button></a>
-                    <a href="geo-unit1-organizer.html" target="_blank"><button class="button">Graphic Organizer</button></a>
+                    <button class="button" onclick="window.print()">Print Unit 1 Notes/Examples</button>
+                    <a href="alg1-unit1-words.html" target="_blank"><button class="button">View/Print Vocabulary Words</button></a>
+                    <a href="alg1-unit1-organizer.html" target="_blank"><button class="button">View/Print Graphic Organizer</button></a>
                 </div>
             </div>
             <div>
@@ -652,6 +649,7 @@
 </body>
 
 </html>
+
 
 
 
