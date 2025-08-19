@@ -89,7 +89,7 @@
         <!-- Header: Tabs -->
         <header class="flex justify-center items-center mb-4">
             <div class="flex space-x-2 bg-white/70 backdrop-blur-sm p-2 rounded-full shadow-md">
-                <button id="mon-tab" class="tab-button active px-4 py-2 rounded-full font-semibold text-gray-700">Monday</button>
+                <button id="mon-tab" class="tab-button px-4 py-2 rounded-full font-semibold text-gray-700">Monday</button>
                 <button id="tue-tab" class="tab-button px-4 py-2 rounded-full font-semibold text-gray-700">Tuesday</button>
                 <button id="wed-tab" class="tab-button px-4 py-2 rounded-full font-semibold text-gray-700">Wednesday</button>
                 <button id="thu-tab" class="tab-button px-4 py-2 rounded-full font-semibold text-gray-700">Thursday</button>
@@ -212,16 +212,29 @@
                 'thu-tab': 'text-purple-500'
             };
 
+            // ** NEW: This function now calculates the date based on the selected tab **
             function updateDayDisplay(tabId) {
+                const dayMap = { 'mon-tab': 1, 'tue-tab': 2, 'wed-tab': 3, 'thu-tab': 4 };
+                const targetDayIndex = dayMap[tabId];
+
                 const today = new Date();
-                const date = today.getDate();
-                const month = today.toLocaleDateString('en-US', { month: 'short' });
+                const currentDayIndex = today.getDay(); // Sunday is 0, Monday is 1...
+                
+                // Calculate the difference in days from today to the target day
+                const dayDifference = targetDayIndex - currentDayIndex;
+
+                // Create a new date object for the target day
+                const targetDate = new Date(today);
+                targetDate.setDate(today.getDate() + dayDifference);
+
+                // Format the date for display
+                const date = targetDate.getDate();
+                const month = targetDate.toLocaleDateString('en-US', { month: 'short' });
                 const dayName = dayHeadings[tabId];
                 
-                // Update text to new format: "Tues, Aug 19"
                 dayTitle.textContent = `${dayName}, ${month} ${date}`;
                 
-                // Update color
+                // Update the color based on the day
                 Object.values(dayColors).forEach(colorClass => {
                     dayTitle.classList.remove(colorClass);
                 });
@@ -236,8 +249,22 @@
                 });
             });
             
-            // Set initial state for Monday on page load
-            updateDayDisplay('mon-tab');
+            // ** NEW: Set initial state based on the current day **
+            function setInitialDay() {
+                const today = new Date();
+                const currentDayIndex = today.getDay(); // 0=Sun, 1=Mon, 2=Tue, etc.
+                const dayIdMap = { 1: 'mon-tab', 2: 'tue-tab', 3: 'wed-tab', 4: 'thu-tab' };
+                
+                // Default to Monday if it's Friday or the weekend
+                let initialTabId = dayIdMap[currentDayIndex] || 'mon-tab';
+
+                const activeTab = document.getElementById(initialTabId);
+                if (activeTab) {
+                    activeTab.click(); // Simulate a click to activate and update display
+                }
+            }
+            
+            setInitialDay();
 
             // --- To-Do List Functionality ---
             const initialTodos = [
@@ -260,6 +287,7 @@
                     todoList.appendChild(li);
 
                     li.addEventListener('click', (e) => {
+                        // Only toggle completion if not clicking on the editable text itself
                         if (e.target.getAttribute('contenteditable') !== 'true') {
                             li.classList.toggle('completed');
                         }
@@ -277,8 +305,9 @@
             const resetBtn = document.getElementById('reset-btn');
 
             let countdown;
-            let timerSeconds;
+            let timeRemaining; // Use a more descriptive name
             let isPaused = false;
+            let endTime;
 
             function displayTimeLeft(seconds) {
                 const minutes = Math.floor(seconds / 60);
@@ -288,62 +317,68 @@
                 document.title = display;
             }
 
-            function timer(seconds) {
-                clearInterval(countdown);
-                isPaused = false;
-                const now = Date.now();
-                const then = now + seconds * 1000;
-                displayTimeLeft(seconds);
+            function timer() {
+                if (isPaused) {
+                    isPaused = false;
+                    // Recalculate end time based on remaining time
+                    endTime = Date.now() + timeRemaining * 1000;
+                    pauseBtn.textContent = 'Pause';
+                } else {
+                    clearInterval(countdown);
+                    const minutes = parseInt(minutesInput.value) || 0;
+                    const seconds = parseInt(secondsInput.value) || 0;
+                    timeRemaining = (minutes * 60) + seconds;
+                    if (timeRemaining <= 0) return;
+                    endTime = Date.now() + timeRemaining * 1000;
+                }
 
                 countdown = setInterval(() => {
                     if (isPaused) return;
-                    const secondsLeft = Math.round((then - Date.now()) / 1000);
-                    if (secondsLeft < 0) {
+                    
+                    timeRemaining = Math.round((endTime - Date.now()) / 1000);
+
+                    if (timeRemaining < 0) {
                         clearInterval(countdown);
                         playAlarm();
+                        resetTimer();
                         return;
                     }
-                    timerSeconds = secondsLeft;
-                    displayTimeLeft(secondsLeft);
+                    displayTimeLeft(timeRemaining);
                 }, 1000);
             }
             
-            function startTimer() {
-                const minutes = parseInt(minutesInput.value) || 0;
-                const seconds = parseInt(secondsInput.value) || 0;
-                timerSeconds = (minutes * 60) + seconds;
-                if (timerSeconds > 0) {
-                    timer(timerSeconds);
-                }
-            }
-
             function pauseTimer() {
-                isPaused = !isPaused;
-                pauseBtn.textContent = isPaused ? 'Resume' : 'Pause';
+                if (countdown) { // Only allow pause if timer is running
+                    isPaused = !isPaused;
+                    pauseBtn.textContent = isPaused ? 'Resume' : 'Pause';
+                }
             }
 
             function resetTimer() {
                 clearInterval(countdown);
+                countdown = null;
                 isPaused = false;
                 pauseBtn.textContent = 'Pause';
-                const minutes = parseInt(minutesInput.value) || 0;
+                const minutes = parseInt(minutesInput.value) || 15;
                 const seconds = parseInt(secondsInput.value) || 0;
                 displayTimeLeft((minutes * 60) + seconds);
                 document.title = 'Classroom Screen';
             }
 
             function playAlarm() {
+                // Ensure audio context is started by user interaction
+                Tone.start();
                 const synth = new Tone.Synth().toDestination();
                 synth.triggerAttackRelease("C5", "8n", Tone.now());
                 synth.triggerAttackRelease("G5", "8n", Tone.now() + 0.2);
                 synth.triggerAttackRelease("C6", "8n", Tone.now() + 0.4);
             }
 
-            startBtn.addEventListener('click', startTimer);
+            startBtn.addEventListener('click', timer);
             pauseBtn.addEventListener('click', pauseTimer);
             resetBtn.addEventListener('click', resetTimer);
             
-            resetTimer();
+            resetTimer(); // Initialize display on load
         });
     </script>
 </body>
