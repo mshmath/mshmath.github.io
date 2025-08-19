@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algebra 1 SOL Formula Sheet</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- KaTeX for rendering math formulas -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" xintegrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" xintegrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" xintegrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .formula-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .formula {
+            font-size: 1.25rem; /* Larger font for formulas */
+        }
+        @media print {
+            body {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .no-print {
+                display: none;
+            }
+            .printable-content {
+                box-shadow: none;
+                border: none;
+                padding: 0;
+                margin: 0;
+            }
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <div class="container mx-auto p-4 sm:p-8">
+        <!-- Header -->
+        <header class="bg-white rounded-xl shadow-md p-6 mb-8 border border-gray-200 no-print">
+            <div class="flex justify-between items-center">
+                <div>
+                    <h1 class="text-3xl font-bold text-gray-800">Algebra 1 Formula Sheet</h1>
+                    <p class="text-md text-gray-500 mt-1">2023 Mathematics Standards of Learning</p>
+                </div>
+                <button onclick="window.print()" class="flex items-center bg-indigo-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors shadow-sm">
+                    <i data-lucide="printer" class="w-5 h-5 mr-2"></i>
+                    Print Formula Sheet
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main id="formula-sheet-content" class="printable-content bg-white rounded-xl shadow-md p-8 border border-gray-200">
+            
+            <!-- Geometric Formulas Section -->
+            <section class="mb-10">
+                <h2 class="text-2xl font-bold text-gray-800 border-b-2 border-gray-200 pb-3 mb-6">Geometric Formulas</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+                    
+                    <!-- Rectangle -->
+                    <div class="formula-card p-4 border rounded-lg bg-gray-50">
+                        <svg class="w-48 h-24 mb-4" viewBox="0 0 130 75" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="5" y="5" width="110" height="50" stroke="black" stroke-width="2" fill="none"/>
+                            <text x="60" y="70" font-family="Inter, sans-serif" font-size="14" text-anchor="middle">l</text>
+                            <text x="125" y="30" font-family="Inter, sans-serif" font-size="14" text-anchor="middle" dominant-baseline="middle">w</text>
+                        </svg>
+                        <div class="formula">$$ p = 2l + 2w $$</div>
+                        <div class="formula">$$ A = lw $$</div>
+                    </div>
+
+                    <!-- Square -->
+                    <div class="formula-card p-4 border rounded-lg bg-gray-50">
+                         <svg class="w-48 h-24 mb-4" viewBox="0 0 120 75" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="35" y="5" width="50" height="50" stroke="black" stroke-width="2" fill="none"/>
+                             <text x="60" y="70" font-family="Inter, sans-serif" font-size="14" text-anchor="middle">s</text>
+                        </svg>
+                        <div class="formula">$$ p = 4s $$</div>
+                        <div class="formula">$$ A = s^2 $$</div>
+                    </div>
+
+                    <!-- Triangle -->
+                    <div class="formula-card p-4 border rounded-lg bg-gray-50">
+                        <svg class="w-48 h-24 mb-4" viewBox="0 0 120 75" xmlns="http://www.w3.org/2000/svg">
+                            <polygon points="10,55 110,55 60,5" stroke="black" stroke-width="2" fill="none"/>
+                            <line x1="60" y1="5" x2="60" y2="55" stroke="black" stroke-width="1" stroke-dasharray="3,3"/>
+                            <text x="65" y="35" font-family="Inter, sans-serif" font-size="14">h</text>
+                            <text x="60" y="70" font-family="Inter, sans-serif" font-size="14" text-anchor="middle">b</text>
+                        </svg>
+                        <div class="formula">$$ A = \frac{1}{2}bh $$</div>
+                    </div>
+                     <!-- Right Triangle -->
+                    <div class="formula-card p-4 border rounded-lg bg-gray-50 col-span-1 sm:col-span-2 md:col-span-3 mx-auto">
+                        <svg class="w-48 h-32 mb-4" viewBox="0 0 120 95" xmlns="http://www.w3.org/2000/svg">
+                            <polygon points="15,10 15,75 105,75" stroke="black" stroke-width="2" fill="none"/>
+                            <rect x="15" y="65" width="10" height="10" stroke="black" stroke-width="1" fill="none"/>
+                            <text x="2" y="42.5" font-family="Inter, sans-serif" font-size="14" text-anchor="middle" dominant-baseline="middle">a</text>
+                            <text x="60" y="90" font-family="Inter, sans-serif" font-size="14" text-anchor="middle">b</text>
+                            <text x="68" y="38" font-family="Inter, sans-serif" font-size="14" text-anchor="middle">c</text>
+                        </svg>
+                        <div class="formula">$$ a^2 + b^2 = c^2 $$</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quadratic Formula Section -->
+            <section>
+                <h2 class="text-2xl font-bold text-gray-800 border-b-2 border-gray-200 pb-3 mb-6">Quadratic Formula</h2>
+                <div class="bg-gray-50 p-6 rounded-lg text-center">
+                    <div class="formula text-2xl">$$ x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} $$</div>
+                    <p class="mt-4 text-gray-600">where $$ ax^2 + bx + c = 0 $$ and $$ a \neq 0 $$</p>
+                </div>
+            </section>
+        </main>
+
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        // Render mathematical formulas using KaTeX
+        document.addEventListener("DOMContentLoaded", function() {
+            // Check if renderMathInElement exists before calling it
+            if (typeof renderMathInElement === 'function') {
+                renderMathInElement(document.body, {
+                    delimiters: [
+                        {left: "$$", right: "$$", display: true},
+                        {left: "$", right: "$", display: false}
+                    ]
+                });
+            }
+        });
+    </script>
+</body>
+</html>
