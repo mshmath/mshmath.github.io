@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Word Wall</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-color: #334155;
+            --heading-color: #0f172a;
+            --primary-color: #4f46e5;
+            --border-color: #e2e8f0;
+            --shadow-color: rgba(149, 157, 165, 0.1);
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+        .word-card {
+            break-inside: avoid;
+            page-break-after: always;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            gap: 1.5rem;
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out;
+        }
+        .accordion-content.open {
+            max-height: 20000px; /* Arbitrarily large value */
+        }
+        .chevron {
+            transition: transform 0.3s ease-in-out;
+        }
+        .chevron.rotate-180 {
+            transform: rotate(180deg);
+        }
+        @media print {
+            header, nav { display: none; }
+            .subject-content, .accordion-content {
+                display: block !important;
+                max-height: none !important;
+            }
+            .word-card {
+                height: 95vh;
+                padding: 2rem;
+                box-shadow: none;
+                border: 2px solid #e5e7eb;
+            }
+            body {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+        .word-card:last-child {
+            page-break-after: auto;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="container mx-auto p-4 sm:p-8">
+        
+        <header class="text-center mb-8">
+            <h1 class="text-4xl md:text-5xl font-bold text-slate-900">Math Word Wall</h1>
+            <p class="text-lg text-slate-600 mt-2">Algebra 1 & Geometry Resources</p>
+            <button onclick="window.print()" class="mt-6 inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-transform transform hover:scale-105">
+                <svg class="w-5 h-5 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6.72 13.829c-.24.03-.48.062-.72.096m.72-.096a42.415 42.415 0 0110.56 0m-10.56 0L6.34 18m10.94-4.171c.24.03.48.062-.72.096m-.72-.096L17.66 18m0 0l.229 2.523a1.125 1.125 0 01-1.12 1.227H7.231c-.662 0-1.18-.568-1.12-1.227L6.34 18m11.32 0c.045-.247.082-.496.111-.746A48.97 48.97 0 0012 5.25c-2.31 0-4.545.352-6.658.993m13.316 0A48.97 48.97 0 0012 5.25c-2.31 0-4.545.352-6.658.993m13.316 0c.045-.247.082-.496.111-.746" /></svg>
+                Print Word Wall
+            </button>
+        </header>
+
+        <nav class="flex justify-center mb-8 bg-white p-2 rounded-lg shadow-md">
+            <button id="alg1-btn" class="subject-btn bg-indigo-600 text-white px-6 py-3 font-semibold rounded-md focus:outline-none">Algebra 1</button>
+            <button id="geo-btn" class="subject-btn text-gray-600 px-6 py-3 font-semibold rounded-md focus:outline-none">Geometry</button>
+<button id="geo-btn" class="subject-btn text-gray-600 px-6 py-3 font-semibold rounded-md focus:outline-none">Algebra II</button>
+        </nav>
+
+        <main>
+            <div id="alg1-content" class="subject-content">
+                <div class="accordion-item bg-white rounded-lg shadow-md mb-6">
+                    <button class="accordion-header w-full flex justify-between items-center p-5 text-left font-semibold text-xl text-slate-800">
+                        <span>Unit 1: Expressions and Operations</span>
+                        <svg class="chevron w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="p-5 border-t border-gray-200 space-y-8" id="alg1-cards"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="geo-content" class="subject-content hidden">
+                 <div class="accordion-item bg-white rounded-lg shadow-md mb-6">
+                    <button class="accordion-header w-full flex justify-between items-center p-5 text-left font-semibold text-xl text-slate-800">
+                        <span>Unit 1: Basics of Geometry</span>
+                        <svg class="chevron w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="p-5 border-t border-gray-200 space-y-8" id="geo-cards"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const wordWallData = {
+            alg1: {
+                containerId: 'alg1-cards',
+                cards: [
+                    { title: 'Real Numbers', definition: 'The set of all rational and irrational numbers.', content: `<svg viewBox="0 0 400 250" class="max-w-md w-full rounded-lg shadow-md h-auto mb-4"><rect width="400" height="250" fill="#4A5568"/><rect x="270" y="10" width="120" height="230" fill="#2D3748" /><text x="330" y="40" font-size="16" fill="white" text-anchor="middle" font-weight="bold">Irrational</text><text x="330" y="60" font-size="16" fill="white" text-anchor="middle" font-weight="bold">Numbers</text><circle cx="135" cy="125" r="110" fill="#7F9CF5" stroke="white" stroke-width="2"/><text x="135" y="40" font-size="16" fill="white" text-anchor="middle" font-weight="bold"><tspan x="135" dy="-0.6em">Rational</tspan><tspan x="135" dy="1.2em">Numbers</tspan></text><circle cx="135" cy="125" r="85" fill="#667EEA" stroke="white" stroke-width="2"/><text x="135" y="85" font-size="16" fill="white" text-anchor="middle" font-weight="bold">Integers</text><circle cx="135" cy="125" r="60" fill="#5A67D8" stroke="white" stroke-width="2"/><text x="135" y="105" font-size="16" fill="white" text-anchor="middle" font-weight="bold"><tspan x="135" dy="-0.6em">Whole</tspan><tspan x="135" dy="1.2em">Numbers</tspan></text><circle cx="135" cy="125" r="35" fill="#4C51BF" stroke="white" stroke-width="2"/><text x="135" y="130" font-size="14" fill="white" text-anchor="middle" font-weight="bold">Natural</text></svg><ul class="text-left space-y-1 text-base md:text-lg"><li><b>Natural Numbers:</b> \\(\\{1, 2, 3, 4, ...\\}\\)</li><li><b>Whole Numbers:</b> \\(\\{0, 1, 2, 3, 4, ...\\}\\)</li><li><b>Integers:</b> \\(\\{..., -3, -2, -1, 0, 1, 2, 3, ...\\}\\)</li><li><b>Rational Numbers:</b> \\(2\\frac{3}{5}, -5, 0.3, \\sqrt{16}, \\frac{13}{7}\\)</li><li><b>Irrational Numbers:</b> \\(\\sqrt{7}, \\pi, -0.23223...\\)</li></ul>` },
+                    { title: 'Absolute Value', definition: 'The distance between a number and zero on a number line.', content: `<div class="text-2xl font-mono space-x-8"><span>\\(|5| = 5\\)</span><span>\\(|-5| = 5\\)</span></div><svg viewBox="0 0 500 100" class="max-w-lg w-full h-28"><line x1="10" y1="50" x2="490" y2="50" stroke="black" stroke-width="2" marker-start="url(#arrow-black-abs)" marker-end="url(#arrow-black-abs)"/><g stroke="black" stroke-width="1.5"><line x1="50" y1="45" x2="50" y2="55"/><line x1="90" y1="45" x2="90" y2="55"/><line x1="130" y1="45" x2="130" y2="55"/><line x1="170" y1="45" x2="170" y2="55"/><line x1="210" y1="45" x2="210" y2="55"/><line x1="250" y1="40" x2="250" y2="60"/><line x1="290" y1="45" x2="290" y2="55"/><line x1="330" y1="45" x2="330" y2="55"/><line x1="370" y1="45" x2="370" y2="55"/><line x1="410" y1="45" x2="410" y2="55"/><line x1="450" y1="45" x2="450" y2="55"/></g><g font-size="14" text-anchor="middle"><text x="50" y="75">-5</text><text x="90" y="75">-4</text><text x="130" y="75">-3</text><text x="170" y="75">-2</text><text x="210" y="75">-1</text><text x="250" y="80">0</text><text x="290" y="75">1</text><text x="330" y="75">2</text><text x="370" y="75">3</text><text x="410" y="75">4</text><text x="450" y="75">5</text></g><circle cx="50" cy="50" r="5" fill="black"/><circle cx="450" cy="50" r="5" fill="black"/><path d="M 50 25 L 250 25" stroke="red" stroke-width="2" marker-end="url(#arrow-red)" marker-start="url(#arrow-red)"/><path d="M 250 25 L 450 25" stroke="red" stroke-width="2" marker-end="url(#arrow-red)" marker-start="url(#arrow-red)"/><text x="150" y="20" fill="red" font-weight="bold" text-anchor="middle">5 units</text><text x="350" y="20" fill="red" font-weight="bold" text-anchor="middle">5 units</text><defs><marker id="arrow-red" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="red"/></marker><marker id="arrow-black-abs" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="black"/></marker></defs></svg><p class="text-base text-gray-600">The absolute value of a number is always non-negative.</p>` },
+                    { title: 'Order of Operations', definition: 'A set of rules that determines the sequence for simplifying mathematical expressions.', content: `<ol class="text-xl md:text-2xl text-left space-y-4"><li><b>Grouping Symbols:</b> ( ), [ ], { }, | |, \\(\\sqrt{}\\)</li><li><b>Exponents:</b> \\(a^n\\)</li><li><b>Multiplication and Division</b> (from left to right)</li><li><b>Addition and Subtraction</b> (from left to right)</li></ol><p class="text-base md:text-lg bg-indigo-50 p-4 rounded-lg">A common acronym is <b>PEMDAS</b> (Parentheses, Exponents, Multiplication/Division, Addition/Subtraction).</p>`},
+                    { title: 'Expression', definition: 'A representation of a quantity that may contain numbers, variables, and operation symbols.', content: `<div class="grid grid-cols-2 gap-4 text-xl md:text-2xl font-mono bg-gray-100 p-6 rounded-lg"><span>\\(x\\)</span><span>\\(-\\sqrt{26}\\)</span><span>\\(3^4 + 2m\\)</span><span>\\(ax^2 + bx + c\\)</span><span class="col-span-2">\\(3(y + 3.9)^2 - \\frac{8}{9}\\)</span></div><p class="text-base md:text-lg text-gray-600">An expression does <b>not</b> contain an equal sign.</p>`},
+                    { title: 'Variable', definition: 'A symbol, usually a letter, used to represent an unknown number or quantity.', content: `<div class="text-xl md:text-2xl font-mono space-y-3 text-left"><p>\\(2(\\textcolor{red}{y} + \\sqrt{3})\\)</p><p>\\(9 + \\textcolor{red}{x} = 2.08\\)</p><p>\\(\\textcolor{red}{d} = 7\\textcolor{red}{c} - 5\\)</p><p>\\(A = \\pi \\textcolor{red}{r}^2\\)</p></div>`},
+                    { title: 'Coefficient', definition: 'The numerical factor of a term. It is the number being multiplied by a variable.', content: `<div class="text-2xl md:text-3xl font-mono space-y-3 text-left"><p>\\(-4 + \\textcolor{blue}{2}x\\)</p><p>\\(\\textcolor{blue}{-7}y\\sqrt{5}\\)</p><p>\\(\\textcolor{blue}{\\frac{2}{3}}ab - \\frac{1}{2}\\)</p><p>\\(\\textcolor{blue}{\\pi}r^2\\)</p></div>`},
+                    { title: 'Term', definition: 'A number, a variable, or the product of a number and one or more variables.', content: `<div class="space-y-6 text-xl md:text-2xl"><p>\\(\\underbrace{3x}_{1} + \\underbrace{2y}_{2} - \\underbrace{8}_{3} \\rightarrow\\) <b>3 terms</b></p><p>\\(\\underbrace{-5x^2}_{1} - \\underbrace{x}_{2} \\rightarrow\\) <b>2 terms</b></p><p>\\(\\underbrace{\\frac{2}{3}ab}_{1} \\rightarrow\\) <b>1 term</b></p></div><p class="text-base md:text-lg text-gray-600">Terms are separated by addition or subtraction signs.</p>`},
+                    { title: 'Scientific Notation', definition: 'A way of expressing very large or very small numbers.', content: `<p class="text-2xl md:text-3xl font-mono bg-indigo-50 p-4 rounded-lg">\\(a \\times 10^n\\)</p><p class="text-base md:text-lg text-gray-600">where \\(1 \\le |a| < 10\\) and <i>n</i> is an integer.</p><table class="w-full max-w-2xl text-base md:text-lg border-collapse"><thead><tr class="bg-gray-100"><th class="p-3 border">Standard Notation</th><th class="p-3 border">Scientific Notation</th></tr></thead><tbody class="font-mono"><tr><td class="p-2 border">17,500,000</td><td class="p-2 border">\\(1.75 \\times 10^7\\)</td></tr><tr><td class="p-2 border">-84,623</td><td class="p-2 border">\\(-8.4623 \\times 10^4\\)</td></tr><tr><td class="p-2 border">0.0000026</td><td class="p-2 border">\\(2.6 \\times 10^{-6}\\)</td></tr><tr><td class="p-2 border">-0.080029</td><td class="p-2 border">\\(-8.0029 \\times 10^{-2}\\)</td></tr></tbody></table>`},
+                    { title: 'Exponential Form', definition: 'A way of representing repeated multiplication of the same factor.', content: `<p class="text-3xl md:text-5xl font-mono"><span class="text-gray-500">base</span> \\(\\rightarrow a^n \\leftarrow\\) <span class="text-gray-500">exponent</span></p><div class="text-xl md:text-2xl font-mono space-y-3 bg-gray-50 p-6 rounded-lg">\\(2 \\cdot 2 \\cdot 2 = 2^3 = 8\\)<br>\\(n \\cdot n \\cdot n \\cdot n = n^4\\)<br>\\(3 \\cdot 3 \\cdot 3 \\cdot x \\cdot x = 3^3x^2 = 27x^2\\)</div>`},
+                    { title: 'Negative Exponent', definition: 'Indicates the reciprocal of the base raised to the positive power.', content: `<p class="text-3xl md:text-4xl font-mono bg-indigo-50 p-4 rounded-lg">\\(a^{-n} = \\frac{1}{a^n}, \\quad a \\neq 0\\)</p><div class="text-xl md:text-2xl font-mono space-y-4 text-left">\\(4^{-2} = \\frac{1}{4^2} = \\frac{1}{16}\\)<br>\\(\\frac{x^4}{y^{-2}} = x^4y^2\\)<br>\\((2-a)^{-2} = \\frac{1}{(2-a)^2}, \\quad a \\neq 2\\)</div>`},
+                    { title: 'Zero Exponent', definition: 'Any non-zero number raised to the power of zero is equal to 1.', content: `<p class="text-3xl md:text-4xl font-mono bg-indigo-50 p-4 rounded-lg">\\(a^0 = 1, \\quad a \\neq 0\\)</p><div class="text-xl md:text-2xl font-mono space-y-3 bg-gray-50 p-6 rounded-lg">\\((-5)^0 = 1\\)<br>\\((3x+2)^0 = 1\\)<br>\\(4m^0 = 4 \\cdot 1 = 4\\)<br>\\((\\frac{2}{3})^0 = 1\\)</div>`},
+                    { title: 'Product of Powers', definition: 'To multiply powers with the same base, add their exponents.', content: `<p class="text-3xl md:text-4xl font-mono bg-indigo-50 p-4 rounded-lg">\\(a^m \\cdot a^n = a^{m+n}\\)</p><div class="text-xl md:text-2xl font-mono space-y-3 text-left">\\(x^4 \\cdot x^2 = x^{4+2} = x^6\\)<br>\\(a^3 \\cdot a = a^{3+1} = a^4\\)<br>\\(w^7 \\cdot w^{-4} = w^{7+(-4)} = w^3\\)</div>`},
+                    { title: 'Power of a Power', definition: 'To find a power of a power, multiply the exponents.', content: `<p class="text-3xl md:text-4xl font-mono bg-indigo-50 p-4 rounded-lg">\\((a^m)^n = a^{m \\cdot n}\\)</p><div class="text-xl md:text-2xl font-mono space-y-3 text-left">\\((y^4)^2 = y^{4 \\cdot 2} = y^8\\)<br>\\((g^2)^{-3} = g^{2 \\cdot (-3)} = g^{-6} = \\frac{1}{g^6}\\)</div>`},
+                    { title: 'Power of a Product', definition: 'Find the power of each factor, then multiply.', content: `<p class="text-3xl md:text-4xl font-mono bg-indigo-50 p-4 rounded-lg">\\((ab)^m = a^m b^m\\)</p><div class="text-xl md:text-2xl font-mono space-y-3 text-left">\\((-3a^4b)^2 = (-3)^2 \\cdot (a^4)^2 \\cdot b^2 = 9a^8b^2\\)<br>\\(\\frac{-1}{(2x)^3} = \\frac{-1}{2^3 \\cdot x^3} = \\frac{-1}{8x^3}\\)</div>`},
+                    { title: 'Quotient of Powers', definition: 'To divide powers with the same base, subtract the exponents.', content: `<p class="text-3xl md:text-4xl font-mono bg-indigo-50 p-4 rounded-lg">\\(\\frac{a^m}{a^n} = a^{m-n}, \\quad a \\neq 0\\)</p><div class="text-xl md:text-2xl font-mono space-y-3 text-left">\\(\\frac{x^6}{x^5} = x^{6-5} = x^1 = x\\)<br>\\(\\frac{y^{-3}}{y^{-5}} = y^{-3 - (-5)} = y^2\\)<br>\\(\\frac{a^4}{a^4} = a^{4-4} = a^0 = 1\\)</div>`},
+                    { title: 'Power of a Quotient', definition: 'Find the power of the numerator and the denominator, then divide.', content: `<p class="text-3xl md:text-4xl font-mono bg-indigo-50 p-4 rounded-lg">\\((\\frac{a}{b})^m = \\frac{a^m}{b^m}, \\quad b \\neq 0\\)</p><div class="text-xl md:text-2xl font-mono space-y-4 text-left">\\((\\frac{y}{3})^4 = \\frac{y^4}{3^4} = \\frac{y^4}{81}\\)<br>\\((\\frac{5}{t})^{-3} = \\frac{5^{-3}}{t^{-3}} = \\frac{t^3}{5^3} = \\frac{t^3}{125}\\)</div>`},
+                ]
+            },
+            geo: {
+                containerId: 'geo-cards',
+                cards: [
+                    { title: 'Point, Line, and Plane', definition: 'The undefined terms that form the foundation of geometry.', content: `<div class="grid md:grid-cols-3 gap-8 text-lg w-full max-w-6xl"><div class="text-center p-4 rounded-lg bg-slate-50"><b>Point:</b> A location with no dimension.</div><div class="text-center p-4 rounded-lg bg-slate-50"><b>Line:</b> An infinitely long one-dimensional path.</div><div class="text-center p-4 rounded-lg bg-slate-50"><b>Plane:</b> An infinitely large two-dimensional surface.</div></div><svg viewBox="0 0 500 180" class="max-w-2xl w-full h-48"><circle cx="50" cy="80" r="4" fill="black"/><text x="60" y="85" font-size="16">P</text><text x="50" y="110" font-size="14" text-anchor="middle">Point P</text><line x1="150" y1="80" x2="350" y2="80" stroke="black" stroke-width="2" marker-start="url(#arrow-black)" marker-end="url(#arrow-black)"/><circle cx="200" cy="80" r="3" fill="black"/><text x="195" y="70" font-size="16">A</text><circle cx="300" cy="80" r="3" fill="black"/><text x="295" y="70" font-size="16">B</text><text x="250" y="110" text-anchor="middle" font-size="14">Line \\(\\overleftrightarrow{AB}\\)</text><polygon points="380,30 480,10 500,130 400,150" fill="rgba(173, 216, 230, 0.5)" stroke="black" stroke-width="2" /><text x="460" y="40" font-size="18" font-style="italic">N</text><circle cx="410" cy="60" r="3"/><text x="400" y="55">A</text><circle cx="420" cy="120" r="3"/><text x="410" y="135">B</text><circle cx="460" cy="100" r="3"/><text x="470" y="100">C</text><text x="440" y="170" text-anchor="middle" font-size="14">Plane N</text><defs><marker id="arrow-black" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="black"/></marker></defs></svg>` },
+                    { title: 'Line Segment & Ray', definition: 'Defined parts of a line with specific endpoints.', content: `<div class="grid md:grid-cols-2 gap-8 text-lg w-full max-w-3xl"><div class="text-center p-4 rounded-lg bg-slate-50"><b>Line Segment:</b> A part of a line with two endpoints.</div><div class="text-center p-4 rounded-lg bg-slate-50"><b>Ray:</b> A part of a line with one endpoint that extends infinitely.</div></div><svg viewBox="0 0 400 150" class="max-w-md w-full h-40"><line x1="50" y1="50" x2="150" y2="50" stroke="black" stroke-width="2"/><circle cx="50" cy="50" r="4" fill="black"/><text x="45" y="40">A</text><circle cx="150" cy="50" r="4" fill="black"/><text x="155" y="40">B</text><text x="100" y="75" text-anchor="middle">Segment \\(\\overline{AB}\\)</text><line x1="250" y1="100" x2="350" y2="100" stroke="green" stroke-width="2" marker-end="url(#arrow-green)"/><circle cx="250" cy="100" r="4" fill="green"/><text x="245" y="90">B</text><circle cx="320" cy="100" r="4" fill="green"/><text x="325" y="90">C</text><text x="300" y="125" text-anchor="middle">Ray \\(\\overrightarrow{BC}\\)</text><defs><marker id="arrow-green" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="green"/></marker></defs></svg><p class="text-base text-gray-600">Note for rays: Name the endpoint first. \\(\\overrightarrow{BC}\\) and \\(\\overrightarrow{CB}\\) are different rays.</p>` },
+                    { title: 'Geometry Notation', definition: 'Symbols used to represent statements or operations in geometry.', content: `<div class="w-full max-w-4xl p-4"><table class="w-full text-2xl"><thead><tr class="border-b-2 border-slate-400"><th class="text-left py-3">Symbol</th><th class="text-left py-3">Meaning</th></tr></thead><tbody class="divide-y divide-slate-200"><tr class="bg-white"><td class="py-2 font-mono">\\(\\overline{BC}\\)</td><td>segment BC</td></tr><tr class="bg-slate-50"><td class="py-2 font-mono">\\(\\vec{BC}\\)</td><td>ray BC</td></tr><tr class="bg-white"><td class="py-2 font-mono">\\(\\overleftrightarrow{BC}\\)</td><td>line BC</td></tr><tr class="bg-slate-50"><td class="py-2 font-mono">\\(BC\\)</td><td>length of BC</td></tr><tr class="bg-white"><td class="py-2 font-mono">\\(\\angle ABC\\)</td><td>angle ABC</td></tr><tr class="bg-slate-50"><td class="py-2 font-mono">\\(m\\angle ABC\\)</td><td>measure of angle ABC</td></tr><tr class="bg-white"><td class="py-2 font-mono">\\(\\triangle ABC\\)</td><td>triangle ABC</td></tr><tr class="bg-slate-50"><td class="py-2 font-mono">\\(\\|\\|\\)</td><td>is parallel to</td></tr><tr class="bg-white"><td class="py-2 font-mono">\\(\\perp\\)</td><td>is perpendicular to</td></tr><tr class="bg-slate-50"><td class="py-2 font-mono">\\(\\cong\\)</td><td>is congruent to</td></tr><tr class="bg-white"><td class="py-2 font-mono">\\(\\sim\\)</td><td>is similar to</td></tr></tbody></table></div>` },
+                    { title: 'Logic & Set Notation', definition: 'Symbols used in logical reasoning and to represent sets of objects.', content: `<div class="w-full h-full p-4 grid grid-cols-1 md:grid-cols-2 gap-8"><div class="bg-blue-50 p-6 rounded-lg border border-blue-200"><h3 class="font-bold text-3xl mb-4 text-blue-900">Logic Notation</h3><table class="w-full text-2xl"><tbody><tr><td class="py-2 font-mono text-4xl">\\(\\lor\\)</td><td>or</td></tr><tr><td class="py-2 font-mono text-4xl">\\(\\land\\)</td><td>and</td></tr><tr><td class="py-2 font-mono text-4xl">\\(\\rightarrow\\)</td><td>implies (if...then)</td></tr><tr><td class="py-2 font-mono text-4xl">\\(\\sim\\)</td><td>not</td></tr><tr><td class="py-2 font-mono text-4xl">\\(\\therefore\\)</td><td>therefore</td></tr></tbody></table></div><div class="bg-green-50 p-6 rounded-lg border border-green-200"><h3 class="font-bold text-3xl mb-4 text-green-900">Set Notation</h3><table class="w-full text-2xl"><tbody><tr><td class="py-2 font-mono text-4xl">\\(\\{\\}\\) or \\(\\emptyset\\)</td><td>empty set</td></tr><tr><td class="py-2 font-mono text-4xl">\\(|\\) or \\(:\\)</td><td>such that</td></tr><tr><td class="py-2 font-mono text-4xl">\\(\\cup\\)</td><td>union (or)</td></tr><tr><td class="py-2 font-mono text-4xl">\\(\\cap\\)</td><td>intersection (and)</td></tr></tbody></table></div></div>`},
+                    { title: 'Conditional Statement', definition: 'A logical argument consisting of a hypothesis (p) and a conclusion (q).', content: `<div class="w-full h-full p-8 text-center"><p class="text-3xl">If <span class="text-blue-600 font-semibold">an angle is a right angle</span>, then <span class="text-red-600 font-semibold">its measure is 90°</span>.</p><div class="mt-8"><span class="text-blue-600 font-semibold text-2xl">Hypothesis (p)</span><span class="text-red-600 font-semibold text-2xl ml-8">Conclusion (q)</span></div><p class="text-6xl font-mono mt-8">p \\(\\rightarrow\\) q</p></div>`},
+                    { title: 'Converse', definition: 'Formed by interchanging the hypothesis and conclusion of a conditional statement.', content: `<div class="w-full h-full p-8 text-center"><p class="text-3xl">If <span class="text-red-600 font-semibold">an angle measures 90°</span>, then <span class="text-blue-600 font-semibold">it is a right angle</span>.</p><div class="mt-8"><span class="text-red-600 font-semibold text-2xl">Conclusion (q)</span><span class="text-blue-600 font-semibold text-2xl ml-8">Hypothesis (p)</span></div><p class="text-6xl font-mono mt-8">q \\(\\rightarrow\\) p</p></div>`},
+                    { title: 'Inverse', definition: 'Formed by negating the hypothesis and conclusion of a conditional statement.', content: `<div class="w-full h-full p-8 text-center"><p class="text-3xl">If <span class="text-blue-600 font-semibold">an angle is NOT a right angle</span>, then <span class="text-red-600 font-semibold">its measure is NOT 90°</span>.</p><div class="mt-8"><span class="text-blue-600 font-semibold text-2xl">Not p (\\(\\sim p\\))</span><span class="text-red-600 font-semibold text-2xl ml-8">Not q (\\(\\sim q\\))</span></div><p class="text-6xl font-mono mt-8">\\(\\sim p \\rightarrow \\sim q\\)</p></div>`},
+                    { title: 'Contrapositive', definition: 'Formed by interchanging and negating the hypothesis and conclusion.', content: `<div class="w-full h-full p-8 text-center"><p class="text-3xl">If <span class="text-red-600 font-semibold">an angle does NOT measure 90°</span>, then <span class="text-blue-600 font-semibold">it is NOT a right angle</span>.</p><div class="mt-8"><span class="text-red-600 font-semibold text-2xl">Not q (\\(\\sim q\\))</span><span class="text-blue-600 font-semibold text-2xl ml-8">Not p (\\(\\sim p\\))</span></div><p class="text-6xl font-mono mt-8">\\(\\sim q \\rightarrow \\sim p\\)</p></div>`},
+                    { title: 'Logical Arguments Summary', definition: 'A conditional statement and its contrapositive are logically equivalent. The converse and inverse are also logically equivalent.', content: `<div class="w-full max-w-5xl space-y-4 text-2xl p-8"><div class="bg-slate-50 p-4 rounded-lg border grid grid-cols-3 items-center gap-4"><h3 class="font-bold text-slate-800">Conditional</h3><div class="text-center text-slate-600">If p, then q.</div><div class="font-mono text-4xl text-right text-slate-900">\\(p \\rightarrow q\\)</div></div><div class="bg-slate-50 p-4 rounded-lg border grid grid-cols-3 items-center gap-4"><h3 class="font-bold text-slate-800">Converse</h3><div class="text-center text-slate-600">If q, then p.</div><div class="font-mono text-4xl text-right text-slate-900">\\(q \\rightarrow p\\)</div></div><div class="bg-slate-50 p-4 rounded-lg border grid grid-cols-3 items-center gap-4"><h3 class="font-bold text-slate-800">Inverse</h3><div class="text-center text-slate-600">If not p, then not q.</div><div class="font-mono text-4xl text-right text-slate-900">\\(\\sim p \\rightarrow \\sim q\\)</div></div><div class="bg-slate-50 p-4 rounded-lg border grid grid-cols-3 items-center gap-4"><h3 class="font-bold text-slate-800">Contrapositive</h3><div class="text-center text-slate-600">If not q, then not p.</div><div class="font-mono text-4xl text-right text-slate-900">\\(\\sim q \\rightarrow \\sim p\\)</div></div></div>`},
+                    { title: 'Venn Diagrams', definition: 'A diagram representing logical sets as circles, with relationships shown by their positions.', content: `<div class="w-full h-full p-4 grid grid-cols-1 md:grid-cols-2 gap-8 items-center"><div class="flex justify-center"><svg viewBox="0 0 150 100" class="w-full max-w-sm h-auto"><circle cx="75" cy="50" r="45" fill="#dbeafe" stroke="#1e40af"></circle><circle cx="75" cy="50" r="25" fill="#60a5fa" stroke="#1e3a8a"></circle><text x="75" y="15" font-size="10" font-family="Inter" font-weight="bold">Mammals</text><text x="75" y="55" font-size="10" font-family="Inter" font-weight="bold" fill="white">Dolphins</text></svg></div><div class="text-2xl space-y-4"><p><b>True Statement:</b> If an animal is a dolphin, then it is a mammal.</p><p><b>False Converse:</b> If an animal is a mammal, it is not necessarily a dolphin (e.g., an elephant).</p></div></div>`},
+                    { title: 'Deductive Reasoning', definition: 'Using logic to draw conclusions from given facts, definitions, and properties.', content: `<div class="text-2xl text-left leading-relaxed max-w-3xl bg-blue-50 p-8 rounded-xl border border-blue-200"><p class="font-bold text-blue-800 mb-2">Example:</p><p>1. If a quadrilateral contains only right angles, then it is a rectangle.</p><p>2. Quadrilateral P contains only right angles.</p><p class="mt-4 border-t border-blue-200 pt-4"><b class="text-blue-900">Conclusion:</b> Quadrilateral P is a rectangle.</p></div>` },
+                    { title: 'Inductive Reasoning', definition: 'Reaching conclusions based on a pattern of specific examples or observations.', content: `<div class="w-full h-full p-4 text-center"><div class="flex justify-center my-4"><svg viewBox="0 0 220 70" class="w-full max-w-lg h-auto"><circle cx="25" cy="40" r="6" fill="#d97706"></circle><text x="25" y="65" text-anchor="middle" font-size="12">Fig 1</text><circle cx="70" cy="40" r="6" fill="#d97706"></circle><circle cx="90" cy="40" r="6" fill="#d97706"></circle><circle cx="80" cy="25" r="6" fill="#d97706"></circle><text x="80" y="65" text-anchor="middle" font-size="12">Fig 2</text><circle cx="135" cy="40" r="6" fill="#d97706"></circle><circle cx="155" cy="40" r="6" fill="#d97706"></circle><circle cx="175" cy="40" r="6" fill="#d97706"></circle><circle cx="145" cy="25" r="6" fill="#d97706"></circle><circle cx="165" cy="25" r="6" fill="#d97706"></circle><circle cx="155" cy="10" r="6" fill="#d97706"></circle><text x="155" y="65" text-anchor="middle" font-size="12">Fig 3</text></svg></div><p class="mt-3 text-2xl"><b class="text-amber-800">Conclusion:</b> The next figure will have a new row of 4 dots at the bottom.</p></div>` },
+                    { title: 'Direct Proof', definition: 'A justification logically valid and based on initial assumptions, definitions, postulates, and theorems.', content: `<div class="w-full max-w-4xl p-4"><h3 class="font-bold text-3xl mb-4 text-slate-900">Two-Column Proof Example</h3><p class="text-2xl mb-4"><b>Given:</b> \\(\\angle 1 \\cong \\angle 2\\) &nbsp;&nbsp; <b>Prove:</b> \\(\\angle 2 \\cong \\angle 1\\)</p><table class="w-full text-2xl"><thead><tr class="border-b-2 border-slate-400"><th class="text-left py-2">Statements</th><th class="text-left py-2">Reasons</th></tr></thead><tbody class="divide-y divide-slate-200"><tr class="bg-slate-50"><td class="py-2">1. \\(\\angle 1 \\cong \\angle 2\\)</td><td>1. Given</td></tr><tr><td class="py-2">2. \\(m\\angle 1 = m\\angle 2\\)</td><td>2. Definition of congruent angles</td></tr><tr class="bg-slate-50"><td class="py-2">3. \\(m\\angle 2 = m\\angle 1\\)</td><td>3. Symmetric Property of Equality</td></tr><tr><td class="py-2">4. \\(\\angle 2 \\cong \\angle 1\\)</td><td>4. Definition of congruent angles</td></tr></tbody></table></div>`},
+                    { title: 'Properties of Congruence', definition: 'Reflexive, Symmetric, and Transitive properties for congruent figures.', content: `<div class="text-2xl md:text-3xl space-y-6 text-left max-w-4xl p-8"><div class="flex items-center"><p class="font-bold w-48">Reflexive:</p><p class="font-mono">\\(\\overline{AB} \\cong \\overline{AB}\\)</p></div><div class="flex items-center"><p class="font-bold w-48">Symmetric:</p><p>If \\(\\overline{AB} \\cong \\overline{CD}\\), then \\(\\overline{CD} \\cong \\overline{AB}\\)</p></div><div class="flex items-center"><p class="font-bold w-48">Transitive:</p><p>If \\(\\overline{AB} \\cong \\overline{CD}\\) and \\(\\overline{CD} \\cong \\overline{EF}\\), then \\(\\overline{AB} \\cong \\overline{EF}\\)</p></div></div>` },
+                    { title: 'Law of Detachment', definition: 'If a conditional statement is true and its hypothesis is true, then its conclusion is also true.', content: `<div class="w-full max-w-3xl p-4"><div class="text-3xl text-center font-mono p-6 bg-slate-50 rounded-xl border">If \\(p \\rightarrow q\\) is true, and \\(p\\) is true, then \\(q\\) is true.</div><div class="text-2xl text-left leading-relaxed bg-blue-50 p-8 rounded-xl border border-blue-200 mt-8"><p class="font-bold text-blue-800 mb-2">Example:</p><p>1. If \\(m\\angle A > 90°\\), then \\(\\angle A\\) is obtuse.</p><p>2. \\(m\\angle A = 120°\\).</p><p class="mt-4 border-t border-blue-200 pt-4"><b class="text-blue-900">Conclusion:</b> \\(\\angle A\\) is an obtuse angle.</p></div></div>` },
+                    { title: 'Law of Syllogism', definition: 'Allows you to draw a conclusion from two conditional statements when the conclusion of one is the hypothesis of the other.', content: `<div class="w-full max-w-3xl p-4"><div class="text-3xl text-center font-mono p-6 bg-slate-50 rounded-xl border">If \\(p \\rightarrow q\\) and \\(q \\rightarrow r\\) are true, then \\(p \\rightarrow r\\) is true.</div><div class="text-2xl text-left leading-relaxed bg-blue-50 p-8 rounded-xl border border-blue-200 mt-8"><p class="font-bold text-blue-800 mb-2">Example:</p><p>1. If a rectangle has 4 congruent sides, it is a square.</p><p>2. If a polygon is a square, it is regular.</p><p class="mt-4 border-t border-blue-200 pt-4"><b class="text-blue-900">Conclusion:</b> If a rectangle has 4 congruent sides, it is regular.</p></div></div>` },
+                    { title: 'Counterexample', definition: 'A specific case for which a conjecture is false.', content: `<div class="text-3xl text-center max-w-2xl bg-red-50 p-8 rounded-xl border border-red-200"><p class="mb-4">Conjecture: "The product of any two numbers is odd."</p><p class="border-t border-red-200 pt-4 mt-4"><b class="text-red-800">Counterexample:</b> \\(2 \\cdot 3 = 6\\)</p><p class="mt-6 text-2xl text-slate-600">One counterexample is enough to prove a conjecture is false.</p></div>` },
+                ]
+            }
+        };
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const alg1Btn = document.getElementById('alg1-btn');
+            const geoBtn = document.getElementById('geo-btn');
+            const alg1Content = document.getElementById('alg1-content');
+            const geoContent = document.getElementById('geo-content');
+            
+            const buttons = [alg1Btn, geoBtn];
+            const contents = [alg1Content, geoContent];
+
+            function switchTabs(selectedIndex) {
+                contents.forEach((content, index) => {
+                    content.classList.toggle('hidden', index !== selectedIndex);
+                });
+                buttons.forEach((button, index) => {
+                    button.classList.toggle('bg-indigo-600', index === selectedIndex);
+                    button.classList.toggle('text-white', index === selectedIndex);
+                    button.classList.toggle('text-gray-600', index !== selectedIndex);
+                });
+            }
+
+            alg1Btn.addEventListener('click', () => switchTabs(0));
+            geoBtn.addEventListener('click', () => switchTabs(1));
+
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', () => {
+                    const content = header.nextElementSibling;
+                    const chevron = header.querySelector('.chevron');
+                    content.classList.toggle('open');
+                    chevron.classList.toggle('rotate-180');
+                });
+            });
+            
+            function createCard(cardData) {
+                return `
+                    <section class="word-card bg-gray-50 rounded-xl shadow-inner p-8">
+                        <h2 class="text-3xl md:text-4xl font-bold text-indigo-700">${cardData.title}</h2>
+                        <p class="text-lg text-gray-700 max-w-2xl">${cardData.definition}</p>
+                        ${cardData.content}
+                    </section>
+                `;
+            }
+
+            Object.values(wordWallData).forEach(subject => {
+                const container = document.getElementById(subject.containerId);
+                if (container) {
+                    container.innerHTML = subject.cards.map(createCard).join('');
+                }
+            });
+
+            if (window.MathJax) {
+                window.MathJax.typesetPromise();
+            }
+        });
+    </script>
+</body>
+</html>
