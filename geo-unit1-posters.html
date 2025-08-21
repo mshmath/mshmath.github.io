@@ -208,17 +208,83 @@
 
         <section id="card-10" class="poster-page"><div class="content-wrapper"><h2 class="text-5xl font-extrabold mb-6 accent-text">Logical Arguments Summary</h2><p class="text-xl text-slate-600 max-w-3xl mx-auto mb-8">A conditional statement and its related forms.</p><table class="text-xl border-collapse"><thead><tr><th class="border p-4 bg-gray-100">Name</th><th class="border p-4 bg-gray-100">Form</th><th class="border p-4 bg-gray-100">Symbols</th></tr></thead><tbody><tr><td class="border p-4 font-bold">Conditional</td><td class="border p-4">if <span class="hypothesis">p</span>, then <span class="conclusion">q</span></td><td class="border p-4">$\textcolor{#db2777}{p} \rightarrow \textcolor{#2563eb}{q}$</td></tr><tr><td class="border p-4 font-bold">Converse</td><td class="border p-4">if <span class="conclusion">q</span>, then <span class="hypothesis">p</span></td><td class="border p-4">$\textcolor{#2563eb}{q} \rightarrow \textcolor{#db2777}{p}$</td></tr><tr><td class="border p-4 font-bold">Inverse</td><td class="border p-4">if <span class="hypothesis">not p</span>, then <span class="conclusion">not q</span></td><td class="border p-4">$\sim\textcolor{#db2777}{p} \rightarrow \sim\textcolor{#2563eb}{q}$</td></tr><tr><td class="border p-4 font-bold">Contrapositive</td><td class="border p-4">if <span class="conclusion">not q</span>, then <span class="hypothesis">not p</span></td><td class="border p-4">$\sim\textcolor{#2563eb}{q} \rightarrow \sim\textcolor{#db2777}{p}$</td></tr></tbody></table></div></section>
 
-        <section id="card-11" class="poster-page">
+         <section id="card-11" class="poster-page">
             <div class="content-wrapper">
-                <h2 class="text-5xl font-extrabold mb-6 accent-text">Conditionals & Venn Diagrams</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
-                    <div class="border rounded-lg p-4 flex flex-col"><h3 class="text-2xl font-bold mb-2">Conditional <span class="text-green-600">(True)</span></h3><p class="flex-grow text-base">If an animal is a dolphin, then it is a mammal.</p><svg viewBox="0 0 150 100" class="h-32 mx-auto mt-2"><rect x="0" y="0" width="150" height="100" fill="#eff6ff" rx="5"/><circle cx="75" cy="50" r="40" fill="#dbeafe" stroke="#93c5fd" stroke-width="1.5"/><text x="120" y="20" font-size="10" font-weight="bold" fill="#1e40af">Mammal</text><circle cx="75" cy="50" r="20" fill="white" stroke="#93c5fd" stroke-width="1.5"/><text x="75" y="53" text-anchor="middle" font-size="8" font-weight="bold">Dolphin</text></svg></div>
-                    <div class="border rounded-lg p-4 flex flex-col"><h3 class="text-2xl font-bold mb-2">Converse <span class="text-red-600">(False)</span></h3><p class="flex-grow text-base">If an animal is a mammal, then it is a dolphin.</p><svg viewBox="0 0 150 100" class="h-32 mx-auto mt-2"><rect x="0" y="0" width="150" height="100" fill="#eff6ff" rx="5"/><circle cx="75" cy="50" r="40" fill="#dbeafe" stroke="#93c5fd" stroke-width="1.5"/><text x="120" y="20" font-size="10" font-weight="bold" fill="#1e40af">Mammal</text><circle cx="75" cy="50" r="20" fill="white" stroke="#93c5fd" stroke-width="1.5"/><text x="75" y="53" text-anchor="middle" font-size="8" font-weight="bold">Dolphin</text><text x="45" y="45" font-size="10" fill="red" font-weight="bold">x</text><text x="45" y="58" font-size="8" fill="red">Elephant</text></svg></div>
-                    <div class="border rounded-lg p-4 flex flex-col"><h3 class="text-2xl font-bold mb-2">Inverse <span class="text-red-600">(False)</span></h3><p class="flex-grow text-base">If an animal is not a dolphin, then it is not a mammal.</p><svg viewBox="0 0 150 100" class="h-32 mx-auto mt-2"><rect x="0" y="0" width="150" height="100" fill="#eff6ff" rx="5"/><circle cx="75" cy="50" r="40" fill="#dbeafe" stroke="#93c5fd" stroke-width="1.5"/><text x="120" y="20" font-size="10" font-weight="bold" fill="#1e40af">Mammal</text><circle cx="75" cy="50" r="20" fill="white" stroke="#93c5fd" stroke-width="1.5"/><text x="75" y="53" text-anchor="middle" font-size="8" font-weight="bold">Dolphin</text><text x="45" y="45" font-size="10" fill="red" font-weight="bold">x</text><text x="45" y="58" font-size="8" fill="red">Whale</text></svg></div>
-                    <div class="border rounded-lg p-4 flex flex-col"><h3 class="text-2xl font-bold mb-2">Contrapositive <span class="text-green-600">(True)</span></h3><p class="flex-grow text-base">If an animal is not a mammal, then it is not a dolphin.</p><svg viewBox="0 0 150 100" class="h-32 mx-auto mt-2"><rect x="0" y="0" width="150" height="100" fill="#eff6ff" rx="5"/><circle cx="75" cy="50" r="40" fill="#dbeafe" stroke="#93c5fd" stroke-width="1.5"/><text x="120" y="20" font-size="10" font-weight="bold" fill="#1e40af">Mammal</text><circle cx="75" cy="50" r="20" fill="white" stroke="#93c5fd" stroke-width="1.5"/><text x="75" y="53" text-anchor="middle" font-size="8" font-weight="bold">Dolphin</text><text x="20" y="30" font-size="10" fill="green" font-weight="bold">x</text><text x="18" y="43" font-size="8" fill="green">Lizard</text></svg></div>
+                <h2 class="text-4xl md:text-5xl font-extrabold mb-6 accent-text">Conditionals & Venn Diagrams</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+                    
+                    <!-- Conditional -->
+                    <div class="border rounded-lg p-4 flex flex-col">
+                        <h3 class="text-2xl font-bold mb-2">Conditional <span class="text-green-600">(True)</span></h3>
+                        <p class="flex-grow text-base mb-4">If an animal is a dolphin, then it is a mammal.</p>
+                        <div class="relative w-full h-40 bg-blue-50 rounded-lg p-2 flex items-center justify-center">
+                            <div class="absolute top-1 right-2 text-sm font-semibold text-blue-800">Mammal</div>
+                            <div class="w-48 h-32 bg-blue-100 rounded-full border-2 border-blue-200 flex items-center justify-center">
+                                <div class="w-28 h-16 bg-white rounded-full border-2 border-blue-300 flex items-center justify-center text-sm font-semibold text-blue-900">
+                                    Dolphin
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Converse -->
+                    <div class="border rounded-lg p-4 flex flex-col">
+                        <h3 class="text-2xl font-bold mb-2">Converse <span class="text-red-600">(False)</span></h3>
+                        <p class="flex-grow text-base mb-4">If an animal is a mammal, then it is a dolphin.</p>
+                        <div class="relative w-full h-40 bg-blue-50 rounded-lg p-2 flex items-center justify-center">
+                            <div class="absolute top-1 right-2 text-sm font-semibold text-blue-800">Mammal</div>
+                            <div class="relative w-56 h-32 bg-blue-100 rounded-full border-2 border-blue-200 flex items-center justify-center">
+                                <div class="absolute top-1/2 left-1 -translate-y-1/2 text-red-600">
+                                    <div class="font-bold text-lg">x</div>
+                                    <div class="text-xs font-semibold">Elephant</div>
+                                </div>
+                                <div class="w-28 h-16 bg-white rounded-full border-2 border-blue-300 flex items-center justify-center text-sm font-semibold text-blue-900">
+                                    Dolphin
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Inverse -->
+                    <div class="border rounded-lg p-4 flex flex-col">
+                        <h3 class="text-2xl font-bold mb-2">Inverse <span class="text-red-600">(False)</span></h3>
+                        <p class="flex-grow text-base mb-4">If an animal is not a dolphin, then it is not a mammal.</p>
+                         <div class="relative w-full h-40 bg-blue-50 rounded-lg p-2 flex items-center justify-center">
+                            <div class="absolute top-1 right-2 text-sm font-semibold text-blue-800">Mammal</div>
+                            <div class="relative w-52 h-32 bg-blue-100 rounded-full border-2 border-blue-200 flex items-center justify-center">
+                                 <div class="absolute top-1/2 left-2 -translate-y-1/2 text-red-600">
+                                    <div class="font-bold text-lg">x</div>
+                                    <div class="text-xs font-semibold">Whale</div>
+                                </div>
+                                <div class="w-28 h-16 bg-white rounded-full border-2 border-blue-300 flex items-center justify-center text-sm font-semibold text-blue-900">
+                                    Dolphin
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contrapositive -->
+                    <div class="border rounded-lg p-4 flex flex-col">
+                        <h3 class="text-2xl font-bold mb-2">Contrapositive <span class="text-green-600">(True)</span></h3>
+                        <p class="flex-grow text-base mb-4">If an animal is not a mammal, then it is not a dolphin.</p>
+                        <div class="relative w-full h-40 bg-blue-50 rounded-lg p-2 flex items-center justify-center">
+                             <div class="absolute top-1/2 left-4 -translate-y-1/2 text-green-600">
+                                <div class="font-bold text-lg">x</div>
+                                <div class="text-xs font-semibold">Lizard</div>
+                            </div>
+                            <div class="absolute top-1 right-2 text-sm font-semibold text-blue-800">Mammal</div>
+                            <div class="w-48 h-32 bg-blue-100 rounded-full border-2 border-blue-200 flex items-center justify-center">
+                                <div class="w-28 h-16 bg-white rounded-full border-2 border-blue-300 flex items-center justify-center text-sm font-semibold text-blue-900">
+                                    Dolphin
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
+
 
         <section id="card-12" class="poster-page"><div class="content-wrapper"><h2 class="text-5xl font-extrabold mb-6 accent-text">Deductive Reasoning</h2><p class="text-xl text-slate-600 max-w-3xl mx-auto mb-8">Using logic to draw conclusions from definitions, postulates, and theorems.</p><div class="text-left bg-gray-50 p-6 rounded-lg border text-xl space-y-4 w-full max-w-2xl"><p><strong class="term-symbol">Statement A:</strong> If a quadrilateral has four right angles, then it is a rectangle.</p><p><strong class="term-symbol">Statement B:</strong> Quadrilateral P has four right angles.</p><hr class="my-2 border-indigo-200"><p><strong class="term-symbol">Conclusion:</strong> Quadrilateral P is a rectangle.</p></div></div></section>
         
@@ -335,3 +401,4 @@
     </script>
 </body>
 </html>
+
