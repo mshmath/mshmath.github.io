@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algebra 1 Vocabulary Wall Posters</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" xintegrity="sha384-n8MVd4RsNIU07EWpWqzUggpzzbSFen8CxnDXelDagWe82U/PROeBaoZa4iEkfEVg" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" xintegrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" xintegrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax5AScKprqL1CELynA1OSyKFbnBEUHNZr5l" crossorigin="anonymous"></script>
+    <!-- Chosen Palette: Warm Neutrals -->
+    <!-- Application Structure Plan: The application is now structured as a series of full-page sections, one for each vocabulary term. This "poster" format directly addresses the user's need for large, printable, single-term pages suitable for a classroom wall. Navigation allows users to jump to any term on-screen. This structure prioritizes the print output and physical display use case over the previous compact, screen-first design. -->
+    <!-- Visualization & Content Choices: 
+        - All Terms: Report Info -> Individual definitions/rules. Goal -> Inform/Display. Viz -> Full-page "poster" layout. Interaction -> On-screen navigation. Justification -> Meets the user's explicit requirement for printable, hangable, single-term pages. Font sizes and visual elements are scaled up for visibility.
+        - Real Numbers/Absolute Value: Figures are enlarged and centered to act as the focal point of their respective pages.
+        - Exponent Rules: The accordion is replaced by individual pages for each rule, making them suitable for printing as separate posters.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #e7e5e4; /* stone-200 */
+            color: #1e293b; /* slate-800 */
+        }
+        .accent-text { color: #0d9488; } /* teal-600 */
+        .poster-page {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            min-height: calc(100vh - 8rem);
+            margin-bottom: 2rem;
+            padding: 3rem 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .math-formula {
+            font-size: 1.5rem;
+            padding: 0.75rem 1rem;
+            margin: 0.5rem;
+        }
+        .example-box {
+            width: 100%;
+            max-width: 48rem;
+            margin-top: 2rem;
+        }
+        .example-box h3 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #475569; /* slate-600 */
+            margin-bottom: 1rem;
+        }
+        .katex-display {
+            margin: 1rem 0;
+        }
+        .katex {
+            font-size: 1.5em;
+        }
+        @media print {
+            body {
+                background-color: white;
+                color: black;
+            }
+            header, .md\:hidden {
+                display: none;
+            }
+            main {
+                padding: 0;
+                margin: 0;
+            }
+            .poster-page {
+                width: 100%;
+                height: 98vh; /* Fill the printable area */
+                min-height: 0;
+                margin: 0;
+                border-radius: 0;
+                box-shadow: none;
+                border: 2px solid black;
+                page-break-after: always;
+                padding: 2rem;
+            }
+            .poster-page:last-child {
+                page-break-after: auto;
+            }
+            .accent-text {
+                color: black;
+            }
+            .katex {
+                font-size: 1.25em !important;
+            }
+            h2, h3 {
+                font-size: 3rem !important;
+            }
+            p {
+                font-size: 1.25rem !important;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0">
+                    <h1 class="text-xl font-bold accent-text">Algebra 1 Posters</h1>
+                </div>
+                <div class="md:hidden">
+                    <select id="mobile-nav" class="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm rounded-md">
+                        <option value="#real-numbers">Real Numbers</option>
+                        <option value="#absolute-value">Absolute Value</option>
+                        <option value="#order-of-operations">Order of Operations</option>
+                        <option value="#expression">Expression</option>
+                        <option value="#variable">Variable</option>
+                        <option value="#coefficient">Coefficient</option>
+                        <option value="#term">Term</option>
+                        <option value="#scientific-notation">Scientific Notation</option>
+                        <option value="#exponential-form">Exponential Form</option>
+                        <option value="#negative-exponent">Negative Exponent</option>
+                        <option value="#zero-exponent">Zero Exponent</option>
+                        <option value="#product-of-powers">Product of Powers</option>
+                        <option value="#power-of-a-power">Power of a Power</option>
+                        <option value="#power-of-a-product">Power of a Product</option>
+                        <option value="#quotient-of-powers">Quotient of Powers</option>
+                        <option value="#power-of-a-quotient">Power of a Quotient</option>
+                    </select>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+
+        <!-- Page 1: Real Numbers -->
+        <section id="real-numbers" class="poster-page">
+            <h2 class="text-5xl font-extrabold mb-6 accent-text">Real Numbers</h2>
+            <p class="text-xl text-slate-600 max-w-3xl mx-auto mb-8">The set of all rational and irrational numbers, encompassing every point on the number line.</p>
+            <div class="w-full max-w-4xl">
+                <div class="flex space-x-4">
+                    <div class="flex-1 bg-sky-50 border-4 border-sky-200 rounded-lg p-4 h-80 flex items-center justify-center">
+                        <div class="w-full text-center">
+                            <p class="text-2xl font-bold text-sky-800">Rational</p>
+                            <div class="bg-blue-50 border-4 border-blue-200 rounded-lg p-3 m-3 h-60 flex items-center justify-center">
+                                <div class="w-full">
+                                    <p class="text-xl font-bold text-blue-800">Integers</p>
+                                    <div class="bg-indigo-50 border-4 border-indigo-200 rounded-lg p-2 m-2 h-40 flex items-center justify-center">
+                                        <div class="w-full">
+                                            <p class="text-lg font-bold text-indigo-800">Whole</p>
+                                            <div class="bg-violet-50 border-4 border-violet-200 rounded-lg p-1 m-1 h-20 flex items-center justify-center">
+                                                <p class="font-semibold text-violet-800">Natural</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-1/3 bg-amber-50 border-4 border-amber-200 rounded-lg p-4 h-80 flex items-center justify-center">
+                        <p class="text-2xl font-bold text-amber-800">Irrational</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page 2: Absolute Value -->
+        <section id="absolute-value" class="poster-page">
+            <h2 class="text-5xl font-extrabold mb-6 accent-text">Absolute Value</h2>
+            <p class="text-xl text-slate-600 max-w-2xl mx-auto mb-12">The distance from zero on a number line. Distance is always non-negative.</p>
+            <div class="w-full max-w-3xl">
+                 <div class="relative w-full h-1 bg-slate-400 mt-12">
+                    <div class="absolute w-full flex justify-between -top-5 text-base text-slate-600">
+                        <span>-5</span><span>-4</span><span>-3</span><span>-2</span><span>-1</span><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+                    </div>
+                    <div class="absolute w-full flex justify-between -top-1.5 h-4">
+                        <div class="w-px h-full bg-slate-400"></div><div class="w-px h-full bg-slate-400"></div><div class="w-px h-full bg-slate-400"></div><div class="w-px h-full bg-slate-400"></div><div class="w-px h-full bg-slate-400"></div>
+                        <div class="w-0.5 h-5 bg-slate-700 -top-0.5"></div>
+                        <div class="w-px h-full bg-slate-400"></div><div class="w-px h-full bg-slate-400"></div><div class="w-px h-full bg-slate-400"></div><div class="w-px h-full bg-slate-400"></div><div class="w-px h-full bg-slate-400"></div>
+                    </div>
+                    <!-- Right Arc -->
+                    <div class="absolute bottom-0 left-1/2 w-1/2 h-16 border-t-4 border-l-4 border-transparent rounded-tl-full border-l-teal-500 border-t-teal-500">
+                         <span class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-8 text-lg font-semibold text-teal-700">5 units</span>
+                    </div>
+                    <!-- Left Arc -->
+                    <div class="absolute bottom-0 right-1/2 w-1/2 h-16 border-t-4 border-r-4 border-transparent rounded-tr-full border-r-teal-500 border-t-teal-500">
+                        <span class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-8 text-lg font-semibold text-teal-700">5 units</span>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-24 flex gap-8">
+                <span class="math-formula">\(|-5| = 5\)</span>
+                <span class="math-formula">\(|5| = 5\)</span>
+            </div>
+        </section>
+        
+        <!-- Page 3: Order of Operations -->
+        <section id="order-of-operations" class="poster-page">
+            <h2 class="text-5xl font-extrabold mb-8 accent-text">Order of Operations</h2>
+            <div class="text-left max-w-2xl">
+                 <ol class="space-y-6 text-xl text-slate-700">
+                    <li class="flex items-start"><span class="text-3xl font-bold text-teal-600 mr-4">1.</span><div><strong class="font-semibold text-slate-900 block text-2xl">Grouping Symbols</strong> First, evaluate expressions within \( (\ ), [ \ ], \{ \}, | \ |, \) and \( \sqrt{} \).</div></li>
+                    <li class="flex items-start"><span class="text-3xl font-bold text-teal-600 mr-4">2.</span><div><strong class="font-semibold text-slate-900 block text-2xl">Exponents</strong> Next, evaluate all terms with exponents (e.g., \(x^2\)).</div></li>
+                    <li class="flex items-start"><span class="text-3xl font-bold text-teal-600 mr-4">3.</span><div><strong class="font-semibold text-slate-900 block text-2xl">Multiplication & Division</strong> Then, perform these from left to right.</div></li>
+                    <li class="flex items-start"><span class="text-3xl font-bold text-teal-600 mr-4">4.</span><div><strong class="font-semibold text-slate-900 block text-2xl">Addition & Subtraction</strong> Finally, perform these from left to right.</div></li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Page 4: Expression -->
+        <section id="expression" class="poster-page">
+            <h2 class="text-5xl font-extrabold mb-6 accent-text">Expression</h2>
+            <p class="text-xl text-slate-600 max-w-3xl mx-auto mb-8">A mathematical phrase that contains numbers, variables, and operation symbols. It does not have an equals sign.</p>
+            <div class="example-box">
+                <h3>Examples</h3>
+                <div class="flex flex-wrap justify-center items-center gap-4">
+                    <span class="math-formula">\(x\)</span>
+                    <span class="math-formula">\(3^4 + 2m\)</span>
+                    <span class="math-formula">\(ax^2 + bx + c\)</span>
+                    <span class="math-formula">\(3(y + 3.9)^2 - \frac{8}{9}\)</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page 5: Variable -->
+        <section id="variable" class="poster-page">
+            <h2 class="text-5xl font-extrabold mb-6 accent-text">Variable</h2>
+            <p class="text-xl text-slate-600 max-w-3xl mx-auto mb-8">A symbol, usually a letter, that represents an unknown value or a quantity that can change.</p>
+            <div class="example-box">
+                <h3>Examples</h3>
+                <p class="text-2xl">In \(A = \pi r^2\), the variables are <strong class="text-teal-600">A</strong> and <strong class="text-teal-600">r</strong>.</p>
+                <p class="text-2xl mt-4">In \(d = 7c - 5\), the variables are <strong class="text-teal-600">d</strong> and <strong class="text-teal-600">c</strong>.</p>
+            </div>
+        </section>
+
+        <!-- Page 6: Coefficient -->
+        <section id="coefficient" class="poster-page">
+            <h2 class="text-5xl font-extrabold mb-6 accent-text">Coefficient</h2>
+            <p class="text-xl text-slate-600 max-w-3xl mx-auto mb-8">The numerical factor that is multiplied by a variable in a term.</p>
+            <div class="example-box">
+                <h3>Examples</h3>
+                <p class="text-2xl">In \(-4 + \textcolor{#ef4444}{2}\textcolor{#f97316}{x}\), the coefficient is <strong class="text-teal-600">\(2\)</strong>.</p>
+                <p class="text-2xl mt-4">In \(\textcolor{#ef4444}{\frac{2}{3}}\textcolor{#f97316}{ab} - \frac{1}{2}\), the coefficient is <strong class="text-teal-600">\(\frac{2}{3}\)</strong>.</p>
+                <p class="text-2xl mt-4">In \(\textcolor{#ef4444}{\pi}\textcolor{#f97316}{r^2}\), the coefficient is <strong class="text-teal-600">\(\pi\)</strong>.</p>
+            </div>
+        </section>
+
+        <!-- Page 7: Term -->
+        <section id="term" class="poster-page">
+            <h2 class="text-5xl font-extrabold mb-6 accent-text">Term</h2>
+            <p class="text-xl text-slate-600 max-w-3xl mx-auto mb-8">A single number, a variable, or numbers and variables multiplied together. Terms are separated by \(+\) or \(-\) signs.</p>
+            <div class="example-box space-y-4">
+                <p class="text-2xl">\(\textcolor{#f97316}{3x} \textcolor{#ef4444}{+} \textcolor{#3b82f6}{2y} \textcolor{#ef4444}{-} \textcolor{#0d9488}{8}\) has <strong class="text-teal-600">3 terms</strong>.</p>
+                <p class="text-2xl">\(\textcolor{#f97316}{-5x^2} \textcolor{#ef4444}{-} \textcolor{#3b82f6}{x}\) has <strong class="text-teal-600">2 terms</strong>.</p>
+                <p class="text-2xl">\(\textcolor{#f97316}{\frac{2}{3}ab}\) is <strong class="text-teal-600">1 term</strong>.</p>
+            </div>
+        </section>
+
+        <!-- Page 8: Scientific Notation -->
+        <section id="scientific-notation" class="poster-page">
+            <h2 class="text-5xl font-extrabold mb-6 accent-text">Scientific Notation</h2>
+            <p class="text-xl text-slate-600 max-w-3xl mx-auto mb-8">A method for writing very large or small numbers compactly in the form \(a \times 10^n\) where \(1 \le |a| < 10\).</p>
+            <div class="example-box">
+                <h3>Examples</h3>
+                <div class="grid grid-cols-2 gap-4 text-2xl">
+                    <div class="text-right font-semibold">Standard Form</div>
+                    <div class="text-left font-semibold">Scientific Notation</div>
+                    <div class="text-right">\(17,500,000\)</div>
+                    <div class="text-left"><strong class="text-teal-600">\(1.75 \times 10^{\textcolor{#3b82f6}{7}}\)</strong></div>
+                    <div class="text-right">\(0.0000026\)</div>
+                    <div class="text-left"><strong class="text-teal-600">\(2.6 \times 10^{\textcolor{#3b82f6}{-6}}\)</strong></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page 9: Exponential Form -->
+        <section id="exponential-form" class="poster-page">
+            <h2 class="text-5xl font-extrabold mb-6 accent-text">Exponential Form</h2>
+            <p class="text-xl text-slate-600 max-w-3xl mx-auto mb-8">A concise way of writing repeated multiplication of the same number.</p>
+            <div class="text-4xl font-bold">\( \textcolor{#f97316}{a}^{\textcolor{#3b82f6}{n}} = \textcolor{#f97316}{\text{base}}^{\textcolor{#3b82f6}{\text{exponent}}} \)</div>
+            <div class="example-box space-y-4">
+                <h3>Examples</h3>
+                <p class="text-2xl">\(2 \cdot 2 \cdot 2 = \textcolor{#0d9488}{2^3} = 8\)</p>
+                <p class="text-2xl">\(n \cdot n \cdot n \cdot n = \textcolor{#0d9488}{n^4}\)</p>
+                <p class="text-2xl">\(3 \cdot 3 \cdot 3 \cdot x \cdot x = \textcolor{#0d9488}{3^3x^2} = 27x^2\)</p>
+            </div>
+        </section>
+
+        <!-- Page 10: Negative Exponent -->
+        <section id="negative-exponent" class="poster-page">
+            <h2 class="text-5xl font-extrabold mb-6 accent-text">Negative Exponent</h2>
+            <p class="text-xl text-slate-600 max-w-3xl mx-auto mb-8">A non-zero base raised to a negative exponent is equal to the reciprocal of the base raised to the positive exponent.</p>
+            <div class="example-box">
+                <h3>Property</h3>
+                \[ \textcolor{#f97316}{a}^{\textcolor{#ef4444}{-n}} = \frac{1}{\textcolor{#f97316}{a}^{\textcolor{#3b82f6}{n}}}, \quad \text{for } a \neq 0 \]
+                <h3>Examples</h3>
+                \[ 4^{-2} = \frac{1}{4^2} = \frac{1}{16} \]
+                \[ (2-a)^{-2} = \frac{1}{(2-a)^2} \]
+            </div>
+        </section>
+
+        <!-- Page 11: Zero Exponent -->
+        <section id="zero-exponent" class="poster-page">
+            <h2 class="text-5xl font-extrabold mb-6 accent-text">Zero Exponent</h2>
+            <p class="text-xl text-slate-600 max-w-3xl mx-auto mb-8">Any non-zero number raised to the power of zero is equal to 1.</p>
+            <div class="example-box">
+                <h3>Property</h3>
+                \[ \textcolor{#f97316}{a}^{\textcolor{#3b82f6}{0}} = 1, \quad \text{for } a \neq 0 \]
+                <h3>Examples</h3>
+                \[ (-5)^0 = 1 \]
+                \[ (3x + 2)^0 = 1 \]
+                \[ 4m^0 = 4 \cdot 1 = 4 \]
+            </div>
+        </section>
+
+        <!-- Page 12: Product of Powers -->
+        <section id="product-of-powers" class="poster-page">
+            <h2 class="text-5xl font-extrabold mb-6 accent-text">Product of Powers</h2>
+            <p class="text-xl text-slate-600 max-w-3xl mx-auto mb-8">To multiply two powers with the same base, you add their exponents.</p>
+            <div class="example-box">
+                <h3>Property</h3>
+                \[ \textcolor{#f97316}{a}^{\textcolor{#3b82f6}{m}} \cdot \textcolor{#f97316}{a}^{\textcolor{#3b82f6}{n}} = \textcolor{#f97316}{a}^{\textcolor{#3b82f6}{m} \textcolor{#ef4444}{+} \textcolor{#3b82f6}{n}} \]
+                <h3>Examples</h3>
+                \[ x^4 \cdot x^2 = x^{4+2} = x^6 \]
+                \[ w^7 \cdot w^{-4} = w^{7+(-4)} = w^3 \]
+            </div>
+        </section>
+
+        <!-- Page 13: Power of a Power -->
+        <section id="power-of-a-power" class="poster-page">
+            <h2 class="text-5xl font-extrabold mb-6 accent-text">Power of a Power</h2>
+            <p class="text-xl text-slate-600 max-w-3xl mx-auto mb-8">To raise a power to another power, you multiply the exponents.</p>
+            <div class="example-box">
+                <h3>Property</h3>
+                \[ (\textcolor{#f97316}{a}^{\textcolor{#3b82f6}{m}})^{\textcolor{#ef4444}{n}} = \textcolor{#f97316}{a}^{\textcolor{#3b82f6}{m} \textcolor{#ef4444}{\cdot} \textcolor{#ef4444}{n}} \]
+                <h3>Examples</h3>
+                \[ (y^4)^2 = y^{4 \cdot 2} = y^8 \]
+                \[ (g^2)^{-3} = g^{2 \cdot (-3)} = g^{-6} = \frac{1}{g^6} \]
+            </div>
+        </section>
+
+        <!-- Page 14: Power of a Product -->
+        <section id="power-of-a-product" class="poster-page">
+            <h2 class="text-5xl font-extrabold mb-6 accent-text">Power of a Product</h2>
+            <p class="text-xl text-slate-600 max-w-3xl mx-auto mb-8">To find the power of a product, find the power of each factor and then multiply.</p>
+            <div class="example-box">
+                <h3>Property</h3>
+                \[ (\textcolor{#f97316}{a}\textcolor{#0d9488}{b})^{\textcolor{#3b82f6}{m}} = \textcolor{#f97316}{a}^{\textcolor{#3b82f6}{m}} \textcolor{#0d9488}{b}^{\textcolor{#3b82f6}{m}} \]
+                <h3>Examples</h3>
+                \[ (-3a^4b)^2 = (-3)^2 \cdot (a^4)^2 \cdot b^2 = 9a^8b^2 \]
+            </div>
+        </section>
+
+        <!-- Page 15: Quotient of Powers -->
+        <section id="quotient-of-powers" class="poster-page">
+            <h2 class="text-5xl font-extrabold mb-6 accent-text">Quotient of Powers</h2>
+            <p class="text-xl text-slate-600 max-w-3xl mx-auto. mb-8">To divide two powers with the same base, you subtract the exponents.</p>
+            <div class="example-box">
+                <h3>Property</h3>
+                \[ \frac{\textcolor{#f97316}{a}^{\textcolor{#3b82f6}{m}}}{\textcolor{#f97316}{a}^{\textcolor{#3b82f6}{n}}} = \textcolor{#f97316}{a}^{\textcolor{#3b82f6}{m} \textcolor{#ef4444}{-} \textcolor{#3b82f6}{n}}, \quad \text{for } a \neq 0 \]
+                <h3>Examples</h3>
+                \[ \frac{x^6}{x^5} = x^{6-5} = x^1 = x \]
+                \[ \frac{y^{-3}}{y^{-5}} = y^{-3 - (-5)} = y^2 \]
+            </div>
+        </section>
+
+        <!-- Page 16: Power of a Quotient -->
+        <section id="power-of-a-quotient" class="poster-page">
+            <h2 class="text-5xl font-extrabold mb-6 accent-text">Power of a Quotient</h2>
+            <p class="text-xl text-slate-600 max-w-3xl mx-auto mb-8">To find the power of a quotient, find the power of the numerator and the denominator, then divide.</p>
+            <div class="example-box">
+                <h3>Property</h3>
+                \[ \left(\frac{\textcolor{#f97316}{a}}{\textcolor{#0d9488}{b}}\right)^{\textcolor{#3b82f6}{m}} = \frac{\textcolor{#f97316}{a}^{\textcolor{#3b82f6}{m}}}{\textcolor{#0d9488}{b}^{\textcolor{#3b82f6}{m}}}, \quad \text{for } b \neq 0 \]
+                <h3>Examples</h3>
+                \[ \left(\frac{y}{3}\right)^4 = \frac{y^4}{3^4} = \frac{y^4}{81} \]
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '\\[', right: '\\]', display: true},
+                    {left: '$', right: '$', display: false},
+                    {left: '\\(', right: '\\)', display: false}
+                ],
+                // Trust the input, since we are controlling it.
+                // This allows \textcolor to work.
+                trust: true
+            });
+
+            const mobileNav = document.getElementById('mobile-nav');
+            mobileNav.addEventListener('change', (event) => {
+                const targetElement = document.querySelector(event.target.value);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
