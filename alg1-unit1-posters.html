@@ -11,14 +11,15 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" xintegrity="sha384-n8MVd4RsNIU07EWpWqzUggpzzbSFen8CxnDXelDagWe82U/PROeBaoZa4iEkfEVg" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" xintegrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" xintegrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax5AScKprqL1CELynA1OSyKFbnBEUHNZr5l" crossorigin="anonymous"></script>
-    <!-- Chosen Palette: Warm Neutrals -->
-    <!-- Application Structure Plan: The application is now structured as a series of full-page sections, one for each vocabulary term. This "poster" format directly addresses the user's need for large, printable, single-term pages suitable for a classroom wall. Navigation allows users to jump to any term on-screen. This structure prioritizes the print output and physical display use case over the previous compact, screen-first design. -->
-    <!-- Visualization & Content Choices: 
-        - All Terms: Report Info -> Individual definitions/rules. Goal -> Inform/Display. Viz -> Full-page "poster" layout. Interaction -> On-screen navigation. Justification -> Meets the user's explicit requirement for printable, hangable, single-term pages. Font sizes and visual elements are scaled up for visibility.
-        - Real Numbers/Absolute Value: Figures are enlarged and centered to act as the focal point of their respective pages.
-        - Exponent Rules: The accordion is replaced by individual pages for each rule, making them suitable for printing as separate posters.
+    <!-- 
+        Application Structure: 
+        This application is structured as a series of full-page sections, with each section representing a single vocabulary term poster. This design is optimized for printing and classroom display. A sticky navigation header with a mobile-friendly dropdown allows for easy scrolling between the different poster sections on a digital device.
+        
+        Visualization Choices:
+        - Real Numbers: A nested div structure with distinct background colors and borders visually represents the Venn diagram from the source material, showing the relationships between different sets of numbers.
+        - Absolute Value: The number line is now built with pure HTML and CSS for reliability, using divs and borders to create the line, ticks, and arcs.
+        - Mathematical Formulas: The KaTeX library renders all mathematical notation. Color-coding is applied using KaTeX's `\textcolor` command to highlight different parts of formulas (e.g., base, exponent), making the rules easier to interpret.
     -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -139,20 +140,26 @@
         <!-- Page 1: Real Numbers -->
         <section id="real-numbers" class="poster-page">
             <h2 class="text-5xl font-extrabold mb-6 accent-text">Real Numbers</h2>
-            <p class="text-xl text-slate-600 max-w-3xl mx-auto mb-8">The set of all rational and irrational numbers, encompassing every point on the number line.</p>
+            <p class="text-xl text-slate-600 max-w-3xl mx-auto mb-8">The set of all rational and irrational numbers.</p>
             <div class="w-full max-w-4xl">
                 <div class="flex space-x-4">
-                    <div class="flex-1 bg-sky-50 border-4 border-sky-200 rounded-lg p-4 h-80 flex items-center justify-center">
+                    <div class="flex-1 bg-sky-50 border-4 border-sky-200 rounded-lg p-4 flex items-center justify-center">
                         <div class="w-full text-center">
-                            <p class="text-2xl font-bold text-sky-800">Rational</p>
-                            <div class="bg-blue-50 border-4 border-blue-200 rounded-lg p-3 m-3 h-60 flex items-center justify-center">
+                            <p class="text-2xl font-bold text-sky-800">Rational Numbers</p>
+                            <p class="text-sm text-slate-500 mb-2">Numbers that can be written as a ratio of two integers (e.g., $2\frac{3}{5}, -5, 0.3, \sqrt{16}$)</p>
+                            <div class="bg-blue-50 border-4 border-blue-200 rounded-lg p-3 m-3 flex items-center justify-center">
                                 <div class="w-full">
                                     <p class="text-xl font-bold text-blue-800">Integers</p>
-                                    <div class="bg-indigo-50 border-4 border-indigo-200 rounded-lg p-2 m-2 h-40 flex items-center justify-center">
+                                    <p class="text-sm text-slate-500 mb-2">$\{... -3, -2, -1, 0, 1, 2, 3 ...\}$</p>
+                                    <div class="bg-indigo-50 border-4 border-indigo-200 rounded-lg p-2 m-2 flex items-center justify-center">
                                         <div class="w-full">
-                                            <p class="text-lg font-bold text-indigo-800">Whole</p>
-                                            <div class="bg-violet-50 border-4 border-violet-200 rounded-lg p-1 m-1 h-20 flex items-center justify-center">
-                                                <p class="font-semibold text-violet-800">Natural</p>
+                                            <p class="text-lg font-bold text-indigo-800">Whole Numbers</p>
+                                            <p class="text-sm text-slate-500 mb-2">$\{0, 1, 2, 3, 4 ...\}$</p>
+                                            <div class="bg-violet-50 border-4 border-violet-200 rounded-lg p-1 m-1 flex items-center justify-center">
+                                                <div>
+                                                    <p class="font-semibold text-violet-800">Natural Numbers</p>
+                                                    <p class="text-sm text-slate-500">$\{1, 2, 3, 4 ...\}$</p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -160,8 +167,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="w-1/3 bg-amber-50 border-4 border-amber-200 rounded-lg p-4 h-80 flex items-center justify-center">
-                        <p class="text-2xl font-bold text-amber-800">Irrational</p>
+                    <div class="w-1/3 bg-amber-50 border-4 border-amber-200 rounded-lg p-4 flex flex-col items-center justify-center">
+                        <p class="text-2xl font-bold text-amber-800">Irrational Numbers</p>
+                        <p class="text-sm text-slate-600 mt-2">Non-repeating, non-terminating decimals (e.g., $\sqrt{7}, \pi$)</p>
                     </div>
                 </div>
             </div>
@@ -170,26 +178,26 @@
         <!-- Page 2: Absolute Value -->
         <section id="absolute-value" class="poster-page">
             <h2 class="text-5xl font-extrabold mb-6 accent-text">Absolute Value</h2>
-            <p class="text-xl text-slate-600 max-w-2xl mx-auto mb-12">The distance from zero on a number line. Distance is always non-negative.</p>
+            <p class="text-xl text-slate-600 max-w-2xl mx-auto mb-12">The distance between a number and zero on a number line. Distance is always non-negative.</p>
             <div class="w-full max-w-3xl">
                  <div class="relative w-full h-1 bg-slate-400 mt-12">
-                    <div class="absolute w-full flex justify-between -top-5 text-base text-slate-600">
-                        <span>-5</span><span>-4</span><span>-3</span><span>-2</span><span>-1</span><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
-                    </div>
-                    <div class="absolute w-full flex justify-between -top-1.5 h-4">
-                        <div class="w-px h-full bg-slate-400"></div><div class="w-px h-full bg-slate-400"></div><div class="w-px h-full bg-slate-400"></div><div class="w-px h-full bg-slate-400"></div><div class="w-px h-full bg-slate-400"></div>
-                        <div class="w-0.5 h-5 bg-slate-700 -top-0.5"></div>
-                        <div class="w-px h-full bg-slate-400"></div><div class="w-px h-full bg-slate-400"></div><div class="w-px h-full bg-slate-400"></div><div class="w-px h-full bg-slate-400"></div><div class="w-px h-full bg-slate-400"></div>
-                    </div>
-                    <!-- Right Arc -->
-                    <div class="absolute bottom-0 left-1/2 w-1/2 h-16 border-t-4 border-l-4 border-transparent rounded-tl-full border-l-teal-500 border-t-teal-500">
-                         <span class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-8 text-lg font-semibold text-teal-700">5 units</span>
-                    </div>
-                    <!-- Left Arc -->
-                    <div class="absolute bottom-0 right-1/2 w-1/2 h-16 border-t-4 border-r-4 border-transparent rounded-tr-full border-r-teal-500 border-t-teal-500">
-                        <span class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-8 text-lg font-semibold text-teal-700">5 units</span>
-                    </div>
-                </div>
+                     <div class="absolute w-full flex justify-between -top-5 text-base text-slate-600">
+                         <span>-5</span><span>-4</span><span>-3</span><span>-2</span><span>-1</span><span class="font-bold">0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+                     </div>
+                     <div class="absolute w-full flex justify-between -top-1.5 h-4">
+                         <div class="w-px h-full bg-slate-400"></div><div class="w-px h-full bg-slate-400"></div><div class="w-px h-full bg-slate-400"></div><div class="w-px h-full bg-slate-400"></div><div class="w-px h-full bg-slate-400"></div>
+                         <div class="w-0.5 h-5 bg-slate-700 -top-0.5 relative"></div>
+                         <div class="w-px h-full bg-slate-400"></div><div class="w-px h-full bg-slate-400"></div><div class="w-px h-full bg-slate-400"></div><div class="w-px h-full bg-slate-400"></div><div class="w-px h-full bg-slate-400"></div>
+                     </div>
+                     <!-- Right Arc -->
+                     <div class="absolute bottom-0 left-1/2 w-[50%] h-16 border-t-4 border-l-4 border-transparent rounded-tl-full border-l-teal-500 border-t-teal-500">
+                          <span class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-8 text-lg font-semibold text-teal-700">5 units</span>
+                     </div>
+                     <!-- Left Arc -->
+                     <div class="absolute bottom-0 right-1/2 w-[50%] h-16 border-t-4 border-r-4 border-transparent rounded-tr-full border-r-teal-500 border-t-teal-500">
+                          <span class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-8 text-lg font-semibold text-teal-700">5 units</span>
+                     </div>
+                 </div>
             </div>
             <div class="mt-24 flex gap-8">
                 <span class="math-formula">\(|-5| = 5\)</span>
@@ -201,11 +209,11 @@
         <section id="order-of-operations" class="poster-page">
             <h2 class="text-5xl font-extrabold mb-8 accent-text">Order of Operations</h2>
             <div class="text-left max-w-2xl">
-                 <ol class="space-y-6 text-xl text-slate-700">
-                    <li class="flex items-start"><span class="text-3xl font-bold text-teal-600 mr-4">1.</span><div><strong class="font-semibold text-slate-900 block text-2xl">Grouping Symbols</strong> First, evaluate expressions within \( (\ ), [ \ ], \{ \}, | \ |, \) and \( \sqrt{} \).</div></li>
-                    <li class="flex items-start"><span class="text-3xl font-bold text-teal-600 mr-4">2.</span><div><strong class="font-semibold text-slate-900 block text-2xl">Exponents</strong> Next, evaluate all terms with exponents (e.g., \(x^2\)).</div></li>
-                    <li class="flex items-start"><span class="text-3xl font-bold text-teal-600 mr-4">3.</span><div><strong class="font-semibold text-slate-900 block text-2xl">Multiplication & Division</strong> Then, perform these from left to right.</div></li>
-                    <li class="flex items-start"><span class="text-3xl font-bold text-teal-600 mr-4">4.</span><div><strong class="font-semibold text-slate-900 block text-2xl">Addition & Subtraction</strong> Finally, perform these from left to right.</div></li>
+                <ol class="space-y-6 text-xl text-slate-700">
+                    <li class="flex items-start"><span class="text-3xl font-bold text-red-500 mr-4">1.</span><div><strong class="font-semibold text-red-500 block text-2xl">Grouping Symbols</strong> First, evaluate expressions within \( (\ ), [ \ ], \{ \}, | \ |, \) and \( \sqrt{} \).</div></li>
+                    <li class="flex items-start"><span class="text-3xl font-bold text-orange-500 mr-4">2.</span><div><strong class="font-semibold text-orange-500 block text-2xl">Exponents</strong> Next, evaluate all terms with exponents (e.g., \(a^n\)).</div></li>
+                    <li class="flex items-start"><span class="text-3xl font-bold text-blue-500 mr-4">3.</span><div><strong class="font-semibold text-blue-500 block text-2xl">Multiplication & Division</strong> Then, perform these from left to right.</div></li>
+                    <li class="flex items-start"><span class="text-3xl font-bold text-teal-500 mr-4">4.</span><div><strong class="font-semibold text-teal-500 block text-2xl">Addition & Subtraction</strong> Finally, perform these from left to right.</div></li>
                 </ol>
             </div>
         </section>
@@ -213,14 +221,15 @@
         <!-- Page 4: Expression -->
         <section id="expression" class="poster-page">
             <h2 class="text-5xl font-extrabold mb-6 accent-text">Expression</h2>
-            <p class="text-xl text-slate-600 max-w-3xl mx-auto mb-8">A mathematical phrase that contains numbers, variables, and operation symbols. It does not have an equals sign.</p>
+            <p class="text-xl text-slate-600 max-w-3xl mx-auto mb-8">A representation of a quantity that may contain numbers, variables, or operation symbols. It does not have an equals sign.</p>
             <div class="example-box">
                 <h3>Examples</h3>
-                <div class="flex flex-wrap justify-center items-center gap-4">
-                    <span class="math-formula">\(x\)</span>
-                    <span class="math-formula">\(3^4 + 2m\)</span>
-                    <span class="math-formula">\(ax^2 + bx + c\)</span>
-                    <span class="math-formula">\(3(y + 3.9)^2 - \frac{8}{9}\)</span>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                    <span class="math-formula bg-slate-100 rounded-md">\(x\)</span>
+                    <span class="math-formula bg-slate-100 rounded-md">\(-\sqrt{26}\)</span>
+                    <span class="math-formula bg-slate-100 rounded-md">\(3^4 + 2m\)</span>
+                    <span class="math-formula bg-slate-100 rounded-md">\(ax^2 + bx + c\)</span>
+                    <span class="math-formula bg-slate-100 rounded-md col-span-2 md:col-span-3">\(3(y + 3.9)^2 - \frac{8}{9}\)</span>
                 </div>
             </div>
         </section>
@@ -231,8 +240,8 @@
             <p class="text-xl text-slate-600 max-w-3xl mx-auto mb-8">A symbol, usually a letter, that represents an unknown value or a quantity that can change.</p>
             <div class="example-box">
                 <h3>Examples</h3>
-                <p class="text-2xl">In \(A = \pi r^2\), the variables are <strong class="text-teal-600">A</strong> and <strong class="text-teal-600">r</strong>.</p>
-                <p class="text-2xl mt-4">In \(d = 7c - 5\), the variables are <strong class="text-teal-600">d</strong> and <strong class="text-teal-600">c</strong>.</p>
+                <p class="text-2xl">In \( \textcolor{#ef4444}{A} = \pi \textcolor{#f97316}{r}^2 \), the variables are <strong class="text-red-500">A</strong> and <strong class="text-orange-500">r</strong>.</p>
+                <p class="text-2xl mt-4">In \( \textcolor{#ef4444}{d} = 7\textcolor{#f97316}{c} - 5 \), the variables are <strong class="text-red-500">d</strong> and <strong class="text-orange-500">c</strong>.</p>
             </div>
         </section>
 
@@ -242,9 +251,9 @@
             <p class="text-xl text-slate-600 max-w-3xl mx-auto mb-8">The numerical factor that is multiplied by a variable in a term.</p>
             <div class="example-box">
                 <h3>Examples</h3>
-                <p class="text-2xl">In \(-4 + \textcolor{#ef4444}{2}\textcolor{#f97316}{x}\), the coefficient is <strong class="text-teal-600">\(2\)</strong>.</p>
-                <p class="text-2xl mt-4">In \(\textcolor{#ef4444}{\frac{2}{3}}\textcolor{#f97316}{ab} - \frac{1}{2}\), the coefficient is <strong class="text-teal-600">\(\frac{2}{3}\)</strong>.</p>
-                <p class="text-2xl mt-4">In \(\textcolor{#ef4444}{\pi}\textcolor{#f97316}{r^2}\), the coefficient is <strong class="text-teal-600">\(\pi\)</strong>.</p>
+                <p class="text-2xl">In \(-4 + \textcolor{#ef4444}{2}\textcolor{#f97316}{x}\), the coefficient is <strong class="text-red-500">\(2\)</strong>.</p>
+                <p class="text-2xl mt-4">In \(\textcolor{#ef4444}{\frac{2}{3}}\textcolor{#f97316}{ab} - \frac{1}{2}\), the coefficient is <strong class="text-red-500">\(\frac{2}{3}\)</strong>.</p>
+                <p class="text-2xl mt-4">In \(\textcolor{#ef4444}{\pi}\textcolor{#f97316}{r^2}\), the coefficient is <strong class="text-red-500">\(\pi\)</strong>.</p>
             </div>
         </section>
 
@@ -262,16 +271,20 @@
         <!-- Page 8: Scientific Notation -->
         <section id="scientific-notation" class="poster-page">
             <h2 class="text-5xl font-extrabold mb-6 accent-text">Scientific Notation</h2>
-            <p class="text-xl text-slate-600 max-w-3xl mx-auto mb-8">A method for writing very large or small numbers compactly in the form \(a \times 10^n\) where \(1 \le |a| < 10\).</p>
+            <p class="text-xl text-slate-600 max-w-3xl mx-auto mb-8">A method for writing very large or small numbers compactly in the form \(\textcolor{#f97316}{a} \times 10^{\textcolor{#3b82f6}{n}}\) where \(1 \le |a| < 10\).</p>
             <div class="example-box">
                 <h3>Examples</h3>
-                <div class="grid grid-cols-2 gap-4 text-2xl">
-                    <div class="text-right font-semibold">Standard Form</div>
-                    <div class="text-left font-semibold">Scientific Notation</div>
+                <div class="grid grid-cols-2 gap-x-4 gap-y-2 text-xl">
+                    <div class="text-right font-semibold border-b pb-2">Standard Form</div>
+                    <div class="text-left font-semibold border-b pb-2">Scientific Notation</div>
                     <div class="text-right">\(17,500,000\)</div>
                     <div class="text-left"><strong class="text-teal-600">\(1.75 \times 10^{\textcolor{#3b82f6}{7}}\)</strong></div>
+                    <div class="text-right">\(-84,623\)</div>
+                    <div class="text-left"><strong class="text-teal-600">\(-8.4623 \times 10^{\textcolor{#3b82f6}{4}}\)</strong></div>
                     <div class="text-right">\(0.0000026\)</div>
                     <div class="text-left"><strong class="text-teal-600">\(2.6 \times 10^{\textcolor{#3b82f6}{-6}}\)</strong></div>
+                    <div class="text-right">\(-0.080029\)</div>
+                    <div class="text-left"><strong class="text-teal-600">\(-8.0029 \times 10^{\textcolor{#3b82f6}{-2}}\)</strong></div>
                 </div>
             </div>
         </section>
@@ -280,12 +293,13 @@
         <section id="exponential-form" class="poster-page">
             <h2 class="text-5xl font-extrabold mb-6 accent-text">Exponential Form</h2>
             <p class="text-xl text-slate-600 max-w-3xl mx-auto mb-8">A concise way of writing repeated multiplication of the same number.</p>
-            <div class="text-4xl font-bold">\( \textcolor{#f97316}{a}^{\textcolor{#3b82f6}{n}} = \textcolor{#f97316}{\text{base}}^{\textcolor{#3b82f6}{\text{exponent}}} \)</div>
+            <div class="text-4xl font-bold">\( \textcolor{#f97316}{a}^{\textcolor{#3b82f6}{n}} \)</div>
+            <p class="text-2xl mt-2"><span class="text-orange-500 font-semibold">base</span>, <span class="text-blue-600 font-semibold">exponent</span></p>
             <div class="example-box space-y-4">
                 <h3>Examples</h3>
-                <p class="text-2xl">\(2 \cdot 2 \cdot 2 = \textcolor{#0d9488}{2^3} = 8\)</p>
-                <p class="text-2xl">\(n \cdot n \cdot n \cdot n = \textcolor{#0d9488}{n^4}\)</p>
-                <p class="text-2xl">\(3 \cdot 3 \cdot 3 \cdot x \cdot x = \textcolor{#0d9488}{3^3x^2} = 27x^2\)</p>
+                <p class="text-2xl">\(2 \cdot 2 \cdot 2 = \textcolor{#f97316}{2}^{\textcolor{#3b82f6}{3}} = 8\)</p>
+                <p class="text-2xl">\(n \cdot n \cdot n \cdot n = \textcolor{#f97316}{n}^{\textcolor{#3b82f6}{4}}\)</p>
+                <p class="text-2xl">\(3 \cdot 3 \cdot 3 \cdot x \cdot x = \textcolor{#f97316}{3}^{\textcolor{#3b82f6}{3}}\textcolor{#f97316}{x}^{\textcolor{#3b82f6}{2}} = 27x^2\)</p>
             </div>
         </section>
 
@@ -297,8 +311,7 @@
                 <h3>Property</h3>
                 \[ \textcolor{#f97316}{a}^{\textcolor{#ef4444}{-n}} = \frac{1}{\textcolor{#f97316}{a}^{\textcolor{#3b82f6}{n}}}, \quad \text{for } a \neq 0 \]
                 <h3>Examples</h3>
-                \[ 4^{-2} = \frac{1}{4^2} = \frac{1}{16} \]
-                \[ (2-a)^{-2} = \frac{1}{(2-a)^2} \]
+                \[ 4^{\textcolor{#ef4444}{-2}} = \frac{1}{4^{\textcolor{#3b82f6}{2}}} = \frac{1}{16} \]
             </div>
         </section>
 
@@ -310,9 +323,8 @@
                 <h3>Property</h3>
                 \[ \textcolor{#f97316}{a}^{\textcolor{#3b82f6}{0}} = 1, \quad \text{for } a \neq 0 \]
                 <h3>Examples</h3>
-                \[ (-5)^0 = 1 \]
-                \[ (3x + 2)^0 = 1 \]
-                \[ 4m^0 = 4 \cdot 1 = 4 \]
+                \[ (-5)^{\textcolor{#3b82f6}{0}} = 1 \]
+                \[ 4m^{\textcolor{#3b82f6}{0}} = 4 \cdot 1 = 4 \]
             </div>
         </section>
 
@@ -322,10 +334,9 @@
             <p class="text-xl text-slate-600 max-w-3xl mx-auto mb-8">To multiply two powers with the same base, you add their exponents.</p>
             <div class="example-box">
                 <h3>Property</h3>
-                \[ \textcolor{#f97316}{a}^{\textcolor{#3b82f6}{m}} \cdot \textcolor{#f97316}{a}^{\textcolor{#3b82f6}{n}} = \textcolor{#f97316}{a}^{\textcolor{#3b82f6}{m} \textcolor{#ef4444}{+} \textcolor{#3b82f6}{n}} \]
+                \[ \textcolor{#f97316}{a}^{\textcolor{#3b82f6}{m}} \cdot \textcolor{#f97316}{a}^{\textcolor{#ef4444}{n}} = \textcolor{#f97316}{a}^{\textcolor{#3b82f6}{m} \textcolor{#0d9488}{+} \textcolor{#ef4444}{n}} \]
                 <h3>Examples</h3>
-                \[ x^4 \cdot x^2 = x^{4+2} = x^6 \]
-                \[ w^7 \cdot w^{-4} = w^{7+(-4)} = w^3 \]
+                \[ x^{\textcolor{#3b82f6}{4}} \cdot x^{\textcolor{#ef4444}{2}} = x^{\textcolor{#3b82f6}{4}\textcolor{#0d9488}{+}\textcolor{#ef4444}{2}} = x^6 \]
             </div>
         </section>
 
@@ -335,10 +346,9 @@
             <p class="text-xl text-slate-600 max-w-3xl mx-auto mb-8">To raise a power to another power, you multiply the exponents.</p>
             <div class="example-box">
                 <h3>Property</h3>
-                \[ (\textcolor{#f97316}{a}^{\textcolor{#3b82f6}{m}})^{\textcolor{#ef4444}{n}} = \textcolor{#f97316}{a}^{\textcolor{#3b82f6}{m} \textcolor{#ef4444}{\cdot} \textcolor{#ef4444}{n}} \]
+                \[ (\textcolor{#f97316}{a}^{\textcolor{#3b82f6}{m}})^{\textcolor{#ef4444}{n}} = \textcolor{#f97316}{a}^{\textcolor{#3b82f6}{m} \textcolor{#0d9488}{\cdot} \textcolor{#ef4444}{n}} \]
                 <h3>Examples</h3>
-                \[ (y^4)^2 = y^{4 \cdot 2} = y^8 \]
-                \[ (g^2)^{-3} = g^{2 \cdot (-3)} = g^{-6} = \frac{1}{g^6} \]
+                \[ (y^{\textcolor{#3b82f6}{4}})^{\textcolor{#ef4444}{2}} = y^{\textcolor{#3b82f6}{4} \textcolor{#0d9488}{\cdot} \textcolor{#ef4444}{2}} = y^8 \]
             </div>
         </section>
 
@@ -348,22 +358,21 @@
             <p class="text-xl text-slate-600 max-w-3xl mx-auto mb-8">To find the power of a product, find the power of each factor and then multiply.</p>
             <div class="example-box">
                 <h3>Property</h3>
-                \[ (\textcolor{#f97316}{a}\textcolor{#0d9488}{b})^{\textcolor{#3b82f6}{m}} = \textcolor{#f97316}{a}^{\textcolor{#3b82f6}{m}} \textcolor{#0d9488}{b}^{\textcolor{#3b82f6}{m}} \]
+                \[ (\textcolor{#f97316}{a}\textcolor{#ef4444}{b})^{\textcolor{#3b82f6}{m}} = \textcolor{#f97316}{a}^{\textcolor{#3b82f6}{m}} \textcolor{#ef4444}{b}^{\textcolor{#3b82f6}{m}} \]
                 <h3>Examples</h3>
-                \[ (-3a^4b)^2 = (-3)^2 \cdot (a^4)^2 \cdot b^2 = 9a^8b^2 \]
+                \[ (-3\textcolor{#f97316}{a}^4\textcolor{#ef4444}{b})^{\textcolor{#3b82f6}{2}} = (-3)^{\textcolor{#3b82f6}{2}} \cdot (\textcolor{#f97316}{a}^4)^{\textcolor{#3b82f6}{2}} \cdot \textcolor{#ef4444}{b}^{\textcolor{#3b82f6}{2}} = 9a^8b^2 \]
             </div>
         </section>
 
         <!-- Page 15: Quotient of Powers -->
         <section id="quotient-of-powers" class="poster-page">
             <h2 class="text-5xl font-extrabold mb-6 accent-text">Quotient of Powers</h2>
-            <p class="text-xl text-slate-600 max-w-3xl mx-auto. mb-8">To divide two powers with the same base, you subtract the exponents.</p>
+            <p class="text-xl text-slate-600 max-w-3xl mx-auto mb-8">To divide two powers with the same base, you subtract the exponents.</p>
             <div class="example-box">
                 <h3>Property</h3>
-                \[ \frac{\textcolor{#f97316}{a}^{\textcolor{#3b82f6}{m}}}{\textcolor{#f97316}{a}^{\textcolor{#3b82f6}{n}}} = \textcolor{#f97316}{a}^{\textcolor{#3b82f6}{m} \textcolor{#ef4444}{-} \textcolor{#3b82f6}{n}}, \quad \text{for } a \neq 0 \]
+                \[ \frac{\textcolor{#f97316}{a}^{\textcolor{#3b82f6}{m}}}{\textcolor{#f97316}{a}^{\textcolor{#ef4444}{n}}} = \textcolor{#f97316}{a}^{\textcolor{#3b82f6}{m} \textcolor{#0d9488}{-} \textcolor{#ef4444}{n}}, \quad \text{for } a \neq 0 \]
                 <h3>Examples</h3>
-                \[ \frac{x^6}{x^5} = x^{6-5} = x^1 = x \]
-                \[ \frac{y^{-3}}{y^{-5}} = y^{-3 - (-5)} = y^2 \]
+                \[ \frac{x^{\textcolor{#3b82f6}{6}}}{x^{\textcolor{#ef4444}{5}}} = x^{\textcolor{#3b82f6}{6}\textcolor{#0d9488}{-}\textcolor{#ef4444}{5}} = x^1 = x \]
             </div>
         </section>
 
@@ -373,16 +382,18 @@
             <p class="text-xl text-slate-600 max-w-3xl mx-auto mb-8">To find the power of a quotient, find the power of the numerator and the denominator, then divide.</p>
             <div class="example-box">
                 <h3>Property</h3>
-                \[ \left(\frac{\textcolor{#f97316}{a}}{\textcolor{#0d9488}{b}}\right)^{\textcolor{#3b82f6}{m}} = \frac{\textcolor{#f97316}{a}^{\textcolor{#3b82f6}{m}}}{\textcolor{#0d9488}{b}^{\textcolor{#3b82f6}{m}}}, \quad \text{for } b \neq 0 \]
+                \[ \left(\frac{\textcolor{#f97316}{a}}{\textcolor{#ef4444}{b}}\right)^{\textcolor{#3b82f6}{m}} = \frac{\textcolor{#f97316}{a}^{\textcolor{#3b82f6}{m}}}{\textcolor{#ef4444}{b}^{\textcolor{#3b82f6}{m}}}, \quad \text{for } b \neq 0 \]
                 <h3>Examples</h3>
-                \[ \left(\frac{y}{3}\right)^4 = \frac{y^4}{3^4} = \frac{y^4}{81} \]
+                \[ \left(\frac{y}{3}\right)^{\textcolor{#3b82f6}{4}} = \frac{y^{\textcolor{#3b82f6}{4}}}{3^{\textcolor{#3b82f6}{4}}} = \frac{y^4}{81} \]
             </div>
         </section>
 
     </main>
 
     <script>
+        // This script runs after the DOM is fully loaded.
         document.addEventListener('DOMContentLoaded', function() {
+            // Use the KaTeX library to find and render all mathematical expressions in the document.
             renderMathInElement(document.body, {
                 delimiters: [
                     {left: '$$', right: '$$', display: true},
@@ -390,15 +401,17 @@
                     {left: '$', right: '$', display: false},
                     {left: '\\(', right: '\\)', display: false}
                 ],
-                // Trust the input, since we are controlling it.
-                // This allows \textcolor to work.
+                // Trust the input, since we are controlling it. This is necessary for some advanced LaTeX commands like \textcolor.
                 trust: true
             });
 
+            // Handle mobile navigation.
             const mobileNav = document.getElementById('mobile-nav');
             mobileNav.addEventListener('change', (event) => {
+                // Find the section corresponding to the selected option's value (e.g., '#real-numbers').
                 const targetElement = document.querySelector(event.target.value);
                 if (targetElement) {
+                    // Scroll the target section into view with a smooth animation.
                     targetElement.scrollIntoView({ behavior: 'smooth' });
                 }
             });
