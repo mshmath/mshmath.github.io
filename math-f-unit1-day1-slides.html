@@ -90,7 +90,6 @@
              padding: 0.5rem 1rem;
              border-radius: 0.5rem;
         }
-        
         /* Print Styles */
         .printable-version { display: none; }
         @media print {
@@ -224,7 +223,39 @@
             </div>
         </div>
 
-        <!-- Slide 8: Exit Ticket -->
+        <!-- Slide 8: Independent Practice -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Independent Practice</h2>
+            <div class="w-full grid grid-cols-1 md:grid-cols-3 gap-4 text-left text-sm">
+                <div class="bg-red-50 border-l-4 border-red-400 p-3 rounded-r-lg">
+                    <h3 class="font-bold text-red-700 text-lg mb-2">RED</h3>
+                    <p class="font-semibold">What is the value of the underlined digit?</p>
+                    <ol class="list-decimal pl-5 mt-1 space-y-2">
+                        <li>1,<u>8</u>23</li>
+                        <li><u>9</u>,045</li>
+                        <li>5,2<u>1</u>0</li>
+                    </ol>
+                </div>
+                <div class="bg-yellow-50 border-l-4 border-yellow-400 p-3 rounded-r-lg">
+                    <h3 class="font-bold text-yellow-700 text-lg mb-2">YELLOW</h3>
+                    <p class="font-semibold">Write 7,394 in:</p>
+                     <ol class="list-decimal pl-5 mt-1 space-y-2">
+                        <li>Expanded Form</li>
+                        <li>Word Form</li>
+                    </ol>
+                </div>
+                <div class="bg-green-50 border-l-4 border-green-400 p-3 rounded-r-lg">
+                    <h3 class="font-bold text-green-700 text-lg mb-2">GREEN</h3>
+                    <p class="font-semibold">Write the standard form for:</p>
+                     <ol class="list-decimal pl-5 mt-1 space-y-2">
+                        <li>5000 + 20 + 9</li>
+                        <li>Four thousand, six hundred twelve</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 9: Exit Ticket -->
         <div class="slide">
             <h2 class="text-3xl font-bold text-gray-800 mb-6">Exit Ticket</h2>
             <p class="text-2xl text-gray-700 mb-6">On a piece of paper, write the number <strong class="number-display">9,205</strong> in:</p>
@@ -237,7 +268,7 @@
         <!-- Navigation -->
         <button id="prevBtn" class="nav-button">&lt;</button>
         <button id="nextBtn" class="nav-button">&gt;</button>
-        <div id="slideCounter" class="slide-counter">1 / 8</div>
+        <div id="slideCounter" class="slide-counter">1 / 9</div>
     </div>
 
     <!-- Printable Version -->
@@ -249,7 +280,7 @@
             <p>In math, a digit's <strong class="font-semibold">position</strong> (where it is) is what gives it its <strong class="font-semibold">value</strong> (what it's worth).</p>
             <p class="mt-2">In the number 5,282, the '2' in the hundreds place is worth <span class="fill-in-blank"></span>, while the '2' in the ones place is worth <span class="fill-in-blank"></span>.</p>
         </div>
-        
+                
         <div class="print-card">
             <h2>The Three Forms of a Number</h2>
             <p class="mb-2"><strong>Example Number: 3,452</strong></p>
@@ -264,7 +295,7 @@
             <p class="mb-4"><strong>Expanded Form:</strong><br><span class="fill-in-blank" style="width: 100%;"></span></p>
             <p class="mb-2"><strong>Word Form:</strong><br><span class="fill-in-blank" style="width: 100%;"></span></p>
         </div>
-        
+                
         <div class="print-card">
             <h2>Exit Ticket</h2>
             <p class="mb-4">Write the number <strong>9,205</strong> in the two forms below:</p>
@@ -309,11 +340,9 @@
 
         showSlide(currentSlide);
     </script>
-
      <footer class="text-center mt-16 text-gray-500">
             <p>&nbsp;&bull;&nbsp; &copy; 2025 Aly Hatfield. All rights reserved. &nbsp;&bull;&nbsp;</p>
          <br>
         </footer>
 </body>
 </html>
-
