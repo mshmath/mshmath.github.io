@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Foundations: Estimation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5;
+        }
+        .slide-container {
+            width: 100%;
+            max-width: 900px;
+            aspect-ratio: 16 / 9;
+            margin: 1rem auto;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        .slide {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem 3rem;
+            text-align: center;
+            background-color: white;
+            height: 100%;
+        }
+        .slide.active {
+            display: flex;
+        }
+        .nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.3);
+            color: white;
+            border: none;
+            padding: 0.75rem;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .nav-button:hover {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        #prevBtn { left: 1rem; }
+        #nextBtn { right: 1rem; }
+        .slide-counter {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.875rem;
+            z-index: 10;
+        }
+        .title-slide {
+            background: linear-gradient(135deg, #0369a1, #7dd3fc);
+            color: white;
+        }
+        .emphasis-highlight {
+            background-color: #fef9c3;
+            padding: 0.1em 0.3em;
+            border-radius: 0.25em;
+            font-weight: 600;
+        }
+        .keyword {
+            color: #991b1b;
+            font-weight: 600;
+        }
+        .number-display {
+             font-family: monospace;
+             font-size: 1.75rem;
+             background-color: #e5e7eb;
+             padding: 0.5rem 1rem;
+             border-radius: 0.5rem;
+        }
+        
+        /* Print Styles */
+        .printable-version { display: none; }
+        @media print {
+            body { background-color: white; }
+            .non-printable { display: none; }
+            .printable-version { display: block; }
+            .print-card {
+                border: 2px solid #e5e7eb;
+                border-radius: 0.5rem;
+                padding: 1.5rem;
+                margin-bottom: 1.5rem;
+                page-break-inside: avoid;
+            }
+            .print-card h2 {
+                font-size: 1.5rem;
+                font-weight: 700;
+                border-bottom: 2px solid #e5e7eb;
+                padding-bottom: 0.5rem;
+                margin-bottom: 1rem;
+            }
+            .fill-in-blank {
+                display: inline-block;
+                width: 150px;
+                border-bottom: 1px solid black;
+                margin: 0 4px;
+            }
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen p-4">
+    <div class="non-printable w-full max-w-4xl">
+        <div class="flex flex-col sm:flex-row justify-between items-center mb-4">
+            <div>
+                <h1 class="text-3xl font-bold text-gray-800">Day 2 Presentation</h1>
+                <p class="text-gray-600">Use the arrows to navigate through the slides.</p>
+            </div>
+            <button onclick="window.print()" class="bg-teal-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-teal-700 transition-colors mt-2 sm:mt-0">
+                Print Notes
+            </button>
+        </div>
+    </div>
+
+    <div class="slide-container non-printable">
+        <!-- Slide 1: Title -->
+        <div class="slide active title-slide">
+            <h1 class="text-5xl font-bold mb-4">Math Foundations: Unit 1</h1>
+            <p class="text-2xl">Day 2: Estimation & Rounding</p>
+        </div>
+
+        <!-- Slide 2: Objectives -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Today's Objectives</h2>
+            <ul class="list-disc text-left text-xl space-y-4 text-gray-700">
+                <li>Understand why <span class="emphasis-highlight">estimation</span> is a useful, real-world skill.</li>
+                <li>Learn the rule for <span class="emphasis-highlight">rounding</span> whole numbers.</li>
+                <li>Use the <span class="emphasis-highlight">3-Step Process</span> (Estimate, Calculate, Compare) to solve problems.</li>
+            </ul>
+        </div>
+
+        <!-- Slide 3: Warm-Up -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Warm-Up: Number Talk</h2>
+            <p class="text-2xl text-gray-700 mb-6">In your head, what's a quick and easy way to solve this?</p>
+            <p class="number-display text-5xl">99 + 35</p>
+            <p class="text-xl text-gray-700 mt-6">Did you use a "friendlier" number like 100? That's the basic idea of estimation!</p>
+        </div>
+
+        <!-- Slide 4: What is Estimation -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">What is Estimation?</h2>
+            <p class="text-2xl text-gray-700 mb-4">Estimation is your <span class="keyword">math superpower</span>!</p>
+            <p class="text-xl text-gray-600 max-w-2xl">It's a way to make a <strong class="emphasis-highlight">quick, smart guess</strong> *before* you do the exact math. This helps you know if your final answer makes sense.</p>
+            <div class="text-2xl mt-6 bg-gray-100 p-4 rounded-lg">
+                <p>The main tool we use for estimation is <strong class="text-blue-700">Rounding</strong>.</p>
+            </div>
+        </div>
+
+        <!-- Slide 5: How to Round -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">How to Round Numbers</h2>
+            <p class="text-xl text-gray-600 mb-6">The rule is simple:</p>
+            <div class="w-full grid grid-cols-2 gap-6 text-center">
+                <div class="bg-red-50 border-2 border-red-200 p-4 rounded-lg">
+                    <h3 class="text-xl font-bold text-red-700">4 or Less, Let it Rest</h3>
+                    <p class="mt-2 text-lg">If the digit is 0, 1, 2, 3, or 4, the number you're rounding to stays the same.</p>
+                    <p class="number-display mt-2 text-2xl inline-block">32 ➔ 30</p>
+                </div>
+                <div class="bg-green-50 border-2 border-green-200 p-4 rounded-lg">
+                    <h3 class="text-xl font-bold text-green-700">5 or More, Raise the Score</h3>
+                    <p class="mt-2 text-lg">If the digit is 5, 6, 7, 8, or 9, you round the number up.</p>
+                    <p class="number-display mt-2 text-2xl inline-block">37 ➔ 40</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: The 3-Step Process -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">The 3-Step Process</h2>
+            <p class="text-xl text-gray-600 mb-4">Let's solve: You have $48 and spend $29. About how much is left?</p>
+            <div class="w-full space-y-2 text-left text-lg">
+                <div class="p-3 bg-blue-50 rounded-lg border-l-4 border-blue-500">
+                    <p><strong class="font-semibold">1. Estimate:</strong> Round first. $48 is about $50. $29 is about $30. So, <span class="number-display text-lg">50 - 30 = 20</span>.</p>
+                </div>
+                <div class="p-3 bg-green-50 rounded-lg border-l-4 border-green-500">
+                    <p><strong class="font-semibold">2. Calculate:</strong> Find the exact answer. <span class="number-display text-lg">48 - 29 = 19</span>.</p>
+                </div>
+                <div class="p-3 bg-yellow-50 rounded-lg border-l-4 border-yellow-500">
+                    <p><strong class="font-semibold">3. Compare:</strong> Is our exact answer (19) close to our estimate (20)? Yes! We can be confident.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Guided Practice -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Let's Practice Together</h2>
+            <p class="text-xl text-gray-700 mb-4">You are buying groceries that cost <strong class="number-display">$12.25</strong> and <strong class="number-display">$6.99</strong>. Use the 3 steps.</p>
+            <div class="w-full text-left mt-2 space-y-2">
+                 <p class="text-lg p-3 bg-blue-50 rounded-lg"><strong class="font-semibold">1. Estimate:</strong> $12.25 is about $12. $6.99 is about $7. So, <span class="number-display text-lg">$12 + $7 = $19</span>.</p>
+                 <p class="text-lg p-3 bg-green-50 rounded-lg"><strong class="font-semibold">2. Calculate:</strong> <span class="number-display text-lg">$12.25 + $6.99 = $19.24</span>.</p>
+                 <p class="text-lg p-3 bg-yellow-50 rounded-lg"><strong class="font-semibold">3. Compare:</strong> Our estimate of $19 is very close to $19.24. Perfect!</p>
+            </div>
+        </div>
+
+        <!-- Slide 8: Exit Ticket -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Exit Ticket</h2>
+            <p class="text-2xl text-gray-700 mb-6">You drive 108 miles on Monday and 295 miles on Tuesday.
+            <br>
+            <strong>Estimate your total miles.</strong></p>
+            <p class="text-xl text-gray-600">(Round to the nearest hundred first!)</p>
+        </div>
+
+        <!-- Navigation -->
+        <button id="prevBtn" class="nav-button">&lt;</button>
+        <button id="nextBtn" class="nav-button">&gt;</button>
+        <div id="slideCounter" class="slide-counter">1 / 8</div>
+    </div>
+
+    <!-- Printable Version -->
+    <div class="printable-version w-full max-w-4xl mx-auto p-4">
+        <h1 class="text-3xl font-bold text-center mb-6">Day 2 Notes: Estimation & Rounding</h1>
+
+        <div class="print-card">
+            <h2>The Big Idea: Estimation is a Smart Guess</h2>
+            <p>Estimation helps you know if your final answer is reasonable. The main tool we use for estimation is <strong class="font-semibold">rounding</strong>.</p>
+            <p class="mt-2">The rule for rounding is: 5 or more, <span class="fill-in-blank"></span>. 4 or less, <span class="fill-in-blank"></span>.</p>
+        </div>
+        
+        <div class="print-card">
+            <h2>The 3-Step Process for Solving Problems</h2>
+            <p class="mb-2"><strong>Example Problem:</strong> You have $48 and spend $29. About how much is left?</p>
+            <p class="mb-2"><strong>1. Estimate:</strong> Round the numbers first, then solve.
+            <br> <span class="fill-in-blank" style="width: 50px;"></span> - <span class="fill-in-blank" style="width: 50px;"></span> = <span class="fill-in-blank" style="width: 50px;"></span>
+            </p>
+            <p class="mb-2"><strong>2. Calculate:</strong> Find the exact answer.
+            <br> 48 - 29 = <span class="fill-in-blank" style="width: 50px;"></span>
+            </p>
+            <p class="mb-2"><strong>3. Compare:</strong> Is your exact answer close to your estimate? (Yes / No)</p>
+        </div>
+
+        <div class="print-card">
+            <h2>Practice Problem</h2>
+            <p class="mb-4">You are buying groceries that cost <strong>$12.25</strong> and <strong>$6.99</strong>. Use the three steps to find the total.</p>
+            <p class="mb-4"><strong>1. Estimate:</strong><br><span class="fill-in-blank" style="width: 100%;"></span></p>
+            <p class="mb-4"><strong>2. Calculate:</strong><br><span class="fill-in-blank" style="width: 100%;"></span></p>
+            <p class="mb-2"><strong>3. Compare:</strong> Are your answers close?<br><span class="fill-in-blank" style="width: 100%;"></span></p>
+        </div>
+        
+        <div class="print-card">
+            <h2>Exit Ticket</h2>
+            <p class="mb-4">You drive 108 miles on Monday and 295 miles on Tuesday. <strong>Estimate your total miles</strong> by rounding to the nearest hundred first.</p>
+            <p class="mb-2"><strong>My Estimate:</strong><br><span class="fill-in-blank" style="width: 100%;"></span></p>
+        </div>
+    </div>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const slideCounter = document.getElementById('slideCounter');
+        let currentSlide = 0;
+
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[n].classList.add('active');
+            slideCounter.textContent = `${n + 1} / ${slides.length}`;
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        nextBtn.addEventListener('click', nextSlide);
+        prevBtn.addEventListener('click', prevSlide);
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                prevSlide();
+            }
+        });
+
+        showSlide(currentSlide);
+    </script>
+</body>
+</html>
