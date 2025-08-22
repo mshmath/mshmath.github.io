@@ -15,6 +15,25 @@
         body {
             font-family: 'Inter', sans-serif;
         }
+        @media print {
+            header, footer, #daily-lessons-link, .unit-button {
+                display: none !important;
+            }
+            main {
+                padding-top: 1rem !important;
+                padding-bottom: 1rem !important;
+            }
+            body {
+                background-color: white;
+            }
+            section, .bg-white {
+                box-shadow: none !important;
+                border: 1px solid #e2e8f0 !important;
+            }
+            h1, h2, h3 {
+                color: black !important;
+            }
+        }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800">
@@ -28,8 +47,8 @@
                     <p class="mt-1 text-base sm:text-lg text-slate-600 hidden sm:block">8-Week Syllabus Outline</p>
                 </div>
                 <div>
-                    <a href="math-f-syl-site.html" target="_blank" class="whitespace-nowrap bg-teal-600 text-white font-semibold px-4 py-2 rounded-lg shadow-md hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 transition-colors duration-300">
-                        View Syllabus
+                    <a href="#" onclick="window.print(); return false;" class="whitespace-nowrap bg-teal-600 text-white font-semibold px-4 py-2 rounded-lg shadow-md hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 transition-colors duration-300">
+                        Print Outline
                     </a>
                 </div>
             </div>
@@ -59,95 +78,126 @@
             <h2 class="text-2xl font-bold text-slate-900 mb-6">Weekly Course Outline</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
                 <!-- Week 1 -->
-                <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200 hover:shadow-lg transition-shadow duration-300">
-                    <h3 class="font-semibold text-lg text-teal-800">Week 1: Whole Number Foundations</h3>
-                    <p class="text-sm text-slate-500 mt-1 mb-3"><strong>Focus:</strong> Building confidence with the basics.</p>
-                    <ul class="space-y-2 text-slate-700">
-                        <li class="flex items-start"><span class="mr-2 text-teal-500">&#10003;</span>Place value & Estimation</li>
-                        <li class="flex items-start"><span class="mr-2 text-teal-500">&#10003;</span>The Four Operations</li>
-                        <li class="flex items-start"><span class="mr-2 text-teal-500">&#10003;</span>Order of Operations (PEMDAS)</li>
-                    </ul>
+                <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200 hover:shadow-lg transition-shadow duration-300 flex flex-col">
+                    <div class="flex-grow">
+                        <h3 class="font-semibold text-lg text-teal-800">Week 1: Whole Number Foundations</h3>
+                        <p class="text-sm text-slate-500 mt-1 mb-3"><strong>Focus:</strong> Building confidence with the basics.</p>
+                        <ul class="space-y-2 text-slate-700">
+                            <li class="flex items-start"><span class="mr-2 text-teal-500">&#10003;</span>Place value & Estimation</li>
+                            <li class="flex items-start"><span class="mr-2 text-teal-500">&#10003;</span>The Four Operations</li>
+                            <li class="flex items-start"><span class="mr-2 text-teal-500">&#10003;</span>Order of Operations (PEMDAS)</li>
+                        </ul>
+                    </div>
+                    <div class="mt-4 text-right">
+                        <a href="math-f-unit1-notes.html" class="unit-button inline-block bg-slate-100 text-teal-700 font-semibold px-4 py-2 rounded-lg hover:bg-teal-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 transition-colors duration-300 text-sm">Go to Unit &rarr;</a>
+                    </div>
                 </div>
                 <!-- Week 2 -->
-                <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200 hover:shadow-lg transition-shadow duration-300">
-                    <h3 class="font-semibold text-lg text-teal-800">Week 2: Understanding Fractions</h3>
-                    <p class="text-sm text-slate-500 mt-1 mb-3"><strong>Focus:</strong> Demystifying fractions with visuals.</p>
-                    <ul class="space-y-2 text-slate-700">
-                        <li class="flex items-start"><span class="mr-2 text-teal-500">&#10003;</span>What a fraction represents</li>
-                        <li class="flex items-start"><span class="mr-2 text-teal-500">&#10003;</span>Equivalent fractions & Simplifying</li>
-                        <li class="flex items-start"><span class="mr-2 text-teal-500">&#10003;</span>Comparing fraction sizes</li>
-                    </ul>
+                <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200 hover:shadow-lg transition-shadow duration-300 flex flex-col">
+                    <div class="flex-grow">
+                        <h3 class="font-semibold text-lg text-teal-800">Week 2: Understanding Fractions</h3>
+                        <p class="text-sm text-slate-500 mt-1 mb-3"><strong>Focus:</strong> Demystifying fractions with visuals.</p>
+                        <ul class="space-y-2 text-slate-700">
+                            <li class="flex items-start"><span class="mr-2 text-teal-500">&#10003;</span>What a fraction represents</li>
+                            <li class="flex items-start"><span class="mr-2 text-teal-500">&#10003;</span>Equivalent fractions & Simplifying</li>
+                            <li class="flex items-start"><span class="mr-2 text-teal-500">&#10003;</span>Comparing fraction sizes</li>
+                        </ul>
+                    </div>
+                    <div class="mt-4 text-right">
+                        <a href="#" class="unit-button inline-block bg-slate-100 text-teal-700 font-semibold px-4 py-2 rounded-lg hover:bg-teal-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 transition-colors duration-300 text-sm">Go to Unit &rarr;</a>
+                    </div>
                 </div>
                 <!-- Week 3 -->
-                <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200 hover:shadow-lg transition-shadow duration-300">
-                    <h3 class="font-semibold text-lg text-teal-800">Week 3: The Decimal & Percent Connection</h3>
-                    <p class="text-sm text-slate-500 mt-1 mb-3"><strong>Focus:</strong> Seeing parts of a whole in three ways.</p>
-                    <ul class="space-y-2 text-slate-700">
-                        <li class="flex items-start"><span class="mr-2 text-teal-500">&#10003;</span>Understanding decimals</li>
-                        <li class="flex items-start"><span class="mr-2 text-teal-500">&#10003;</span>Understanding percents</li>
-                        <li class="flex items-start"><span class="mr-2 text-teal-500">&#10003;</span>Converting between all three forms</li>
-                    </ul>
+                <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200 hover:shadow-lg transition-shadow duration-300 flex flex-col">
+                    <div class="flex-grow">
+                        <h3 class="font-semibold text-lg text-teal-800">Week 3: The Decimal & Percent Connection</h3>
+                        <p class="text-sm text-slate-500 mt-1 mb-3"><strong>Focus:</strong> Seeing parts of a whole in three ways.</p>
+                        <ul class="space-y-2 text-slate-700">
+                            <li class="flex items-start"><span class="mr-2 text-teal-500">&#10003;</span>Understanding decimals</li>
+                            <li class="flex items-start"><span class="mr-2 text-teal-500">&#10003;</span>Understanding percents</li>
+                            <li class="flex items-start"><span class="mr-2 text-teal-500">&#10003;</span>Converting between all three forms</li>
+                        </ul>
+                    </div>
+                    <div class="mt-4 text-right">
+                        <a href="#" class="unit-button inline-block bg-slate-100 text-teal-700 font-semibold px-4 py-2 rounded-lg hover:bg-teal-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 transition-colors duration-300 text-sm">Go to Unit &rarr;</a>
+                    </div>
                 </div>
                 <!-- Week 4 -->
-                <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200 hover:shadow-lg transition-shadow duration-300">
-                    <h3 class="font-semibold text-lg text-teal-800">Week 4: Operations with Fractions & Decimals</h3>
-                    <p class="text-sm text-slate-500 mt-1 mb-3"><strong>Focus:</strong> Applying operations to real-world scenarios.</p>
-                    <ul class="space-y-2 text-slate-700">
-                        <li class="flex items-start"><span class="mr-2 text-teal-500">&#10003;</span>Adding & Subtracting fractions</li>
-                        <li class="flex items-start"><span class="mr-2 text-teal-500">&#10003;</span>Multiplying fractions</li>
-                        <li class="flex items-start"><span class="mr-2 text-teal-500">&#10003;</span>All operations with decimals</li>
-                    </ul>
+                <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200 hover:shadow-lg transition-shadow duration-300 flex flex-col">
+                    <div class="flex-grow">
+                        <h3 class="font-semibold text-lg text-teal-800">Week 4: Operations with Fractions & Decimals</h3>
+                        <p class="text-sm text-slate-500 mt-1 mb-3"><strong>Focus:</strong> Applying operations to real-world scenarios.</p>
+                        <ul class="space-y-2 text-slate-700">
+                            <li class="flex items-start"><span class="mr-2 text-teal-500">&#10003;</span>Adding & Subtracting fractions</li>
+                            <li class="flex items-start"><span class="mr-2 text-teal-500">&#10003;</span>Multiplying fractions</li>
+                            <li class="flex items-start"><span class="mr-2 text-teal-500">&#10003;</span>All operations with decimals</li>
+                        </ul>
+                    </div>
+                    <div class="mt-4 text-right">
+                        <a href="#" class="unit-button inline-block bg-slate-100 text-teal-700 font-semibold px-4 py-2 rounded-lg hover:bg-teal-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 transition-colors duration-300 text-sm">Go to Unit &rarr;</a>
+                    </div>
                 </div>
                 <!-- Week 5 -->
-                <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200 hover:shadow-lg transition-shadow duration-300">
-                    <h3 class="font-semibold text-lg text-teal-800">Week 5: Proportional Reasoning - Ratios & Rates</h3>
-                    <p class="text-sm text-slate-500 mt-1 mb-3"><strong>Focus:</strong> Developing a key real-world math skill.</p>
-                    <ul class="space-y-2 text-slate-700">
-                        <li class="flex items-start"><span class="mr-2 text-teal-500">&#10003;</span>Ratios for comparison</li>
-                        <li class="flex items-start"><span class="mr-2 text-teal-500">&#10003;</span>Rates (e.g., miles per hour)</li>
-                        <li class="flex items-start"><span class="mr-2 text-teal-500">&#10003;</span>The crucial concept of Unit Rate</li>
-                    </ul>
+                <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200 hover:shadow-lg transition-shadow duration-300 flex flex-col">
+                    <div class="flex-grow">
+                        <h3 class="font-semibold text-lg text-teal-800">Week 5: Proportional Reasoning - Ratios & Rates</h3>
+                        <p class="text-sm text-slate-500 mt-1 mb-3"><strong>Focus:</strong> Developing a key real-world math skill.</p>
+                        <ul class="space-y-2 text-slate-700">
+                            <li class="flex items-start"><span class="mr-2 text-teal-500">&#10003;</span>Ratios for comparison</li>
+                            <li class="flex items-start"><span class="mr-2 text-teal-500">&#10003;</span>Rates (e.g., miles per hour)</li>
+                            <li class="flex items-start"><span class="mr-2 text-teal-500">&#10003;</span>The crucial concept of Unit Rate</li>
+                        </ul>
+                    </div>
+                    <div class="mt-4 text-right">
+                        <a href="#" class="unit-button inline-block bg-slate-100 text-teal-700 font-semibold px-4 py-2 rounded-lg hover:bg-teal-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 transition-colors duration-300 text-sm">Go to Unit &rarr;</a>
+                    </div>
                 </div>
                  <!-- Week 6 -->
-                <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200 hover:shadow-lg transition-shadow duration-300">
-                    <h3 class="font-semibold text-lg text-teal-800">Week 6: Proportional Reasoning - Applications</h3>
-                    <p class="text-sm text-slate-500 mt-1 mb-3"><strong>Focus:</strong> Using proportions and percents to solve problems.</p>
-                    <ul class="space-y-2 text-slate-700">
-                        <li class="flex items-start"><span class="mr-2 text-teal-500">&#10003;</span>Setting up and solving proportions</li>
-                        <li class="flex items-start"><span class="mr-2 text-teal-500">&#10003;</span>Finding the percent of a number</li>
-                        <li class="flex items-start"><span class="mr-2 text-teal-500">&#10003;</span>Calculating discounts, tax, and tips</li>
-                    </ul>
+                <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200 hover:shadow-lg transition-shadow duration-300 flex flex-col">
+                    <div class="flex-grow">
+                        <h3 class="font-semibold text-lg text-teal-800">Week 6: Proportional Reasoning - Applications</h3>
+                        <p class="text-sm text-slate-500 mt-1 mb-3"><strong>Focus:</strong> Using proportions and percents to solve problems.</p>
+                        <ul class="space-y-2 text-slate-700">
+                            <li class="flex items-start"><span class="mr-2 text-teal-500">&#10003;</span>Setting up and solving proportions</li>
+                            <li class="flex items-start"><span class="mr-2 text-teal-500">&#10003;</span>Finding the percent of a number</li>
+                            <li class="flex items-start"><span class="mr-2 text-teal-500">&#10003;</span>Calculating discounts, tax, and tips</li>
+                        </ul>
+                    </div>
+                    <div class="mt-4 text-right">
+                        <a href="#" class="unit-button inline-block bg-slate-100 text-teal-700 font-semibold px-4 py-2 rounded-lg hover:bg-teal-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 transition-colors duration-300 text-sm">Go to Unit &rarr;</a>
+                    </div>
                 </div>
                  <!-- Week 7 -->
-                <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200 hover:shadow-lg transition-shadow duration-300">
-                    <h3 class="font-semibold text-lg text-teal-800">Week 7: The Language of Algebra - Expressions</h3>
-                    <p class="text-sm text-slate-500 mt-1 mb-3"><strong>Focus:</strong> Transitioning from arithmetic to algebra.</p>
-                    <ul class="space-y-2 text-slate-700">
-                        <li class="flex items-start"><span class="mr-2 text-teal-500">&#10003;</span>Integers (positive & negative numbers)</li>
-                        <li class="flex items-start"><span class="mr-2 text-teal-500">&#10003;</span>The concept of a variable</li>
-                        <li class="flex items-start"><span class="mr-2 text-teal-500">&#10003;</span>Writing & simplifying expressions</li>
-                    </ul>
+                <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200 hover:shadow-lg transition-shadow duration-300 flex flex-col">
+                    <div class="flex-grow">
+                        <h3 class="font-semibold text-lg text-teal-800">Week 7: The Language of Algebra - Expressions</h3>
+                        <p class="text-sm text-slate-500 mt-1 mb-3"><strong>Focus:</strong> Transitioning from arithmetic to algebra.</p>
+                        <ul class="space-y-2 text-slate-700">
+                            <li class="flex items-start"><span class="mr-2 text-teal-500">&#10003;</span>Integers (positive & negative numbers)</li>
+                            <li class="flex items-start"><span class="mr-2 text-teal-500">&#10003;</span>The concept of a variable</li>
+                            <li class="flex items-start"><span class="mr-2 text-teal-500">&#10003;</span>Writing & simplifying expressions</li>
+                        </ul>
+                    </div>
+                    <div class="mt-4 text-right">
+                        <a href="#" class="unit-button inline-block bg-slate-100 text-teal-700 font-semibold px-4 py-2 rounded-lg hover:bg-teal-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 transition-colors duration-300 text-sm">Go to Unit &rarr;</a>
+                    </div>
                 </div>
                  <!-- Week 8 -->
-                <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200 hover:shadow-lg transition-shadow duration-300">
-                    <h3 class="font-semibold text-lg text-teal-800">Week 8: Solving Equations & The Coordinate Plane</h3>
-                    <p class="text-sm text-slate-500 mt-1 mb-3"><strong>Focus:</strong> Finding unknowns and visualizing relationships.</p>
-                    <ul class="space-y-2 text-slate-700">
-                        <li class="flex items-start"><span class="mr-2 text-teal-500">&#10003;</span>Solving one- and two-step equations</li>
-                        <li class="flex items-start"><span class="mr-2 text-teal-500">&#10003;</span>Introduction to the coordinate plane</li>
-                        <li class="flex items-start"><span class="mr-2 text-teal-500">&#10003;</span>Plotting points (x, y)</li>
-                    </ul>
+                <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200 hover:shadow-lg transition-shadow duration-300 flex flex-col">
+                    <div class="flex-grow">
+                        <h3 class="font-semibold text-lg text-teal-800">Week 8: Solving Equations & The Coordinate Plane</h3>
+                        <p class="text-sm text-slate-500 mt-1 mb-3"><strong>Focus:</strong> Finding unknowns and visualizing relationships.</p>
+                        <ul class="space-y-2 text-slate-700">
+                            <li class="flex items-start"><span class="mr-2 text-teal-500">&#10003;</span>Solving one- and two-step equations</li>
+                            <li class="flex items-start"><span class="mr-2 text-teal-500">&#10003;</span>Introduction to the coordinate plane</li>
+                            <li class="flex items-start"><span class="mr-2 text-teal-500">&#10003;</span>Plotting points (x, y)</li>
+                        </ul>
+                    </div>
+                    <div class="mt-4 text-right">
+                        <a href="#" class="unit-button inline-block bg-slate-100 text-teal-700 font-semibold px-4 py-2 rounded-lg hover:bg-teal-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 transition-colors duration-300 text-sm">Go to Unit &rarr;</a>
+                    </div>
                 </div>
             </div>
-        </section>
-
-        <!-- Link to Daily Lessons Page -->
-        <section class="mt-16 text-center bg-white p-8 rounded-xl shadow-md border border-slate-200">
-            <h2 class="text-2xl font-bold text-slate-900">Explore the Daily Lessons</h2>
-            <p class="text-slate-600 mt-2 mb-6 max-w-2xl mx-auto">Access detailed daily lesson plans, interactive examples, and practice problems for each week of the course.</p>
-            <a href="math-f-notes.html" target="_blank" class="inline-block bg-teal-600 text-white font-bold text-lg px-8 py-4 rounded-lg shadow-lg hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 transition-all duration-300 transform hover:scale-105">
-                View Daily Lessons & Examples
-            </a>
         </section>
 
     </main>
@@ -155,10 +205,9 @@
     <!-- Footer -->
     <footer class="bg-white mt-12 border-t">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-            <p class="text-center text-sm text-slate-500">&nbsp;&bull;&nbsp; &copy; 2025 Aly Hatfield. All Rights Reserved. &nbsp;&bull;&nbsp;</p>
+            <p class="text-center text-sm text-slate-500">&nbsp;&bull;&nbsp; &copy; 2025 Aly Hatfield. All rights reserved. &nbsp;&bull;&nbsp;</p>
         </div>
     </footer>
 
 </body>
 </html>
-
