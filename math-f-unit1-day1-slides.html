@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Foundations: Place Value</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5;
+        }
+        .slide-container {
+            width: 100%;
+            max-width: 900px;
+            aspect-ratio: 16 / 9;
+            margin: 1rem auto;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        .slide {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem 3rem; /* Adjusted padding */
+            text-align: center;
+            background-color: white;
+            height: 100%;
+        }
+        .slide.active {
+            display: flex;
+        }
+        .nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.3);
+            color: white;
+            border: none;
+            padding: 0.75rem;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .nav-button:hover {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        #prevBtn { left: 1rem; }
+        #nextBtn { right: 1rem; }
+        .slide-counter {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.875rem;
+            z-index: 10;
+        }
+        .title-slide {
+            background: linear-gradient(135deg, #0f766e, #5eead4);
+            color: white;
+        }
+        .emphasis-highlight {
+            background-color: #fef9c3; /* yellow-100 */
+            padding: 0.1em 0.3em;
+            border-radius: 0.25em;
+            font-weight: 600;
+        }
+        .keyword {
+            color: #991b1b; /* red-800 */
+            font-weight: 600;
+        }
+        .number-display {
+             font-family: monospace;
+             font-size: 1.75rem;
+             background-color: #e5e7eb;
+             padding: 0.5rem 1rem;
+             border-radius: 0.5rem;
+        }
+        
+        /* Print Styles */
+        .printable-version { display: none; }
+        @media print {
+            body { background-color: white; }
+            .non-printable { display: none; }
+            .printable-version { display: block; }
+            .print-card {
+                border: 2px solid #e5e7eb;
+                border-radius: 0.5rem;
+                padding: 1.5rem;
+                margin-bottom: 1.5rem;
+                page-break-inside: avoid;
+            }
+            .print-card h2 {
+                font-size: 1.5rem;
+                font-weight: 700;
+                border-bottom: 2px solid #e5e7eb;
+                padding-bottom: 0.5rem;
+                margin-bottom: 1rem;
+            }
+            .fill-in-blank {
+                display: inline-block;
+                width: 150px;
+                border-bottom: 1px solid black;
+                margin: 0 4px;
+            }
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen p-4">
+    <div class="non-printable w-full max-w-4xl">
+        <div class="flex flex-col sm:flex-row justify-between items-center mb-4">
+            <div>
+                <h1 class="text-3xl font-bold text-gray-800">Day 1 Presentation</h1>
+                <p class="text-gray-600">Use the arrows to navigate through the slides.</p>
+            </div>
+            <button onclick="window.print()" class="bg-teal-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-teal-700 transition-colors mt-2 sm:mt-0">
+                Print Notes
+            </button>
+        </div>
+    </div>
+
+    <div class="slide-container non-printable">
+        <!-- Slide 1: Title -->
+        <div class="slide active title-slide">
+            <h1 class="text-5xl font-bold mb-4">Math Foundations: Unit 1</h1>
+            <p class="text-2xl">Day 1: What Numbers Really Mean</p>
+        </div>
+
+        <!-- Slide 2: Objectives -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Today's Objectives</h2>
+            <ul class="list-disc text-left text-xl space-y-4 text-gray-700">
+                <li>Understand that a digit's <span class="emphasis-highlight">position</span> determines its <span class="emphasis-highlight">value</span>.</li>
+                <li>Identify the value of any digit in a whole number.</li>
+                <li>Write numbers in <span class="emphasis-highlight">Standard</span>, <span class="emphasis-highlight">Expanded</span>, and <span class="emphasis-highlight">Word</span> form.</li>
+            </ul>
+        </div>
+
+        <!-- Slide 3: Warm-Up -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Warm-Up Question</h2>
+            <p class="text-2xl text-gray-700 mb-6">Look at the number below:</p>
+            <p class="number-display text-5xl">5,282</p>
+            <p class="text-2xl text-gray-700 mt-6">Do the two '2's in this number mean the same thing? <br>Why or why not?</p>
+        </div>
+
+        <!-- Slide 4: The Big Idea -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">The Big Idea: Position is Power!</h2>
+            <p class="text-2xl text-gray-700 mb-4">In math, a digit's <span class="keyword">position</span> (where it is) is what gives it its <span class="keyword">value</span> (what it's worth).</p>
+            <div class="text-2xl mt-4 bg-gray-100 p-6 rounded-lg">
+                <p>The '2' in the hundreds place is worth <span class="emphasis-highlight">200</span>.</p>
+                <p>The '2' in the ones place is worth <span class="emphasis-highlight">2</span>.</p>
+            </div>
+        </div>
+
+        <!-- Slide 5: Place Value Chart -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">The Place Value Chart</h2>
+            <p class="text-xl text-gray-600 mb-3">Let's break down the number <strong class="text-2xl">3,452</strong></p>
+            <div class="w-full grid grid-cols-4 gap-2 font-mono text-center bg-slate-50 p-4 rounded-lg border">
+                <div class="font-semibold text-slate-500 text-base md:text-lg">Thousands</div>
+                <div class="font-semibold text-slate-500 text-base md:text-lg">Hundreds</div>
+                <div class="font-semibold text-slate-500 text-base md:text-lg">Tens</div>
+                <div class="font-semibold text-slate-500 text-base md:text-lg">Ones</div>
+                <div class="text-4xl md:text-5xl font-bold text-green-600">3</div>
+                <div class="text-4xl md:text-5xl font-bold text-blue-600">4</div>
+                <div class="text-4xl md:text-5xl font-bold text-indigo-600">5</div>
+                <div class="text-4xl md:text-5xl font-bold text-purple-600">2</div>
+                <div class="text-md md:text-lg text-green-600">(3,000)</div>
+                <div class="text-md md:text-lg text-blue-600">(400)</div>
+                <div class="text-md md:text-lg text-indigo-600">(50)</div>
+                <div class="text-md md:text-lg text-purple-600">(2)</div>
+            </div>
+        </div>
+
+        <!-- Slide 6: The Three Forms -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Writing Numbers in 3 Forms</h2>
+            <div class="w-full space-y-3 text-left">
+                <div class="p-3 bg-gray-100 rounded-lg">
+                    <p class="text-lg font-semibold">1. Standard Form:</p>
+                    <p class="number-display mt-1 text-2xl">3,452</p>
+                </div>
+                <div class="p-3 bg-gray-100 rounded-lg">
+                    <p class="text-lg font-semibold">2. Expanded Form (Stretched Out):</p>
+                    <p class="number-display mt-1 text-2xl">3000 + 400 + 50 + 2</p>
+                </div>
+                <div class="p-3 bg-gray-100 rounded-lg">
+                    <p class="text-lg font-semibold">3. Word Form:</p>
+                    <p class="text-lg mt-1 ml-2">Three thousand, four hundred fifty-two</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Guided Practice -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Let's Practice Together</h2>
+            <p class="text-xl text-gray-700 mb-3">How would we write <strong class="number-display">6,071</strong> in expanded and word form?</p>
+            <div class="w-full space-y-3 text-left mt-2">
+                <div class="p-3 bg-green-50 rounded-lg border-l-4 border-green-500">
+                    <p class="text-lg font-semibold">Expanded Form:</p>
+                    <p class="text-base mt-1">The '6' is worth 6000. The '7' is worth 70. The '1' is worth 1.</p>
+                    <p class="number-display mt-2 text-2xl">6000 + 70 + 1</p>
+                </div>
+                <div class="p-3 bg-blue-50 rounded-lg border-l-4 border-blue-500">
+                    <p class="text-lg font-semibold">Word Form:</p>
+                    <p class="text-lg mt-1">Six thousand, seventy-one</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Exit Ticket -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Exit Ticket</h2>
+            <p class="text-2xl text-gray-700 mb-6">On a piece of paper, write the number <strong class="number-display">9,205</strong> in:</p>
+            <ol class="text-2xl space-y-3 list-decimal text-left">
+                <li>Expanded Form</li>
+                <li>Word Form</li>
+            </ol>
+        </div>
+
+        <!-- Navigation -->
+        <button id="prevBtn" class="nav-button">&lt;</button>
+        <button id="nextBtn" class="nav-button">&gt;</button>
+        <div id="slideCounter" class="slide-counter">1 / 8</div>
+    </div>
+
+    <!-- Printable Version -->
+    <div class="printable-version w-full max-w-4xl mx-auto p-4">
+        <h1 class="text-3xl font-bold text-center mb-6">Day 1 Notes: Place Value</h1>
+
+        <div class="print-card">
+            <h2>The Big Idea: Position is Power!</h2>
+            <p>In math, a digit's <strong class="font-semibold">position</strong> (where it is) is what gives it its <strong class="font-semibold">value</strong> (what it's worth).</p>
+            <p class="mt-2">In the number 5,282, the '2' in the hundreds place is worth <span class="fill-in-blank"></span>, while the '2' in the ones place is worth <span class="fill-in-blank"></span>.</p>
+        </div>
+        
+        <div class="print-card">
+            <h2>The Three Forms of a Number</h2>
+            <p class="mb-2"><strong>Example Number: 3,452</strong></p>
+            <p class="mb-2"><strong>1. Standard Form:</strong> <span class="fill-in-blank" style="width: 200px;">3,452</span></p>
+            <p class="mb-2"><strong>2. Expanded Form:</strong> <span class="fill-in-blank" style="width: 300px;">3000 + 400 + 50 + 2</span></p>
+            <p class="mb-2"><strong>3. Word Form:</strong> <span class="fill-in-blank" style="width: 400px;">Three thousand, four hundred fifty-two</span></p>
+        </div>
+
+        <div class="print-card">
+            <h2>Practice Problems</h2>
+            <p class="mb-4">Write the number <strong>6,071</strong> in the two forms below:</p>
+            <p class="mb-4"><strong>Expanded Form:</strong><br><span class="fill-in-blank" style="width: 100%;"></span></p>
+            <p class="mb-2"><strong>Word Form:</strong><br><span class="fill-in-blank" style="width: 100%;"></span></p>
+        </div>
+        
+        <div class="print-card">
+            <h2>Exit Ticket</h2>
+            <p class="mb-4">Write the number <strong>9,205</strong> in the two forms below:</p>
+            <p class="mb-4"><strong>Expanded Form:</strong><br><span class="fill-in-blank" style="width: 100%;"></span></p>
+            <p class="mb-2"><strong>Word Form:</strong><br><span class="fill-in-blank" style="width: 100%;"></span></p>
+        </div>
+    </div>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const slideCounter = document.getElementById('slideCounter');
+        let currentSlide = 0;
+
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[n].classList.add('active');
+            slideCounter.textContent = `${n + 1} / ${slides.length}`;
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        nextBtn.addEventListener('click', nextSlide);
+        prevBtn.addEventListener('click', prevSlide);
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                prevSlide();
+            }
+        });
+
+        showSlide(currentSlide);
+    </script>
+</body>
+</html>
