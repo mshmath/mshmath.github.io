@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Binder Cover</title>
+    <title>Editable Binder Cover</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Updated Google Fonts to use Montserrat for the header -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
@@ -18,9 +18,28 @@
         .font-header {
             font-family: 'Montserrat', sans-serif;
         }
+
+        /* --- NEW STYLES FOR EDITABLE FIELDS --- */
+        [contenteditable="true"] {
+            cursor: text;
+            transition: background-color 0.2s ease-in-out;
+        }
+        /* Add a soft outline and background color when a field is being edited */
+        [contenteditable="true"]:focus {
+            outline: 2px solid #a5b4fc; /* Tailwind's indigo-300 */
+            background-color: #f9fafb; /* Tailwind's gray-50 */
+            border-radius: 4px;
+        }
+        /* Placeholder styling */
+        [data-placeholder]:empty::before {
+            content: attr(data-placeholder);
+            color: #9ca3af; /* Tailwind's gray-400 */
+            pointer-events: none; /* Makes sure the placeholder isn't selectable */
+        }
+
         @media print {
-            /* Hide the print button when printing */
-            #print-button {
+            /* Hide the instructions and print button when printing */
+            #controls-section {
                 display: none;
             }
             /* Ensure the page uses the full available space */
@@ -36,6 +55,14 @@
                 margin: 0 !important;
                 height: 100vh; /* Use viewport height to fill the page */
             }
+            /* Remove focus styles and placeholders on print */
+            [contenteditable="true"]:focus {
+                outline: none;
+                background-color: transparent;
+            }
+            [data-placeholder]:empty::before {
+                content: '';
+            }
         }
         @page {
             size: letter; /* Standard US letter size */
@@ -45,9 +72,19 @@
 </head>
 <body class="bg-gray-100 flex flex-col items-center justify-center min-h-screen p-4 sm:p-8">
 
+    <!-- Instructions and Print Button (hidden on print) -->
+    <div id="controls-section" class="w-full max-w-4xl text-center mb-6">
+        <div class="bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4 rounded-lg" role="alert">
+            <p class="font-bold">Instructions</p>
+            <p>Click on any text field (like the title or the boxes below) to edit it. When you're ready, click the print button.</p>
+        </div>
+        <button onclick="window.print()" class="mt-4 bg-blue-600 text-white font-bold py-2 px-8 rounded-lg hover:bg-blue-700 transition-colors shadow-md">
+            Print Binder Cover
+        </button>
+    </div>
+
     <!-- Main container for the binder cover -->
     <div id="page-container" class="page-container w-full max-w-4xl bg-white rounded-2xl shadow-lg p-8 aspect-[8.5/11] border-4 border-dashed border-gray-300 relative overflow-hidden">
-        
         <!-- Decorative Corner Elements -->
         <div class="absolute top-4 left-4 text-gray-300">
             <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-75"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
@@ -59,16 +96,15 @@
         <div class="text-center h-full flex flex-col">
             <!-- Header Section -->
             <header class="mb-auto">
-                <!-- Updated header with new font, text, and styling -->
-                <h1 class="font-header text-4xl md:text-5xl font-bold text-gray-900 tracking-widest uppercase">Property Of:</h1>
+                <!-- EDITABLE header with new font, text, and styling -->
+                <h1 class="font-header text-4xl md:text-5xl font-bold text-gray-900 tracking-widest uppercase" contenteditable="true">Property Of:</h1>
             </header>
 
             <!-- Main Content: Name Plate -->
             <main class="flex-grow flex flex-col items-center justify-center px-4">
-                <!-- Updated name plate with a more neutral color scheme -->
                 <div class="w-full bg-gray-50 border-2 border-gray-300 rounded-xl p-6 shadow-inner">
-                    <div class="border-b-2 border-dashed border-gray-400 pb-8 h-24">
-                        <!-- Intentionally empty for student to write their name -->
+                    <!-- EDITABLE name field -->
+                    <div class="border-b-2 border-dashed border-gray-400 pb-8 h-24 text-4xl text-gray-800 flex justify-center items-center" contenteditable="true" data-placeholder="[Enter Your Name Here]">
                     </div>
                 </div>
             </main>
@@ -78,29 +114,31 @@
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 text-left">
                     <div class="flex flex-col">
                         <label class="font-bold text-gray-600 text-lg">Course/Subject:</label>
-                        <div class="bg-gray-100 mt-2 h-10 rounded-lg border border-gray-300"></div>
+                        <!-- EDITABLE Course/Subject field -->
+                        <div class="bg-gray-100 mt-2 h-10 rounded-lg border border-gray-300 p-2 flex items-center text-gray-700" contenteditable="true" data-placeholder="e.g., Geometry"></div>
                     </div>
                     <div class="flex flex-col">
                         <label class="font-bold text-gray-600 text-lg">Instructor:</label>
-                        <div class="bg-gray-100 mt-2 h-10 rounded-lg border border-gray-300"></div>
+                        <!-- EDITABLE Instructor field -->
+                        <div class="bg-gray-100 mt-2 h-10 rounded-lg border border-gray-300 p-2 flex items-center text-gray-700" contenteditable="true" data-placeholder="e.g., A. Hatfield"></div>
                     </div>
                     <div class="flex flex-col">
                         <label class="font-bold text-gray-600 text-lg">Term/Year:</label>
-                        <div class="bg-gray-100 mt-2 h-10 rounded-lg border border-gray-300"></div>
+                        <!-- EDITABLE Term/Year field -->
+                        <div class="bg-gray-100 mt-2 h-10 rounded-lg border border-gray-300 p-2 flex items-center text-gray-700" contenteditable="true" data-placeholder="e.g.,Fall 2025"></div>
                     </div>
                 </div>
             </footer>
         </div>
     </div>
 
-
-<footer class="bg-slate-100 text-slate-500 py-5 mt-16 border-t border-slate-200">
-    <div class="container mx-auto text-center">
-        <!-- Combined single-line footer text -->
-        <p class="text-sm">
-            &nbsp;&bull;&nbsp; &copy; 2025 Aly Hatfield. All Rights Reserved. &nbsp;&bull;&nbsp; 
-        </p>
-    </div>
-</footer>
+    <footer class="bg-slate-100 text-slate-500 py-5 mt-16 border-t border-slate-200">
+        <div class="container mx-auto text-center">
+            <!-- Combined single-line footer text -->
+            <p class="text-sm">
+                &nbsp;&bull;&nbsp; &copy; 2025 Aly Hatfield. All Rights Reserved. &nbsp;&bull;&nbsp;
+            </p>
+        </div>
+    </footer>
 </body>
 </html>
