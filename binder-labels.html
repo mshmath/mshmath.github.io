@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editable Binder Dividers & Labels</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Styles for the editable content */
+        [contenteditable] {
+            outline: 2px dashed transparent;
+            transition: outline 0.3s ease;
+        }
+        [contenteditable]:hover,
+        [contenteditable]:focus {
+            outline-color: #3b82f6; /* blue-500 */
+            background-color: #eff6ff; /* blue-50 */
+        }
+        /* Print-specific styles */
+        @media print {
+            /* Hide everything that shouldn't be printed */
+            body > .container > :not(.printable-content) {
+                display: none;
+            }
+            .printable-content {
+                box-shadow: none !important;
+                border: none !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+            .divider, .label {
+                border: 1px solid #ccc;
+                page-break-inside: avoid; /* Prevent items from splitting across pages */
+            }
+            /* Ensure contenteditable elements look normal when printed */
+            [contenteditable]:hover,
+            [contenteditable]:focus {
+                outline: none;
+                background-color: transparent;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <!-- Main Container -->
+    <div class="container mx-auto px-4 py-8 sm:py-12">
+
+        <!-- Instructions and Print Button (will be hidden on print) -->
+        <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-lg p-6 sm:p-8 mb-8 text-center">
+            <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">Editable Dividers & Labels</h1>
+            <p class="text-gray-600 mb-6">Click on any text below to edit it. Once you're done customizing, use the print button to create your physical copies.</p>
+            <button onclick="window.print()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-transform transform hover:scale-105">
+                Print Page
+            </button>
+        </div>
+
+        <!-- Content that will be printed -->
+        <div class="printable-content max-w-4xl mx-auto bg-white rounded-2xl shadow-lg p-6 sm:p-8">
+
+            <!-- Divider Template -->
+            <div class="divider border-2 border-gray-300 rounded-lg p-8 mb-8 relative">
+                <!-- Faux Tab -->
+                <div class="absolute -right-4 top-10 bg-gray-200 w-8 h-16 rounded-r-lg border-t-2 border-b-2 border-r-2 border-gray-300"></div>
+                <h2 contenteditable="true" class="text-4xl font-bold text-gray-800 border-b-2 pb-4">Unit One: Algebra Basics</h2>
+                <p contenteditable="true" class="text-lg text-gray-600 mt-4">Key concepts, formulas, and important dates for this unit.</p>
+            </div>
+
+            <!-- Labels Section -->
+            <h3 class="text-2xl font-semibold text-gray-700 mb-4 mt-12 border-b pb-2">Editable Labels</h3>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                
+                <!-- Label 1 -->
+                <div class="label border border-gray-300 rounded-md p-4 text-center h-24 flex items-center justify-center">
+                    <span contenteditable="true" class="font-semibold text-gray-700">Quiz</span>
+                </div>
+                
+                <!-- Label 2 -->
+                <div class="label border border-gray-300 rounded-md p-4 text-center h-24 flex items-center justify-center">
+                    <span contenteditable="true" class="font-semibold text-gray-700">Homework</span>
+                </div>
+
+                <!-- Label 3 -->
+                <div class="label border border-gray-300 rounded-md p-4 text-center h-24 flex items-center justify-center">
+                    <span contenteditable="true" class="font-semibold text-gray-700">Notes</span>
+                </div>
+
+                <!-- Label 4 -->
+                <div class="label border border-gray-300 rounded-md p-4 text-center h-24 flex items-center justify-center">
+                    <span contenteditable="true" class="font-semibold text-gray-700">Projects</span>
+                </div>
+
+                <!-- Label 5 -->
+                <div class="label border border-gray-300 rounded-md p-4 text-center h-24 flex items-center justify-center">
+                    <span contenteditable="true" class="font-semibold text-gray-700">Unit Review</span>
+                </div>
+
+                <!-- Label 6 -->
+                <div class="label border border-gray-300 rounded-md p-4 text-center h-24 flex items-center justify-center">
+                    <span contenteditable="true" class="font-semibold text-gray-700">Vocabulary</span>
+                </div>
+
+                <!-- Label 7 -->
+                <div class="label border border-gray-300 rounded-md p-4 text-center h-24 flex items-center justify-center">
+                    <span contenteditable="true" class="font-semibold text-gray-700">Formulas</span>
+                </div>
+
+                <!-- Label 8 -->
+                <div class="label border border-gray-300 rounded-md p-4 text-center h-24 flex items-center justify-center">
+                    <span contenteditable="true" class="font-semibold text-gray-700">Blank Label</span>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+ <footer class="bg-slate-100 text-slate-500 py-5 mt-16 border-t border-slate-200">
+            <div class="container mx-auto text-center">
+                <p class="text-sm">
+                    &nbsp;&bull;&nbsp; &copy; 2025 Aly Hatfield. All Rights Reserved. &nbsp;&bull;&nbsp;
+                </p>
+            </div>
+        </footer>
+</body>
+</html>
