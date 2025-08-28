@@ -21,7 +21,6 @@
         details > summary::-webkit-details-marker { display: none; }
         .details-arrow { transition: transform 0.2s ease-in-out; }
         details[open] .details-arrow { transform: rotate(90deg); }
-
         /* Print Styles */
         .printable-only { display: none; }
         @media print {
@@ -74,6 +73,7 @@
                         <li><a href="#day2" class="font-semibold text-teal-600 hover:text-teal-800 transition">Day 2</a></li>
                         <li><a href="#day3" class="font-semibold text-teal-600 hover:text-teal-800 transition">Day 3</a></li>
                         <li><a href="#day4" class="font-semibold text-teal-600 hover:text-teal-800 transition">Day 4</a></li>
+                        <li><a href="#day5" class="font-semibold text-teal-600 hover:text-teal-800 transition">Day 5</a></li>
                     </ul>
                 </nav>
             </div>
@@ -87,7 +87,6 @@
         <div class="bg-white p-6 rounded-xl shadow-lg mb-12 non-printable">
             <h2 class="text-3xl font-bold text-teal-700 mb-2">Unit 1 Resources & Lessons</h2>
             <p class="text-slate-600 mb-6">Use the buttons below to access unit-wide resources or jump to a specific lesson.</p>
-            
             <div class="border-t border-b border-slate-200 py-6">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
                     <a href="math-f-unit1-organizer.html" target="_blank" class="block w-full text-center bg-slate-100 text-slate-700 font-semibold px-4 py-2 rounded-lg hover:bg-slate-200 transition-colors text-sm">View/Print Graphic Organizer</a>
@@ -127,6 +126,14 @@
                         <div class="flex space-x-2">
                             <a href="math-f-unit1-day4-slides.html" target="_blank" class="flex-1 text-center bg-teal-500 text-white font-semibold px-4 py-2 rounded-lg hover:bg-teal-600 transition-colors text-sm">View Slides</a>
                             <a href="math-f-unit1-day4-slides-print.html" target="_blank" class="flex-1 text-center bg-teal-700 text-white font-semibold px-4 py-2 rounded-lg hover:bg-teal-800 transition-colors text-sm">Print Slides</a>
+                        </div>
+                    </div>
+                     <!-- Day 5 Links -->
+                    <div>
+                        <h4 class="font-semibold text-slate-600 text-sm mb-1">Day 5: Multiplication & Division Basics</h4>
+                        <div class="flex space-x-2">
+                            <a href="math-f-unit1-day5-slides.html" target="_blank" class="flex-1 text-center bg-teal-500 text-white font-semibold px-4 py-2 rounded-lg hover:bg-teal-600 transition-colors text-sm">View Slides</a>
+                            <a href="math-f-unit1-day5-slides-print.html" target="_blank" class="flex-1 text-center bg-teal-700 text-white font-semibold px-4 py-2 rounded-lg hover:bg-teal-800 transition-colors text-sm">Print Slides</a>
                         </div>
                     </div>
                 </div>
@@ -275,13 +282,84 @@
                     </div>
                 </div>
             </details>
+
+            <!-- NEW Lesson 5: Multiplication & Division Basics -->
+            <details id="day5" class="lesson-section bg-white rounded-xl shadow-lg overflow-hidden">
+                <summary class="p-6 cursor-pointer flex justify-between items-center hover:bg-slate-50 transition-colors non-printable">
+                    <h3 class="text-2xl font-bold text-slate-800">Day 5: Multiplication Tables & The Basics</h3>
+                    <svg class="w-6 h-6 text-slate-500 details-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </summary>
+                <div class="p-6 border-t border-slate-200">
+                    <p class="mb-6 bg-red-50 border border-red-200 text-red-800 p-3 rounded-lg"><strong class="font-semibold">Objective:</strong> To build fluency with multiplication facts and understand the core concepts of multiplication and division.</p>
+                    <div class="mb-8">
+                        <h4 class="text-xl font-semibold text-red-700 mb-2">I Do: The Concept Explained</h4>
+                        <p class="mb-4"><strong>What is Multiplication?</strong> It's just a fast way of adding. For example, \(3 \times 4\) is the same as adding 4, three times: \(4 + 4 + 4 = 12\). The numbers you multiply are called <strong class="font-semibold">factors</strong>, and the answer is the <strong class="font-semibold">product</strong>.</p>
+                        <div class="bg-slate-50 p-3 rounded-lg border mb-4">
+                            <p class="text-2xl font-mono text-center">
+                                <span class="text-blue-600">3</span> (factor) &times; <span class="text-teal-600">4</span> (factor) = <span class="text-red-600">12</span> (product)
+                            </p>
+                        </div>
+                        <p class="mb-4"><strong>What is Division?</strong> It's the opposite (or inverse) of multiplication. It means splitting a number into equal groups. For example, \(12 \div 4 = 3\) asks, "If you have 12 items and split them into 4 equal groups, how many items are in each group?" The answer is 3.</p>
+                         <div class="bg-slate-50 p-3 rounded-lg border">
+                            <p class="text-2xl font-mono text-center">
+                                <span class="text-red-600">12</span> (dividend) &divide; <span class="text-teal-600">4</span> (divisor) = <span class="text-blue-600">3</span> (quotient)
+                            </p>
+                        </div>
+                    </div>
+                    <div class="non-printable">
+                        <div class="mb-8">
+                            <h4 class="text-xl font-semibold text-red-700 mb-2">We Do: Check Your Understanding</h4>
+                            <div class="space-y-4">
+                                <div class="flex items-center space-x-2"><span>1. Multiplication is a shortcut for repeated </span><input type="text" data-answer="addition" class="interactive-input w-24 p-1 border-2 border-slate-300 rounded-md text-center"><button class="check-btn px-3 py-1 bg-slate-200 text-slate-700 rounded-md text-sm font-semibold hover:bg-slate-300">Check</button><span class="feedback-icon hidden"></span></div>
+                                <div class="flex items-center space-x-2"><span>2. The answer to a multiplication problem is the </span><input type="text" data-answer="product" class="interactive-input w-24 p-1 border-2 border-slate-300 rounded-md text-center"><button class="check-btn px-3 py-1 bg-slate-200 text-slate-700 rounded-md text-sm font-semibold hover:bg-slate-300">Check</button><span class="feedback-icon hidden"></span></div>
+                                <div class="flex items-center space-x-2"><span>3. The answer to a division problem is the </span><input type="text" data-answer="quotient" class="interactive-input w-24 p-1 border-2 border-slate-300 rounded-md text-center"><button class="check-btn px-3 py-1 bg-slate-200 text-slate-700 rounded-md text-sm font-semibold hover:bg-slate-300">Check</button><span class="feedback-icon hidden"></span></div>
+                            </div>
+                        </div>
+                        <div class="mb-8">
+                            <h4 class="text-xl font-semibold text-red-700 mb-2">You Do: Practice Problems</h4>
+                            <p class="mb-4">Use your multiplication knowledge to solve these!</p>
+                            <div class="space-y-4">
+                                <div class="flex items-center space-x-2"><span class="w-32 font-mono text-lg">\(6 \times 7 =\)</span><input type="text" data-answer="42" placeholder="?" class="interactive-input flex-grow p-1 border-2 border-slate-300 rounded-md"><button class="check-btn px-3 py-1 bg-red-600 text-white rounded-md text-sm font-semibold hover:bg-red-700">Check</button><span class="feedback-icon hidden"></span></div>
+                                <div class="flex items-center space-x-2"><span class="w-32 font-mono text-lg">\(9 \times 5 =\)</span><input type="text" data-answer="45" placeholder="?" class="interactive-input flex-grow p-1 border-2 border-slate-300 rounded-md"><button class="check-btn px-3 py-1 bg-red-600 text-white rounded-md text-sm font-semibold hover:bg-red-700">Check</button><span class="feedback-icon hidden"></span></div>
+                                <div class="flex items-center space-x-2"><span class="w-32 font-mono text-lg">\(24 \div 8 =\)</span><input type="text" data-answer="3" placeholder="?" class="interactive-input flex-grow p-1 border-2 border-slate-300 rounded-md"><button class="check-btn px-3 py-1 bg-red-600 text-white rounded-md text-sm font-semibold hover:bg-red-700">Check</button><span class="feedback-icon hidden"></span></div>
+                                <div class="flex items-center space-x-2"><span class="w-32 font-mono text-lg">\(49 \div 7 =\)</span><input type="text" data-answer="7" placeholder="?" class="interactive-input flex-grow p-1 border-2 border-slate-300 rounded-md"><button class="check-btn px-3 py-1 bg-red-600 text-white rounded-md text-sm font-semibold hover:bg-red-700">Check</button><span class="feedback-icon hidden"></span></div>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-semibold text-red-700 mb-2">You Do More: Extra Practice</h4>
+                            <p class="mb-4">Solve the problem below.</p>
+                            <div class="space-y-4">
+                                <div class="flex items-start space-x-2">
+                                    <span class="pt-1">If there are 8 spiders and each spider has 8 legs, how many legs are there in total?</span>
+                                    <input type="text" data-answer="64" placeholder="?" class="interactive-input w-24 p-1 border-2 border-slate-300 rounded-md text-center"><button class="check-btn px-3 py-1 bg-red-600 text-white rounded-md text-sm font-semibold hover:bg-red-700">Check</button><span class="feedback-icon hidden"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="printable-only">
+                        <h4 class="text-xl font-semibold text-red-700 mb-2">Notes & Practice</h4>
+                        <div class="space-y-4 text-lg">
+                            <p>1. Multiplication is a shortcut for repeated <span class="fill-in-blank"></span>.</p>
+                            <p>2. The answer to a multiplication problem is the <span class="fill-in-blank"></span>.</p>
+                            <p>3. The answer to a division problem is the <span class="fill-in-blank"></span>.</p>
+                            <p class="mt-6"><strong>Practice Problems:</strong></p>
+                            <p>\(6 \times 7 = \) <span class="fill-in-blank" style="width:100px;"></span></p>
+                            <p>\(9 \times 5 = \) <span class="fill-in-blank" style="width:100px;"></span></p>
+                            <p>\(24 \div 8 = \) <span class="fill-in-blank" style="width:100px;"></span></p>
+                            <p>\(49 \div 7 = \) <span class="fill-in-blank" style="width:100px;"></span></p>
+                            <p class="mt-6"><strong>Word Problem:</strong></p>
+                            <p>If there are 8 spiders and each spider has 8 legs, how many legs are there in total? <span class="fill-in-blank" style="width:150px;"></span></p>
+                        </div>
+                    </div>
+                </div>
+            </details>
         </div>
     </main>
 
-<footer class="text-center mt-16 text-gray-500">
-            <p>&nbsp;&bull;&nbsp; &copy; 2025 Aly Hatfield. All rights reserved. &nbsp;&bull;&nbsp;</p>
-    <br>
-        </footer>
+    <footer class="text-center mt-16 text-gray-500">
+        <p>&nbsp;&bull;&nbsp; &copy; 2025 Aly Hatfield. All rights reserved. &nbsp;&bull;&nbsp;</p>
+        <br>
+    </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -326,6 +404,3 @@
 
 </body>
 </html>
-
-
-
