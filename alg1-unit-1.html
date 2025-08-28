@@ -1,97 +1,393 @@
-<!DOCTYPE html><html lang="en"><head>    <meta charset="UTF-8">    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <title>Unit 1: Algebraic Expressions & Evaluation</title>    <script src="https://cdn.tailwindcss.com"></script>    <script>
-      // Standard MathJax configuration - Attaching to window object for reliability
-      window.MathJax = {
-        tex: {
-          inlineMath: [['$', '$']]
-        }
-      };
-    </script>    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>    <link rel="preconnect" href="https://fonts.googleapis.com">    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">    <style>        html { scroll-behavior: smooth; }        body { font-family: 'Inter', sans-serif; }        .lesson-section { scroll-margin-top: 5rem; }        .interactive-input {            transition: border-color 0.3s ease-in-out;        }        details > summary { list-style: none; }        details > summary::-webkit-details-marker { display: none; }        .details-arrow { transition: transform 0.2s ease-in-out; }        details[open] .details-arrow { transform: rotate(90deg); }        .key-term { color: #0f766e; font-weight: 600; }        .symbol { color: #4338ca; font-weight: 600; font-family: monospace; font-size: 1.1em; margin: 0 0.15em; }
-        /* Print Styles */        .printable-only { display: none; }        @media print {            header, .non-printable { display: none !important; }            .printable-only { display: block !important; }            main { padding: 0 !important; }            body { background-color: white; color: black; }            details { display: block !important; page-break-inside: avoid; }            details[open] summary { display: none; }            .lesson-section, .bg-white { box-shadow: none !important; border: 1px solid #ccc !important; }            h1, h2, h3, h4 { color: black !important; }            .fill-in-blank { display: inline-block; width: 120px; border-bottom: 1px solid black; margin: 0 4px; }        }    </style></head><body class="bg-slate-100 text-slate-800">
-    <!-- Header & Navigation -->    <header class="bg-white/90 backdrop-blur-sm shadow-md sticky top-0 z-50 non-printable">        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">            <div class="flex flex-col sm:flex-row justify-between items-center py-4 border-b border-slate-200">                <h1 class="text-2xl font-bold text-slate-900">Unit 1: Algebraic Expressions & Evaluation</h1>                <nav class="mt-2 sm:mt-0">                    <ul class="flex space-x-2 sm:space-x-4 text-sm sm:text-base">                        <li><a href="#day1" class="font-semibold text-teal-600 hover:text-teal-800 transition">Day 1</a></li>                        <li><a href="#day2" class="font-semibold text-teal-600 hover:text-teal-800 transition">Day 2</a></li>                        <li><a href="#day3" class="font-semibold text-teal-600 hover:text-teal-800 transition">Day 3</a></li>                        <li><a href="#day4" class="font-semibold text-teal-600 hover:text-teal-800 transition">Day 4</a></li>                    </ul>                </nav>            </div>        </div>    </header>
-    <!-- Main Content -->    <main class="max-w-4xl mx-auto p-4 sm:p-6 lg:p-8">
-        <!-- Introduction & Navigation Card -->        <div class="bg-white p-6 rounded-xl shadow-lg mb-12 non-printable">            <h2 class="text-3xl font-bold text-teal-700 mb-2">Unit 1 Resources & Lessons</h2>            <p class="text-slate-600 mb-6">VA SOL Standards: A.EO.1, A.EO.3a-b. Use the buttons below to access unit-wide resources or jump to a specific lesson.</p>                        <div class="border-t border-b border-slate-200 py-6">                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">                    <a href="alg1-unit1-organizer.html" target="_blank" class="block w-full text-center bg-slate-100 text-slate-700 font-semibold px-4 py-2 rounded-lg hover:bg-slate-200 transition-colors text-sm">View/Print Graphic Organizer</a>                    <a href="alg1-unit1-words.html" target="_blank" class="block w-full text-center bg-slate-100 text-slate-700 font-semibold px-4 py-2 rounded-lg hover:bg-slate-200 transition-colors text-sm">View/Print Vocabulary</a>                    <button onclick="window.print()" class="w-full text-center bg-teal-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-teal-700 transition-colors text-sm">Print Unit 1 Notes</button>                </div>                <!-- Daily Slides -->                <div class="space-y-4">                    <h3 class="font-semibold text-lg text-slate-800">Daily Lesson Slides</h3>                    <!-- Day 1 Links -->                    <div>                        <h4 class="font-semibold text-slate-600 text-sm mb-1">Day 1: Translating Expressions</h4>                        <div class="flex space-x-2">                            <a href="alg1-unit1-day1-slides.html" target="_blank" class="flex-1 text-center bg-teal-500 text-white font-semibold px-4 py-2 rounded-lg hover:bg-teal-600 transition-colors text-sm">View Slides</a>                            <a href="alg1-unit1-day1-slides-print.html" target="_blank" class="flex-1 text-center bg-teal-700 text-white font-semibold px-4 py-2 rounded-lg hover:bg-teal-800 transition-colors text-sm">Print Slides</a>                        </div>                    </div>                    <!-- Day 2 Links -->                    <div>                        <h4 class="font-semibold text-slate-600 text-sm mb-1">Day 2: Evaluating Expressions</h4>                        <div class="flex space-x-2">                            <a href="alg1-unit1-day2-slides.html" target="_blank" class="flex-1 text-center bg-teal-500 text-white font-semibold px-4 py-2 rounded-lg hover:bg-teal-600 transition-colors text-sm">View Slides</a>                            <a href="alg1-unit1-day2-slides-print.html" target="_blank" class="flex-1 text-center bg-teal-700 text-white font-semibold px-4 py-2 rounded-lg hover:bg-teal-800 transition-colors text-sm">Print Slides</a>                        </div>                    </div>                     <!-- Day 3 Links -->                    <div>                        <h4 class="font-semibold text-slate-600 text-sm mb-1">Day 3: Laws of Exponents</h4>                        <div class="flex space-x-2">                            <a href="alg1-unit1-day3-slides.html" target="_blank" class="flex-1 text-center bg-teal-500 text-white font-semibold px-4 py-2 rounded-lg hover:bg-teal-600 transition-colors text-sm">View Slides</a>                            <a href="alg1-unit1-day3-slides-print.html" target="_blank" class="flex-1 text-center bg-teal-700 text-white font-semibold px-4 py-2 rounded-lg hover:bg-teal-800 transition-colors text-sm">Print Slides</a>                        </div>                    </div>                     <!-- Day 4 Links -->                    <div>                        <h4 class="font-semibold text-slate-600 text-sm mb-1">Day 4: Simplifying Expressions</h4>                        <div class="flex space-x-2">                            <a href="alg1-unit1-day4-slides.html" target="_blank" class="flex-1 text-center bg-teal-500 text-white font-semibold px-4 py-2 rounded-lg hover:bg-teal-600 transition-colors text-sm">View Slides</a>                            <a href="alg1-unit1-day4-slides-print.html" target="_blank" class="flex-1 text-center bg-teal-700 text-white font-semibold px-4 py-2 rounded-lg hover:bg-teal-800 transition-colors text-sm">Print Slides</a>                        </div>                    </div>                </div>            </div>        </div>
-        <div class="space-y-8">            <!-- Lesson 1: Translating Words into Math -->            <details id="day1" class="lesson-section bg-white rounded-xl shadow-lg overflow-hidden">                <summary class="p-6 cursor-pointer flex justify-between items-center hover:bg-slate-50 transition-colors non-printable">                    <h3 class="text-2xl font-bold text-slate-800">Day 1: Translating Words into Math</h3>                    <svg class="w-6 h-6 text-slate-500 details-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>                </summary>                <div class="p-6 border-t border-slate-200">                    <p class="mb-8 bg-teal-50 border border-teal-200 text-teal-800 p-4 rounded-lg"><strong class="font-semibold">Objective:</strong> To translate verbal phrases into algebraic expressions and understand key vocabulary.</p>                                        <h4 class="text-xl font-semibold text-teal-700 mb-4">Notes</h4>                    <div class="space-y-5 mb-10">                        <p>An <b class="key-term">algebraic expression</b> is a mathematical phrase containing numbers, variables, and operations. It does not have an equal sign.</p>                        <div class="flex items-center space-x-3 flex-wrap py-1">                            <span>A <b class="key-term">Variable</b> is a letter, like $x,$ used to represent an unknown</span>                            <input type="text" data-answer="number" placeholder="term..." class="interactive-input w-24 p-1 border-2 border-slate-300 rounded-md">.                            <button class="check-btn px-3 py-1 bg-slate-200 text-slate-700 rounded-md text-sm font-semibold hover:bg-slate-300">Check</button><span class="feedback-icon hidden"></span>                        </div>                        <div class="flex items-center space-x-3 flex-wrap py-1">                            <span>A <b class="key-term">Coefficient</b> is the number being multiplied by a</span>                            <input type="text" data-answer="variable" placeholder="term..." class="interactive-input w-28 p-1 border-2 border-slate-300 rounded-md">.                            <button class="check-btn px-3 py-1 bg-slate-200 text-slate-700 rounded-md text-sm font-semibold hover:bg-slate-300">Check</button><span class="feedback-icon hidden"></span>                        </div>                        <p>Keywords tell us which operation to use. <br>"Sum," "more than," and "increased by" all mean <b class="key-term">addition</b>. <br>"Difference," "less than," and "decreased by" mean <b class="key-term">subtraction</b>. <br> "Product" and "of" mean <b class="key-term">multiplication</b>. <br>"Quotient" means <b class="key-term">division</b>.</p>                        <p>Watch out for "turnaround" words like <b class="key-term">than</b> and <b class="key-term">from</b>. They reverse the order of the terms. For example, "10 less than a number" is written as $x - 10,$ not $10 - x.$</p>                    </div>
-                    <h4 class="text-xl font-semibold text-teal-700 mb-4">Examples</h4>                    <!-- I Do Section -->                    <div class="mb-8 p-6 border-l-4 border-slate-300 bg-slate-50 rounded-r-lg">                        <h5 class="text-lg font-semibold text-slate-800 mb-2">I Do: Multi-Step Translation</h5>                        <p class="font-semibold">Translate: "The product of 4 and the sum of a number and 2."</p>                        <ol class="list-decimal ml-5 mt-3 text-sm space-y-2">                            <li>First, identify the main operation. "Product" means we are multiplying.</li>                            <li>What are we multiplying? We are multiplying "4" and "the sum of a number and 2."</li>                            <li>"The sum of a number and 2" needs to be grouped together. We write this as $(n+2).$</li>                            <li>Now, combine the parts: $4 \cdot (n+2),$ which simplifies to $4(n+2).$</li>                        </ol>                    </div>                    <!-- We Do Section -->                    <div class="mb-8 p-6 border-l-4 border-teal-300 bg-teal-50 rounded-r-lg">                        <h5 class="text-lg font-semibold text-teal-800 mb-2">We Do: Translating with a Turnaround Word</h5>                        <p class="font-semibold">Translate: "5 less than twice a number."</p>                        <div class="space-y-5 mt-3">                             <div class="flex items-center space-x-3 flex-wrap">                                <span>1. "Twice a number" can be written as</span>                                <input type="text" data-answer="2x" placeholder="expression..." class="interactive-input w-24 p-1 border-2 border-slate-300 rounded-md">.                                <button class="check-btn px-3 py-1 bg-slate-200 text-slate-700 rounded-md text-sm font-semibold hover:bg-slate-300">Check</button><span class="feedback-icon hidden"></span>                            </div>                             <div class="flex items-center space-x-3 flex-wrap">                                <span>2. The phrase "less than" means we subtract FROM the first part. It's a</span>                                <input type="text" data-answer="turnaround" placeholder="term..." class="interactive-input w-32 p-1 border-2 border-slate-300 rounded-md"><span>word.</span>                                <button class="check-btn px-3 py-1 bg-slate-200 text-slate-700 rounded-md text-sm font-semibold hover:bg-slate-300">Check</button><span class="feedback-icon hidden"></span>                            </div>                             <div class="flex items-center space-x-3 flex-wrap">                                <span>3. So, the final expression is</span>                                <input type="text" data-answer="2x-5" placeholder="expression..." class="interactive-input w-24 p-1 border-2 border-slate-300 rounded-md">.                                <button class="check-btn px-3 py-1 bg-slate-200 text-slate-700 rounded-md text-sm font-semibold hover:bg-slate-300">Check</button><span class="feedback-icon hidden"></span>                            </div>                        </div>                    </div>                    <!-- You Do Section -->                    <div>                        <h5 class="text-xl font-semibold text-teal-700 mb-4">You Do: Practice Problems</h5>                        <div class="space-y-6">                            <div>                                <label class="font-semibold block mb-2">Translate: "The quotient of a number squared and 7."</label>                                <div class="flex items-center space-x-3">                                    <input type="text" data-answer="x^2/7" placeholder="Expression..." class="interactive-input flex-grow p-1 border-2 border-slate-300 rounded-md">                                    <button class="check-btn px-3 py-1 bg-teal-600 text-white rounded-md text-sm font-semibold hover:bg-teal-700">Check</button>                                    <span class="feedback-icon hidden"></span>                                </div>                            </div>                            <div>                                <label class="font-semibold block mb-2">A movie ticket costs \$12. Write an expression for the cost of 't' tickets.</label>                                <div class="flex items-center space-x-3">                                    <input type="text" data-answer="12t" placeholder="Expression..." class="interactive-input flex-grow p-1 border-2 border-slate-300 rounded-md">                                    <button class="check-btn px-3 py-1 bg-teal-600 text-white rounded-md text-sm font-semibold hover:bg-teal-700">Check</button>                                    <span class="feedback-icon hidden"></span>                                </div>                            </div>                        </div>                    </div>                </div>            </details>
-            <!-- Lesson 2: Evaluating Expressions (SIMPLIFIED) -->            <details id="day2" class="lesson-section bg-white rounded-xl shadow-lg overflow-hidden">                <summary class="p-6 cursor-pointer flex justify-between items-center hover:bg-slate-50 transition-colors non-printable">                    <h3 class="text-2xl font-bold text-slate-800">Day 2: Evaluating Expressions</h3>                    <svg class="w-6 h-6 text-slate-500 details-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>                </summary>                <div class="p-6 border-t border-slate-200">                    <p class="mb-8 bg-blue-50 border border-blue-200 text-blue-800 p-4 rounded-lg"><strong class="font-semibold">Objective:</strong> To evaluate algebraic expressions by substituting values and using the order of operations.</p>                    
-                    <h4 class="text-xl font-semibold text-blue-700 mb-4">Notes - Part 1: Substitution</h4>                    <div class="space-y-5 mb-10">                        <p>To <b class="key-term">evaluate</b> an expression means to find its final numerical value. The first step is to <b class="key-term">substitute</b>.</p>                        <div class="flex items-center space-x-3 flex-wrap py-1">                            <span>Substitution is replacing the variables (letters) in an expression with their given</span>                            <input type="text" data-answer="numbers" placeholder="term..." class="interactive-input w-28 p-1 border-2 border-slate-300 rounded-md">.                            <button class="check-btn px-3 py-1 bg-slate-200 text-slate-700 rounded-md text-sm font-semibold hover:bg-slate-300">Check</button><span class="feedback-icon hidden"></span>                        </div>                        <p>A good habit is to always use <b class="key-term">parentheses</b> ( ) when you substitute. This helps avoid mistakes, especially with negative numbers later on!</p>                    </div>
-
-                    <h4 class="text-xl font-semibold text-blue-700 mb-4">Notes - Part 2: Order of Operations</h4>                    <div class="space-y-4 mb-10">                        <p>After you substitute, you must simplify the expression in the correct order. We call this the <b class="key-term">Order of Operations</b>. A common acronym to remember the order is <b class="key-term">GEMDAS</b>.</p>                        <ul class="list-none space-y-4 ml-4">                           <li class="flex items-center space-x-3">                                <b>G</b>                                <input type="text" data-answer="Grouping Symbols" placeholder="stands for..." class="interactive-input w-48 p-1 border-2 border-slate-300 rounded-md">                                <span>: First, solve anything inside ( ), [ ], or | |.</span>                                <button class="check-btn px-3 py-1 bg-slate-200 text-slate-700 rounded-md text-sm font-semibold hover:bg-slate-300">Check</button><span class="feedback-icon hidden"></span>                           </li>                           <li class="flex items-center space-x-3">                                <b>E</b>                                <input type="text" data-answer="Exponents" placeholder="stands for..." class="interactive-input w-48 p-1 border-2 border-slate-300 rounded-md">                                <span>: Second, calculate any powers like $3^2$.</span>                                <button class="check-btn px-3 py-1 bg-slate-200 text-slate-700 rounded-md text-sm font-semibold hover:bg-slate-300">Check</button><span class="feedback-icon hidden"></span>                           </li>                           <li class="flex items-center space-x-3">                                <b>M/D</b>                                <input type="text" data-answer="Multiplication/Division" placeholder="stands for..." class="interactive-input w-48 p-1 border-2 border-slate-300 rounded-md">                                <span>: Third, multiply or divide from left to right.</span>                                <button class="check-btn px-3 py-1 bg-slate-200 text-slate-700 rounded-md text-sm font-semibold hover:bg-slate-300">Check</button><span class="feedback-icon hidden"></span>                           </li>                           <li class="flex items-center space-x-3">                                <b>A/S</b>                                <input type="text" data-answer="Addition/Subtraction" placeholder="stands for..." class="interactive-input w-48 p-1 border-2 border-slate-300 rounded-md">                                <span>: Finally, add or subtract from left to right.</span>                                <button class="check-btn px-3 py-1 bg-slate-200 text-slate-700 rounded-md text-sm font-semibold hover:bg-slate-300">Check</button><span class="feedback-icon hidden"></span>                           </li>                        </ul>                    </div>
-
-                    <h4 class="text-xl font-semibold text-blue-700 mb-4">Examples</h4>                    <!-- I Do Section -->                    <div class="mb-8 p-6 border-l-4 border-slate-300 bg-slate-50 rounded-r-lg">                        <h5 class="text-lg font-semibold text-slate-800 mb-2">I Do: A Basic Evaluation</h5>                        <p class="font-semibold">Evaluate $x + y$ when $x=5$ and $y=8.$</p>                        <ol class="list-decimal ml-5 mt-3 text-sm space-y-2">                            <li><b>Substitute:</b> Replace the $x$ with 5 and the $y$ with 8. The expression becomes $5 + 8.$</li>                            <li><b>Simplify:</b> There is only one operation: addition.</li>                            <li><b>Calculate:</b> $5 + 8 = 13.$ The final answer is 13.</li>                        </ol>                    </div>                    <!-- We Do Section -->                    <div class="mb-8 p-6 border-l-4 border-blue-300 bg-blue-50 rounded-r-lg">                        <h5 class="text-lg font-semibold text-blue-800 mb-2">We Do: Using Multiplication</h5>                        <p class="font-semibold">Evaluate $4a + b$ when $a=3$ and $b=6.$</p>                        <div class="space-y-5 mt-3">                             <div class="flex items-center space-x-3 flex-wrap">                                <span>1. Substitute the numbers for the letters. The expression becomes $4(3) + $</span>                                <input type="text" data-answer="6" placeholder="value..." class="interactive-input w-20 p-1 border-2 border-slate-300 rounded-md">.                                <button class="check-btn px-3 py-1 bg-slate-200 text-slate-700 rounded-md text-sm font-semibold hover:bg-slate-300">Check</button><span class="feedback-icon hidden"></span>                            </div>                             <div class="flex items-center space-x-3 flex-wrap">                                <span>2. Look at GEMDAS. We need to do multiplication before addition. So, first calculate $4(3)$, which is</span>                                <input type="text" data-answer="12" placeholder="value..." class="interactive-input w-20 p-1 border-2 border-slate-300 rounded-md">.                                <button class="check-btn px-3 py-1 bg-slate-200 text-slate-700 rounded-md text-sm font-semibold hover:bg-slate-300">Check</button><span class="feedback-icon hidden"></span>                            </div>                            <div class="flex items-center space-x-3 flex-wrap">                                <span>3. Now the expression is $12 + 6.$ The final answer is</span>                                <input type="text" data-answer="18" placeholder="answer..." class="interactive-input w-20 p-1 border-2 border-slate-300 rounded-md">.                                <button class="check-btn px-3 py-1 bg-slate-200 text-slate-700 rounded-md text-sm font-semibold hover:bg-slate-300">Check</button><span class="feedback-icon hidden"></span>                            </div>                        </div>                    </div>                    <!-- You Do Section -->                    <div>                        <h5 class="text-xl font-semibold text-blue-700 mb-4">You Do: Practice Problems</h5>                        <div class="space-y-6">                            <div>                                <label class="font-semibold block mb-2">Evaluate $10 - 2m$ when $m=3.$</label>                                <div class="flex items-center space-x-3 mt-1">                                    <input type="text" data-answer="4" placeholder="Answer..." class="interactive-input w-32 p-1 border-2 border-slate-300 rounded-md">                                    <button class="check-btn px-3 py-1 bg-blue-600 text-white rounded-md text-sm font-semibold hover:bg-blue-700">Check</button>                                    <span class="feedback-icon hidden"></span>                                </div>                            </div>                             <div>                                <label class="font-semibold block mb-2">Evaluate $c^2 + 5$ when $c=4.$ (Remember to do the exponent first!)</label>                                <div class="flex items-center space-x-3 mt-1">                                    <input type="text" data-answer="21" placeholder="Answer..." class="interactive-input w-32 p-1 border-2 border-slate-300 rounded-md">                                    <button class="check-btn px-3 py-1 bg-blue-600 text-white rounded-md text-sm font-semibold hover:bg-blue-700">Check</button>                                    <span class="feedback-icon hidden"></span>                                </div>                            </div>                        </div>                    </div>                </div>            </details>
-            <!-- Lesson 3: Working with Exponents (SIMPLIFIED) -->            <details id="day3" class="lesson-section bg-white rounded-xl shadow-lg overflow-hidden">                <summary class="p-6 cursor-pointer flex justify-between items-center hover:bg-slate-50 transition-colors non-printable">                    <h3 class="text-2xl font-bold text-slate-800">Day 3: Working with Exponents</h3>                    <svg class="w-6 h-6 text-slate-500 details-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>                </summary>                <div class="p-6 border-t border-slate-200">                    <p class="mb-8 bg-indigo-50 border border-indigo-200 text-indigo-800 p-4 rounded-lg"><strong class="font-semibold">Objective:</strong> To simplify expressions using the basic laws of exponents.</p>
-                    
-                    <h4 class="text-xl font-semibold text-indigo-700 mb-4">Notes - Part 1: What is an Exponent?</h4>                    <div class="space-y-5 mb-10">                        <p>An exponent is a shortcut for repeated multiplication. For example, $x^4$ is the same as $x \cdot x \cdot x \cdot x$.</p>                        <div class="flex items-center space-x-3 flex-wrap py-1">                            <span>In the term $x^a,$ the $x$ is called the</span>                            <input type="text" data-answer="base" placeholder="term..." class="interactive-input w-24 p-1 border-2 border-slate-300 rounded-md">,                            <button class="check-btn px-3 py-1 bg-slate-200 text-slate-700 rounded-md text-sm font-semibold hover:bg-slate-300">Check</button><span class="feedback-icon hidden"></span>                        </div>                        <div class="flex items-center space-x-3 flex-wrap py-1">                            <span>and the $a$ is called the</span>                            <input type="text" data-answer="exponent" placeholder="term..." class="interactive-input w-28 p-1 border-2 border-slate-300 rounded-md">.                            <button class="check-btn px-3 py-1 bg-slate-200 text-slate-700 rounded-md text-sm font-semibold hover:bg-slate-300">Check</button><span class="feedback-icon hidden"></span>                        </div>                    </div>
-
-                    <h4 class="text-xl font-semibold text-indigo-700 mb-4">Notes - Part 2: The Product Rule (Multiplying)</h4>                    <div class="space-y-4 mb-10">                        <p><b>Rule:</b> When you multiply terms with the <b class="key-term">same base</b>, you <b class="key-term">ADD</b> the exponents.</p>                        <p><b>Why?</b> Look at $x^2 \cdot x^3$. This is just $(x \cdot x) \cdot (x \cdot x \cdot x).$ If you count them up, there are 5 x's being multiplied, so the answer is $x^5.$ It's a shortcut to just do $x^{2+3} = x^.5$</p>                    </div>
-
-                    <h4 class="text-xl font-semibold text-indigo-700 mb-4">Notes - Part 3: The Quotient Rule (Dividing)</h4>                    <div class="space-y-4 mb-10">                        <p><b>Rule:</b> When you divide terms with the <b class="key-term">same base</b>, you <b class="key-term">SUBTRACT</b> the exponents.</p>                        <p><b>Why?</b> Look at $\frac{x^5}{x^2}$. This is $\frac{x \cdot x \cdot x \cdot x \cdot x}{x \cdot x}.$ You can cancel out two x's from the top and bottom, leaving you with $x \cdot x \cdot x,$ which is $x^3.$ The shortcut is $x^{5-2} = x^3.$</p>                    </div>
-                    
-                    <h4 class="text-xl font-semibold text-indigo-700 mb-4">Examples</h4>                    <!-- I Do Section -->                    <div class="mb-8 p-6 border-l-4 border-slate-300 bg-slate-50 rounded-r-lg">                        <h5 class="text-lg font-semibold text-slate-800 mb-2">I Do: Product Rule</h5>                        <p class="font-semibold">Simplify: $a^4 \cdot a^6$</p>                        <ol class="list-decimal ml-5 mt-3 text-sm space-y-2">                            <li>The terms have the same base, which is 'a'.</li>                            <li>Since we are multiplying, we add the exponents.</li>                            <li>$a^{4+6} = a^{10}.$ The final answer is $a^{10}.$</li>                        </ol>                    </div>                    <!-- We Do Section -->                    <div class="mb-8 p-6 border-l-4 border-indigo-300 bg-indigo-50 rounded-r-lg">                        <h5 class="text-lg font-semibold text-indigo-800 mb-2">We Do: Quotient Rule</h5>                        <p class="font-semibold">Simplify: $\frac{y^8}{y^3}$</p>                        <div class="space-y-5 mt-3">                            <div class="flex items-center space-x-3 flex-wrap">                                <span>1. The terms have the same base, which is 'y'. Since we are dividing, we</span>                                <input type="text" data-answer="subtract" placeholder="action..." class="interactive-input w-28 p-1 border-2 border-slate-300 rounded-md"><span>the exponents.</span>                                <button class="check-btn px-3 py-1 bg-slate-200 text-slate-700 rounded-md text-sm font-semibold hover:bg-slate-300">Check</button><span class="feedback-icon hidden"></span>                            </div>                            <div class="flex items-center space-x-3 flex-wrap">                                <span>2. We calculate $8 - 3,$ which is</span>                                <input type="text" data-answer="5" placeholder="value..." class="interactive-input w-16 p-1 border-2 border-slate-300 rounded-md">.                                <button class="check-btn px-3 py-1 bg-slate-200 text-slate-700 rounded-md text-sm font-semibold hover:bg-slate-300">Check</button><span class="feedback-icon hidden"></span>                            </div>                             <div class="flex items-center space-x-3 flex-wrap">                                <span>3. The final answer is</span>                                <input type="text" data-answer="y^5" placeholder="expression..." class="interactive-input w-24 p-1 border-2 border-slate-300 rounded-md">.                                <button class="check-btn px-3 py-1 bg-slate-200 text-slate-700 rounded-md text-sm font-semibold hover:bg-slate-300">Check</button><span class="feedback-icon hidden"></span>                            </div>                        </div>                    </div>                    <!-- You Do Section -->                    <div>                        <h5 class="text-xl font-semibold text-indigo-700 mb-4">You Do: Practice Problems</h5>                        <div class="space-y-6">                             <div>                                <label class="font-semibold block mb-2">Simplify: $m^2 \cdot m^5$</label>                                <div class="flex items-center space-x-3">                                    <input type="text" data-answer="m^7" placeholder="Answer..." class="interactive-input flex-grow p-1 border-2 border-slate-300 rounded-md">                                    <button class="check-btn px-3 py-1 bg-indigo-600 text-white rounded-md text-sm font-semibold hover:bg-indigo-700">Check</button>                                    <span class="feedback-icon hidden"></span>                                </div>                            </div>                             <div>                                <label class="font-semibold block mb-2">Simplify: $\frac{c^{12}}{c^4}$</label>                                <div class="flex items-center space-x-3">                                    <input type="text" data-answer="c^8" placeholder="Answer..." class="interactive-input flex-grow p-1 border-2 border-slate-300 rounded-md">                                    <button class="check-btn px-3 py-1 bg-indigo-600 text-white rounded-md text-sm font-semibold hover:bg-indigo-700">Check</button>                                    <span class="feedback-icon hidden"></span>                                </div>                            </div>                             <div>                                <label class="font-semibold block mb-2">Challenge: Simplify $(2x^3)(5x^4).$ (Hint: Multiply the numbers first, then use the product rule on the variables.)</label>                                <div class="flex items-center space-x-3">                                    <input type="text" data-answer="10x^7" placeholder="Answer..." class="interactive-input flex-grow p-1 border-2 border-slate-300 rounded-md">                                    <button class="check-btn px-3 py-1 bg-indigo-600 text-white rounded-md text-sm font-semibold hover:bg-indigo-700">Check</button>                                    <span class="feedback-icon hidden"></span>                                </div>                            </div>                        </div>                    </div>                </div>            </details>
-            <!-- Lesson 4: Simplifying Expressions (SIMPLIFIED) -->            <details id="day4" class="lesson-section bg-white rounded-xl shadow-lg overflow-hidden">                <summary class="p-6 cursor-pointer flex justify-between items-center hover:bg-slate-50 transition-colors non-printable">                    <h3 class="text-2xl font-bold text-slate-800">Day 4: Simplifying Expressions</h3>                    <svg class="w-6 h-6 text-slate-500 details-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>                </summary>                <div class="p-6 border-t border-slate-200">                    <p class="mb-8 bg-purple-50 border border-purple-200 text-purple-800 p-4 rounded-lg"><strong class="font-semibold">Objective:</strong> To simplify algebraic expressions by combining like terms and using the distributive property.</p>
-                    
-                    <h4 class="text-xl font-semibold text-purple-700 mb-4">Notes - Part 1: Like Terms</h4>                    <div class="space-y-5 mb-10">                        <p><b class="key-term">Like Terms</b> are terms that have the exact same variables with the exact same exponents. The numbers in front (coefficients) can be different.</p>                        <p>Think of it like sorting fruit: You can add apples to other apples, but you can't add apples to bananas. In the same way, you can add $3x$ and $5x$, but you can't add $3x$ and $5y.$</p>                        <div class="flex items-center space-x-3 flex-wrap py-1">                            <span>To combine like terms, you add or subtract the</span>                            <input type="text" data-answer="coefficients" placeholder="term..." class="interactive-input w-32 p-1 border-2 border-slate-300 rounded-md">,                            <button class="check-btn px-3 py-1 bg-slate-200 text-slate-700 rounded-md text-sm font-semibold hover:bg-slate-300">Check</button><span class="feedback-icon hidden"></span>                        </div>                        <div class="flex items-center space-x-3 flex-wrap py-1">                            <span>and you keep the variable part the</span>                            <input type="text" data-answer="same" placeholder="term..." class="interactive-input w-24 p-1 border-2 border-slate-300 rounded-md">.                            <button class="check-btn px-3 py-1 bg-slate-200 text-slate-700 rounded-md text-sm font-semibold hover:bg-slate-300">Check</button><span class="feedback-icon hidden"></span>                        </div>                    </div>
-
-                    <h4 class="text-xl font-semibold text-purple-700 mb-4">Notes - Part 2: The Distributive Property</h4>                    <div class="space-y-4 mb-10">                        <p>The <b class="key-term">Distributive Property</b> is used to get rid of parentheses. You "distribute" or multiply the term on the outside of the parentheses to <b class="key-term">every</b> term on the inside.</p>                        <p><b>Rule:</b> $a(b+c) = ab + ac.$ Be very careful when you distribute a negative number, as it will change the signs of the terms inside!</p>                    </div>
-                    
-                    <h4 class="text-xl font-semibold text-purple-700 mb-4">Examples</h4>                    <!-- I Do Section -->                    <div class="mb-8 p-6 border-l-4 border-slate-300 bg-slate-50 rounded-r-lg">                        <h5 class="text-lg font-semibold text-slate-800 mb-2">I Do: Combining Like Terms</h5>                        <p class="font-semibold">Simplify: $7x + 2 + 3x + 5$</p>                        <ol class="list-decimal ml-5 mt-3 text-sm space-y-2">                            <li><b>Identify Like Terms:</b> The terms $7x$ and $3x$ are like terms. The numbers $2$ and $5$ are also like terms.</li>                            <li><b>Combine the x-terms:</b> $7x + 3x = 10x.$</li>                            <li><b>Combine the numbers:</b> $2 + 5 = 7.$</li>                            <li><b>Write the final answer:</b> $10x + 7.$</li>                        </ol>                    </div>                    <!-- We Do Section -->                    <div class="mb-8 p-6 border-l-4 border-purple-300 bg-purple-50 rounded-r-lg">                        <h5 class="text-lg font-semibold text-purple-800 mb-2">We Do: Using the Distributive Property</h5>                        <p class="font-semibold">Simplify: $4(x - 3)$</p>                         <div class="space-y-5 mt-3">                             <div class="flex items-center space-x-3 flex-wrap">                                <span>1. We need to distribute the 4 to both terms inside the parentheses. First, multiply $4 \cdot x$, which gives us</span>                                <input type="text" data-answer="4x" placeholder="term..." class="interactive-input w-20 p-1 border-2 border-slate-300 rounded-md">.                                <button class="check-btn px-3 py-1 bg-slate-200 text-slate-700 rounded-md text-sm font-semibold hover:bg-slate-300">Check</button><span class="feedback-icon hidden"></span>                            </div>                             <div class="flex items-center space-x-3 flex-wrap">                                <span>2. Next, multiply $4 \cdot (-3),$ which gives us</span>                                <input type="text" data-answer="-12" placeholder="value..." class="interactive-input w-20 p-1 border-2 border-slate-300 rounded-md">.                                <button class="check-btn px-3 py-1 bg-slate-200 text-slate-700 rounded-md text-sm font-semibold hover:bg-slate-300">Check</button><span class="feedback-icon hidden"></span>                            </div>                             <div class="flex items-center space-x-3 flex-wrap">                                <span>3. The final simplified expression is</span>                                <input type="text" data-answer="4x-12" placeholder="expression..." class="interactive-input w-24 p-1 border-2 border-slate-300 rounded-md">.                                <button class="check-btn px-3 py-1 bg-slate-200 text-slate-700 rounded-md text-sm font-semibold hover:bg-slate-300">Check</button><span class="feedback-icon hidden"></span>                            </div>                        </div>                    </div>                    <!-- You Do Section -->                    <div>                        <h5 class="text-xl font-semibold text-purple-700 mb-4">You Do: Practice Problems</h5>                        <div class="space-y-6">                             <div>                                <label class="font-semibold block mb-2">Simplify: $10y + 8 - 3y - 2$</label>                                <div class="flex items-center space-x-3">                                    <input type="text" data-answer="7y+6" placeholder="Expression..." class="interactive-input flex-grow p-1 border-2 border-slate-300 rounded-md">                                    <button class="check-btn px-3 py-1 bg-purple-600 text-white rounded-md text-sm font-semibold hover:bg-purple-700">Check</button>                                    <span class="feedback-icon hidden"></span>                                </div>                            </div>                            <div>                                <label class="font-semibold block mb-2">Simplify: $-5(a+2)$</label>                                <div class="flex items-center space-x-3">                                    <input type="text" data-answer="-5a-10" placeholder="Expression..." class="interactive-input flex-grow p-1 border-2 border-slate-300 rounded-md">                                    <button class="check-btn px-3 py-1 bg-purple-600 text-white rounded-md text-sm font-semibold hover:bg-purple-700">Check</button>                                    <span class="feedback-icon hidden"></span>                                </div>                            </div>                             <div>                                <label class="font-semibold block mb-2">Challenge: $2(3x-1) + 4x$ (Hint: Distribute first, then combine like terms.)</label>                                <div class="flex items-center space-x-3">                                    <input type="text" data-answer="10x-2" placeholder="Expression..." class="interactive-input flex-grow p-1 border-2 border-slate-300 rounded-md">                                    <button class="check-btn px-3 py-1 bg-purple-600 text-white rounded-md text-sm font-semibold hover:bg-purple-700">Check</button>                                    <span class="feedback-icon hidden"></span>                                </div>                            </div>                        </div>                    </div>                </div>            </details>        </div>                <!-- Quiz Link -->        <div class="text-center py-8">             <h2 class="text-3xl font-bold text-slate-800">Ready to test your knowledge?</h2>             <p class="text-lg text-slate-600 my-4">You have completed the notes for Unit 1. Click the button below to take the quiz.</p>             <a href="alg1-unit1-quiz.html" target="_blank" class="inline-block bg-purple-600 text-white font-bold text-xl px-8 py-4 rounded-lg hover:bg-purple-700 transition-transform hover:scale-105 shadow-lg">                 Take the Unit 1 Quiz             </a>        </div>
-    </main>
-    <footer class="text-center mt-16 text-slate-500 text-sm py-6 border-t border-slate-200">        <p>&copy; 2025 Aly Hatfield. All Rights Reserved.</p>    </footer>
-    <script>
-        // Since the script is placed at the end of the body, the DOM is already loaded,
-        // so we can run the script directly without waiting for the DOMContentLoaded event.
-
-        // --- INTERACTIVE INPUT CHECKING LOGIC ---
-        const checkButtons = document.querySelectorAll('.check-btn');
-        checkButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                // Find the input field within the same parent container
-                const container = button.parentElement;
-                const input = container.querySelector('.interactive-input');
-                const feedbackIcon = container.querySelector('.feedback-icon');
-
-                // Ensure both elements were found before proceeding
-                if (!input || !feedbackIcon) {
-                    console.error("Could not find input or feedback icon for a button.", button);
-                    return;
-                }
-
-                // Normalize answers by making them lowercase and removing spaces/commas for comparison
-                const correctAnswer = input.dataset.answer.toLowerCase().replace(/[\s,]/g, '');
-                const userAnswer = input.value.toLowerCase().replace(/[\s,]/g, '');
-
-                // Reset styles
-                input.classList.remove('border-green-500', 'border-red-500');
-                feedbackIcon.classList.add('hidden');
-
-                // Check if the answer is correct
-                if (userAnswer === correctAnswer) {
-                    input.classList.add('border-green-500');
-                    feedbackIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>`;
-                    feedbackIcon.classList.remove('hidden');
-                } else {
-                    input.classList.add('border-red-500');
-                    feedbackIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>`;
-                    feedbackIcon.classList.remove('hidden');
-                }
-            });
-        });
-
-        // --- ALLOW 'ENTER' KEY TO CHECK ANSWERS ---
-        const inputs = document.querySelectorAll('.interactive-input');
-        inputs.forEach(input => {
-            input.addEventListener('keypress', function(event) {
-                // If the user presses the "Enter" key on the keyboard
-                if (event.key === 'Enter') {
-                    // Prevent the default action, if needed
-                    event.preventDefault();
-                    // Find and click the corresponding "Check" button
-                    const checkButton = input.parentElement.querySelector('.check-btn');
-                    if (checkButton) {
-                        checkButton.click();
-                    }
-                }
-            });
-        });
-    </script>
-</body></html>
-
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Unit 1: Algebraic Expressions & Evaluation</title>
+      <script src="https://cdn.tailwindcss.com"></script>    <script>
+         // Standard MathJax configuration - Attaching to window object for reliability
+         window.MathJax = {
+           tex: {
+             inlineMath: [['$', '$']]
+           }
+         };
+      </script>    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>    
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+      <style>        html { scroll-behavior: smooth; }        body { font-family: 'Inter', sans-serif; }        .lesson-section { scroll-margin-top: 5rem; }        .interactive-input {            transition: border-color 0.3s ease-in-out;        }        details > summary { list-style: none; }        details > summary::-webkit-details-marker { display: none; }        .details-arrow { transition: transform 0.2s ease-in-out; }        details[open] .details-arrow { transform: rotate(90deg); }        .key-term { color: #0f766e; font-weight: 600; }        .symbol { color: #4338ca; font-weight: 600; font-family: monospace; font-size: 1.1em; margin: 0 0.15em; }
+         /* Print Styles */        .printable-only { display: none; }        @media print {            header, .non-printable { display: none !important; }            .printable-only { display: block !important; }            main { padding: 0 !important; }            body { background-color: white; color: black; }            details { display: block !important; page-break-inside: avoid; }            details[open] summary { display: none; }            .lesson-section, .bg-white { box-shadow: none !important; border: 1px solid #ccc !important; }            h1, h2, h3, h4 { color: black !important; }            .fill-in-blank { display: inline-block; width: 120px; border-bottom: 1px solid black; margin: 0 4px; }        }    
+      </style>
+   </head>
+   <body class="bg-slate-100 text-slate-800">
+      <!-- Header & Navigation -->    
+      <header class="bg-white/90 backdrop-blur-sm shadow-md sticky top-0 z-50 non-printable">
+         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col sm:flex-row justify-between items-center py-4 border-b border-slate-200">
+               <h1 class="text-2xl font-bold text-slate-900">Unit 1: Algebraic Expressions & Evaluation</h1>
+               <nav class="mt-2 sm:mt-0">
+                  <ul class="flex space-x-2 sm:space-x-4 text-sm sm:text-base">
+                     <li><a href="#day1" class="font-semibold text-teal-600 hover:text-teal-800 transition">Day 1</a></li>
+                     <li><a href="#day2" class="font-semibold text-teal-600 hover:text-teal-800 transition">Day 2</a></li>
+                     <li><a href="#day3" class="font-semibold text-teal-600 hover:text-teal-800 transition">Day 3</a></li>
+                     <li><a href="#day4" class="font-semibold text-teal-600 hover:text-teal-800 transition">Day 4</a></li>
+                  </ul>
+               </nav>
+            </div>
+         </div>
+      </header>
+      <!-- Main Content -->    
+      <main class="max-w-4xl mx-auto p-4 sm:p-6 lg:p-8">
+         <!-- Introduction & Navigation Card -->        
+         <div class="bg-white p-6 rounded-xl shadow-lg mb-12 non-printable">
+            <h2 class="text-3xl font-bold text-teal-700 mb-2">Unit 1 Resources & Lessons</h2>
+            <p class="text-slate-600 mb-6">VA SOL Standards: A.EO.1, A.EO.3a-b. Use the buttons below to access unit-wide resources or jump to a specific lesson.</p>
+            <div class="border-t border-b border-slate-200 py-6">
+               <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">                    <a href="alg1-unit1-organizer.html" target="_blank" class="block w-full text-center bg-slate-100 text-slate-700 font-semibold px-4 py-2 rounded-lg hover:bg-slate-200 transition-colors text-sm">View/Print Graphic Organizer</a>                    <a href="alg1-unit1-words.html" target="_blank" class="block w-full text-center bg-slate-100 text-slate-700 font-semibold px-4 py-2 rounded-lg hover:bg-slate-200 transition-colors text-sm">View/Print Vocabulary</a>                    <button onclick="window.print()" class="w-full text-center bg-teal-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-teal-700 transition-colors text-sm">Print Unit 1 Notes</button>                </div>
+               <!-- Daily Slides -->                
+               <div class="space-y-4">
+                  <h3 class="font-semibold text-lg text-slate-800">Daily Lesson Slides</h3>
+                  <!-- Day 1 Links -->                    
+                  <div>
+                     <h4 class="font-semibold text-slate-600 text-sm mb-1">Day 1: Translating Expressions</h4>
+                     <div class="flex space-x-2">                            <a href="alg1-unit1-day1-slides.html" target="_blank" class="flex-1 text-center bg-teal-500 text-white font-semibold px-4 py-2 rounded-lg hover:bg-teal-600 transition-colors text-sm">View Slides</a>                            <a href="alg1-unit1-day1-slides-print.html" target="_blank" class="flex-1 text-center bg-teal-700 text-white font-semibold px-4 py-2 rounded-lg hover:bg-teal-800 transition-colors text-sm">Print Slides</a>                        </div>
+                  </div>
+                  <!-- Day 2 Links -->                    
+                  <div>
+                     <h4 class="font-semibold text-slate-600 text-sm mb-1">Day 2: Evaluating Expressions</h4>
+                     <div class="flex space-x-2">                            <a href="alg1-unit1-day2-slides.html" target="_blank" class="flex-1 text-center bg-teal-500 text-white font-semibold px-4 py-2 rounded-lg hover:bg-teal-600 transition-colors text-sm">View Slides</a>                            <a href="alg1-unit1-day2-slides-print.html" target="_blank" class="flex-1 text-center bg-teal-700 text-white font-semibold px-4 py-2 rounded-lg hover:bg-teal-800 transition-colors text-sm">Print Slides</a>                        </div>
+                  </div>
+                  <!-- Day 3 Links -->                    
+                  <div>
+                     <h4 class="font-semibold text-slate-600 text-sm mb-1">Day 3: Laws of Exponents</h4>
+                     <div class="flex space-x-2">                            <a href="alg1-unit1-day3-slides.html" target="_blank" class="flex-1 text-center bg-teal-500 text-white font-semibold px-4 py-2 rounded-lg hover:bg-teal-600 transition-colors text-sm">View Slides</a>                            <a href="alg1-unit1-day3-slides-print.html" target="_blank" class="flex-1 text-center bg-teal-700 text-white font-semibold px-4 py-2 rounded-lg hover:bg-teal-800 transition-colors text-sm">Print Slides</a>                        </div>
+                  </div>
+                  <!-- Day 4 Links -->                    
+                  <div>
+                     <h4 class="font-semibold text-slate-600 text-sm mb-1">Day 4: Simplifying Expressions</h4>
+                     <div class="flex space-x-2">                            <a href="alg1-unit1-day4-slides.html" target="_blank" class="flex-1 text-center bg-teal-500 text-white font-semibold px-4 py-2 rounded-lg hover:bg-teal-600 transition-colors text-sm">View Slides</a>                            <a href="alg1-unit1-day4-slides-print.html" target="_blank" class="flex-1 text-center bg-teal-700 text-white font-semibold px-4 py-2 rounded-lg hover:bg-teal-800 transition-colors text-sm">Print Slides</a>                        </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="space-y-8">
+            <!-- Lesson 1: Translating Words into Math -->            
+            <details id="day1" class="lesson-section bg-white rounded-xl shadow-lg overflow-hidden">
+               <summary class="p-6 cursor-pointer flex justify-between items-center hover:bg-slate-50 transition-colors non-printable">
+                  <h3 class="text-2xl font-bold text-slate-800">Day 1: Translating Words into Math</h3>
+                  <svg class="w-6 h-6 text-slate-500 details-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                  </svg>
+               </summary>
+               <div class="p-6 border-t border-slate-200">
+                  <p class="mb-8 bg-teal-50 border border-teal-200 text-teal-800 p-4 rounded-lg"><strong class="font-semibold">Objective:</strong> To translate verbal phrases into algebraic expressions and understand key vocabulary.</p>
+                  <h4 class="text-xl font-semibold text-teal-700 mb-4">Notes</h4>
+                  <div class="space-y-5 mb-10">
+                     <p>An <b class="key-term">algebraic expression</b> is a mathematical phrase containing numbers, variables, and operations. It does not have an equal sign.</p>
+                     <div class="flex items-center space-x-3 flex-wrap py-1">                            <span>A <b class="key-term">Variable</b> is a letter, like $x,$ used to represent an unknown</span>                            <input type="text" data-answer="number" placeholder="term..." class="interactive-input w-24 p-1 border-2 border-slate-300 rounded-md">.                            <button class="check-btn px-3 py-1 bg-slate-200 text-slate-700 rounded-md text-sm font-semibold hover:bg-slate-300">Check</button><span class="feedback-icon hidden"></span>                        </div>
+                     <div class="flex items-center space-x-3 flex-wrap py-1">                            <span>A <b class="key-term">Coefficient</b> is the number being multiplied by a</span>                            <input type="text" data-answer="variable" placeholder="term..." class="interactive-input w-28 p-1 border-2 border-slate-300 rounded-md">.                            <button class="check-btn px-3 py-1 bg-slate-200 text-slate-700 rounded-md text-sm font-semibold hover:bg-slate-300">Check</button><span class="feedback-icon hidden"></span>                        </div>
+                     <p>Keywords tell us which operation to use. <br>"Sum," "more than," and "increased by" all mean <b class="key-term">addition</b>. <br>"Difference," "less than," and "decreased by" mean <b class="key-term">subtraction</b>. <br> "Product" and "of" mean <b class="key-term">multiplication</b>. <br>"Quotient" means <b class="key-term">division</b>.</p>
+                     <p>Watch out for "turnaround" words like <b class="key-term">than</b> and <b class="key-term">from</b>. They reverse the order of the terms. For example, "10 less than a number" is written as $x - 10,$ not $10 - x.$</p>
+                  </div>
+                  <h4 class="text-xl font-semibold text-teal-700 mb-4">Examples</h4>
+                  <!-- I Do Section -->                    
+                  <div class="mb-8 p-6 border-l-4 border-slate-300 bg-slate-50 rounded-r-lg">
+                     <h5 class="text-lg font-semibold text-slate-800 mb-2">I Do: Multi-Step Translation</h5>
+                     <p class="font-semibold">Translate: "The product of 4 and the sum of a number and 2."</p>
+                     <ol class="list-decimal ml-5 mt-3 text-sm space-y-2">
+                        <li>First, identify the main operation. "Product" means we are multiplying.</li>
+                        <li>What are we multiplying? We are multiplying "4" and "the sum of a number and 2."</li>
+                        <li>"The sum of a number and 2" needs to be grouped together. We write this as $(n+2).$</li>
+                        <li>Now, combine the parts: $4 \cdot (n+2),$ which simplifies to $4(n+2).$</li>
+                     </ol>
+                  </div>
+                  <!-- We Do Section -->                    
+                  <div class="mb-8 p-6 border-l-4 border-teal-300 bg-teal-50 rounded-r-lg">
+                     <h5 class="text-lg font-semibold text-teal-800 mb-2">We Do: Translating with a Turnaround Word</h5>
+                     <p class="font-semibold">Translate: "5 less than twice a number."</p>
+                     <div class="space-y-5 mt-3">
+                        <div class="flex items-center space-x-3 flex-wrap">                                <span>1. "Twice a number" can be written as</span>                                <input type="text" data-answer="2x" placeholder="expression..." class="interactive-input w-24 p-1 border-2 border-slate-300 rounded-md">.                                <button class="check-btn px-3 py-1 bg-slate-200 text-slate-700 rounded-md text-sm font-semibold hover:bg-slate-300">Check</button><span class="feedback-icon hidden"></span>                            </div>
+                        <div class="flex items-center space-x-3 flex-wrap">                                <span>2. The phrase "less than" means we subtract FROM the first part. It's a</span>                                <input type="text" data-answer="turnaround" placeholder="term..." class="interactive-input w-32 p-1 border-2 border-slate-300 rounded-md"><span>word.</span>                                <button class="check-btn px-3 py-1 bg-slate-200 text-slate-700 rounded-md text-sm font-semibold hover:bg-slate-300">Check</button><span class="feedback-icon hidden"></span>                            </div>
+                        <div class="flex items-center space-x-3 flex-wrap">                                <span>3. So, the final expression is</span>                                <input type="text" data-answer="2x-5" placeholder="expression..." class="interactive-input w-24 p-1 border-2 border-slate-300 rounded-md">.                                <button class="check-btn px-3 py-1 bg-slate-200 text-slate-700 rounded-md text-sm font-semibold hover:bg-slate-300">Check</button><span class="feedback-icon hidden"></span>                            </div>
+                     </div>
+                  </div>
+                  <!-- You Do Section -->                    
+                  <div>
+                     <h5 class="text-xl font-semibold text-teal-700 mb-4">You Do: Practice Problems</h5>
+                     <div class="space-y-6">
+                        <div>
+                           <label class="font-semibold block mb-2">Translate: "The quotient of a number squared and 7."</label>                                
+                           <div class="flex items-center space-x-3">                                    <input type="text" data-answer="x^2/7" placeholder="Expression..." class="interactive-input flex-grow p-1 border-2 border-slate-300 rounded-md">                                    <button class="check-btn px-3 py-1 bg-teal-600 text-white rounded-md text-sm font-semibold hover:bg-teal-700">Check</button>                                    <span class="feedback-icon hidden"></span>                                </div>
+                        </div>
+                        <div>
+                           <label class="font-semibold block mb-2">A movie ticket costs \$12. Write an expression for the cost of 't' tickets.</label>                                
+                           <div class="flex items-center space-x-3">                                    <input type="text" data-answer="12t" placeholder="Expression..." class="interactive-input flex-grow p-1 border-2 border-slate-300 rounded-md">                                    <button class="check-btn px-3 py-1 bg-teal-600 text-white rounded-md text-sm font-semibold hover:bg-teal-700">Check</button>                                    <span class="feedback-icon hidden"></span>                                </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </details>
+            <!-- Lesson 2: Evaluating Expressions (SIMPLIFIED) -->            
+            <details id="day2" class="lesson-section bg-white rounded-xl shadow-lg overflow-hidden">
+               <summary class="p-6 cursor-pointer flex justify-between items-center hover:bg-slate-50 transition-colors non-printable">
+                  <h3 class="text-2xl font-bold text-slate-800">Day 2: Evaluating Expressions</h3>
+                  <svg class="w-6 h-6 text-slate-500 details-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                  </svg>
+               </summary>
+               <div class="p-6 border-t border-slate-200">
+                  <p class="mb-8 bg-blue-50 border border-blue-200 text-blue-800 p-4 rounded-lg"><strong class="font-semibold">Objective:</strong> To evaluate algebraic expressions by substituting values and using the order of operations.</p>
+                  <h4 class="text-xl font-semibold text-blue-700 mb-4">Notes - Part 1: Substitution</h4>
+                  <div class="space-y-5 mb-10">
+                     <p>To <b class="key-term">evaluate</b> an expression means to find its final numerical value. The first step is to <b class="key-term">substitute</b>.</p>
+                     <div class="flex items-center space-x-3 flex-wrap py-1">                            <span>Substitution is replacing the variables (letters) in an expression with their given</span>                            <input type="text" data-answer="numbers" placeholder="term..." class="interactive-input w-28 p-1 border-2 border-slate-300 rounded-md">.                            <button class="check-btn px-3 py-1 bg-slate-200 text-slate-700 rounded-md text-sm font-semibold hover:bg-slate-300">Check</button><span class="feedback-icon hidden"></span>                        </div>
+                     <p>A good habit is to always use <b class="key-term">parentheses</b> ( ) when you substitute. This helps avoid mistakes, especially with negative numbers later on!</p>
+                  </div>
+                  <h4 class="text-xl font-semibold text-blue-700 mb-4">Notes - Part 2: Order of Operations</h4>
+                  <div class="space-y-4 mb-10">
+                     <p>After you substitute, you must simplify the expression in the correct order. We call this the <b class="key-term">Order of Operations</b>. A common acronym to remember the order is <b class="key-term">GEMDAS</b>.</p>
+                     <ul class="list-none space-y-4 ml-4">
+                        <li class="flex items-center space-x-3">                                <b>G</b>                                <input type="text" data-answer="Grouping Symbols" placeholder="stands for..." class="interactive-input w-48 p-1 border-2 border-slate-300 rounded-md">                                <span>: First, solve anything inside ( ), [ ], or | |.</span>                                <button class="check-btn px-3 py-1 bg-slate-200 text-slate-700 rounded-md text-sm font-semibold hover:bg-slate-300">Check</button><span class="feedback-icon hidden"></span>                           </li>
+                        <li class="flex items-center space-x-3">                                <b>E</b>                                <input type="text" data-answer="Exponents" placeholder="stands for..." class="interactive-input w-48 p-1 border-2 border-slate-300 rounded-md">                                <span>: Second, calculate any powers like $3^2.$</span>                                <button class="check-btn px-3 py-1 bg-slate-200 text-slate-700 rounded-md text-sm font-semibold hover:bg-slate-300">Check</button><span class="feedback-icon hidden"></span>                           </li>
+                        <li class="flex items-center space-x-3">                                <b>M/D</b>                                <input type="text" data-answer="Multiplication/Division" placeholder="stands for..." class="interactive-input w-48 p-1 border-2 border-slate-300 rounded-md">                                <span>: Third, multiply or divide from left to right.</span>                                <button class="check-btn px-3 py-1 bg-slate-200 text-slate-700 rounded-md text-sm font-semibold hover:bg-slate-300">Check</button><span class="feedback-icon hidden"></span>                           </li>
+                        <li class="flex items-center space-x-3">                                <b>A/S</b>                                <input type="text" data-answer="Addition/Subtraction" placeholder="stands for..." class="interactive-input w-48 p-1 border-2 border-slate-300 rounded-md">                                <span>: Finally, add or subtract from left to right.</span>                                <button class="check-btn px-3 py-1 bg-slate-200 text-slate-700 rounded-md text-sm font-semibold hover:bg-slate-300">Check</button><span class="feedback-icon hidden"></span>                           </li>
+                     </ul>
+                  </div>
+                  <h4 class="text-xl font-semibold text-blue-700 mb-4">Examples</h4>
+                  <!-- I Do Section -->                    
+                  <div class="mb-8 p-6 border-l-4 border-slate-300 bg-slate-50 rounded-r-lg">
+                     <h5 class="text-lg font-semibold text-slate-800 mb-2">I Do: A Basic Evaluation</h5>
+                     <p class="font-semibold">Evaluate $x + y$ <br> when $x=5$ and $y=8.$</p>
+                     <ol class="list-decimal ml-5 mt-3 text-sm space-y-2">
+                        <li><b>Substitute:</b> Replace the $x$ with 5 and the $y$ with 8. <br>The expression becomes $5 + 8.$</li><br>
+                        <li><b>Simplify:</b> There is only one operation: addition.</li><br>
+                        <li><b>Calculate:</b> $5 + 8 = 13.$ <br> The final answer is 13.</li>
+                     </ol>
+                  </div>
+                  <!-- We Do Section -->                    
+                  <div class="mb-8 p-6 border-l-4 border-blue-300 bg-blue-50 rounded-r-lg">
+                     <h5 class="text-lg font-semibold text-blue-800 mb-2">We Do: Using Multiplication</h5>
+                     <p class="font-semibold">Evaluate $4a + b$ <br> when $a=3$ and $b=6.$</p>
+                     <div class="space-y-5 mt-3">
+                        <div class="flex items-center space-x-3 flex-wrap">                                <span>1. Substitute the numbers for the letters. The expression becomes $4(3) + ?$</span>                                <input type="text" data-answer="6" placeholder="value..." class="interactive-input w-20 p-1 border-2 border-slate-300 rounded-md">.                                <button class="check-btn px-3 py-1 bg-slate-200 text-slate-700 rounded-md text-sm font-semibold hover:bg-slate-300">Check</button><span class="feedback-icon hidden"></span>                            </div>
+                        <div class="flex items-center space-x-3 flex-wrap">                                <span>2. Look at GEMDAS. We need to do multiplication before addition. So, first calculate $4(3),$ which is</span>                                <input type="text" data-answer="12" placeholder="value..." class="interactive-input w-20 p-1 border-2 border-slate-300 rounded-md">.                                <button class="check-btn px-3 py-1 bg-slate-200 text-slate-700 rounded-md text-sm font-semibold hover:bg-slate-300">Check</button><span class="feedback-icon hidden"></span>                            </div>
+                        <div class="flex items-center space-x-3 flex-wrap">                                <span>3. Now the expression is $12 + 6.$ The final answer is</span>                                <input type="text" data-answer="18" placeholder="answer..." class="interactive-input w-20 p-1 border-2 border-slate-300 rounded-md">.                                <button class="check-btn px-3 py-1 bg-slate-200 text-slate-700 rounded-md text-sm font-semibold hover:bg-slate-300">Check</button><span class="feedback-icon hidden"></span>                            </div>
+                     </div>
+                  </div>
+                  <!-- You Do Section -->                    
+                  <div>
+                     <h5 class="text-xl font-semibold text-blue-700 mb-4">You Do: Practice Problems</h5>
+                     <div class="space-y-6">
+                        <div>
+                           <label class="font-semibold block mb-2">Evaluate $10 - 2m$ <br> when $m=3.$</label>                                
+                           <div class="flex items-center space-x-3 mt-1">                                    <input type="text" data-answer="4" placeholder="Answer..." class="interactive-input w-32 p-1 border-2 border-slate-300 rounded-md">                                    <button class="check-btn px-3 py-1 bg-blue-600 text-white rounded-md text-sm font-semibold hover:bg-blue-700">Check</button>                                    <span class="feedback-icon hidden"></span>                                </div>
+                        </div>
+                        <div>
+                           <label class="font-semibold block mb-2">Evaluate $c^2 + 5$ <br> when $c=4.$ (Remember to do the exponent first!)</label>                                
+                           <div class="flex items-center space-x-3 mt-1">                                    <input type="text" data-answer="21" placeholder="Answer..." class="interactive-input w-32 p-1 border-2 border-slate-300 rounded-md">                                    <button class="check-btn px-3 py-1 bg-blue-600 text-white rounded-md text-sm font-semibold hover:bg-blue-700">Check</button>                                    <span class="feedback-icon hidden"></span>                                </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </details>
+            <!-- Lesson 3: Working with Exponents (SIMPLIFIED) -->            
+            <details id="day3" class="lesson-section bg-white rounded-xl shadow-lg overflow-hidden">
+               <summary class="p-6 cursor-pointer flex justify-between items-center hover:bg-slate-50 transition-colors non-printable">
+                  <h3 class="text-2xl font-bold text-slate-800">Day 3: Working with Exponents</h3>
+                  <svg class="w-6 h-6 text-slate-500 details-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                  </svg>
+               </summary>
+               <div class="p-6 border-t border-slate-200">
+                  <p class="mb-8 bg-indigo-50 border border-indigo-200 text-indigo-800 p-4 rounded-lg"><strong class="font-semibold">Objective:</strong> To simplify expressions using the basic laws of exponents.</p>
+                  <h4 class="text-xl font-semibold text-indigo-700 mb-4">Notes - Part 1: What is an Exponent?</h4>
+                  <div class="space-y-5 mb-10">
+                     <p>An exponent is a shortcut for repeated multiplication. <br> For example, $x^4$ is the same as $x \cdot x \cdot x \cdot x.$</p>
+                     <div class="flex items-center space-x-3 flex-wrap py-1">                            <span>In the term $x^a,$ the $x$ is called the</span>                            <input type="text" data-answer="base" placeholder="term..." class="interactive-input w-24 p-1 border-2 border-slate-300 rounded-md">,                            <button class="check-btn px-3 py-1 bg-slate-200 text-slate-700 rounded-md text-sm font-semibold hover:bg-slate-300">Check</button><span class="feedback-icon hidden"></span>                        </div>
+                     <div class="flex items-center space-x-3 flex-wrap py-1">                            <span>and the $a$ is called the</span>                            <input type="text" data-answer="exponent" placeholder="term..." class="interactive-input w-28 p-1 border-2 border-slate-300 rounded-md">.                            <button class="check-btn px-3 py-1 bg-slate-200 text-slate-700 rounded-md text-sm font-semibold hover:bg-slate-300">Check</button><span class="feedback-icon hidden"></span>                        </div>
+                  </div>
+                  <h4 class="text-xl font-semibold text-indigo-700 mb-4">Notes - Part 2: The Product Rule (Multiplying)</h4>
+                  <div class="space-y-4 mb-10">
+                     <p><b>Rule:</b> When you multiply terms with the <b class="key-term">same base</b>, you <b class="key-term">ADD</b> the exponents.</p>
+                     <p><b>Why?</b> <br> Look at $x^2 \cdot x^3.$ <br> This is just $(x \cdot x) \cdot (x \cdot x \cdot x).$ <br> If you count them up, there are 5 x's being multiplied, so the answer is $x^5.$ <br> It's a shortcut to just do $x^{2+3} = x^5.$</p>
+                  </div>
+                  <h4 class="text-xl font-semibold text-indigo-700 mb-4">Notes - Part 3: The Quotient Rule (Dividing)</h4>
+                  <div class="space-y-4 mb-10">
+                     <p><b>Rule:</b> When you divide terms with the <b class="key-term">same base</b>, you <b class="key-term">SUBTRACT</b> the exponents.</p>
+                     <p><b>Why?</b> <br> Look at $\frac{x^5}{x^2}.$ <br> This is $\frac{x \cdot x \cdot x \cdot x \cdot x}{x \cdot x}.$ You can cancel out two x's from the top and bottom, leaving you with $x \cdot x \cdot x,$ which is $x^3.$ <br>The shortcut is $x^{5-2} = x^3.$</p>
+                  </div>
+                  <h4 class="text-xl font-semibold text-indigo-700 mb-4">Examples</h4>
+                  <!-- I Do Section -->                    
+                  <div class="mb-8 p-6 border-l-4 border-slate-300 bg-slate-50 rounded-r-lg">
+                     <h5 class="text-lg font-semibold text-slate-800 mb-2">I Do: Product Rule</h5>
+                     <p class="font-semibold">Simplify: $a^4 \cdot a^6$</p>
+                     <ol class="list-decimal ml-5 mt-3 text-sm space-y-2">
+                        <li>The terms have the same base, which is 'a'.</li>
+                        <li>Since we are multiplying, we add the exponents.</li>
+                        <li>$a^{4+6} = a^{10}.$ The final answer is $a^{10}.$</li>
+                     </ol>
+                  </div>
+                  <!-- We Do Section -->                    
+                  <div class="mb-8 p-6 border-l-4 border-indigo-300 bg-indigo-50 rounded-r-lg">
+                     <h5 class="text-lg font-semibold text-indigo-800 mb-2">We Do: Quotient Rule</h5>
+                     <p class="font-semibold">Simplify: $\frac{y^8}{y^3}$</p>
+                     <div class="space-y-5 mt-3">
+                        <div class="flex items-center space-x-3 flex-wrap">                                <span>1. The terms have the same base, which is 'y'. Since we are dividing, we</span>                                <input type="text" data-answer="subtract" placeholder="action..." class="interactive-input w-28 p-1 border-2 border-slate-300 rounded-md"><span>the exponents.</span>                                <button class="check-btn px-3 py-1 bg-slate-200 text-slate-700 rounded-md text-sm font-semibold hover:bg-slate-300">Check</button><span class="feedback-icon hidden"></span>                            </div>
+                        <div class="flex items-center space-x-3 flex-wrap">                                <span>2. We calculate $8 - 3,$ which is</span><br>                            <input type="text" data-answer="5" placeholder="value..." class="interactive-input w-16 p-1 border-2 border-slate-300 rounded-md">.                                <button class="check-btn px-3 py-1 bg-slate-200 text-slate-700 rounded-md text-sm font-semibold hover:bg-slate-300">Check</button><span class="feedback-icon hidden"></span>                            </div>
+                        <div class="flex items-center space-x-3 flex-wrap">                                <span>3. The final answer is</span>                                <input type="text" data-answer="y^5" placeholder="expression..." class="interactive-input w-24 p-1 border-2 border-slate-300 rounded-md">.                                <button class="check-btn px-3 py-1 bg-slate-200 text-slate-700 rounded-md text-sm font-semibold hover:bg-slate-300">Check</button><span class="feedback-icon hidden"></span>                            </div>
+                     </div>
+                  </div>
+                  <!-- You Do Section -->                    
+                  <div>
+                     <h5 class="text-xl font-semibold text-indigo-700 mb-4">You Do: Practice Problems</h5>
+                     <div class="space-y-6">
+                        <div>
+                           <label class="font-semibold block mb-2">Simplify: $m^2 \cdot m^5$</label>                                
+                           <div class="flex items-center space-x-3">                                    <input type="text" data-answer="m^7" placeholder="Answer..." class="interactive-input flex-grow p-1 border-2 border-slate-300 rounded-md">                                    <button class="check-btn px-3 py-1 bg-indigo-600 text-white rounded-md text-sm font-semibold hover:bg-indigo-700">Check</button>                                    <span class="feedback-icon hidden"></span>                                </div>
+                        </div>
+                        <div>
+                           <label class="font-semibold block mb-2">Simplify: $\frac{c^{12}}{c^4}$</label>                                
+                           <div class="flex items-center space-x-3">                                    <input type="text" data-answer="c^8" placeholder="Answer..." class="interactive-input flex-grow p-1 border-2 border-slate-300 rounded-md">                                    <button class="check-btn px-3 py-1 bg-indigo-600 text-white rounded-md text-sm font-semibold hover:bg-indigo-700">Check</button>                                    <span class="feedback-icon hidden"></span>                                </div>
+                        </div>
+                        <div>
+                           <label class="font-semibold block mb-2">Challenge: Simplify $(2x^3)(5x^4).$ <br>(Hint: Multiply the numbers first, then use the product rule on the variables)</label>                                
+                           <div class="flex items-center space-x-3">                                    <input type="text" data-answer="10x^7" placeholder="Answer..." class="interactive-input flex-grow p-1 border-2 border-slate-300 rounded-md">                                    <button class="check-btn px-3 py-1 bg-indigo-600 text-white rounded-md text-sm font-semibold hover:bg-indigo-700">Check</button>                                    <span class="feedback-icon hidden"></span>                                </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </details>
+            <!-- Lesson 4: Simplifying Expressions (SIMPLIFIED) -->            
+            <details id="day4" class="lesson-section bg-white rounded-xl shadow-lg overflow-hidden">
+               <summary class="p-6 cursor-pointer flex justify-between items-center hover:bg-slate-50 transition-colors non-printable">
+                  <h3 class="text-2xl font-bold text-slate-800">Day 4: Simplifying Expressions</h3>
+                  <svg class="w-6 h-6 text-slate-500 details-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                  </svg>
+               </summary>
+               <div class="p-6 border-t border-slate-200">
+                  <p class="mb-8 bg-purple-50 border border-purple-200 text-purple-800 p-4 rounded-lg"><strong class="font-semibold">Objective:</strong> To simplify algebraic expressions by combining like terms and using the distributive property.</p>
+                  <h4 class="text-xl font-semibold text-purple-700 mb-4">Notes - Part 1: Like Terms</h4>
+                  <div class="space-y-5 mb-10">
+                     <p><b class="key-term">Like Terms</b> are terms that have the exact same variables with the exact same exponents. The numbers in front (coefficients) can be different.</p>
+                     <p>Think of it like sorting fruit: You can add apples to other apples, but you can't add apples to bananas. In the same way, you can add $3x$ and $5x$, but you can't add $3x$ and $5y.$</p>
+                     <div class="flex items-center space-x-3 flex-wrap py-1">                            <span>To combine like terms, you add or subtract the</span>                            <input type="text" data-answer="coefficients" placeholder="term..." class="interactive-input w-32 p-1 border-2 border-slate-300 rounded-md">,                            <button class="check-btn px-3 py-1 bg-slate-200 text-slate-700 rounded-md text-sm font-semibold hover:bg-slate-300">Check</button><span class="feedback-icon hidden"></span>                        </div>
+                     <div class="flex items-center space-x-3 flex-wrap py-1">                            <span>and you keep the variable part the</span>                            <input type="text" data-answer="same" placeholder="term..." class="interactive-input w-24 p-1 border-2 border-slate-300 rounded-md">.                            <button class="check-btn px-3 py-1 bg-slate-200 text-slate-700 rounded-md text-sm font-semibold hover:bg-slate-300">Check</button><span class="feedback-icon hidden"></span>                        </div>
+                  </div>
+                  <h4 class="text-xl font-semibold text-purple-700 mb-4">Notes - Part 2: The Distributive Property</h4>
+                  <div class="space-y-4 mb-10">
+                     <p>The <b class="key-term">Distributive Property</b> is used to get rid of parentheses. You "distribute" or multiply the term on the outside of the parentheses to <b class="key-term">every</b> term on the inside.</p>
+                     <p><b>Rule:</b> $a(b+c) = ab + ac.$ Be very careful when you distribute a negative number, as it will change the signs of the terms inside!</p>
+                  </div>
+                  <h4 class="text-xl font-semibold text-purple-700 mb-4">Examples</h4>
+                  <!-- I Do Section -->                    
+                  <div class="mb-8 p-6 border-l-4 border-slate-300 bg-slate-50 rounded-r-lg">
+                     <h5 class="text-lg font-semibold text-slate-800 mb-2">I Do: Combining Like Terms</h5>
+                     <p class="font-semibold">Simplify: $7x + 2 + 3x + 5$</p>
+                     <ol class="list-decimal ml-5 mt-3 text-sm space-y-2">
+                        <li><b>Identify Like Terms:</b> The terms $7x$ and $3x$ are like terms. The numbers $2$ and $5$ are also like terms.</li>
+                        <li><b>Combine the x-terms:</b> $7x + 3x = 10x.$</li>
+                        <li><b>Combine the numbers:</b> $2 + 5 = 7.$</li>
+                        <li><b>Write the final answer:</b> $10x + 7.$</li>
+                     </ol>
+                  </div>
+                  <!-- We Do Section -->                    
+                  <div class="mb-8 p-6 border-l-4 border-purple-300 bg-purple-50 rounded-r-lg">
+                     <h5 class="text-lg font-semibold text-purple-800 mb-2">We Do: Using the Distributive Property</h5>
+                     <p class="font-semibold">Simplify: $4(x - 3)$</p>
+                     <div class="space-y-5 mt-3">
+                        <div class="flex items-center space-x-3 flex-wrap">                                <span>1. We need to distribute the 4 to both terms inside the parentheses. First, multiply $4 \cdot x$, which gives us</span>                                <input type="text" data-answer="4x" placeholder="term..." class="interactive-input w-20 p-1 border-2 border-slate-300 rounded-md">.                                <button class="check-btn px-3 py-1 bg-slate-200 text-slate-700 rounded-md text-sm font-semibold hover:bg-slate-300">Check</button><span class="feedback-icon hidden"></span>                            </div>
+                        <div class="flex items-center space-x-3 flex-wrap">                                <span>2. Next, multiply $4 \cdot (-3),$ which gives us</span>                                <input type="text" data-answer="-12" placeholder="value..." class="interactive-input w-20 p-1 border-2 border-slate-300 rounded-md">.                                <button class="check-btn px-3 py-1 bg-slate-200 text-slate-700 rounded-md text-sm font-semibold hover:bg-slate-300">Check</button><span class="feedback-icon hidden"></span>                            </div>
+                        <div class="flex items-center space-x-3 flex-wrap">                                <span>3. The final simplified expression is</span>                                <input type="text" data-answer="4x-12" placeholder="expression..." class="interactive-input w-24 p-1 border-2 border-slate-300 rounded-md">.                                <button class="check-btn px-3 py-1 bg-slate-200 text-slate-700 rounded-md text-sm font-semibold hover:bg-slate-300">Check</button><span class="feedback-icon hidden"></span>                            </div>
+                     </div>
+                  </div>
+                  <!-- You Do Section -->                    
+                  <div>
+                     <h5 class="text-xl font-semibold text-purple-700 mb-4">You Do: Practice Problems</h5>
+                     <div class="space-y-6">
+                        <div>
+                           <label class="font-semibold block mb-2">Simplify: $10y + 8 - 3y - 2$</label>                                
+                           <div class="flex items-center space-x-3">                                    <input type="text" data-answer="7y+6" placeholder="Expression..." class="interactive-input flex-grow p-1 border-2 border-slate-300 rounded-md">                                    <button class="check-btn px-3 py-1 bg-purple-600 text-white rounded-md text-sm font-semibold hover:bg-purple-700">Check</button>                                    <span class="feedback-icon hidden"></span>                                </div>
+                        </div>
+                        <div>
+                           <label class="font-semibold block mb-2">Simplify: $-5(a+2)$</label>                                
+                           <div class="flex items-center space-x-3">                                    <input type="text" data-answer="-5a-10" placeholder="Expression..." class="interactive-input flex-grow p-1 border-2 border-slate-300 rounded-md">                                    <button class="check-btn px-3 py-1 bg-purple-600 text-white rounded-md text-sm font-semibold hover:bg-purple-700">Check</button>                                    <span class="feedback-icon hidden"></span>                                </div>
+                        </div>
+                        <div>
+                           <label class="font-semibold block mb-2">Challenge: $2(3x-1) + 4x$ (Hint: Distribute first, then combine like terms.)</label>                                
+                           <div class="flex items-center space-x-3">                                    <input type="text" data-answer="10x-2" placeholder="Expression..." class="interactive-input flex-grow p-1 border-2 border-slate-300 rounded-md">                                    <button class="check-btn px-3 py-1 bg-purple-600 text-white rounded-md text-sm font-semibold hover:bg-purple-700">Check</button>                                    <span class="feedback-icon hidden"></span>                                </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </details>
+         </div>
+         <!-- Quiz Link -->        
+         <div class="text-center py-8">
+            <h2 class="text-3xl font-bold text-slate-800">Ready to test your knowledge?</h2>
+            <p class="text-lg text-slate-600 my-4">You have completed the notes for Unit 1. Click the button below to take the quiz.</p>
+            <a href="alg1-unit1-quiz.html" target="_blank" class="inline-block bg-purple-600 text-white font-bold text-xl px-8 py-4 rounded-lg hover:bg-purple-700 transition-transform hover:scale-105 shadow-lg">                 Take the Unit 1 Quiz             </a>        
+         </div>
+      </main>
+      <footer class="text-center mt-16 text-slate-500 text-sm py-6 border-t border-slate-200">
+         <p>&copy; 2025 Aly Hatfield. All Rights Reserved.</p>
+      </footer>
+      <script>
+         // Since the script is placed at the end of the body, the DOM is already loaded,
+         // so we can run the script directly without waiting for the DOMContentLoaded event.
+         
+         // --- INTERACTIVE INPUT CHECKING LOGIC ---
+         const checkButtons = document.querySelectorAll('.check-btn');
+         checkButtons.forEach(button => {
+             button.addEventListener('click', () => {
+                 // Find the input field within the same parent container
+                 const container = button.parentElement;
+                 const input = container.querySelector('.interactive-input');
+                 const feedbackIcon = container.querySelector('.feedback-icon');
+         
+                 // Ensure both elements were found before proceeding
+                 if (!input || !feedbackIcon) {
+                     console.error("Could not find input or feedback icon for a button.", button);
+                     return;
+                 }
+         
+                 // Normalize answers by making them lowercase and removing spaces/commas for comparison
+                 const correctAnswer = input.dataset.answer.toLowerCase().replace(/[\s,]/g, '');
+                 const userAnswer = input.value.toLowerCase().replace(/[\s,]/g, '');
+         
+                 // Reset styles
+                 input.classList.remove('border-green-500', 'border-red-500');
+                 feedbackIcon.classList.add('hidden');
+         
+                 // Check if the answer is correct
+                 if (userAnswer === correctAnswer) {
+                     input.classList.add('border-green-500');
+                     feedbackIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>`;
+                     feedbackIcon.classList.remove('hidden');
+                 } else {
+                     input.classList.add('border-red-500');
+                     feedbackIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>`;
+                     feedbackIcon.classList.remove('hidden');
+                 }
+             });
+         });
+         
+         // --- ALLOW 'ENTER' KEY TO CHECK ANSWERS ---
+         const inputs = document.querySelectorAll('.interactive-input');
+         inputs.forEach(input => {
+             input.addEventListener('keypress', function(event) {
+                 // If the user presses the "Enter" key on the keyboard
+                 if (event.key === 'Enter') {
+                     // Prevent the default action, if needed
+                     event.preventDefault();
+                     // Find and click the corresponding "Check" button
+                     const checkButton = input.parentElement.querySelector('.check-btn');
+                     if (checkButton) {
+                         checkButton.click();
+                     }
+                 }
+             });
+         });
+      </script>
+   </body>
+</html>
