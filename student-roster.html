@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Attendance Rosters</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        @media print {
+            body {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .no-print {
+                display: none;
+            }
+            .page-break {
+                page-break-after: always;
+            }
+            .roster-container {
+                box-shadow: none !important;
+                border: none !important;
+            }
+        }
+        .table-cell {
+            /* Changed border color to be more prominent for printing */
+            border: 1px solid #64748b; /* gray-500 */
+            text-align: center;
+            padding: 0.5rem;
+            height: 38px; /* Fixed height for cells */
+        }
+        .header-cell {
+            background-color: #f8fafc; /* gray-50 */
+            font-weight: 600;
+            padding: 0.75rem 0.5rem;
+        }
+        .student-name-cell {
+            text-align: left;
+            padding-left: 0.75rem;
+            font-weight: 500;
+            width: 220px;
+        }
+        .week-header {
+            font-weight: 700;
+            background-color: #f1f5f9; /* gray-100 */
+        }
+    </style>
+</head>
+<body class="bg-gray-100 p-4 sm:p-8">
+
+    <!-- Roster for Period 1 -->
+    <div class="max-w-7xl mx-auto bg-white p-6 sm:p-8 rounded-lg shadow-lg roster-container page-break mb-8">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 pb-4 border-b">
+            <div>
+                <h1 class="text-2xl font-bold text-gray-800">Class Attendance Roster</h1>
+                <p class="text-sm text-gray-500">Year: 2025-2026</p>
+            </div>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8 text-sm">
+            <div class="bg-gray-50 p-3 rounded-lg"><p class="font-semibold text-gray-600">Course Title</p><p class="text-gray-800">Algebra I A</p></div>
+            <div class="bg-gray-50 p-3 rounded-lg"><p class="font-semibold text-gray-600">Teacher</p><p class="text-gray-800">Hatfield, Alexandra</p></div>
+            <div class="bg-gray-50 p-3 rounded-lg"><p class="font-semibold text-gray-600">Period / Room</p><p class="text-gray-800">1 / Classroom</p></div>
+            <div class="bg-gray-50 p-3 rounded-lg"><p class="font-semibold text-gray-600">Course ID / Section</p><p class="text-gray-800">ALGIA / ALGIA-T1-1</p></div>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="w-full border-collapse text-xs sm:text-sm">
+                <thead>
+                    <tr>
+                        <th class="table-cell header-cell student-name-cell" rowspan="2">Student Name</th>
+                        <th class="table-cell week-header" colspan="5">Week 1: Aug 25 - Aug 29</th>
+                        <th class="table-cell week-header" colspan="5">Week 2: Sep 1 - Sep 5</th>
+                        <th class="table-cell week-header" colspan="5">Week 3: Sep 8 - Sep 12</th>
+                        <th class="table-cell week-header" colspan="5">Week 4: Sep 15 - Sep 19</th>
+                    </tr>
+                    <tr>
+                        <th class="table-cell header-cell">M</th><th class="table-cell header-cell">T</th><th class="table-cell header-cell">W</th><th class="table-cell header-cell">Th</th><th class="table-cell header-cell">F</th>
+                        <th class="table-cell header-cell bg-yellow-100">M*</th><th class="table-cell header-cell">T</th><th class="table-cell header-cell">W</th><th class="table-cell header-cell">Th</th><th class="table-cell header-cell">F</th>
+                        <th class="table-cell header-cell">M</th><th class="table-cell header-cell">T</th><th class="table-cell header-cell">W</th><th class="table-cell header-cell">Th</th><th class="table-cell header-cell">F</th>
+                        <th class="table-cell header-cell">M</th><th class="table-cell header-cell">T</th><th class="table-cell header-cell">W</th><th class="table-cell header-cell">Th</th><th class="table-cell header-cell">F</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="hover:bg-gray-50"><td class="table-cell student-name-cell">1. Andrews, Kelsea</td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td></tr>
+                    <tr class="hover:bg-gray-50"><td class="table-cell student-name-cell">2. Brown, Erica</td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td></tr>
+                    <tr class="hover:bg-gray-50"><td class="table-cell student-name-cell">3. Buckner, Carla</td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td></tr>
+                    <tr class="hover:bg-gray-50"><td class="table-cell student-name-cell">4. Creel-Knotts, Jessica</td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td></tr>
+                    <tr class="hover:bg-gray-50"><td class="table-cell student-name-cell">5. Nedd, Amanda</td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td></tr>
+                    <tr class="hover:bg-gray-50"><td class="table-cell student-name-cell">6. Noel, Tyrone</td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td></tr>
+                    <tr class="hover:bg-gray-50"><td class="table-cell student-name-cell">7. Owsley, Richard</td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td></tr>
+                    <tr class="hover:bg-gray-50"><td class="table-cell student-name-cell">8. Paige, Aya</td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td></tr>
+                    <tr class="hover:bg-gray-50"><td class="table-cell student-name-cell">9. Pannell, Shaneka</td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td></tr>
+                    <tr class="hover:bg-gray-50"><td class="table-cell student-name-cell">10. Pierre, Magdana</td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td></tr>
+                    <tr class="hover:bg-gray-50"><td class="table-cell student-name-cell">11. Posada, Ashley</td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td></tr>
+                    <tr class="hover:bg-gray-50"><td class="table-cell student-name-cell">12. Rodriguez, Vidal</td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td></tr>
+                    <tr class="hover:bg-gray-50"><td class="table-cell student-name-cell">13. Rosas Cisneros, Alma</td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td></tr>
+                    <tr class="hover:bg-gray-50"><td class="table-cell student-name-cell">14. Smith, James</td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td></tr>
+                    <tr class="hover:bg-gray-50"><td class="table-cell student-name-cell">15. Tilus, Paul</td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td></tr>
+                    <tr class="hover:bg-gray-50"><td class="table-cell student-name-cell">16. Tilus, Wenderson</td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td></tr>
+                    <tr class="hover:bg-gray-50"><td class="table-cell student-name-cell">17. Whorley, Tracy</td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td></tr>
+                    <tr class="hover:bg-gray-50"><td class="table-cell student-name-cell">18. Young, Tonya</td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Roster for Period 2 -->
+    <div class="max-w-7xl mx-auto bg-white p-6 sm:p-8 rounded-lg shadow-lg roster-container page-break mb-8">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 pb-4 border-b">
+            <div><h1 class="text-2xl font-bold text-gray-800">Class Attendance Roster</h1><p class="text-sm text-gray-500">Year: 2025-2026</p></div>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8 text-sm">
+            <div class="bg-gray-50 p-3 rounded-lg"><p class="font-semibold text-gray-600">Course Title</p><p class="text-gray-800">Geometry</p></div>
+            <div class="bg-gray-50 p-3 rounded-lg"><p class="font-semibold text-gray-600">Teacher</p><p class="text-gray-800">Hatfield, Alexandra</p></div>
+            <div class="bg-gray-50 p-3 rounded-lg"><p class="font-semibold text-gray-600">Period / Room</p><p class="text-gray-800">2 / Classroom</p></div>
+            <div class="bg-gray-50 p-3 rounded-lg"><p class="font-semibold text-gray-600">Course ID / Section</p><p class="text-gray-800">GEOM / GEOM-T1-2</p></div>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="w-full border-collapse text-xs sm:text-sm">
+                <thead>
+                    <tr>
+                        <th class="table-cell header-cell student-name-cell" rowspan="2">Student Name</th>
+                        <th class="table-cell week-header" colspan="5">Week 1: Aug 25 - Aug 29</th>
+                        <th class="table-cell week-header" colspan="5">Week 2: Sep 1 - Sep 5</th>
+                        <th class="table-cell week-header" colspan="5">Week 3: Sep 8 - Sep 12</th>
+                        <th class="table-cell week-header" colspan="5">Week 4: Sep 15 - Sep 19</th>
+                    </tr>
+                    <tr>
+                        <th class="table-cell header-cell">M</th><th class="table-cell header-cell">T</th><th class="table-cell header-cell">W</th><th class="table-cell header-cell">Th</th><th class="table-cell header-cell">F</th>
+                        <th class="table-cell header-cell bg-yellow-100">M*</th><th class="table-cell header-cell">T</th><th class="table-cell header-cell">W</th><th class="table-cell header-cell">Th</th><th class="table-cell header-cell">F</th>
+                        <th class="table-cell header-cell">M</th><th class="table-cell header-cell">T</th><th class="table-cell header-cell">W</th><th class="table-cell header-cell">Th</th><th class="table-cell header-cell">F</th>
+                        <th class="table-cell header-cell">M</th><th class="table-cell header-cell">T</th><th class="table-cell header-cell">W</th><th class="table-cell header-cell">Th</th><th class="table-cell header-cell">F</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="hover:bg-gray-50"><td class="table-cell student-name-cell">1. Alley, Pam</td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td></tr>
+                    <tr class="hover:bg-gray-50"><td class="table-cell student-name-cell">2. Banks, Keshay</td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td></tr>
+                    <tr class="hover:bg-gray-50"><td class="table-cell student-name-cell">3. Brown, Sophia</td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td></tr>
+                    <tr class="hover:bg-gray-50"><td class="table-cell student-name-cell">4. Crowder, Tiara</td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td></tr>
+                    <tr class="hover:bg-gray-50"><td class="table-cell student-name-cell">5. Epps, Monique</td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td></tr>
+                    <tr class="hover:bg-gray-50"><td class="table-cell student-name-cell">6. Hairston, Nicole</td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td></tr>
+                    <tr class="hover:bg-gray-50"><td class="table-cell student-name-cell">7. Huffman, Roger</td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td></tr>
+                    <tr class="hover:bg-gray-50"><td class="table-cell student-name-cell">8. O'Neal, Lynette</td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td></tr>
+                    <tr class="hover:bg-gray-50"><td class="table-cell student-name-cell">9. Steelman, Whitney</td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Roster for Period 3 -->
+    <div class="max-w-7xl mx-auto bg-white p-6 sm:p-8 rounded-lg shadow-lg roster-container page-break mb-8">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 pb-4 border-b">
+            <div><h1 class="text-2xl font-bold text-gray-800">Class Attendance Roster</h1><p class="text-sm text-gray-500">Year: 2025-2026</p></div>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8 text-sm">
+            <div class="bg-gray-50 p-3 rounded-lg"><p class="font-semibold text-gray-600">Course Title</p><p class="text-gray-800">Algebra I A</p></div>
+            <div class="bg-gray-50 p-3 rounded-lg"><p class="font-semibold text-gray-600">Teacher</p><p class="text-gray-800">Hatfield, Alexandra</p></div>
+            <div class="bg-gray-50 p-3 rounded-lg"><p class="font-semibold text-gray-600">Period / Room</p><p class="text-gray-800">3 / Classroom</p></div>
+            <div class="bg-gray-50 p-3 rounded-lg"><p class="font-semibold text-gray-600">Course ID / Section</p><p class="text-gray-800">ALGIA / ALGIA-T1-3</p></div>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="w-full border-collapse text-xs sm:text-sm">
+                <thead>
+                    <tr>
+                        <th class="table-cell header-cell student-name-cell" rowspan="2">Student Name</th>
+                        <th class="table-cell week-header" colspan="5">Week 1: Aug 25 - Aug 29</th>
+                        <th class="table-cell week-header" colspan="5">Week 2: Sep 1 - Sep 5</th>
+                        <th class="table-cell week-header" colspan="5">Week 3: Sep 8 - Sep 12</th>
+                        <th class="table-cell week-header" colspan="5">Week 4: Sep 15 - Sep 19</th>
+                    </tr>
+                    <tr>
+                        <th class="table-cell header-cell">M</th><th class="table-cell header-cell">T</th><th class="table-cell header-cell">W</th><th class="table-cell header-cell">Th</th><th class="table-cell header-cell">F</th>
+                        <th class="table-cell header-cell bg-yellow-100">M*</th><th class="table-cell header-cell">T</th><th class="table-cell header-cell">W</th><th class="table-cell header-cell">Th</th><th class="table-cell header-cell">F</th>
+                        <th class="table-cell header-cell">M</th><th class="table-cell header-cell">T</th><th class="table-cell header-cell">W</th><th class="table-cell header-cell">Th</th><th class="table-cell header-cell">F</th>
+                        <th class="table-cell header-cell">M</th><th class="table-cell header-cell">T</th><th class="table-cell header-cell">W</th><th class="table-cell header-cell">Th</th><th class="table-cell header-cell">F</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="hover:bg-gray-50"><td class="table-cell student-name-cell">1. Asencio, Illana</td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td></tr>
+                    <tr class="hover:bg-gray-50"><td class="table-cell student-name-cell">2. Bonds, Daquisha</td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td></tr>
+                    <tr class="hover:bg-gray-50"><td class="table-cell student-name-cell">3. Byers, Jerry</td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td></tr>
+                    <tr class="hover:bg-gray-50"><td class="table-cell student-name-cell">4. Dalien, Vildor</td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td></tr>
+                    <tr class="hover:bg-gray-50"><td class="table-cell student-name-cell">5. Fitzgerald, Damian</td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td></tr>
+                    <tr class="hover:bg-gray-50"><td class="table-cell student-name-cell">6. Gonzalez-Arroyo, Angeli</td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td></tr>
+                    <tr class="hover:bg-gray-50"><td class="table-cell student-name-cell">7. Graham, Kieley</td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td></tr>
+                    <tr class="hover:bg-gray-50"><td class="table-cell student-name-cell">8. Jordan, Kiona</td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td></tr>
+                    <tr class="hover:bg-gray-50"><td class="table-cell student-name-cell">9. Mann, Maya</td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td></tr>
+                    <tr class="hover:bg-gray-50"><td class="table-cell student-name-cell">10. Morris, Felicia</td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td></tr>
+                    <tr class="hover:bg-gray-50"><td class="table-cell student-name-cell">11. Thompson, Heather M.</td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td></tr>
+                    <tr class="hover:bg-gray-50"><td class="table-cell student-name-cell">12. Tunstall, Josie</td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td></tr>
+                    <tr class="hover:bg-gray-50"><td class="table-cell student-name-cell">13. Webb, Lonari</td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Roster for Period 4 -->
+    <div class="max-w-7xl mx-auto bg-white p-6 sm:p-8 rounded-lg shadow-lg roster-container mb-8">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 pb-4 border-b">
+            <div><h1 class="text-2xl font-bold text-gray-800">Class Attendance Roster</h1><p class="text-sm text-gray-500">Year: 2025-2026</p></div>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8 text-sm">
+            <div class="bg-gray-50 p-3 rounded-lg"><p class="font-semibold text-gray-600">Course Title</p><p class="text-gray-800">Math Foundations</p></div>
+            <div class="bg-gray-50 p-3 rounded-lg"><p class="font-semibold text-gray-600">Teacher</p><p class="text-gray-800">Hatfield, Alexandra</p></div>
+            <div class="bg-gray-50 p-3 rounded-lg"><p class="font-semibold text-gray-600">Period / Room</p><p class="text-gray-800">4 / Math Lab</p></div>
+            <div class="bg-gray-50 p-3 rounded-lg"><p class="font-semibold text-gray-600">Course ID / Section</p><p class="text-gray-800">MATHFOU / MATHFOU-T1-4</p></div>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="w-full border-collapse text-xs sm:text-sm">
+                <thead>
+                    <tr>
+                        <th class="table-cell header-cell student-name-cell" rowspan="2">Student Name</th>
+                        <th class="table-cell week-header" colspan="5">Week 1: Aug 25 - Aug 29</th>
+                        <th class="table-cell week-header" colspan="5">Week 2: Sep 1 - Sep 5</th>
+                        <th class="table-cell week-header" colspan="5">Week 3: Sep 8 - Sep 12</th>
+                        <th class="table-cell week-header" colspan="5">Week 4: Sep 15 - Sep 19</th>
+                    </tr>
+                    <tr>
+                        <th class="table-cell header-cell">M</th><th class="table-cell header-cell">T</th><th class="table-cell header-cell">W</th><th class="table-cell header-cell">Th</th><th class="table-cell header-cell">F</th>
+                        <th class="table-cell header-cell bg-yellow-100">M*</th><th class="table-cell header-cell">T</th><th class="table-cell header-cell">W</th><th class="table-cell header-cell">Th</th><th class="table-cell header-cell">F</th>
+                        <th class="table-cell header-cell">M</th><th class="table-cell header-cell">T</th><th class="table-cell header-cell">W</th><th class="table-cell header-cell">Th</th><th class="table-cell header-cell">F</th>
+                        <th class="table-cell header-cell">M</th><th class="table-cell header-cell">T</th><th class="table-cell header-cell">W</th><th class="table-cell header-cell">Th</th><th class="table-cell header-cell">F</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="hover:bg-gray-50"><td class="table-cell student-name-cell">1. Calloway, Kenia</td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td></tr>
+                    <tr class="hover:bg-gray-50"><td class="table-cell student-name-cell">2. Calloway-Hudson, Rosa</td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td></tr>
+                    <tr class="hover:bg-gray-50"><td class="table-cell student-name-cell">3. Cooper, Tanisha</td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td></tr>
+                    <tr class="hover:bg-gray-50"><td class="table-cell student-name-cell">4. Daye, La-Chinta</td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td></tr>
+                    <tr class="hover:bg-gray-50"><td class="table-cell student-name-cell">5. Green, Desiree</td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td></tr>
+                    <tr class="hover:bg-gray-50"><td class="table-cell student-name-cell">6. Hurt, Kasi</td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td></tr>
+                    <tr class="hover:bg-gray-50"><td class="table-cell student-name-cell">7. Kendrick, Deborah</td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td></tr>
+                    <tr class="hover:bg-gray-50"><td class="table-cell student-name-cell">8. Levesy, Shaime</td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td></tr>
+                    <tr class="hover:bg-gray-50"><td class="table-cell student-name-cell">9. Santana, Amanda</td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td></tr>
+                    <tr class="hover:bg-gray-50"><td class="table-cell student-name-cell">10. Watlington, Manderlina</td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td><td class="table-cell"></td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="mt-8 pt-4 border-t text-sm text-gray-600">
+            <div class="flex justify-between flex-wrap">
+                <div>
+                    <h3 class="font-semibold mb-2">Attendance Key</h3>
+                    <p><span class="font-bold inline-block w-6">P</span> = Present</p>
+                    <p><span class="font-bold inline-block w-6">A</span> = Absent</p>
+                    <p><span class="font-bold inline-block w-6">T</span> = Tardy</p>
+                    <p><span class="font-bold inline-block w-6">E</span> = Excused</p>
+                </div>
+                <div class="mt-4 sm:mt-0">
+                     <p class="font-semibold">*Note: Monday, Sep 1, 2025, is Labor Day (No School).</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
