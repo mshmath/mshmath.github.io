@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extra: Multiplication & Division Tips</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5;
+        }
+        .slide-container {
+            width: 100%;
+            max-width: 1050px;
+            aspect-ratio: 16 / 9;
+            margin: 1rem auto;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        .slide {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem 4rem;
+            text-align: center;
+            background-color: white;
+            height: 100%;
+            width: 100%;
+        }
+        .slide.active {
+            display: flex;
+        }
+        .nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.3);
+            color: white;
+            border: none;
+            padding: 0.75rem;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.2s;
+        }
+        .nav-button:hover {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        #prevBtn { left: 1rem; }
+        #nextBtn { right: 1rem; }
+        .slide-counter {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.875rem;
+            z-index: 10;
+        }
+        .title-slide {
+            background: linear-gradient(135deg, #9678dc, #ab96dc);
+            color: white;
+        }
+        .emphasis-highlight {
+            background-color: #fef9c3;
+            padding: 0.1em 0.3em;
+            border-radius: 0.25em;
+            font-weight: 600;
+        }
+        .keyword {
+            color: #9a3412;
+            font-weight: 600;
+        }
+        .number-display {
+             font-family: 'Roboto Mono', monospace;
+             font-size: 1.5rem;
+             background-color: #e5e7eb;
+             padding: 0.5rem 1rem;
+             border-radius: 0.5rem;
+        }
+        .multi-table td {
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            padding: 0.5rem;
+            font-weight: 500;
+        }
+        .multi-table .header {
+            background-color: #f1f5f9;
+            font-weight: 700;
+        }
+        .multi-table .square {
+            background-color: #dbeafe;
+            color: #1e40af;
+            font-weight: 700;
+        }
+        /* Print Styles */
+        .printable-version { display: none; }
+        @media print {
+            body { background-color: white; color: black; }
+            .non-printable { display: none !important; }
+            .printable-version { display: block !important; }
+            .print-card {
+                border: 2px solid #e5e7eb;
+                border-radius: 0.5rem;
+                padding: 1.5rem;
+                margin-bottom: 1.5rem;
+                page-break-inside: avoid;
+            }
+            .print-card h2 {
+                font-size: 1.5rem;
+                font-weight: 700;
+                border-bottom: 2px solid #e5e7eb;
+                padding-bottom: 0.5rem;
+                margin-bottom: 1rem;
+                color: black;
+            }
+            .fill-in-blank {
+                display: inline-block;
+                width: 150px;
+                border-bottom: 1px solid black;
+                margin: 0 4px;
+            }
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen p-4">
+
+    <div class="non-printable w-full max-w-4xl">
+        <div class="flex flex-col sm:flex-row justify-between items-center mb-4">
+            <div>
+                <h1 class="text-3xl font-bold text-gray-800">Extra Practice: Multiplication & Division Tricks</h1>
+                <p class="text-gray-600">Use the arrows or your keyboard to navigate the slides.</p>
+            </div>
+            <button onclick="window.print()" class="bg-teal-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-teal-700 transition-colors mt-2 sm:mt-0">
+                Print Slides
+            </button>
+        </div>
+    </div>
+
+    <div class="slide-container non-printable">
+        <!-- Slide 1: Title -->
+        <div class="slide active title-slide">
+            <h1 class="text-5xl font-bold mb-4">Unit 1: Whole Number Foundations</h1>
+            <p class="text-2xl">Extra Practice: Multiplication & Division Tips</p>
+        </div>
+        
+        <!-- Slide 4: The Multiplication Table -->
+        <div class="slide" style="padding: 2rem 1rem;">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">The Multiplication Table</h2>
+            <p class="text-lg text-gray-600 mb-4">This is your most powerful tool. Knowing it by heart makes math much faster!</p>
+            <table class="w-full text-xs sm:text-sm multi-table">
+                <thead>
+                    <tr>
+                        <td class="header font-extrabold text-red-600">×</td>
+                        <td class="header">1</td><td class="header">2</td><td class="header">3</td><td class="header">4</td><td class="header">5</td><td class="header">6</td><td class="header">7</td><td class="header">8</td><td class="header">9</td><td class="header">10</td>
+                    </tr>
+                </thead>
+                <tbody id="multi-table-body"></tbody>
+            </table>
+            <p class="mt-2 text-sm text-gray-500">The <span class="font-bold" style="color: #1e40af;">blue squares</span> are "perfect squares" (\(1\times1, 2\times2\), etc.).</p>
+        </div>
+
+        <!-- Slide 5: The "Flip Trick" -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">The Flip Trick (Commutative Property)</h2>
+            <p class="text-2xl text-gray-700 mb-6">You can <span class="emphasis-highlight">flip the factors</span> in a multiplication problem, and the answer stays the same!</p>
+            <div class="flex items-center justify-center space-x-6">
+                <p class="number-display text-4xl">3 x 8 = 24</p>
+                <p class="text-3xl font-bold text-gray-500">is the same as</p>
+                <p class="number-display text-4xl">8 x 3 = 24</p>
+            </div>
+            <p class="mt-8 text-xl bg-gray-100 p-4 rounded-lg max-w-2xl">This means you only need to memorize about <span class="keyword">half</span> of the multiplication table!</p>
+        </div>
+
+        <!-- Slide 6: Tips & Tricks - The Easy Ones -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Tips & Tricks: The Easy Ones</h2>
+            <div class="w-full max-w-3xl space-y-4 text-left">
+                <div class="bg-gray-100 p-4 rounded-lg border-l-4 border-yellow-400">
+                    <h3 class="font-bold text-xl">Multiplying by 0</h3>
+                    <p>Any number times zero is <span class="keyword">always 0</span>. (e.g., \(7 \times 0 = 0\))</p>
+                </div>
+                <div class="bg-gray-100 p-4 rounded-lg border-l-4 border-green-400">
+                    <h3 class="font-bold text-xl">Multiplying by 1</h3>
+                    <p>Any number times one is <span class="keyword">always itself</span>. (e.g., \(9 \times 1 = 9\))</p>
+                </div>
+                <div class="bg-gray-100 p-4 rounded-lg border-l-4 border-sky-400">
+                    <h3 class="font-bold text-xl">Multiplying by 10</h3>
+                    <p>Just <span class="keyword">add a zero</span> to the end of the other factor. (e.g., \(6 \times 10 = 60\))</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: More Tips -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">More Tips: 2s, 5s, and 11s</h2>
+            <div class="w-full max-w-3xl space-y-4 text-left">
+                <div class="bg-gray-100 p-4 rounded-lg">
+                    <h3 class="font-bold text-xl">Multiplying by 2</h3>
+                    <p>This is just <span class="keyword">doubling the number</span>. (e.g., \(8 \times 2 \rightarrow 8 + 8 = 16\))</p>
+                </div>
+                <div class="bg-gray-100 p-4 rounded-lg">
+                    <h3 class="font-bold text-xl">Multiplying by 5</h3>
+                    <p>The answer will <span class="keyword">always end in a 0 or a 5</span>. Think of a clock!</p>
+                </div>
+                <div class="bg-gray-100 p-4 rounded-lg">
+                    <h3 class="font-bold text-xl">Multiplying by 11 (up to 9)</h3>
+                    <p>For a single digit, just <span class="keyword">write that digit twice</span>. (e.g., \(4 \times 11 = 44\))</p>
+                </div>
+            </div>
+        </div>
+
+      
+        <!-- Slide 9: Guided Practice -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Let's Practice Together</h2>
+            <p class="text-2xl text-gray-700 mb-6">Problem: <strong class="number-display">42 ÷ 6 = ?</strong></p>
+            <div class="w-full text-left mt-1 space-y-3 text-lg max-w-2xl">
+                 <div class="p-4 bg-orange-50 rounded-lg border-2 border-orange-200">
+                    <p class="font-semibold text-orange-800 text-xl">1. Think Multiplication!</p>
+                    <p class="mt-1">Since they are opposites, we can ask: <strong class="emphasis-highlight">"What number times 6 equals 42?"</strong></p>
+                    <p class="mt-2 font-mono text-2xl text-center bg-white p-2 rounded">? x 6 = 42</p>
+                 </div>
+                 <div class="p-4 bg-green-100 rounded-lg border-2 border-green-300">
+                    <p class="font-semibold text-green-800 text-xl">2. Find the Answer</p>
+                    <p class="mt-1">We know from our multiplication facts that <strong class="font-mono text-2xl">7 x 6 = 42</strong>.</p>
+                    <p class="mt-2 text-center">So, the answer is <strong class="number-display text-2xl bg-green-200">7</strong>.</p>
+                 </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Exit Ticket -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Exit Ticket</h2>
+            <p class="text-2xl text-gray-700 mb-8">On a piece of paper, solve the following problems:</p>
+            <div class="flex flex-col md:flex-row space-y-6 md:space-y-0 md:space-x-8">
+                <p class="number-display text-4xl p-8">8 x 7 = ?</p>
+                <p class="number-display text-4xl p-8">54 ÷ 9 = ?</p>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <button id="prevBtn" class="nav-button">&lt;</button>
+        <button id="nextBtn" class="nav-button">&gt;</button>
+        <div id="slideCounter" class="slide-counter"></div>
+    </div>
+
+    <!-- Printable Version -->
+    <div class="printable-version w-full max-w-4xl mx-auto p-4">
+        <h1 class="text-3xl font-bold text-center mb-6">Extra Practice: Multiplication & Division Notes</h1>
+        <div class="print-card">
+            <h2>The Big Ideas</h2>
+            <p class="mb-2 text-lg">Multiplication is a shortcut for repeated <span class="fill-in-blank"></span>.</p>
+            <p class="text-lg">Division means splitting a number into <span class="fill-in-blank"></span> groups.</p>
+        </div>
+        <div class="print-card">
+            <h2>The "Flip Trick"</h2>
+            <p class="mb-2 text-lg">You can flip the numbers in a multiplication problem and the answer stays the same.</p>
+            <p class="text-lg font-mono">3 x 8 = <span class="fill-in-blank" style="width:50px;"></span> is the same as 8 x 3 = <span class="fill-in-blank" style="width:50px;"></span></p>
+        </div>
+        <div class="print-card">
+            <h2>Tips & Tricks</h2>
+            <p class="mb-2 text-lg">Any number times 0 is <span class="fill-in-blank"></span>.</p>
+            <p class="mb-2 text-lg">Any number times 1 is <span class="fill-in-blank"></span>.</p>
+            <p class="mb-2 text-lg">To multiply by 10, you add a <span class="fill-in-blank"></span> to the end.</p>
+            <p class="mb-2 text-lg">Multiplying by 2 is the same as <span class="fill-in-blank"></span> the number.</p>
+        </div>
+        <div class="print-card">
+            <h2>Exit Ticket</h2>
+            <p class="mb-4 text-lg">Solve the following problems:</p>
+            <p class="text-2xl font-mono my-4">8 x 7 = <span class="fill-in-blank" style="width: 100px;"></span></p>
+            <p class="text-2xl font-mono my-4">54 ÷ 9 = <span class="fill-in-blank" style="width: 100px;"></span></p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const slides = document.querySelectorAll('.slide');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const slideCounter = document.getElementById('slideCounter');
+            let currentSlide = 0;
+
+            function showSlide(n) {
+                slides.forEach(slide => slide.classList.remove('active'));
+                slides[n].classList.add('active');
+                slideCounter.textContent = `${n + 1} / ${slides.length}`;
+            }
+
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % slides.length;
+                showSlide(currentSlide);
+            }
+
+            function prevSlide() {
+                currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+                showSlide(currentSlide);
+            }
+
+            nextBtn.addEventListener('click', nextSlide);
+            prevBtn.addEventListener('click', prevSlide);
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight') {
+                    nextSlide();
+                } else if (e.key === 'ArrowLeft') {
+                    prevSlide();
+                }
+            });
+
+            // Generate Multiplication Table
+            const tableBody = document.getElementById('multi-table-body');
+            for (let i = 1; i <= 10; i++) {
+                const row = document.createElement('tr');
+                const headerCell = document.createElement('td');
+                headerCell.classList.add('header');
+                headerCell.textContent = i;
+                row.appendChild(headerCell);
+                for (let j = 1; j <= 10; j++) {
+                    const cell = document.createElement('td');
+                    cell.textContent = i * j;
+                    if (i === j) {
+                        cell.classList.add('square');
+                    }
+                    row.appendChild(cell);
+                }
+                tableBody.appendChild(row);
+            }
+
+            showSlide(currentSlide);
+        });
+    </script>
+</body>
+</html>
