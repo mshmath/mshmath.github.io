@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 2 Day 3 Slides: Comparing Fraction Sizes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5;
+        }
+        .slide-container {
+            width: 100%;
+            max-width: 1050px;
+            aspect-ratio: 16 / 9;
+            margin: 1rem auto;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        .slide {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem 4rem;
+            text-align: center;
+            background-color: white;
+            height: 100%;
+            width: 100%;
+        }
+        .slide.active {
+            display: flex;
+        }
+        .nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.3);
+            color: white;
+            border: none;
+            padding: 0.75rem;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.2s;
+        }
+        .nav-button:hover {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        #prevBtn { left: 1rem; }
+        #nextBtn { right: 1rem; }
+        .slide-counter {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.875rem;
+            z-index: 10;
+        }
+        .title-slide {
+            background: linear-gradient(135deg, #e11d48, #f43f5e);
+            color: white;
+        }
+        .emphasis-highlight {
+            background-color: #fef9c3;
+            padding: 0.1em 0.3em;
+            border-radius: 0.25em;
+            font-weight: 600;
+        }
+        .keyword {
+            color: #be123c; /* Rose color */
+            font-weight: 600;
+        }
+        .number-display {
+             font-family: 'Roboto Mono', monospace;
+             font-size: 1.5rem;
+             background-color: #e5e7eb;
+             padding: 0.5rem 1rem;
+             border-radius: 0.5rem;
+        }
+        /* Print Styles */
+        .printable-version { display: none; }
+        @media print {
+            body { background-color: white; color: black; }
+            .non-printable { display: none !important; }
+            .printable-version { display: block !important; }
+            .print-card {
+                border: 2px solid #e5e7eb;
+                border-radius: 0.5rem;
+                padding: 1.5rem;
+                margin-bottom: 1.5rem;
+                page-break-inside: avoid;
+            }
+            .print-card h2 {
+                font-size: 1.5rem;
+                font-weight: 700;
+                border-bottom: 2px solid #e5e7eb;
+                padding-bottom: 0.5rem;
+                margin-bottom: 1rem;
+                color: black;
+            }
+            .fill-in-blank {
+                display: inline-block;
+                width: 120px;
+                border-bottom: 1px solid black;
+                margin: 0 4px;
+                text-align: center;
+                font-weight: bold;
+            }
+            /* Force background colors and images to print */
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen p-4">
+    <div class="non-printable w-full max-w-4xl">
+        <div class="flex flex-col sm:flex-row justify-between items-center mb-4">
+            <div>
+                <h1 class="text-3xl font-bold text-gray-800">Unit 2 Day 3: Comparing Fraction Sizes</h1>
+                <p class="text-gray-600">Use the arrows or your keyboard to navigate the slides.</p>
+            </div>
+            <button onclick="window.print()" class="bg-green-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-green-700 transition-colors mt-2 sm:mt-0">
+                Print Slides
+            </button>
+        </div>
+    </div>
+    <div class="slide-container non-printable">
+        <!-- Slide 1: Title -->
+        <div class="slide active title-slide">
+            <h1 class="text-5xl font-bold mb-4">Unit 2: Understanding Fractions</h1>
+            <p class="text-2xl">Day 3: Which is Bigger?</p>
+        </div>
+
+        <!-- Slide 2: Objective -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8">Today's Objectives</h2>
+            <ul class="list-disc text-left text-2xl space-y-6 text-gray-700 max-w-3xl">
+                <li>Learn the meaning of the symbols <span class="emphasis-highlight">&lt; (less than)</span> and <span class="emphasis-highlight">&gt; (greater than)</span>.</li>
+                <li>Use the <span class="keyword">"Butterfly Method"</span> to compare fractions.</li>
+                <li>Decide which fraction is <span class="emphasis-highlight">bigger or smaller</span>.</li>
+            </ul>
+        </div>
+
+        <!-- Slide 3: Vocabulary Focus -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Vocabulary Focus</h2>
+            <div class="w-full max-w-3xl space-y-4 text-left text-xl">
+                <div class="bg-gray-100 p-4 rounded-lg">
+                    <p>The <span class="keyword">&gt;</span> symbol means "greater than". (Think of an alligator mouth eating the bigger number!)</p>
+                </div>
+                <div class="bg-gray-100 p-4 rounded-lg">
+                    <p>The <span class="keyword">&lt;</span> symbol means "less than".</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Concept -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">The Big Idea: The Butterfly Method</h2>
+            <p class="text-2xl text-gray-700 mb-4">When denominators are different, it's hard to compare. The Butterfly Method is a quick trick!</p>
+            <div class="flex items-center justify-center space-x-16">
+                <div class="text-center">
+                    <p class="text-5xl font-mono text-blue-600">a</p>
+                    <div class="border-t-4 border-black w-16 my-1"></div>
+                    <p class="text-5xl font-mono text-purple-600">b</p>
+                </div>
+                <div class="text-center">
+                    <p class="text-5xl font-mono text-purple-600">c</p>
+                    <div class="border-t-4 border-black w-16 my-1"></div>
+                    <p class="text-5xl font-mono text-blue-600">d</p>
+                </div>
+            </div>
+            <p class="text-xl mt-4">Multiply diagonally: <span class="text-blue-600">a</span> x <span class="text-blue-600">d</span> and <span class="text-purple-600">c</span> x <span class="text-purple-600">b</span>. The bigger product is on the side of the bigger fraction!</p>
+        </div>
+
+        <!-- Slide 5: I Do Example 1 -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">I Do: Comparing \(\frac{2}{3}\) and \(\frac{3}{4}\)</h2>
+            <div class="flex items-center justify-center space-x-16">
+                <div class="text-center">
+                    <p class="text-5xl font-bold text-blue-600">8</p>
+                    <p class="text-5xl font-mono mt-2">\(\frac{\color{#3b82f6}{2}}{\color{#8b5cf6}{3}}\)</p>
+                </div>
+                <div class="text-center">
+                    <p class="text-5xl font-bold text-purple-600">9</p>
+                    <p class="text-5xl font-mono mt-2">\(\frac{\color{#8b5cf6}{3}}{\color{#3b82f6}{4}}\)</p>
+                </div>
+            </div>
+            <p class="text-2xl text-gray-700 mt-6">Since <span class="text-purple-600 font-bold">9</span> is bigger than <span class="text-blue-600 font-bold">8</span>, \(\frac{3}{4}\) is the bigger fraction. So, \(\frac{2}{3} < \frac{3}{4}\).</p>
+        </div>
+
+        <!-- Slide 6: I Do Example 2 -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">I Do: Comparing \(\frac{5}{6}\) and \(\frac{3}{4}\)</h2>
+            <div class="flex items-center justify-center space-x-16">
+                <div class="text-center">
+                    <p class="text-5xl font-bold text-blue-600">20</p>
+                    <p class="text-5xl font-mono mt-2">\(\frac{\color{#3b82f6}{5}}{\color{#8b5cf6}{6}}\)</p>
+                </div>
+                <div class="text-center">
+                    <p class="text-5xl font-bold text-purple-600">18</p>
+                    <p class="text-5xl font-mono mt-2">\(\frac{\color{#8b5cf6}{3}}{\color{#3b82f6}{4}}\)</p>
+                </div>
+            </div>
+            <p class="text-2xl text-gray-700 mt-6">Since <span class="text-blue-600 font-bold">20</span> is bigger than <span class="text-purple-600 font-bold">18</span>, \(\frac{5}{6}\) is the bigger fraction. So, \(\frac{5}{6} > \frac{3}{4}\).</p>
+        </div>
+
+        <!-- Slide 7: We Do Problem 1 -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">We Do: Let's Try Together</h2>
+            <p class="text-2xl text-gray-700 mb-8">Let's compare \(\frac{5}{8}\) and \(\frac{1}{2}\).</p>
+            <div class="w-full max-w-2xl text-left text-2xl space-y-6">
+                <p>First, we multiply 5 x 2 to get ___?</p>
+                <p>Next, we multiply 1 x 8 to get ___?</p>
+                <p>Since 10 is greater than 8, the fraction ___? is greater.</p>
+            </div>
+        </div>
+
+        <!-- Slide 8: We Do Problem 2 -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">We Do: Let's Try Together</h2>
+            <p class="text-2xl text-gray-700 mb-8">Let's compare \(\frac{2}{5}\) and \(\frac{3}{7}\).</p>
+            <div class="w-full max-w-2xl text-left text-2xl space-y-6">
+                <p>The first product is 2 x 7 = ___?</p>
+                <p>The second product is 3 x 5 = ___?</p>
+                <p>So, \(\frac{2}{5}\) is ___? \(\frac{3}{7}\).</p>
+            </div>
+        </div>
+
+        <!-- Slide 9: You Do Practice -->
+         <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">You Do: Practice Time!</h2>
+            <p class="text-xl text-gray-600 mb-6">Work on the problems on your notes sheet.</p>
+            <div class="flex flex-col md:flex-row space-y-6 md:space-y-0 md:space-x-8 w-full justify-center">
+                <div class="bg-gray-100 p-6 rounded-lg text-center">
+                    <p class="font-bold text-xl mb-2">Problem 1:</p>
+                    <p class="text-lg">Which is greater? Use <, >, or =.</p>
+                    <p class="text-3xl font-mono my-2">\(\frac{5}{6} \quad ? \quad \frac{4}{5}\)</p>
+                </div>
+                 <div class="bg-gray-100 p-6 rounded-lg text-center">
+                    <p class="font-bold text-xl mb-2">Problem 2:</p>
+                    <p class="text-lg">Which is smaller? Use <, >, or =.</p>
+                    <p class="text-3xl font-mono my-2">\(\frac{3}{8} \quad ? \quad \frac{2}{5}\)</p>
+                 </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Independent Practice -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Independent Practice</h2>
+            <p class="text-lg text-gray-600 mb-6">Try these problems on your own.</p>
+            <div class="w-full max-w-4xl grid grid-cols-3 gap-4 text-left">
+                <div class="bg-green-100 border-2 border-green-300 p-4 rounded-lg">
+                    <p class="font-bold text-green-800 text-lg mb-2">Green Level</p>
+                    <p>Compare \(\frac{1}{4}\) and \(\frac{3}{4}\).</p>
+                </div>
+                <div class="bg-yellow-100 border-2 border-yellow-300 p-4 rounded-lg">
+                    <p class="font-bold text-yellow-800 text-lg mb-2">Yellow Level</p>
+                    <p>Compare \(\frac{2}{3}\) and \(\frac{5}{8}\).</p>
+                </div>
+                <div class="bg-red-100 border-2 border-red-300 p-4 rounded-lg">
+                    <p class="font-bold text-red-800 text-lg mb-2">Red Level</p>
+                    <p>Tim ate \(\frac{3}{5}\) of his candy bar. Sara ate \(\frac{4}{7}\) of hers. Who ate more?</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Exit Ticket -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Exit Ticket</h2>
+            <p class="text-2xl text-gray-700 mb-8">On a piece of paper, compare the fractions \(\frac{4}{9}\) and \(\frac{3}{7}\) using <, >, or =.</p>
+        </div>
+
+        <!-- Navigation -->
+        <button id="prevBtn" class="nav-button">&lt;</button>
+        <button id="nextBtn" class="nav-button">&gt;</button>
+        <div id="slideCounter" class="slide-counter"></div>
+    </div>
+
+    <!-- Printable Version -->
+    <div class="printable-version w-full max-w-4xl mx-auto p-4">
+        <div class="print-card" style="background: linear-gradient(135deg, #e11d48, #f43f5e); color: white; text-align: center;">
+            <h1 class="text-4xl font-bold mb-2">Unit 2: Understanding Fractions</h1>
+            <p class="text-xl">Day 3: Which is Bigger?</p>
+        </div>
+        
+        <div class="print-card">
+            <h2>Today's Objectives</h2>
+            <ul class="list-disc text-left text-lg space-y-2">
+                <li>Understand the meaning of the symbols <strong>&lt; (less than)</strong> and <strong>&gt; (greater than)</strong>.</li>
+                <li>Use the <strong>"Butterfly Method"</strong> to compare fractions.</li>
+                <li>Decide which fraction is <strong>bigger or smaller</strong>.</li>
+            </ul>
+        </div>
+
+        <div class="print-card">
+            <h2>Vocabulary Focus</h2>
+            <p class="text-lg">The <strong>&gt;</strong> symbol means "<span class="fill-in-blank"></span>".</p>
+            <p class="text-lg">The <strong>&lt;</strong> symbol means "<span class="fill-in-blank"></span>".</p>
+        </div>
+        
+        <div class="print-card">
+            <h2>I Do: Comparing \(\frac{2}{3}\) and \(\frac{3}{4}\)</h2>
+            <p class="text-lg">1. Multiply diagonally: <span style="color: #3b82f6;">2 x 4 = <strong>8</strong></span> and <span style="color: #8b5cf6;">3 x 3 = <strong>9</strong></span>.</p>
+            <p class="text-lg">2. Since 9 is bigger than 8, \(\frac{3}{4}\) is bigger. So, \(\frac{2}{3}\) <span class="fill-in-blank"></span> \(\frac{3}{4}\).</p>
+        </div>
+        
+        <div class="print-card">
+            <h2>I Do: Comparing \(\frac{5}{6}\) and \(\frac{3}{4}\)</h2>
+            <p class="text-lg">1. Multiply diagonally: <span style="color: #3b82f6;">5 x 4 = <strong>20</strong></span> and <span style="color: #8b5cf6;">3 x 6 = <strong>18</strong></span>.</p>
+            <p class="text-lg">2. Since 20 is bigger than 18, \(\frac{5}{6}\) is bigger. So, \(\frac{5}{6}\) <span class="fill-in-blank"></span> \(\frac{3}{4}\).</p>
+        </div>
+
+        <div class="print-card">
+            <h2>We Do: Let's Try Together</h2>
+            <p class="mb-4 text-lg"><strong>Problem 1:</strong> Let's compare \(\frac{5}{8}\) and \(\frac{1}{2}\).</p>
+            <p class="text-lg">First, we multiply 5 x 2 to get <span class="fill-in-blank"></span>.</p>
+            <p class="text-lg">Next, we multiply 1 x 8 to get <span class="fill-in-blank"></span>.</p>
+            <p class="text-lg">The fraction <span class="fill-in-blank"></span> is greater.</p>
+            <hr class="my-4">
+            <p class="mb-4 text-lg"><strong>Problem 2:</strong> Let's compare \(\frac{2}{5}\) and \(\frac{3}{7}\).</p>
+            <p class="text-lg">The first product is 2 x 7 = <span class="fill-in-blank"></span>.</p>
+            <p class="text-lg">The second product is 3 x 5 = <span class="fill-in-blank"></span>.</p>
+            <p class="text-lg">So, \(\frac{2}{5}\) is <span class="fill-in-blank"></span> \(\frac{3}{7}\).</p>
+        </div>
+
+        <div class="print-card">
+            <h2>You Do: Practice Time!</h2>
+            <p class="mb-2 text-lg"><strong>Problem 1:</strong> Which is greater? \(\frac{5}{6} \quad \_\_\_ \quad \frac{4}{5}\)</p>
+            <p class="text-lg"><strong>Problem 2:</strong> Which is smaller? \(\frac{3}{8} \quad \_\_\_ \quad \frac{2}{5}\)</p>
+        </div>
+
+        <div class="print-card">
+            <h2>Independent Practice</h2>
+            <p class="mb-2 text-lg"><strong>Green:</strong> Compare \(\frac{1}{4}\) and \(\frac{3}{4}\). <span class="fill-in-blank"></span></p>
+            <p class="mb-2 text-lg"><strong>Yellow:</strong> Compare \(\frac{2}{3}\) and \(\frac{5}{8}\). <span class="fill-in-blank"></span></p>
+            <p class="text-lg"><strong>Red:</strong> Tim ate \(\frac{3}{5}\) of his candy bar. Sara ate \(\frac{4}{7}\) of hers. Who ate more? <span class="fill-in-blank"></span></p>
+        </div>
+
+        <div class="print-card">
+            <h2>Exit Ticket</h2>
+            <p class="text-lg">Compare the fractions \(\frac{4}{9}\) and \(\frac{3}{7}\) using <, >, or =.</p>
+        </div>
+    </div>
+
+    <footer class="text-center mt-8 text-gray-500 non-printable">
+        <p>&nbsp;&bull;&nbsp; &copy; 2025 Aly Hatfield. All rights reserved. &nbsp;&bull;&nbsp;</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const slides = document.querySelectorAll('.slide');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const slideCounter = document.getElementById('slideCounter');
+            let currentSlide = 0;
+
+            function showSlide(n) {
+                slides.forEach(slide => slide.classList.remove('active'));
+                slides[n].classList.add('active');
+                slideCounter.textContent = `${n + 1} / ${slides.length}`;
+            }
+
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % slides.length;
+                showSlide(currentSlide);
+            }
+
+            function prevSlide() {
+                currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+                showSlide(currentSlide);
+            }
+
+            nextBtn.addEventListener('click', nextSlide);
+            prevBtn.addEventListener('click', prevSlide);
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight') {
+                    nextSlide();
+                } else if (e.key === 'ArrowLeft') {
+                    prevSlide();
+                }
+            });
+
+            showSlide(currentSlide);
+        });
+    </script>
+</body>
+</html>
