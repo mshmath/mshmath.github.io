@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 2 Vocabulary Word Wall</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .vocab-card {
+            page-break-inside: avoid;
+        }
+        @media print {
+            header, .non-printable {
+                display: none !important;
+            }
+            main {
+                padding: 0 !important;
+            }
+            body {
+                background-color: white;
+            }
+            .vocab-card {
+                border: 2px solid #ccc !important;
+                box-shadow: none !important;
+            }
+            h2, h3 {
+                color: black !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800">
+    <!-- Header -->
+    <header class="bg-white/90 backdrop-blur-sm shadow-md sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col sm:flex-row justify-between items-center py-4">
+                <h1 class="text-2xl font-bold text-slate-900">Unit 2: Vocabulary Word Wall</h1>
+                <div class="mt-2 sm:mt-0">
+                    <button onclick="window.print()" class="bg-green-600 text-white font-semibold px-4 py-2 rounded-lg shadow-md hover:bg-green-700 transition-colors text-sm">
+                        Print Flashcards
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto p-4 sm:p-6 lg:p-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        
+            <!-- Fraction -->
+            <div class="vocab-card bg-white rounded-xl shadow-lg border-t-4 border-teal-500 p-6">
+                <h2 class="text-2xl font-bold text-teal-700">Fraction</h2>
+                <p class="mt-2 text-slate-600">A number that shows a part of a whole.</p>
+                <div class="mt-4 bg-teal-50 p-3 rounded-lg">
+                    <p class="font-semibold">Example:</p>
+                    <p class="text-3xl font-mono">\(\frac{1}{2}\)</p>
+                </div>
+            </div>
+
+            <!-- Numerator -->
+            <div class="vocab-card bg-white rounded-xl shadow-lg border-t-4 border-teal-500 p-6">
+                <h2 class="text-2xl font-bold text-teal-700">Numerator</h2>
+                <p class="mt-2 text-slate-600">The top number in a fraction. It tells you how many parts you have.</p>
+                <div class="mt-4 bg-teal-50 p-3 rounded-lg">
+                    <p class="font-semibold">Example:</p>
+                    <p>In \(\frac{3}{4}\), the numerator is <strong class="font-mono text-xl">3</strong>.</p>
+                </div>
+            </div>
+
+            <!-- Denominator -->
+            <div class="vocab-card bg-white rounded-xl shadow-lg border-t-4 border-teal-500 p-6">
+                <h2 class="text-2xl font-bold text-teal-700">Denominator</h2>
+                <p class="mt-2 text-slate-600">The bottom number in a fraction. It tells the total number of equal parts in the whole.</p>
+                <div class="mt-4 bg-teal-50 p-3 rounded-lg">
+                    <p class="font-semibold">Example:</p>
+                    <p>In \(\frac{3}{4}\), the denominator is <strong class="font-mono text-xl">4</strong>.</p>
+                </div>
+            </div>
+
+            <!-- Equivalent Fractions -->
+            <div class="vocab-card bg-white rounded-xl shadow-lg border-t-4 border-orange-500 p-6">
+                <h2 class="text-2xl font-bold text-orange-700">Equivalent Fractions</h2>
+                <p class="mt-2 text-slate-600">Fractions that have the same value, even though they look different.</p>
+                <div class="mt-4 bg-orange-50 p-3 rounded-lg">
+                    <p class="font-semibold">Example:</p>
+                    <p class="font-mono text-lg">\(\frac{1}{2} = \frac{2}{4} = \frac{4}{8}\)</p>
+                </div>
+            </div>
+
+            <!-- Simplify -->
+            <div class="vocab-card bg-white rounded-xl shadow-lg border-t-4 border-orange-500 p-6">
+                <h2 class="text-2xl font-bold text-orange-700">Simplify</h2>
+                <p class="mt-2 text-slate-600">To reduce a fraction to its lowest terms by dividing the numerator and denominator by the same number.</p>
+                <div class="mt-4 bg-orange-50 p-3 rounded-lg">
+                    <p class="font-semibold">Example:</p>
+                    <p class="font-mono text-lg">\(\frac{6}{9} \xrightarrow{\div 3} \frac{2}{3}\)</p>
+                </div>
+            </div>
+
+            <!-- Comparing Fractions -->
+            <div class="vocab-card bg-white rounded-xl shadow-lg border-t-4 border-rose-500 p-6">
+                <h2 class="text-2xl font-bold text-rose-700">Comparing Fractions</h2>
+                <p class="mt-2 text-slate-600">Using symbols like <, >, or = to see which fraction has a larger or smaller value.</p>
+                <div class="mt-4 bg-rose-50 p-3 rounded-lg">
+                    <p class="font-semibold">Example:</p>
+                    <p class="font-mono text-lg">\(\frac{1}{2} < \frac{3}{4}\)</p>
+                </div>
+            </div>
+
+            <!-- Improper Fraction -->
+            <div class="vocab-card bg-white rounded-xl shadow-lg border-t-4 border-purple-500 p-6">
+                <h2 class="text-2xl font-bold text-purple-700">Improper Fraction</h2>
+                <p class="mt-2 text-slate-600">A fraction where the numerator is bigger than (or equal to) the denominator. Its value is 1 or more.</p>
+                <div class="mt-4 bg-purple-50 p-3 rounded-lg">
+                    <p class="font-semibold">Example:</p>
+                    <p class="font-mono text-lg">\(\frac{5}{3}\)</p>
+                </div>
+            </div>
+
+            <!-- Mixed Number -->
+            <div class="vocab-card bg-white rounded-xl shadow-lg border-t-4 border-purple-500 p-6">
+                <h2 class="text-2xl font-bold text-purple-700">Mixed Number</h2>
+                <p class="mt-2 text-slate-600">A number that is made up of a whole number and a fraction.</p>
+                <div class="mt-4 bg-purple-50 p-3 rounded-lg">
+                    <p class="font-semibold">Example:</p>
+                    <p class="font-mono text-lg">\(1\frac{2}{3}\)</p>
+                </div>
+            </div>
+
+            <!-- Like Denominators -->
+            <div class="vocab-card bg-white rounded-xl shadow-lg border-t-4 border-blue-500 p-6">
+                <h2 class="text-2xl font-bold text-blue-700">Like Denominators</h2>
+                <p class="mt-2 text-slate-600">When two or more fractions have the same denominator.</p>
+                <div class="mt-4 bg-blue-50 p-3 rounded-lg">
+                    <p class="font-semibold">Example:</p>
+                    <p class="font-mono text-lg">\(\frac{1}{8}\) and \(\frac{5}{8}\)</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+    <footer class="text-center mt-16 text-gray-500">
+        <p>&nbsp;&bull;&nbsp; &copy; 2025 Aly Hatfield. All rights reserved. &nbsp;&bull;&nbsp;</p>
+        <br>
+    </footer>
+</body>
+</html>
