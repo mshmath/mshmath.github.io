@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geometry Unit 2 Graphic Organizer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .card {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e2e8f0;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+        .card-header {
+            background-color: #f1f5f9;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .card-body {
+            padding: 1.5rem;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        th {
+            background-color: #f8fafc;
+            font-weight: 600;
+            color: #334155;
+        }
+        tr:last-child td {
+            border-bottom: none;
+        }
+        code {
+            background-color: #eef2ff;
+            color: #4338ca;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        .essential-question {
+            background-color: #f5f3ff;
+            color: #6d28d9;
+            border: 1px solid #ddd6fe;
+        }
+        @media print {
+            body {
+                background-color: white;
+            }
+            .no-print {
+                display: none;
+            }
+            .card {
+                box-shadow: none;
+                border: 1px solid #cbd5e1;
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-6 lg:p-8">
+    <div class="max-w-4xl mx-auto">
+        <h1 class="text-4xl font-bold text-center text-slate-800 mb-4">Geometry Unit 2: Lines, Angles, and Parallelism</h1>
+        <div class="text-center mb-8 no-print">
+            <button onclick="window.print()" class="bg-indigo-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-indigo-700 transition-colors">
+                Print Graphic Organizer
+            </button>
+        </div>
+
+        <!-- Essential Question -->
+        <div class="card essential-question">
+            <div class="card-body text-center">
+                <h3 class="text-lg font-semibold mb-2">Essential Question for the Unit:</h3>
+                <p class="text-xl italic">"What geometric relationships exist between lines and angles?"</p>
+            </div>
+        </div>
+
+        <!-- Pacing Guide -->
+        <div class="card">
+            <div class="card-header">
+                <h2 class="text-2xl font-semibold text-slate-700">Weekly Pacing at a Glance</h2>
+            </div>
+            <div class="card-body">
+                <ul class="list-disc list-inside space-y-2">
+                    <li><strong>Day 1:</strong> Identifying parallel lines and transversals.</li>
+                    <li><strong>Day 2:</strong> Learning the special angle pair relationships.</li>
+                    <li><strong>Day 3:</strong> Using angle relationships to prove that lines are parallel.</li>
+                    <li><strong>Day 4:</strong> Solving for variables using angle pair relationships.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Line & Angle Basics -->
+        <div class="card">
+            <div class="card-header">
+                <h2 class="text-2xl font-semibold text-slate-700">1. Line Relationships & Transversals</h2>
+            </div>
+            <div class="card-body">
+                <p class="mb-4">Understanding how lines interact is the first step.</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Term</th>
+                            <th>Description</th>
+                            <th>Example</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Parallel Lines</strong></td>
+                            <td>Two lines on the same plane that never intersect.</td>
+                            <td><code>m || n</code></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Perpendicular Lines</strong></td>
+                            <td>Two lines that intersect to form a right (90°) angle.</td>
+                            <td><code>a ⊥ b</code></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Transversal</strong></td>
+                            <td>A line that intersects two or more other lines.</td>
+                            <td>Line <code>t</code> is a transversal.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Angle Pair Relationships -->
+        <div class="card">
+            <div class="card-header">
+                <h2 class="text-2xl font-semibold text-slate-700">2. Angle Relationships Formed by a Transversal</h2>
+            </div>
+            <div class="card-body">
+                <p class="mb-4">When a transversal cuts through two lines, it creates 8 angles with special relationships.</p>
+                <div class="flex justify-center my-4">
+                    <svg viewBox="0 0 100 80" class="h-24">
+                        <line x1="0" y1="15" x2="100" y2="15" stroke="black" stroke-width="1.5"/>
+                        <line x1="0" y1="65" x2="100" y2="65" stroke="black" stroke-width="1.5"/>
+                        <line x1="20" y1="0" x2="85" y2="90" stroke="red" stroke-width="1.5"/>
+                        <text x="15" y="12" font-size="10">1</text> <text x="35" y="12" font-size="10">2</text>
+                        <text x="25" y="30" font-size="10">3</text> <text x="50" y="30" font-size="10">4</text>
+                        <text x="48" y="62" font-size="10">5</text> <text x="73" y="62" font-size="10">6</text>
+                        <text x="60" y="80" font-size="10">7</text> <text x="85" y="80" font-size="10">8</text>
+                    </svg>
+                </div>
+                <div class="bg-indigo-50 text-indigo-800 p-4 rounded-lg border border-indigo-200 mb-6">
+                    <p><strong>IMPORTANT:</strong> If the two lines are <strong>parallel</strong>, then some angle pairs are congruent (equal) and others are supplementary (add up to 180°).</p>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Angle Pair</th>
+                            <th>Description</th>
+                            <th>Relationship (if lines are parallel)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Corresponding</strong></td>
+                            <td>Same position at each intersection (e.g., \(\angle 1\) & \(\angle 5\))</td>
+                            <td>Congruent ( \(\angle 1 \cong \angle 5\) )</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Alternate Interior</strong></td>
+                            <td>Opposite sides of transversal, inside parallel lines (e.g., \(\angle 3\) & \(\angle 6\))</td>
+                            <td>Congruent ( \(\angle 3 \cong \angle 6\) )</td>
+                        </tr>
+                         <tr>
+                            <td><strong>Alternate Exterior</strong></td>
+                            <td>Opposite sides of transversal, outside parallel lines (e.g., \(\angle 1\) & \(\angle 8\))</td>
+                            <td>Congruent ( \(\angle 1 \cong \angle 8\) )</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Same-Side Interior</strong></td>
+                            <td>Same side of transversal, inside parallel lines (e.g., \(\angle 3\) & \(\angle 5\))</td>
+                            <td>Supplementary ( \(m\angle 3 + m\angle 5 = 180^\circ\) )</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Proving Lines Parallel -->
+        <div class="card">
+            <div class="card-header">
+                <h2 class="text-2xl font-semibold text-slate-700">3. Proving Lines are Parallel (Using Converses)</h2>
+            </div>
+            <div class="card-body">
+                <p class="mb-4">To prove that two lines are parallel, you use the <strong>converse</strong> of the angle pair theorems. This means you work backwards.</p>
+                <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <p class="font-semibold text-lg text-slate-800 mb-2">The Main Idea:</p>
+                    <p>"If you can show that any of the special angle pairs have the relationship they're <span class="font-semibold">supposed</span> to have (congruent or supplementary), then you can prove the lines are parallel."</p>
+                </div>
+                <ul class="list-disc list-inside mt-4 space-y-2">
+                    <li><strong>Converse of the Corresponding Angles Postulate:</strong> If corresponding angles are congruent, then the lines are parallel.</li>
+                    <li><strong>Converse of the Alternate Interior Angles Theorem:</strong> If alternate interior angles are congruent, then the lines are parallel.</li>
+                    <li><strong>Converse of the Same-Side Interior Angles Theorem:</strong> If same-side interior angles are supplementary, then the lines are parallel.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Solving Problems -->
+        <div class="card">
+            <div class="card-header">
+                <h2 class="text-2xl font-semibold text-slate-700">4. Solving Problems with Angle Relationships</h2>
+            </div>
+            <div class="card-body">
+                <p class="mb-4">You can use these angle relationships to set up and solve algebraic equations.</p>
+                <h3 class="font-semibold text-lg text-slate-800 mb-2">Worked Example:</h3>
+                <p class="mb-4">Given that lines \(l\) and \(m\) are parallel, find the value of \(x\).</p>
+                <div class="flex justify-center my-4">
+                     <svg viewBox="0 0 100 80" class="h-28">
+                        <line x1="0" y1="15" x2="100" y2="15" stroke="black" stroke-width="1.5"/><text x="102" y="17" font-size="10">l</text>
+                        <line x1="0" y1="65" x2="100" y2="65" stroke="black" stroke-width="1.5"/><text x="102" y="67" font-size="10">m</text>
+                        <line x1="20" y1="0" x2="80" y2="80" stroke="red" stroke-width="1.5"/>
+                        <text x="40" y="12" font-size="10" font-weight="bold" fill="#4f46e5">(2x + 10)°</text>
+                        <text x="48" y="80" font-size="10" font-weight="bold" fill="#4f46e5">70°</text>
+                    </svg>
+                </div>
+                 <ul class="list-disc list-inside mt-2 bg-slate-50 p-4 rounded-lg border">
+                    <li><strong>Step 1: Identify the relationship.</strong> The two angles are <strong>alternate interior angles</strong>.</li>
+                    <li><strong>Step 2: Set up the equation.</strong> Since the lines are parallel, alternate interior angles are congruent (equal). So, we set their measures equal to each other. <code>2x + 10 = 70</code></li>
+                    <li><strong>Step 3: Solve for x.</strong>
+                        <ul class="list-inside ml-4">
+                            <li>Subtract 10 from both sides: <code>2x = 60</code></li>
+                            <li>Divide by 2: <code>x = 30</code></li>
+                        </ul>
+                    </li>
+                    <li><strong>Final Answer:</strong> <code>x = 30</code>.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Key Vocabulary -->
+        <div class="card">
+            <div class="card-header">
+                <h2 class="text-2xl font-semibold text-slate-700">Key Vocabulary</h2>
+            </div>
+            <div class="card-body">
+                <ul class="list-disc list-inside grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2">
+                    <li><strong>Parallel Lines:</strong> Lines that are on the same plane and never intersect.</li>
+                    <li><strong>Transversal:</strong> A line that intersects two or more other lines.</li>
+                    <li><strong>Corresponding Angles:</strong> Angles in the same position at each intersection.</li>
+                    <li><strong>Alternate Interior Angles:</strong> Angles on opposite sides of the transversal, inside the parallel lines.</li>
+                    <li><strong>Alternate Exterior Angles:</strong> Angles on opposite sides of the transversal, outside the parallel lines.</li>
+                    <li><strong>Same-Side Interior Angles:</strong> Angles on the same side of the transversal, inside the parallel lines.</li>
+                    <li><strong>Converse:</strong> The reverse of a theorem, used to prove lines are parallel.</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+    <footer class="text-center mt-16 text-gray-500">
+        <p>&nbsp;&bull;&nbsp; &copy; 2025 Aly Hatfield. All rights reserved. &nbsp;&bull;&nbsp;</p>
+    </footer>
+</body>
+</html>
