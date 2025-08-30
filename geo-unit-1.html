@@ -29,31 +29,91 @@
         .details-arrow { transition: transform 0.2s ease-in-out; }
         details[open] .details-arrow { transform: rotate(90deg); }
         .key-term { color: #0f766e; font-weight: 600; }
-        .symbol { color: #4338ca; font-weight: 600; font-family: monospace; font-size: 1.1em; margin: 0 0.15em; }
-        .truth-value-true { color: #059669; font-weight: 700; }
-        .truth-value-false { color: #DC2626; font-weight: 700; }
+        .symbol { color: #4338ca; font-weight: 600; font-family: monospace; font-size: 1.1em; margin: 0 0.15em; }
+        .truth-value-true { color: #059669; font-weight: 700; }
+        .truth-value-false { color: #DC2626; font-weight: 700; }
         table { width: 100%; margin-top: 1rem; text-align: center; border-collapse: collapse; }
-        th, td { border: 1px solid #cbd5e1; padding: 0.5rem; }
-        th { background-color: #f1f5f9; }
+        th, td { border: 1px solid #cbd5e1; padding: 0.5rem; }
+        th { background-color: #f1f5f9; }
 
-        /* Print Styles */
+        .scalable-svg {
+            max-width: 400px; /* Control max size on screen */
+            width: 100%;
+            height: auto;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Hide printable-only elements from the screen */
         .printable-only { display: none; }
+
+        /* --- PRINT STYLES --- */
         @media print {
-            header, .non-printable { display: none !important; }
+            /* Hide elements that shouldn't be printed */
+            .non-printable { display: none !important; }
+
+            /* Show elements specifically for printing */
             .printable-only { display: block !important; }
-            main { padding: 0 !important; }
-            body { background-color: white; color: black; }
-            details { display: block !important; page-break-inside: avoid; }
-            details[open] summary { display: none; }
-            .lesson-section, .bg-white { box-shadow: none !important; border: 1px solid #ccc !important; }
-            h1, h2, h3, h4 { color: black !important; }
-            .fill-in-blank { display: inline-block; width: 120px; border-bottom: 1px solid black; margin: 0 4px; }
+            
+            /* Hide interactive check buttons and feedback icons */
+            .check-btn, .feedback-icon { display: none !important; }
+
+            /* Reset body for a clean print layout */
+            body {
+                background-color: white !important;
+                color: black !important;
+                margin: 20px !important;
+                font-size: 12pt;
+            }
+            main {
+                padding: 0 !important;
+                max-width: 100% !important;
+                box-shadow: none !important;
+            }
+
+            /* Ensure all lesson sections are visible and formatted correctly */
+            details {
+                display: block !important; /* Make sure the container is visible */
+                page-break-inside: avoid; /* Prevent sections from splitting across pages */
+                border: 1px solid #ccc !important;
+                box-shadow: none !important;
+                margin-bottom: 1.5rem;
+            }
+            details[open] > summary {
+                display: none !important; /* Hide the clickable summary when printing */
+            }
+
+            /* Style input fields as "fill-in-the-blank" lines */
+            .interactive-input {
+                border: none !important;
+                border-bottom: 1px solid black !important;
+                border-radius: 0 !important;
+                padding: 1px !important;
+                margin: 0 4px !important;
+                background: transparent !important;
+                color: transparent !important; /* Hides any pre-filled text */
+                box-shadow: none !important;
+                min-width: 120px;
+            }
+            .interactive-input::placeholder {
+                color: transparent !important; /* Hides placeholder text */
+            }
+
+            .visual-vocab-grid {
+                grid-template-columns: repeat(1, minmax(0, 1fr));
+                gap: 1.5rem;
+            }
+            
+            /* Ensure typography is black and legible */
+            h1, h2, h3, h4, p, li, b, strong {
+                color: black !important;
+            }
         }
     </style>
 </head>
-<body class="bg-slate-100 text-slate-800">
+<body class="bg-slate-100 text-slate-800 leading-relaxed">
 
-    <!-- Header & Navigation -->
+    <!-- Header & Navigation (won't print) -->
     <header class="bg-white/90 backdrop-blur-sm shadow-md sticky top-0 z-50 non-printable">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col sm:flex-row justify-between items-center py-4 border-b border-slate-200">
@@ -73,7 +133,7 @@
     <!-- Main Content -->
     <main class="max-w-4xl mx-auto p-4 sm:p-6 lg:p-8">
 
-        <!-- Introduction & Navigation Card -->
+        <!-- Introduction & Navigation Card (won't print) -->
         <div class="bg-white p-6 rounded-xl shadow-lg mb-12 non-printable">
             <h2 class="text-3xl font-bold text-teal-700 mb-2">Unit 1 Resources & Lessons</h2>
             <p class="text-slate-600 mb-6">Use the buttons below to access unit-wide resources or jump to a specific lesson.</p>
@@ -82,7 +142,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
                     <a href="geo-unit1-organizer.html" target="_blank" class="block w-full text-center bg-slate-100 text-slate-700 font-semibold px-4 py-2 rounded-lg hover:bg-slate-200 transition-colors text-sm">View/Print Graphic Organizer</a>
                     <a href="geo-unit1-words.html" target="_blank" class="block w-full text-center bg-slate-100 text-slate-700 font-semibold px-4 py-2 rounded-lg hover:bg-slate-200 transition-colors text-sm">View/Print Vocabulary</a>
-                    <button onclick="window.print()" class="w-full text-center bg-teal-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-teal-700 transition-colors text-sm">Print Unit 1 Notes</button>
+                    <button onclick="handlePrint()" class="w-full text-center bg-teal-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-teal-700 transition-colors text-sm">Print Unit 1 Notes</button>
                 </div>
                 <!-- Daily Slides -->
                 <div class="space-y-4">
@@ -130,7 +190,10 @@
             </div>
         </div>
 
-        <div class="space-y-4">
+        <!-- This title will ONLY appear on the printed page -->
+        <h1 class="text-4xl font-bold text-center mb-8 printable-only">Unit 1 Notes: Reasoning, Logic, & Venn Diagrams</h1>
+
+        <div class="space-y-6">
             <!-- Lesson 1: Building Blocks of Logic -->
             <details id="day1" class="lesson-section bg-white rounded-xl shadow-lg overflow-hidden">
                 <summary class="p-6 cursor-pointer flex justify-between items-center hover:bg-slate-50 transition-colors non-printable">
@@ -142,7 +205,7 @@
                     
                     <!-- I Do Section -->
                     <div class="mb-8">
-                        <h4 class="text-xl font-semibold text-teal-700 mb-2">I Do: The Core Concepts</h4>
+                        <h4 class="text-xl font-semibold text-teal-700 mb-3">I Do: The Core Concepts</h4>
                         <p class="mb-4">In logic, a <b class="key-term">Proposition</b> is a statement with a clear <b class="key-term">Truth Value</b> of either True (T) or False (F). The <b class="key-term">Negation</b> $\sim p$ is its opposite. We combine statements with:</p>
                         <ul class="list-disc list-inside space-y-2 mb-4">
                             <li><b class="key-term">Conjunction</b> $p \land q$: "and" - only true if BOTH are true.</li>
@@ -153,8 +216,8 @@
 
                     <!-- We Do Section -->
                     <div class="mb-8 p-4 border-l-4 border-teal-300 bg-teal-50 rounded-r-lg">
-                        <h4 class="text-lg font-semibold text-teal-800 mb-2">We Do: Check Your Understanding</h4>
-                        <div class="space-y-4">
+                        <h4 class="text-lg font-semibold text-teal-800 mb-3">We Do: Check Your Understanding</h4>
+                        <div class="space-y-5">
                             <div class="flex items-center space-x-2 flex-wrap">
                                 <span>The symbol for "and" is $\land$, which forms a</span>
                                 <input type="text" data-answer="Conjunction" placeholder="term..." class="interactive-input w-32 p-1 border-2 border-slate-300 rounded-md">.
@@ -172,9 +235,9 @@
 
                     <!-- You Do Section -->
                     <div class="mb-8">
-                        <h4 class="text-xl font-semibold text-teal-700 mb-2">You Do: Practice Problems</h4>
+                        <h4 class="text-xl font-semibold text-teal-700 mb-3">You Do: Practice Problems</h4>
                         <p class="mb-4">Let $p$: "It is a weekday" and $q$: "I go to school".</p>
-                        <div class="space-y-4">
+                        <div>
                             <div>
                                 <label class="font-semibold block mb-1">Translate into words: $p \rightarrow \sim q$</label>
                                 <div class="flex items-center space-x-2">
@@ -183,7 +246,7 @@
                                     <span class="feedback-icon hidden"></span>
                                 </div>
                             </div>
-                            <div>
+                            <div class="mt-6 pt-6 border-t border-slate-200">
                                 <label class="font-semibold block mb-1">Let $p$ be True and $q$ be False. What is the truth value of $p \lor q$?</label>
                                 <div class="flex items-center space-x-2">
                                     <input type="text" data-answer="True" placeholder="True/False" class="interactive-input w-32 p-1 border-2 border-slate-300 rounded-md">
@@ -207,7 +270,7 @@
                     
                     <!-- I Do Section -->
                     <div class="mb-8">
-                        <h4 class="text-xl font-semibold text-blue-700 mb-2">I Do: The Core Concepts</h4>
+                        <h4 class="text-xl font-semibold text-blue-700 mb-3">I Do: The Core Concepts</h4>
                         <p class="mb-4">For any conditional $p \rightarrow q$, we can create three related statements:</p>
                         <ul class="list-disc list-inside space-y-2 mb-4">
                             <li><b class="key-term">Converse</b> (flip): $q \rightarrow p$</li>
@@ -219,7 +282,7 @@
 
                     <!-- We Do Section -->
                     <div class="mb-8 p-4 border-l-4 border-blue-300 bg-blue-50 rounded-r-lg">
-                        <h4 class="text-lg font-semibold text-blue-800 mb-2">We Do: Check Your Understanding</h4>
+                        <h4 class="text-lg font-semibold text-blue-800 mb-3">We Do: Check Your Understanding</h4>
                         <div class="flex items-center space-x-2 flex-wrap">
                             <span>A statement is logically equivalent to its</span>
                             <input type="text" data-answer="contrapositive" placeholder="term..." class="interactive-input w-32 p-1 border-2 border-slate-300 rounded-md">.
@@ -230,9 +293,9 @@
 
                     <!-- You Do Section -->
                     <div class="mb-8">
-                        <h4 class="text-xl font-semibold text-blue-700 mb-2">You Do: Practice Problems</h4>
+                        <h4 class="text-xl font-semibold text-blue-700 mb-3">You Do: Practice Problems</h4>
                         <p class="mb-4">Given the true statement: "If an angle is 90°, then it is a right angle."</p>
-                        <div class="space-y-4">
+                        <div>
                             <div>
                                 <label class="font-semibold block mb-1">Is the converse true?</label>
                                 <div class="flex items-center space-x-2">
@@ -241,7 +304,7 @@
                                     <span class="feedback-icon hidden"></span>
                                 </div>
                             </div>
-                            <div>
+                            <div class="mt-6 pt-6 border-t border-slate-200">
                                 <label class="font-semibold block mb-1">Can you write a true biconditional statement?</label>
                                 <div class="flex items-center space-x-2">
                                     <input type="text" data-answer="An angle is 90° if and only if it is a right angle" placeholder="Write the sentence..." class="interactive-input flex-grow p-1 border-2 border-slate-300 rounded-md">
@@ -265,7 +328,7 @@
                     
                     <!-- I Do Section -->
                     <div class="mb-8">
-                        <h4 class="text-xl font-semibold text-indigo-700 mb-2">I Do: The Core Concepts</h4>
+                        <h4 class="text-xl font-semibold text-indigo-700 mb-3">I Do: The Core Concepts</h4>
                         <p class="mb-4">We use two main types of reasoning. <b class="key-term">Inductive Reasoning</b> is making a conclusion based on a pattern of examples. <b class="key-term">Deductive Reasoning</b> uses facts and rules to reach a certain conclusion. Two laws of deductive reasoning are:</p>
                         <ul class="list-disc list-inside space-y-2 mb-4">
                             <li><b class="key-term">Law of Syllogism:</b> If $p \rightarrow q$ and $q \rightarrow r$ are true, then $p \rightarrow r$ is true.</li>
@@ -276,7 +339,7 @@
 
                     <!-- We Do Section -->
                     <div class="mb-8 p-4 border-l-4 border-indigo-300 bg-indigo-50 rounded-r-lg">
-                        <h4 class="text-lg font-semibold text-indigo-800 mb-2">We Do: Check Your Understanding</h4>
+                        <h4 class="text-lg font-semibold text-indigo-800 mb-3">We Do: Check Your Understanding</h4>
                         <div class="flex items-center space-x-2 flex-wrap">
                             <span>The law that works like a chain reaction is the Law of</span>
                             <input type="text" data-answer="Syllogism" placeholder="term..." class="interactive-input w-32 p-1 border-2 border-slate-300 rounded-md">.
@@ -287,7 +350,7 @@
 
                     <!-- You Do Section -->
                     <div class="mb-8">
-                        <h4 class="text-xl font-semibold text-indigo-700 mb-2">You Do: Practice Problems</h4>
+                        <h4 class="text-xl font-semibold text-indigo-700 mb-3">You Do: Practice Problems</h4>
                         <p class="mb-2"><b>Given:</b> "If a student is in Geometry, then they passed Algebra 1."</p>
                         <p class="mb-4"><b>And:</b> "Maria is in Geometry."</p>
                         <div>
@@ -298,8 +361,8 @@
                                <span class="feedback-icon hidden"></span>
                             </div>
                         </div>
-                         <p class="mt-4 mb-4">Which law did you use?</p>
-                         <div>
+                         <div class="mt-6">
+                            <label class="font-semibold block mb-1">Which law did you use?</label>
                             <div class="flex items-center space-x-2">
                                <input type="text" data-answer="Law of Detachment" placeholder="Name of the law..." class="interactive-input flex-grow p-1 border-2 border-slate-300 rounded-md">
                                <button class="check-btn px-3 py-1 bg-indigo-600 text-white rounded-md text-sm font-semibold hover:bg-indigo-700">Check</button>
@@ -321,26 +384,96 @@
                     
                     <!-- I Do Section -->
                     <div class="mb-8">
-                        <h4 class="text-xl font-semibold text-purple-700 mb-2">I Do: The Core Concepts</h4>
-                        <p class="mb-4">Venn diagrams show relationships between sets. The <b class="key-term">intersection</b> $(A \cap B)$ is the overlap ("AND"), while the <b class="key-term">union</b> $(A \cup B)$ is everything in both sets combined ("OR"). The key to solving Venn diagram problems is to <b class="font-semibold">start from the center and work your way out</b>.</p>
-                        <div class="bg-slate-50 p-4 rounded-lg border mb-4">
-                            <p class="font-semibold">Example:</p>
-                            <p>In a class of 30, 18 take Art, 15 take Music, and 7 take both. How many take neither?</p>
-                            <div class="flex justify-center my-4">
-                               <svg width="320" height="190" viewBox="0 0 320 190" font-family="Inter, sans-serif"><rect x="1" y="1" width="318" height="188" fill="#F1F5F9" stroke="#94A3B8" stroke-width="1" rx="8"/><circle cx="125" cy="95" r="75" fill="rgba(99, 102, 241, 0.2)" stroke="#6366F1" stroke-width="2"/><circle cx="195" cy="95" r="75" fill="rgba(236, 72, 153, 0.2)" stroke="#EC4899" stroke-width="2"/><text x="80" y="100" font-size="24" font-weight="bold" text-anchor="middle" fill="#4338CA">?</text><text x="240" y="100" font-size="24" font-weight="bold" text-anchor="middle" fill="#BE185D">?</text><text x="160" y="100" font-size="24" font-weight="bold" text-anchor="middle">7</text><text x="25" y="170" font-size="24" font-weight="bold" text-anchor="middle" fill="#475569">?</text><text x="125" y="45" font-size="18" font-weight="bold" text-anchor="middle">Art</text><text x="195" y="45" font-size="18" font-weight="bold" text-anchor="middle">Music</text><text x="290" y="25" font-size="14" font-weight="bold" text-anchor="middle" fill="#475569">Total=30</text></svg>
+                        <h4 class="text-xl font-semibold text-purple-700 mb-3">I Do: The Core Concepts</h4>
+                        <p class="mb-4">Venn diagrams show relationships between sets. The key to solving Venn diagram problems is to <b class="font-semibold">start from the very center and work your way out</b>.</p>
+                        
+                        <!-- Visual Vocabulary -->
+                        <h5 class="text-lg font-semibold text-purple-600 mt-6 mb-3">Visual Vocabulary</h5>
+                        <div class="visual-vocab-grid grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
+                            <!-- Intersection -->
+                            <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                                <h6 class="font-bold text-slate-800">Intersection ($A \cap B$)</h6>
+                                <p class="text-sm text-slate-600 mb-3">"AND" - Only the overlap</p>
+                                <svg viewBox="0 0 100 60" class="mx-auto h-20 w-auto">
+                                    <circle cx="40" cy="30" r="25" fill="#c7d2fe" stroke="#6366f1" stroke-width="1"/>
+                                    <circle cx="60" cy="30" r="25" fill="#c7d2fe" stroke="#6366f1" stroke-width="1"/>
+                                    <path d="M 50 54.95 A 25 25 0 0 1 50 5.05 A 25 25 0 0 1 50 54.95 Z" fill="#6366f1"/>
+                                    <text x="25" y="35" font-size="12" font-weight="bold" fill="#4338ca">A</text>
+                                    <text x="75" y="35" font-size="12" font-weight="bold" fill="#4338ca">B</text>
+                                </svg>
                             </div>
-                            <ol class="list-decimal ml-5 mt-2">
-                                <li>Start with <b>Both</b>: <b>7</b>.</li>
-                                <li><b>Only Art</b>: 18 (total Art) - 7 (both) = <b>11</b>.</li>
-                                <li><b>Only Music</b>: 15 (total Music) - 7 (both) = <b>8</b>.</li>
-                                <li><b>Neither</b>: 30 (total) - (11 + 8 + 7) = 30 - 26 = <b>4</b>.</li>
+                            <!-- Union -->
+                            <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                                <h6 class="font-bold text-slate-800">Union ($A \cup B$)</h6>
+                                <p class="text-sm text-slate-600 mb-3">"OR" - Everything in both sets</p>
+                                <svg viewBox="0 0 100 60" class="mx-auto h-20 w-auto">
+                                    <circle cx="40" cy="30" r="25" fill="#818cf8" stroke="#6366f1" stroke-width="1"/>
+                                    <circle cx="60" cy="30" r="25" fill="#818cf8" stroke="#6366f1" stroke-width="1"/>
+                                    <text x="25" y="35" font-size="12" font-weight="bold" fill="white">A</text>
+                                    <text x="75" y="35" font-size="12" font-weight="bold" fill="white">B</text>
+                                </svg>
+                            </div>
+                            <!-- Complement -->
+                             <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                                <h6 class="font-bold text-slate-800">Complement ($\sim A$)</h6>
+                                <p class="text-sm text-slate-600 mb-3">"NOT" - Everything outside a set</p>
+                                 <svg viewBox="0 0 100 60" class="mx-auto h-20 w-auto">
+                                    <rect width="100" height="60" fill="#818cf8" rx="4"/>
+                                    <circle cx="50" cy="30" r="20" fill="white" stroke="#6366f1" stroke-width="1"/>
+                                    <text x="50" y="35" font-size="12" font-weight="bold" text-anchor="middle" fill="#4338ca">A</text>
+                                    <text x="90" y="15" font-size="12" font-weight="bold" fill="#4338ca">U</text>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <!-- 2-Circle Example -->
+                        <h5 class="text-lg font-semibold text-purple-600 mt-8 mb-3">Example 1: Two-Circle Problem</h5>
+                        <div class="bg-slate-50 p-4 rounded-lg border mb-4">
+                            <p class="font-semibold">Problem:</p>
+                            <p>In a class of 30, 18 take Art, 15 take Music, and 7 take both. How many take neither?</p>
+                            <div class="my-4">
+                               <svg class="scalable-svg" viewBox="0 0 320 190" font-family="Inter, sans-serif"><rect x="1" y="1" width="318" height="188" fill="#F1F5F9" stroke="#94A3B8" stroke-width="1" rx="8"/><circle cx="125" cy="95" r="75" fill="rgba(99, 102, 241, 0.2)" stroke="#6366F1" stroke-width="2"/><circle cx="195" cy="95" r="75" fill="rgba(236, 72, 153, 0.2)" stroke="#EC4899" stroke-width="2"/><text x="80" y="100" font-size="24" font-weight="bold" text-anchor="middle" fill="#4338CA">11</text><text x="240" y="100" font-size="24" font-weight="bold" text-anchor="middle" fill="#BE185D">8</text><text x="160" y="100" font-size="24" font-weight="bold" text-anchor="middle">7</text><text x="25" y="170" font-size="24" font-weight="bold" text-anchor="middle" fill="#475569">4</text><text x="125" y="45" font-size="18" font-weight="bold" text-anchor="middle">Art</text><text x="195" y="45" font-size="18" font-weight="bold" text-anchor="middle">Music</text><text x="290" y="25" font-size="14" font-weight="bold" text-anchor="middle" fill="#475569">Total=30</text></svg>
+                            </div>
+                            <ol class="list-decimal ml-5 mt-2 space-y-1">
+                                <li><b>Start with Both (Intersection)</b>: Place <b>7</b> in the overlap.</li>
+                                <li><b>Calculate 'Only Art'</b>: 18 (total Art) - 7 (both) = <b>11</b>.</li>
+                                <li><b>Calculate 'Only Music'</b>: 15 (total Music) - 7 (both) = <b>8</b>.</li>
+                                <li><b>Calculate Neither</b>: 30 (total) - (11 + 7 + 8) = 30 - 26 = <b>4</b>.</li>
+                            </ol>
+                        </div>
+
+                        <!-- 3-Circle Example -->
+                        <h5 class="text-lg font-semibold text-purple-600 mt-8 mb-3">Example 2: Three-Circle Problem</h5>
+                        <div class="bg-slate-50 p-4 rounded-lg border mb-4">
+                            <p class="font-semibold">Problem:</p>
+                            <p>A survey of 100 students' favorite streaming services found: 45 watch Netflix, 40 watch Disney+, 35 watch Hulu. 15 watch Netflix & Disney+, 12 watch Disney+ & Hulu, 10 watch Netflix & Hulu, and 5 watch all three. How many watch none?</p>
+                             <div class="my-4">
+                               <svg class="scalable-svg" viewBox="0 0 350 250" font-family="Inter, sans-serif"><rect x="1" y="1" width="348" height="248" fill="#F1F5F9" stroke="#94A3B8" stroke-width="1" rx="8"/><circle cx="140" cy="110" r="70" fill="rgba(220, 38, 38, 0.1)" stroke="#DC2626" stroke-width="2"/><circle cx="210" cy="110" r="70" fill="rgba(30, 64, 175, 0.1)" stroke="#1E40AF" stroke-width="2"/><circle cx="175" cy="165" r="70" fill="rgba(5, 150, 105, 0.1)" stroke="#059669" stroke-width="2"/><text x="175" y="130" font-size="20" font-weight="bold">5</text><text x="175" y="85" font-size="20" font-weight="bold">10</text><text x="135" y="145" font-size="20" font-weight="bold">5</text><text x="215" y="145" font-size="20" font-weight="bold">7</text><text x="110" y="80" font-size="20" font-weight="bold">25</text><text x="240" y="80" font-size="20" font-weight="bold">18</text><text x="175" y="200" font-size="20" font-weight="bold">18</text><text x="30" y="230" font-size="20" font-weight="bold">12</text><text x="100" y="40" font-size="18" font-weight="bold" fill="#DC2626">Netflix</text><text x="250" y="40" font-size="18" font-weight="bold" fill="#1E40AF">Disney+</text><text x="280" y="220" font-size="18" font-weight="bold" fill="#059669">Hulu</text><text x="300" y="25" font-size="14" font-weight="bold" fill="#475569">Total=100</text></svg>
+                            </div>
+                            <ol class="list-decimal ml-5 mt-2 space-y-1">
+                                <li><b>Start at the very center (All Three)</b>: Place <b>5</b> in the central overlap.</li>
+                                <li><b>Calculate Two-Service overlaps</b> (subtract the center):
+                                    <ul class="list-disc ml-6">
+                                        <li>N & D only: 15 - 5 = <b>10</b></li>
+                                        <li>D & H only: 12 - 5 = <b>7</b></li>
+                                        <li>N & H only: 10 - 5 = <b>5</b></li>
+                                    </ul>
+                                </li>
+                                <li><b>Calculate 'Only' sections</b> (subtract all overlaps from the total):
+                                     <ul class="list-disc ml-6">
+                                        <li>Only N: 45 - (10 + 5 + 5) = <b>25</b></li>
+                                        <li>Only D: 40 - (10 + 5 + 7) = <b>18</b></li>
+                                        <li>Only H: 35 - (5 + 5 + 7) = <b>18</b></li>
+                                    </ul>
+                                </li>
+                                <li><b>Calculate Neither</b>: 100 - (25+18+18+10+7+5+5) = 100 - 88 = <b>12</b>.</li>
                             </ol>
                         </div>
                     </div>
 
                     <!-- We Do Section -->
                     <div class="mb-8 p-4 border-l-4 border-purple-300 bg-purple-50 rounded-r-lg">
-                        <h4 class="text-lg font-semibold text-purple-800 mb-2">We Do: Check Your Understanding</h4>
+                        <h4 class="text-lg font-semibold text-purple-800 mb-3">We Do: Check Your Understanding</h4>
                         <div class="flex items-center space-x-2 flex-wrap">
                             <span>The first number you should always fill in is the</span>
                             <input type="text" data-answer="intersection" placeholder="term..." class="interactive-input w-32 p-1 border-2 border-slate-300 rounded-md">.
@@ -351,32 +484,62 @@
 
                     <!-- You Do Section -->
                     <div class="mb-8">
-                        <h4 class="text-xl font-semibold text-purple-700 mb-2">You Do: Practice Problems</h4>
-                        <p class="mb-4">50 people were surveyed. 30 liked summer and 25 liked winter. 12 liked both.</p>
-                        <div class="flex justify-center my-4">
-                           <svg width="320" height="190" viewBox="0 0 320 190" font-family="Inter, sans-serif"><rect x="1" y="1" width="318" height="188" fill="#F1F5F9" stroke="#94A3B8" stroke-width="1" rx="8"/><circle cx="125" cy="95" r="75" fill="rgba(245, 158, 11, 0.2)" stroke="#F59E0B" stroke-width="2"/><circle cx="195" cy="95" r="75" fill="rgba(59, 130, 246, 0.2)" stroke="#3B82F6" stroke-width="2"/><text x="80" y="100" font-size="24" font-weight="bold" text-anchor="middle" fill="#B45309">?</text><text x="240" y="100" font-size="24" font-weight="bold" text-anchor="middle" fill="#1D4ED8">?</text><text x="160" y="100" font-size="24" font-weight="bold" text-anchor="middle">12</text><text x="25" y="170" font-size="24" font-weight="bold" text-anchor="middle" fill="#475569">?</text><text x="125" y="45" font-size="18" font-weight="bold" text-anchor="middle">Summer</text><text x="195" y="45" font-size="18" font-weight="bold" text-anchor="middle">Winter</text><text x="290" y="25" font-size="14" font-weight="bold" text-anchor="middle" fill="#475569">Total=50</text></svg>
-                        </div>
-                        <div class="space-y-4">
-                            <div class="flex items-center space-x-2">
-                                <span>How many people liked <b>only</b> summer?</span>
-                                <input type="text" data-answer="18" placeholder="Answer..." class="interactive-input w-24 p-1 border-2 border-slate-300 rounded-md">
-                                <button class="check-btn px-3 py-1 bg-purple-600 text-white rounded-md text-sm font-semibold hover:bg-purple-700">Check</button>
-                                <span class="feedback-icon hidden"></span>
+                        <h4 class="text-xl font-semibold text-purple-700 mb-3">You Do: Practice Problems</h4>
+                        <div>
+                            <p class="mb-4"><b>Problem 1:</b> 50 people were surveyed. 30 liked summer and 25 liked winter. 12 liked both.</p>
+                            <div class="my-4">
+                               <svg class="scalable-svg" viewBox="0 0 320 190" font-family="Inter, sans-serif"><rect x="1" y="1" width="318" height="188" fill="#F1F5F9" stroke="#94A3B8" stroke-width="1" rx="8"/><circle cx="125" cy="95" r="75" fill="rgba(245, 158, 11, 0.2)" stroke="#F59E0B" stroke-width="2"/><circle cx="195" cy="95" r="75" fill="rgba(59, 130, 246, 0.2)" stroke="#3B82F6" stroke-width="2"/><text x="80" y="100" font-size="24" font-weight="bold" text-anchor="middle" fill="#B45309">?</text><text x="240" y="100" font-size="24" font-weight="bold" text-anchor="middle" fill="#1D4ED8">?</text><text x="160" y="100" font-size="24" font-weight="bold" text-anchor="middle">12</text><text x="25" y="170" font-size="24" font-weight="bold" text-anchor="middle" fill="#475569">?</text><text x="125" y="45" font-size="18" font-weight="bold" text-anchor="middle">Summer</text><text x="195" y="45" font-size="18" font-weight="bold" text-anchor="middle">Winter</text><text x="290" y="25" font-size="14" font-weight="bold" text-anchor="middle" fill="#475569">Total=50</text></svg>
                             </div>
-                            <div class="flex items-center space-x-2">
-                                <span>How many people liked <b>neither</b> season?</span>
-                                <input type="text" data-answer="7" placeholder="Answer..." class="interactive-input w-24 p-1 border-2 border-slate-300 rounded-md">
-                                <button class="check-btn px-3 py-1 bg-purple-600 text-white rounded-md text-sm font-semibold hover:bg-purple-700">Check</button>
-                                <span class="feedback-icon hidden"></span>
+                            <div class="space-y-4">
+                                <div class="flex items-center space-x-2">
+                                    <span>How many people liked <b>only</b> summer?</span>
+                                    <input type="text" data-answer="18" placeholder="Answer..." class="interactive-input w-24 p-1 border-2 border-slate-300 rounded-md">
+                                    <button class="check-btn px-3 py-1 bg-purple-600 text-white rounded-md text-sm font-semibold hover:bg-purple-700">Check</button>
+                                    <span class="feedback-icon hidden"></span>
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <span>How many people liked <b>neither</b> season?</span>
+                                    <input type="text" data-answer="7" placeholder="Answer..." class="interactive-input w-24 p-1 border-2 border-slate-300 rounded-md">
+                                    <button class="check-btn px-3 py-1 bg-purple-600 text-white rounded-md text-sm font-semibold hover:bg-purple-700">Check</button>
+                                    <span class="feedback-icon hidden"></span>
+                                </div>
                             </div>
                         </div>
+
+                        <div class="mt-8 pt-8 border-t border-slate-200">
+                            <p class="mb-4"><b>Problem 2:</b> At a pet store, 73 pets are available. 30 are dogs, 25 are cats, and 28 are birds. 10 are dogs and cats, 8 are cats and birds, 5 are dogs and birds, and 2 are all three. Fill out the diagram and answer the questions.</p>
+                             <div class="my-4">
+                               <svg class="scalable-svg" viewBox="0 0 350 250" font-family="Inter, sans-serif"><rect x="1" y="1" width="348" height="248" fill="#F1F5F9" stroke="#94A3B8" stroke-width="1" rx="8"/><circle cx="140" cy="110" r="70" fill="rgba(161, 98, 7, 0.1)" stroke="#A16207" stroke-width="2"/><circle cx="210" cy="110" r="70" fill="rgba(79, 70, 229, 0.1)" stroke="#4F46E5" stroke-width="2"/><circle cx="175" cy="165" r="70" fill="rgba(21, 128, 61, 0.1)" stroke="#15803D" stroke-width="2"/><text x="175" y="130" font-size="20" font-weight="bold">2</text><text x="175" y="85" font-size="20" font-weight="bold">?</text><text x="135" y="145" font-size="20" font-weight="bold">?</text><text x="215" y="145" font-size="20" font-weight="bold">?</text><text x="110" y="80" font-size="20" font-weight="bold">?</text><text x="240" y="80" font-size="20" font-weight="bold">?</text><text x="175" y="200" font-size="20" font-weight="bold">?</text><text x="30" y="230" font-size="20" font-weight="bold">?</text><text x="100" y="40" font-size="18" font-weight="bold" fill="#A16207">Dogs</text><text x="250" y="40" font-size="18" font-weight="bold" fill="#4F46E5">Cats</text><text x="280" y="220" font-size="18" font-weight="bold" fill="#15803D">Birds</text><text x="300" y="25" font-size="14" font-weight="bold" fill="#475569">Total=73</text></svg>
+                            </div>
+                             <div class="space-y-4">
+                                <div class="flex items-center space-x-2">
+                                    <span>How many are <b>only</b> dogs?</span>
+                                    <input type="text" data-answer="17" placeholder="Answer..." class="interactive-input w-24 p-1 border-2 border-slate-300 rounded-md">
+                                    <button class="check-btn px-3 py-1 bg-purple-600 text-white rounded-md text-sm font-semibold hover:bg-purple-700">Check</button>
+                                    <span class="feedback-icon hidden"></span>
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <span>How many are cats <b>and</b> birds, but <b>not</b> dogs?</span>
+                                    <input type="text" data-answer="6" placeholder="Answer..." class="interactive-input w-24 p-1 border-2 border-slate-300 rounded-md">
+                                    <button class="check-btn px-3 py-1 bg-purple-600 text-white rounded-md text-sm font-semibold hover:bg-purple-700">Check</button>
+                                    <span class="feedback-icon hidden"></span>
+                                </div>
+                                 <div class="flex items-center space-x-2">
+                                    <span>How many are <b>none</b> of these types of pets?</span>
+                                    <input type="text" data-answer="18" placeholder="Answer..." class="interactive-input w-24 p-1 border-2 border-slate-300 rounded-md">
+                                    <button class="check-btn px-3 py-1 bg-purple-600 text-white rounded-md text-sm font-semibold hover:bg-purple-700">Check</button>
+                                    <span class="feedback-icon hidden"></span>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </details>
         </div>
         
-        <!-- Quiz Link -->
-        <div class="text-center py-8">
+        <!-- Quiz Link (won't print) -->
+        <div class="text-center py-8 non-printable">
              <h2 class="text-3xl font-bold text-slate-800">Ready to test your knowledge?</h2>
              <p class="text-lg text-slate-600 my-4">You have completed the notes for Unit 1. Click the button below to take the quiz.</p>
              <a href="geo-unit1-quiz.html" target="_blank" class="inline-block bg-purple-600 text-white font-bold text-xl px-8 py-4 rounded-lg hover:bg-purple-700 transition-transform hover:scale-105 shadow-lg">
@@ -386,39 +549,77 @@
 
     </main>
 
-    <footer class="text-center mt-16 text-slate-500 text-sm py-6 border-t border-slate-200">
+    <footer class="text-center mt-16 text-slate-500 text-sm py-6 border-t border-slate-200 non-printable">
         <p>&copy; 2025 Aly Hatfield. All Rights Reserved.</p>
     </footer>
 
     <script>
-        // Wait for the DOM to be fully loaded before running scripts
+        // --- PRINTING LOGIC ---
+        function handlePrint() {
+            // Select all lesson sections and interactive inputs
+            const lessons = document.querySelectorAll('.lesson-section');
+            const inputs = document.querySelectorAll('.interactive-input');
+
+            // Store the original state before changing it for printing
+            const originalOpenStates = Array.from(lessons).map(lesson => lesson.hasAttribute('open'));
+            const originalInputValues = Array.from(inputs).map(input => input.value);
+
+            // --- PREPARE FOR PRINTING ---
+            // 1. Force all lesson <details> sections to be open so their content prints
+            lessons.forEach(lesson => {
+                lesson.setAttribute('open', '');
+            });
+
+            // 2. Clear all input fields to create the "fill-in-the-blank" effect
+            inputs.forEach(input => {
+                input.value = '';
+            });
+
+            // --- SET UP THE AFTER-PRINT RESTORATION ---
+            // This event fires after the user prints or cancels the print dialog
+            window.onafterprint = () => {
+                // Restore the original 'open' state of each lesson
+                lessons.forEach((lesson, index) => {
+                    if (!originalOpenStates[index]) {
+                        lesson.removeAttribute('open');
+                    }
+                });
+
+                // Restore the original values of the input fields
+                inputs.forEach((input, index) => {
+                    input.value = originalInputValues[index];
+                });
+                
+                // Clean up the event handler to prevent it from running again
+                window.onafterprint = null;
+            };
+
+            // --- TRIGGER THE PRINT DIALOG ---
+            window.print();
+        }
+
+
+        // --- INTERACTIVE INPUT CHECKING LOGIC ---
         document.addEventListener('DOMContentLoaded', () => {
-            
-            // --- INTERACTIVE INPUT CHECKING LOGIC ---
             const checkButtons = document.querySelectorAll('.check-btn');
 
             checkButtons.forEach(button => {
                 button.addEventListener('click', () => {
-                    // Find the input field within the same parent container
-                    const container = button.parentElement;
+                    const container = button.closest('div');
                     const input = container.querySelector('.interactive-input');
                     const feedbackIcon = container.querySelector('.feedback-icon');
 
-                    // Ensure both elements were found before proceeding
                     if (!input || !feedbackIcon) {
                         console.error("Could not find input or feedback icon for a button.", button);
                         return;
                     }
-
-                    // Normalize answers by making them lowercase and removing spaces/commas for comparison
+                    
                     const correctAnswer = input.dataset.answer.toLowerCase().replace(/[\s,]/g, '');
                     const userAnswer = input.value.toLowerCase().replace(/[\s,]/g, '');
                     
-                    // Reset styles
                     input.classList.remove('border-green-500', 'border-red-500');
                     feedbackIcon.classList.add('hidden');
 
-                    // Check if the answer is correct
                     if (userAnswer === correctAnswer) {
                         input.classList.add('border-green-500');
                         feedbackIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>`;
@@ -431,16 +632,12 @@
                 });
             });
 
-            // --- ALLOW 'ENTER' KEY TO CHECK ANSWERS ---
             const inputs = document.querySelectorAll('.interactive-input');
             inputs.forEach(input => {
                 input.addEventListener('keypress', function(event) {
-                    // If the user presses the "Enter" key on the keyboard
                     if (event.key === 'Enter') {
-                        // Prevent the default action, if needed
                         event.preventDefault();
-                        // Find and click the corresponding "Check" button
-                        const checkButton = input.parentElement.querySelector('.check-btn');
+                        const checkButton = input.closest('div').querySelector('.check-btn');
                         if (checkButton) {
                             checkButton.click();
                         }
@@ -452,10 +649,4 @@
 
 </body>
 </html>
-
-
-
-
-
-
 
