@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algebra 1 Unit 2 Graphic Organizer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .card {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e2e8f0;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+        .card-header {
+            background-color: #f1f5f9;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .card-body {
+            padding: 1.5rem;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        th {
+            background-color: #f8fafc;
+            font-weight: 600;
+            color: #334155;
+        }
+        tr:last-child td {
+            border-bottom: none;
+        }
+        code {
+            background-color: #f5f3ff;
+            color: #6d28d9;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        .essential-question {
+            background-color: #f5f3ff;
+            color: #5b21b6;
+            border: 1px solid #ddd6fe;
+        }
+        @media print {
+            body {
+                background-color: white;
+            }
+            .no-print {
+                display: none;
+            }
+            .card {
+                box-shadow: none;
+                border: 1px solid #cbd5e1;
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-6 lg:p-8">
+    <div class="max-w-4xl mx-auto">
+        <h1 class="text-4xl font-bold text-center text-slate-800 mb-4">Algebra 1 Unit 2: Polynomial Operations</h1>
+        <div class="text-center mb-8 no-print">
+            <button onclick="window.print()" class="bg-violet-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-violet-700 transition-colors">
+                Print Graphic Organizer
+            </button>
+        </div>
+
+        <!-- Essential Question -->
+        <div class="card essential-question">
+            <div class="card-body text-center">
+                <h3 class="text-lg font-semibold mb-2">Essential Question for the Unit:</h3>
+                <p class="text-xl italic">"How do operations on polynomials compare to arithmetic operations?"</p>
+            </div>
+        </div>
+
+        <!-- Pacing Guide -->
+        <div class="card">
+            <div class="card-header">
+                <h2 class="text-2xl font-semibold text-slate-700">Unit Pacing at a Glance</h2>
+            </div>
+            <div class="card-body">
+                <ul class="list-disc list-inside space-y-2">
+                    <li><strong>Day 1:</strong> Adding and subtracting polynomials by combining like terms.</li>
+                    <li><strong>Day 2:</strong> Multiplying polynomials using the distributive property and area models.</li>
+                    <li><strong>Day 3:</strong> Applying polynomial operations using pictorial and symbolic models (area, perimeter).</li>
+                    <li><strong>Day 4:</strong> Solving mixed multi-step problems involving all polynomial operations.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Adding & Subtracting Polynomials -->
+        <div class="card">
+            <div class="card-header">
+                <h2 class="text-2xl font-semibold text-slate-700">1. Adding & Subtracting Polynomials</h2>
+            </div>
+            <div class="card-body">
+                <p class="mb-4">The key is to identify and combine <strong class="text-violet-700">like terms</strong> (same variable, same exponent).</p>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="font-semibold text-lg text-slate-800 mb-2">Addition</h3>
+                        <p class="mb-2">Combine the coefficients of like terms.</p>
+                        <div class="bg-slate-50 p-3 rounded-lg border">
+                           <p>\((3x^2 + 5x) + (2x^2 - 2x)\)</p>
+                           <p>\(= (3x^2 + 2x^2) + (5x - 2x)\)</p>
+                           <p>\(= 5x^2 + 3x\)</p>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-lg text-slate-800 mb-2">Subtraction</h3>
+                        <p class="mb-2">Distribute the negative to the second polynomial, then combine like terms.</p>
+                         <div class="bg-slate-50 p-3 rounded-lg border">
+                           <p>\((8x^2 - 2x) - (5x^2 + 3x)\)</p>
+                           <p>\(= 8x^2 - 2x - 5x^2 - 3x\)</p>
+                           <p>\(= 3x^2 - 5x\)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Multiplying Polynomials -->
+        <div class="card">
+            <div class="card-header">
+                <h2 class="text-2xl font-semibold text-slate-700">2. Multiplying Polynomials</h2>
+            </div>
+            <div class="card-body">
+                <p class="mb-6">To find the product, every term in the first polynomial must be multiplied by every term in the second. Use one of these methods to stay organized.</p>
+                 <div class="bg-violet-50 text-violet-800 p-4 rounded-lg border border-violet-200 mb-6">
+                    <p><strong>Example:</strong> Find the product of \((x + 4)(2x - 3)\)</p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-x-8">
+                    <div>
+                        <h3 class="font-semibold text-lg text-slate-800 mb-2">Method 1: Distributive Property</h3>
+                        <p class="mb-2">Distribute each term from the first polynomial to the second.</p>
+                         <div class="bg-slate-50 p-3 rounded-lg border text-sm">
+                           <p>\(x(2x - 3) + 4(2x - 3)\)</p>
+                           <p>\(= 2x^2 - 3x + 8x - 12\)</p>
+                           <p class="font-bold mt-2">Final Answer: \(2x^2 + 5x - 12\)</p>
+                        </div>
+                    </div>
+                     <div>
+                        <h3 class="font-semibold text-lg text-slate-800 mb-2">Method 2: Area Model</h3>
+                        <p class="mb-2">Draw a box, multiply to fill it in, then combine like terms on the diagonal.</p>
+                        <table class="w-full text-center">
+                            <tr><td class="p-2" colspan="2"></td><td class="p-2 border border-slate-300 bg-slate-100 font-bold">\(2x\)</td><td class="p-2 border border-slate-300 bg-slate-100 font-bold">\(-3\)</td></tr>
+                            <tr><td class="p-2 border border-slate-300 bg-slate-100 font-bold" rowspan="2" style="writing-mode: vertical-rl; text-orientation: mixed;">\(x+4\)</td><td class="p-2 border border-slate-300 bg-slate-100 font-bold">\(x\)</td><td class="p-2 border border-slate-300">\(2x^2\)</td><td class="p-2 border border-slate-300">\(-3x\)</td></tr>
+                            <tr><td class="p-2 border border-slate-300 bg-slate-100 font-bold">\(+4\)</td><td class="p-2 border border-slate-300">\(+8x\)</td><td class="p-2 border border-slate-300">\(-12\)</td></tr>
+                        </table>
+                        <p class="text-sm mt-2 text-center font-bold">Final Answer: \(2x^2 + 5x - 12\)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Applications in Geometry -->
+        <div class="card">
+            <div class="card-header">
+                <h2 class="text-2xl font-semibold text-slate-700">3. Applications in Geometry</h2>
+            </div>
+            <div class="card-body">
+                <p class="mb-4">Polynomials are often used to represent dimensions of geometric shapes. You can then perform operations to find perimeter, area, or volume.</p>
+                <h3 class="font-semibold text-lg text-slate-800 mb-2">Worked Example: Area of a Rectangle</h3>
+                <p class="mb-4">Find the area of a rectangle with length \( (2x+1) \) and width \( (x+3) \).</p>
+                 <ul class="list-disc list-inside mt-2 bg-slate-50 p-4 rounded-lg border">
+                    <li><strong>Step 1: Set up the problem.</strong> Area = length × width. So, we need to calculate \((2x+1)(x+3)\).</li>
+                    <li><strong>Step 2: Multiply the polynomials.</strong> Using the distributive property:
+                        <p class="ml-4">\(2x(x+3) + 1(x+3)\)</p>
+                        <p class="ml-4">\(= 2x^2 + 6x + x + 3\)</p>
+                    </li>
+                    <li><strong>Step 3: Combine like terms.</strong>
+                        <p class="ml-4">\(= 2x^2 + 7x + 3\)</p>
+                    </li>
+                    <li><strong>Final Answer:</strong> The area is \(2x^2 + 7x + 3\).</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Key Vocabulary -->
+        <div class="card">
+            <div class="card-header">
+                <h2 class="text-2xl font-semibold text-slate-700">Key Vocabulary</h2>
+            </div>
+            <div class="card-body">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td><strong>Polynomial</strong></td>
+                            <td>An expression with one or more terms, where variables have non-negative integer exponents.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Like Terms</strong></td>
+                            <td>Terms with the exact same variable part (e.g., \(3x^2\) and \(-5x^2\)).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Monomial</strong></td>
+                            <td>A polynomial with exactly one term (e.g., \(7x\)).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Binomial</strong></td>
+                            <td>A polynomial with exactly two terms (e.g., \(x + 5\)).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Trinomial</strong></td>
+                            <td>A polynomial with exactly three terms (e.g., \(x^2 + 2x + 1\)).</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+    <footer class="text-center mt-16 text-gray-500 no-print">
+        <p>&copy; 2025 Aly Hatfield. All rights reserved.</p>
+    </footer>
+</body>
+</html>
+
