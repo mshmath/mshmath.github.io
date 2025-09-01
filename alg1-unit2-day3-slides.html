@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 2 Day 3 Slides: Practice with Models</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f1f5f9; /* slate-100 */
+        }
+        .slide-container {
+            width: 100%;
+            max-width: 1050px;
+            aspect-ratio: 16 / 9;
+            margin: 1rem auto;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        .slide {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem 4rem;
+            text-align: center;
+            background-color: white;
+            height: 100%;
+            width: 100%;
+        }
+        .slide.active {
+            display: flex;
+        }
+        .nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.3);
+            color: white;
+            border: none;
+            padding: 0.75rem;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.2s;
+        }
+        .nav-button:hover {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        #prevBtn { left: 1rem; }
+        #nextBtn { right: 1rem; }
+        .slide-counter {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.875rem;
+            z-index: 10;
+        }
+        .title-slide {
+            background: linear-gradient(135deg, #6d28d9, #8b5cf6); /* violet-700 to violet-500 */
+            color: white;
+        }
+        .emphasis-highlight {
+            background-color: #ede9fe; /* violet-50 */
+            padding: 0.1em 0.3em;
+            border-radius: 0.25em;
+            font-weight: 600;
+        }
+        .keyword {
+            color: #5b21b6; /* violet-800 */
+            font-weight: 600;
+        }
+        
+        /* Print Styles */
+        .printable-version { display: none; }
+
+        @media print {
+            body { 
+                background-color: white; 
+                color: black; 
+                font-size: 12pt;
+            }
+            .non-printable { display: none !important; }
+            .printable-version { 
+                display: block !important; 
+                font-family: 'Georgia', serif;
+            }
+            .print-card {
+                border: 1px solid #d1d5db;
+                border-radius: 0.75rem;
+                padding: 1.5rem;
+                margin-bottom: 1.5rem;
+                page-break-inside: avoid;
+                background-color: #f9fafb;
+            }
+            .print-card h2 {
+                font-family: 'Inter', sans-serif;
+                font-size: 1.25rem;
+                font-weight: 700;
+                border-bottom: 2px solid #e5e7eb;
+                padding-bottom: 0.75rem;
+                margin-bottom: 1.25rem;
+                color: #111827;
+            }
+            .print-card p, .problem {
+                font-size: 1.1rem;
+                line-height: 1.6;
+                color: #374151;
+                margin-bottom: 0.75rem;
+            }
+            .fill-in-blank {
+                display: inline-block;
+                border-bottom: 1px solid #6b7280;
+                margin: 0 0.25rem;
+                padding: 0 0.25rem;
+                vertical-align: bottom;
+            }
+            .problem-box {
+                border: 1px solid #e5e7eb;
+                background-color: #ffffff;
+                padding: 1rem;
+                border-radius: 0.5rem;
+                margin-top: 0.5rem;
+            }
+            .practice-levels .level {
+                margin-bottom: 1rem;
+                padding-bottom: 1rem;
+                border-bottom: 1px dashed #d1d5db;
+            }
+            .practice-levels .level:last-child {
+                border-bottom: none;
+                margin-bottom: 0;
+                padding-bottom: 0;
+            }
+            .practice-levels .level strong {
+                display: block;
+                margin-bottom: 0.25rem;
+                font-family: 'Inter', sans-serif;
+            }
+            .level-green { color: #15803d !important; }
+            .level-yellow { color: #b45309 !important; }
+            .level-red { color: #b91c1c !important; }
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen p-4">
+
+    <div class="non-printable w-full max-w-4xl">
+        <div class="flex flex-col sm:flex-row justify-between items-center mb-4">
+            <div>
+                <h1 class="text-3xl font-bold text-gray-800">Unit 2 Day 3: Practice with Models</h1>
+                <p class="text-gray-600">Use the arrows or your keyboard to navigate the slides.</p>
+            </div>
+            <button onclick="window.print()" class="bg-violet-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-violet-700 transition-colors mt-2 sm:mt-0">
+                Print Slides
+            </button>
+        </div>
+    </div>
+
+    <div class="slide-container non-printable">
+        <!-- Slide 1: Title -->
+        <div class="slide active title-slide">
+            <h1 class="text-5xl font-bold mb-4">Unit 2: Polynomial Operations</h1>
+            <p class="text-2xl">Day 3: Practice with Models</p>
+        </div>
+
+        <!-- Slide 2: Objective -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8">Today's Objective</h2>
+            <div class="text-left text-2xl space-y-4 text-gray-700 max-w-3xl">
+                <div class="bg-violet-50 border-l-4 border-violet-500 p-6 rounded-r-lg">
+                    <p>To reinforce polynomial operations using <span class="emphasis-highlight">pictorial</span> and <span class="emphasis-highlight">symbolic</span> models.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 3: Explaining the Tiles -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Let's Understand the Tiles: Why the Shapes?</h2>
+            <p class="text-xl text-gray-700 max-w-4xl mb-6">The name of each tile comes from its <span class="keyword">area</span>. We define the side lengths of the shapes first, and that determines what the tile represents.</p>
+            <div class="flex justify-center items-end text-center w-full max-w-6xl gap-x-8">
+                <div class="w-1/3">
+                    <p class="text-lg mb-2">If a large square has a side length of <span class="emphasis-highlight">x</span>...</p><br>
+                    <div class="relative w-32 h-32 bg-violet-500 rounded-md mx-auto">
+                        <span class="absolute -top-6 left-1/2 -translate-x-1/2 text-xl font-bold">x</span>
+                        <span class="absolute -left-6 top-1/2 -translate-y-1/2 text-xl font-bold">x</span>
+                    </div>
+                    <p class="mt-2 font-semibold text-xl">...its Area is \(x \cdot x = x^2\).</p>
+                    <p class="text-lg font-bold text-violet-800">So, this is the "x-squared" tile.</p>
+                </div>
+                <div class="w-1/3">
+                    <p class="text-lg mb-2">If a rectangle has sides <span class="emphasis-highlight">x</span> and <span class="emphasis-highlight">1</span>...</p><br>
+                     <div class="relative w-12 h-32 bg-violet-400 rounded-md mx-auto">
+                        <span class="absolute -top-6 left-1/2 -translate-x-1/2 text-xl font-bold">1</span>
+                        <span class="absolute -left-6 top-1/2 -translate-y-1/2 text-xl font-bold">x</span>
+                    </div>
+                    <p class="mt-2 font-semibold text-xl">...its Area is \(x \cdot 1 = x\).</p>
+                    <p class="text-lg font-bold text-violet-800">So, this is the "x" tile.</p>
+                </div>
+                 <div class="w-1/3">
+                    <p class="text-lg mb-2">If a small square has a side length of <span class="emphasis-highlight">1</span>...</p><br>
+                     <div class="relative w-12 h-12 bg-violet-300 rounded-md mx-auto">
+                        <span class="absolute -top-6 left-1/2 -translate-x-1/2 text-xl font-bold">1</span>
+                        <span class="absolute -left-6 top-1/2 -translate-y-1/2 text-xl font-bold">1</span>
+                    </div>
+                    <p class="mt-2 font-semibold text-xl">...its Area is \(1 \cdot 1 = 1\).</p>
+                    <p class="text-lg font-bold text-violet-800">So, this is the "one" tile.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Core Concept -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Building Polynomials with Tiles</h2>
+            <p class="text-xl text-gray-700 max-w-4xl mb-6">Using these tiles, we can build a visual model for any polynomial. Remember: <span class="keyword">Violet</span> tiles are positive, and <span class="keyword">Red</span> tiles are negative.</p>
+            <div class="w-full max-w-4xl bg-slate-50 p-4 rounded-lg">
+                <p class="font-bold text-xl mb-4">For example, here is the polynomial \(2x^2 - x + 3\):</p>
+                <div class="flex justify-center items-center space-x-2">
+                    <div class="w-20 h-20 bg-violet-500 rounded-md"></div>
+                    <div class="w-20 h-20 bg-violet-500 rounded-md"></div>
+                    <div class="w-8 h-20 bg-red-400 rounded-md"></div>
+                    <div class="w-8 h-8 bg-violet-300 rounded-md"></div>
+                    <div class="w-8 h-8 bg-violet-300 rounded-md"></div>
+                    <div class="w-8 h-8 bg-violet-300 rounded-md"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Zero Pairs -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">The Power of "Zero Pairs"</h2>
+            <p class="text-xl text-gray-700 max-w-4xl mb-6">The entire system works because of a simple idea: opposites cancel. Think of it like \(+5\) and \(-5\) making 0. A positive tile and its matching negative tile form a <span class="keyword">zero pair</span> and can be removed.</p>
+            <div class="flex justify-around items-center w-full max-w-4xl">
+                <div class="flex items-center space-x-2 p-4 bg-slate-100 rounded-lg">
+                    <div class="w-20 h-20 bg-violet-500 rounded-md"></div>
+                    <div class="text-4xl font-bold text-gray-500">+</div>
+                    <div class="w-20 h-20 bg-red-500 rounded-md"></div>
+                    <div class="text-4xl font-bold text-gray-500">=</div>
+                    <div class="text-6xl font-bold text-violet-700">0</div>
+                </div>
+                <div class="flex items-center space-x-2 p-4 bg-slate-100 rounded-lg">
+                    <div class="w-8 h-20 bg-violet-400 rounded-md"></div>
+                    <div class="text-4xl font-bold text-gray-500">+</div>
+                    <div class="w-8 h-20 bg-red-400 rounded-md"></div>
+                    <div class="text-4xl font-bold text-gray-500">=</div>
+                    <div class="text-6xl font-bold text-violet-700">0</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: I Do Example 1 -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">I Do: Modeling Addition</h2>
+            <p class="text-xl text-gray-600 mb-6">Let's model \((2x + 3) + (x + 1)\).</p>
+            <div class="w-full max-w-4xl text-left bg-slate-50 p-4 rounded-lg border">
+                <p class="font-semibold mb-2 text-lg">Step 1: Lay out the tiles for each polynomial separately.</p>
+                 <div class="flex flex-wrap gap-x-8 gap-y-2 items-center justify-center">
+                    <div class="flex space-x-1 items-center p-2 bg-white rounded border">(<div class="w-6 h-12 bg-violet-400"></div><div class="w-6 h-12 bg-violet-400"></div> <div class="w-6 h-6 bg-violet-300"></div><div class="w-6 h-6 bg-violet-300"></div><div class="w-6 h-6 bg-violet-300"></div>)</div>
+                    <p class="font-bold text-3xl">+</p>
+                    <div class="flex space-x-1 items-center p-2 bg-white rounded border">(<div class="w-6 h-12 bg-violet-400"></div> <div class="w-6 h-6 bg-violet-300"></div>)</div>
+                </div>
+                <p class="font-semibold mb-2 mt-4 text-lg">Step 2: Combine all the tiles into one group. Since there are no negatives, we don't need to worry about zero pairs. Just count what you have!</p>
+                <div class="flex space-x-1 items-center justify-center p-2 bg-white rounded border">
+                    <div class="w-6 h-12 bg-violet-400"></div><div class="w-6 h-12 bg-violet-400"></div><div class="w-6 h-12 bg-violet-400"></div>
+                    <div class="w-6 h-6 bg-violet-300"></div><div class="w-6 h-6 bg-violet-300"></div><div class="w-6 h-6 bg-violet-300"></div><div class="w-6 h-6 bg-violet-300"></div>
+                </div>
+                <p class="text-3xl font-mono font-bold text-center text-violet-700 mt-4">Result: \(3x + 4\)</p>
+            </div>
+        </div>
+
+        <!-- Slide 7: I Do Example 2 -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">I Do: Modeling Subtraction</h2>
+            <p class="text-xl text-gray-600 mb-6">Let's model \((3x + 4) - (x + 1)\). The trick is to <span class="keyword">add the opposite</span>.</p>
+             <div class="w-full max-w-4xl text-left bg-slate-50 p-4 rounded-lg border">
+                <p class="font-semibold mb-2 text-lg">Step 1: Lay out the first group. For the second group, \((x+1)\), find its opposite, \(-x-1\), by flipping the color of its tiles.</p>
+                 <div class="flex flex-wrap gap-x-8 gap-y-2 items-center justify-center">
+                    <div class="flex space-x-1 items-center p-2 bg-white rounded border">(<div class="w-6 h-12 bg-violet-400"></div><div class="w-6 h-12 bg-violet-400"></div><div class="w-6 h-12 bg-violet-400"></div> <div class="w-6 h-6 bg-violet-300"></div><div class="w-6 h-6 bg-violet-300"></div><div class="w-6 h-6 bg-violet-300"></div><div class="w-6 h-6 bg-violet-300"></div>)</div>
+                    <p class="font-bold text-3xl">+</p>
+                    <div class="flex space-x-1 items-center p-2 bg-white rounded border">(<div class="w-6 h-12 bg-red-400"></div> <div class="w-6 h-6 bg-red-300"></div>)</div>
+                </div>
+                <p class="font-semibold mb-2 mt-4 text-lg">Step 2: Combine the groups and find the zero pairs. One positive 'x' tile cancels with one negative 'x' tile. One positive '1' tile cancels with one negative '1' tile.</p>
+                <div class="flex space-x-1 items-center justify-center p-2 bg-white rounded border relative">
+                    <div class="w-6 h-12 bg-violet-400"></div><div class="w-6 h-12 bg-violet-400"></div>
+                    <div class="w-6 h-12 bg-violet-400 opacity-30"></div><div class="w-6 h-12 bg-red-400 opacity-30"></div>
+                    <div class="w-6 h-6 bg-violet-300"></div><div class="w-6 h-6 bg-violet-300"></div><div class="w-6 h-6 bg-violet-300"></div>
+                    <div class="w-6 h-6 bg-violet-300 opacity-30"></div><div class="w-6 h-6 bg-red-300 opacity-30"></div>
+                     <svg class="absolute w-full h-full" viewBox="0 0 300 50"><line x1="120" y1="5" x2="160" y2="45" stroke="red" stroke-width="2"/><line x1="255" y1="5" x2="285" y2="45" stroke="red" stroke-width="2"/></svg>
+                </div>
+                <p class="text-3xl font-mono font-bold text-center text-violet-700 mt-4">Result: \(2x + 3\)</p>
+            </div>
+        </div>
+
+        <!-- Slide 8: We Do -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">We Do: Applying the Concepts</h2>
+            <p class="text-xl text-gray-700 mb-8">How can we use polynomial operations to solve problems about shapes?</p>
+            <div class="w-full max-w-4xl text-left text-xl space-y-8">
+                <div>
+                    <p><strong>1.</strong> The perimeter of a triangle is \(7x-10\). If two sides are \(x+5\) and \(3x-2\), what expression represents the third side?</p>
+                    <p class="text-base text-slate-500 mt-1"><strong>Hint:</strong> Start by adding the two sides you know. Then, subtract that sum from the total perimeter.</p>
+                </div>
+                <div>
+                    <p><strong>2.</strong> Find the area of a rectangle with length \(2x+1\) and width \(x+3\).</p>
+                     <p class="text-base text-slate-500 mt-1"><strong>Hint:</strong> Remember, the formula for the area of a rectangle is Length × Width. You will need to multiply the two binomials.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 9: Independent Practice -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Independent Practice</h2>
+            <p class="text-lg text-gray-600 mb-6">Put your skills to the test! Read each problem carefully to decide which operation to use.</p>
+            <div class="w-full max-w-5xl grid grid-cols-1 md:grid-cols-3 gap-4 text-left">
+                <div class="bg-green-100 border-2 border-green-300 p-4 rounded-lg">
+                    <p class="font-bold text-green-800 text-lg mb-2">Green Level</p>
+                    <p>The sides of a triangle are \( (x+1) \), \( (2x+3) \), and \( (x+5) \). Find the perimeter by combining like terms.</p>
+                </div>
+                <div class="bg-yellow-100 border-2 border-yellow-300 p-4 rounded-lg">
+                    <p class="font-bold text-yellow-800 text-lg mb-2">Yellow Level</p>
+                    <p>The area of a rectangle is \(12x^2 + 8x\). If the width is \(4x\), what is the length? (Think: what times \(4x\) gives you the area?)</p>
+                </div>
+                <div class="bg-red-100 border-2 border-red-300 p-4 rounded-lg">
+                    <p class="font-bold text-red-800 text-lg mb-2">Red Level</p>
+                    <p>A square garden has a side length of \( (s+2) \). Inside is a square fountain with side length \(s\). Find the plantable area by subtracting the fountain's area from the garden's area.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Exit Ticket -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Exit Ticket</h2>
+            <p class="text-xl text-gray-700 mb-4 max-w-3xl">Find the total area of the composite shape below. </p>
+            <p class="text-base text-slate-500 mb-4"><strong>Hint:</strong> Find the area of the top \(x\) by \(x\) square. Then find the area of the bottom rectangle. Finally, add the two areas together.</p>
+            <div class="my-2 relative h-32 w-40 border-2 border-slate-400">
+                <div class="absolute top-0 left-0 h-20 w-20 border-r-2 border-b-2 border-slate-400"></div>
+                <span class="absolute -left-8 top-8 text-lg">x</span>
+                <span class="absolute -top-6 left-8 text-lg">x</span>
+                <span class="absolute top-24 -left-12 text-lg">x+2</span>
+                <span class="absolute -top-6 left-24 text-lg">x-1</span>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <button id="prevBtn" class="nav-button">&lt;</button>
+        <button id="nextBtn" class="nav-button">&gt;</button>
+        <div id="slideCounter" class="slide-counter"></div>
+    </div>
+
+    <!-- Printable Version -->
+    <div class="printable-version w-full max-w-4xl mx-auto p-4">
+        <div class="print-card" style="background: linear-gradient(135deg, #6d28d9, #8b5cf6); color: white; text-align: center;">
+            <h1 style="font-family: 'Inter', sans-serif; font-size: 2rem; font-weight: 800; margin-bottom: 0.5rem;">Unit 2: Polynomial Operations</h1>
+            <p style="font-family: 'Inter', sans-serif; font-size: 1.25rem;">Day 3: Practice with Models</p>
+        </div>
+        
+        <div class="print-card">
+            <h2>Objective</h2>
+            <p>To reinforce polynomial operations using <span class="fill-in-blank" style="width: 100px;"></span> (picture) and <span class="fill-in-blank" style="width: 110px;"></span> (algebraic) models.</p>
+        </div>
+
+        <div class="print-card">
+            <h2>Key Concepts: Understanding Algebra Tiles</h2>
+            <p>The name and shape of each tile comes from its <strong>area</strong>. We define the side lengths first:</p>
+            <div style="display: flex; justify-content: space-around; text-align: center; margin-top: 1rem; padding: 1rem; background-color: white; border: 1px solid #e5e7eb; border-radius: 0.5rem;">
+                <div style="width: 30%;">
+                    <p style="margin-bottom: 0.5rem; font-size: 0.9rem;">Side lengths: x, x</p>
+                    <div style="position: relative; width: 60px; height: 60px; background-color: #6d28d9; border-radius: 4px; margin: auto;"></div>
+                    <p style="margin-top: 0.5rem;">Area = \(x^2\)</p>
+                </div>
+                <div style="width: 30%;">
+                    <p style="margin-bottom: 0.5rem; font-size: 0.9rem;">Side lengths: x, 1</p>
+                    <div style="position: relative; width: 30px; height: 60px; background-color: #8b5cf6; border-radius: 4px; margin: auto;"></div>
+                    <p style="margin-top: 0.5rem;">Area = \(x\)</p>
+                </div>
+                <div style="width: 30%;">
+                     <p style="margin-bottom: 0.5rem; font-size: 0.9rem;">Side lengths: 1, 1</p>
+                    <div style="position: relative; width: 30px; height: 30px; background-color: #a78bfa; border-radius: 4px; margin: auto;"></div>
+                     <p style="margin-top: 0.5rem;">Area = \(1\)</p>
+                </div>
+            </div>
+            <p style="margin-top: 1rem;"><strong>Zero Pair:</strong> A positive tile (violet) and its matching negative tile (red) cancel each other out to make <span class="fill-in-blank" style="width: 90px;"></span>.</p>
+            <p><strong>Subtraction:</strong> To subtract a polynomial, you should add its <span class="fill-in-blank" style="width: 120px;"></span>.</p>
+        </div>
+
+        <div class="print-card">
+            <h2>Guided Example: I Do</h2>
+            <div class="problem-box">
+                <p><strong>Modeling Addition:</strong> \((2x + 3) + (x + 1)\)</p>
+                <p><strong>Step 1 (Setup):</strong> Represent each polynomial with tiles.</p>
+                <div style="display: flex; align-items: center; justify-content: center; margin: 0.5rem 0;">
+                    <div style="display: flex; align-items: center; padding: 5px; border: 1px solid #ccc; border-radius: 5px;">
+                        <span style="display: inline-block; width: 12px; height: 25px; background: #8b5cf6; border-radius: 2px; margin: 2px;"></span><span style="display: inline-block; width: 12px; height: 25px; background: #8b5cf6; border-radius: 2px; margin: 2px;"></span>
+                        <span style="display: inline-block; width: 12px; height: 12px; background: #a78bfa; border-radius: 2px; margin: 2px;"></span><span style="display: inline-block; width: 12px; height: 12px; background: #a78bfa; border-radius: 2px; margin: 2px;"></span><span style="display: inline-block; width: 12px; height: 12px; background: #a78bfa; border-radius: 2px; margin: 2px;"></span>
+                    </div>
+                     <span style="font-size: 1.5rem; margin: 0 1rem;">+</span>
+                    <div style="display: flex; align-items: center; padding: 5px; border: 1px solid #ccc; border-radius: 5px;">
+                         <span style="display: inline-block; width: 12px; height: 25px; background: #8b5cf6; border-radius: 2px; margin: 2px;"></span>
+                         <span style="display: inline-block; width: 12px; height: 12px; background: #a78bfa; border-radius: 2px; margin: 2px;"></span>
+                    </div>
+                </div>
+                <p><strong>Step 2 (Combine):</strong> Group all the tiles together and count the total.</p>
+                <p>Result: <span class="fill-in-blank" style="width: 250px;"></span></p>
+            </div>
+            <div class="problem-box" style="margin-top: 1rem;">
+                <p><strong>Modeling Subtraction:</strong> \((3x + 4) - (x + 1)\)</p>
+                <p><strong>Step 1 (Setup):</strong> Add the <strong>opposite</strong> of the second polynomial.</p>
+                <div style="display: flex; align-items: center; justify-content: center; margin: 0.5rem 0;">
+                    <div style="display: flex; align-items: center; padding: 5px; border: 1px solid #ccc; border-radius: 5px;">
+                        <span style="display: inline-block; width: 12px; height: 25px; background: #8b5cf6; border-radius: 2px; margin: 2px;"></span><span style="display: inline-block; width: 12px; height: 25px; background: #8b5cf6; border-radius: 2px; margin: 2px;"></span><span style="display: inline-block; width: 12px; height: 25px; background: #8b5cf6; border-radius: 2px; margin: 2px;"></span>
+                        <span style="display: inline-block; width: 12px; height: 12px; background: #a78bfa; border-radius: 2px; margin: 2px;"></span><span style="display: inline-block; width: 12px; height: 12px; background: #a78bfa; border-radius: 2px; margin: 2px;"></span><span style="display: inline-block; width: 12px; height: 12px; background: #a78bfa; border-radius: 2px; margin: 2px;"></span><span style="display: inline-block; width: 12px; height: 12px; background: #a78bfa; border-radius: 2px; margin: 2px;"></span>
+                    </div>
+                     <span style="font-size: 1.5rem; margin: 0 1rem;">+</span>
+                    <div style="display: flex; align-items: center; padding: 5px; border: 1px solid #ccc; border-radius: 5px;">
+                         <span style="display: inline-block; width: 12px; height: 25px; background: #f87171; border-radius: 2px; margin: 2px;"></span>
+                         <span style="display: inline-block; width: 12px; height: 12px; background: #fca5a5; border-radius: 2px; margin: 2px;"></span>
+                    </div>
+                </div>
+                <p><strong>Step 2 (Combine):</strong> Group tiles and remove any zero pairs. The remaining tiles are the answer.</p>
+                <p>Result: <span class="fill-in-blank" style="width: 250px;"></span></p>
+            </div>
+        </div>
+        
+        <div class="print-card">
+            <h2>Class Practice: We Do</h2>
+             <p><strong>1.</strong> The perimeter of a triangle is \(7x-10\). If two sides are \(x+5\) and \(3x-2\), what is the third side? <span class="fill-in-blank" style="width: 250px;"></span></p>
+             <p><strong>2.</strong> Find the area of a rectangle with length \(2x+1\) and width \(x+3\). <span class="fill-in-blank" style="width: 250px;"></span></p>
+        </div>
+
+        <div class="print-card">
+            <h2>Independent Practice</h2>
+            <div class="practice-levels">
+                <div class="level">
+                    <strong class="level-green">Green Level</strong>
+                    <p>The sides of a triangle are \( (x+1) \), \( (2x+3) \), and \( (x+5) \). Find the perimeter. <span class="fill-in-blank" style="width: 200px;"></span></p>
+                </div>
+                <div class="level">
+                    <strong class="level-yellow">Yellow Level</strong>
+                    <p>The area of a rectangle is \(12x^2 + 8x\). If the width is \(4x\), what is the length? <span class="fill-in-blank" style="width: 200px;"></span></p>
+                </div>
+                <div class="level">
+                    <strong class="level-red">Red Level</strong>
+                    <p>A square garden has a side length of \( (s+2) \). A square fountain inside has a side length of \(s\). Find the plantable area. <span class="fill-in-blank" style="width: 200px;"></span></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="print-card">
+            <h2>Exit Ticket</h2>
+            <p>Find the area of the composite shape shown below. Hint: Add the area of the top square to the area of the bottom rectangle.</p>
+             <div style="text-align: center; margin: 1rem 0;">
+                <svg width="220" height="170" viewBox="-40 -20 260 190" style="font-family: 'Inter', sans-serif;">
+                    <!-- The L-shape path -->
+                    <path d="M 0,0 L 180,0 L 180,100 L 100,100 L 100,150 L 0,150 Z" fill="#f3e8ff" stroke="#6b7280" stroke-width="2"/>
+                    
+                    <!-- Helper lines to show composition -->
+                    <path d="M 100,0 L 100,100 M 0,100 L 100,100" stroke="#a855f7" stroke-width="1" stroke-dasharray="4"/>
+            
+                    <!-- Labels for sides -->
+                    <text x="50" y="-8" text-anchor="middle" font-size="16">x</text>
+                    <text x="140" y="-8" text-anchor="middle" font-size="16">x-1</text>
+                    <text x="-10" y="75" text-anchor="end" font-size="16">x+2</text>
+                    <text x="190" y="50" text-anchor="middle" transform="rotate(90, 190, 50)" font-size="16">x</text>
+                </svg>
+            </div>
+            <p>Answer: <span class="fill-in-blank" style="width: 100%;"></span></p>
+        </div>
+    </div>
+
+    <footer class="text-center mt-8 text-gray-500 non-printable">
+        <p>&copy; 2025 Aly Hatfield. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const slides = document.querySelectorAll('.slide');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const slideCounter = document.getElementById('slideCounter');
+            let currentSlide = 0;
+            function showSlide(n) {
+                slides.forEach(slide => slide.classList.remove('active'));
+                if (slides[n]) {
+                    slides[n].classList.add('active');
+                }
+                slideCounter.textContent = `${n + 1} / ${slides.length}`;
+            }
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % slides.length;
+                showSlide(currentSlide);
+            }
+            function prevSlide() {
+                currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+                showSlide(currentSlide);
+            }
+            nextBtn.addEventListener('click', nextSlide);
+            prevBtn.addEventListener('click', prevSlide);
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight') {
+                    nextSlide();
+                } else if (e.key === 'ArrowLeft') {
+                    prevSlide();
+                }
+            });
+            showSlide(currentSlide);
+        });
+    </script>
+</body>
+</html>
+
