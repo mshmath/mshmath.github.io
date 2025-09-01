@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 2 Day 3 Slides: Proving Lines Parallel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f1f5f9; /* slate-100 */
+        }
+        .slide-container {
+            width: 100%;
+            max-width: 1050px;
+            aspect-ratio: 16 / 9;
+            margin: 1rem auto;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        .slide {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem 4rem;
+            text-align: center;
+            background-color: white;
+            height: 100%;
+            width: 100%;
+        }
+        .slide.active {
+            display: flex;
+        }
+        .nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.3);
+            color: white;
+            border: none;
+            padding: 0.75rem;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.2s;
+        }
+        .nav-button:hover {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        #prevBtn { left: 1rem; }
+        #nextBtn { right: 1rem; }
+        .slide-counter {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.875rem;
+            z-index: 10;
+        }
+        .title-slide {
+            background: linear-gradient(135deg, #4f46e5, #6366f1); /* indigo-600 to indigo-500 */
+            color: white;
+        }
+        .emphasis-highlight {
+            background-color: #eef2ff; /* indigo-50 */
+            padding: 0.1em 0.3em;
+            border-radius: 0.25em;
+            font-weight: 600;
+        }
+        .keyword {
+            color: #4338ca; /* indigo-700 */
+            font-weight: 600;
+        }
+        /* Print Styles */
+        .printable-version { display: none; }
+        @media print {
+            body { background-color: white; color: black; }
+            .non-printable { display: none !important; }
+            .printable-version { display: block !important; }
+            .print-card {
+                border: 2px solid #e5e7eb;
+                border-radius: 0.5rem;
+                padding: 1.5rem;
+                margin-bottom: 1.5rem;
+                page-break-inside: avoid;
+            }
+            .print-card h2 {
+                font-size: 1.5rem;
+                font-weight: 700;
+                border-bottom: 2px solid #e5e7eb;
+                padding-bottom: 0.5rem;
+                margin-bottom: 1rem;
+                color: black;
+            }
+            .fill-in-blank {
+                display: inline-block;
+                min-width: 120px;
+                border-bottom: 1px solid black;
+                margin: 0 4px;
+                text-align: center;
+                font-weight: bold;
+            }
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen p-4">
+
+    <div class="non-printable w-full max-w-4xl">
+        <div class="flex flex-col sm:flex-row justify-between items-center mb-4">
+            <div>
+                <h1 class="text-3xl font-bold text-gray-800">Unit 2 Day 3: Proving Lines Parallel</h1>
+                <p class="text-gray-600">Use the arrows or your keyboard to navigate the slides.</p>
+            </div>
+            <button onclick="window.print()" class="bg-indigo-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-indigo-700 transition-colors mt-2 sm:mt-0">
+                Print Slides
+            </button>
+        </div>
+    </div>
+
+    <div class="slide-container non-printable">
+        <!-- Slide 1: Title -->
+        <div class="slide active title-slide">
+            <h1 class="text-5xl font-bold mb-4">Unit 2: Lines, Angles, and Parallelism</h1>
+            <p class="text-2xl">Day 3: Proving Lines Parallel</p>
+        </div>
+
+        <!-- Slide 2: Objective -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8">Today's Objective</h2>
+            <ul class="list-disc text-left text-2xl space-y-6 text-gray-700 max-w-3xl">
+                <li>To use angle relationships to <span class="emphasis-highlight">prove</span> that two lines are parallel.</li>
+            </ul>
+        </div>
+        
+        <!-- Slide 3: Warm-Up -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Warm-Up: Day 2 Review</h2>
+            <p class="text-2xl text-gray-700 max-w-3xl mb-4">What is the name of the angle pair relationship between ∠3 and ∠6?</p>
+            <svg viewBox="0 0 200 150" class="w-full max-w-xs mt-4"><line x1="10" y1="30" x2="190" y2="30" stroke="#3b82f6" stroke-width="2"/><line x1="10" y1="120" x2="190" y2="120" stroke="#3b82f6" stroke-width="2"/><line x1="40" y1="0" x2="160" y2="150" stroke="#ef4444" stroke-width="2"/><text x="40" y="25" font-size="12">1</text><text x="70" y="25" font-size="12">2</text><text x="55" y="45" font-size="12">4</text><text x="80" y="45" font-size="12" fill="red" font-weight="bold">3</text><text x="110" y="115" font-size="12">5</text><text x="140" y="115" font-size="12" fill="red" font-weight="bold">6</text><text x="125" y="135" font-size="12">8</text><text x="150" y="135" font-size="12">7</text></svg>
+        </div>
+
+        <!-- Slide 4: The Big Shift -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">The Big Shift: Reversing Our Logic</h2>
+             <div class="w-full max-w-4xl text-left text-2xl space-y-6">
+                <div class="bg-slate-100 p-4 rounded-lg border-l-4 border-indigo-400">
+                    <p class="font-semibold text-slate-500 text-sm">YESTERDAY'S LOGIC</p>
+                    <p>IF lines are parallel, <span class="keyword">THEN</span> alternate interior angles are congruent.</p>
+                </div>
+                <div class="bg-green-100 p-4 rounded-lg border-l-4 border-green-500">
+                     <p class="font-semibold text-slate-500 text-sm">TODAY'S LOGIC (THE CONVERSE)</p>
+                    <p><span class="keyword">IF</span> alternate interior angles are congruent, THEN lines are parallel.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 5: Vocabulary - Converse -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Vocabulary: The Converse</h2>
+            <div class="w-full max-w-4xl text-left text-xl space-y-4">
+                <p>The <span class="keyword">converse</span> of a theorem is created by <span class="emphasis-highlight">switching</span> the "if" and "then" parts.</p>
+                <div class="bg-slate-100 p-4 rounded-lg">
+                    <p><strong class="text-slate-700">Statement:</strong> If it is raining, then the ground is wet.</p>
+                </div>
+                <div class="bg-slate-100 p-4 rounded-lg">
+                    <p><strong class="text-slate-700">Converse:</strong> If the ground is wet, then it is raining.</p>
+                </div>
+                <p class="mt-4 text-center text-lg text-slate-600">(Note: In real life, the converse isn't always true! But in our geometry proofs today, they are!)</p>
+            </div>
+        </div>
+
+        <!-- Slide 6: I Do Example 1 -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">I Do: Converse of Alt. Interior Angles</h2>
+            <div class="flex items-center space-x-8 w-full">
+                <div class="w-1/2 text-left text-xl space-y-4">
+                    <p><strong>GIVEN:</strong> \(m\angle3 = 80^\circ\) and \(m\angle6 = 80^\circ\).</p>
+                    <p><strong>OBSERVE:</strong> ∠3 and ∠6 are alternate interior angles, and they are congruent.</p>
+                    <p><strong>CONCLUDE:</strong> Line <span class="keyword">l</span> is parallel to line <span class="keyword">m</span>.</p>
+                </div>
+                <svg viewBox="0 0 200 150" class="w-1/2">
+                    <line x1="10" y1="30" x2="190" y2="30" stroke="#3b82f6" stroke-width="2"/><text x="0" y="28" font-size="10" fill="#3b82f6">l</text>
+                    <line x1="10" y1="120" x2="190" y2="120" stroke="#3b82f6" stroke-width="2"/><text x="0" y="118" font-size="10" fill="#3b82f6">m</text>
+                    <line x1="40" y1="0" x2="160" y2="150" stroke="#ef4444" stroke-width="2"/>
+                    <!-- Angle 3 -->
+                    <text x="80" y="45" font-size="12">3</text>
+                    <text x="85" y="52" font-size="10" fill="#f59e0b">80°</text>
+                    <!-- Angle 6 -->
+                    <text x="140" y="115" font-size="12">6</text>
+                    <text x="135" y="105" font-size="10" fill="#f59e0b">80°</text>
+                </svg>
+            </div>
+        </div>
+        
+        <!-- Slide 7: I Do Example 2 -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">I Do: Converse of Corresponding Angles</h2>
+             <div class="flex items-center space-x-8 w-full">
+                <div class="w-1/2 text-left text-xl space-y-4">
+                    <p><strong>GIVEN:</strong> \(m\angle1 = 115^\circ\) and \(m\angle5 = 115^\circ\).</p>
+                    <p><strong>OBSERVE:</strong> ∠1 and ∠5 are corresponding angles, and they are congruent.</p>
+                    <p><strong>CONCLUDE:</strong> Line <span class="keyword">l</span> is parallel to line <span class="keyword">m</span>.</p>
+                </div>
+                <svg viewBox="0 0 200 150" class="w-1/2">
+                    <line x1="10" y1="30" x2="190" y2="30" stroke="#3b82f6" stroke-width="2"/><text x="0" y="28" font-size="10" fill="#3b82f6">l</text>
+                    <line x1="10" y1="120" x2="190" y2="120" stroke="#3b82f6" stroke-width="2"/><text x="0" y="118" font-size="10" fill="#3b82f6">m</text>
+                    <line x1="40" y1="0" x2="160" y2="150" stroke="#ef4444" stroke-width="2"/>
+                    <!-- Angle 1 -->
+                    <text x="40" y="25" font-size="12">1</text>
+                    <text x="45" y="20" font-size="10" fill="#22c55e">115°</text>
+                    <!-- Angle 5 -->
+                    <text x="110" y="115" font-size="12">5</text>
+                    <text x="115" y="110" font-size="10" fill="#22c55e">115°</text>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Slide 8: I Do Example 3 -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">I Do: Converse of Same-Side Interior</h2>
+            <div class="flex items-center space-x-8 w-full">
+                <div class="w-1/2 text-left text-xl space-y-4">
+                    <p><strong>GIVEN:</strong> \(m\angle3 = 100^\circ\) and \(m\angle5 = 80^\circ\).</p>
+                    <p><strong>OBSERVE:</strong> ∠3 and ∠5 are same-side interior angles, and they are <span class="emphasis-highlight">supplementary</span> (100 + 80 = 180).</p>
+                    <p><strong>CONCLUDE:</strong> Line <span class="keyword">l</span> is parallel to line <span class="keyword">m</span>.</p>
+                </div>
+                <svg viewBox="0 0 200 150" class="w-1/2">
+                    <line x1="10" y1="30" x2="190" y2="30" stroke="#3b82f6" stroke-width="2"/><text x="0" y="28" font-size="10" fill="#3b82f6">l</text>
+                    <line x1="10" y1="120" x2="190" y2="120" stroke="#3b82f6" stroke-width="2"/><text x="0" y="118" font-size="10" fill="#3b82f6">m</text>
+                    <line x1="40" y1="0" x2="160" y2="150" stroke="#ef4444" stroke-width="2"/>
+                    <!-- Angle 3 -->
+                    <text x="80" y="45" font-size="12">3</text>
+                    <text x="85" y="52" font-size="10" fill="#ef4444">100°</text>
+                    <!-- Angle 5 -->
+                    <text x="110" y="115" font-size="12">5</text>
+                    <text x="115" y="105" font-size="10" fill="#ef4444">80°</text>
+                </svg>
+            </div>
+        </div>
+        
+        <!-- Slide 9: We Do -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">We Do: Let's Try Together</h2>
+            <p class="text-2xl text-gray-700 mb-4">What theorem proves l || m for each case?</p>
+            <div class="flex items-center space-x-8">
+                <svg viewBox="0 0 200 150" class="w-full max-w-xs"><line x1="10" y1="30" x2="190" y2="30" stroke="#3b82f6" stroke-width="2"/><line x1="10" y1="120" x2="190" y2="120" stroke="#3b82f6" stroke-width="2"/><line x1="40" y1="0" x2="160" y2="150" stroke="#ef4444" stroke-width="2"/><text x="40" y="25" font-size="12">1</text><text x="70" y="25" font-size="12">2</text><text x="55" y="45" font-size="12">4</text><text x="80" y="45" font-size="12">3</text><text x="110" y="115" font-size="12">5</text><text x="140" y="115" font-size="12">6</text><text x="125" y="135" font-size="12">8</text><text x="150" y="135" font-size="12">7</text></svg>
+                 <div class="text-left text-2xl space-y-8">
+                    <p><strong>1.</strong> If you are given that ∠4 ≅ ∠5?</p>
+                    <p><strong>2.</strong> If you are given m∠3 + m∠5 = 180°?</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 10: You Do Practice -->
+         <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">You Do: Practice Time!</h2>
+            <p class="text-xl text-gray-600">Now, open your interactive notes to Day 3 and complete the "You Do" section.</p>
+        </div>
+
+        <!-- Slide 11: Independent Practice -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Independent Practice</h2>
+            <p class="text-lg text-gray-600 mb-6">Find the value of x that makes lines l and m parallel.</p>
+            <div class="w-full max-w-5xl grid grid-cols-1 md:grid-cols-3 gap-4 text-left">
+                <div class="bg-green-100 border-2 border-green-300 p-4 rounded-lg">
+                    <p class="font-bold text-green-800 text-lg mb-2">Green Level</p>
+                    <p>\(m\angle2 = 75^\circ\)</p>
+                    <p>\(m\angle6 = (5x)^\circ\)</p>
+                </div>
+                <div class="bg-yellow-100 border-2 border-yellow-300 p-4 rounded-lg">
+                    <p class="font-bold text-yellow-800 text-lg mb-2">Yellow Level</p>
+                    <p>\(m\angle3 = (2x + 10)^\circ\)</p>
+                    <p>\(m\angle6 = (3x - 20)^\circ\)</p>
+                </div>
+                <div class="bg-red-100 border-2 border-red-300 p-4 rounded-lg">
+                    <p class="font-bold text-red-800 text-lg mb-2">Red Level</p>
+                    <p>\(m\angle4 = (4x - 10)^\circ\)</p>
+                    <p>\(m\angle5 = (x + 15)^\circ\)</p>
+                </div>
+            </div>
+             <svg viewBox="0 0 200 150" class="w-full max-w-xs mt-4"><line x1="10" y1="30" x2="190" y2="30" stroke="#3b82f6" stroke-width="2"/><line x1="10" y1="120" x2="190" y2="120" stroke="#3b82f6" stroke-width="2"/><line x1="40" y1="0" x2="160" y2="150" stroke="#ef4444" stroke-width="2"/><text x="40" y="25" font-size="12">1</text><text x="70" y="25" font-size="12">2</text><text x="55" y="45" font-size="12">4</text><text x="80" y="45" font-size="12">3</text><text x="110" y="115" font-size="12">5</text><text x="140" y="115" font-size="12">6</text><text x="125" y="135" font-size="12">8</text><text x="150" y="135" font-size="12">7</text></svg>
+        </div>
+
+        <!-- Slide 12: Exit Ticket -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Exit Ticket</h2>
+            <p class="text-2xl text-gray-700 mb-4">Given \(m\angle2 = 120^\circ\), what must \(m\angle7\) be to prove the lines are parallel?</p>
+            <p class="text-xl text-gray-600">Which theorem or postulate justifies your answer?</p>
+             <svg viewBox="0 0 200 150" class="w-full max-w-xs mt-4"><line x1="10" y1="30" x2="190" y2="30" stroke="#3b82f6" stroke-width="2"/><line x1="10" y1="120" x2="190" y2="120" stroke="#3b82f6" stroke-width="2"/><line x1="40" y1="0" x2="160" y2="150" stroke="#ef4444" stroke-width="2"/><text x="40" y="25" font-size="12">1</text><text x="70" y="25" font-size="12">2</text><text x="55" y="45" font-size="12">4</text><text x="80" y="45" font-size="12">3</text><text x="110" y="115" font-size="12">5</text><text x="140" y="115" font-size="12">6</text><text x="125" y="135" font-size="12">8</text><text x="150" y="135" font-size="12">7</text></svg>
+        </div>
+
+        <!-- Navigation -->
+        <button id="prevBtn" class="nav-button">&lt;</button>
+        <button id="nextBtn" class="nav-button">&gt;</button>
+        <div id="slideCounter" class="slide-counter"></div>
+    </div>
+
+    <!-- Printable Version -->
+    <div class="printable-version w-full max-w-4xl mx-auto p-4">
+        <div class="print-card" style="background: linear-gradient(135deg, #4f46e5, #6366f1); color: white; text-align: center;">
+            <h1 class="text-4xl font-bold mb-2">Unit 2: Lines, Angles, and Parallelism</h1>
+            <p class="text-xl">Day 3: Proving Lines Parallel</p>
+        </div>
+         <div class="print-card">
+            <h2>Warm-Up: Day 2 Review</h2>
+            <p class="text-lg">What is the name of the angle pair relationship between ∠3 and ∠6? <span class="fill-in-blank"></span></p>
+             <div style="text-align: center; margin-top: 1rem;">
+                <svg viewBox="0 0 200 150" style="width: 250px; border: 1px solid #ccc; padding: 5px; border-radius: 5px;"><line x1="10" y1="30" x2="190" y2="30" stroke="#3b82f6" stroke-width="2"/><line x1="10" y1="120" x2="190" y2="120" stroke="#3b82f6" stroke-width="2"/><line x1="40" y1="0" x2="160" y2="150" stroke="#ef4444" stroke-width="2"/><text x="40" y="25" font-size="12">1</text><text x="70" y="25" font-size="12">2</text><text x="55" y="45" font-size="12">4</text><text x="80" y="45" font-size="12">3</text><text x="110" y="115" font-size="12">5</text><text x="140" y="115" font-size="12">6</text><text x="125" y="135" font-size="12">8</text><text x="150" y="135" font-size="12">7</text></svg>
+             </div>
+        </div>
+        <div class="print-card">
+            <h2>Vocabulary: The Converse</h2>
+            <p class="text-lg">The <strong>converse</strong> of a theorem is created by <span class="fill-in-blank"></span> the "if" and "then" parts.</p>
+        </div>
+        <div class="print-card">
+            <h2>The Converse Theorems & Postulates</h2>
+            <p class="text-lg"><strong>Converse of Corresponding Angles:</strong> IF corresponding angles are congruent, THEN lines are <span class="fill-in-blank"></span>.</p>
+            <p class="text-lg"><strong>Converse of Alternate Interior Angles:</strong> IF alternate interior angles are congruent, THEN lines are <span class="fill-in-blank"></span>.</p>
+            <p class="text-lg"><strong>Converse of Same-Side Interior Angles:</strong> IF same-side interior angles are <span class="fill-in-blank"></span>, THEN lines are parallel.</p>
+        </div>
+        <div class="print-card">
+             <h2>Reference Diagram for Practice</h2>
+             <div style="text-align: center;">
+                 <svg viewBox="0 0 200 150" style="width: 250px; border: 1px solid #ccc; padding: 5px; border-radius: 5px;"><line x1="10" y1="30" x2="190" y2="30" stroke="#3b82f6" stroke-width="2"/><text x="0" y="28" font-size="10" fill="#3b82f6">l</text><line x1="10" y1="120" x2="190" y2="120" stroke="#3b82f6" stroke-width="2"/><text x="0" y="118" font-size="10" fill="#3b82f6">m</text><line x1="40" y1="0" x2="160" y2="150" stroke="#ef4444" stroke-width="2"/><text x="162" y="148" font-size="10" fill="#ef4444">t</text><text x="40" y="25" font-size="12">1</text><text x="70" y="25" font-size="12">2</text><text x="55" y="45" font-size="12">4</text><text x="80" y="45" font-size="12">3</text><text x="110" y="115" font-size="12">5</text><text x="140" y="115" font-size="12">6</text><text x="125" y="135" font-size="12">8</text><text x="150" y="135" font-size="12">7</text></svg>
+            </div>
+        </div>
+        <div class="print-card">
+            <h2>We Do: Let's Try Together</h2>
+            <p class="mb-4 text-lg"><strong>1.</strong> If you are given ∠4 ≅ ∠5, which theorem proves l || m? <span class="fill-in-blank" style="width: 80%;"></span></p>
+            <p class="text-lg"><strong>2.</strong> If you are given m∠3 + m∠5 = 180°, which theorem proves l || m? <span class="fill-in-blank" style="width: 80%;"></span></p>
+        </div>
+         <div class="print-card">
+            <h2>Independent Practice</h2>
+            <p class="text-lg mb-2">Find the value of x that makes lines l and m parallel.</p>
+            <p class="mb-2 text-lg"><strong>Green:</strong> \(m\angle2 = 75^\circ\), \(m\angle6 = (5x)^\circ\). x = <span class="fill-in-blank"></span></p>
+            <p class="mb-2 text-lg"><strong>Yellow:</strong> \(m\angle3 = (2x + 10)^\circ\), \(m\angle6 = (3x - 20)^\circ\). x = <span class="fill-in-blank"></span></p>
+            <p class="text-lg"><strong>Red:</strong> \(m\angle4 = (4x - 10)^\circ\), \(m\angle5 = (x + 15)^\circ\). x = <span class="fill-in-blank"></span></p>
+        </div>
+         <div class="print-card">
+            <h2>Exit Ticket</h2>
+            <p class="text-lg">Given \(m\angle2 = 120^\circ\), what must \(m\angle7\) be to prove l || m? <span class="fill-in-blank"></span></p>
+            <p class="text-lg">Which theorem or postulate justifies your answer? <span class="fill-in-blank" style="width: 80%;"></span></p>
+        </div>
+    </div>
+
+    <footer class="text-center mt-8 text-gray-500 non-printable">
+        <p>&copy; 2025 Aly Hatfield. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const slides = document.querySelectorAll('.slide');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const slideCounter = document.getElementById('slideCounter');
+            let currentSlide = 0;
+            function showSlide(n) {
+                slides.forEach(slide => slide.classList.remove('active'));
+                if (slides[n]) {
+                    slides[n].classList.add('active');
+                }
+                slideCounter.textContent = `${n + 1} / ${slides.length}`;
+            }
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % slides.length;
+                showSlide(currentSlide);
+            }
+            function prevSlide() {
+                currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+                showSlide(currentSlide);
+            }
+            nextBtn.addEventListener('click', nextSlide);
+            prevBtn.addEventListener('click', prevSlide);
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight') {
+                    nextSlide();
+                } else if (e.key === 'ArrowLeft') {
+                    prevSlide();
+                }
+            });
+            showSlide(currentSlide);
+        });
+    </script>
+</body>
+</html>
+
+
+
+
