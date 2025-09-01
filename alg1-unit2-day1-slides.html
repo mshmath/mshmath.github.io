@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 2 Day 1 Slides: Adding & Subtracting Polynomials</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f1f5f9; /* slate-100 */
+        }
+        .slide-container {
+            width: 100%;
+            max-width: 1050px;
+            aspect-ratio: 16 / 9;
+            margin: 1rem auto;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        .slide {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem 4rem;
+            text-align: center;
+            background-color: white;
+            height: 100%;
+            width: 100%;
+        }
+        .slide.active {
+            display: flex;
+        }
+        .nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.3);
+            color: white;
+            border: none;
+            padding: 0.75rem;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.2s;
+        }
+        .nav-button:hover {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        #prevBtn { left: 1rem; }
+        #nextBtn { right: 1rem; }
+        .slide-counter {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.875rem;
+            z-index: 10;
+        }
+        .title-slide {
+            background: linear-gradient(135deg, #6d28d9, #8b5cf6); /* violet-700 to violet-500 */
+            color: white;
+        }
+        .emphasis-highlight {
+            background-color: #ede9fe; /* violet-50 */
+            padding: 0.1em 0.3em;
+            border-radius: 0.25em;
+            font-weight: 600;
+        }
+        .keyword {
+            color: #5b21b6; /* violet-800 */
+            font-weight: 600;
+        }
+        
+        /* Print Styles */
+        .printable-version { display: none; }
+
+        @media print {
+            body { 
+                background-color: white; 
+                color: black; 
+                font-size: 12pt;
+            }
+            .non-printable { display: none !important; }
+            .printable-version { 
+                display: block !important; 
+                font-family: 'Georgia', serif;
+            }
+            .print-card {
+                border: 1px solid #d1d5db;
+                border-radius: 0.75rem;
+                padding: 1.5rem;
+                margin-bottom: 1.5rem;
+                page-break-inside: avoid;
+                background-color: #f9fafb;
+            }
+            .print-card h2 {
+                font-family: 'Inter', sans-serif;
+                font-size: 1.25rem;
+                font-weight: 700;
+                border-bottom: 2px solid #e5e7eb;
+                padding-bottom: 0.75rem;
+                margin-bottom: 1.25rem;
+                color: #111827;
+            }
+            .print-card p, .problem {
+                font-size: 1.1rem;
+                line-height: 1.6;
+                color: #374151;
+                margin-bottom: 0.75rem;
+            }
+            .fill-in-blank {
+                display: inline-block;
+                border-bottom: 1px solid #6b7280;
+                margin: 0 0.25rem;
+                padding: 0 0.25rem;
+                vertical-align: bottom;
+            }
+            .problem-box {
+                border: 1px solid #e5e7eb;
+                background-color: #ffffff;
+                padding: 1rem;
+                border-radius: 0.5rem;
+                margin-top: 0.5rem;
+            }
+            .practice-levels .level {
+                margin-bottom: 1rem;
+                padding-bottom: 1rem;
+                border-bottom: 1px dashed #d1d5db;
+            }
+            .practice-levels .level:last-child {
+                border-bottom: none;
+                margin-bottom: 0;
+                padding-bottom: 0;
+            }
+            .practice-levels .level strong {
+                display: block;
+                margin-bottom: 0.25rem;
+                font-family: 'Inter', sans-serif;
+            }
+            .level-green { color: #15803d !important; }
+            .level-yellow { color: #b45309 !important; }
+            .level-red { color: #b91c1c !important; }
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen p-4">
+
+    <div class="non-printable w-full max-w-4xl">
+        <div class="flex flex-col sm:flex-row justify-between items-center mb-4">
+            <div>
+                <h1 class="text-3xl font-bold text-gray-800">Unit 2 Day 1: Adding & Subtracting Polynomials</h1>
+                <p class="text-gray-600">Use the arrows or your keyboard to navigate the slides.</p>
+            </div>
+            <button onclick="window.print()" class="bg-violet-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-violet-700 transition-colors mt-2 sm:mt-0">
+                Print Slides
+            </button>
+        </div>
+    </div>
+
+    <div class="slide-container non-printable">
+        <!-- Slide 1: Title -->
+        <div class="slide active title-slide">
+            <h1 class="text-5xl font-bold mb-4">Unit 2: Polynomial Operations</h1>
+            <p class="text-2xl">Day 1: Adding & Subtracting Polynomials</p>
+        </div>
+
+        <!-- Slide 2: Objective -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8">Today's Objective</h2>
+            <div class="text-left text-2xl space-y-6 text-gray-700 max-w-3xl bg-violet-50 border-l-4 border-violet-500 p-6 rounded-r-lg">
+                <p>To determine <span class="emphasis-highlight">sums and differences</span> of polynomial expressions in one variable.</p>
+            </div>
+        </div>
+
+        <!-- Slide 3: Vocabulary 1 -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">What is a Polynomial?</h2>
+            <div class="w-full max-w-4xl space-y-4 text-left text-xl">
+                <div class="bg-slate-100 p-4 rounded-lg">
+                    <p><span class="keyword">Polynomial:</span> A mathematical expression with variables, coefficients, and <span class="emphasis-highlight">non-negative integer exponents</span>.</p>
+                </div>
+                <div class="grid grid-cols-2 gap-4 mt-4">
+                     <div class="bg-green-50 border border-green-200 p-3 rounded-lg">
+                        <p class="font-semibold text-green-800">Examples:</p>
+                        <p class="text-2xl font-mono">\(3x^2+2x-5\)</p>
+                        <p class="text-2xl font-mono">\(x^4y^2+3\)</p>
+                     </div>
+                     <div class="bg-red-50 border border-red-200 p-3 rounded-lg">
+                        <p class="font-semibold text-red-800">Non-Examples:</p>
+                        <p class="text-2xl font-mono">\(n^{-3}+9\)</p>
+                        <p class="text-sm">(Negative Exponent)</p>
+                        <p class="text-2xl font-mono">\(5m^n-8\)</p>
+                        <p class="text-sm">(Variable Exponent)</p>
+                     </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Vocabulary 2 -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Naming Polynomials by Terms</h2>
+             <div class="w-full max-w-4xl space-y-3 text-left text-xl">
+                <div class="bg-slate-100 p-4 rounded-lg">
+                    <p><span class="keyword">Monomial:</span> A polynomial with <span class="emphasis-highlight">one term</span>. (e.g., \(7\) or \(6x\))</p>
+                </div>
+                <div class="bg-slate-100 p-4 rounded-lg">
+                    <p><span class="keyword">Binomial:</span> A polynomial with <span class="emphasis-highlight">two terms</span>. (e.g., \(3t-1\))</p>
+                </div>
+                <div class="bg-slate-100 p-4 rounded-lg">
+                    <p><span class="keyword">Trinomial:</span> A polynomial with <span class="emphasis-highlight">three terms</span>. (e.g., \(2x^2+3x-7\))</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: The Core Concept -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">The Core Concept: Combining Like Terms</h2>
+            <div class="text-xl max-w-4xl text-left space-y-6">
+                <p>To add or subtract polynomials, we use a method called <span class="keyword">combining like terms</span>. This is the most important skill for this lesson!</p>
+                <div class="bg-violet-50 border-l-4 border-violet-500 p-6 rounded-r-lg">
+                    <p class="font-semibold">Like Terms Are...</p>
+                    <p>Terms that have the <span class="emphasis-highlight">same variable</span> raised to the <span class="emphasis-highlight">same power</span>.</p>
+                    <p class="mt-4"><span class="keyword">Example:</span> \(3x^2\) and \(-8x^2\) are like terms. \(5x\) and \(5x^3\) are NOT.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 6: I Do Example 1 -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">I Do: Adding Polynomials</h2>
+            <p class="text-xl text-gray-600 mb-6">Let's find the sum of \((3x^2 + 5x - 4) + (2x^2 - 7x + 1)\).</p>
+            <div class="w-full max-w-4xl text-left bg-slate-50 p-4 rounded-lg border">
+                <p class="font-semibold mb-2">Step 1: Group like terms together.</p>
+                <p class="text-2xl font-mono text-center mb-4">\((3x^2 + 2x^2) + (5x - 7x) + (-4 + 1)\)</p>
+                <p class="font-semibold mb-2">Step 2: Combine the coefficients of the like terms.</p>
+                <p class="text-3xl font-mono font-bold text-center text-violet-700">\(5x^2 - 2x - 3\)</p>
+            </div>
+        </div>
+
+        <!-- Slide 7: I Do Example 2 -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">I Do: Subtracting Polynomials</h2>
+            <p class="text-xl text-gray-600 mb-6">Let's find the difference of \((8x^2 - 2x + 9) - (5x^2 + 3x - 1)\).</p>
+            <div class="w-full max-w-4xl text-left bg-slate-50 p-4 rounded-lg border">
+                <p class="font-semibold mb-2">Step 1: Distribute the negative to the second polynomial. This is critical!</p>
+                <p class="text-2xl font-mono text-center mb-4">\(8x^2 - 2x + 9 \textcolor{red}{- 5x^2 - 3x + 1}\)</p>
+                <p class="font-semibold mb-2">Step 2: Group and combine like terms.</p>
+                <p class="text-2xl font-mono text-center mb-4">\((8x^2 - 5x^2) + (-2x - 3x) + (9 + 1)\)</p>
+                <p class="text-3xl font-mono font-bold text-center text-violet-700">\(3x^2 - 5x + 10\)</p>
+            </div>
+        </div>
+
+        <!-- Slide 8: We Do -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">We Do: Let's Try Together</h2>
+            <p class="text-2xl text-gray-700 mb-8">Let's simplify these expressions as a class.</p>
+            <div class="w-full max-w-3xl text-left text-2xl space-y-8">
+                <p><strong>1.</strong> \((4a^2 + 2a - 1) + (a^2 - 5a + 9)\)</p>
+                <p><strong>2.</strong> \((7y + 4) - (2y + 2)\)</p>
+            </div>
+        </div>
+
+        <!-- Slide 9: More Vocabulary -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">More Vocabulary: Standard Form</h2>
+            <div class="w-full max-w-4xl space-y-3 text-left text-xl">
+                <div class="bg-slate-100 p-4 rounded-lg">
+                    <p><span class="keyword">Standard Form:</span> Writing terms in order from <span class="emphasis-highlight">highest to lowest</span> exponent.</p>
+                    <p class="mt-2">Example: \( \textcolor{violet}{7a^3} \textcolor{gray}{-2a^2} \textcolor{violet}{+8a} \textcolor{gray}{-1} \)</p>
+                </div>
+                <div class="bg-slate-100 p-4 rounded-lg">
+                    <p><span class="keyword">Degree of a Polynomial:</span> The <span class="emphasis-highlight">largest exponent</span> of any single term.</p>
+                     <p class="mt-2">Example: The degree of the polynomial above is <span class="emphasis-highlight">3</span>.</p>
+                </div>
+                <div class="bg-slate-100 p-4 rounded-lg">
+                    <p><span class="keyword">Leading Coefficient:</span> The coefficient of the term with the <span class="emphasis-highlight">highest degree</span>.</p>
+                     <p class="mt-2">Example: The leading coefficient above is <span class="emphasis-highlight">7</span>.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 10: The Vertical Method -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Another Method: The Vertical Way</h2>
+            <p class="text-xl text-gray-600 mb-6">You can also line up like terms vertically. It can help keep your work organized!</p>
+            <div class="flex items-start justify-around w-full max-w-5xl">
+                <div class="text-left">
+                    <h3 class="font-bold text-2xl mb-2">Addition</h3>
+                    <div class="bg-slate-50 p-4 rounded-lg font-mono text-2xl border">
+                        <p class="text-right">  \(2g^2 + 6g - 4\)</p>
+                        <p class="text-right"><u>+ \( g^2 -  g     \)</u></p>
+                        <p class="text-right font-bold text-violet-700">  \(3g^2 + 5g - 4\)</p>
+                    </div>
+                </div>
+                 <div class="text-left">
+                    <h3 class="font-bold text-2xl mb-2">Subtraction</h3>
+                    <p class="text-sm mb-1">Change to addition, and add the opposite!</p>
+                     <div class="bg-slate-50 p-4 rounded-lg font-mono text-2xl border">
+                        <p class="text-right">  \(4x^2 + 0x + 5\)</p>
+                        <p class="text-right"><u>+ \(2x^2 - 4x + 7\)</u></p>
+                        <p class="text-right font-bold text-violet-700">  \(6x^2 - 4x + 12\)</p>
+                    </div>
+                 </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Independent Practice -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Independent Practice</h2>
+            <p class="text-lg text-gray-600 mb-6">Try these problems on your own, starting with green.</p>
+            <div class="w-full max-w-5xl grid grid-cols-1 md:grid-cols-3 gap-4 text-left">
+                <div class="bg-green-100 border-2 border-green-300 p-4 rounded-lg">
+                    <p class="font-bold text-green-800 text-lg mb-2">Green Level</p>
+                    <p>ADD: \((x^2 + 2x + 1) + (3x^2 + 5x + 4)\)</p>
+                </div>
+                <div class="bg-yellow-100 border-2 border-yellow-300 p-4 rounded-lg">
+                    <p class="font-bold text-yellow-800 text-lg mb-2">Yellow Level</p>
+                    <p>SUBTRACT: \((5y^2 - 3y + 2) - (2y^2 + y + 1)\)</p>
+                </div>
+                <div class="bg-red-100 border-2 border-red-300 p-4 rounded-lg">
+                    <p class="font-bold text-red-800 text-lg mb-2">Red Level</p>
+                    <p>Subtract \((x-3)\) from the sum of \((4x+2)\) and \((2x+5)\).</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12: Exit Ticket -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Exit Ticket</h2>
+            <p class="text-2xl text-gray-700 mb-8">On a piece of paper, simplify the following expression:</p>
+            <div class="bg-slate-100 p-6 rounded-lg text-4xl font-mono">
+                \((5x^2 + 3x - 7) - (2x^2 - 4x - 1)\)
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <button id="prevBtn" class="nav-button">&lt;</button>
+        <button id="nextBtn" class="nav-button">&gt;</button>
+        <div id="slideCounter" class="slide-counter"></div>
+    </div>
+
+    <!-- Printable Version -->
+    <div class="printable-version w-full max-w-4xl mx-auto p-4">
+        <div class="print-card" style="background: linear-gradient(135deg, #6d28d9, #8b5cf6); color: white; text-align: center;">
+            <h1 style="font-family: 'Inter', sans-serif; font-size: 2rem; font-weight: 800; margin-bottom: 0.5rem;">Unit 2: Polynomial Operations</h1>
+            <p style="font-family: 'Inter', sans-serif; font-size: 1.25rem;">Day 1: Adding & Subtracting Polynomials</p>
+        </div>
+        
+        <div class="print-card">
+            <h2>Objective</h2>
+            <p>To determine <span class="fill-in-blank" style="width: 80px;"></span> and <span class="fill-in-blank" style="width: 110px;"></span> of polynomial expressions in one variable.</p>
+        </div>
+
+        <div class="print-card">
+            <h2>Key Vocabulary</h2>
+            <p><strong>Polynomial:</strong> An expression with variables, coefficients, and <span class="fill-in-blank" style="width: 150px;"></span> integer exponents.</p>
+            <p><strong>Like Terms:</strong> Terms that have the same <span class="fill-in-blank" style="width: 90px;"></span> raised to the same <span class="fill-in-blank" style="width: 80px;"></span>.</p>
+            <p><strong>Standard Form:</strong> Writing terms in order from <span class="fill-in-blank" style="width: 90px;"></span> to lowest exponent.</p>
+            <p><strong>Degree:</strong> The <span class="fill-in-blank" style="width: 90px;"></span> exponent in the polynomial.</p>
+            <p><strong>Leading Coefficient:</strong> The coefficient of the term with the <span class="fill-in-blank" style="width: 90px;"></span> degree.</p>
+        </div>
+
+        <div class="print-card">
+            <h2>Guided Examples: I Do</h2>
+            <div class="problem-box">
+                <p><strong>Adding Polynomials (Horizontal Method)</strong></p>
+                <p class="problem">Problem: \((3x^2 + 5x - 4) + (2x^2 - 7x + 1)\)</p>
+                <p>Answer: <span class="fill-in-blank" style="width: 250px;"></span></p>
+            </div>
+            <div class="problem-box" style="margin-top: 1rem;">
+                <p><strong>Subtracting Polynomials (Horizontal Method)</strong></p>
+                <p class="problem">Problem: \((8x^2 - 2x + 9) - (5x^2 + 3x - 1)\)</p>
+                <p>Answer: <span class="fill-in-blank" style="width: 250px;"></span></p>
+            </div>
+        </div>
+
+        <div class="print-card">
+            <h2>Alternative Strategy: The Vertical Method</h2>
+            <p>You can line up like terms vertically. For subtraction, remember to add the <span class="fill-in-blank" style="width: 100px;"></span>.</p>
+            <div style="display: flex; justify-content: space-around; font-family: 'Roboto Mono', monospace; font-size: 1.1rem; margin-top: 1rem;">
+                <div class="problem-box" style="flex: 1; margin-right: 1rem; text-align: right;">
+                    <p>  \(2g^2 + 6g - 4\)</p>
+                    <p><u>+ \( g^2 -  g     \)</u></p>
+                    <p><span class="fill-in-blank" style="width: 100%;"></span></p>
+                </div>
+                <div class="problem-box" style="flex: 1; margin-left: 1rem; text-align: right;">
+                    <p>  \(4x^2 + 0x + 5\)</p>
+                    <p><u>- (\(-2x^2 + 4x - 7\))</u></p>
+                    <p><span class="fill-in-blank" style="width: 100%;"></span></p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="print-card">
+            <h2>Class Practice: We Do</h2>
+             <p><strong>1. Add:</strong> \((4a^2 + 2a - 1) + (a^2 - 5a + 9)\) = <span class="fill-in-blank" style="width: 250px;"></span></p>
+             <p><strong>2. Subtract:</strong> \((7y + 4) - (2y + 2)\) = <span class="fill-in-blank" style="width: 250px;"></span></p>
+        </div>
+
+        <div class="print-card">
+            <h2>Independent Practice</h2>
+            <div class="practice-levels">
+                <div class="level">
+                    <strong class="level-green">Green Level</strong>
+                    <p>\((x^2 + 2x + 1) + (3x^2 + 5x + 4)\) = <span class="fill-in-blank" style="width: 200px;"></span></p>
+                </div>
+                <div class="level">
+                    <strong class="level-yellow">Yellow Level</strong>
+                    <p>\((5y^2 - 3y + 2) - (2y^2 + y + 1)\) = <span class="fill-in-blank" style="width: 200px;"></span></p>
+                </div>
+                <div class="level">
+                    <strong class="level-red">Red Level</strong>
+                    <p>Subtract \((x-3)\) from the sum of \((4x+2)\) and \((2x+5)\). <span class="fill-in-blank" style="width: 200px;"></span></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="print-card">
+            <h2>Exit Ticket</h2>
+            <p>Simplify the expression below:</p>
+            <p style="text-align: center; font-weight: 600; margin: 1rem 0; font-size: 1.25rem;">\((5x^2 + 3x - 7) - (2x^2 - 4x - 1)\)</p>
+            <p>Answer: <span class="fill-in-blank" style="width: 100%;"></span></p>
+        </div>
+    </div>
+
+    <footer class="text-center mt-8 text-gray-500 non-printable">
+        <p>&copy; 2025 Aly Hatfield. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const slides = document.querySelectorAll('.slide');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const slideCounter = document.getElementById('slideCounter');
+            let currentSlide = 0;
+            function showSlide(n) {
+                slides.forEach(slide => slide.classList.remove('active'));
+                if (slides[n]) {
+                    slides[n].classList.add('active');
+                }
+                slideCounter.textContent = `${n + 1} / ${slides.length}`;
+            }
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % slides.length;
+                showSlide(currentSlide);
+            }
+            function prevSlide() {
+                currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+                showSlide(currentSlide);
+            }
+            nextBtn.addEventListener('click', nextSlide);
+            prevBtn.addEventListener('click', prevSlide);
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight') {
+                    nextSlide();
+                } else if (e.key === 'ArrowLeft') {
+                    prevSlide();
+                }
+            });
+            showSlide(currentSlide);
+        });
+    </script>
+</body>
+</html>
+
