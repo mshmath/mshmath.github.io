@@ -6,6 +6,14 @@
     <title>Unit 1 Test: Math Foundations</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <!-- MathJax Configuration -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            }
+        };
+    </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -57,13 +65,13 @@
         <!-- Score & Reset Container -->
         <div id="score-container" class="mt-8 text-center hidden">
              <div class="bg-white p-6 rounded-xl shadow-lg">
-                <h2 class="text-2xl font-bold text-slate-800 mb-2">Test Complete!</h2>
-                <p class="text-4xl font-bold text-teal-600 mb-4" id="score-text"></p>
-                <p class="text-slate-600 mb-6" id="score-message"></p>
-                <button id="reset-btn" class="bg-teal-600 text-white font-semibold px-6 py-2 rounded-lg hover:bg-teal-700 transition-colors">
-                    Try Again
-                </button>
-            </div>
+                 <h2 class="text-2xl font-bold text-slate-800 mb-2">Test Complete!</h2>
+                 <p class="text-4xl font-bold text-teal-600 mb-4" id="score-text"></p>
+                 <p class="text-slate-600 mb-6" id="score-message"></p>
+                 <button id="reset-btn" class="bg-teal-600 text-white font-semibold px-6 py-2 rounded-lg hover:bg-teal-700 transition-colors">
+                     Try Again
+                 </button>
+             </div>
         </div>
 
     </main>
@@ -131,14 +139,14 @@
                     question: "Solve the following expression: $15 + 5 \\times 2$",
                     options: ["40", "25", "22", "35"],
                     answer: "25",
-                    rationale: "According to PEMDAS, you must multiply first ($5 \\times 2 = 10$), then add ($15 + 10 = 25$)."
+                    rationale: "According to PEMDAS, you must multiply first $5 \\times 2 = 10$, then add $15 + 10 = 25$."
                 },
                 {
                     topic: "Day 4: Order of Operations",
                     question: "Solve using the order of operations: $3 \\times (8 - 2)$",
                     options: ["18", "22", "24", "30"],
                     answer: "18",
-                    rationale: "According to PEMDAS, you must solve the operation inside the parentheses first ($8 - 2 = 6$), then multiply ($3 \\times 6 = 18$)."
+                    rationale: "According to PEMDAS, you must solve the operation inside the parentheses first $8 - 2 = 6$, then multiply $3 \\times 6 = 18$."
                 },
                  {
                     topic: "Day 4: Order of Operations",
@@ -236,7 +244,13 @@
 
                 // Add rationale after a short delay
                 setTimeout(() => {
-                     feedbackContainer.innerHTML += `<span class="ml-2 text-slate-600">${questionData.rationale}</span>`;
+                     const rationaleSpan = document.createElement('span');
+                     rationaleSpan.className = 'ml-2 text-slate-600';
+                     rationaleSpan.innerHTML = questionData.rationale;
+                     feedbackContainer.appendChild(rationaleSpan);
+                     if (window.MathJax) {
+                         window.MathJax.typesetPromise([rationaleSpan]);
+                     }
                 }, 500);
 
                 questionsAnswered++;
@@ -292,4 +306,3 @@
     </script>
 </body>
 </html>
-
