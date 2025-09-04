@@ -10,6 +10,23 @@
     <link href="https://css.gg/css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
+        @media print {
+            body {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                background-color: #ffffff !important;
+            }
+            .no-print {
+                display: none !important;
+            }
+            .printable-section {
+                page-break-inside: avoid;
+            }
+            .rule-card, .max-w-4xl {
+                 box-shadow: none !important;
+                 border: 1px solid #ddd !important;
+            }
+        }
         body {
             font-family: 'Inter', sans-serif;
             background-color: #f0f4f8;
@@ -87,10 +104,10 @@
 </head>
 <body class="antialiased">
     <div id="main-content" class="container mx-auto p-4 md:p-8">
-        <header class="text-center mb-12">
+        <header class="text-center mb-12 no-print">
             <h1 class="text-4xl md:text-6xl font-black text-[#00A0B0] mb-2">Mastering the Laws of Exponents</h1>
             <p class="text-lg text-[#6A4A3C] max-w-3xl mx-auto">A visual guide to the fundamental rules that power Algebra. Understand how to multiply, divide, and manipulate powers with confidence.</p>
-            <button onclick="printInfographic()" class="mt-6 inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-[#00A0B0] hover:bg-[#007a87] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#00A0B0] transition-colors">
+            <button onclick="window.print()" class="mt-6 inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-[#00A0B0] hover:bg-[#007a87] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#00A0B0] transition-colors">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
                 </svg>
@@ -99,7 +116,7 @@
         </header>
 
         <main>
-            <section id="what-is-an-exponent" class="mb-16">
+            <section id="what-is-an-exponent" class="mb-16 printable-section">
                 <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-8 border-l-8 border-[#EB6841]">
                     <h2 class="text-3xl font-bold text-center mb-6 text-[#6A4A3C]">First, What is an Exponent?</h2>
                     <p class="text-center text-gray-600 mb-8">An exponent tells you how many times to multiply a number (the base) by itself.</p>
@@ -138,7 +155,7 @@
                 </div>
             </section>
 
-            <section id="core-rules" class="mb-16">
+            <section id="core-rules" class="mb-16 printable-section">
                 <h2 class="text-3xl font-bold text-center mb-8 text-[#6A4A3C]">The Three Core Rules</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     
@@ -289,112 +306,11 @@
             </section>
         </main>
 
-        <footer class="text-center mt-12 py-6 border-t">
+        <footer class="text-center mt-12 py-6 border-t no-print">
             <p class="text-[#6A4A3C]">Keep practicing to make these rules second nature!</p>
         </footer>
     </div>
-    <script>
-        function printInfographic() {
-            const printContent = document.getElementById('main-content').cloneNode(true);
-            
-            // Remove the print button from the cloned content
-            const printButton = printContent.querySelector('button');
-            if (printButton) {
-                printButton.remove();
-            }
-
-            const printWindow = window.open('', '', 'height=800,width=800');
-            printWindow.document.write('<html><head><title>Printable Exponent Rules</title>');
-            printWindow.document.write(`
-                <style>
-                    body { font-family: Georgia, 'Times New Roman', Times, serif; line-height: 1.6; color: #000; margin: 40px;}
-                    h1, h2, h3, h4, p { margin: 0 0 1rem 0; }
-                    h1 { font-size: 28px; text-align: center; margin-bottom: 5px; }
-                    h2 { font-size: 22px; border-bottom: 2px solid #ccc; padding-bottom: 5px; margin-top: 2rem;}
-                    h3 { font-size: 18px; }
-                    sup { vertical-align: super; font-size: smaller; }
-                    .print-header-p { text-align: center; font-style: italic; color: #555; margin-bottom: 2rem; }
-                    .print-section { page-break-inside: avoid; margin-bottom: 2rem; }
-                    .print-card { border: 1px solid #ddd; border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem; }
-                    .print-formula { background-color: #eee; padding: 0.75rem; border-radius: 4px; font-family: monospace; font-size: 1.2rem; text-align: center; margin: 1rem 0;}
-                    .print-example-box { background-color: #f9f9f9; border: 1px solid #eee; border-radius: 4px; padding: 1rem; margin-top: 1rem; }
-                    .print-example-math { background-color: #e9e9e9; padding: 0.5rem; border-radius: 2px; font-family: monospace; font-size: 1rem; text-align: center; word-break: break-all; margin: 0.5rem 0; }
-                    .print-fraction { display: inline-flex; flex-direction: column; text-align: center; vertical-align: middle; line-height: 1.2; }
-                    .print-fraction .numerator { padding-bottom: 0.2rem; }
-                    .print-fraction .denominator { border-top: 1px solid #000; padding-top: 0.2rem; }
-                    .print-step { margin-bottom: 0.25rem !important; }
-                    .print-step strong { color: #333; }
-                    hr { display: none; }
-                    .footer { text-align: center; margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #ccc; font-style: italic; color: #555; }
-                </style>
-            `);
-            printWindow.document.write('</head><body>');
-            
-            // Re-structure content for better printing
-            let headerTitle = printContent.querySelector('h1').outerHTML;
-            let headerP = printContent.querySelector('header p').outerHTML.replace('<p class="text-lg text-[#6A4A3C] max-w-3xl mx-auto">', '<p class="print-header-p">');
-            printWindow.document.write(headerTitle + headerP);
-
-            const sections = printContent.querySelectorAll('section');
-            sections.forEach(section => {
-                let sectionHtml = '<div class="print-section">';
-                let h2 = section.querySelector('h2');
-                if (h2) sectionHtml += h2.outerHTML;
-
-                let cards = section.querySelectorAll('.max-w-4xl, .rule-card');
-                cards.forEach(card => {
-                    let cardHtml = '<div class="print-card">';
-                    
-                    card.querySelectorAll('h3, p, div').forEach(el => {
-                         // Simplify class names for print
-                        let elContent = el.innerHTML;
-                        let tagName = el.tagName.toLowerCase();
-                        let newEl = `<${tagName}>${elContent}</${tagName}>`;
-
-                        if (el.classList.contains('formula-card')) {
-                            newEl = `<div class="print-formula">${el.innerHTML.replace(/<span class="numerator">/g, '<span class="print-fraction"><span class="numerator">').replace(/<\/div> =/g, '</span></div> =')}</div>`;
-                        } else if (el.classList.contains('example-box')) {
-                             newEl = `<div class="print-example-box">${el.innerHTML}</div>`;
-                        } else if (el.classList.contains('example-math')) {
-                             newEl = `<p class="print-example-math">${el.innerHTML}</p>`;
-                        } else if (el.classList.contains('formula-fraction')) {
-                             newEl = `<span class="print-fraction">${el.innerHTML}</span>`;
-                        } else if (el.querySelector('strong')) {
-                            newEl = `<p class="print-step">${el.innerHTML}</p>`;
-                        } else if (tagName === 'p' && el.classList.contains('font-semibold')) {
-                            newEl = `<h4>${el.textContent}</h4>`
-                        }
-
-                        // Basic replacements for structure
-                        newEl = newEl.replace(/<div class="example-math-flex text-lg justify-center my-2">/g, '<div class="print-formula">');
-                        newEl = newEl.replace(/<div class="formula-fraction"/g, '<span class="print-fraction"');
-                        newEl = newEl.replace(/<\/div>/g, '</span>');
-
-                        cardHtml += newEl;
-                    });
-                    cardHtml = cardHtml.replace(/<hr>/g, '<div style="height: 1px; background: #ccc; margin: 1.5rem 0;"></div>');
-                    cardHtml += '</div>';
-                    sectionHtml += cardHtml;
-                });
-                sectionHtml += '</div>';
-
-                // A crude way to clean up the generated HTML for printing
-                let cleanHtml = sectionHtml.replace(/<div class="[^"]*>/g, '<div>').replace(/<p class="[^"]*>/g, '<p>').replace(/<strong class="[^"]*>/g, '<strong>');
-                cleanHtml = cleanHtml.replace(/<h3.*?>/g, '<h3>').replace(/<h2.*?>/g, '<h2>').replace(/<sup.*?>/g, '<sup>');
-                cleanHtml = cleanHtml.replace(/style="[^"]*"/g, '');
-
-                printWindow.document.write(cleanHtml);
-            });
-
-            const footer = printContent.querySelector('footer p').outerHTML;
-            printWindow.document.write(`<div class="footer">${footer}</div>`);
-
-            printWindow.document.write('</body></html>');
-            printWindow.document.close();
-            printWindow.focus();
-            setTimeout(() => { printWindow.print(); printWindow.close(); }, 250);
-        }
-    </script>
+    
 </body>
 </html>
 
