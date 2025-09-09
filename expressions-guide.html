@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Guide to Simplifying Expressions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        MathJax = {
+          tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']]
+          },
+          svg: {
+            fontCache: 'global'
+          }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        @media print {
+            body {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                background-color: #ffffff !important;
+            }
+            .no-print { display: none !important; }
+            .printable-section { page-break-inside: avoid; }
+            .rule-card, .concept-card {
+                 box-shadow: none !important;
+                 border: 1px solid #ddd !important;
+            }
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f8fc;
+        }
+        .header-title { font-family: 'Lexend', sans-serif; }
+        .concept-card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.07), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+            padding: 1.5rem;
+            transition: all 0.3s ease-in-out;
+        }
+        .example-box {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.5rem;
+            padding: 1.25rem;
+            margin-top: 1.5rem;
+        }
+        .example-math {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.1rem;
+            color: #1e293b;
+            padding: 0.5rem 0.75rem;
+            background-color: #eef2f9;
+            border-radius: 0.25rem;
+            display: inline-block;
+            word-break: break-all;
+            margin-top: 0.25rem;
+        }
+        .step-title {
+             font-weight: 600;
+             margin-bottom: 0.25rem;
+        }
+        .highlight-purple { color: #8b5cf6; font-weight: bold; }
+        .highlight-blue { color: #3b82f6; font-weight: bold; }
+        .highlight-green { color: #22c55e; font-weight: bold; }
+        .bg-highlight-purple { background-color: #ede9fe; }
+        .bg-highlight-blue { background-color: #dbeafe; }
+        .bg-highlight-green { background-color: #dcfce7; }
+        
+        .like-term-purple { border: 2px solid #a78bfa; background-color: #f5f3ff; border-radius: 9999px; padding: 2px 8px; }
+        .like-term-green { border: 2px solid #86efac; background-color: #f0fdf4; border-radius: 9999px; padding: 2px 8px; }
+
+    </style>
+</head>
+<body class="antialiased">
+    <div class="container mx-auto p-4 md:p-8">
+        <header class="text-center mb-12 no-print">
+            <h1 class="header-title text-4xl md:text-6xl font-extrabold text-slate-800 mb-2">The Ultimate Guide to Simplifying Expressions</h1>
+            <p class="text-lg text-slate-600 max-w-3xl mx-auto">Master the two core skills: combining like terms and the distributive property.</p>
+            <button onclick="window.print()" class="mt-6 inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-slate-700 hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" /></svg>
+                Print Guide
+            </button>
+        </header>
+
+        <main>
+            <!-- Part 1: Combining Like Terms -->
+            <section class="mb-12 printable-section">
+                <div class="concept-card border-l-8 border-purple-500">
+                    <h2 class="header-title text-3xl font-bold mb-2 text-purple-700">Part 1: Combining Like Terms</h2>
+                    <p class="text-slate-600 text-lg mb-6">Think of this as sorting. You can only combine terms that are the "same kind of item."</p>
+                    <div class="bg-purple-50 border border-purple-200 rounded-lg p-4 mb-6">
+                        <p class="font-semibold text-purple-800">Rule: Like terms must have the exact same <span class="underline">variable(s)</span> and the exact same <span class="underline">exponents</span>. The coefficients (numbers in front) can be different.</p>
+                    </div>
+
+                    <div class="example-box">
+                        <h3 class="header-title text-2xl font-semibold text-slate-800 mb-4">Examples: Step-by-Step</h3>
+                        <div class="space-y-6">
+                            <!-- Easy Example -->
+                            <div>
+                                <p class="font-semibold text-gray-700 text-lg">Easy: $7x + 2 + 3x + 5$</p>
+                                <div class="mt-2 space-y-3 text-sm">
+                                    <p class="step-title text-purple-600">Step 1: Identify and group like terms.</p>
+                                    <p class="example-math text-base"><span class="like-term-purple">$7x + 3x$</span> + <span class="like-term-green">$2 + 5$</span></p>
+                                    <p class="step-title text-purple-600">Step 2: Combine the coefficients of each group.</p>
+                                    <p class="example-math">$(7 + 3)x = 10x$</p>
+                                    <p class="example-math">$2 + 5 = 7$</p>
+                                    <p class="step-title text-purple-600">Result: Write the new, simplified expression.</p>
+                                    <p class="example-math bg-purple-100 border border-purple-200 font-bold text-lg">$10x + 7$</p>
+                                </div>
+                            </div>
+                            <hr>
+                            <!-- Medium Example -->
+                            <div>
+                                <p class="font-semibold text-gray-700 text-lg">Medium: $10 - 5d + 2 - 9d$</p>
+                                <div class="mt-2 space-y-3 text-sm">
+                                    <p class="step-title text-purple-600">Step 1: Identify and group like terms (watch the signs!).</p>
+                                    <p class="example-math text-base"><span class="like-term-purple">$-5d - 9d$</span> + <span class="like-term-green">$10 + 2$</span></p>
+                                    <p class="step-title text-purple-600">Step 2: Combine each group.</p>
+                                    <p class="example-math">$(-5 - 9)d = -14d$</p>
+                                    <p class="example-math">$10 + 2 = 12$</p>
+                                    <p class="step-title text-purple-600">Result:</p>
+                                    <p class="example-math bg-purple-100 border border-purple-200 font-bold text-lg">$-14d + 12$</p>
+                                </div>
+                            </div>
+                             <hr>
+                            <!-- Hard Example -->
+                            <div>
+                                <p class="font-semibold text-gray-700 text-lg">Hard: $a^2 + 5a + 3a^2 - 2a$</p>
+                                <div class="mt-2 space-y-3 text-sm">
+                                    <p class="step-title text-purple-600">Step 1: Group like terms. Remember $a^2$ and $a$ are NOT alike!</p>
+                                    <p class="example-math text-base"><span class="like-term-purple">$a^2 + 3a^2$</span> + <span class="like-term-green">$5a - 2a$</span></p>
+                                    <p class="step-title text-purple-600">Step 2: Combine each group.</p>
+                                    <p class="example-math">$(1 + 3)a^2 = 4a^2$</p>
+                                    <p class="example-math">$(5 - 2)a = 3a$</p>
+                                    <p class="step-title text-purple-600">Result:</p>
+                                    <p class="example-math bg-purple-100 border border-purple-200 font-bold text-lg">$4a^2 + 3a$</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Part 2: Distributive Property -->
+            <section class="mb-12 printable-section">
+                <div class="concept-card border-l-8 border-blue-500">
+                    <h2 class="header-title text-3xl font-bold mb-2 text-blue-700">Part 2: The Distributive Property</h2>
+                    <p class="text-slate-600 text-lg mb-6">This is how we get rid of parentheses. You "distribute" the outside term to everything inside.</p>
+                    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+                        <p class="font-semibold text-blue-800">Rule: $a(b + c) = ab + ac$. Multiply the term outside the parentheses by <span class="underline">every</span> term inside.</p>
+                    </div>
+
+                     <div class="example-box">
+                        <h3 class="header-title text-2xl font-semibold text-slate-800 mb-4">Examples: Step-by-Step</h3>
+                        <div class="space-y-6">
+                            <!-- Easy Example -->
+                            <div>
+                                <p class="font-semibold text-gray-700 text-lg">Easy: $4(x + 5)$</p>
+                                <div class="mt-2 space-y-3 text-sm">
+                                    <p class="step-title text-blue-600">Step 1: Distribute the 4 to the first term (x).</p>
+                                    <p class="example-math">$4 \cdot x = 4x$</p>
+                                    <p class="step-title text-blue-600">Step 2: Distribute the 4 to the second term (5).</p>
+                                    <p class="example-math">$4 \cdot 5 = 20$</p>
+                                    <p class="step-title text-blue-600">Result: Combine the results.</p>
+                                    <p class="example-math bg-blue-100 border border-blue-200 font-bold text-lg">$4x + 20$</p>
+                                </div>
+                            </div>
+                            <hr>
+                            <!-- Medium Example -->
+                            <div>
+                                <p class="font-semibold text-gray-700 text-lg">Medium: $-3(a - 6)$</p>
+                                <div class="mt-2 space-y-3 text-sm">
+                                    <p class="step-title text-blue-600">Step 1: Distribute the -3 to the 'a'.</p>
+                                    <p class="example-math">$-3 \cdot a = -3a$</p>
+                                    <p class="step-title text-blue-600">Step 2: Distribute the -3 to the '-6'. Be careful with signs!</p>
+                                    <p class="example-math">$(-3) \cdot (-6) = +18$</p>
+                                    <p class="step-title text-blue-600">Result: Combine them. The signs changed!</p>
+                                    <p class="example-math bg-blue-100 border border-blue-200 font-bold text-lg">$-3a + 18$</p>
+                                </div>
+                            </div>
+                            <hr>
+                            <!-- Hard Example -->
+                            <div>
+                                <p class="font-semibold text-gray-700 text-lg">Hard: $-(x - 8)$</p>
+                                <div class="mt-2 space-y-3 text-sm">
+                                     <p class="text-slate-600 italic">Hint: A negative sign outside parentheses is the same as distributing a -1.</p>
+                                    <p class="step-title text-blue-600">Step 1: Distribute the -1 to the 'x'.</p>
+                                    <p class="example-math">$-1 \cdot x = -x$</p>
+                                    <p class="step-title text-blue-600">Step 2: Distribute the -1 to the '-8'.</p>
+                                    <p class="example-math">$(-1) \cdot (-8) = +8$</p>
+                                    <p class="step-title text-blue-600">Result:</p>
+                                    <p class="example-math bg-blue-100 border border-blue-200 font-bold text-lg">$-x + 8$</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Part 3: Putting It All Together -->
+            <section class="mb-12 printable-section">
+                <div class="concept-card border-l-8 border-green-500">
+                    <h2 class="header-title text-3xl font-bold mb-2 text-green-700">Part 3: Putting It All Together</h2>
+                    <p class="text-slate-600 text-lg mb-6">Now, let's use both skills. The order is important!</p>
+                    <div class="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
+                        <p class="font-semibold text-green-800">Order of Operations: 1st, <span class="highlight-blue">Distribute</span> to remove parentheses. 2nd, <span class="highlight-purple">Combine Like Terms</span>.</p>
+                    </div>
+
+                    <div class="example-box">
+                        <h3 class="header-title text-2xl font-semibold text-slate-800 mb-4">Example: $3(x + 2) + 5x$</h3>
+                        <div class="mt-2 space-y-4 text-sm">
+                            <div>
+                                <p class="step-title text-blue-600">Step 1: Distribute the 3.</p>
+                                <p class="example-math text-base"><span class="bg-highlight-blue">$3x + 6$</span> $+ 5x$</p>
+                            </div>
+                            <div>
+                                <p class="step-title text-purple-600">Step 2: Identify and combine like terms.</p>
+                                <p class="example-math text-base"><span class="like-term-purple">$3x + 5x$</span> $+ 6$</p>
+                                <p class="example-math text-base">$(3+5)x + 6 = 8x + 6$</p>
+                            </div>
+                            <div>
+                                <p class="step-title text-green-600">Final Result:</p>
+                                <p class="example-math bg-green-100 border border-green-200 font-bold text-lg">$8x + 6$</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="example-box">
+                        <h3 class="header-title text-2xl font-semibold text-slate-800 mb-4">Harder Example: $4(d - 3) - (d - 5)$</h3>
+                        <div class="mt-2 space-y-4 text-sm">
+                            <div>
+                                <p class="step-title text-blue-600">Step 1: Distribute the 4 and the -1.</p>
+                                <p class="example-math text-base"><span class="bg-highlight-blue">$4d - 12$</span> <span class="bg-highlight-blue">$-d + 5$</span></p>
+                            </div>
+                            <div>
+                                <p class="step-title text-purple-600">Step 2: Identify and combine like terms.</p>
+                                <p class="example-math text-base"><span class="like-term-purple">$4d - d$</span> <span class="like-term-green">$- 12 + 5$</span></p>
+                                <p class="example-math text-base">$(4-1)d + (-12+5) = 3d - 7$</p>
+                            </div>
+                            <div>
+                                <p class="step-title text-green-600">Final Result:</p>
+                                <p class="example-math bg-green-100 border border-green-200 font-bold text-lg">$3d - 7$</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="text-center mt-8 py-6 border-t no-print">
+            <p class="text-slate-500">Practice makes perfect! The more you simplify, the easier it gets.</p>
+        </footer>
+    </div>
+</body>
+</html>
+
