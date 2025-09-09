@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geometry Lesson: Distance & Midpoint</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        MathJax = {
+          tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']]
+          },
+          svg: {
+            fontCache: 'global'
+          }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .slide-container {
+            width: 100%;
+            max-width: 11in;
+            height: 8.5in;
+            margin: 2rem auto;
+            position: relative;
+        }
+
+        .slide {
+            page-break-after: always;
+            page-break-inside: avoid;
+            display: none; /* Hidden by default for slideshow */
+            width: 100%;
+            height: 100%;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+            border-radius: 0.5rem;
+            overflow-y: auto; /* Add scrollbar if content overflows */
+        }
+        
+        .slide.active {
+            display: block; /* Show active slide */
+        }
+        
+        /* Special case for the title slide which uses flexbox */
+        .slide.active.is-flex {
+             display: flex;
+        }
+
+
+        .slide-title-font {
+            font-family: 'Lexend', sans-serif;
+        }
+
+        @media screen {
+            body {
+                background-color: #f3f4f6;
+            }
+        }
+
+        @media print {
+            body {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .no-print, .nav-arrow {
+                display: none !important;
+            }
+            .slide-container {
+                margin: 0;
+                width: 100%;
+                height: 100%;
+            }
+            .slide {
+                box-shadow: none !important;
+                border: 1px solid #e5e7eb;
+                margin: 0;
+                border-radius: 0;
+                width: 100%;
+                height: 100%;
+                display: block !important; /* Make all slides visible for printing */
+                overflow: hidden !important; /* Hide scrollbar for printing */
+            }
+            .slide.is-flex {
+                display: flex !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <!-- Slide 1: Title Slide -->
+        <div class="slide bg-white flex flex-col justify-center items-center p-8 is-flex">
+            <div class="text-center">
+                <h1 class="slide-title-font text-6xl font-bold text-gray-800">The Distance & Midpoint Formulas</h1>
+                <p class="text-2xl text-gray-500 mt-4">Unit: Parallel & Perpendicular Lines</p>
+            </div>
+        </div>
+
+        <!-- Slide 2: Learning Objectives -->
+        <div class="slide bg-white p-12">
+             <h2 class="slide-title-font text-5xl font-bold text-gray-800 border-b-2 pb-4">Today's Goals</h2>
+             <div class="mt-16 text-center">
+                 <h3 class="slide-title-font text-4xl font-semibold text-gray-700">Learning Objectives</h3>
+                 <ul class="text-left text-3xl mt-8 space-y-6 list-disc list-inside w-fit mx-auto">
+                     <li>I can calculate the distance between two points on the coordinate plane.</li>
+                     <li>I can find the midpoint of a line segment.</li>
+                 </ul>
+             </div>
+        </div>
+
+        <!-- Slide 3: The Formulas -->
+        <div class="slide bg-white p-12">
+            <h2 class="slide-title-font text-4xl font-bold text-gray-800 mb-8 border-b-2 pb-4">The Tools of the Trade</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+                <div class="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-lg">
+                    <h3 class="slide-title-font text-3xl font-semibold text-blue-800">The Distance Formula</h3>
+                    <p class="text-lg mt-2 text-blue-700">Finds the length of a line segment between two points $(x_1, y_1)$ and $(x_2, y_2)$.</p>
+                    <div class="mt-4 text-center bg-white p-4 rounded-lg shadow-inner">
+                        <p class="text-2xl text-blue-900">$$d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}$$</p>
+                    </div>
+                </div>
+                <div class="bg-green-50 border-l-4 border-green-500 p-6 rounded-lg">
+                    <h3 class="slide-title-font text-3xl font-semibold text-green-800">The Midpoint Formula</h3>
+                    <p class="text-lg mt-2 text-green-700">Finds the coordinates of the point exactly halfway between two points.</p>
+                    <div class="mt-4 text-center bg-white p-4 rounded-lg shadow-inner">
+                         <p class="text-2xl text-green-900">$$M = \left(\frac{x_1 + x_2}{2}, \frac{y_1 + y_2}{2}\right)$$</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: I Do #1 (Distance) -->
+        <div class="slide bg-white p-12">
+            <h2 class="slide-title-font text-4xl font-bold text-blue-700">I Do: Finding Distance</h2>
+            <p class="text-xl mt-2">Let's find the distance between point A(-2, 1) and B(4, 3).</p>
+            <div class="mt-6 grid grid-cols-2 gap-8 text-lg">
+                <div>
+                    <h3 class="font-semibold text-2xl mb-2">Step 1: Write the Formula</h3>
+                    <p class="bg-gray-100 p-3 rounded-lg text-xl">$$d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}$$</p>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-2xl mb-2">Step 2: Label Your Points</h3>
+                    <p class="p-3">A($\underset{x_1}{-2}$, $\underset{y_1}{1}$) and B($\underset{x_2}{4}$, $\underset{y_2}{3}$)</p>
+                </div>
+                <div class="col-span-2">
+                    <h3 class="font-semibold text-2xl mb-2">Step 3: Substitute and Solve</h3>
+                    <div class="bg-gray-100 p-4 rounded-lg space-y-3">
+                        <p>$d = \sqrt{(4 - (-2))^2 + (3 - 1)^2}$</p>
+                        <p>$d = \sqrt{(6)^2 + (2)^2}$</p>
+                        <p>$d = \sqrt{36 + 4}$</p>
+                        <p>$d = \sqrt{40}$</p>
+                        <p class="font-bold text-blue-700 text-xl">$d \approx 6.32$ units</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: I Do #2 (Midpoint) -->
+        <div class="slide bg-white p-12">
+            <h2 class="slide-title-font text-4xl font-bold text-green-700">I Do: Finding the Midpoint</h2>
+            <p class="text-xl mt-2">Let's find the midpoint of the segment with endpoints C(5, -2) and D(-1, 6).</p>
+            <div class="mt-6 grid grid-cols-2 gap-8 text-lg">
+                 <div>
+                    <h3 class="font-semibold text-2xl mb-2">Step 1: Write the Formula</h3>
+                    <p class="bg-gray-100 p-3 rounded-lg text-xl">$$M = \left(\frac{x_1 + x_2}{2}, \frac{y_1 + y_2}{2}\right)$$</p>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-2xl mb-2">Step 2: Label Your Points</h3>
+                    <p class="p-3">C($\underset{x_1}{5}$, $\underset{y_1}{-2}$) and D($\underset{x_2}{-1}$, $\underset{y_2}{6}$)</p>
+                </div>
+                <div class="col-span-2">
+                    <h3 class="font-semibold text-2xl mb-2">Step 3: Substitute and Solve</h3>
+                    <div class="bg-gray-100 p-4 rounded-lg space-y-3">
+                         <p>$M = \left(\frac{5 + (-1)}{2}, \frac{-2 + 6}{2}\right)$</p>
+                         <p>$M = \left(\frac{4}{2}, \frac{4}{2}\right)$</p>
+                         <p class="font-bold text-green-700 text-xl">$M = (2, 2)$</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: We Do #1 & #2 -->
+        <div class="slide bg-white p-12">
+            <h2 class="slide-title-font text-4xl font-bold text-purple-700">We Do: Let's Practice Together</h2>
+            <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-8 h-5/6">
+                <div class="bg-gray-50 p-6 rounded-lg border">
+                    <h3 class="font-semibold text-2xl mb-2">Problem 1: Distance</h3>
+                    <p class="text-lg">Find the distance between E(7, 1) and F(-1, 5).</p>
+                    <div class="mt-4 space-y-4">
+                        <p>$d = \sqrt{(\underline{\hspace{1.5cm}} - \underline{\hspace{1.5cm}})^2 + (\underline{\hspace{1.5cm}} - \underline{\hspace{1.5cm}})^2}$</p>
+                        <p>$d = \sqrt{(\underline{\hspace{1.5cm}})^2 + (\underline{\hspace{1.5cm}})^2}$</p>
+                        <p>$d = \sqrt{\underline{\hspace{1.5cm}} + \underline{\hspace{1.5cm}}}$</p>
+                        <p>$d = \sqrt{\underline{\hspace{1.5cm}}}$</p>
+                    </div>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg border">
+                    <h3 class="font-semibold text-2xl mb-2">Problem 2: Midpoint</h3>
+                    <p class="text-lg">Find the midpoint of segment GH where G is (0, -4) and H is (3, 2).</p>
+                    <div class="mt-4 space-y-4">
+                        <p>$M = \left(\frac{\underline{\hspace{1.5cm}} + \underline{\hspace{1.5cm}}}{2}, \frac{\underline{\hspace{1.5cm}} + \underline{\hspace{1.5cm}}}{2}\right)$</p>
+                        <p>$M = \left(\frac{\underline{\hspace{1.5cm}}}{2}, \frac{\underline{\hspace{1.5cm}}}{2}\right)$</p>
+                        <p>$M = (\underline{\hspace{1.5cm}}, \underline{\hspace{1.5cm}})$</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 7: You Do #1 & #2 -->
+        <div class="slide bg-white p-12">
+            <h2 class="slide-title-font text-4xl font-bold text-orange-600">You Do: Your Turn!</h2>
+            <p class="text-xl mt-2">Solve the following problems on your own. Show your work.</p>
+             <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-8 h-5/6">
+                <div class="bg-gray-50 p-6 rounded-lg border">
+                    <h3 class="font-semibold text-2xl mb-2">Problem 1: Distance</h3>
+                    <p class="text-lg">What is the length of the segment connecting J(6, 8) and K(-3, 8)?</p>
+                    <div class="mt-4 h-48 border-t-2 pt-2">
+                        <!-- Space for work -->
+                    </div>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg border">
+                    <h3 class="font-semibold text-2xl mb-2">Problem 2: Midpoint</h3>
+                    <p class="text-lg">Find the midpoint of the segment with endpoints L(10, 3) and N(-4, -5).</p>
+                     <div class="mt-4 h-48 border-t-2 pt-2">
+                        <!-- Space for work -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Independent Practice -->
+        <div class="slide bg-white p-12">
+            <h2 class="slide-title-font text-4xl font-bold text-gray-800">Independent Practice</h2>
+            <p class="text-xl mt-2">Choose a level and complete the problems. Show all your work.</p>
+            <div class="mt-6 grid grid-cols-1 lg:grid-cols-3 gap-6 text-base">
+                <!-- Red Level -->
+                <div class="bg-red-50 border-2 border-red-300 p-4 rounded-lg">
+                    <h3 class="font-bold text-2xl text-red-700">RED LEVEL</h3>
+                    <ol class="list-decimal list-inside mt-2 space-y-3">
+                        <li>Find the distance between (1, 2) and (4, 6).</li>
+                        <li>Find the midpoint of a segment with endpoints (2, 5) and (8, 1).</li>
+                    </ol>
+                </div>
+                <!-- Yellow Level -->
+                <div class="bg-yellow-50 border-2 border-yellow-400 p-4 rounded-lg">
+                     <h3 class="font-bold text-2xl text-yellow-700">YELLOW LEVEL</h3>
+                     <ol class="list-decimal list-inside mt-2 space-y-3">
+                        <li>Find the distance between (-3, 5) and (4, -1). (Simplify the radical if possible).</li>
+                        <li>Find the midpoint of a segment with endpoints (-7, 2) and (3, -8).</li>
+                    </ol>
+                </div>
+                <!-- Green Level -->
+                <div class="bg-green-50 border-2 border-green-400 p-4 rounded-lg">
+                    <h3 class="font-bold text-2xl text-green-700">GREEN LEVEL</h3>
+                     <ol class="list-decimal list-inside mt-2 space-y-3">
+                        <li>A segment has an endpoint at (2, 8) and a midpoint at (5, 2). Find the other endpoint.</li>
+                        <li>Find the perimeter of a triangle with vertices A(1,5), B(5,2), and C(1,2).</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="mt-4 bg-gray-100 h-64 rounded-lg p-4 border" placeholder="Space for work..."></div>
+        </div>
+
+        <!-- Slide 9: Exit Ticket -->
+        <div class="slide bg-white p-12">
+            <h2 class="slide-title-font text-4xl font-bold text-gray-800">Exit Ticket</h2>
+            <p class="text-xl mt-2">Show me what you learned! Answer the questions below.</p>
+            <div class="mt-8 space-y-8">
+                <div>
+                    <p class="font-semibold text-xl">1. Find the distance between P(-5, -2) and Q(3, 4).</p>
+                    <div class="mt-2 h-20 border rounded-lg p-2"></div>
+                </div>
+                <div>
+                    <p class="font-semibold text-xl">2. Find the midpoint of the segment connecting R(9, -1) and S(-1, 5).</p>
+                    <div class="mt-2 h-20 border rounded-lg p-2"></div>
+                </div>
+                <div>
+                     <p class="font-semibold text-xl">3. In your own words, when would you use the distance formula vs. the midpoint formula?</p>
+                     <div class="mt-2 h-24 border rounded-lg p-2"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Arrows -->
+        <button id="prevBtn" class="nav-arrow absolute top-1/2 left-0 transform -translate-y-1/2 -translate-x-12 bg-white p-2 rounded-full shadow-lg hover:bg-gray-200 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+        </button>
+        <button id="nextBtn" class="nav-arrow absolute top-1/2 right-0 transform -translate-y-1/2 translate-x-12 bg-white p-2 rounded-full shadow-lg hover:bg-gray-200 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+        </button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let currentSlide = 0;
+            const slides = document.querySelectorAll('.slide');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const totalSlides = slides.length;
+
+            function showSlide(n) {
+                // Remove active class from all slides
+                slides.forEach(slide => {
+                    slide.classList.remove('active', 'is-flex');
+                });
+                
+                // Set current slide index, wrapping around if necessary
+                currentSlide = (n + totalSlides) % totalSlides;
+                
+                // Add active class to the current slide
+                const slideToShow = slides[currentSlide];
+                slideToShow.classList.add('active');
+                if (slideToShow.classList.contains('flex-col')) { // Check if it's the title slide
+                    slideToShow.classList.add('is-flex');
+                }
+                
+                // Update button visibility
+                prevBtn.style.display = (currentSlide === 0) ? 'none' : 'block';
+                nextBtn.style.display = (currentSlide === totalSlides - 1) ? 'none' : 'block';
+            }
+
+            function nextSlide() {
+                showSlide(currentSlide + 1);
+            }
+
+            function prevSlide() {
+                showSlide(currentSlide - 1);
+            }
+
+            // Event Listeners for buttons
+            prevBtn.addEventListener('click', prevSlide);
+            nextBtn.addEventListener('click', nextSlide);
+            
+            // Event Listener for keyboard arrows
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'ArrowRight') {
+                    if (currentSlide < totalSlides - 1) nextSlide();
+                } else if (event.key === 'ArrowLeft') {
+                    if (currentSlide > 0) prevSlide();
+                }
+            });
+
+            // Show the first slide initially
+            showSlide(0);
+        });
+    </script>
+</body>
+</html>
+
