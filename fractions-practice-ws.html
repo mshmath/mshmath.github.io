@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice Worksheet: Introduction to Fractions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        MathJax = {
+          tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']]
+          },
+          svg: {
+            fontCache: 'global'
+          }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+        .worksheet-container {
+            max-width: 8.5in;
+            margin: 2rem auto;
+            background-color: white;
+            padding: 2.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+        }
+        .worksheet-title {
+            font-family: 'Lexend', sans-serif;
+        }
+        .problem-block {
+            padding-bottom: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .answer-space {
+            height: 4rem;
+            border: 1px dashed #d1d5db;
+            border-radius: 0.25rem;
+            margin-top: 0.75rem;
+            padding: 0.5rem;
+        }
+        .fraction-lg, .drill-lg {
+            font-size: 1.75rem;
+            font-family: 'Lexend', sans-serif;
+        }
+
+        @media print {
+            body {
+                background-color: white;
+            }
+            .no-print {
+                display: none !important;
+            }
+            .worksheet-container {
+                box-shadow: none;
+                margin: 0;
+                max-width: 100%;
+                border: 1px solid #e5e7eb;
+            }
+            .problem-block {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="p-4 bg-gray-800 text-white text-center no-print sticky top-0 z-50">
+        <h1 class="text-xl font-bold">Fractions Practice Worksheet</h1>
+        <button onclick="window.print()" class="mt-2 bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-lg shadow transition-transform transform hover:scale-105">
+            🖨️ Print Worksheet
+        </button>
+    </div>
+
+    <div class="worksheet-container">
+        <header class="text-center pb-6 border-b-2 border-gray-200">
+            <h1 class="worksheet-title text-4xl font-bold text-gray-800">Fractions: Day 1 Practice</h1>
+            <p class="text-lg text-gray-500 mt-2">Drill Worksheet</p>
+            <div class="flex justify-between items-center mt-6 text-left">
+                <p class="text-lg"><strong>Name:</strong> _________________________</p>
+                <p class="text-lg"><strong>Date:</strong> ___________________</p>
+            </div>
+        </header>
+
+        <main class="mt-8">
+            <!-- Section 0: Warm-Up -->
+            <section class="mb-10">
+                <h2 class="worksheet-title text-2xl font-semibold text-gray-700 border-b-2 border-gray-200 pb-2 mb-4">Part 0: Multiplication & Division Warm-Up</h2>
+                <p class="text-gray-600 mb-6">Instructions: Solve the following problems.</p>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-4 text-center">
+                    <div class="problem-block">
+                        <p class="drill-lg">3 x 4 =</p>
+                        <div class="answer-space"></div>
+                    </div>
+                    <div class="problem-block">
+                        <p class="drill-lg">15 ÷ 5 =</p>
+                        <div class="answer-space"></div>
+                    </div>
+                    <div class="problem-block">
+                        <p class="drill-lg">6 x 3 =</p>
+                        <div class="answer-space"></div>
+                    </div>
+                    <div class="problem-block">
+                        <p class="drill-lg">20 ÷ 4 =</p>
+                        <div class="answer-space"></div>
+                    </div>
+                    <div class="problem-block">
+                        <p class="drill-lg">7 x 3 =</p>
+                        <div class="answer-space"></div>
+                    </div>
+                    <div class="problem-block">
+                        <p class="drill-lg">24 ÷ 8 =</p>
+                        <div class="answer-space"></div>
+                    </div>
+                    <div class="problem-block">
+                        <p class="drill-lg">5 x 6 =</p>
+                        <div class="answer-space"></div>
+                    </div>
+                    <div class="problem-block">
+                        <p class="drill-lg">42 ÷ 7 =</p>
+                        <div class="answer-space"></div>
+                    </div>
+                    <div class="problem-block">
+                        <p class="drill-lg">8 x 2 =</p>
+                        <div class="answer-space"></div>
+                    </div>
+                    <div class="problem-block">
+                        <p class="drill-lg">30 ÷ 6 =</p>
+                        <div class="answer-space"></div>
+                    </div>
+                    <div class="problem-block">
+                        <p class="drill-lg">9 x 5 =</p>
+                        <div class="answer-space"></div>
+                    </div>
+                    <div class="problem-block">
+                        <p class="drill-lg">32 ÷ 4 =</p>
+                        <div class="answer-space"></div>
+                    </div>
+                    <div class="problem-block">
+                        <p class="drill-lg">4 x 7 =</p>
+                        <div class="answer-space"></div>
+                    </div>
+                    <div class="problem-block">
+                        <p class="drill-lg">56 ÷ 8 =</p>
+                        <div class="answer-space"></div>
+                    </div>
+                    <div class="problem-block">
+                        <p class="drill-lg">6 x 6 =</p>
+                        <div class="answer-space"></div>
+                    </div>
+                    <div class="problem-block">
+                        <p class="drill-lg">48 ÷ 6 =</p>
+                        <div class="answer-space"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 1: Writing Fractions -->
+            <section class="mb-10">
+                <h2 class="worksheet-title text-2xl font-semibold text-teal-700 border-b-2 border-teal-200 pb-2 mb-4">Part 1: Writing Fractions</h2>
+                <p class="text-gray-600 mb-6">Instructions: Write the fraction for each description.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+                    <div class="problem-block">
+                        <p class="text-lg font-medium">1. Three-fifths</p>
+                        <div class="answer-space"></div>
+                    </div>
+                    <div class="problem-block">
+                        <p class="text-lg font-medium">2. Numerator: 7, Denominator: 10</p>
+                        <div class="answer-space"></div>
+                    </div>
+                    <div class="problem-block">
+                        <p class="text-lg font-medium">3. Six-elevenths</p>
+                        <div class="answer-space"></div>
+                    </div>
+                    <div class="problem-block">
+                        <p class="text-lg font-medium">4. You have 5 apples out of a total of 8 pieces of fruit.</p>
+                        <div class="answer-space"></div>
+                    </div>
+                    <div class="problem-block">
+                        <p class="text-lg font-medium">5. One-quarter</p>
+                        <div class="answer-space"></div>
+                    </div>
+                    <div class="problem-block">
+                        <p class="text-lg font-medium">6. Two-ninths</p>
+                        <div class="answer-space"></div>
+                    </div>
+                    <div class="problem-block">
+                        <p class="text-lg font-medium">7. Numerator: 9, Denominator: 12</p>
+                        <div class="answer-space"></div>
+                    </div>
+                    <div class="problem-block">
+                        <p class="text-lg font-medium">8. In a deck of 52 cards, 13 are hearts.</p>
+                        <div class="answer-space"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: Simplifying Fractions -->
+            <section class="mb-10">
+                <h2 class="worksheet-title text-2xl font-semibold text-orange-700 border-b-2 border-orange-200 pb-2 mb-4">Part 2: Simplifying Fractions</h2>
+                <p class="text-gray-600 mb-6">Instructions: Reduce each fraction to its simplest form.</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-4 text-center">
+                    <div class="problem-block">
+                        <p class="fraction-lg">$ \frac{4}{8} $</p>
+                        <div class="answer-space"></div>
+                    </div>
+                    <div class="problem-block">
+                        <p class="fraction-lg">$ \frac{2}{10} $</p>
+                        <div class="answer-space"></div>
+                    </div>
+                    <div class="problem-block">
+                        <p class="fraction-lg">$ \frac{6}{9} $</p>
+                        <div class="answer-space"></div>
+                    </div>
+                    <div class="problem-block">
+                        <p class="fraction-lg">$ \frac{10}{15} $</p>
+                        <div class="answer-space"></div>
+                    </div>
+                     <div class="problem-block">
+                        <p class="fraction-lg">$ \frac{12}{16} $</p>
+                        <div class="answer-space"></div>
+                    </div>
+                    <div class="problem-block">
+                        <p class="fraction-lg">$ \frac{8}{20} $</p>
+                        <div class="answer-space"></div>
+                    </div>
+                    <div class="problem-block">
+                        <p class="fraction-lg">$ \frac{14}{21} $</p>
+                        <div class="answer-space"></div>
+                    </div>
+                     <div class="problem-block">
+                        <p class="fraction-lg">$ \frac{18}{24} $</p>
+                        <div class="answer-space"></div>
+                    </div>
+                    <div class="problem-block">
+                        <p class="fraction-lg">$ \frac{25}{30} $</p>
+                        <div class="answer-space"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: Equivalent Fractions -->
+            <section>
+                <h2 class="worksheet-title text-2xl font-semibold text-indigo-700 border-b-2 border-indigo-200 pb-2 mb-4">Part 3: Equivalent Fractions</h2>
+                <p class="text-gray-600 mb-6">Instructions: Find the missing number to make the fractions equivalent.</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-8 text-center">
+                    <div class="problem-block">
+                        <p class="fraction-lg">$ \frac{1}{2} = \frac{?}{10} $</p>
+                        <div class="answer-space"></div>
+                    </div>
+                    <div class="problem-block">
+                        <p class="fraction-lg">$ \frac{3}{4} = \frac{9}{?} $</p>
+                        <div class="answer-space"></div>
+                    </div>
+                    <div class="problem-block">
+                        <p class="fraction-lg">$ \frac{2}{5} = \frac{?}{25} $</p>
+                        <div class="answer-space"></div>
+                    </div>
+                    <div class="problem-block">
+                        <p class="fraction-lg">$ \frac{5}{6} = \frac{20}{?} $</p>
+                        <div class="answer-space"></div>
+                    </div>
+                    <div class="problem-block">
+                        <p class="fraction-lg">$ \frac{7}{8} = \frac{?}{16} $</p>
+                        <div class="answer-space"></div>
+                    </div>
+                    <div class="problem-block">
+                        <p class="fraction-lg">$ \frac{1}{3} = \frac{7}{?} $</p>
+                        <div class="answer-space"></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+</body>
+</html>
+
+
