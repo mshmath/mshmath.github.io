@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice Worksheet: Advanced Fractions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        MathJax = {
+          tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']]
+          },
+          svg: {
+            fontCache: 'global'
+          }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+        .worksheet-container {
+            max-width: 8.5in;
+            margin: 2rem auto;
+            background-color: white;
+            padding: 2.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+        }
+        .worksheet-title {
+            font-family: 'Lexend', sans-serif;
+        }
+        .problem-block {
+            padding-bottom: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .answer-space {
+            height: 4rem;
+            border: 1px dashed #d1d5db;
+            border-radius: 0.25rem;
+            margin-top: 0.75rem;
+            padding: 0.5rem;
+        }
+        .fraction-lg {
+            font-size: 1.75rem;
+            font-family: 'Lexend', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+        .comparison-circle {
+            width: 2.5rem;
+            height: 2.5rem;
+            border: 2px solid #9ca3af;
+            border-radius: 50%;
+        }
+
+        @media print {
+            body { background-color: white; }
+            .no-print { display: none !important; }
+            .worksheet-container {
+                box-shadow: none;
+                margin: 0;
+                max-width: 100%;
+                border: 1px solid #e5e7eb;
+            }
+            .problem-block { page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="p-4 bg-gray-800 text-white text-center no-print sticky top-0 z-50">
+        <h1 class="text-xl font-bold">Fractions Practice Worksheet (Part 2)</h1>
+        <button onclick="window.print()" class="mt-2 bg-rose-600 hover:bg-rose-700 text-white font-bold py-2 px-4 rounded-lg shadow transition-transform transform hover:scale-105">
+            🖨️ Print Worksheet
+        </button>
+    </div>
+
+    <div class="worksheet-container">
+        <header class="text-center pb-6 border-b-2 border-gray-200">
+            <h1 class="worksheet-title text-4xl font-bold text-gray-800">Fractions: Practice (Part 2)</h1>
+            <p class="text-lg text-gray-500 mt-2">Drill Worksheet</p>
+            <div class="flex justify-between items-center mt-6 text-left">
+                <p class="text-lg"><strong>Name:</strong> _________________________</p>
+                <p class="text-lg"><strong>Date:</strong> ___________________</p>
+            </div>
+        </header>
+
+        <main class="mt-8">
+            <!-- Section 1: Comparing Fractions -->
+            <section class="mb-10">
+                <h2 class="worksheet-title text-2xl font-semibold text-rose-700 border-b-2 border-rose-200 pb-2 mb-4">Part 1: Comparing Fractions (&lt;, &gt;, or =)</h2>
+                <p class="text-gray-600 mb-6">Instructions: Use the butterfly method to compare the fractions. Write &lt;, &gt;, or = in the circle.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 text-center">
+                    <div class="problem-block"><p class="fraction-lg">$ \frac{2}{3} $ <span class="comparison-circle"></span> $ \frac{4}{7} $</p></div>
+                    <div class="problem-block"><p class="fraction-lg">$ \frac{1}{2} $ <span class="comparison-circle"></span> $ \frac{5}{10} $</p></div>
+                    <div class="problem-block"><p class="fraction-lg">$ \frac{3}{5} $ <span class="comparison-circle"></span> $ \frac{4}{6} $</p></div>
+                    <div class="problem-block"><p class="fraction-lg">$ \frac{5}{8} $ <span class="comparison-circle"></span> $ \frac{3}{5} $</p></div>
+                    <div class="problem-block"><p class="fraction-lg">$ \frac{6}{7} $ <span class="comparison-circle"></span> $ \frac{7}{8} $</p></div>
+                    <div class="problem-block"><p class="fraction-lg">$ \frac{3}{4} $ <span class="comparison-circle"></span> $ \frac{9}{12} $</p></div>
+                    <div class="problem-block"><p class="fraction-lg">$ \frac{2}{5} $ <span class="comparison-circle"></span> $ \frac{3}{8} $</p></div>
+                    <div class="problem-block"><p class="fraction-lg">$ \frac{4}{9} $ <span class="comparison-circle"></span> $ \frac{1}{2} $</p></div>
+                    <div class="problem-block"><p class="fraction-lg">$ \frac{1}{4} $ <span class="comparison-circle"></span> $ \frac{2}{7} $</p></div>
+                    <div class="problem-block"><p class="fraction-lg">$ \frac{7}{10} $ <span class="comparison-circle"></span> $ \frac{2}{3} $</p></div>
+                    <div class="problem-block"><p class="fraction-lg">$ \frac{3}{2} $ <span class="comparison-circle"></span> $ \frac{8}{5} $</p></div>
+                    <div class="problem-block"><p class="fraction-lg">$ \frac{4}{4} $ <span class="comparison-circle"></span> $ \frac{5}{5} $</p></div>
+                </div>
+            </section>
+
+            <!-- Section 2: Conversions -->
+            <section class="mb-10">
+                <h2 class="worksheet-title text-2xl font-semibold text-sky-700 border-b-2 border-sky-200 pb-2 mb-6">Part 2: Improper Fractions & Mixed Numbers</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12">
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-700 mb-4">2a: Convert to Mixed Numbers</h3>
+                        <div class="space-y-4 text-center">
+                            <div class="problem-block"><p class="fraction-lg">$ \frac{7}{3} = $</p><div class="answer-space"></div></div>
+                            <div class="problem-block"><p class="fraction-lg">$ \frac{11}{4} = $</p><div class="answer-space"></div></div>
+                            <div class="problem-block"><p class="fraction-lg">$ \frac{9}{2} = $</p><div class="answer-space"></div></div>
+                            <div class="problem-block"><p class="fraction-lg">$ \frac{16}{5} = $</p><div class="answer-space"></div></div>
+                            <div class="problem-block"><p class="fraction-lg">$ \frac{13}{6} = $</p><div class="answer-space"></div></div>
+                            <div class="problem-block"><p class="fraction-lg">$ \frac{20}{7} = $</p><div class="answer-space"></div></div>
+                            <div class="problem-block"><p class="fraction-lg">$ \frac{15}{4} = $</p><div class="answer-space"></div></div>
+                            <div class="problem-block"><p class="fraction-lg">$ \frac{25}{8} = $</p><div class="answer-space"></div></div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-700 mb-4">2b: Convert to Improper Fractions</h3>
+                        <div class="space-y-4 text-center">
+                            <div class="problem-block"><p class="fraction-lg">$ 1\frac{2}{5} = $</p><div class="answer-space"></div></div>
+                            <div class="problem-block"><p class="fraction-lg">$ 3\frac{1}{4} = $</p><div class="answer-space"></div></div>
+                            <div class="problem-block"><p class="fraction-lg">$ 2\frac{3}{7} = $</p><div class="answer-space"></div></div>
+                            <div class="problem-block"><p class="fraction-lg">$ 4\frac{1}{6} = $</p><div class="answer-space"></div></div>
+                             <div class="problem-block"><p class="fraction-lg">$ 5\frac{1}{3} = $</p><div class="answer-space"></div></div>
+                            <div class="problem-block"><p class="fraction-lg">$ 2\frac{4}{9} = $</p><div class="answer-space"></div></div>
+                            <div class="problem-block"><p class="fraction-lg">$ 6\frac{1}{2} = $</p><div class="answer-space"></div></div>
+                            <div class="problem-block"><p class="fraction-lg">$ 3\frac{3}{8} = $</p><div class="answer-space"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: Adding & Subtracting -->
+            <section>
+                <h2 class="worksheet-title text-2xl font-semibold text-emerald-700 border-b-2 border-emerald-200 pb-2 mb-4">Part 3: Add & Subtract (Like Denominators)</h2>
+                <p class="text-gray-600 mb-6">Instructions: Solve the problem. Simplify your answer if possible.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+                    <div class="problem-block"><p class="fraction-lg">$ \frac{2}{9} + \frac{5}{9} = $</p><div class="answer-space"></div></div>
+                    <div class="problem-block"><p class="fraction-lg">$ \frac{7}{8} - \frac{3}{8} = $</p><div class="answer-space"></div></div>
+                    <div class="problem-block"><p class="fraction-lg">$ \frac{1}{5} + \frac{3}{5} = $</p><div class="answer-space"></div></div>
+                    <div class="problem-block"><p class="fraction-lg">$ \frac{11}{12} - \frac{4}{12} = $</p><div class="answer-space"></div></div>
+                    <div class="problem-block"><p class="fraction-lg">$ \frac{3}{10} + \frac{5}{10} = $</p><div class="answer-space"></div></div>
+                    <div class="problem-block"><p class="fraction-lg">$ \frac{5}{6} - \frac{1}{6} = $</p><div class="answer-space"></div></div>
+                    <div class="problem-block"><p class="fraction-lg">$ \frac{1}{4} + \frac{1}{4} = $</p><div class="answer-space"></div></div>
+                    <div class="problem-block"><p class="fraction-lg">$ \frac{8}{15} - \frac{2}{15} = $</p><div class="answer-space"></div></div>
+                    <div class="problem-block"><p class="fraction-lg">$ \frac{3}{7} + \frac{3}{7} = $</p><div class="answer-space"></div></div>
+                    <div class="problem-block"><p class="fraction-lg">$ \frac{9}{11} - \frac{5}{11} = $</p><div class="answer-space"></div></div>
+                    <div class="problem-block"><p class="fraction-lg">$ \frac{5}{13} + \frac{6}{13} = $</p><div class="answer-space"></div></div>
+                    <div class="problem-block"><p class="fraction-lg">$ \frac{10}{10} - \frac{3}{10} = $</p><div class="answer-space"></div></div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+</body>
+</html>
+
