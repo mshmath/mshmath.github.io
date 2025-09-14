@@ -12,6 +12,15 @@
         body {
             font-family: 'Inter', sans-serif;
             background-color: #f1f5f9; /* slate-100 */
+            overflow: hidden;
+        }
+        #presentation-container {
+             width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
         .slide-container {
             width: 100%;
@@ -28,16 +37,20 @@
         .slide {
             display: none;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start; /* Aligns content to the top */
             align-items: center;
-            padding: 2rem 4rem;
+            padding: 3rem 4rem;
             text-align: center;
             background-color: white;
             height: 100%;
             width: 100%;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            overflow-y: auto; /* Ensures content is scrollable if it overflows */
         }
         .slide.active {
             display: flex;
+            opacity: 1;
         }
         .nav-button {
             position: absolute;
@@ -76,6 +89,7 @@
         .title-slide {
             background: linear-gradient(135deg, #6d28d9, #8b5cf6); /* violet-700 to violet-500 */
             color: white;
+            justify-content: center; /* Center title slide content */
         }
         .emphasis-highlight {
             background-color: #ede9fe; /* violet-50 */
@@ -87,311 +101,228 @@
             color: #5b21b6; /* violet-800 */
             font-weight: 600;
         }
-        
-        /* Print Styles */
+        .hidden-answer { display: none; }
         .printable-version { display: none; }
 
+        /* Print Styles */
         @media print {
             body { 
-                background-color: white; 
-                color: black; 
-                font-size: 12pt;
+                overflow: visible !important; 
+                background-color: white !important;
             }
-            .non-printable { display: none !important; }
+            .no-print { display: none !important; }
             .printable-version { 
                 display: block !important; 
-                font-family: 'Georgia', serif;
+                padding: 0.5in;
             }
-            .print-card {
-                border: 1px solid #d1d5db;
-                border-radius: 0.75rem;
-                padding: 1.5rem;
-                margin-bottom: 1.5rem;
+            .print-grid {
+                /* This class no longer needs grid styles, so it will stack vertically */
+            }
+            .print-page {
                 page-break-inside: avoid;
-                background-color: #f9fafb;
-            }
-            .print-card h2 {
-                font-family: 'Inter', sans-serif;
-                font-size: 1.25rem;
-                font-weight: 700;
-                border-bottom: 2px solid #e5e7eb;
-                padding-bottom: 0.75rem;
-                margin-bottom: 1.25rem;
-                color: #111827;
-            }
-            .print-card p, .problem {
-                font-size: 1.1rem;
-                line-height: 1.6;
-                color: #374151;
-                margin-bottom: 0.75rem;
-            }
-            .fill-in-blank {
-                display: inline-block;
-                border-bottom: 1px solid #6b7280;
-                margin: 0 0.25rem;
-                padding: 0 0.25rem;
-                vertical-align: bottom;
-            }
-            .problem-box {
-                border: 1px solid #e5e7eb;
-                background-color: #ffffff;
                 padding: 1rem;
-                border-radius: 0.5rem;
-                margin-top: 0.5rem;
+                border: 1px solid #ccc;
+                border-radius: 8px;
+                margin-bottom: 1rem; /* Add space between vertical blocks */
             }
-            .practice-levels .level {
+            .print-header { 
+                display: flex !important; 
+                justify-content: space-between; 
+                width:100%; 
+                padding-bottom: 1rem; 
                 margin-bottom: 1rem;
-                padding-bottom: 1rem;
-                border-bottom: 1px dashed #d1d5db;
-            }
-            .practice-levels .level:last-child {
-                border-bottom: none;
-                margin-bottom: 0;
-                padding-bottom: 0;
-            }
-            .practice-levels .level strong {
-                display: block;
-                margin-bottom: 0.25rem;
-                font-family: 'Inter', sans-serif;
-            }
-            .level-green { color: #15803d !important; }
-            .level-yellow { color: #b45309 !important; }
-            .level-red { color: #b91c1c !important; }
-            * {
-                -webkit-print-color-adjust: exact !important;
-                print-color-adjust: exact !important;
+                border-bottom: 1px solid #000; 
             }
         }
     </style>
 </head>
-<body class="flex flex-col items-center justify-center min-h-screen p-4">
+<body class="bg-gray-100 text-gray-800">
 
-    <div class="non-printable w-full max-w-4xl">
-        <div class="flex flex-col sm:flex-row justify-between items-center mb-4">
+    <div id="presentation-container">
+        <div class="no-print w-full max-w-5xl flex justify-between items-center mb-2 px-4">
             <div>
-                <h1 class="text-3xl font-bold text-gray-800">Unit 2 Day 2: Multiplying Polynomials</h1>
-                <p class="text-gray-600">Use the arrows or your keyboard to navigate the slides.</p>
+                <h1 class="text-2xl font-bold text-gray-800">Unit 2 Day 2: Multiplying Polynomials</h1>
+                <p class="text-gray-600">Use the arrows on the slides or your keyboard to navigate.</p>
             </div>
-            <button onclick="window.print()" class="bg-violet-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-violet-700 transition-colors mt-2 sm:mt-0">
-                Print Slides
+            <button id="print-button" class="bg-violet-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-violet-700 transition-colors">
+                Print Handout
             </button>
         </div>
-    </div>
 
-    <div class="slide-container non-printable">
-        <!-- Slide 1: Title -->
-        <div class="slide active title-slide">
-            <h1 class="text-5xl font-bold mb-4">Unit 2: Polynomial Operations</h1>
-            <p class="text-2xl">Day 2: Multiplying Polynomials</p>
-        </div>
-
-        <!-- Slide 2: Objective -->
-        <div class="slide">
-            <h2 class="text-3xl font-bold text-gray-800 mb-8">Today's Objective</h2>
-            <div class="text-left text-2xl space-y-6 text-gray-700 max-w-3xl bg-violet-50 border-l-4 border-violet-500 p-6 rounded-r-lg">
-                <p>To determine the <span class="emphasis-highlight">product</span> of polynomial expressions using the distributive property and area models.</p>
+        <div class="slide-container no-print">
+            <!-- Slide 1: Title -->
+            <div class="slide active title-slide">
+                <h1 class="text-5xl font-bold mb-4">Unit 2: Polynomial Operations</h1>
+                <p class="text-2xl">Day 2: Multiplying Polynomials</p>
             </div>
-        </div>
 
-        <!-- Slide 3: The Core Concept -->
-        <div class="slide">
-            <h2 class="text-3xl font-bold text-gray-800 mb-6">The Core Concept</h2>
-            <div class="text-xl max-w-4xl text-left space-y-6">
-                 <div class="bg-slate-100 p-4 rounded-lg">
-                    <p>To multiply polynomials, you must multiply <span class="keyword">every term</span> in the first polynomial by <span class="keyword">every term</span> in the second. No term gets left behind!</p>
-                </div>
-                <div class="grid grid-cols-2 gap-4 mt-4">
-                     <div class="bg-violet-50 border border-violet-200 p-3 rounded-lg">
-                        <p class="font-semibold text-violet-800">Method 1: Distributive Property</p>
-                        <p class="text-base">Pass out each term from the first polynomial to every term in the second.</p>
-                     </div>
-                     <div class="bg-violet-50 border border-violet-200 p-3 rounded-lg">
-                        <p class="font-semibold text-violet-800">Method 2: Area Model (Box)</p>
-                         <p class="text-base">A visual way to organize all the multiplications so you don't miss any.</p>
-                     </div>
+            <!-- Slide 2: Objective -->
+            <div class="slide">
+                <h2 class="text-3xl font-bold text-gray-800 mb-8">Lesson Objective</h2>
+                <div class="text-left text-2xl space-y-6 text-gray-700 max-w-3xl bg-violet-50 border-l-4 border-violet-500 p-6 rounded-r-lg">
+                    <p>To be able to determine the <span class="emphasis-highlight">product</span> of polynomials using the distributive property and the box method.</p>
                 </div>
             </div>
-        </div>
 
-        <!-- Slide 4: I Do Example 1 -->
-        <div class="slide">
-            <h2 class="text-3xl font-bold text-gray-800 mb-4">I Do: The Distributive Property</h2>
-            <p class="text-xl text-gray-600 mb-6">Let's find the product of \((x + 4)(2x - 3)\).</p>
-            <div class="w-full max-w-4xl text-left bg-slate-50 p-4 rounded-lg border">
-                <p class="font-semibold mb-2">Step 1: Distribute the \(x\) and the \(+4\).</p>
-                <p class="text-2xl font-mono text-center mb-4">\(\textcolor{blue}{x}(2x - 3) \textcolor{red}{+ 4}(2x - 3)\)</p>
-                <p class="font-semibold mb-2">Step 2: Multiply.</p>
-                 <p class="text-2xl font-mono text-center mb-4">\(\textcolor{blue}{2x^2 - 3x} \textcolor{red}{+ 8x - 12}\)</p>
-                <p class="font-semibold mb-2">Step 3: Combine like terms.</p>
-                <p class="text-3xl font-mono font-bold text-center text-violet-700">\(2x^2 + 5x - 12\)</p>
-            </div>
-        </div>
-
-        <!-- Slide 5: I Do Example 2 -->
-        <div class="slide">
-            <h2 class="text-3xl font-bold text-gray-800 mb-4">I Do: The Area Model</h2>
-            <p class="text-xl text-gray-600 mb-6">Let's find the product of \((x + 4)(2x - 3)\) again.</p>
-            <div class="w-full max-w-4xl text-left bg-slate-50 p-4 rounded-lg border">
-                <p class="font-semibold mb-2">Step 1: Set up the box. Write one polynomial on top, the other on the side.</p>
-                <table class="w-1/2 text-center border-collapse mx-auto bg-white text-xl">
-                    <tr><td class="p-2 border border-slate-400"></td><td class="p-2 border border-slate-400 font-bold">\(2x\)</td><td class="p-2 border border-slate-400 font-bold">\(-3\)</td></tr>
-                    <tr><td class="p-2 border border-slate-400 font-bold">\(x\)</td><td class="p-2 border border-slate-400 h-16"></td><td class="p-2 border border-slate-400"></td></tr>
-                    <tr><td class="p-2 border border-slate-400 font-bold">\(+4\)</td><td class="p-2 border border-slate-400 h-16"></td><td class="p-2 border border-slate-400"></td></tr>
-                </table>
-                <p class="font-semibold mb-2 mt-4">Step 2: Multiply to fill each box. Then combine like terms.</p>
-                <p class="text-3xl font-mono font-bold text-center text-violet-700">\(2x^2 - 3x + 8x - 12 \rightarrow 2x^2 + 5x - 12\)</p>
-            </div>
-        </div>
-
-        <!-- Slide 6: We Do -->
-        <div class="slide">
-            <h2 class="text-3xl font-bold text-gray-800 mb-6">We Do: Let's Try Together</h2>
-            <p class="text-2xl text-gray-700 mb-8">Choose your favorite method!</p>
-            <div class="w-full max-w-3xl text-left text-2xl space-y-8">
-                <p><strong>1.</strong> \((x + 2)(x + 5)\)</p>
-                <p><strong>2.</strong> \((3a - 1)(a + 4)\)</p>
-            </div>
-        </div>
-        
-        <!-- Slide 7: Larger Polynomials -->
-        <div class="slide">
-            <h2 class="text-3xl font-bold text-gray-800 mb-6">Multiplying Larger Polynomials</h2>
-            <p class="text-xl text-gray-600 mb-6">The Area Model is very useful when multiplying bigger polynomials, like a binomial and a trinomial.</p>
-            <p class="text-2xl font-mono mb-4">\((x - 6)(x^2 + 2x + 1)\)</p>
-             <table class="w-3/4 text-center border-collapse mx-auto bg-white text-xl">
-                <tr><td class="p-2 border border-slate-400"></td><td class="p-2 border border-slate-400 font-bold">\(x^2\)</td><td class="p-2 border border-slate-400 font-bold">\(+2x\)</td><td class="p-2 border border-slate-400 font-bold">\(+1\)</td></tr>
-                <tr><td class="p-2 border border-slate-400 font-bold">\(x\)</td><td class="p-2 border border-slate-400 h-16 text-violet-700">\(x^3\)</td><td class="p-2 border border-slate-400 text-violet-700">\(2x^2\)</td><td class="p-2 border border-slate-400 text-violet-700">\(x\)</td></tr>
-                <tr><td class="p-2 border border-slate-400 font-bold">\(-6\)</td><td class="p-2 border border-slate-400 h-16 text-violet-700">\(-6x^2\)</td><td class="p-2 border border-slate-400 text-violet-700">\(-12x\)</td><td class="p-2 border border-slate-400 text-violet-700">\(-6\)</td></tr>
-            </table>
-             <p class="text-xl mt-4">Combine like terms: \(x^3 + (2x^2 - 6x^2) + (x - 12x) - 6\)</p>
-             <p class="text-2xl font-bold font-mono text-violet-800">\(x^3 - 4x^2 - 11x - 6\)</p>
-        </div>
-
-        <!-- Slide 8: Special Products -->
-        <div class="slide">
-             <h2 class="text-3xl font-bold text-gray-800 mb-6">Special Products (Shortcuts!)</h2>
-             <div class="w-full max-w-4xl space-y-4 text-left text-xl">
-                <div class="bg-slate-100 p-4 rounded-lg">
-                    <p><span class="keyword">Squaring a Binomial:</span> \((a+b)^2 = a^2 + 2ab + b^2\)</p>
-                    <p class="mt-2 font-mono">\( (x+7)^2 = x^2 + 2(x)(7) + 7^2 = x^2+14x+49 \)</p>
-                </div>
-                <div class="bg-slate-100 p-4 rounded-lg">
-                    <p><span class="keyword">Difference of Squares:</span> \((a+b)(a-b) = a^2 - b^2\)</p>
-                    <p class="mt-2 font-mono">\( (2b+5)(2b-5) = (2b)^2 - 5^2 = 4b^2 - 25 \)</p>
+            <!-- Slide 3: Warm-Up -->
+            <div class="slide">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">Warm-Up: The Distributive Property</h2>
+                <div class="text-xl max-w-4xl text-left space-y-6">
+                    <p>Remember this skill? It is the key to multiplying polynomials!</p>
+                    <div class="bg-slate-100 p-6 rounded-lg text-4xl font-mono text-center">
+                       <p>\(5(x + 3) = 5x + 15\)</p>
+                    </div>
+                     <p class="text-center text-gray-600">You multiply the number outside by <span class="keyword">every term</span> inside.</p>
                 </div>
             </div>
-        </div>
 
-        <!-- Slide 9: Independent Practice -->
-        <div class="slide">
-            <h2 class="text-3xl font-bold text-gray-800 mb-4">Independent Practice</h2>
-            <p class="text-lg text-gray-600 mb-6">Try these problems on your own, starting with green.</p>
-            <div class="w-full max-w-5xl grid grid-cols-1 md:grid-cols-3 gap-4 text-left">
-                <div class="bg-green-100 border-2 border-green-300 p-4 rounded-lg">
-                    <p class="font-bold text-green-800 text-lg mb-2">Green Level</p>
-                    <p>MULTIPLY: \((4x + 2)(3x + 5)\)</p>
-                </div>
-                <div class="bg-yellow-100 border-2 border-yellow-300 p-4 rounded-lg">
-                    <p class="font-bold text-yellow-800 text-lg mb-2">Yellow Level</p>
-                    <p>Find the area of a rectangle with length \(2x+1\) and width \(x+3\).</p>
-                </div>
-                <div class="bg-red-100 border-2 border-red-300 p-4 rounded-lg">
-                    <p class="font-bold text-red-800 text-lg mb-2">Red Level</p>
-                    <p>Find the volume of a rectangular prism with length \(x\), width \(x+2\), and height \(x+5\).</p>
+            <!-- Slide 4: Method 1 - Distribution -->
+            <div class="slide">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Method 1: The Distributive Property</h2>
+                <p class="text-xl text-gray-600 mb-6">To multiply two binomials, you distribute <span class="emphasis-highlight">each term</span> from the first binomial to the second one.</p>
+                <div class="w-full max-w-4xl text-left bg-slate-50 p-6 rounded-lg border">
+                    <p class="font-mono text-4xl text-center">\((\textcolor{blue}{x} + \textcolor{red}{2})(x + 5)\)</p>
+                    <p class="font-mono text-3xl text-center mt-6">
+                        <span class="text-blue-600">\(x(x+5)\)</span>
+                        <span class="text-gray-400"> + </span>
+                        <span class="text-red-600">\(2(x+5)\)</span>
+                    </p>
                 </div>
             </div>
-        </div>
 
-        <!-- Slide 10: Exit Ticket -->
-        <div class="slide">
-            <h2 class="text-3xl font-bold text-gray-800 mb-6">Exit Ticket</h2>
-            <p class="text-2xl text-gray-700 mb-8">On a piece of paper, find the product:</p>
-            <div class="bg-slate-100 p-6 rounded-lg text-4xl font-mono">
-                \((y + 8)(y - 3)\)
-            </div>
-        </div>
-
-        <!-- Navigation -->
-        <button id="prevBtn" class="nav-button">&lt;</button>
-        <button id="nextBtn" class="nav-button">&gt;</button>
-        <div id="slideCounter" class="slide-counter"></div>
-    </div>
-
-    <!-- Printable Version -->
-    <div class="printable-version w-full max-w-4xl mx-auto p-4">
-        <div class="print-card" style="background: linear-gradient(135deg, #6d28d9, #8b5cf6); color: white; text-align: center;">
-            <h1 style="font-family: 'Inter', sans-serif; font-size: 2rem; font-weight: 800; margin-bottom: 0.5rem;">Unit 2: Polynomial Operations</h1>
-            <p style="font-family: 'Inter', sans-serif; font-size: 1.25rem;">Day 2: Multiplying Polynomials</p>
-        </div>
-        
-        <div class="print-card">
-            <h2>Objective</h2>
-            <p>To determine the <span class="fill-in-blank" style="width: 80px;"></span> of polynomial expressions using the <span class="fill-in-blank" style="width: 150px;"></span> and <span class="fill-in-blank" style="width: 110px;"></span>.</p>
-        </div>
-
-        <div class="print-card">
-            <h2>Key Methods</h2>
-            <p><strong>Distributive Property:</strong> Multiply <span class="fill-in-blank" style="width: 90px;"></span> term in the first polynomial by <span class="fill-in-blank" style="width: 90px;"></span> term in the second.</p>
-            <p><strong>Area Model (Box Method):</strong> A visual way to <span class="fill-in-blank" style="width: 120px;"></span> all the multiplications.</p>
-        </div>
-
-        <div class="print-card">
-            <h2>Guided Example: I Do</h2>
-            <p class="problem" style="text-align: center; font-weight: bold; font-size: 1.2rem;">\((x + 4)(2x - 3)\)</p>
-            <div style="display: flex; justify-content: space-around; margin-top: 1rem;">
-                <div class="problem-box" style="flex: 1; margin-right: 1rem;">
-                    <p><strong>Distributive Method:</strong></p>
-                    <p>\(x(2x-3) + 4(2x-3)\)</p>
-                    <p><span class="fill-in-blank" style="width: 100%;"></span></p>
-                    <p>Answer: <span class="fill-in-blank" style="width: 100%;"></span></p>
+            <!-- Slide 5: I Do - Distribution -->
+            <div class="slide">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4"><span class="bg-blue-100 px-2 py-1 rounded">I Do</span>: Using the Distributive Property</h2>
+                <p class="text-xl text-gray-600 mb-6">Let's solve \((x + 2)(x + 5)\).</p>
+                <div class="w-full max-w-4xl text-left bg-slate-50 p-4 rounded-lg border font-mono text-2xl space-y-3">
+                    <p><span class="text-gray-500">// Step 1: Distribute each term</span></p>
+                    <p>\(=\textcolor{blue}{x(x+5)} + \textcolor{red}{2(x+5)}\)</p>
+                    <p><span class="text-gray-500">// Step 2: Multiply</span></p>
+                    <p>\(= (\textcolor{blue}{x^2 + 5x}) + (\textcolor{red}{2x + 10})\)</p>
+                    <p><span class="text-gray-500">// Step 3: Combine like terms</span></p>
+                    <p class="text-3xl font-bold text-center text-violet-700 mt-2">\(x^2 + 7x + 10\)</p>
                 </div>
-                <div class="problem-box" style="flex: 1; margin-left: 1rem;">
-                    <p><strong>Area Model:</strong></p>
-                    <table style="width: 150px; text-align: center; border-collapse: collapse; margin: 0 auto;">
-                        <tr><td style="border: 1px solid #9ca3af; padding: 0.5rem;"></td><td style="border: 1px solid #9ca3af; padding: 0.5rem;">\(2x\)</td><td style="border: 1px solid #9ca3af; padding: 0.5rem;">\(-3\)</td></tr>
-                        <tr><td style="border: 1px solid #9ca3af; padding: 0.5rem;">\(x\)</td><td style="border: 1px solid #9ca3af; height: 40px;"></td><td style="border: 1px solid #9ca3af;"></td></tr>
-                        <tr><td style="border: 1px solid #9ca3af; padding: 0.5rem;">\(+4\)</td><td style="border: 1px solid #9ca3af; height: 40px;"></td><td style="border: 1px solid #9ca3af;"></td></tr>
+            </div>
+            
+            <!-- Slide 6: Method 2 - Box Method -->
+            <div class="slide">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Method 2: The Box Method</h2>
+                <p class="text-xl text-gray-600 mb-6">The Box Method (or Area Model) helps you organize your work visually. It's great for preventing mistakes!</p>
+                <div class="bg-slate-50 p-6 rounded-lg border">
+                    <p class="text-2xl font-semibold mb-4">Problem: \((x+2)(x+5)\)</p>
+                    <table class="w-64 h-64 border-collapse text-2xl">
+                        <tr>
+                            <td class="border-2 border-gray-400 w-1/2 h-1/2 bg-gray-200"></td>
+                            <td class="border-2 border-gray-400 w-1/2 text-center font-bold">\(x\)</td>
+                            <td class="border-2 border-gray-400 w-1/2 text-center font-bold">\(+5\)</td>
+                        </tr>
+                        <tr>
+                            <td class="border-2 border-gray-400 h-1/2 font-bold text-center">\(x\)</td>
+                            <td class="border-2 border-gray-400 text-center"></td>
+                            <td class="border-2 border-gray-400 text-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="border-2 border-gray-400 h-1/2 font-bold text-center">\(+2\)</td>
+                            <td class="border-2 border-gray-400 text-center"></td>
+                            <td class="border-2 border-gray-400 text-center"></td>
+                        </tr>
                     </table>
-                    <p style="margin-top: 0.5rem;">Answer: <span class="fill-in-blank" style="width: 100%;"></span></p>
                 </div>
             </div>
-        </div>
-        
-        <div class="print-card">
-            <h2>Class Practice: We Do</h2>
-             <p><strong>1. Multiply:</strong> \((x + 2)(x + 5)\) = <span class="fill-in-blank" style="width: 250px;"></span></p>
-             <p><strong>2. Multiply:</strong> \((3a - 1)(a + 4)\) = <span class="fill-in-blank" style="width: 250px;"></span></p>
-        </div>
 
-        <div class="print-card">
-            <h2>Independent Practice</h2>
-            <div class="practice-levels">
-                <div class="level">
-                    <strong class="level-green">Green Level</strong>
-                    <p>\((4x + 2)(3x + 5)\) = <span class="fill-in-blank" style="width: 200px;"></span></p>
-                </div>
-                <div class="level">
-                    <strong class="level-yellow">Yellow Level</strong>
-                    <p>Find the area of a rectangle with length \(2x+1\) and width \(x+3\). <span class="fill-in-blank" style="width: 200px;"></span></p>
-                </div>
-                <div class="level">
-                    <strong class="level-red">Red Level</strong>
-                    <p>Find the volume of a rectangular prism with L=\(x\), W=\(x+2\), H=\(x+5\). <span class="fill-in-blank" style="width: 200px;"></span></p>
+            <!-- Slide 7: I Do - Box Method -->
+            <div class="slide">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4"><span class="bg-blue-100 px-2 py-1 rounded">I Do</span>: Using the Box Method</h2>
+                 <div class="bg-slate-50 p-6 rounded-lg border">
+                    <p class="text-2xl font-semibold mb-4">Step 1 & 2: Set up the box and multiply.</p>
+                    <table class="w-64 h-64 border-collapse text-2xl">
+                        <tr>
+                            <td class="border-2 border-gray-400 w-1/2 h-1/2 bg-gray-200"></td>
+                            <td class="border-2 border-gray-400 w-1/2 text-center font-bold">\(x\)</td>
+                            <td class="border-2 border-gray-400 w-1/2 text-center font-bold">\(+5\)</td>
+                        </tr>
+                        <tr>
+                            <td class="border-2 border-gray-400 h-1/2 font-bold text-center">\(x\)</td>
+                            <td class="border-2 border-gray-400 text-center font-mono bg-violet-100">\(x^2\)</td>
+                            <td class="border-2 border-gray-400 text-center font-mono bg-green-100">\(+5x\)</td>
+                        </tr>
+                        <tr>
+                            <td class="border-2 border-gray-400 h-1/2 font-bold text-center">\(+2\)</td>
+                            <td class="border-2 border-gray-400 text-center font-mono bg-green-100">\(+2x\)</td>
+                            <td class="border-2 border-gray-400 text-center font-mono bg-yellow-100">\(+10\)</td>
+                        </tr>
+                    </table>
+                    <p class="text-2xl font-semibold my-4">Step 3: Combine like terms and write the answer.</p>
+                     <p class="text-3xl font-mono font-bold text-center text-violet-700">\(x^2 + 7x + 10\)</p>
                 </div>
             </div>
-        </div>
 
-        <div class="print-card">
-            <h2>Exit Ticket</h2>
-            <p>Find the product:</p>
-            <p style="text-align: center; font-weight: 600; margin: 1rem 0; font-size: 1.25rem;">\((y + 8)(y - 3)\)</p>
-            <p>Answer: <span class="fill-in-blank" style="width: 100%;"></span></p>
+            <!-- Slide 8: We Do -->
+            <div class="slide">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6"><span class="bg-yellow-100 px-2 py-1 rounded">We Do</span>: Let's Try Together</h2>
+                <p class="text-2xl text-gray-700 mb-8">Let's simplify this expression as a class. Pick your favorite method!</p>
+                <div class="w-full max-w-3xl text-center text-3xl space-y-8 font-mono bg-slate-50 p-6 rounded-lg border">
+                    <p>\((x - 3)(2x + 4)\)</p>
+                </div>
+            </div>
+            
+            <!-- Slide 9: You Do -->
+            <div class="slide">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6"><span class="bg-green-100 px-2 py-1 rounded">You Do</span>: On Your Own</h2>
+                <p class="text-xl text-gray-600 mb-6">Multiply a binomial by a trinomial. The Box Method is very helpful here!</p>
+                <div class="w-full max-w-3xl bg-slate-50 p-6 rounded-lg border">
+                    <p class="text-2xl font-mono text-center">\((n + 2)(n^2 - 3n + 1)\)</p>
+                    <div class="text-center mt-6">
+                        <button onclick="document.getElementById('you-do-answer').style.display='block'" class="bg-violet-600 text-white px-4 py-2 rounded hover:bg-violet-700">Show Answer</button>
+                        <p id="you-do-answer" class="text-3xl font-bold font-mono text-center mt-4 text-violet-700 hidden-answer">\(n^3 - n^2 - 5n + 2\)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 10: Independent Practice -->
+            <div class="slide">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Independent Practice</h2>
+                <p class="text-lg text-gray-600 mb-6">Try these problems on your handout, starting with green.</p>
+                <div class="w-full max-w-5xl grid grid-cols-1 md:grid-cols-3 gap-4 text-left">
+                    <div class="bg-green-100 border-2 border-green-300 p-4 rounded-lg">
+                        <p class="font-bold text-green-800 text-lg mb-2">Green Level</p>
+                        <p>MULTIPLY: \((x + 6)(x + 3)\)</p>
+                    </div>
+                    <div class="bg-yellow-100 border-2 border-yellow-300 p-4 rounded-lg">
+                        <p class="font-bold text-yellow-800 text-lg mb-2">Yellow Level</p>
+                        <p>MULTIPLY: \((2y - 4)(y - 5)\)</p>
+                    </div>
+                    <div class="bg-red-100 border-2 border-red-300 p-4 rounded-lg">
+                        <p class="font-bold text-red-800 text-lg mb-2">Red Level</p>
+                        <p>MULTIPLY: \((x - 3)(x^2 + 4x - 2)\)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 11: Exit Ticket -->
+            <div class="slide">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">Exit Ticket</h2>
+                <p class="text-2xl text-gray-700 mb-8">On your handout or a piece of paper, simplify the following expression:</p>
+                <div class="bg-slate-100 p-6 rounded-lg text-4xl font-mono">
+                    \((3x + 2)(x - 5)\)
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <button id="prevBtn" class="nav-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+            </button>
+            <button id="nextBtn" class="nav-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+            </button>
+            <div id="slideCounter" class="slide-counter"></div>
         </div>
     </div>
-
-    <footer class="text-center mt-8 text-gray-500 non-printable">
-        <p>&copy; 2025 Aly Hatfield. All rights reserved.</p>
-    </footer>
+    
+    <!-- Printable Version -->
+    <div class="printable-version">
+        <!-- Content for printing will be generated by script -->
+    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -400,23 +331,37 @@
             const nextBtn = document.getElementById('nextBtn');
             const slideCounter = document.getElementById('slideCounter');
             let currentSlide = 0;
+
             function showSlide(n) {
-                slides.forEach(slide => slide.classList.remove('active'));
-                if (slides[n]) {
-                    slides[n].classList.add('active');
-                }
+                slides.forEach((slide, index) => {
+                    if (index === n) {
+                        slide.classList.add('active');
+                    } else {
+                        slide.classList.remove('active');
+                    }
+                });
                 slideCounter.textContent = `${n + 1} / ${slides.length}`;
+                prevBtn.style.display = n === 0 ? 'none' : 'flex';
+                nextBtn.style.display = n === slides.length - 1 ? 'none' : 'flex';
             }
+
             function nextSlide() {
-                currentSlide = (currentSlide + 1) % slides.length;
-                showSlide(currentSlide);
+                if (currentSlide < slides.length - 1) {
+                    currentSlide++;
+                    showSlide(currentSlide);
+                }
             }
+
             function prevSlide() {
-                currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-                showSlide(currentSlide);
+                if (currentSlide > 0) {
+                    currentSlide--;
+                    showSlide(currentSlide);
+                }
             }
+            
             nextBtn.addEventListener('click', nextSlide);
             prevBtn.addEventListener('click', prevSlide);
+            
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'ArrowRight') {
                     nextSlide();
@@ -424,8 +369,37 @@
                     prevSlide();
                 }
             });
+
+            // For printing
+            const printButton = document.getElementById('print-button');
+            printButton.addEventListener('click', async () => {
+                const printableContainer = document.querySelector('.printable-version');
+                let header = `<div class="print-header"><span>Name: _________________________</span><span>Date: _________________________</span></div>`;
+                let pagesContent = '';
+
+                slides.forEach(slide => {
+                    const slideClone = slide.cloneNode(true);
+                    const hiddenAnswer = slideClone.querySelector('.hidden-answer');
+                    if (hiddenAnswer) {
+                        hiddenAnswer.style.display = 'block'; // Make sure answers are visible for print
+                    }
+                    pagesContent += '<div class="print-page">' + slideClone.innerHTML + '</div>';
+                });
+                
+                printableContainer.innerHTML = header + '<div class="print-grid">' + pagesContent + '</div>';
+
+                // Wait for MathJax to render the math in the new printable content
+                await MathJax.typesetPromise([printableContainer]);
+                
+                // Add a short delay to ensure the browser has time to render the math before printing
+                setTimeout(() => {
+                    window.print();
+                }, 250);
+            });
+            
             showSlide(currentSlide);
         });
     </script>
 </body>
 </html>
+
