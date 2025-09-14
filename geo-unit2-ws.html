@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angles, Lines, and Distance - Practice Worksheet</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f1f5f9;
+        }
+        .answer {
+            display: none;
+            color: #059669; /* emerald-600 */
+            font-weight: 600;
+        }
+        .answer.visible {
+            display: block;
+        }
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e293b;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        .problem {
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px dashed #cbd5e1;
+        }
+        .problem:last-child {
+            border-bottom: none;
+        }
+        .problem-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.125rem;
+        }
+        .problem-text strong {
+            margin-right: 0.75rem;
+        }
+        .math-mono {
+             font-family: 'Roboto Mono', monospace;
+        }
+
+        @media print {
+            body {
+                background-color: white;
+            }
+            .no-print {
+                display: none !important;
+            }
+            .worksheet-container {
+                box-shadow: none;
+                border: none;
+            }
+            .answer {
+                color: #059669 !important;
+            }
+             * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="container mx-auto p-4 sm:p-8">
+        <div class="flex justify-between items-center mb-6 no-print">
+            <h1 class="text-3xl font-bold text-slate-800">Geometry Unit 2 Practice</h1>
+            <div>
+                <button id="toggle-answers" class="bg-emerald-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-emerald-700 transition-colors mr-2">Show Answers</button>
+                <button onclick="window.print()" class="bg-slate-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-slate-700 transition-colors">Print Worksheet</button>
+            </div>
+        </div>
+
+        <div class="worksheet-container bg-white p-8 sm:p-12 rounded-lg shadow-lg">
+            <div class="flex flex-col sm:flex-row justify-between items-center border-b-2 border-slate-300 pb-6 mb-8">
+                <h2 class="text-2xl font-bold text-slate-700">Practice Worksheet: Angles, Lines, & Distance</h2>
+                <div class="w-full sm:w-auto mt-4 sm:mt-0">
+                    <p class="text-slate-600"><strong>Name:</strong> _________________________</p>
+                    <p class="text-slate-600 mt-2"><strong>Date:</strong> __________________________</p>
+                </div>
+            </div>
+            
+            <!-- Section 1: Angle Relationships -->
+            <section class="mb-10">
+                <h2 class="section-title">Angle Relationships</h2>
+                <div class="text-center">
+                    <p class="mb-4">Use the diagram below for all problems in this section.</p>
+                    <svg viewBox="0 0 200 120" class="mx-auto my-4 max-w-sm">
+                        <line x1="10" y1="20" x2="190" y2="20" stroke="black" stroke-width="1.5"></line>
+                        <text x="175" y="15" font-size="8">l</text>
+                        <line x1="10" y1="80" x2="190" y2="80" stroke="black" stroke-width="1.5"></line>
+                        <text x="175" y="75" font-size="8">m</text>
+                        <line x1="40" y1="0" x2="160" y2="100" stroke="gray" stroke-width="1"></line>
+                        <text x="162" y="98" font-size="8">t</text>
+                        <!-- Angle labels -->
+                        <text x="45" y="15" font-size="8">1</text>
+                        <text x="65" y="15" font-size="8">2</text>
+                        <text x="60" y="35" font-size="8">4</text>
+                        <text x="85" y="34" font-size="8">3</text>
+                        <text x="115" y="75" font-size="8">5</text>
+                        <text x="135" y="75" font-size="8">6</text>
+                        <text x="131" y="91" font-size="8">8</text>
+                        <text x="153" y="91" font-size="8">7</text>
+                    </svg>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 text-lg">
+                    <div class="problem"><p class="problem-text"><strong>1.</strong> Name a pair of corresponding angles.</p><div class="answer mt-2"><p>\(\angle 1 \& \angle 5\) (others possible)</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>2.</strong> Name a pair of alternate interior angles.</p><div class="answer mt-2"><p>\(\angle 3 \& \angle 5\) or \(\angle 4 \& \angle 6\)</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>3.</strong> Name a pair of alternate exterior angles.</p><div class="answer mt-2"><p>\(\angle 1 \& \angle 7\) or \(\angle 2 \& \angle 8\)</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>4.</strong> Name a pair of same-side interior angles.</p><div class="answer mt-2"><p>\(\angle 4 \& \angle 5\) or \(\angle 3 \& \angle 6\)</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>5.</strong> Name an angle that forms a linear pair with \(\angle 2\).</p><div class="answer mt-2"><p>\(\angle 1\) or \(\angle 3\)</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>6.</strong> Which angle corresponds to \(\angle 3\)?</p><div class="answer mt-2"><p>\(\angle 7\)</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>7.</strong> Which angle is alternate exterior to \(\angle 2\)?</p><div class="answer mt-2"><p>\(\angle 8\)</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>8.</strong> What is the name of the line 't' that intersects the other two lines?</p><div class="answer mt-2"><p>Transversal</p></div></div>
+                </div>
+            </section>
+
+            <!-- Section 2: Proving Lines Parallel -->
+            <section class="mb-10">
+                <h2 class="section-title">Proving Lines Parallel</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+                    <div class="problem"><p class="problem-text"><strong>1.</strong> If \(m\angle 3 = 105^\circ\) and \(m\angle 5 = 105^\circ\), are lines l and m parallel? Why?</p><div class="answer mt-2"><p>Yes, Converse of the Alt. Int. Angles Thm.</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>2.</strong> If \(m\angle 1 = 80^\circ\) and \(m\angle 5 = 80^\circ\), are lines l and m parallel? Why?</p><div class="answer mt-2"><p>Yes, Converse of the Corresponding Angles Post.</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>3.</strong> If \(m\angle 4 = 70^\circ\) and \(m\angle 5 = 110^\circ\), are lines l and m parallel? Why?</p><div class="answer mt-2"><p>Yes, Converse of the Same-Side Int. Angles Thm.</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>4.</strong> If \(m\angle 2 = 125^\circ\) and \(m\angle 8 = 125^\circ\), are lines l and m parallel? Why?</p><div class="answer mt-2"><p>Yes, Converse of the Alt. Ext. Angles Thm.</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>5.</strong> Find x that makes l || m if \(m\angle 4 = (3x-10)^\circ\) and \(m\angle 8 = (2x+20)^\circ\).</p><div class="answer mt-2"><p>\(3x-10 = 2x+20 \implies x=30\)</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>6.</strong> Find x that makes l || m if \(m\angle 4 = (2x+10)^\circ\) and \(m\angle 5 = (3x+20)^\circ\).</p><div class="answer mt-2"><p>\((2x+10)+(3x+20)=180 \implies 5x=150 \implies x=30\)</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>7.</strong> Find x that makes l || m if \(m\angle 2 = (5x+5)^\circ\) and \(m\angle 8 = (6x-10)^\circ\).</p><div class="answer mt-2"><p>\(5x+5 = 6x-10 \implies x=15\)</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>8.</strong> If \(m\angle 3 = 90^\circ\), what must \(m\angle 6\) be for the lines to be parallel?</p><div class="answer mt-2"><p>\(90^\circ\)</p></div></div>
+                </div>
+            </section>
+            
+            <!-- Section 3: Solving Problems Using Angle Relationships -->
+            <section class="mb-10">
+                <h2 class="section-title">Solving Problems Using Angle Relationships</h2>
+                <p class="mb-4">For this section, assume lines <strong>l</strong> and <strong>m</strong> are parallel.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+                    <div class="problem"><p class="problem-text"><strong>1.</strong> If \(m\angle 3 = 2x + 10\) and \(m\angle 5 = 3x - 5\), find x.</p><div class="answer mt-2"><p>\(2x+10=3x-5 \implies x=15\)</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>2.</strong> If \(m\angle 4 = 4x + 20\) and \(m\angle 6 = 2x + 40\), find x.</p><div class="answer mt-2"><p>\(4x+20=2x+40 \implies 2x=20 \implies x=10\)</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>3.</strong> If \(m\angle 1 = 5x - 25\) and \(m\angle 7 = 3x + 5\), find x.</p><div class="answer mt-2"><p>\(5x-25=3x+5 \implies 2x=30 \implies x=15\)</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>4.</strong> If \(m\angle 3 = (x+25)^\circ\) and \(m\angle 6 = (2x-10)^\circ\), find \(m\angle 3\).</p><div class="answer mt-2"><p>\(x+25+2x-10=180 \implies 3x=165 \implies x=55\). \(m\angle 3 = 80^\circ\)</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>5.</strong> If \(m\angle 5 = 75^\circ\), find \(m\angle 1\).</p><div class="answer mt-2"><p>\(105^\circ\)</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>6.</strong> If \(m\angle 6 = 130^\circ\), find \(m\angle 8\).</p><div class="answer mt-2"><p>\(50^\circ\)</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>7.</strong> If \(m\angle 1 = 3x + 40\) and \(m\angle 2 = 2x + 10\), find x.</p><div class="answer mt-2"><p>\(3x+40+2x+10=180 \implies 5x=130 \implies x=26\)</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>8.</strong> If \(m\angle 5 = 4x\) and \(m\angle 8 = x + 20\), find \(m\angle 5\).</p><div class="answer mt-2"><p>\(4x+x+20=180 \implies 5x=160 \implies x=32\). \(m\angle 5 = 128^\circ\)</p></div></div>
+                </div>
+            </section>
+
+             <!-- Section 4: Midpoint and Distance -->
+            <section>
+                <h2 class="section-title">Midpoint and Distance Formulas</h2>
+                <div class="bg-violet-50 p-4 rounded-lg mb-6 text-center text-lg">
+                    <p><strong>Midpoint:</strong> \( M = (\frac{x_1+x_2}{2}, \frac{y_1+y_2}{2}) \)</p>
+                    <p class="mt-2"><strong>Distance:</strong> \( d = \sqrt{(x_2-x_1)^2 + (y_2-y_1)^2} \)</p>
+                </div>
+                 <div class="text-center">
+                    <p class="mb-4">Use the diagram below as a visual aid for this section.</p>
+                    <svg viewBox="0 0 150 120" class="mx-auto my-4 max-w-xs">
+                        <!-- Axes -->
+                        <line x1="10" y1="110" x2="140" y2="110" stroke="gray" stroke-width="1"/>
+                        <line x1="10" y1="10" x2="10" y2="110" stroke="gray" stroke-width="1"/>
+                        <!-- Points -->
+                        <circle cx="40" cy="80" r="3" fill="blue"/>
+                        <text x="30" y="95" font-size="8">A(x₁, y₁)</text>
+                        <circle cx="110" cy="30" r="3" fill="blue"/>
+                        <text x="115" y="35" font-size="8">B(x₂, y₂)</text>
+                        <!-- Line Segment -->
+                        <line x1="40" y1="80" x2="110" y2="30" stroke="black" stroke-width="1"/>
+                        <!-- Midpoint -->
+                        <circle cx="75" cy="55" r="3" fill="red"/>
+                        <text x="80" y="58" font-size="8">M</text>
+                    </svg>
+                 </div>
+                 <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+                    <div class="problem"><p class="problem-text"><strong>1.</strong> Find the midpoint of A(2, 5) and B(6, 9).</p><div class="answer mt-2"><p>M(4, 7)</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>2.</strong> Find the midpoint of C(-3, 0) and D(5, -4).</p><div class="answer mt-2"><p>M(1, -2)</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>3.</strong> Find the midpoint of E(7, -2) and F(-1, 6).</p><div class="answer mt-2"><p>M(3, 2)</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>4.</strong> Find the midpoint of G(0, 8) and H(-10, 0).</p><div class="answer mt-2"><p>M(-5, 4)</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>5.</strong> Find the distance between A(2, 5) and B(5, 9).</p><div class="answer mt-2"><p>\(d = \sqrt{(5-2)^2 + (9-5)^2} = \sqrt{9+16} = \sqrt{25} = 5\)</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>6.</strong> Find the distance between C(1, 1) and D(6, 13).</p><div class="answer mt-2"><p>\(d = \sqrt{(6-1)^2 + (13-1)^2} = \sqrt{25+144} = \sqrt{169} = 13\)</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>7.</strong> Find the distance between E(-2, 4) and F(3, -8).</p><div class="answer mt-2"><p>\(d = \sqrt{(3-(-2))^2 + (-8-4)^2} = \sqrt{25+144} = \sqrt{169} = 13\)</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>8.</strong> Find the distance between G(0, 0) and H(-5, 12).</p><div class="answer mt-2"><p>\(d = \sqrt{(-5-0)^2 + (12-0)^2} = \sqrt{25+144} = \sqrt{169} = 13\)</p></div></div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('toggle-answers').addEventListener('click', function() {
+            const answers = document.querySelectorAll('.answer');
+            const isShowing = this.textContent.includes('Show');
+            
+            answers.forEach(answer => {
+                if (isShowing) {
+                    answer.classList.add('visible');
+                } else {
+                    answer.classList.remove('visible');
+                }
+            });
+
+            this.textContent = isShowing ? 'Hide Answers' : 'Show Answers';
+        });
+    </script>
+</body>
+</html>
+
