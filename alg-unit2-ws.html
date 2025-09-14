@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polynomial Operations - Practice Worksheet</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f1f5f9;
+        }
+        .answer {
+            display: none;
+            color: #6d28d9;
+            font-weight: 600;
+        }
+        .answer.visible {
+            display: block;
+        }
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e293b;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        .problem {
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px dashed #cbd5e1;
+        }
+        .problem:last-child {
+            border-bottom: none;
+        }
+        .problem-text {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 1.125rem;
+        }
+        .problem-text strong {
+            margin-right: 0.75rem;
+        }
+
+        @media print {
+            body {
+                background-color: white;
+            }
+            .no-print {
+                display: none !important;
+            }
+            .worksheet-container {
+                box-shadow: none;
+                border: none;
+            }
+            .answer {
+                color: #6d28d9 !important;
+            }
+             * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="container mx-auto p-4 sm:p-8">
+        <div class="flex justify-between items-center mb-6 no-print">
+            <h1 class="text-3xl font-bold text-slate-800">Polynomial Operations Practice</h1>
+            <div>
+                <button id="toggle-answers" class="bg-violet-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-violet-700 transition-colors mr-2">Show Answers</button>
+                <button onclick="window.print()" class="bg-slate-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-slate-700 transition-colors">Print Worksheet</button>
+            </div>
+        </div>
+
+        <div class="worksheet-container bg-white p-8 sm:p-12 rounded-lg shadow-lg">
+            <div class="flex flex-col sm:flex-row justify-between items-center border-b-2 border-slate-300 pb-6 mb-8">
+                <h2 class="text-2xl font-bold text-slate-700">Practice Worksheet</h2>
+                <div class="w-full sm:w-auto mt-4 sm:mt-0">
+                    <p class="text-slate-600"><strong>Name:</strong> _________________________</p>
+                    <p class="text-slate-600 mt-2"><strong>Date:</strong> __________________________</p>
+                </div>
+            </div>
+
+            <!-- Lesson 1 -->
+            <section class="mb-10">
+                <h2 class="section-title">Lesson 1: Adding & Subtracting Polynomials</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+                    <div class="problem"><p class="problem-text"><strong>1.</strong> \((5x^2 + 3x - 1) + (2x^2 - x + 4)\)</p><div class="answer mt-2"><p>\(7x^2 + 2x + 3\)</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>2.</strong> \((9y^3 - 2y) - (y^3 + 5y - 7)\)</p><div class="answer mt-2"><p>\(8y^3 - 7y + 7\)</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>3.</strong> \((a^2 - 10) + (4a^2 + 3a)\)</p><div class="answer mt-2"><p>\(5a^2 + 3a - 10\)</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>4.</strong> \((7k+4) - (8k+1)\)</p><div class="answer mt-2"><p>\(-k + 3\)</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>5.</strong> \((6m^3 + 2m) + (m^3 - 7m + 1)\)</p><div class="answer mt-2"><p>\(7m^3 - 5m + 1\)</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>6.</strong> \((3x^2 - 4x) - (5x^2 - 2x)\)</p><div class="answer mt-2"><p>\(-2x^2 - 2x\)</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>7.</strong> \((12n^2 + n - 8) - (4n^2 - 3n - 5)\)</p><div class="answer mt-2"><p>\(8n^2 + 4n - 3\)</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>8.</strong> Add: \((x^3 + x^2)\) and \((2x^3 - 4x^2)\)</p><div class="answer mt-2"><p>\(3x^3 - 3x^2\)</p></div></div>
+                </div>
+            </section>
+
+            <!-- Lesson 2 -->
+            <section class="mb-10">
+                <h2 class="section-title">Lesson 2: Multiplying Polynomials</h2>
+                 <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+                    <div class="problem"><p class="problem-text"><strong>1.</strong> \((x + 7)(x + 5)\)</p><div class="answer mt-2"><p>\(x^2 + 12x + 35\)</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>2.</strong> \((n - 4)(n - 2)\)</p><div class="answer mt-2"><p>\(n^2 - 6n + 8\)</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>3.</strong> \((3y + 1)(y - 6)\)</p><div class="answer mt-2"><p>\(3y^2 - 17y - 6\)</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>4.</strong> \((x + 3)(x^2 + 2x - 5)\)</p><div class="answer mt-2"><p>\(x^3 + 5x^2 + x - 15\)</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>5.</strong> \((2k - 5)(k + 4)\)</p><div class="answer mt-2"><p>\(2k^2 + 3k - 20\)</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>6.</strong> \((x - 1)(x + 1)\)</p><div class="answer mt-2"><p>\(x^2 - 1\)</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>7.</strong> \((4p + 3)^2\)</p><div class="answer mt-2"><p>\(16p^2 + 24p + 9\)</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>8.</strong> \((m - 2)(m^2 - 4m + 3)\)</p><div class="answer mt-2"><p>\(m^3 - 6m^2 + 11m - 6\)</p></div></div>
+                </div>
+            </section>
+
+             <!-- Lesson 3 -->
+            <section class="mb-10">
+                <h2 class="section-title">Lesson 3: Factoring (GCF)</h2>
+                 <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+                    <div class="problem"><p class="problem-text"><strong>1.</strong> \(9x + 21\)</p><div class="answer mt-2"><p>\(3(3x + 7)\)</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>2.</strong> \(10y^2 - 15y\)</p><div class="answer mt-2"><p>\(5y(2y - 3)\)</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>3.</strong> \(8a^3 + 4a^2\)</p><div class="answer mt-2"><p>\(4a^2(2a + 1)\)</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>4.</strong> \(6k^3 - 18k^2 + 12k\)</p><div class="answer mt-2"><p>\(6k(k^2 - 3k + 2)\)</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>5.</strong> \(18m^2 - 6m\)</p><div class="answer mt-2"><p>\(6m(3m - 1)\)</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>6.</strong> \(7x^3 + 21x^2\)</p><div class="answer mt-2"><p>\(7x^2(x + 3)\)</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>7.</strong> \(50p^5 - 20p^3\)</p><div class="answer mt-2"><p>\(10p^3(5p^2 - 2)\)</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>8.</strong> \(x^4y + x^3y^2\)</p><div class="answer mt-2"><p>\(x^3y(x + y)\)</p></div></div>
+                </div>
+            </section>
+
+             <!-- Lesson 4 -->
+            <section class="mb-10">
+                <h2 class="section-title">Lesson 4: Factoring Trinomials (a=1)</h2>
+                 <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+                    <div class="problem"><p class="problem-text"><strong>1.</strong> \(x^2 + 10x + 21\)</p><div class="answer mt-2"><p>\((x+7)(x+3)\)</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>2.</strong> \(y^2 - 11y + 24\)</p><div class="answer mt-2"><p>\((y-8)(y-3)\)</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>3.</strong> \(n^2 + 4n - 32\)</p><div class="answer mt-2"><p>\((n+8)(n-4)\)</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>4.</strong> \(k^2 - 5k - 36\)</p><div class="answer mt-2"><p>\((k-9)(k+4)\)</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>5.</strong> \(a^2 + 12a + 27\)</p><div class="answer mt-2"><p>\((a+3)(a+9)\)</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>6.</strong> \(b^2 - 6b + 9\)</p><div class="answer mt-2"><p>\((b-3)^2\)</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>7.</strong> \(c^2 + c - 20\)</p><div class="answer mt-2"><p>\((c+5)(c-4)\)</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>8.</strong> \(d^2 - 3d - 40\)</p><div class="answer mt-2"><p>\((d-8)(d+5)\)</p></div></div>
+                </div>
+            </section>
+            
+            <!-- Lesson 5 -->
+            <section class="mb-10">
+                <h2 class="section-title">Lesson 5: Factoring Trinomials (a>1)</h2>
+                 <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+                    <div class="problem"><p class="problem-text"><strong>1.</strong> \(2x^2 + 13x + 15\)</p><div class="answer mt-2"><p>\((2x+3)(x+5)\)</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>2.</strong> \(3y^2 - 17y + 10\)</p><div class="answer mt-2"><p>\((3y-2)(y-5)\)</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>3.</strong> \(5n^2 + 7n - 6\)</p><div class="answer mt-2"><p>\((5n-3)(n+2)\)</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>4.</strong> \(4k^2 - 15k - 4\)</p><div class="answer mt-2"><p>\((4k+1)(k-4)\)</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>5.</strong> \(7x^2 + 22x + 3\)</p><div class="answer mt-2"><p>\((7x+1)(x+3)\)</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>6.</strong> \(6y^2 - 19y + 15\)</p><div class="answer mt-2"><p>\((2y-3)(3y-5)\)</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>7.</strong> \(2n^2 + 5n - 12\)</p><div class="answer mt-2"><p>\((2n-3)(n+4)\)</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>8.</strong> \(8k^2 - 10k - 3\)</p><div class="answer mt-2"><p>\((4k+1)(2k-3)\)</p></div></div>
+                </div>
+            </section>
+
+             <!-- Lesson 6 -->
+            <section class="mb-10">
+                <h2 class="section-title">Lesson 6: Dividing Polynomials</h2>
+                 <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+                    <div class="problem"><p class="problem-text"><strong>1.</strong> \(\frac{18x^4 + 27x^2}{9x}\)</p><div class="answer mt-2"><p>\(2x^3 + 3x\)</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>2.</strong> \((x^2 + 8x + 15) \div (x+3)\)</p><div class="answer mt-2"><p>\(x+5\)</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>3.</strong> \(\frac{20a^5 - 5a^3 + 10a^2}{5a^2}\)</p><div class="answer mt-2"><p>\(4a^3 - a + 2\)</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>4.</strong> \((k^2 - 9k + 14) \div (k-7)\)</p><div class="answer mt-2"><p>\(k-2\)</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>5.</strong> \(\frac{14y^5 - 35y^3}{7y^2}\)</p><div class="answer mt-2"><p>\(2y^3 - 5y\)</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>6.</strong> \((x^2 - 4x - 45) \div (x-9)\)</p><div class="answer mt-2"><p>\(x+5\)</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>7.</strong> \(\frac{8m^3+16m^2-24m}{8m}\)</p><div class="answer mt-2"><p>\(m^2 + 2m - 3\)</p></div></div>
+                    <div class="problem"><p class="problem-text"><strong>8.</strong> \((2n^2 + 13n + 15) \div (n+5)\)</p><div class="answer mt-2"><p>\(2n+3\)</p></div></div>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('toggle-answers').addEventListener('click', function() {
+            const answers = document.querySelectorAll('.answer');
+            const isShowing = this.textContent.includes('Show');
+            
+            answers.forEach(answer => {
+                if (isShowing) {
+                    answer.classList.add('visible');
+                } else {
+                    answer.classList.remove('visible');
+                }
+            });
+
+            this.textContent = isShowing ? 'Hide Answers' : 'Show Answers';
+        });
+    </script>
+</body>
+</html>
+
