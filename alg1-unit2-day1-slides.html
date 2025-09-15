@@ -349,7 +349,7 @@
                     const slideClone = slide.cloneNode(true);
                     const hiddenAnswer = slideClone.querySelector('.hidden-answer');
                     if (hiddenAnswer) {
-                        hiddenAnswer.style.display = 'block'; // Make sure answers are visible for print
+                        hiddenAnswer.style.display = 'hidden'; // Make sure answers are visible for print
                     }
                     pagesContent += '<div class="print-page">' + slideClone.innerHTML + '</div>';
                 });
@@ -370,4 +370,5 @@
     </script>
 </body>
 </html>
+
 
