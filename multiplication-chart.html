@@ -12,12 +12,45 @@
         body {
             font-family: 'Inter', sans-serif;
         }
+
+        @media print {
+            body {
+                background-color: #fff;
+                font-family: sans-serif;
+            }
+            .no-print {
+                display: none !important;
+            }
+            #chart-container {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr); /* Better layout for printing */
+                gap: 1rem;
+            }
+            /* Reset card styles for printing */
+            #chart-container > div {
+                background-color: #ffffff !important;
+                color: #000000 !important;
+                border: 1px solid #ccc;
+                box-shadow: none;
+                padding: 0.5rem; /* Reduce padding for print */
+                 -webkit-print-color-adjust: exact; /* Necessary for some browsers */
+            }
+            #chart-container h2 {
+                color: #000000 !important;
+                border-bottom-color: #ccc !important;
+                font-size: 1.1rem;
+            }
+            #chart-container p {
+                 font-size: 0.9rem;
+                 line-height: 1.2;
+            }
+        }
     </style>
 </head>
 <body class="bg-slate-100">
 
     <div class="container mx-auto px-4 py-8">
-        <header class="text-center mb-10">
+        <header class="text-center mb-10 no-print">
             <h1 class="text-5xl font-extrabold text-slate-800">Multiplication Chart</h1>
             <p class="text-slate-600 mt-2 text-lg">A handy chart for all the times tables from 1 to 24.</p>
         </header>
@@ -25,11 +58,18 @@
         <main id="chart-container" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-5">
             <!-- Multiplication tables will be generated here -->
         </main>
+
+        <footer class="mt-10 text-center no-print">
+             <button id="print-button" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-transform transform hover:scale-105">
+                Print Chart
+            </button>
+        </footer>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const chartContainer = document.getElementById('chart-container');
+            const printButton = document.getElementById('print-button');
 
             const numberWords = [
                 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 
@@ -38,7 +78,6 @@
                 'Nineteen', 'Twenty', 'Twenty-One', 'Twenty-Two', 'Twenty-Three', 'Twenty-Four'
             ];
             
-            // Colorful palette for the cards, similar to the example
             const colors = [
                 'bg-rose-500', 'bg-orange-500', 'bg-amber-500', 'bg-lime-500', 
                 'bg-green-500', 'bg-teal-500', 'bg-cyan-500', 'bg-sky-500', 
@@ -52,17 +91,14 @@
             function generateChart() {
                 for (let i = 1; i <= 24; i++) {
                     const tableCard = document.createElement('div');
-                    // Apply a color from the palette, cycling through if needed
                     const colorClass = colors[(i - 1) % colors.length];
                     tableCard.className = `p-4 rounded-lg shadow-md text-white ${colorClass}`;
 
-                    // Card Header
                     const cardHeader = document.createElement('h2');
                     cardHeader.className = 'text-2xl font-bold text-center mb-3 border-b border-white/30 pb-2';
-                    cardHeader.textContent = numberWords[i - 1]; // Use word for the number
+                    cardHeader.textContent = numberWords[i - 1];
                     tableCard.appendChild(cardHeader);
 
-                    // Problems container
                     const problemsContainer = document.createElement('div');
                     problemsContainer.className = 'space-y-1 text-lg font-medium';
 
@@ -78,6 +114,10 @@
                     chartContainer.appendChild(tableCard);
                 }
             }
+
+            printButton.addEventListener('click', () => {
+                window.print();
+            });
 
             // Initial generation of the chart
             generateChart();
