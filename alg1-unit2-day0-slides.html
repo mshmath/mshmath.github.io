@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 2 Day 0 Slides: Introduction to Polynomials</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f1f5f9; /* slate-100 */
+            overflow: hidden;
+        }
+        #presentation-container {
+             width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .slide-container {
+            width: 100%;
+            max-width: 1050px;
+            aspect-ratio: 16 / 9;
+            margin: 1rem auto;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        .slide {
+            display: none;
+            flex-direction: column;
+            justify-content: flex-start; /* Aligns content to the top */
+            align-items: center;
+            padding: 3rem 4rem;
+            text-align: center;
+            background-color: white;
+            height: 100%;
+            width: 100%;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            overflow-y: auto; /* Ensures content is scrollable if it overflows */
+        }
+        .slide.active {
+            display: flex;
+            opacity: 1;
+        }
+        .nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.3);
+            color: white;
+            border: none;
+            padding: 0.75rem;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.2s;
+        }
+        .nav-button:hover {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        #prevBtn { left: 1rem; }
+        #nextBtn { right: 1rem; }
+        .slide-counter {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.875rem;
+            z-index: 10;
+        }
+        .title-slide {
+            background: linear-gradient(135deg, #6d28d9, #8b5cf6); /* violet-700 to violet-500 */
+            color: white;
+            justify-content: center; /* Center title slide content */
+        }
+        .emphasis-highlight {
+            background-color: #ede9fe; /* violet-50 */
+            padding: 0.1em 0.3em;
+            border-radius: 0.25em;
+            font-weight: 600;
+        }
+        .keyword {
+            color: #5b21b6; /* violet-800 */
+            font-weight: 600;
+        }
+        .hidden-answer { display: none; }
+        .printable-version { display: none; }
+
+        /* Print Styles */
+        @media print {
+            body { 
+                overflow: visible !important; 
+                background-color: white !important;
+            }
+            .no-print { display: none !important; }
+            .printable-version { 
+                display: block !important; 
+                padding: 0.5in;
+            }
+            .print-grid { }
+            .print-page {
+                page-break-inside: avoid;
+                padding: 1rem;
+                border: 1px solid #ccc;
+                border-radius: 8px;
+                margin-bottom: 1rem;
+            }
+            .print-header { 
+                display: flex !important; 
+                justify-content: space-between; 
+                width:100%; 
+                padding-bottom: 1rem; 
+                margin-bottom: 1rem;
+                border-bottom: 1px solid #000; 
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <div id="presentation-container">
+        <div class="no-print w-full max-w-5xl flex justify-between items-center mb-2 px-4">
+            <div>
+                <h1 class="text-2xl font-bold text-gray-800">Introduction to Polynomials</h1>
+                <p class="text-gray-600">Use the arrows on the slides or your keyboard to navigate.</p>
+            </div>
+            <button id="print-button" class="bg-violet-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-violet-700 transition-colors">
+                Print Handout
+            </button>
+        </div>
+
+        <div class="slide-container no-print">
+            <!-- Slide 1: Title -->
+            <div class="slide active title-slide">
+                <h1 class="text-5xl font-bold mb-4">Introduction to Polynomials</h1>
+                <p class="text-2xl">The Language of Algebra</p>
+            </div>
+
+            <!-- Slide 2: Objective -->
+            <div class="slide">
+                <h2 class="text-3xl font-bold text-gray-800 mb-8">Lesson Objective</h2>
+                <div class="text-left text-2xl space-y-4 text-gray-700 max-w-3xl bg-violet-50 border-l-4 border-violet-500 p-6 rounded-r-lg">
+                    <p>To identify the parts of a polynomial, including <span class="emphasis-highlight">terms</span>, <span class="emphasis-highlight">coefficients</span>, and <span class="emphasis-highlight">degree</span>.</p>
+                    <p>To classify polynomials by the number of terms.</p>
+                </div>
+            </div>
+
+            <!-- Slide 3: Parts of a Polynomial -->
+            <div class="slide">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">Anatomy of a Polynomial</h2>
+                <div class="w-full max-w-4xl text-left bg-slate-50 p-6 rounded-lg border">
+                    <p class="text-6xl font-mono text-center">\( \underbrace{\textcolor{blue}{5}x^2}_{\text{Term}} + \underbrace{\textcolor{green}{3}x}_{\text{Term}} - \underbrace{\textcolor{red}{7}}_{\text{Term}} \)</p>
+                    <p class="mt-8 text-xl"><span class="keyword">Term:</span> Each part of a polynomial separated by + or - signs. This example has 3 terms.</p>
+                </div>
+            </div>
+
+             <!-- Slide 4: Coefficients and Constants -->
+            <div class="slide">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">Coefficients and Constants</h2>
+                 <div class="w-full max-w-4xl text-left text-xl space-y-4">
+                    <p class="text-5xl font-mono text-center mb-6">\( \textcolor{blue}{5}x^2 + \textcolor{green}{3}x - \textcolor{red}{7} \)</p>
+                    <div class="bg-slate-100 p-4 rounded-lg">
+                        <p><span class="keyword">Coefficient:</span> The number in front of a variable.</p>
+                        <p class="mt-2">The coefficients in this example are <span class="emphasis-highlight">5</span> and <span class="emphasis-highlight">3</span>.</p>
+                    </div>
+                     <div class="bg-slate-100 p-4 rounded-lg">
+                        <p><span class="keyword">Constant:</span> A term without a variable (just a number).</p>
+                        <p class="mt-2">The constant in this example is <span class="emphasis-highlight">-7</span>.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 5: Naming by Terms -->
+            <div class="slide">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">Naming Polynomials by Number of Terms</h2>
+                 <div class="w-full max-w-4xl space-y-3 text-left text-xl">
+                    <div class="bg-slate-100 p-4 rounded-lg">
+                        <p><span class="keyword">Monomial:</span> A polynomial with <span class="emphasis-highlight">one term</span>. (e.g., \(7\) or \(6x^2\))</p>
+                    </div>
+                    <div class="bg-slate-100 p-4 rounded-lg">
+                        <p><span class="keyword">Binomial:</span> A polynomial with <span class="emphasis-highlight">two terms</span>. (e.g., \(3t-1\))</p>
+                    </div>
+                    <div class="bg-slate-100 p-4 rounded-lg">
+                        <p><span class="keyword">Trinomial:</span> A polynomial with <span class="emphasis-highlight">three terms</span>. (e.g., \(2x^2+3x-7\))</p>
+                    </div>
+                     <div class="bg-slate-100 p-4 rounded-lg">
+                        <p><span class="keyword">Polynomial:</span> Any expression with 4 or more terms.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 6: Degree of a Term -->
+            <div class="slide">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">What is the "Degree"? (Part 1)</h2>
+                 <div class="w-full max-w-4xl space-y-4 text-left text-xl">
+                    <div class="bg-violet-50 border-l-4 border-violet-500 p-6 rounded-r-lg">
+                        <p><span class="keyword">Degree of a Term:</span> The <span class="emphasis-highlight">exponent</span> on the variable in that term.</p>
+                    </div>
+                    <p class="text-2xl font-mono bg-slate-50 p-4 rounded-lg">The term \(8x^\textcolor{red}{3}\) has a degree of 3.</p>
+                    <p class="text-2xl font-mono bg-slate-50 p-4 rounded-lg">The term \(5x\) (which is \(5x^\textcolor{red}{1}\)) has a degree of 1.</p>
+                </div>
+            </div>
+            
+            <!-- Slide 7: Degree of a Polynomial -->
+            <div class="slide">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">What is the "Degree"? (Part 2)</h2>
+                 <div class="w-full max-w-4xl space-y-4 text-left text-xl">
+                     <div class="bg-violet-50 border-l-4 border-violet-500 p-6 rounded-r-lg">
+                        <p><span class="keyword">Degree of a Polynomial:</span> The <span class="emphasis-highlight">largest degree</span> of any of its terms.</p>
+                    </div>
+                    <p class="text-2xl font-mono bg-slate-50 p-4 rounded-lg">The polynomial \(2x^\textcolor{red}{5} + 9x^2 - 1\) has a degree of 5.</p>
+                     <p class="text-2xl font-mono bg-slate-50 p-4 rounded-lg">The polynomial \(3x - 4x^\textcolor{red}{2}\) has a degree of 2.</p>
+                </div>
+            </div>
+
+            <!-- Slide 8: Standard Form -->
+             <div class="slide">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">Standard Form</h2>
+                <div class="w-full max-w-4xl space-y-4 text-left text-xl">
+                    <div class="bg-violet-50 border-l-4 border-violet-500 p-6 rounded-r-lg">
+                        <p><span class="keyword">Standard Form:</span> Writing the terms in order from <span class="emphasis-highlight">highest to lowest</span> degree (exponent).</p>
+                    </div>
+                    <p class="text-2xl font-mono bg-slate-50 p-4 rounded-lg">Not Standard: \(-4 + 3x + 9x^2\)<br>Standard Form: \(9x^2 + 3x - 4\)</p>
+                    <div class="bg-slate-100 p-4 rounded-lg">
+                        <p><span class="keyword">Leading Coefficient:</span> Once in standard form, it's the coefficient of the <span class="emphasis-highlight">first term</span>.</p>
+                        <p class="mt-2">For \(\textcolor{red}{9}x^2 + 3x - 4\), the leading coefficient is 9.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Slide 9: Let's Practice Together -->
+            <div class="slide">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Let's Practice Together</h2>
+                <p class="text-xl text-gray-600 mb-6">Let's identify all the parts of this polynomial: \(4x - 2x^3 + 8\)</p>
+                <div class="w-full max-w-4xl text-left bg-slate-50 p-4 rounded-lg border text-xl space-y-2">
+                    <p><strong>Standard Form:</strong> \(-2x^3 + 4x + 8\)</p>
+                    <p><strong>Degree:</strong> 3 (from the \(x^3\) term)</p>
+                    <p><strong>Leading Coefficient:</strong> -2</p>
+                    <p><strong>Number of Terms:</strong> 3</p>
+                    <p><strong>Name by Terms:</strong> Trinomial</p>
+                    <p><strong>Coefficients:</strong> -2, 4</p>
+                    <p><strong>Constant:</strong> 8</p>
+                </div>
+            </div>
+            
+            <!-- Slide 10: You Do -->
+            <div class="slide">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6"><span class="bg-green-100 px-2 py-1 rounded">You Do</span>: On Your Own</h2>
+                <p class="text-xl text-gray-600 mb-6">Identify all the parts of this polynomial:</p>
+                <div class="w-full max-w-3xl bg-slate-50 p-6 rounded-lg border">
+                    <p class="text-3xl font-mono text-center">\(7 + 5x^2 - 9x\)</p>
+                    <div class="text-center mt-6">
+                        <button onclick="document.getElementById('you-do-answer').style.display='block'" class="bg-violet-600 text-white px-4 py-2 rounded hover:bg-violet-700">Show Answer</button>
+                        <div id="you-do-answer" class="text-left mt-4 text-lg hidden-answer">
+                            <p><strong>Standard Form:</strong> \(5x^2 - 9x + 7\)</p>
+                            <p><strong>Degree:</strong> 2</p>
+                            <p><strong>Leading Coefficient:</strong> 5</p>
+                            <p><strong>Name by Terms:</strong> Trinomial</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 11: Independent Practice -->
+            <div class="slide">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Independent Practice</h2>
+                <p class="text-lg text-gray-600 mb-6">Try these problems on your handout.</p>
+                <div class="w-full max-w-5xl grid grid-cols-1 md:grid-cols-3 gap-4 text-left">
+                    <div class="bg-green-100 border-2 border-green-300 p-4 rounded-lg">
+                        <p class="font-bold text-green-800 text-lg mb-2">Green Level</p>
+                        <p>For \(2x - 5\), name the coefficients and the constant.</p>
+                    </div>
+                    <div class="bg-yellow-100 border-2 border-yellow-300 p-4 rounded-lg">
+                        <p class="font-bold text-yellow-800 text-lg mb-2">Yellow Level</p>
+                        <p>For \(4x^2 - x + 9\), find the degree, leading coefficient, and name by terms.</p>
+                    </div>
+                    <div class="bg-red-100 border-2 border-red-300 p-4 rounded-lg">
+                        <p class="font-bold text-red-800 text-lg mb-2">Red Level</p>
+                        <p>Write \(8 - x^3 + 2x\) in standard form and find the leading coefficient.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 12: Exit Ticket -->
+            <div class="slide">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">Exit Ticket</h2>
+                <p class="text-2xl text-gray-700 mb-8">On your handout or a piece of paper, identify the following for the polynomial below:</p>
+                <div class="bg-slate-100 p-6 rounded-lg text-4xl font-mono">
+                    \(6x - 1 + 3x^4\)
+                </div>
+                <p class="mt-4 text-xl">a) Standard Form<br>b) Degree<br>c) Leading Coefficient<br>d) Name by Terms</p>
+            </div>
+
+            <!-- Navigation -->
+            <button id="prevBtn" class="nav-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+            </button>
+            <button id="nextBtn" class="nav-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+            </button>
+            <div id="slideCounter" class="slide-counter"></div>
+        </div>
+    </div>
+    
+    <!-- Printable Version -->
+    <div class="printable-version"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const slides = document.querySelectorAll('.slide');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const slideCounter = document.getElementById('slideCounter');
+            let currentSlide = 0;
+
+            function showSlide(n) {
+                slides.forEach((slide, index) => {
+                    slide.classList.toggle('active', index === n);
+                });
+                slideCounter.textContent = `${n + 1} / ${slides.length}`;
+                prevBtn.style.display = n === 0 ? 'none' : 'flex';
+                nextBtn.style.display = n === slides.length - 1 ? 'none' : 'flex';
+            }
+
+            function nextSlide() {
+                if (currentSlide < slides.length - 1) {
+                    currentSlide++;
+                    showSlide(currentSlide);
+                }
+            }
+
+            function prevSlide() {
+                if (currentSlide > 0) {
+                    currentSlide--;
+                    showSlide(currentSlide);
+                }
+            }
+            
+            nextBtn.addEventListener('click', nextSlide);
+            prevBtn.addEventListener('click', prevSlide);
+            
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight') nextSlide();
+                else if (e.key === 'ArrowLeft') prevSlide();
+            });
+
+            const printButton = document.getElementById('print-button');
+            printButton.addEventListener('click', async () => {
+                const printableContainer = document.querySelector('.printable-version');
+                let header = `<div class="print-header"><span>Name: _________________________</span><span>Date: _________________________</span></div>`;
+                let pagesContent = '';
+
+                slides.forEach(slide => {
+                    const slideClone = slide.cloneNode(true);
+                    const hiddenAnswer = slideClone.querySelector('.hidden-answer');
+                    if (hiddenAnswer) {
+                        hiddenAnswer.style.display = 'block';
+                    }
+                    pagesContent += '<div class="print-page">' + slideClone.innerHTML + '</div>';
+                });
+                
+                printableContainer.innerHTML = header + '<div class="print-grid">' + pagesContent + '</div>';
+
+                await MathJax.typesetPromise([printableContainer]);
+                
+                setTimeout(() => window.print(), 250);
+            });
+            
+            showSlide(currentSlide);
+        });
+    </script>
+</body>
+</html>
+
