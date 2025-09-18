@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 3 Day 3 Slides: Adding & Subtracting Decimals</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5;
+        }
+        .slide-container {
+            width: 100%;
+            max-width: 1050px;
+            aspect-ratio: 16 / 9;
+            margin: 1rem auto;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        .slide {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 3rem 4rem; /* Increased vertical padding */
+            text-align: center;
+            background-color: white;
+            height: 100%;
+            width: 100%;
+            overflow-y: auto; /* Add scroll for overflow */
+        }
+        .slide.active {
+            display: flex;
+        }
+        .nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.3);
+            color: white;
+            border: none;
+            padding: 0.75rem;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.2s;
+        }
+        .nav-button:hover {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        #prevBtn { left: 1rem; }
+        #nextBtn { right: 1rem; }
+        .slide-counter {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.875rem;
+            z-index: 10;
+        }
+        .title-slide {
+            background: linear-gradient(135deg, #7c3aed, #a855f7);
+            color: white;
+        }
+        .emphasis-highlight {
+            background-color: #fef9c3;
+            padding: 0.1em 0.3em;
+            border-radius: 0.25em;
+            font-weight: 600;
+        }
+        .keyword {
+            color: #6d28d9; /* Violet color */
+            font-weight: 600;
+        }
+        .number-display {
+             font-family: 'Roboto Mono', monospace;
+             font-size: 2rem;
+             background-color: #e5e7eb;
+             padding: 0.5rem 1rem;
+             border-radius: 0.5rem;
+             display: inline-block;
+        }
+        /* Print Styles */
+        .printable-version { display: none; }
+        @media print {
+            body { background-color: white; color: black; }
+            .non-printable { display: none !important; }
+            .printable-version { display: block !important; }
+            .print-card {
+                border: 2px solid #e5e7eb;
+                border-radius: 0.5rem;
+                padding: 1.5rem;
+                margin-bottom: 1.5rem;
+                page-break-inside: avoid;
+            }
+            .print-card h2 {
+                font-size: 1.5rem;
+                font-weight: 700;
+                border-bottom: 2px solid #e5e7eb;
+                padding-bottom: 0.5rem;
+                margin-bottom: 1rem;
+                color: black;
+            }
+            .fill-in-blank {
+                display: inline-block;
+                width: 120px;
+                border-bottom: 1px solid black;
+                margin: 0 4px;
+                text-align: center;
+                font-weight: bold;
+            }
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen p-4">
+
+    <div class="non-printable w-full max-w-4xl">
+        <div class="flex flex-col sm:flex-row justify-between items-center mb-4">
+            <div>
+                <h1 class="text-3xl font-bold text-gray-800">Unit 3 Day 3: Adding & Subtracting Decimals</h1>
+                <p class="text-gray-600">Use the arrows or your keyboard to navigate the slides.</p>
+            </div>
+            <button onclick="window.print()" class="bg-green-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-green-700 transition-colors mt-2 sm:mt-0">
+                Print Notes
+            </button>
+        </div>
+    </div>
+
+    <div class="slide-container non-printable">
+        <!-- Slide 1: Title -->
+        <div class="slide active title-slide">
+            <h1 class="text-5xl font-bold mb-4">Unit 3: The World of Decimals</h1>
+            <p class="text-2xl">Day 3: Adding & Subtracting</p>
+        </div>
+
+        <!-- Slide 2: The Hook -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8">Quick Shopping Trip!</h2>
+            <div class="flex justify-around items-center w-full max-w-4xl">
+                <div class="text-center">
+                     <p class="text-2xl">Snack</p>
+                     <p class="text-5xl font-mono text-violet-600">$1.25</p>
+                </div>
+                <p class="text-5xl font-bold">+</p>
+                <div class="text-center">
+                    <p class="text-2xl">Drink</p>
+                    <p class="text-5xl font-mono text-violet-600">$2.50</p>
+                </div>
+            </div>
+            <p class="text-2xl mt-12">How much will you spend in total?</p>
+        </div>
+        
+        <!-- Slide 3: Objective -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8">Today's Objectives</h2>
+            <ul class="list-disc text-left text-2xl space-y-6 text-gray-700 max-w-3xl">
+                <li>Learn the <span class="emphasis-highlight">Golden Rule</span> for adding and subtracting decimals.</li>
+                <li>Practice adding decimals with and without regrouping.</li>
+                <li>Practice subtracting decimals with and without borrowing.</li>
+            </ul>
+        </div>
+
+        <!-- Slide 4: The Golden Rule -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">The Golden Rule of Decimals</h2>
+            <div class="bg-violet-50 border-l-4 border-violet-500 p-8 rounded-lg max-w-4xl">
+                <p class="text-4xl text-violet-800">When you add or subtract decimals, you MUST <span class="font-bold">line up the decimal points!</span></p>
+            </div>
+        </div>
+        
+        <!-- Slide 5: Visualizing the Rule -->
+        <div class="slide">
+             <h2 class="text-3xl font-bold text-gray-800 mb-6">Why Does It Matter?</h2>
+             <p class="text-2xl mb-6 max-w-3xl">Lining up the decimals ensures you are adding and subtracting digits with the same place value. (ones with ones, tenths with tenths, etc.)</p>
+            <div class="flex w-full justify-around items-center">
+                <div class="text-red-600">
+                    <h3 class="text-3xl font-bold mb-4">WRONG \(\times\)</h3>
+                    <pre class="text-4xl font-mono bg-red-50 p-4 rounded-lg">  1.2<br>+ 0.35<br>------</pre>
+                </div>
+                <div class="text-green-600">
+                    <h3 class="text-3xl font-bold mb-4">RIGHT \(\checkmark\)</h3>
+                    <pre class="text-4xl font-mono bg-green-50 p-4 rounded-lg">  1.20<br>+ 0.35<br>------</pre>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 6: I Do - Addition -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">I Do: Adding Decimals</h2>
+            <p class="text-2xl mb-6">Let's solve <span class="font-mono">3.75 + 1.8</span>.</p>
+            <div class="text-5xl font-mono text-left bg-gray-50 p-8 rounded-lg">
+                <p class="ml-4">3.75</p>
+                <p>+ 1.8<span class="text-red-500">0</span> \(\leftarrow\) <span class="text-xl font-sans text-gray-600">Annex a zero to line everything up!</span></p>
+                <hr class="border-2 border-black my-2">
+                <p class="ml-4 font-bold text-violet-700">5.55</p>
+            </div>
+            <p class="text-xl mt-4">Just bring the decimal point straight down in your answer!</p>
+        </div>
+
+        <!-- Slide 7: I Do - Subtraction -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">I Do: Subtracting Decimals</h2>
+            <p class="text-2xl mb-6">Let's solve <span class="font-mono">8.5 - 2.35</span>.</p>
+            <div class="text-5xl font-mono text-left bg-gray-50 p-8 rounded-lg">
+                <p class="ml-4">8.5<span class="text-red-500">0</span> \(\leftarrow\) <span class="text-xl font-sans text-gray-600">You MUST annex a zero here!</span></p>
+                <p>- 2.35</p>
+                <hr class="border-2 border-black my-2">
+                <p class="ml-4 font-bold text-violet-700">6.15</p>
+            </div>
+            <p class="text-xl mt-4">You may need to borrow, just like with whole numbers.</p>
+        </div>
+
+        <!-- Slide 8: We Do -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">We Do: Let's Try Together</h2>
+            <div class="flex w-full max-w-5xl justify-around">
+                <div class="text-3xl">
+                    <p class="mb-4">Solve: <span class="number-display">12.4 + 3.85</span></p>
+                    <pre class="text-4xl font-mono bg-gray-50 p-4 rounded-lg">  12.40<br>+  3.85<br>-------</pre>
+                </div>
+                <div class="text-3xl">
+                    <p class="mb-4">Solve: <span class="number-display">9.2 - 1.7</span></p>
+                    <pre class="text-4xl font-mono bg-gray-50 p-4 rounded-lg">  9.2<br>- 1.7<br>-----</pre>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 9: You Do -->
+        <div class="slide">
+             <h2 class="text-3xl font-bold text-gray-800 mb-6">You Do: Practice with a Partner</h2>
+             <p class="text-xl text-gray-600 mb-8">Try these two problems on your whiteboards.</p>
+             <div class="flex space-x-8 w-full justify-center">
+                <div class="bg-gray-100 p-8 rounded-lg text-2xl w-1/2">
+                    <p class="font-bold mb-4">Problem 1:</p>
+                    <p>Solve:</p>
+                    <p class="number-display mt-2">25.5 + 8.92</p>
+                </div>
+                <div class="bg-gray-100 p-8 rounded-lg text-2xl w-1/2">
+                    <p class="font-bold mb-4">Problem 2:</p>
+                    <p>Solve:</p>
+                    <p class="number-display mt-2">14 - 3.5</p>
+                </div>
+             </div>
+        </div>
+        
+        <!-- Slide 10: Independent Practice -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Independent Practice</h2>
+            <p class="text-lg text-gray-600 mb-6">Try these problems on your own.</p>
+            <div class="w-full max-w-4xl grid grid-cols-3 gap-4 text-left text-lg">
+                <div class="bg-green-100 border-2 border-green-300 p-4 rounded-lg">
+                    <p class="font-bold text-green-800 text-xl mb-2">Green Level</p>
+                    <p>Solve: <span class="font-mono">0.6 + 0.3</span></p>
+                </div>
+                <div class="bg-yellow-100 border-2 border-yellow-300 p-4 rounded-lg">
+                    <p class="font-bold text-yellow-800 text-xl mb-2">Yellow Level</p>
+                    <p>Solve: <span class="font-mono">12.5 - 4.25</span></p>
+                </div>
+                <div class="bg-red-100 border-2 border-red-300 p-4 rounded-lg">
+                    <p class="font-bold text-red-800 text-xl mb-2">Red Level</p>
+                    <p>You have $20.00. You buy a sandwich for $8.50 and a drink for $2.75. How much change do you get back?</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Exit Ticket -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Exit Ticket</h2>
+            <p class="text-2xl text-gray-700 mb-8 max-w-3xl">On a piece of paper, solve these two problems.</p>
+            <div class="bg-gray-100 p-8 rounded-lg text-left text-2xl space-y-6 w-full max-w-2xl">
+                <p>1. Solve: <span class="font-mono font-bold">5.8 + 2.45</span></p>
+                <p>2. Solve: <span class="font-mono font-bold">18 - 6.75</span></p>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <button id="prevBtn" class="nav-button">&lt;</button>
+        <button id="nextBtn" class="nav-button">&gt;</button>
+        <div id="slideCounter" class="slide-counter"></div>
+    </div>
+
+    <!-- Printable Version -->
+    <div class="printable-version w-full max-w-4xl mx-auto p-4">
+        <div class="print-card" style="background: linear-gradient(135deg, #7c3aed, #a855f7); color: white; text-align: center;">
+            <h1 class="text-4xl font-bold mb-2">Unit 3: The World of Decimals</h1>
+            <p class="text-xl">Day 3: Adding & Subtracting Decimals - Notes</p>
+        </div>
+        
+         <div class="print-card">
+            <h2>Today's Objectives</h2>
+            <ul class="list-disc text-left text-lg space-y-2 pl-6">
+                <li>Learn the Golden Rule for adding and subtracting decimals.</li>
+                <li>Practice adding decimals.</li>
+                <li>Practice subtracting decimals.</li>
+            </ul>
+        </div>
+
+        <div class="print-card">
+            <h2>The Golden Rule</h2>
+            <p class="text-lg">When you add or subtract decimals, you MUST <span class="fill-in-blank" style="width: 250px;"></span>!</p>
+            <p class="text-lg mt-4">This makes sure you are adding and subtracting digits with the same place value.</p>
+            <div style="display: flex; width: 100%; justify-content: space-around; margin-top: 1rem;">
+                <div style="color: red; text-align: center;">
+                    <h3 style="font-size: 1.25rem; font-weight: bold; margin-bottom: 0.5rem;">WRONG \(\times\)</h3>
+                    <pre style="font-size: 1.25rem; font-family: monospace; background-color: #fee2e2; padding: 1rem; border-radius: 0.5rem;">  1.2<br>+ 0.35<br>------</pre>
+                </div>
+                <div style="color: green; text-align: center;">
+                    <h3 style="font-size: 1.25rem; font-weight: bold; margin-bottom: 0.5rem;">RIGHT \(\checkmark\)</h3>
+                    <pre style="font-size: 1.25rem; font-family: monospace; background-color: #f0fdf4; padding: 1rem; border-radius: 0.5rem;">  1.20<br>+ 0.35<br>------</pre>
+                </div>
+            </div>
+        </div>
+
+        <div class="print-card">
+            <h2>I Do: Teacher Examples</h2>
+            <p class="text-lg"><strong>Addition:</strong> 3.75 + 1.8</p>
+            <pre class="text-lg font-mono bg-gray-50 p-2 rounded-md mt-2">  3.75<br>+ 1.80<br>------<br>  <span class="fill-in-blank"></span></pre>
+            <p class="text-lg mt-4"><strong>Subtraction:</strong> 8.5 - 2.35</p>
+            <pre class="text-lg font-mono bg-gray-50 p-2 rounded-md mt-2">  8.50<br>- 2.35<br>------<br>  <span class="fill-in-blank"></span></pre>
+        </div>
+
+        <div class="print-card">
+            <h2>We Do: Guided Practice</h2>
+            <p class="mb-4 text-lg"><strong>Addition:</strong> 12.4 + 3.85 = <span class="fill-in-blank"></span></p>
+            <hr class="my-4">
+            <p class="mb-4 text-lg"><strong>Subtraction:</strong> 9.2 - 1.7 = <span class="fill-in-blank"></span></p>
+        </div>
+        
+        <div class="print-card">
+            <h2>You Do: Partner Practice</h2>
+            <p class="mb-4 text-lg"><strong>Addition:</strong> 25.5 + 8.92 = <span class="fill-in-blank"></span></p>
+            <hr class="my-4">
+            <p class="mb-4 text-lg"><strong>Subtraction:</strong> 14 - 3.5 = <span class="fill-in-blank"></span></p>
+        </div>
+        
+        <div class="print-card">
+            <h2>Independent Practice</h2>
+            <p class="mb-2 text-lg"><strong>Green:</strong> Solve: 0.6 + 0.3 = <span class="fill-in-blank"></span></p>
+            <p class="mb-2 text-lg"><strong>Yellow:</strong> Solve: 12.5 - 4.25 = <span class="fill-in-blank"></span></p>
+            <p class="text-lg"><strong>Red:</strong> You have $20.00. You buy a sandwich for $8.50 and a drink for $2.75. How much change do you get back? <span class="fill-in-blank" style="width: 200px;"></span></p>
+        </div>
+        
+        <div class="print-card">
+            <h2>Exit Ticket</h2>
+            <p class="text-lg mb-4">1. Solve: 5.8 + 2.45</p>
+            <div style="border-bottom: 1px solid black; height: 2rem; width: 100%;"></div>
+            <p class="text-lg my-4">2. Solve: 18 - 6.75</p>
+            <div style="border-bottom: 1px solid black; height: 2rem; width: 100%;"></div>
+        </div>
+
+    </div>
+
+    <footer class="text-center mt-8 text-gray-500 non-printable">
+        <p>Unit 3 Math Foundations &nbsp;&bull;&nbsp; &copy; 2025</p>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const slides = document.querySelectorAll('.slide');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const slideCounter = document.getElementById('slideCounter');
+            let currentSlide = 0;
+
+            function showSlide(n) {
+                slides.forEach(slide => slide.classList.remove('active'));
+                if (slides[n]) {
+                    slides[n].classList.add('active');
+                    slideCounter.textContent = `${n + 1} / ${slides.length}`;
+                }
+            }
+
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % slides.length;
+                showSlide(currentSlide);
+            }
+
+            function prevSlide() {
+                currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+                showSlide(currentSlide);
+            }
+
+            nextBtn.addEventListener('click', nextSlide);
+            prevBtn.addEventListener('click', prevSlide);
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight') {
+                    nextSlide();
+                } else if (e.key === 'ArrowLeft') {
+                    prevSlide();
+                }
+            });
+
+            showSlide(currentSlide);
+        });
+    </script>
+</body>
+</html>
