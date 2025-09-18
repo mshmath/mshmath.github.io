@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extra Credit - Area & Perimeter</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .worksheet-container {
+            width: 100%;
+            max-width: 8.5in;
+            margin: 0 auto;
+            padding: 0.5in;
+            background: white;
+        }
+        .section-title {
+            border-bottom: 2px solid #111827;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1d4ed8; /* Blue-700 for titles */
+        }
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2.5rem;
+        }
+        .problem-item {
+            font-size: 1.25rem;
+        }
+        .shape {
+            border: 2px solid #333;
+            position: relative;
+            margin-bottom: 0.5rem;
+            background-color: #f0f9ff;
+        }
+        .label {
+            position: absolute;
+            background: white;
+            padding: 0 4px;
+        }
+        .answer-blank {
+            display: block;
+            border-bottom: 1px solid #9ca3af;
+            margin-top: 1rem;
+            min-height: 2rem;
+            position: relative;
+        }
+        .answer-text {
+            color: #166534; /* Green-800 for answers */
+            font-weight: 600;
+            position: absolute;
+            bottom: 4px;
+        }
+        @media print {
+            body {
+                background-color: white;
+            }
+            .no-print {
+                display: none !important;
+            }
+            .answer-text {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 p-8">
+    
+    <div class="no-print max-w-4xl mx-auto mb-4 flex justify-end space-x-4">
+        <button id="showAnswersBtn" class="bg-blue-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-blue-700 transition-colors">Show Answers</button>
+        <button onclick="window.print()" class="bg-green-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-green-700 transition-colors">Print Worksheet</button>
+    </div>
+
+    <div class="worksheet-container">
+        <div class="text-center mb-10">
+            <h1 class="text-3xl font-bold text-slate-900">Extra Credit: Area & Perimeter</h1>
+            <p class="text-gray-600 mt-1">Name: _______________________________________</p>
+        </div>
+
+        <!-- Section 1: Perimeter -->
+        <section class="mb-12">
+            <h2 class="section-title">Section 1: Finding the Perimeter</h2>
+            <p class="mb-4">Find the perimeter (distance around) of each shape.</p>
+            <div class="problem-grid">
+                <div class="problem-item">
+                    <span class="font-semibold mr-2">1.</span>
+                    <div class="shape" style="width: 120px; height: 120px;">
+                        <span class="label" style="top: -15px; left: 50%; transform: translateX(-50%);">10 in</span>
+                        <span class="label" style="left: -40px; top: 50%; transform: translateY(-50%);">10 in</span>
+                    </div>
+                    Perimeter = <div class="answer-blank"><span class="answer-text hidden">40 in</span></div>
+                </div>
+                <div class="problem-item">
+                    <span class="font-semibold mr-2">2.</span>
+                    <div class="shape" style="width: 150px; height: 100px;">
+                         <span class="label" style="top: -15px; left: 50%; transform: translateX(-50%);">8 cm</span>
+                        <span class="label" style="left: -40px; top: 50%; transform: translateY(-50%);">5 cm</span>
+                    </div>
+                     Perimeter = <div class="answer-blank"><span class="answer-text hidden">26 cm</span></div>
+                </div>
+                <div class="problem-item">
+                    <span class="font-semibold mr-2">3.</span> A square with a side length of 7 ft.
+                     <div class="answer-blank"><span class="answer-text hidden">28 ft</span></div>
+                </div>
+                 <div class="problem-item">
+                    <span class="font-semibold mr-2">4.</span> A rectangle with a length of 12 m and a width of 6 m.
+                     <div class="answer-blank"><span class="answer-text hidden">36 m</span></div>
+                </div>
+                <div class="problem-item">
+                    <span class="font-semibold mr-2">5.</span> A square with a side length of 20 cm.
+                     <div class="answer-blank"><span class="answer-text hidden">80 cm</span></div>
+                </div>
+                 <div class="problem-item">
+                    <span class="font-semibold mr-2">6.</span> A rectangle with a length of 15 ft and a width of 5 ft.
+                     <div class="answer-blank"><span class="answer-text hidden">40 ft</span></div>
+                </div>
+                 <div class="problem-item">
+                    <span class="font-semibold mr-2">7.</span> A rectangle with sides of 9 m and 3 m.
+                     <div class="answer-blank"><span class="answer-text hidden">24 m</span></div>
+                </div>
+                <div class="problem-item">
+                    <span class="font-semibold mr-2">8.</span> A perfect square with one side measuring 1.5 inches.
+                     <div class="answer-blank"><span class="answer-text hidden">6 in</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Area -->
+        <section class="mb-12">
+            <h2 class="section-title">Section 2: Finding the Area</h2>
+            <p class="mb-4">Find the area (space inside) of each shape.</p>
+             <div class="problem-grid">
+                <div class="problem-item">
+                    <span class="font-semibold mr-2">1.</span>
+                    <div class="shape" style="width: 120px; height: 120px;">
+                        <span class="label" style="top: -15px; left: 50%; transform: translateX(-50%);">6 in</span>
+                        <span class="label" style="left: -40px; top: 50%; transform: translateY(-50%);">6 in</span>
+                    </div>
+                    Area = <div class="answer-blank"><span class="answer-text hidden">36 sq in</span></div>
+                </div>
+                <div class="problem-item">
+                    <span class="font-semibold mr-2">2.</span>
+                    <div class="shape" style="width: 180px; height: 90px;">
+                         <span class="label" style="top: -15px; left: 50%; transform: translateX(-50%);">10 cm</span>
+                        <span class="label" style="left: -45px; top: 50%; transform: translateY(-50%);">4 cm</span>
+                    </div>
+                     Area = <div class="answer-blank"><span class="answer-text hidden">40 sq cm</span></div>
+                </div>
+                <div class="problem-item">
+                    <span class="font-semibold mr-2">3.</span> A square with a side length of 9 ft.
+                     <div class="answer-blank"><span class="answer-text hidden">81 sq ft</span></div>
+                </div>
+                 <div class="problem-item">
+                    <span class="font-semibold mr-2">4.</span> A rectangle with a length of 11 m and a width of 5 m.
+                     <div class="answer-blank"><span class="answer-text hidden">55 sq m</span></div>
+                </div>
+                <div class="problem-item">
+                    <span class="font-semibold mr-2">5.</span> A square with a side length of 12 cm.
+                     <div class="answer-blank"><span class="answer-text hidden">144 sq cm</span></div>
+                </div>
+                <div class="problem-item">
+                    <span class="font-semibold mr-2">6.</span> A rectangle with a length of 8 yd and a width of 7 yd.
+                     <div class="answer-blank"><span class="answer-text hidden">56 sq yd</span></div>
+                </div>
+                <div class="problem-item">
+                    <span class="font-semibold mr-2">7.</span> A rectangle with sides of 20 ft and 30 ft.
+                     <div class="answer-blank"><span class="answer-text hidden">600 sq ft</span></div>
+                </div>
+                <div class="problem-item">
+                    <span class="font-semibold mr-2">8.</span> A rectangle with a length of 4 m and a width of 2.5 m.
+                     <div class="answer-blank"><span class="answer-text hidden">10 sq m</span></div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Section 3: Mixed Practice -->
+        <section class="mb-12">
+            <h2 class="section-title">Section 3: Mixed Practice</h2>
+            <p class="mb-4">Find both the area and perimeter for each shape.</p>
+            <div class="problem-grid">
+                 <div class="problem-item">
+                    <span class="font-semibold mr-2">1.</span> A square with sides of 3 ft.
+                     <p class="mt-2">Perimeter = <span class="answer-blank"><span class="answer-text hidden">12 ft</span></span></p>
+                     <p class="mt-2">Area = <span class="answer-blank"><span class="answer-text hidden">9 sq ft</span></span></p>
+                </div>
+                 <div class="problem-item">
+                    <span class="font-semibold mr-2">2.</span> A rectangle with length 15 in and width 10 in.
+                     <p class="mt-2">Perimeter = <span class="answer-blank"><span class="answer-text hidden">50 in</span></span></p>
+                     <p class="mt-2">Area = <span class="answer-blank"><span class="answer-text hidden">150 sq in</span></span></p>
+                </div>
+                 <div class="problem-item">
+                    <span class="font-semibold mr-2">3.</span> A square with sides of 5 m.
+                     <p class="mt-2">Perimeter = <span class="answer-blank"><span class="answer-text hidden">20 m</span></span></p>
+                     <p class="mt-2">Area = <span class="answer-blank"><span class="answer-text hidden">25 sq m</span></span></p>
+                </div>
+                 <div class="problem-item">
+                    <span class="font-semibold mr-2">4.</span> A rectangle with length 9 cm and width 7 cm.
+                     <p class="mt-2">Perimeter = <span class="answer-blank"><span class="answer-text hidden">32 cm</span></span></p>
+                     <p class="mt-2">Area = <span class="answer-blank"><span class="answer-text hidden">63 sq cm</span></span></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Word Problems -->
+        <section>
+            <h2 class="section-title">Section 4: Word Problems</h2>
+            <div class="space-y-8">
+                <div class="problem-item">
+                    <span class="font-semibold mr-2">1.</span>
+                    <div class="problem-content">You want to put a fence around a rectangular garden that is 20 feet long and 10 feet wide. How much fencing will you need?
+                        <div class="answer-blank"><span class="answer-text hidden">60 feet (Perimeter)</span></div>
+                    </div>
+                </div>
+                 <div class="problem-item">
+                    <span class="font-semibold mr-2">2.</span>
+                    <div class="problem-content">You want to buy carpet for a room that is 12 feet long and 10 feet wide. How much carpet will you need?
+                        <div class="answer-blank"><span class="answer-text hidden">120 square feet (Area)</span></div>
+                    </div>
+                </div>
+                 <div class="problem-item">
+                    <span class="font-semibold mr-2">3.</span>
+                    <div class="problem-content">A painting is 3 feet by 2 feet. You want to put a wooden frame around it. How many feet of wood do you need for the frame?
+                        <div class="answer-blank"><span class="answer-text hidden">10 feet (Perimeter)</span></div>
+                    </div>
+                </div>
+                 <div class="problem-item">
+                    <span class="font-semibold mr-2">4.</span>
+                    <div class="problem-content">A farmer's field is a square with sides of 100 meters. What is the area of the field?
+                        <div class="answer-blank"><span class="answer-text hidden">10,000 sq m (Area)</span></div>
+                    </div>
+                </div>
+                 <div class="problem-item">
+                    <span class="font-semibold mr-2">5.</span>
+                    <div class="problem-content">A rectangular swimming pool is 25 meters long and 10 meters wide. What is the distance you would walk if you walked all the way around the edge of the pool?
+                        <div class="answer-blank"><span class="answer-text hidden">70 meters (Perimeter)</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const showAnswersBtn = document.getElementById('showAnswersBtn');
+            const answerTexts = document.querySelectorAll('.answer-text');
+            let answersVisible = false;
+
+            showAnswersBtn.addEventListener('click', () => {
+                answersVisible = !answersVisible;
+                
+                answerTexts.forEach(answer => {
+                    if (answersVisible) {
+                        answer.classList.remove('hidden');
+                    } else {
+                        answer.classList.add('hidden');
+                    }
+                });
+
+                showAnswersBtn.textContent = answersVisible ? 'Hide Answers' : 'Show Answers';
+            });
+        });
+    </script>
+</body>
+</html>
+
