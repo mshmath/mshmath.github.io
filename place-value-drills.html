@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extra Credit - Place Value</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .worksheet-container {
+            width: 100%;
+            max-width: 8.5in;
+            margin: 0 auto;
+            padding: 0.5in;
+            background: white;
+        }
+        .section-title {
+            border-bottom: 2px solid #111827;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #4d7c0f; /* Lime-700 for titles */
+        }
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        .problem-item {
+            font-size: 1.25rem;
+        }
+        .answer-blank {
+            display: block;
+            border-bottom: 1px solid #9ca3af;
+            margin-top: 1rem;
+            min-height: 2rem;
+            position: relative;
+        }
+        .answer-text {
+            color: #166534; /* Green-800 for answers */
+            font-weight: 600;
+            position: absolute;
+            bottom: 4px;
+        }
+        @media print {
+            body {
+                background-color: white;
+            }
+            .no-print {
+                display: none !important;
+            }
+            .answer-text {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 p-8">
+    
+    <div class="no-print max-w-4xl mx-auto mb-4 flex justify-end space-x-4">
+        <button id="showAnswersBtn" class="bg-blue-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-blue-700 transition-colors">Show Answers</button>
+        <button onclick="window.print()" class="bg-green-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-green-700 transition-colors">Print Worksheet</button>
+    </div>
+
+    <div class="worksheet-container">
+        <div class="text-center mb-10">
+            <h1 class="text-3xl font-bold text-slate-900">Extra Credit: Place Value Practice</h1>
+            <p class="text-gray-600 mt-1">Name: _______________________________________</p>
+        </div>
+
+        <!-- Section 1: Identifying Place Value -->
+        <section class="mb-12">
+            <h2 class="section-title">Section 1: What's the Value?</h2>
+            <div class="problem-grid">
+                <div class="problem-item"><span class="font-semibold mr-2">1.</span> In <strong>4,582</strong>, what digit is in the hundreds place? <div class="answer-blank"><span class="answer-text hidden">5</span></div></div>
+                <div class="problem-item"><span class="font-semibold mr-2">2.</span> In <strong>19,203</strong>, what is the value of the 9? <div class="answer-blank"><span class="answer-text hidden">9,000</span></div></div>
+                <div class="problem-item"><span class="font-semibold mr-2">3.</span> In <strong>6.72</strong>, what digit is in the tenths place? <div class="answer-blank"><span class="answer-text hidden">7</span></div></div>
+                <div class="problem-item"><span class="font-semibold mr-2">4.</span> In <strong>85.14</strong>, what is the value of the 4? <div class="answer-blank"><span class="answer-text hidden">0.04 (four hundredths)</span></div></div>
+                <div class="problem-item"><span class="font-semibold mr-2">5.</span> In <strong>3,056,128</strong>, what digit is in the ten thousands place? <div class="answer-blank"><span class="answer-text hidden">5</span></div></div>
+                <div class="problem-item"><span class="font-semibold mr-2">6.</span> In <strong>123.456</strong>, what digit is in the hundredths place? <div class="answer-blank"><span class="answer-text hidden">5</span></div></div>
+            </div>
+        </section>
+
+        <!-- Section 2: Expanded Form -->
+        <section class="mb-12">
+            <h2 class="section-title">Section 2: Expanded Form</h2>
+            <p class="mb-4">Write each number in expanded form.</p>
+            <div class="problem-grid">
+                <div class="problem-item"><span class="font-semibold mr-2">1.</span> <strong>582</strong> <div class="answer-blank"><span class="answer-text hidden">500 + 80 + 2</span></div></div>
+                <div class="problem-item"><span class="font-semibold mr-2">2.</span> <strong>1,409</strong> <div class="answer-blank"><span class="answer-text hidden">1000 + 400 + 9</span></div></div>
+                <div class="problem-item"><span class="font-semibold mr-2">3.</span> <strong>32.7</strong> <div class="answer-blank"><span class="answer-text hidden">30 + 2 + 0.7</span></div></div>
+                <div class="problem-item"><span class="font-semibold mr-2">4.</span> <strong>4.58</strong> <div class="answer-blank"><span class="answer-text hidden">4 + 0.5 + 0.08</span></div></div>
+                <div class="problem-item"><span class="font-semibold mr-2">5.</span> <strong>9,060</strong> <div class="answer-blank"><span class="answer-text hidden">9000 + 60</span></div></div>
+                <div class="problem-item"><span class="font-semibold mr-2">6.</span> <strong>108.02</strong> <div class="answer-blank"><span class="answer-text hidden">100 + 8 + 0.02</span></div></div>
+            </div>
+        </section>
+        
+        <!-- Section 3: Standard Form -->
+        <section class="mb-12">
+            <h2 class="section-title">Section 3: Standard Form</h2>
+            <p class="mb-4">Write each number in standard form.</p>
+            <div class="problem-grid">
+                <div class="problem-item"><span class="font-semibold mr-2">1.</span> <strong>700 + 20 + 5</strong> <div class="answer-blank"><span class="answer-text hidden">725</span></div></div>
+                <div class="problem-item"><span class="font-semibold mr-2">2.</span> <strong>2,000 + 500 + 10 + 9</strong> <div class="answer-blank"><span class="answer-text hidden">2,519</span></div></div>
+                <div class="problem-item"><span class="font-semibold mr-2">3.</span> <strong>50 + 8 + 0.3</strong> <div class="answer-blank"><span class="answer-text hidden">58.3</span></div></div>
+                <div class="problem-item"><span class="font-semibold mr-2">4.</span> <strong>6,000 + 40 + 7</strong> <div class="answer-blank"><span class="answer-text hidden">6,047</span></div></div>
+                <div class="problem-item"><span class="font-semibold mr-2">5.</span> <strong>200 + 0.9 + 0.01</strong> <div class="answer-blank"><span class="answer-text hidden">200.91</span></div></div>
+                <div class="problem-item"><span class="font-semibold mr-2">6.</span> <strong>10 + 0.05</strong> <div class="answer-blank"><span class="answer-text hidden">10.05</span></div></div>
+            </div>
+        </section>
+
+        <!-- Section 4: Word Problems -->
+        <section>
+            <h2 class="section-title">Section 4: Word Problems</h2>
+            <div class="space-y-8">
+                <div class="problem-item">
+                    <span class="font-semibold mr-2">1.</span>
+                    <div class="problem-content">A number has a 5 in the tens place, a 2 in the ones place, and a 6 in the tenths place. What is the number?
+                        <div class="answer-blank"><span class="answer-text hidden">52.6</span></div>
+                    </div>
+                </div>
+                 <div class="problem-item">
+                    <span class="font-semibold mr-2">2.</span>
+                    <div class="problem-content">How many times greater is the value of the 2 in the number <strong>280</strong> than the value of the 2 in the number <strong>82</strong>?
+                        <div class="answer-blank"><span class="answer-text hidden">100 times (200 vs 2)</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const showAnswersBtn = document.getElementById('showAnswersBtn');
+            const answerTexts = document.querySelectorAll('.answer-text');
+            let answersVisible = false;
+
+            showAnswersBtn.addEventListener('click', () => {
+                answersVisible = !answersVisible;
+                
+                answerTexts.forEach(answer => {
+                    if (answersVisible) {
+                        answer.classList.remove('hidden');
+                    } else {
+                        answer.classList.add('hidden');
+                    }
+                });
+
+                showAnswersBtn.textContent = answersVisible ? 'Hide Answers' : 'Show Answers';
+            });
+        });
+    </script>
+</body>
+</html>
