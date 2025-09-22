@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geometry Unit 3, Day 3: Translations & Dilations</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .slide {
+            min-height: 100vh;
+            scroll-snap-align: start;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 4rem;
+        }
+        .handout-blank {
+            display: inline-block;
+            border-bottom: 1px solid #374151;
+            min-width: 60px;
+            height: 20px;
+            margin: 0 4px;
+        }
+        .handout-notes-area {
+            width: 100%;
+            height: 100px;
+            border: 1px dashed #9ca3af;
+            border-radius: 8px;
+            margin-top: 1rem;
+            padding: 8px;
+        }
+        .answer {
+            font-weight: 600;
+            color: #2563eb;
+            padding: 0 4px;
+        }
+        .coordinate-grid {
+            background-size: 50px 50px;
+            background-image:
+                linear-gradient(to right, #e5e7eb 1px, transparent 1px),
+                linear-gradient(to bottom, #e5e7eb 1px, transparent 1px);
+            border: 2px solid #9ca3af;
+        }
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+            .no-print {
+                display: none !important;
+            }
+            .slide {
+                min-height: 0;
+                page-break-after: always;
+                border-bottom: none;
+                padding-top: 2rem;
+                padding-bottom: 2rem;
+            }
+            .handout-blank {
+                min-width: 60px;
+                border-bottom: 1px solid black;
+            }
+            .handout-notes-area {
+                height: 80px;
+                border: 1px dashed black;
+            }
+            .answer {
+                visibility: hidden;
+                font-weight: normal;
+                color: black;
+            }
+            .answer::after {
+                content: "__________";
+                visibility: visible;
+                display: inline-block;
+                min-width: 60px;
+            }
+            .printable-content, .handout-notes-area {
+                display: block !important;
+            }
+            svg {
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <!-- Navigation and Print Button -->
+    <div class="no-print fixed top-0 left-0 w-full bg-white/80 backdrop-blur-sm shadow-md p-4 z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-xl font-bold text-gray-700">Geometry - Unit 3 Day 3</h1>
+            <div>
+                <button onclick="window.print()" class="bg-blue-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300">
+                    Print Handout
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mx-auto px-4 pt-24">
+        <!-- Slide 1: Title -->
+        <section class="slide flex flex-col items-center justify-center text-center">
+            <div class="w-full max-w-4xl p-8 bg-white rounded-2xl shadow-xl">
+                <h1 class="text-5xl font-bold text-blue-800">Unit 3: Symmetry & Transformations</h1>
+                <h2 class="text-3xl font-semibold text-gray-600 mt-4">Day 3: Translations & Dilations</h2>
+                <p class="mt-8 text-lg"><strong>Essential Question:</strong> How do we slide and resize figures on the coordinate plane?</p>
+            </div>
+        </section>
+
+        <!-- Slide 2: Objectives and Vocabulary -->
+        <section class="slide pt-16">
+            <div class="w-full max-w-4xl mx-auto p-8 bg-white rounded-2xl shadow-xl">
+                <h2 class="text-3xl font-bold text-blue-700 mb-6 border-b-4 border-blue-200 pb-2">Today's Goals</h2>
+                <div class="space-y-4 text-lg">
+                    <p>🎯 I will be able to translate a figure given a coordinate rule.</p>
+                    <p>🎯 I will be able to dilate a figure from the origin given a scale factor.</p>
+                </div>
+                <h3 class="text-2xl font-bold text-blue-700 mt-10 mb-4 border-b-4 border-blue-200 pb-2">Key Vocabulary</h3>
+                <ul class="list-disc list-inside space-y-3 text-lg">
+                    <li><strong class="text-blue-600">Translation:</strong> A transformation that <b class="text-purple-700"><span class="answer">slides</span></b> a figure to a new position without turning it.</li>
+                    <li><strong class="text-green-600">Dilation:</strong> A transformation that <b class="text-purple-700"><span class="answer">resizes</span></b> a figure, making it larger or smaller.</li>
+                    <li><strong>Scale Factor (k):</strong> The number you multiply the coordinates by during a dilation.</li>
+                    <li><strong>Enlargement:</strong> A dilation where the figure gets bigger (<span class="answer">k > 1</span>).</li>
+                    <li><strong>Reduction:</strong> A dilation where the figure gets smaller (<span class="answer">0 < k < 1</span>).</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Slide 3: I Do - Translations -->
+        <section class="slide pt-16">
+            <div class="w-full max-w-4xl mx-auto p-8 bg-white rounded-2xl shadow-xl">
+                <h2 class="text-3xl font-bold"><span class="bg-yellow-300 px-2 rounded">I Do:</span> Translating a Figure</h2>
+                <p class="text-lg mt-4">A translation slides every point the same distance and direction. Let's translate this triangle right 6 units and down 2 units.</p>
+                <div class="mt-6 flex flex-col md:flex-row gap-6 items-center">
+                    <div class="w-full md:w-1/2">
+                        <svg viewBox="-100 -100 200 200" class="coordinate-grid rounded-lg">
+                            <!-- Axes -->
+                            <line x1="-100" y1="0" x2="100" y2="0" stroke="#6b7280" stroke-width="2"/>
+                            <line x1="0" y1="-100" x2="0" y2="100" stroke="#6b7280" stroke-width="2"/>
+                            <!-- Preimage -->
+                            <polygon points="-80,20 -30,20 -60,70" fill="rgba(59, 130, 246, 0.5)" stroke="#1d4ed8" stroke-width="2"/>
+                            <text x="-78" y="15" fill="#1d4ed8" font-size="10">A(-8,-2)</text>
+                            <!-- Image -->
+                            <polygon points="-20,0 30,0 0,50" fill="rgba(22, 163, 74, 0.5)" stroke="#15803d" stroke-width="2"/>
+                             <text x="-18" y="-5" fill="#15803d" font-size="10">A'(-2,-4)</text>
+                        </svg>
+                    </div>
+                    <div class="w-full md:w-1/2 text-lg">
+                        <p>Preimage A: (-8, -2)</p>
+                        <p>Image A': (-2, -4)</p>
+                        <p class="mt-4">We added 6 to the x-coordinate (-8 + 6 = -2) and subtracted 2 from the y-coordinate (-2 - 2 = -4).</p>
+                        <p class="mt-4 p-3 bg-blue-100 rounded-lg font-mono font-bold">Rule: (x, y) → (x + 6, y - 2)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 4: We Do - Translations -->
+        <section class="slide pt-16">
+            <div class="w-full max-w-4xl mx-auto p-8 bg-white rounded-2xl shadow-xl">
+                 <h2 class="text-3xl font-bold"><span class="bg-green-300 px-2 rounded">We Do:</span> Applying a Translation Rule</h2>
+                 <p class="text-lg mt-4">Let's translate the trapezoid using the rule <b class="font-mono">(x, y) → (x - 5, y + 7)</b>. What does this rule tell us to do?</p>
+                 <div class="mt-6 flex flex-col md:flex-row gap-6 items-center">
+                    <div class="w-full md:w-1/2">
+                        <svg viewBox="-100 -100 200 200" class="coordinate-grid rounded-lg">
+                            <!-- Axes -->
+                            <line x1="-100" y1="0" x2="100" y2="0" stroke="#6b7280" stroke-width="2"/>
+                            <line x1="0" y1="-100" x2="0" y2="100" stroke="#6b7280" stroke-width="2"/>
+                             <!-- Preimage -->
+                            <polygon points="20,-80 80,-80 60,-40 40,-40" fill="rgba(59, 130, 246, 0.5)" stroke="#1d4ed8" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <div class="w-full md:w-1/2 text-lg">
+                        <p>A(2, -8) → A'(<span class="answer">-3</span>, <span class="answer">-1</span>)</p>
+                        <p>B(8, -8) → B'(<span class="answer">3</span>, <span class="answer">-1</span>)</p>
+                        <p>C(6, -4) → C'(<span class="answer">1</span>, <span class="answer">3</span>)</p>
+                        <p>D(4, -4) → D'(<span class="answer">-1</span>, <span class="answer">3</span>)</p>
+                        <p class="mt-4 p-3 bg-green-100 rounded-lg">The rule means slide <b class="text-purple-700"><span class="answer">left 5</span></b> and <b class="text-purple-700"><span class="answer">up 7</span></b>.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 5: You Do - Dilations (Enlargement) -->
+        <section class="slide pt-16">
+            <div class="w-full max-w-4xl mx-auto p-8 bg-white rounded-2xl shadow-xl">
+                <h2 class="text-3xl font-bold"><span class="bg-red-300 px-2 rounded">You Do:</span> Dilation by k = 2</h2>
+                <p class="text-lg mt-4">Now it's your turn! A dilation resizes a figure. Multiply every coordinate by the scale factor, k. Here, k=2, so it's an enlargement.</p>
+                <div class="mt-6 flex flex-col md:flex-row gap-6 items-center">
+                    <div class="w-full md:w-1/2">
+                        <svg viewBox="-100 -100 200 200" class="coordinate-grid rounded-lg">
+                            <!-- Axes -->
+                            <line x1="-100" y1="0" x2="100" y2="0" stroke="#6b7280" stroke-width="2"/>
+                            <line x1="0" y1="-100" x2="0" y2="100" stroke="#6b7280" stroke-width="2"/>
+                            <!-- Preimage -->
+                            <polygon points="20,-10 50,-10 30,-40" fill="rgba(59, 130, 246, 0.5)" stroke="#1d4ed8" stroke-width="2"/>
+                        </svg>
+                    </div>
+                     <div class="w-full md:w-1/2 text-lg">
+                        <p>A(2, 1) → A':(<span class="handout-blank"></span>, <span class="handout-blank"></span>)</p>
+                        <p>B(5, 1) → B':(<span class="handout-blank"></span>, <span class="handout-blank"></span>)</p>
+                        <p>C(3, 4) → C':(<span class="handout-blank"></span>, <span class="handout-blank"></span>)</p>
+                        <p class="mt-4 p-3 bg-red-100 rounded-lg font-mono font-bold">Rule: (x, y) → (2x, 2y)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 6: I Do - Dilations (Reduction) -->
+        <section class="slide pt-16">
+            <div class="w-full max-w-4xl mx-auto p-8 bg-white rounded-2xl shadow-xl">
+                 <h2 class="text-3xl font-bold"><span class="bg-yellow-300 px-2 rounded">I Do:</span> Dilation by k = \(\frac{1}{2}\)</h2>
+                 <p class="text-lg mt-4">When the scale factor is between 0 and 1, the image is a <span class="answer">reduction</span> (it gets smaller). Let's dilate by k = 0.5.</p>
+                 <div class="mt-6 flex flex-col md:flex-row gap-6 items-center">
+                    <div class="w-full md:w-1/2">
+                        <svg viewBox="-100 -100 200 200" class="coordinate-grid rounded-lg">
+                            <!-- Axes -->
+                            <line x1="-100" y1="0" x2="100" y2="0" stroke="#6b7280" stroke-width="2"/>
+                            <line x1="0" y1="-100" x2="0" y2="100" stroke="#6b7280" stroke-width="2"/>
+                            <!-- Preimage -->
+                            <polygon points="-80,20 -20,80 -80,80" fill="rgba(59, 130, 246, 0.5)" stroke="#1d4ed8" stroke-width="2"/>
+                            <!-- Image -->
+                            <polygon points="-40,10 -10,40 -40,40" fill="rgba(22, 163, 74, 0.5)" stroke="#15803d" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <div class="w-full md:w-1/2 text-lg">
+                        <p>Preimage: (-8, -2)</p>
+                        <p>Image: (-4, -1)</p>
+                        <p class="mt-4">We multiply each coordinate by 0.5.</p>
+                        <p class="mt-4 p-3 bg-yellow-100 rounded-lg font-mono font-bold">Rule: (x, y) → (0.5x, 0.5y)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 7: We Do - Finding Scale Factor -->
+        <section class="slide pt-16">
+            <div class="w-full max-w-4xl mx-auto p-8 bg-white rounded-2xl shadow-xl">
+                <h2 class="text-3xl font-bold"><span class="bg-green-300 px-2 rounded">We Do:</span> Find the Scale Factor</h2>
+                <p class="text-lg mt-4">Here, the dilation made the figure smaller. We call this a <strong>reduction</strong>. Let's find the scale factor (k) using the same rule as before.</p>
+                <div class="mt-6 flex flex-col md:flex-row gap-8 items-center">
+                     <div class="w-full md:w-1/2">
+                         <svg viewBox="-150 -150 300 300" class="coordinate-grid rounded-lg">
+                             <!-- Axes -->
+                             <line x1="-150" y1="0" x2="150" y2="0" stroke="#6b7280" stroke-width="2"/>
+                             <line x1="0" y1="-150" x2="0" y2="150" stroke="#6b7280" stroke-width="2"/>
+                             <!-- Preimage (Big) -->
+                             <polygon points="-120,40 100,120 -40,-100" fill="rgba(59, 130, 246, 0.5)" stroke="#1d4ed8" stroke-width="2"/>
+                             <text x="-130" y="30" fill="#1d4ed8" font-size="12" font-weight="bold">Preimage A(-12, 4)</text>
+                             <!-- Image (Small) -->
+                             <polygon points="-30,10 25,30 -10,-25" fill="rgba(22, 163, 74, 0.5)" stroke="#15803d" stroke-width="2"/>
+                             <text x="-28" y="-5" fill="#15803d" font-size="12" font-weight="bold">Image A'(-3, 1)</text>
+                         </svg>
+                     </div>
+                     <div class="w-full md:w-1/2 text-lg space-y-4">
+                        <div>
+                            <h4 class="font-bold text-xl mb-2">The Rule:</h4>
+                            <p class="text-center p-3 bg-gray-200 rounded-lg font-mono font-bold text-xl">k = \(\frac{\text{New}}{\text{Old}}\)</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-xl mb-2">Step-by-Step:</h4>
+                            <ol class="list-decimal list-inside space-y-3">
+                                <li>Notice the image is smaller, so we expect a scale factor <strong>between 0 and 1</strong>.</li>
+                                <li>Pick a matching pair of points: <br>A(-12, 4) and A'(-3, 1).</li>
+                                <li>Compare their x-coordinates: <br> k = \(\frac{-3}{-12}\) = \(\frac{1}{4}\) or <span class="answer">0.25</span></li>
+                                <li>Check with the y-coordinates: <br> k = \(\frac{1}{4}\) = <span class="answer">0.25</span></li>
+                            </ol>
+                        </div>
+                        <p class="mt-4 pt-4 border-t">The scale factor is <b class="text-purple-700 text-2xl">k = \(\frac{1}{4}\)</b>. Since 0 < k < 1, this is a <span class="answer">reduction</span>.</p>
+                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 8: You Do - Finding Scale Factor (Enlargement) -->
+        <section class="slide pt-16">
+            <div class="w-full max-w-4xl mx-auto p-8 bg-white rounded-2xl shadow-xl">
+                <h2 class="text-3xl font-bold"><span class="bg-red-300 px-2 rounded">You Do:</span> Find the Scale Factor</h2>
+                <p class="text-lg mt-4">Now it's your turn. This time the image is an <strong>enlargement</strong>. Use the same method to find the scale factor.</p>
+                <div class="mt-6 flex flex-col md:flex-row gap-8 items-center">
+                     <div class="w-full md:w-1/2">
+                         <svg viewBox="-150 -150 300 300" class="coordinate-grid rounded-lg">
+                             <!-- Axes -->
+                             <line x1="-150" y1="0" x2="150" y2="0" stroke="#6b7280" stroke-width="2"/>
+                             <line x1="0" y1="-150" x2="0" y2="150" stroke="#6b7280" stroke-width="2"/>
+                             <!-- Preimage (Small) -->
+                             <polygon points="20,10 50,10 30,40" fill="rgba(59, 130, 246, 0.5)" stroke="#1d4ed8" stroke-width="2"/>
+                             <text x="10" y="5" fill="#1d4ed8" font-size="12" font-weight="bold">P(2, 1)</text>
+                             <!-- Image (Big) -->
+                             <polygon points="60,30 150,30 90,120" fill="rgba(22, 163, 74, 0.5)" stroke="#15803d" stroke-width="2"/>
+                             <text x="50" y="25" fill="#15803d" font-size="12" font-weight="bold">P'(6, 3)</text>
+                         </svg>
+                     </div>
+                     <div class="w-full md:w-1/2 text-lg space-y-4">
+                        <div>
+                            <h4 class="font-bold text-xl mb-2">The Rule:</h4>
+                            <p class="text-center p-3 bg-gray-200 rounded-lg font-mono font-bold text-xl">k = \(\frac{\text{New}}{\text{Old}}\)</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-xl mb-2">Your Steps:</h4>
+                            <ol class="list-decimal list-inside space-y-3">
+                                <li>Pick a matching pair of points: <br>P(2, 1) and P'(<span class="handout-blank"></span>, <span class="handout-blank"></span>).</li>
+                                <li>Compare the x-coordinates: <br> k = \(\frac{\text{New X}}{\text{Old X}}\) = \(\frac{?}{?}\) = <span class="handout-blank"></span></li>
+                                <li>Check with the y-coordinates: <br> k = \(\frac{\text{New Y}}{\text{Old Y}}\) = \(\frac{?}{?}\) = <span class="handout-blank"></span></li>
+                            </ol>
+                        </div>
+                        <p class="mt-4 pt-4 border-t">The scale factor is <b class="text-purple-700">k = <span class="handout-blank"></span></b>. Since k > 1, this is an <span class="answer">enlargement</span>.</p>
+                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 9: Rules Summary -->
+        <section class="slide pt-16">
+            <div class="w-full max-w-4xl mx-auto p-8 bg-white rounded-2xl shadow-xl">
+                 <h2 class="text-3xl font-bold text-blue-700 mb-6 border-b-4 border-blue-200 pb-2">Transformation Rules Summary</h2>
+                 <p class="text-lg">Let's summarize today's rules. Remember, translations, reflections, and rotations are <b class="text-purple-700"><span class="answer">rigid motions</span></b> (size and shape don't change). Dilation is <b class="text-purple-700"><span class="answer">not</span></b> a rigid motion.</p>
+                 <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6 font-mono text-lg">
+                    <div class="bg-gray-100 p-4 rounded-lg">
+                        <h4 class="font-bold text-xl mb-3 text-gray-800">Translations</h4>
+                        <p>(x, y) → (x + a, y + b)</p>
+                        <p class="mt-2 text-sm not-font-mono">Slides right/left by 'a'</p>
+                        <p class="text-sm not-font-mono">Slides up/down by 'b'</p>
+                    </div>
+                     <div class="bg-gray-100 p-4 rounded-lg">
+                        <h4 class="font-bold text-xl mb-3 text-gray-800">Dilations (from origin)</h4>
+                        <p>(x, y) → (kx, ky)</p>
+                        <p class="mt-2 text-sm not-font-mono">k > 1: Enlargement</p>
+                        <p class="text-sm not-font-mono">0 < k < 1: Reduction</p>
+                    </div>
+                 </div>
+                 <div class="mt-6 handout-notes-area printable-content">
+                    <h4 class="font-bold">Important Note:</h4>
+                    <p>When a figure is dilated, the new figure is <b class="text-purple-700"><span class="answer">similar</span></b> to the original, but not congruent (unless k=1).</p>
+                 </div>
+            </div>
+        </section>
+
+        <!-- Slide 10: Independent Practice -->
+        <section class="slide pt-16">
+            <div class="w-full max-w-4xl mx-auto p-8 bg-white rounded-2xl shadow-xl">
+                <h2 class="text-3xl font-bold text-blue-700 mb-6 border-b-4 border-blue-200 pb-2">Independent Practice</h2>
+                <div class="mt-6">
+                    <h3 class="text-2xl font-semibold flex items-center"><span class="w-8 h-8 rounded-full bg-green-500 mr-3"></span>Level: Green</h3>
+                    <div class="mt-4 pl-11 space-y-2 text-lg border-l-4 border-green-500">
+                       <p><strong>1.</strong> Point A(3, 8) is translated by the rule (x, y) → (x - 4, y + 2). What are the coordinates of A'?</p>
+                       <p><strong>2.</strong> Point B(10, -6) is dilated by a scale factor of k = 0.5. What are the coordinates of B'?</p>
+                       <div class="handout-notes-area printable-content"></div>
+                    </div>
+                </div>
+                 <div class="mt-8">
+                    <h3 class="text-2xl font-semibold flex items-center"><span class="w-8 h-8 rounded-full bg-yellow-400 mr-3"></span>Level: Yellow</h3>
+                    <div class="mt-4 pl-11 space-y-2 text-lg border-l-4 border-yellow-400">
+                       <p><strong>3.</strong> Triangle CDE has vertices C(0,0), D(2,4), and E(4,0). Find the coordinates of the image after a dilation with k = 3.</p>
+                       <p><strong>4.</strong> A point P(-3, 5) is translated to P'(2, 1). Write the coordinate rule for this translation.</p>
+                       <div class="handout-notes-area printable-content"></div>
+                    </div>
+                </div>
+                 <div class="mt-8">
+                    <h3 class="text-2xl font-semibold flex items-center"><span class="w-8 h-8 rounded-full bg-red-500 mr-3"></span>Level: Red</h3>
+                    <div class="mt-4 pl-11 space-y-2 text-lg border-l-4 border-red-500">
+                       <p><strong>5.</strong> A rectangle's image after a dilation has vertices at (0,0), (10,0), (10,6), and (0,6). If the scale factor was 2, what were the coordinates of the original preimage?</p>
+                       <p><strong>6.</strong> Is it possible for a translated figure to be in the same location as the original? If so, how? Explain.</p>
+                       <div class="handout-notes-area printable-content"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Slide 11: Exit Ticket -->
+        <section class="slide pt-16">
+            <div class="w-full max-w-4xl mx-auto p-8 bg-white rounded-2xl shadow-xl">
+                <h2 class="text-3xl font-bold text-blue-700 mb-6 border-b-4 border-blue-200 pb-2">✅ Exit Ticket</h2>
+                <p class="text-lg">Answer the following questions to show what you've learned about translations and dilations.</p>
+                <div class="mt-6 space-y-6 text-lg">
+                    <div>
+                        <p><strong>1.</strong> A square is translated using the rule (x, y) → (x, y - 5). Describe this translation in words.</p>
+                        <div class="handout-notes-area"></div>
+                    </div>
+                    <div>
+                        <p><strong>2.</strong> Dilate the point F(-9, 3) using a scale factor of k = \(\frac{1}{3}\). What are the coordinates of F'?</p>
+                        <div class="handout-notes-area"></div>
+                    </div>
+                    <div>
+                        <p><strong>3.</strong> A triangle is dilated by a scale factor of 4. Is the new triangle congruent to the original? Why or why not?</p>
+                         <div class="handout-notes-area"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
+
+
+
+
+
