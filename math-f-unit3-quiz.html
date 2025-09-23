@@ -59,6 +59,8 @@
                 background-color: white;
                 margin: 0;
                 padding: 0;
+                font-family: sans-serif;
+                color: black;
             }
             .no-print {
                 display: none;
@@ -66,12 +68,29 @@
             .quiz-container {
                 box-shadow: none;
                 margin: 0;
-                padding: 1in;
+                padding: 0.75in;
                 max-width: 100%;
                 border-radius: 0;
+                border: none;
+            }
+            header h1 {
+                font-size: 18pt;
+                color: black !important;
+            }
+            .question {
+                border-bottom: 1px solid #6b7280; /* Darker gray for better visibility */
+            }
+            .question p {
+                font-size: 11pt;
+                font-weight: 600; /* Match semibold */
+                color: black !important;
             }
             .options-list {
-                grid-template-columns: 1fr; /* Stack options vertically for printing */
+                grid-template-columns: 1fr; /* Stack options vertically */
+                font-size: 11pt;
+            }
+             .options-list li {
+                padding: 0.1rem 0;
             }
         }
     </style>
