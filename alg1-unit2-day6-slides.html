@@ -3,378 +3,604 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unit 2 Day 6 Slides: Dividing Polynomials</title>
+    <title>Dividing Polynomials: An Interactive Guide</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg-color: #f1f5f9; /* slate-100 */
+            --slide-bg: #ffffff;
+            --text-color: #334155; /* slate-700 */
+            --header-color: #1e293b; /* slate-800 */
+            --accent-color: #0ea5e9; /* sky-500 */
+            --accent-light: #0284c7; /* sky-600 */
+            --accent-dark: #0369a1; /* sky-700 */
+            --highlight-bg: #e0f2fe; /* sky-100 */
+            --border-color: #cbd5e1; /* slate-300 */
+            --success-color: #16a34a; /* green-600 */
+            --warning-color: #f59e0b; /* amber-500 */
+        }
+
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f1f5f9; /* slate-100 */
+            background-color: var(--bg-color);
+            color: var(--text-color);
             overflow: hidden;
         }
+
         #presentation-container {
-             width: 100%;
+            width: 100%;
             height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
         }
+
         .slide-container {
             width: 100%;
-            max-width: 1050px;
+            max-width: 1100px;
             aspect-ratio: 16 / 9;
             margin: 1rem auto;
             display: flex;
             flex-direction: column;
             overflow: hidden;
-            border-radius: 1rem;
+            border-radius: 1.5rem;
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border: 1px solid var(--border-color);
             position: relative;
         }
+
         .slide {
             display: none;
             flex-direction: column;
-            justify-content: flex-start; /* Aligns content to the top */
+            justify-content: flex-start; /* Align content to the top for scrolling */
             align-items: center;
-            padding: 3rem 4rem;
+            padding: 3rem 5rem;
             text-align: center;
-            background-color: white;
+            background-color: var(--slide-bg);
             height: 100%;
             width: 100%;
             opacity: 0;
-            transition: opacity 0.5s ease-in-out;
-            overflow-y: auto; /* Ensures content is scrollable if it overflows */
+            transition: opacity 0.6s ease-in-out;
+            position: absolute;
+            top: 0; left: 0;
+            overflow-y: auto; /* Add scrollbar when content overflows */
         }
+
         .slide.active {
             display: flex;
             opacity: 1;
+            z-index: 5;
+        }
+        
+        /* Navigation & Controls */
+        #header-controls {
+            width: 100%;
+            max-width: 1100px;
+            padding: 0 0.5rem;
+            display: flex;
+            justify-content: flex-start;
+        }
+        #print-button {
+            background-color: var(--slide-bg);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        #print-button:hover {
+            background-color: #e2e8f0; /* slate-200 */
         }
         .nav-button {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.3);
-            color: white;
-            border: none;
+            background-color: rgba(0, 0, 0, 0.05);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
             padding: 0.75rem;
             border-radius: 50%;
             cursor: pointer;
             z-index: 10;
-            width: 40px;
-            height: 40px;
+            width: 44px;
+            height: 44px;
             display: flex;
             justify-content: center;
             align-items: center;
-            transition: background-color 0.2s;
+            transition: all 0.2s;
         }
         .nav-button:hover {
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(0, 0, 0, 0.1);
+            transform: translateY(-50%) scale(1.1);
         }
         #prevBtn { left: 1rem; }
         #nextBtn { right: 1rem; }
         .slide-counter {
             position: absolute;
-            bottom: 1rem;
-            right: 1rem;
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
-            padding: 0.25rem 0.75rem;
-            border-radius: 1rem;
+            bottom: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--slide-bg);
+            color: var(--text-color);
+            padding: 0.5rem 1rem;
+            border-radius: 99px;
             font-size: 0.875rem;
             z-index: 10;
+            font-family: 'Roboto Mono', monospace;
+            border: 1px solid var(--border-color);
         }
+
+        /* Slide specific styles */
         .title-slide {
-            background: linear-gradient(135deg, #6d28d9, #8b5cf6); /* violet-700 to violet-500 */
-            color: white;
-            justify-content: center; /* Center title slide content */
+            background: linear-gradient(135deg, #bae6fd, #e0f2fe); /* sky-200 to sky-100 */
+            color: var(--header-color);
+            justify-content: center; /* Re-center title slide content */
         }
-        .emphasis-highlight {
-            background-color: #ede9fe; /* violet-50 */
-            padding: 0.1em 0.3em;
-            border-radius: 0.25em;
-            font-weight: 600;
+        .slide h1, .slide h2 { color: var(--header-color); }
+        .slide h2 {
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 0.5rem;
+            margin-bottom: 2rem;
+            display: inline-block;
         }
         .keyword {
-            color: #5b21b6; /* violet-800 */
+            color: var(--accent-dark);
             font-weight: 600;
+            background-color: var(--highlight-bg);
+            padding: 0.2em 0.4em;
+            border-radius: 0.3em;
         }
-        .hidden-answer { display: none; }
-        .printable-version { display: none; }
+        .math-box {
+            background-color: #f8fafc; /* slate-50 */
+            padding: 2rem;
+            border-radius: 1rem;
+            border: 1px solid var(--border-color);
+            font-family: 'Roboto Mono', monospace;
+            width: 100%;
+        }
+        .step-btn {
+            background-color: var(--accent-color);
+            color: white;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 1rem;
+            border: none;
+        }
+        .step-btn:hover {
+            background-color: var(--accent-light);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(56, 189, 248, 0.2);
+        }
+        .text-success {
+             color: var(--success-color);
+        }
 
         /* Print Styles */
         @media print {
-            body { 
-                overflow: visible !important; 
-                background-color: white !important;
+            body {
+                background-color: #ffffff !important;
+                color: #000000 !important;
+                overflow: visible !important;
             }
             .no-print { display: none !important; }
-            .printable-version { 
-                display: block !important; 
-                padding: 0.5in;
+            #presentation-container {
+                height: auto;
+                display: block;
             }
-            .print-grid {
-                /* This class no longer needs grid styles, so it will stack vertically */
+            .slide-container {
+                display: none; /* Hide the interactive container */
+            }
+            #printable-version {
+                display: block !important;
             }
             .print-page {
-                page-break-inside: avoid;
-                padding: 1rem;
-                border: 1px solid #ccc;
+                background: #ffffff !important;
+                color: #000000 !important;
+                border: 1px solid #cccccc;
                 border-radius: 8px;
-                margin-bottom: 1rem; /* Add space between vertical blocks */
+                padding: 1rem;
+                margin: 1rem;
+                page-break-inside: avoid;
             }
-            .print-header { 
-                display: flex !important; 
-                justify-content: space-between; 
-                width:100%; 
-                padding-bottom: 1rem; 
-                margin-bottom: 1rem;
-                border-bottom: 1px solid #000; 
+            .print-page h1, .print-page h2, .print-page p, .print-page div {
+                color: #000000 !important;
+            }
+            .print-page .keyword {
+                border: 1px solid #000;
+                background-color: #eee !important;
+                color: #000 !important;
+            }
+            .print-page .math-box, .print-page .bg-slate-50 {
+                background-color: #f8f8f8 !important;
+                border: 1px solid #ccc !important;
+            }
+             .print-page .text-success { color: #000 !important; font-weight: bold; }
+             .print-page .text-sky-700 { color: #000 !important; font-weight: bold; }
+             .print-page .text-sky-800 { color: #555 !important; }
+             .print-page .border-slate-300 { border-color: #000 !important; }
+
+            .print-header {
+                 display: flex !important;
+                 justify-content: space-between;
+                 width:100%;
+                 padding: 0 1rem 1rem 1rem;
+                 border-bottom: 1px solid #000;
+            }
+            #yd1-answer, #yd2-answer {
+                opacity: 1 !important;
             }
         }
+        #printable-version { display: none; }
     </style>
 </head>
-<body class="bg-gray-100 text-gray-800">
+<body>
 
     <div id="presentation-container">
-        <div class="no-print w-full max-w-5xl flex justify-between items-center mb-2 px-4">
-            <div>
-                <h1 class="text-2xl font-bold text-gray-800">Unit 2 Day 6: Dividing Polynomials</h1>
-                <p class="text-gray-600">Use the arrows on the slides or your keyboard to navigate.</p>
-            </div>
-            <button id="print-button" class="bg-violet-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-violet-700 transition-colors">
-                Print Handout
-            </button>
+        <div id="header-controls" class="no-print">
+            <button id="print-button">Print</button>
         </div>
+        <div class="slide-container">
 
-        <div class="slide-container no-print">
             <!-- Slide 1: Title -->
             <div class="slide active title-slide">
-                <h1 class="text-5xl font-bold mb-4">Unit 2: Polynomial Operations</h1>
-                <p class="text-2xl">Day 6: Dividing Polynomials</p>
+                <h1 class="text-6xl font-extrabold mb-4 tracking-tight">Dividing Polynomials</h1>
+                <p class="text-3xl font-light text-sky-800">The Long and Short of It</p>
             </div>
 
             <!-- Slide 2: Objective -->
             <div class="slide">
-                <h2 class="text-3xl font-bold text-gray-800 mb-8">Lesson Objective</h2>
-                <div class="text-left text-2xl space-y-6 text-gray-700 max-w-3xl bg-violet-50 border-l-4 border-violet-500 p-6 rounded-r-lg">
-                    <p>To be able to determine the <span class="emphasis-highlight">quotient</span> of polynomials by dividing by a monomial or a binomial.</p>
+                <h2 class="text-4xl font-bold">Today's Objectives</h2>
+                <div class="text-left text-2xl space-y-6 max-w-3xl">
+                    <p>1. Review dividing polynomials by a <span class="keyword">monomial</span>.</p>
+                    <p>2. Master the universal method: <span class="keyword">Polynomial Long Division</span>.</p>
+                    <p>3. Learn the shortcut method: <span class="keyword">Synthetic Division</span>.</p>
                 </div>
             </div>
 
             <!-- Slide 3: Warm-Up -->
             <div class="slide">
-                <h2 class="text-3xl font-bold text-gray-800 mb-6">Warm-Up: Exponent Rules!</h2>
-                <div class="text-xl max-w-4xl text-left space-y-4">
-                    <p>Remember the Quotient Rule for exponents? When you divide, you <span class="keyword">subtract</span> the exponents.</p>
-                    <div class="bg-slate-100 p-6 rounded-lg text-4xl font-mono text-center">
-                       <p>\(\frac{x^5}{x^2} = x^{5-2} = x^3\)</p>
-                    </div>
+                <h2 class="text-4xl font-bold">Warm-Up: Exponent Rules</h2>
+                <p class="text-2xl mb-8">Remember the Quotient Rule: When dividing, you <span class="keyword">subtract</span> exponents.</p>
+                <div class="math-box text-5xl text-center">
+                   <p>\(\frac{x^a}{x^b} = x^{a-b}\)</p>
+                   <p class="mt-4 text-4xl text-gray-500">\(\frac{x^7}{x^3} = x^{7-3} = x^4\)</p>
                 </div>
             </div>
-
+            
             <!-- Slide 4: Division by a Monomial -->
             <div class="slide">
-                <h2 class="text-3xl font-bold text-gray-800 mb-4">Part 1: Dividing by a Monomial</h2>
-                <p class="text-xl text-gray-600 mb-6">When dividing by a monomial (one term), you can split the problem into separate fractions.</p>
-                <div class="w-full max-w-4xl text-left bg-slate-50 p-6 rounded-lg border">
-                    <p class="font-mono text-4xl text-center">\(\frac{6x^3 + 12x^2}{3x}\)</p>
-                    <p class="text-center text-2xl my-4">becomes</p>
-                     <p class="font-mono text-4xl text-center">\(\frac{6x^3}{3x} + \frac{12x^2}{3x}\)</p>
+                <h2 class="text-4xl font-bold">Part 1: Dividing by a Monomial</h2>
+                <p class="text-2xl mb-8">Split the problem into separate fractions and simplify each one.</p>
+                <div class="math-box text-3xl text-center">
+                    <p>\(\frac{8x^4 + 4x^3 - 2x^2}{2x^2}\)</p>
+                    <p class="text-2xl my-4 text-sky-600">becomes</p>
+                    <p>\(\frac{8x^4}{2x^2} + \frac{4x^3}{2x^2} - \frac{2x^2}{2x^2}\)</p>
+                    <p class="text-4xl font-bold mt-6 text-success">\( = 4x^2 + 2x - 1\)</p>
                 </div>
             </div>
 
             <!-- Slide 5: I Do - Monomial Division -->
             <div class="slide">
-                <h2 class="text-3xl font-bold text-gray-800 mb-4"><span class="bg-blue-100 px-2 py-1 rounded">I Do</span>: Dividing by a Monomial</h2>
-                <p class="text-xl text-gray-600 mb-6">Let's solve \(\frac{6x^3 + 12x^2}{3x}\).</p>
-                <div class="w-full max-w-4xl text-left bg-slate-50 p-4 rounded-lg border text-2xl space-y-3">
-                    <p class="font-bold">Step 1: Split into separate fractions.</p>
-                    <p class="text-3xl font-mono text-center">\(\frac{6x^3}{3x} + \frac{12x^2}{3x}\)</p>
-                    <p class="font-bold">Step 2: Simplify each fraction. Divide the coefficients, subtract the exponents.</p>
-                    <p class="text-3xl font-mono text-center">\(( \frac{6}{3}x^{3-1} ) + ( \frac{12}{3}x^{2-1} )\)</p>
-                    <p class="text-3xl font-mono font-bold text-center text-violet-700 mt-2">\(2x^2 + 4x\)</p>
+                <h2 class="text-4xl font-bold">I Do: Dividing by a Monomial</h2>
+                <p class="text-2xl mb-8">Let's solve \(\frac{8x^4 + 4x^3 - 2x^2}{2x^2}\)</p>
+                <div class="math-box text-2xl text-left max-w-4xl">
+                    <p><span class="font-bold text-sky-700">Step 1:</span> Split the polynomial into separate fractions, with each term over the monomial divisor.</p>
+                    <p class="text-3xl text-center my-4 font-mono">\(\frac{8x^4}{2x^2} + \frac{4x^3}{2x^2} - \frac{2x^2}{2x^2}\)</p>
+                    <p><span class="font-bold text-sky-700">Step 2:</span> Simplify each fraction. Divide the coefficients and subtract the exponents.</p>
+                    <p class="text-3xl text-center my-4 font-mono">\(( \frac{8}{2}x^{4-2} ) + ( \frac{4}{2}x^{3-2} ) - ( \frac{2}{2}x^{2-2} )\)</p>
+                    <p><span class="font-bold text-sky-700">Step 3:</span> Write the final simplified expression.</p>
+                    <p class="text-4xl font-bold mt-4 text-center text-success">\(4x^2 + 2x - 1\)</p>
                 </div>
+            </div>
+
+            <!-- Slide 6: Intro to Long Division -->
+            <div class="slide">
+                 <h2 class="text-4xl font-bold">Part 2: The Universal Method</h2>
+                 <p class="text-2xl mb-8">Polynomial Long Division works for <span class="keyword">any</span> division problem. The process is the same as number division!</p>
+                 <div class="flex w-full justify-around items-center text-3xl font-mono">
+                    <div>
+                        <p class="mb-2 text-2xl font-sans text-gray-500">With Numbers...</p>
+                        <div class="grid text-left border-slate-300" style="grid-template-columns: auto 1fr; line-height: 1.4;">
+                            <!-- Quotient -->
+                            <div></div>
+                            <div class="pl-2 pb-1 border-b-2 border-slate-300">25</div>
+                            <!-- Divisor and Dividend -->
+                            <div class="text-right pr-2 pt-1">4</div>
+                            <div class="border-l-2 pl-2 pt-1 border-slate-300">
+                                <div class="flex flex-col">
+                                    <div>100</div>
+                                    <div>-8</div>
+                                    <div class="border-b-2 w-8 border-slate-300"></div>
+                                    <div class="pl-3">20</div>
+                                    <div class="pl-3">-20</div>
+                                    <div class="border-b-2 w-8 ml-3 border-slate-300"></div>
+                                    <div class="pl-6">0</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-left">
+                        <p class="mb-2 text-2xl font-sans text-gray-500">With Polynomials...</p>
+                        <div class="grid w-auto" style="grid-template-columns: auto 1fr;">
+                            <div></div>
+                            <div class="pl-4 pb-1 text-gray-400 border-b-2 border-slate-300">?</div>
+                            <div class="text-right pr-2">\(x+2\)</div>
+                            <div class="border-l-2 border-slate-300 pl-4">
+                                \(x^2+7x+10\)
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+                 <p class="mt-8 text-2xl font-bold">Divide, Multiply, Subtract, Bring Down</p>
+            </div>
+
+            <!-- Slide 7: I Do - Long Division -->
+            <div id="long-division-slide" class="slide">
+                 <h2 class="text-4xl font-bold">I Do: Long Division</h2>
+                 <p class="text-2xl mb-6">Let's solve \( (x^2 + 7x + 10) \div (x+2) \)</p>
+                 <div class="relative font-mono text-2xl w-auto">
+                    <div class="grid" style="grid-template-columns: auto 1fr;">
+                        <div></div>
+                        <div class="text-left pl-4 pb-1 border-b-2 border-slate-300">\(x+5\)</div>
+                        <div class="text-right pr-2">\(x+2\)</div>
+                        <div class="border-l-2 border-slate-300 pl-4">
+                            <div class="flex flex-col text-left">
+                                <div>\(x^2 + 7x + 10\)</div>
+                                <div>\(-(x^2 + 2x)\)</div>
+                                <div class="border-b-2 border-slate-300 w-48"></div>
+                                <div class="pl-8">\(5x + 10\)</div>
+                                <div class="pl-8">\(-(5x + 10)\)</div>
+                                <div class="border-b-2 border-slate-300 w-48 ml-8"></div>
+                                <div class="pl-16">\(0\)</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Annotations -->
+                    <div class="absolute text-sky-700 text-lg font-sans space-y-1" style="top: 0px; left: 320px; text-align: left;">
+                        <p>&#9312; <span class="font-bold">Divide</span> \(x^2\) by \(x\) to get \(x\).</p>
+                        <p>&#9313; <span class="font-bold">Multiply</span> \(x(x+2)\) to get \(x^2+2x\).</p>
+                        <p>&#9314; <span class="font-bold">Subtract</span> and <span class="font-bold">Bring Down</span> the 10.</p>
+                        <p>&#9315; <span class="font-bold">Repeat</span>: Divide \(5x\) by \(x\) to get 5.</p>
+                        <p>&#9316; <span class="font-bold">Multiply</span> \(5(x+2)\) and subtract.</p>
+                    </div>
+                 </div>
+                 <p class="mt-6 text-2xl font-bold text-success">Answer: \(x+5\)</p>
+            </div>
+
+
+            <!-- Slide 8: Intro to Synthetic Division -->
+            <div class="slide">
+                <h2 class="text-4xl font-bold">Part 3: The Shortcut</h2>
+                <p class="text-2xl mb-8">Synthetic Division is faster, but only works when the divisor is <span class="keyword">\( (x-k) \) or \( (x+k) \)</span>.</p>
+                 <div class="flex w-full justify-around items-start text-xl max-w-4xl">
+                    <div class="bg-emerald-50 border border-emerald-400 p-6 rounded-lg">
+                        <h3 class="text-2xl font-bold text-emerald-800 mb-2">CAN Use Synthetic</h3>
+                        <p>\((x^2+2x-1) \div (x-3)\)</p>
+                        <p>\((3x^3-5) \div (x+1)\)</p>
+                    </div>
+                     <div class="bg-red-50 border border-red-400 p-6 rounded-lg">
+                        <h3 class="text-2xl font-bold text-red-800 mb-2">CANNOT Use Synthetic</h3>
+                        <p>\((x^3+1) \div (x^2+1)\)</p>
+                        <p>\((2x^2-x-1) \div (3x-5)\)</p>
+                    </div>
+                 </div>
+            </div>
+
+            <!-- Slide 9: I Do - Synthetic Division -->
+            <div id="synthetic-division-slide" class="slide">
+                <h2 class="text-4xl font-bold">I Do: Synthetic Division</h2>
+                <p class="text-2xl mb-6">Let's solve \( (x^2 + 7x + 10) \div (x+2) \)</p>
+                <div class="relative w-full max-w-3xl flex justify-between items-center p-4">
+                    <div class="synthetic-division-grid text-left">
+                        <div class="flex items-center space-x-8">
+                            <div class="border-r-2 border-b-2 border-slate-300 p-2 pr-4 text-2xl">-2</div>
+                            <div class="flex space-x-12 text-2xl"><span>1</span><span>7</span><span>10</span></div>
+                        </div>
+                        <div class="flex items-center space-x-8 mt-2">
+                            <div class="p-2 pr-4">&nbsp;</div>
+                            <div class="flex space-x-12 text-2xl"><span>&nbsp;</span><span>-2</span><span>-10</span></div>
+                        </div>
+                        <div class="w-full border-t-2 border-slate-300"></div>
+                        <div class="flex items-center space-x-8 mt-2">
+                             <div class="p-2 pr-4">&nbsp;</div>
+                            <div class="flex space-x-12 font-bold text-2xl"><span>1</span><span>5</span><span>0</span></div>
+                        </div>
+                    </div>
+                    <!-- Annotations -->
+                    <div class="text-sky-700 text-lg font-sans space-y-2 text-left">
+                        <p>&#9312; <span class="font-bold">Set up:</span> Use -2 from \((x+2)\) and the coefficients.</p>
+                        <p>&#9313; <span class="font-bold">Bring down</span> the first coefficient (1).</p>
+                        <p>&#9314; <span class="font-bold">Multiply & Add:</span> \(-2 \times 1 = -2\). Then \(7 + (-2) = 5\).</p>
+                        <p>&#9315; <span class="font-bold">Multiply & Add:</span> \(-2 \times 5 = -10\). Then \(10 + (-10) = 0\).</p>
+                        <p>&#9316; The result is \(1x+5\) with a remainder of 0.</p>
+                    </div>
+                </div>
+                <p class="mt-2 text-2xl font-bold text-success">Answer: \(x+5\)</p>
+            </div>
+
+            <!-- Slide 10: Comparison -->
+            <div class="slide">
+                <h2 class="text-4xl font-bold">Side-by-Side Comparison</h2>
+                <p class="text-xl mb-6">Solving \((2x^3 - 9x^2 + 10x - 7) \div (x-3)\)</p>
+                <div class="flex w-full justify-around items-start text-xl font-mono gap-8">
+                    <div class="w-1/2 bg-slate-50 p-4 rounded-lg">
+                        <h3 class="text-2xl text-sky-700 font-sans mb-2 text-center">Long Division</h3>
+                        <div class="grid" style="grid-template-columns: auto 1fr; font-size: 1rem; line-height: 1.6;">
+                            <!-- Quotient -->
+                            <div></div>
+                            <div class="pl-2 pb-1 border-b-2 border-slate-300 text-left">\(2x^2 - 3x + 1\)</div>
+                            
+                            <!-- Divisor and Dividend -->
+                            <div class="text-right pr-2 pt-1">\(x-3\)</div>
+                            <div class="border-l-2 border-slate-300 pl-2 pt-1">
+                                <div class="flex flex-col text-left">
+                                    <div>\(2x^3 - 9x^2 + 10x - 7\)</div>
+                                    <div>\(-(2x^3 - 6x^2)\)</div>
+                                    <div class="border-b-2 border-slate-300 w-36"></div>
+                                    <div class="pl-8">\(-3x^2 + 10x\)</div>
+                                    <div class="pl-8">\(-(-3x^2 + 9x)\)</div>
+                                    <div class="border-b-2 border-slate-300 w-32 ml-8"></div>
+                                    <div class="pl-16">\(x - 7\)</div>
+                                    <div class="pl-16">\(-(x - 3)\)</div>
+                                    <div class="border-b-2 border-slate-300 w-20 ml-16"></div>
+                                    <div class="pl-20 font-bold">\(-4\)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-1/2 bg-slate-50 p-4 rounded-lg">
+                        <h3 class="text-2xl text-sky-700 font-sans mb-2 text-center">Synthetic Division</h3>
+                        <div class="w-full text-left p-4" style="font-size: 1.25rem;">
+                            <div class="flex items-start space-x-6">
+                                <div class="pt-1">3</div>
+                                <div class="border-l-2 border-slate-300 pl-4">
+                                    <div class="flex space-x-8"><span>2</span><span>-9</span><span>10</span><span>-7</span></div>
+                                    <div class="flex space-x-8 ml-1"><span>&nbsp;</span><span>6</span><span>-9</span><span class="ml-2">3</span></div>
+                                </div>
+                            </div>
+                            <div class="w-full border-t-2 border-slate-300 mt-2 ml-12"></div>
+                            <div class="flex items-center space-x-6">
+                                 <div>&nbsp;</div>
+                                <div class="pl-4">
+                                    <div class="flex space-x-8 font-bold"><span>2</span><span>-3</span><span class="ml-2">1</span><span class="ml-2 font-bold">-4</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="mt-6 text-2xl font-bold text-success">Answer: \(2x^2 - 3x + 1 - \frac{4}{x-3}\)</p>
+            </div>
+
+            <!-- Slide 11: You Do -->
+            <div class="slide">
+                <h2 class="text-4xl font-bold">You Do: Practice Time!</h2>
+                <p class="text-xl mb-8">Choose the best method for each. Good luck!</p>
+                <div class="flex justify-around w-full max-w-5xl gap-8 items-stretch">
+                    <div class="w-1/2 math-box flex flex-col justify-between">
+                        <div>
+                            <p class="text-2xl mb-4">Problem 1</p>
+                            <p class="text-2xl font-mono">\((k^2 - 7k + 10) \div (k-5)\)</p>
+                        </div>
+                        <div class="text-center mt-6">
+                            <button onclick="document.getElementById('yd1-answer').classList.toggle('opacity-0')" class="step-btn">Show Answer</button>
+                            <p id="yd1-answer" class="text-3xl font-bold font-mono mt-4 text-success opacity-0 transition-opacity">\(k-2\)</p>
+                        </div>
+                    </div>
+                    <div class="w-1/2 math-box flex flex-col justify-between">
+                        <div>
+                            <p class="text-2xl mb-4">Problem 2</p>
+                            <p class="text-2xl font-mono">\((2x^2 + 10x + 8) \div (x+4)\)</p>
+                        </div>
+                         <div class="text-center mt-6">
+                            <button onclick="document.getElementById('yd2-answer').classList.toggle('opacity-0')" class="step-btn">Show Answer</button>
+                            <p id="yd2-answer" class="text-3xl font-bold font-mono mt-4 text-success opacity-0 transition-opacity">\(2x+2\)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 12: Exit Ticket -->
+            <div class="slide">
+                <h2 class="text-4xl font-bold">Exit Ticket</h2>
+                <p class="text-2xl mb-8">Simplify the following expression using your preferred method:</p>
+                <div class="math-box text-5xl font-mono">
+                    \((v^3 + 8v^2 + 7v) \div (v+7)\)
+                </div>
+                 <p class="mt-6 text-2xl font-light">The answer is \(v^2+v\)</p>
             </div>
             
-            <!-- Slide 6: Division by a Binomial -->
-            <div class="slide">
-                <h2 class="text-3xl font-bold text-gray-800 mb-4">Part 2: Dividing by a Binomial</h2>
-                <p class="text-xl text-gray-600 mb-6">When dividing by a binomial (like \(x+2\)), we need a different method: <span class="keyword">Polynomial Long Division</span>.</p>
-                <div class="w-full max-w-4xl text-left bg-slate-50 p-6 rounded-lg border">
-                   <p class="text-2xl">This process is very similar to the long division you learned in elementary school!</p>
-                   <p class="font-mono text-3xl text-center mt-4">\( (x^2 + 7x + 10) \div (x+2) \)</p>
-                   <p class="text-2xl mt-4">is set up like this:</p>
-                   <p class="font-mono text-4xl text-center mt-2">\( x+2 \overline{) x^2 + 7x + 10} \)</p>
-                </div>
-            </div>
-
-             <!-- Slide 7: I Do - Long Division -->
-            <div class="slide">
-                <h2 class="text-3xl font-bold text-gray-800 mb-4"><span class="bg-blue-100 px-2 py-1 rounded">I Do</span>: Polynomial Long Division</h2>
-                <p class="text-xl text-gray-600 mb-6">Let's solve \((x^2 + 7x + 10) \div (x+2)\).</p>
-                <div class="w-full max-w-2xl text-left bg-slate-50 p-4 rounded-lg border text-xl space-y-2 font-mono">
-                    <p class="text-center font-bold text-2xl">Steps: Divide, Multiply, Subtract, Bring Down</p>
-                    <pre class="text-left whitespace-pre-wrap">
-          x   + 5       
-        ____________
-    x+2 | x² + 7x + 10
-        -(x² + 2x)      (x²/x = x. Then x(x+2))
-        ----------
-             5x + 10    (Subtract, bring down 10)
-            -(5x + 10)   (5x/x = 5. Then 5(x+2))
-            ---------
-                  0     (Subtract. Remainder is 0)
-                    </pre>
-                    <p class="text-2xl font-bold text-center text-violet-700 mt-2">Answer: \(x+5\)</p>
-                </div>
-            </div>
-
-            <!-- Slide 8: We Do -->
-            <div class="slide">
-                <h2 class="text-3xl font-bold text-gray-800 mb-6"><span class="bg-yellow-100 px-2 py-1 rounded">We Do</span>: Let's Try Together</h2>
-                <p class="text-2xl text-gray-700 mb-8">Let's divide these as a class.</p>
-                <div class="w-full max-w-3xl text-center text-3xl space-y-8 font-mono bg-slate-50 p-6 rounded-lg border">
-                    <p>1. (Monomial) \(\frac{15a^4 - 25a^2}{5a}\)</p>
-                    <p>2. (Binomial) \((n^2 + 2n - 24) \div (n-4)\)</p>
-                </div>
-            </div>
-            
-            <!-- Slide 9: You Do -->
-            <div class="slide">
-                <h2 class="text-3xl font-bold text-gray-800 mb-6"><span class="bg-green-100 px-2 py-1 rounded">You Do</span>: On Your Own</h2>
-                <p class="text-xl text-gray-600 mb-6">Solve using polynomial long division.</p>
-                <div class="w-full max-w-3xl bg-slate-50 p-6 rounded-lg border">
-                    <p class="text-2xl font-mono text-center">\((k^2 - 7k + 10) \div (k-5)\)</p>
-                    <div class="text-center mt-6">
-                        <button onclick="document.getElementById('you-do-answer').style.display='block'" class="bg-violet-600 text-white px-4 py-2 rounded hover:bg-violet-700">Show Answer</button>
-                        <p id="you-do-answer" class="text-3xl font-bold font-mono text-center mt-4 text-violet-700 hidden-answer">\(k-2\)</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Slide 10: Independent Practice -->
-            <div class="slide">
-                <h2 class="text-3xl font-bold text-gray-800 mb-4">Independent Practice</h2>
-                <p class="text-lg text-gray-600 mb-6">Try these problems on your handout, starting with green.</p>
-                <div class="w-full max-w-5xl grid grid-cols-1 md:grid-cols-3 gap-4 text-left">
-                    <div class="bg-green-100 border-2 border-green-300 p-4 rounded-lg">
-                        <p class="font-bold text-green-800 text-lg mb-2">Green Level</p>
-                        <p>DIVIDE: \(\frac{20y^2 + 10y}{10y}\)</p>
-                    </div>
-                    <div class="bg-yellow-100 border-2 border-yellow-300 p-4 rounded-lg">
-                        <p class="font-bold text-yellow-800 text-lg mb-2">Yellow Level</p>
-                        <p>DIVIDE: \((p^2 + 11p + 10) \div (p+1)\)</p>
-                    </div>
-                    <div class="bg-red-100 border-2 border-red-300 p-4 rounded-lg">
-                        <p class="font-bold text-red-800 text-lg mb-2">Red Level</p>
-                        <p>DIVIDE: \((2x^2 + 10x + 8) \div (x+4)\)</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Slide 11: Exit Ticket -->
-            <div class="slide">
-                <h2 class="text-3xl font-bold text-gray-800 mb-6">Exit Ticket</h2>
-                <p class="text-2xl text-gray-700 mb-8">On your handout or a piece of paper, simplify the following expression:</p>
-                <div class="bg-slate-100 p-6 rounded-lg text-4xl font-mono">
-                    \((v^2 + 8v + 7) \div (v+7)\)
-                </div>
-            </div>
-
             <!-- Navigation -->
-            <button id="prevBtn" class="nav-button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+            <button id="prevBtn" class="nav-button no-print">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
             </button>
-            <button id="nextBtn" class="nav-button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+            <button id="nextBtn" class="nav-button no-print">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
             </button>
-            <div id="slideCounter" class="slide-counter"></div>
+            <div id="slideCounter" class="slide-counter no-print"></div>
+
         </div>
     </div>
     
-    <!-- Printable Version -->
-    <div class="printable-version">
-        <!-- Content for printing will be generated by script -->
-    </div>
+    <!-- This div is hidden by default and will be populated for printing -->
+    <div id="printable-version"></div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const slides = document.querySelectorAll('.slide');
-            const prevBtn = document.getElementById('prevBtn');
-            const nextBtn = document.getElementById('nextBtn');
-            const slideCounter = document.getElementById('slideCounter');
-            let currentSlide = 0;
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // Basic slide navigation
+    const slides = document.querySelectorAll('.slide');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const slideCounter = document.getElementById('slideCounter');
+    let currentSlide = 0;
 
-            function showSlide(n) {
-                slides.forEach((slide, index) => {
-                    if (index === n) {
-                        slide.classList.add('active');
-                    } else {
-                        slide.classList.remove('active');
-                    }
-                });
-                slideCounter.textContent = `${n + 1} / ${slides.length}`;
-                prevBtn.style.display = n === 0 ? 'none' : 'flex';
-                nextBtn.style.display = n === slides.length - 1 ? 'none' : 'flex';
-            }
-
-            function nextSlide() {
-                if (currentSlide < slides.length - 1) {
-                    currentSlide++;
-                    showSlide(currentSlide);
-                }
-            }
-
-            function prevSlide() {
-                if (currentSlide > 0) {
-                    currentSlide--;
-                    showSlide(currentSlide);
-                }
-            }
-            
-            nextBtn.addEventListener('click', nextSlide);
-            prevBtn.addEventListener('click', prevSlide);
-            
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'ArrowRight') {
-                    nextSlide();
-                } else if (e.key === 'ArrowLeft') {
-                    prevSlide();
-                }
-            });
-
-            // For printing
-            const printButton = document.getElementById('print-button');
-            printButton.addEventListener('click', async () => {
-                const printableContainer = document.querySelector('.printable-version');
-                let header = `<div class="print-header"><span>Name: _________________________</span><span>Date: _________________________</span></div>`;
-                let pagesContent = '';
-
-                slides.forEach(slide => {
-                    const slideClone = slide.cloneNode(true);
-                    const hiddenAnswer = slideClone.querySelector('.hidden-answer');
-                    if (hiddenAnswer) {
-                        hiddenAnswer.style.display = 'block'; // Make sure answers are visible for print
-                    }
-                    pagesContent += '<div class="print-page">' + slideClone.innerHTML + '</div>';
-                });
-                
-                printableContainer.innerHTML = header + '<div class="print-grid">' + pagesContent + '</div>';
-
-                // Wait for MathJax to render the math in the new printable content
-                await MathJax.typesetPromise([printableContainer]);
-                
-                // Add a short delay to ensure the browser has time to render the math before printing
-                setTimeout(() => {
-                    window.print();
-                }, 250);
-            });
-            
-            showSlide(currentSlide);
+    function showSlide(n) {
+        slides.forEach((slide, index) => {
+            slide.classList.toggle('active', index === n);
         });
-    </script>
+        slideCounter.textContent = `${n + 1} / ${slides.length}`;
+        prevBtn.style.display = n === 0 ? 'none' : 'flex';
+        nextBtn.style.display = n === slides.length - 1 ? 'none' : 'flex';
+    }
+
+    function nextSlide() {
+        if (currentSlide < slides.length - 1) {
+            currentSlide++;
+            showSlide(currentSlide);
+        }
+    }
+
+    function prevSlide() {
+        if (currentSlide > 0) {
+            currentSlide--;
+            showSlide(currentSlide);
+        }
+    }
+
+    nextBtn.addEventListener('click', nextSlide);
+    prevBtn.addEventListener('click', prevSlide);
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') nextSlide();
+        else if (e.key === 'ArrowLeft') prevSlide();
+    });
+
+    showSlide(currentSlide);
+
+    // Print functionality
+    const printButton = document.getElementById('print-button');
+    printButton.addEventListener('click', () => {
+        const printableContainer = document.getElementById('printable-version');
+        
+        // Create a header for the printout
+        let printableContent = `<div class="print-header"><span>Name: _________________________</span><span>Date: _________________________</span></div>`;
+        
+        // Clone each slide into the printable container
+        slides.forEach(slide => {
+            // We create a wrapper div for each slide to apply print styles
+            printableContent += `<div class="print-page">${slide.innerHTML}</div>`;
+        });
+        
+        printableContainer.innerHTML = printableContent;
+        
+        // Wait for MathJax to process the newly added content
+        MathJax.typesetPromise([printableContainer]).then(() => {
+            // Use a short timeout to ensure browser has rendered math before printing
+            setTimeout(() => {
+                window.print();
+                 // Clear the content after printing to save memory
+                printableContainer.innerHTML = '';
+            }, 250);
+        });
+    });
+});
+</script>
 </body>
 </html>
+
