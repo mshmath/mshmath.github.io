@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 3 Quiz: Decimals & Percents</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* gray-100 */
+        }
+        .quiz-container {
+            max-width: 8.5in;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .print-button {
+            background-color: #4f46e5; /* indigo-600 */
+            color: white;
+            font-weight: bold;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .print-button:hover {
+            background-color: #4338ca; /* indigo-700 */
+        }
+        .question {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #e5e7eb; /* gray-200 */
+        }
+        .question:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        .options-list {
+            list-style-type: upper-alpha;
+            padding-left: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        .options-list li {
+            padding: 0.25rem;
+        }
+
+        @media print {
+            body {
+                background-color: white;
+                margin: 0;
+                padding: 0;
+            }
+            .no-print {
+                display: none;
+            }
+            .quiz-container {
+                box-shadow: none;
+                margin: 0;
+                padding: 1in;
+                max-width: 100%;
+                border-radius: 0;
+            }
+            .options-list {
+                grid-template-columns: 1fr; /* Stack options vertically for printing */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="quiz-container">
+        <header class="flex justify-between items-center mb-8">
+            <h1 class="text-3xl font-bold text-gray-800">Unit 3 Quiz: Decimals & Percents</h1>
+            <button class="print-button no-print" onclick="window.print()">Print Quiz</button>
+        </header>
+
+        <div class="mb-8 border-b pb-4">
+            <div class="flex justify-between text-lg">
+                <p class="mb-2"><strong>Name:</strong> _________________________</p>
+                <p><strong>Date:</strong> _________________________</p>
+            </div>
+        </div>
+
+        <main id="quiz-content">
+            <!-- Questions will be inserted here by JavaScript -->
+        </main>
+    </div>
+
+    <script>
+        const quizData = {
+            "questions": [{
+                "questionNumber": 1,
+                "question": "Which number represents 'fifty-two and six hundredths'?",
+                "answerOptions": [{ "text": "52.600" }, { "text": "52.06" }, { "text": "52.006" }, { "text": "502.6" }]
+            }, {
+                "questionNumber": 2,
+                "question": "In the number 14.739, what is the value of the digit 3?",
+                "answerOptions": [{ "text": "3 tenths" }, { "text": "3 thousandths" }, { "text": "3 hundredths" }, { "text": "3 ones" }]
+            }, {
+                "questionNumber": 3,
+                "question": "Which symbol correctly compares the two decimals: 0.8 ___ 0.80?",
+                "answerOptions": [{ "text": "<" }, { "text": ">" }, { "text": "=" }, { "text": "≠" }]
+            }, {
+                "questionNumber": 4,
+                "question": "Which of the following decimals is the greatest?",
+                "answerOptions": [{ "text": "0.45" }, { "text": "0.5" }, { "text": "0.499" }, { "text": "0.055" }]
+            }, {
+                "questionNumber": 5,
+                "question": "Which list shows the decimals in order from least to greatest?",
+                "answerOptions": [{ "text": "0.7, 0.56, 0.71" }, { "text": "0.56, 0.7, 0.71" }, { "text": "0.71, 0.7, 0.56" }, { "text": "0.56, 0.71, 0.7" }]
+            }, {
+                "questionNumber": 6,
+                "question": "What is the sum of 12.5 and 3.45?",
+                "answerOptions": [{ "text": "15.95" }, { "text": "15.50" }, { "text": "4.70" }, { "text": "16.0" }]
+            }, {
+                "questionNumber": 7,
+                "question": "Calculate: 25.8 - 4.15",
+                "answerOptions": [{ "text": "21.75" }, { "text": "21.65" }, { "text": "29.95" }, { "text": "2.165" }]
+            }, {
+                "questionNumber": 8,
+                "question": "Leo had a piece of wood that was 5.75 meters long. He cut off a piece that was 2.1 meters long. How long is the remaining piece of wood?",
+                "answerOptions": [{ "text": "7.85 meters" }, { "text": "3.65 meters" }, { "text": "5.54 meters" }, { "text": "3.74 meters" }]
+            }, {
+                "questionNumber": 9,
+                "question": "What does 'percent' mean?",
+                "answerOptions": [{ "text": "Out of 10" }, { "text": "A type of decimal" }, { "text": "Out of 100" }, { "text": "Greater than 1" }]
+            }, {
+                "questionNumber": 10,
+                "question": "If 75 out of 100 students love math, what percent of students love math?",
+                "answerOptions": [{ "text": "0.75%" }, { "text": "7.5%" }, { "text": "75%" }, { "text": "100%" }]
+            }, {
+                "questionNumber": 11,
+                "question": "A cell phone is charged to 40%. Which fraction represents the charged amount?",
+                "answerOptions": [{"text": "4/100"}, {"text": "40/100"}, {"text": "1/40"}, {"text": "40/10"}]
+            }, {
+                "questionNumber": 12,
+                "question": "How do you write the decimal 0.25 as a percent?",
+                "answerOptions": [{ "text": "2.5%" }, { "text": "25%" }, { "text": "0.25%" }, { "text": "250%" }]
+            }, {
+                "questionNumber": 13,
+                "question": "What is 60% written as a decimal?",
+                "answerOptions": [{ "text": "6.0" }, { "text": "0.06" }, { "text": "0.6" }, { "text": "60.0" }]
+            }, {
+                "questionNumber": 14,
+                "question": "Which of the following is equivalent to the fraction 1/2?",
+                "answerOptions": [{ "text": "0.12 and 12%" }, { "text": "0.5 and 50%" }, { "text": "0.2 and 20%" }, { "text": "0.05 and 5%" }]
+            }, {
+                "questionNumber": 15,
+                "question": "A bag contains 10 marbles. 3 of them are red. What percentage of the marbles are red?",
+                "answerOptions": [{ "text": "3%" }, { "text": "0.3%" }, { "text": "30%" }, { "text": "300%" }]
+            }, {
+                "questionNumber": 16,
+                "question": "Which of the following is equivalent to the fraction 3/4?",
+                "answerOptions": [{ "text": "0.34 and 34%" }, { "text": "0.75 and 75%" }, { "text": "3.4 and 340%" }, { "text": "0.075 and 7.5%" }]
+            }, {
+                "questionNumber": 17,
+                "question": "What is 125% written as a decimal?",
+                "answerOptions": [{ "text": "125.0" }, { "text": "12.5" }, { "text": "1.25" }, { "text": "0.125" }]
+            }, {
+                "questionNumber": 18,
+                "question": "Mariah bought a sandwich for $7.55 and a drink for $2.25. How much did she spend in total?",
+                "answerOptions": [{ "text": "$9.70" }, { "text": "$9.80" }, { "text": "$5.30" }, { "text": "$9.75" }]
+            }, {
+                "questionNumber": 19,
+                "question": "Which of these numbers is the smallest?",
+                "answerOptions": [{ "text": "0.9" }, { "text": "85%" }, { "text": "0.88" }, { "text": "9/100" }]
+            }, {
+                "questionNumber": 20,
+                "question": "In the number 6.28, which digit is in the tenths place?",
+                "answerOptions": [{ "text": "6" }, { "text": "2" }, { "text": "8" }, { "text": "The decimal point" }]
+            }]
+        };
+
+        const quizContent = document.getElementById('quiz-content');
+        let quizHTML = '<ol class="list-decimal list-inside space-y-4">';
+
+        quizData.questions.forEach((q, index) => {
+            quizHTML += `<li class="question">
+                <p class="text-lg font-semibold mb-2">${q.question}</p>
+                <ol class="options-list">`;
+            
+            q.answerOptions.forEach(opt => {
+                quizHTML += `<li>${opt.text}</li>`;
+            });
+
+            quizHTML += `</ol></li>`;
+        });
+
+        quizHTML += '</ol>';
+        quizContent.innerHTML = quizHTML;
+    </script>
+
+</body>
+</html>
+
