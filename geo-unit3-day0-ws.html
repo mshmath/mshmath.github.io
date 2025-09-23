@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geometry - Graphing Practice</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            color: #333;
+        }
+        .worksheet-container {
+            max-width: 800px;
+            margin: auto;
+            border: 1px solid #ddd;
+            padding: 25px;
+            border-radius: 8px;
+        }
+        h1, h2 {
+            border-bottom: 2px solid #5daee2;
+            padding-bottom: 8px;
+            color: #5daee2;
+        }
+        h1 {
+            text-align: center;
+            font-size: 1.8em;
+        }
+        .header-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .problem-list {
+            list-style-type: none;
+            padding-left: 0;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+        .problem-list li {
+            font-size: 1.1em;
+        }
+        .coordinate-plane {
+            border: 1px solid #ccc;
+            margin: 20px auto;
+            display: block;
+        }
+        .instructions {
+            background-color: #fafaff;
+            border-left: 4px solid #5daee2;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="worksheet-container">
+        <h1>Graphing Practice Problems</h1>
+        <div class="header-info">
+            <p><strong>Name:</strong> _________________________</p>
+            <p><strong>Date:</strong> _________________________</p>
+        </div>
+
+        <hr>
+
+        <h2>Part 1: Identifying Coordinates</h2>
+        <p class="instructions"><strong>Instructions:</strong> Write the ordered pair (x, y) for each point shown on the graph below.</p>
+        <svg class="coordinate-plane" width="400" height="400" viewbox="-200 -200 400 400" xmlns="http://www.w3.org/2000/svg">
+            <defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="#e0e0e0" stroke-width="1"/></pattern></defs>
+            <rect x="-200" y="-200" width="400" height="400" fill="url(#grid)" />
+            <path d="M -200 0 H 200" stroke="#000" stroke-width="2"/><path d="M 0 -200 V 200" stroke="#000" stroke-width="2"/>
+            <text x="180" y="-5" font-family="Arial" font-size="14">x</text><text x="5" y="-180" font-family="Arial" font-size="14">y</text>
+            <circle cx="80" cy="-120" r="4" fill="blue" /><text x="85" y="-125" font-size="16">A</text>
+            <circle cx="-160" cy="80" r="4" fill="red" /><text x="-175" y="75" font-size="16">B</text>
+            <circle cx="-80" cy="-160" r="4" fill="green" /><text x="-95" y="-165" font-size="16">C</text>
+            <circle cx="120" cy="40" r="4" fill="purple" /><text x="125" y="35" font-size="16">D</text>
+            <circle cx="0" cy="-80" r="4" fill="orange" /><text x="5" y="-85" font-size="16">E</text>
+            <circle cx="40" cy="160" r="4" fill="black" /><text x="45" y="155" font-size="16">F</text>
+            <circle cx="-120" cy="0" r="4" fill="brown" /><text x="-135" y="-5" font-size="16">G</text>
+            <circle cx="-40" cy="120" r="4" fill="magenta" /><text x="-35" y="115" font-size="16">H</text>
+        </svg>
+        <ul class="problem-list">
+            <li>A = (____, ____)</li>
+            <li>B = (____, ____)</li>
+            <li>C = (____, ____)</li>
+            <li>D = (____, ____)</li>
+            <li>E = (____, ____)</li>
+            <li>F = (____, ____)</li>
+            <li>G = (____, ____)</li>
+            <li>H = (____, ____)</li>
+        </ul>
+
+        <hr>
+
+        <h2>Part 2: Plotting Points</h2>
+        <p class="instructions"><strong>Instructions:</strong> Plot and label the following points on the coordinate plane below.</p>
+        <ul class="problem-list">
+            <li>P = (8, 2)</li>
+            <li>Q = (-3, 5)</li>
+            <li>R = (-7, -1)</li>
+            <li>S = (4, -6)</li>
+            <li>T = (0, -8)</li>
+            <li>U = (5, 0)</li>
+            <li>V = (-2, -9)</li>
+            <li>W = (9, 9)</li>
+        </ul>
+        <svg class="coordinate-plane" width="400" height="400" viewbox="-200 -200 400 400" xmlns="http://www.w3.org/2000/svg">
+            <rect x="-200" y="-200" width="400" height="400" fill="url(#grid)" />
+            <path d="M -200 0 H 200" stroke="#000" stroke-width="2"/><path d="M 0 -200 V 200" stroke="#000" stroke-width="2"/>
+            <text x="180" y="-5" font-family="Arial" font-size="14">x</text><text x="5" y="-180" font-family="Arial" font-size="14">y</text>
+        </svg>
+
+        <hr>
+
+        <h2>Part 3: Plotting Preimages</h2>
+        <p class="instructions"><strong>Instructions:</strong> Plot the vertices for each shape and connect them to form the preimage.</p>
+        
+        <h3>Preimage 1: Rectangle WXYZ</h3>
+        <ul class="problem-list">
+            <li>W = (-8, 6)</li>
+            <li>X = (4, 6)</li>
+            <li>Y = (4, -2)</li>
+            <li>Z = (-8, -2)</li>
+        </ul>
+        <svg class="coordinate-plane" width="400" height="400" viewbox="-200 -200 400 400" xmlns="http://www.w3.org/2000/svg">
+            <rect x="-200" y="-200" width="400" height="400" fill="url(#grid)" />
+            <path d="M -200 0 H 200" stroke="#000" stroke-width="2"/><path d="M 0 -200 V 200" stroke="#000" stroke-width="2"/>
+            <text x="180" y="-5" font-family="Arial" font-size="14">x</text><text x="5" y="-180" font-family="Arial" font-size="14">y</text>
+        </svg>
+    </div>
+
+</body>
+</html>
