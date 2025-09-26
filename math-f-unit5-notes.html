@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Foundations Unit 5: Proportional Reasoning</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; }
+        .lesson-section { scroll-margin-top: 5rem; }
+        details > summary { list-style: none; }
+        details > summary::-webkit-details-marker { display: none; }
+        .details-arrow { transition: transform 0.2s ease-in-out; }
+        details[open] .details-arrow { transform: rotate(90deg); }
+        .printable-only { display: none; }
+        @media print {
+            header, .non-printable { display: none !important; }
+            .printable-only { display: block !important; }
+            main { padding: 0 !important; }
+            body { background-color: white; color: black; }
+            details { display: block !important; page-break-inside: avoid; }
+            details[open] summary { display: none; }
+            .lesson-section, .bg-white { box-shadow: none !important; border: 1px solid #ccc !important; }
+            h1, h2, h3, h4 { color: black !important; }
+            .fill-in-blank { display: inline-block; min-width: 120px; border-bottom: 1px solid black; margin: 0 4px; padding: 0 4px; }
+             * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800">
+    <!-- Header & Navigation -->
+    <header class="bg-white/90 backdrop-blur-sm shadow-md sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col sm:flex-row justify-between items-center py-4 border-b border-slate-200">
+                <h1 class="text-2xl font-bold text-slate-900">Math Foundations Unit 5: Proportional Reasoning</h1>
+                <nav class="mt-2 sm:mt-0">
+                    <ul class="flex space-x-4 sm:space-x-6 text-sm sm:text-base">
+                        <li><a href="#ratios" class="font-semibold text-sky-600 hover:text-sky-800 transition">Ratios, Rates, & Proportions</a></li>
+                        <li><a href="#percents" class="font-semibold text-sky-600 hover:text-sky-800 transition">Percent Applications</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto p-4 sm:p-6 lg:p-8">
+        <!-- Introduction & Navigation Card -->
+        <div class="bg-white p-6 rounded-xl shadow-lg mb-12 non-printable">
+            <h2 class="text-3xl font-bold text-sky-700 mb-2">Unit 5 Resources & Lessons</h2>
+            <p class="text-slate-600 mb-6">Use the buttons below to access unit-wide resources or jump to a specific lesson.</p>
+            <div class="border-t border-b border-slate-200 py-6">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                    <a href="math-f-unit5-slides.html" target="_blank" class="block w-full text-center bg-slate-100 text-slate-700 font-semibold px-4 py-2 rounded-lg hover:bg-slate-200 transition-colors text-sm">Slides/Notes Packet</a>
+                    <a href="math-f-unit5-ws.html" target="_blank" class="block w-full text-center bg-slate-100 text-slate-700 font-semibold px-4 py-2 rounded-lg hover:bg-slate-200 transition-colors text-sm">Practice Worksheet</a>
+                    <a href="math-f-unit5-how-to-guide.html" target="_blank" class="block w-full text-center bg-slate-100 text-slate-700 font-semibold px-4 py-2 rounded-lg hover:bg-slate-200 transition-colors text-sm">How-To Guide</a>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <a href="math-f-unit5-study-guide.html" target="_blank" class="block w-full text-center bg-sky-500 text-white font-semibold px-4 py-2 rounded-lg hover:bg-sky-600 transition-colors text-sm">View Study Guide</a>
+                    <a href="math-f-unit5-quiz.html" target="_blank" class="block w-full text-center bg-sky-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-sky-700 transition-colors text-sm">Take Unit 5 Test</a>
+                </div>
+            </div>
+        </div>
+        <div class="space-y-8">
+            <!-- Lesson 1: Ratios, Rates, & Proportions -->
+            <details id="ratios" class="lesson-section bg-white rounded-xl shadow-lg overflow-hidden">
+                <summary class="p-6 cursor-pointer flex justify-between items-center hover:bg-slate-50 transition-colors non-printable">
+                    <h3 class="text-2xl font-bold text-slate-800">Part 1: Ratios, Rates, & Proportions</h3>
+                    <svg class="w-6 h-6 text-slate-500 details-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </summary>
+                <div class="p-6 border-t border-slate-200 space-y-8">
+                    <p class="mb-2 bg-sky-50 border border-sky-200 text-sky-800 p-3 rounded-lg"><strong class="font-semibold">Objective:</strong> To use ratios, rates, unit rates, and proportions to solve problems.</p>
+                    <div>
+                        <h4 class="text-xl font-semibold text-sky-700 mb-4">Key Concepts</h4>
+                        <div class="space-y-4">
+                            <div class="bg-sky-50 p-4 rounded-lg border border-sky-200">
+                                <p class="mb-2"><strong>Ratios & Rates:</strong> A ratio compares two quantities. A rate is a ratio with different units (e.g., miles per hour).</p>
+                                <p class="font-mono text-center text-lg">Ratio of 3 boys to 5 girls: \( \frac{3}{5} \) or 3:5</p>
+                            </div>
+                            <div class="bg-sky-50 p-4 rounded-lg border border-sky-200">
+                                <p class="mb-2"><strong>Unit Rate:</strong> A rate where the second quantity is 1. To find it, divide the first quantity by the second.</p>
+                                <p class="font-mono text-center text-lg">120 miles in 2 hours \(\rightarrow\) \( \frac{120 \text{ miles}}{2 \text{ hours}} = 60 \) miles per hour</p>
+                            </div>
+                             <div class="bg-sky-50 p-4 rounded-lg border border-sky-200">
+                                <p class="mb-2"><strong>Solving Proportions:</strong> Two equal ratios form a proportion. Use cross-multiplication to solve for a missing value.</p>
+                                <p class="font-mono text-center text-lg">\( \frac{x}{10} = \frac{3}{5} \rightarrow 5x = 30 \rightarrow x = 6 \)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </details>
+            <!-- Lesson 2: Percent Applications -->
+            <details id="percents" class="lesson-section bg-white rounded-xl shadow-lg overflow-hidden">
+                 <summary class="p-6 cursor-pointer flex justify-between items-center hover:bg-slate-50 transition-colors non-printable">
+                    <h3 class="text-2xl font-bold text-slate-800">Part 2: Percent Applications</h3>
+                    <svg class="w-6 h-6 text-slate-500 details-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </summary>
+                <div class="p-6 border-t border-slate-200 space-y-8">
+                    <p class="mb-2 bg-sky-50 border border-sky-200 text-sky-800 p-3 rounded-lg"><strong class="font-semibold">Objective:</strong> To solve real-world problems involving percents, including discounts, tax, and tips.</p>
+                    <div>
+                        <h4 class="text-xl font-semibold text-sky-700 mb-4">Key Concepts</h4>
+                        <div class="space-y-4">
+                            <div class="bg-sky-50 p-4 rounded-lg border border-sky-200">
+                                <p class="mb-2"><strong>Finding Percent of a Number:</strong> Change the percent to a decimal (divide by 100) and multiply.</p>
+                                <p class="font-mono text-center text-lg">20% of 80 \(\rightarrow\) \(0.20 \times 80 = 16\)</p>
+                            </div>
+                            <div class="bg-sky-50 p-4 rounded-lg border border-sky-200">
+                                <p class="mb-2"><strong>Discounts:</strong> Calculate the discount amount (percent of the price) and subtract it from the original price.</p>
+                                <p class="font-mono text-center text-lg">25% off $40 \(\rightarrow\) \(0.25 \times 40 = \$10\) discount. New price: \(\$40 - \$10 = \$30\).</p>
+                            </div>
+                             <div class="bg-sky-50 p-4 rounded-lg border border-sky-200">
+                                <p class="mb-2"><strong>Tax & Tip:</strong> Calculate the tax or tip amount (percent of the bill) and add it to the original total.</p>
+                                <p class="font-mono text-center text-lg">8% tax on $50 \(\rightarrow\) \(0.08 \times 50 = \$4\) tax. Total cost: \(\$50 + \$4 = \$54\).</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </details>
+        </div>
+    </main>
+    <footer class="text-center mt-16 text-gray-500 non-printable">
+        <p>&copy; 2025 Aly Hatfield. All rights reserved.</p>
+        <br>
+    </footer>
+</body>
+</html>
+
