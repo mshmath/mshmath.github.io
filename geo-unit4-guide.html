@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geometry Unit 4 - How-To Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { 
+            font-family: 'Inter', sans-serif; 
+            font-size: 1.1rem; /* Increased base font size */
+            line-height: 1.7; /* Increased line spacing */
+        }
+        .example-box {
+            background-color: #f0fdfa; /* teal-50 */
+            border-left: 4px solid #14b8a6; /* teal-500 */
+            padding: 1.5rem; /* Increased padding */
+            margin-top: 1.5rem; /* Increased margin */
+            border-radius: 0.5rem;
+        }
+        @media print {
+            body { 
+                background-color: white; 
+                color: black;
+                font-size: 1rem; /* Adjust for print if needed */
+            }
+            header, .non-printable { display: none !important; }
+            main { padding: 1rem !important; }
+            .printable-area {
+                box-shadow: none !important;
+                border: none !important;
+            }
+            .section {
+                page-break-inside: avoid;
+            }
+            h2, h3 { color: black !important; }
+             * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-slate-100">
+
+    <header class="bg-white shadow-md non-printable sticky top-0">
+        <div class="max-w-4xl mx-auto py-4 px-6 flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-slate-800">Geometry Unit 4: How-To Guide</h1>
+            <button onclick="window.print()" class="bg-teal-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-teal-700 transition-colors">
+                Print Guide
+            </button>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto p-6">
+        <div class="bg-white p-10 rounded-xl shadow-lg printable-area">
+
+            <!-- Day 1: Triangle Inequality & Side/Angle Relationships -->
+            <section class="section mb-16">
+                <h2 class="text-3xl font-bold text-teal-700 border-b-2 border-teal-200 pb-2 mb-6">Day 1: Triangle Inequality & Side/Angle Relationships</h2>
+                <h3 class="text-2xl font-semibold text-slate-700 mt-6">How to check if a triangle can exist:</h3>
+                <ol class="list-decimal list-inside bg-slate-50 p-6 rounded-lg mt-4 space-y-2 text-lg">
+                    <li>Identify the lengths of the three sides.</li>
+                    <li>Add the lengths of the two shortest sides together.</li>
+                    <li>Compare the sum to the length of the longest side.</li>
+                    <li>If the sum is GREATER THAN the longest side, a triangle can be formed.</li>
+                </ol>
+                <div class="flex justify-around my-6 bg-slate-50 p-4 rounded-lg text-center">
+                    <div>
+                        <svg width="200" height="120" viewBox="0 0 200 120">
+                            <line x1="10" y1="100" x2="190" y2="100" stroke="black" stroke-width="2.5"/>
+                            <text x="100" y="115" font-size="14" text-anchor="middle">15</text>
+                            <line x1="10" y1="100" x2="80" y2="40" stroke="#0d9488" stroke-width="2.5"/>
+                            <text x="35" y="65" font-size="14" fill="#0d9488">8</text>
+                             <line x1="190" y1="100" x2="110" y2="40" stroke="#0d9488" stroke-width="2.5"/>
+                            <text x="160" y="65" font-size="14" fill="#0d9488">10</text>
+                        </svg>
+                        <p class="font-bold text-green-600">YES: 8 + 10 > 15</p>
+                    </div>
+                    <div>
+                        <svg width="200" height="120" viewBox="0 0 200 120">
+                            <line x1="10" y1="100" x2="190" y2="100" stroke="black" stroke-width="2.5"/>
+                            <text x="100" y="115" font-size="14" text-anchor="middle">15</text>
+                            <line x1="10" y1="100" x2="70" y2="70" stroke="#be123c" stroke-width="2.5"/>
+                            <text x="35" y="80" font-size="14" fill="#be123c">6</text>
+                             <line x1="190" y1="100" x2="130" y2="70" stroke="#be123c" stroke-width="2.5"/>
+                            <text x="165" y="80" font-size="14" fill="#be123c">9</text>
+                        </svg>
+                        <p class="font-bold text-red-600">NO: 6 + 9 is not > 15</p>
+                    </div>
+                </div>
+                <div class="example-box text-lg">
+                    <p class="font-bold">Worked Example:</p>
+                    <p>Can a triangle have sides 8, 10, and 15?</p>
+                    <p><strong>Step 1 & 2:</strong> Shortest sides are 8 and 10. Their sum is \(8 + 10 = 18\).</p>
+                    <p><strong>Step 3 & 4:</strong> \(18 > 15\). Since the sum of the two smaller sides is greater than the longest side, <strong>YES</strong>, it can be a triangle.</p>
+                </div>
+
+                <h3 class="text-2xl font-semibold text-slate-700 mt-10">How to order sides and angles:</h3>
+                <ol class="list-decimal list-inside bg-slate-50 p-6 rounded-lg mt-4 space-y-2 text-lg">
+                    <li>To order sides from shortest to longest, find the angles opposite them and order the angles from smallest to largest.</li>
+                    <li>To order angles from smallest to largest, find the sides opposite them and order the sides from shortest to longest.</li>
+                </ol>
+                <div class="flex justify-center my-6 bg-slate-50 p-4 rounded-lg">
+                   <svg width="250" height="180" viewBox="0 0 250 180">
+                        <polygon points="20,170 230,170 90,20" fill="#f8fafc" stroke="black" stroke-width="2.5"/>
+                        <!-- Angle and Side Labels -->
+                        <text x="85" y="48" font-size="18" fill="#be123c" font-weight="bold">105°</text>
+                        <text x="35" y="155" font-size="18" fill="#4d7c0f" font-weight="bold">30°</text>
+                        <text x="190" y="155" font-size="18" fill="#1d4ed8" font-weight="bold">45°</text>
+                        
+                        <text x="150" y="90" font-size="16" fill="#4d7c0f">Shortest Side</text>
+                        <text x="50" y="90" font-size="16" fill="#1d4ed8">Medium Side</text>
+                        <text x="120" y="160" font-size="16" fill="#be123c" text-anchor="middle">Longest Side</text>
+
+                        <!-- Arrow connecting smallest angle and side -->
+                        <path d="M 50 145 C 80 120, 110 110, 140 100" stroke="#4d7c0f" stroke-width="2" fill="none" stroke-dasharray="5,5"/>
+                        <!-- Arrow connecting largest angle and side -->
+                        <path d="M 95 45 C 110 80, 120 120, 125 150" stroke="#be123c" stroke-width="2" fill="none" stroke-dasharray="5,5"/>
+                    </svg>
+                </div>
+                 <div class="example-box text-lg">
+                    <p class="font-bold">Worked Example:</p>
+                    <p>Order the sides of \( \triangle ABC \) from shortest to longest if \(m\angle A = 45^\circ\) and \(m\angle B = 80^\circ\).</p>
+                    <p><strong>Step 1:</strong> Find the third angle: \(180^\circ - 45^\circ - 80^\circ = 55^\circ\). So, \(m\angle C = 55^\circ\).</p>
+                    <p><strong>Step 2:</strong> Order angles from smallest to largest: \( \angle A (45^\circ), \angle C (55^\circ), \angle B (80^\circ) \).</p>
+                    <p><strong>Step 3:</strong> The sides opposite these angles are \( \overline{BC} \), \( \overline{AB} \), and \( \overline{AC} \). So the order of sides is <strong>\( \overline{BC}, \overline{AB}, \overline{AC} \)</strong>.</p>
+                </div>
+            </section>
+
+            <!-- Day 2: Triangle Angles -->
+            <section class="section mb-16">
+                <h2 class="text-3xl font-bold text-teal-700 border-b-2 border-teal-200 pb-2 mb-6">Day 2: Triangle Angle Sum & Exterior Angles</h2>
+                <h3 class="text-2xl font-semibold text-slate-700 mt-6">How to find a missing interior angle:</h3>
+                <ol class="list-decimal list-inside bg-slate-50 p-6 rounded-lg mt-4 space-y-2 text-lg">
+                    <li>Remember that all three angles in a triangle add up to 180°.</li>
+                    <li>Add the two known angles together.</li>
+                    <li>Subtract their sum from 180 to find the third angle.</li>
+                </ol>
+                <div class="flex justify-center my-4">
+                     <svg width="200" height="150" viewBox="0 0 200 150">
+                        <polygon points="10,140 190,140 80,10" fill="#f0fdfa" stroke="black" stroke-width="2.5"/>
+                        <text x="75" y="45" font-size="18" font-weight="bold">x°</text>
+                        <text x="25" y="125" font-size="18">50°</text>
+                        <text x="150" y="125" font-size="18">60°</text>
+                    </svg>
+                </div>
+                <div class="example-box text-lg">
+                    <p class="font-bold">Worked Example:</p>
+                    <p>Find x if the angles are \(x^\circ, 50^\circ, 60^\circ\).</p>
+                    <p><strong>Equation:</strong> \(x + 50 + 60 = 180\)</p>
+                    <p><strong>Solve:</strong> \(x + 110 = 180 \implies x = 70\). The missing angle is <strong>70°</strong>.</p>
+                </div>
+
+                <h3 class="text-2xl font-semibold text-slate-700 mt-10">How to find an exterior angle:</h3>
+                <ol class="list-decimal list-inside bg-slate-50 p-6 rounded-lg mt-4 space-y-2 text-lg">
+                    <li>Identify the two remote interior angles (the ones not touching the exterior angle).</li>
+                    <li>Add the measures of the two remote interior angles together.</li>
+                    <li>Their sum is equal to the measure of the exterior angle.</li>
+                </ol>
+                <div class="flex justify-center my-4 bg-slate-50 p-4 rounded-lg">
+                   <svg width="300" height="150" viewBox="0 0 300 150">
+                        <polygon points="20,120 180,120 70,40" fill="#ccfbf1" stroke="black" stroke-width="2.5"/>
+                        <line x1="180" y1="120" x2="280" y2="120" stroke="black" stroke-width="2.5"/>
+                        <text x="70" y="65" font-size="18" fill="#0f766e">40°</text>
+                        <text x="35" y="105" font-size="18" fill="#0f766e">90°</text>
+                        <text x="195" y="105" font-size="18" class="font-bold text-red-600">130°</text>
+                        <text x="5, 25" class="text-slate-600" font-size="14">Remote Interior Angles</text>
+                        <path d="M190,110 C 180,90 150,80 130,70 L 75 60" stroke="#0d9488" stroke-width="1.5" fill="none" stroke-dasharray="4,4"/>
+                        <path d="M190,110 C 150,110 100,100 80,100 L 45 100" stroke="#0d9488" stroke-width="1.5" fill="none" stroke-dasharray="4,4"/>
+                    </svg>
+                </div>
+                 <div class="example-box text-lg">
+                    <p class="font-bold">Worked Example:</p>
+                    <p>The remote interior angles are \(40^\circ\) and \(90^\circ\). Find the exterior angle.</p>
+                    <p><strong>Equation:</strong> Exterior Angle = \(40 + 90\)</p>
+                    <p><strong>Solve:</strong> The exterior angle is <strong>130°</strong>.</p>
+                </div>
+            </section>
+
+            <!-- Day 3: Triangle Congruence -->
+            <section class="section mb-16">
+                <h2 class="text-3xl font-bold text-teal-700 border-b-2 border-teal-200 pb-2 mb-6">Day 3: Triangle Congruence Postulates</h2>
+                <h3 class="text-2xl font-semibold text-slate-700 mt-6">How to determine congruence (SSS, SAS, ASA):</h3>
+                <ol class="list-decimal list-inside bg-slate-50 p-6 rounded-lg mt-4 space-y-2 text-lg">
+                    <li>Look at the markings on the two triangles to see which parts are given as congruent.</li>
+                    <li>Count the pairs of congruent Sides (S) and Angles (A).</li>
+                    <li>If you have 3 pairs of Sides, it's <strong>SSS</strong>.</li>
+                    <li>If you have 2 pairs of Sides and the Angle BETWEEN them, it's <strong>SAS</strong>.</li>
+                    <li>If you have 2 pairs of Angles and the Side BETWEEN them, it's <strong>ASA</strong>.</li>
+                </ol>
+                <div class="flex justify-around my-6 text-center">
+                    <div>
+                        <svg width="120" height="100" viewBox="0 0 120 100"><polygon points="10,90 110,90 60,10" fill="#f8fafc" stroke="black" stroke-width="2.5"/><line x1="35" y1="50" x2="45" y2="50" stroke="#14b8a6" stroke-width="3"/><line x1="75" y1="50" x2="85" y2="50" stroke="#14b8a6" stroke-width="3"/><line x1="78" y1="53" x2="88" y2="53" stroke="#14b8a6" stroke-width="3"/><line x1="55" y1="90" x2="65" y2="90" stroke="#14b8a6" stroke-width="3"/><line x1="55" y1="87" x2="65" y2="87" stroke="#14b8a6" stroke-width="3"/><line x1="55" y1="84" x2="65" y2="84" stroke="#14b8a6" stroke-width="3"/></svg>
+                        <p class="font-bold mt-2">SSS</p>
+                    </div>
+                    <div>
+                        <svg width="120" height="100" viewBox="0 0 120 100"><polygon points="10,90 110,90 60,10" fill="#f8fafc" stroke="black" stroke-width="2.5"/><line x1="35" y1="50" x2="45" y2="50" stroke="#14b8a6" stroke-width="3"/><line x1="75" y1="50" x2="85" y2="50" stroke="#14b8a6" stroke-width="3"/><path d="M 55 18 A 5 5 0 0 1 65 18" stroke="#14b8a6" fill="none" stroke-width="2.5"/></svg>
+                        <p class="font-bold mt-2">SAS</p>
+                    </div>
+                    <div>
+                        <svg width="120" height="100" viewBox="0 0 120 100"><polygon points="10,90 110,90 60,10" fill="#f8fafc" stroke="black" stroke-width="2.5"/><path d="M 18 80 A 5 5 0 0 1 28 85" stroke="#14b8a6" fill="none" stroke-width="2.5"/><path d="M 102 80 A 5 5 0 0 0 92 85" stroke="#14b8a6" fill="none" stroke-width="2.5"/><line x1="55" y1="90" x2="65" y2="90" stroke="#14b8a6" stroke-width="3"/></svg>
+                        <p class="font-bold mt-2">ASA</p>
+                    </div>
+                </div>
+                <div class="example-box text-lg">
+                    <p class="font-bold">Worked Example:</p>
+                    <p>Two triangles show two pairs of corresponding sides are congruent, and the angle included between those sides is also congruent.</p>
+                    <p><strong>Analysis:</strong> We have Side, Angle, Side in that order.</p>
+                    <p><strong>Conclusion:</strong> The triangles are congruent by <strong>SAS</strong>.</p>
+                </div>
+            </section>
+            
+            <!-- Day 4: Algebra & Coordinate Proofs -->
+            <section class="section">
+                <h2 class="text-3xl font-bold text-teal-700 border-b-2 border-teal-200 pb-2 mb-6">Day 4: Congruence with Algebra & Coordinates</h2>
+                <h3 class="text-2xl font-semibold text-slate-700 mt-6">How to solve for variables in congruent triangles:</h3>
+                 <ol class="list-decimal list-inside bg-slate-50 p-6 rounded-lg mt-4 space-y-2 text-lg">
+                    <li>Read the congruence statement (e.g., \( \triangle ABC \cong \triangle DEF \)) to identify corresponding parts.</li>
+                    <li>Set the expressions for corresponding parts equal to each other.</li>
+                    <li>Solve the resulting equation.</li>
+                </ol>
+                <div class="flex justify-center my-6 space-x-8">
+                     <svg width="160" height="130" viewBox="0 0 160 130">
+                        <polygon points="10,120 150,120 80,10" fill="#f8fafc" stroke="black" stroke-width="2.5"/>
+                        <text x="75" y="35">C</text><text x="5" y="125">A</text><text x="145" y="125">T</text>
+                        <text x="40" y="75" font-size="14">AC = 50</text>
+                    </svg>
+                    <svg width="160" height="130" viewBox="0 0 160 130">
+                        <polygon points="10,120 150,120 80,10" fill="#f8fafc" stroke="black" stroke-width="2.5"/>
+                        <text x="75" y="35">D</text><text x="5" y="125">O</text><text x="145" y="125">G</text>
+                        <text x="25" y="75" font-size="14">DO = 2x+10</text>
+                    </svg>
+                </div>
+                <div class="example-box text-lg">
+                    <p class="font-bold">Worked Example:</p>
+                    <p>Given \( \triangle CAT \cong \triangle DOG \), \( AC = 50 \), and \( DO = (2x+10) \). Find x.</p>
+                    <p><strong>Step 1:</strong> \( \overline{AC} \) corresponds to \( \overline{DO} \).</p>
+                    <p><strong>Step 2:</strong> Set up the equation: \( 50 = 2x + 10 \).</p>
+                    <p><strong>Step 3:</strong> Solve: \( 40 = 2x \implies x = 20 \). The value of x is <strong>20</strong>.</p>
+                </div>
+
+                <h3 class="text-2xl font-semibold text-slate-700 mt-10">How to prove congruence on the coordinate plane:</h3>
+                <ol class="list-decimal list-inside bg-slate-50 p-6 rounded-lg mt-4 space-y-2 text-lg">
+                    <li>Use the Distance Formula \( d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2} \) to find the length of all three sides of the first triangle.</li>
+                    <li>Repeat Step 1 for the second triangle.</li>
+                    <li>Compare the lengths of the corresponding sides. If all three pairs are equal, the triangles are congruent by SSS.</li>
+                </ol>
+                 <div class="example-box text-lg">
+                    <p class="font-bold">Worked Example:</p>
+                    <p>Is \( \triangle ABC \cong \triangle DEF \)? A(0,0), B(3,0), C(0,4) and D(1,1), E(4,1), F(1,5).</p>
+                    <p><strong>Triangle ABC:</strong><br>
+                    AB = \( \sqrt{(3-0)^2 + (0-0)^2} = \sqrt{9} = 3 \)<br>
+                    BC = \( \sqrt{(0-3)^2 + (4-0)^2} = \sqrt{9+16} = \sqrt{25} = 5 \)<br>
+                    AC = \( \sqrt{(0-0)^2 + (4-0)^2} = \sqrt{16} = 4 \)</p>
+                    <p class="mt-2"><strong>Triangle DEF:</strong><br>
+                    DE = \( \sqrt{(4-1)^2 + (1-1)^2} = \sqrt{9} = 3 \)<br>
+                    EF = \( \sqrt{(1-4)^2 + (5-1)^2} = \sqrt{9+16} = \sqrt{25} = 5 \)<br>
+                    DF = \( \sqrt{(1-1)^2 + (5-1)^2} = \sqrt{16} = 4 \)</p>
+                    <p class="mt-2"><strong>Conclusion:</strong> Since AB=DE, BC=EF, and AC=DF, <strong>YES</strong>, the triangles are congruent by SSS.</p>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+</body>
+</html>
+
