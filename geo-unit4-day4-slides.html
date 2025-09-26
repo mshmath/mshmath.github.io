@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 4 Slides: Congruence Proofs</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .slide {
+            display: none;
+            min-height: 75vh;
+        }
+        .slide.active {
+            display: flex;
+        }
+        .math-xl {
+            font-size: 2rem;
+        }
+        .printable-only { display: none; }
+        
+        @media print {
+            body { background-color: white; color: black; }
+            body * { visibility: hidden; }
+            .printable-area, .printable-area * { visibility: visible; }
+            .printable-area {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+            }
+            .slide {
+                display: flex !important;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                width: 100%;
+                height: 98vh;
+                page-break-after: always;
+                border: 2px solid #e5e7eb;
+                box-shadow: none;
+                padding: 1.5rem;
+            }
+            .non-printable, .answer, .reveal-btn {
+                display: none !important;
+                visibility: hidden !important;
+            }
+            .printable-only {
+                display: block !important;
+                visibility: visible !important;
+                margin-top: 1rem;
+            }
+            .fill-in-blank {
+                display: inline-block;
+                min-width: 150px;
+                border-bottom: 1.5px solid black;
+                margin: 0 8px;
+                padding: 0 4px;
+                vertical-align: bottom;
+            }
+            .slide-footer, header { display: none !important; }
+            h1, h2, h3 { color: black !important; text-align: center; }
+             * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-slate-100 flex flex-col items-center justify-center min-h-screen p-4">
+
+    <header class="w-full max-w-5xl mx-auto mb-4">
+        <div class="flex justify-between items-center">
+            <h1 class="text-xl font-bold text-slate-700">Unit 4, Day 4: Congruence Proofs</h1>
+            <button onclick="window.print()" class="non-printable bg-teal-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-teal-700 transition-colors text-sm">
+                Print Handout
+            </button>
+        </div>
+    </header>
+
+    <main id="presentation-container" class="w-full max-w-5xl bg-white rounded-xl shadow-lg p-8 printable-area">
+        <!-- Slide 1: Title -->
+        <section class="slide active flex-col justify-center items-center text-center">
+            <h1 class="text-5xl font-bold text-teal-700">Congruence Proofs</h1>
+            <p class="text-2xl text-slate-600 mt-4">Using Algebra & the Coordinate Plane</p>
+        </section>
+
+        <!-- Slide 2: Objective -->
+        <section class="slide flex-col justify-center items-center text-center">
+            <h2 class="text-4xl font-bold text-slate-800">Today's Objective</h2>
+            <div class="bg-teal-50 border-l-4 border-teal-500 text-teal-800 p-6 rounded-r-lg mt-8 text-2xl max-w-3xl">
+                To use algebra and coordinate geometry (the distance formula) to prove that two triangles are congruent.
+            </div>
+        </section>
+        
+        <!-- Slide 3: Warm Up -->
+        <section class="slide flex-col justify-start">
+            <h2 class="text-4xl font-bold text-slate-800 w-full text-center mb-8">Do Now: Review</h2>
+            <div class="w-full max-w-3xl mx-auto text-center">
+                 <div class="text-2xl space-y-6">
+                    <div class="bg-teal-50 p-4 rounded-lg">
+                        <p class="non-printable">1. Solve for x: \(3x - 5 = 16\)</p>
+                        <div class="printable-only w-full">1. Solve for x: \(3x - 5 = 16\) <span class="fill-in-blank w-full"></span></div>
+                    </div>
+                    <div class="bg-teal-50 p-4 rounded-lg">
+                        <p class="non-printable">2. What are the three congruence postulates we learned yesterday?</p>
+                        <div class="printable-only w-full">2. What are the three congruence postulates we learned yesterday? <span class="fill-in-blank w-full"></span></div>
+                    </div>
+                 </div>
+            </div>
+        </section>
+
+        <!-- Slide 4: Part 1 - Algebraic Proofs -->
+        <section class="slide flex-col justify-center items-center text-center">
+            <h2 class="text-4xl font-bold text-slate-800">Congruence with Algebra</h2>
+            <p class="text-2xl mt-6 max-w-3xl">If we know two triangles are congruent, we can set up and solve equations because their corresponding parts must be equal.</p>
+             <p class="text-2xl mt-8 max-w-3xl font-bold text-teal-700">CPCTC: Corresponding Parts of Congruent Triangles are Congruent.</p>
+        </section>
+        
+        <!-- Slide 5: How-To: Algebraic Proofs -->
+        <section class="slide flex-col justify-start">
+            <h2 class="text-4xl font-bold text-slate-800 w-full text-center mb-6">How to Solve Algebraically</h2>
+            <div class="text-2xl space-y-4 w-full max-w-3xl mx-auto bg-slate-50 p-6 rounded-lg">
+                <p><strong>Step 1:</strong> Read the congruence statement (e.g., \( \triangle ABC \cong \triangle DEF \)) to identify which parts correspond.</p>
+                <p><strong>Step 2:</strong> Find the corresponding parts that have algebraic expressions.</p>
+                <p><strong>Step 3:</strong> Set the expressions for the corresponding parts <strong class="text-teal-600">equal</strong> to each other.</p>
+                <p><strong>Step 4:</strong> Solve the equation for the variable.</p>
+            </div>
+        </section>
+
+        <!-- Slide 6: Practice: Algebra -->
+        <section class="slide flex-col justify-start">
+            <h2 class="text-4xl font-bold text-slate-800 w-full text-center mb-8">Practice: Solving for a Variable</h2>
+            <div class="grid grid-cols-3 gap-6 w-full text-center non-printable">
+                <div>
+                    <h3 class="text-2xl font-bold text-teal-700 mb-4">I Do</h3>
+                    <p class="mb-2 text-sm">Given \( \triangle JKL \cong \triangle MNO \), \( JK = 2x-4 \), \( MN = 12 \).</p>
+                    <p class="text-lg font-mono">\( 2x - 4 = 12 \)</p>
+                    <p class="text-lg font-mono">\( 2x = 16 \)</p>
+                    <p class="text-2xl font-bold text-slate-800 mt-2">\( x = 8 \)</p>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold text-teal-700 mb-4">We Do</h3>
+                    <p class="mb-2 text-sm">Given \( \triangle ABC \cong \triangle XYZ \), \( m\angle B = (3y+1)^\circ \), \( m\angle Y = 40^\circ \).</p>
+                    <div class="opacity-0 transition-opacity duration-500 answer">
+                         <p class="text-lg font-mono">\( 3y + 1 = 40 \)</p>
+                         <p class="text-lg font-mono">\( 3y = 39 \)</p>
+                         <p class="text-2xl font-bold text-slate-800 mt-2">\( y = 13 \)</p>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold text-teal-700 mb-4">You Do</h3>
+                    <p class="mb-2 text-sm">Given \( \triangle PQR \cong \triangle STU \), \( QR = z+7 \), \( TU = 2z \).</p>
+                     <div class="opacity-0 transition-opacity duration-500 answer">
+                         <p class="text-lg font-mono">\( z+7 = 2z \)</p>
+                         <p class="text-2xl font-bold text-slate-800 mt-2">\( z = 7 \)</p>
+                    </div>
+                </div>
+            </div>
+             <button class="reveal-btn non-printable mt-12 bg-slate-200 text-slate-700 font-semibold px-6 py-3 rounded-lg hover:bg-slate-300 transition-colors">Reveal Answers</button>
+             <div class="printable-only w-full text-xl space-y-6">
+                <p><strong>I Do:</strong> Given \( \triangle JKL \cong \triangle MNO \), \( JK = 2x-4 \), \( MN = 12 \). Solve for x. <span class="fill-in-blank">x=8</span></p>
+                <p><strong>We Do:</strong> Given \( \triangle ABC \cong \triangle XYZ \), \( m\angle B = (3y+1)^\circ \), \( m\angle Y = 40^\circ \). Solve for y. <span class="fill-in-blank"></span></p>
+                <p><strong>You Do:</strong> Given \( \triangle PQR \cong \triangle STU \), \( QR = z+7 \), \( TU = 2z \). Solve for z. <span class="fill-in-blank"></span></p>
+             </div>
+        </section>
+
+        <!-- Slide 7: Part 2 - Coordinate Proofs -->
+        <section class="slide flex-col justify-center items-center">
+            <h2 class="text-4xl font-bold text-slate-800 text-center">Congruence on the Coordinate Plane</h2>
+            <p class="text-2xl mt-6 max-w-3xl text-center">We can prove triangles are congruent by finding the lengths of their sides using the <strong class="text-teal-600">Distance Formula</strong>.</p>
+            <p class="mt-8 text-2xl p-4 bg-yellow-100 rounded-lg font-mono text-center">\( d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2} \)</p>
+            <p class="text-2xl mt-8 max-w-3xl text-center">If all three pairs of sides are equal in length, the triangles are congruent by <strong class="text-teal-600">SSS</strong>.</p>
+        </section>
+
+        <!-- Slide 8: How-To: Coordinate Proofs -->
+        <section class="slide flex-col justify-start">
+            <h2 class="text-4xl font-bold text-slate-800 w-full text-center mb-6">How to Prove on a Coordinate Plane</h2>
+            <div class="text-2xl space-y-4 w-full max-w-3xl mx-auto bg-slate-50 p-6 rounded-lg">
+                <p><strong>Step 1:</strong> List the coordinates for all 6 vertices of the two triangles.</p>
+                <p><strong>Step 2:</strong> Use the Distance Formula to calculate the length of all 6 sides.</p>
+                <p><strong>Step 3:</strong> Match up the corresponding sides and compare their lengths.</p>
+                <p><strong>Step 4:</strong> If all three pairs of sides are congruent, state that the triangles are congruent by <strong class="text-teal-600">SSS</strong>.</p>
+            </div>
+        </section>
+        
+        <!-- Slide 9: Practice: Coordinate Plane -->
+        <section class="slide flex-col justify-start">
+            <h2 class="text-4xl font-bold text-slate-800 w-full text-center mb-8">Practice: Coordinate Proofs</h2>
+            <div class="grid grid-cols-3 gap-4 w-full text-center non-printable text-xs">
+                <div>
+                    <h3 class="text-lg font-bold text-teal-700 mb-2">I Do</h3>
+                    <p>A(1,5), B(1,1), C(4,1)</p>
+                    <p>AB=4, BC=3, AC=5</p>
+                    <p class="mt-2">D(-1,-4), E(-1,0), F(-4,0)</p>
+                    <p>DE=4, EF=3, DF=5</p>
+                    <p class="font-bold text-slate-800 mt-2 text-sm">Congruent by SSS</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold text-teal-700 mb-2">We Do</h3>
+                    <p>P(2,1), Q(5,1), R(2,5)</p>
+                    <p>S(-1,1), T(-4,1), U(-1,5)</p>
+                    <div class="opacity-0 transition-opacity duration-500 answer">
+                        <p class="mt-2">PQ=3, QR=4, PR=5</p>
+                        <p>ST=3, TU=5, SU=4</p> <!-- Note: TU and SU values swapped for correspondence -->
+                        <p class="font-bold text-slate-800 mt-2 text-sm">Wait... QR!=SU. Not congruent!</p>
+                         <p class="text-xs mt-1">Let's try S(-1,1), T(-4,1), U(-1,-3). Then ST=3, TU=4, SU=5. Now they are congruent by SSS.</p>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold text-teal-700 mb-2">You Do</h3>
+                    <p>G(-2,-2), H(1,-2), I(-2,2)</p>
+                    <p>J(3,3), K(6,3), L(3,7)</p>
+                    <div class="opacity-0 transition-opacity duration-500 answer">
+                         <p class="mt-2">GH=3, HI=5, GI=4</p>
+                         <p>JK=3, KL=4, JL=5</p> <!-- Note: KL and JL values swapped for correspondence -->
+                         <p class="font-bold text-slate-800 mt-2 text-sm">JK=GH, but KL!=HI. Not congruent!</p>
+                    </div>
+                </div>
+            </div>
+            <p class="text-center non-printable mt-4 text-xs">For "We Do" and "You Do", let's fix the points to make them congruent and then prove it.</p>
+            <button class="reveal-btn non-printable mt-6 bg-slate-200 text-slate-700 font-semibold px-4 py-2 rounded-lg hover:bg-slate-300 transition-colors">Reveal Answers</button>
+            <div class="printable-only w-full text-lg space-y-2">
+                 <p><strong>I Do:</strong> Prove \( \triangle ABC \cong \triangle DEF \). A(1,5), B(1,1), C(4,1) and D(-1,-4), E(-1,0), F(-4,0).<br> <span class="fill-in-blank">AB=4, BC=3, AC=5. DE=4, EF=3, DF=5. Congruent by SSS.</span></p>
+                 <p><strong>We Do:</strong> Prove \( \triangle PQR \cong \triangle STU \). P(2,1), Q(5,1), R(2,5) and S(-1,1), T(-4,1), U(-1,-3). <span class="fill-in-blank"></span></p>
+                 <p><strong>You Do:</strong> Prove \( \triangle GHI \cong \triangle JKL \). G(-2,-2), H(1,-2), I(-2,2) and J(3,3), K(6,3), L(3,7).<span class="fill-in-blank"></span></p>
+             </div>
+        </section>
+
+        <!-- Slide 10: Independent Practice -->
+        <section class="slide flex-col justify-start">
+            <h2 class="text-4xl font-bold text-slate-800 w-full text-center mb-6">Independent Practice</h2>
+            <div class="space-y-4 w-full max-w-3xl mx-auto non-printable">
+                <div class="bg-green-50/80 border border-green-200 p-4 rounded-lg">
+                    <h3 class="font-bold text-green-700 mb-2">Level 1 Problem:</h3>
+                    <p>1. Given \( \triangle CAT \cong \triangle DOG \), \( CA = 10 \), and \( DO = 3x-2 \). Find x.</p>
+                </div>
+                <div class="bg-yellow-50/80 border border-yellow-200 p-4 rounded-lg">
+                    <h3 class="font-bold text-yellow-700 mb-2">Level 2 Problem:</h3>
+                    <p>2. Given \( \triangle LMN \cong \triangle OPQ \), \( m\angle M = 55^\circ \), and \( m\angle P = (4y+15)^\circ \). Find y.</p>
+                </div>
+                <div class="bg-red-50/80 border border-red-200 p-4 rounded-lg">
+                    <h3 class="font-bold text-red-700 mb-2">Level 3 Problem:</h3>
+                    <p>3. Prove or disprove that \( \triangle ABC \cong \triangle XYZ \) using the distance formula. A(0,0), B(3,0), C(0,4) and X(1,1), Y(4,1), Z(1,5).</p>
+                </div>
+            </div>
+             <div class="printable-only w-full text-lg space-y-4 mt-6">
+                <h3 class="text-2xl font-bold mb-4 text-center">Independent Practice</h3>
+                <p>1. Given \( \triangle CAT \cong \triangle DOG \), \( CA = 10 \), and \( DO = 3x-2 \). Find x. <span class="fill-in-blank"></span></p>
+                <p>2. Given \( \triangle LMN \cong \triangle OPQ \), \( m\angle M = 55^\circ \), and \( m\angle P = (4y+15)^\circ \). Find y. <span class="fill-in-blank"></span></p>
+                <p>3. Prove or disprove that \( \triangle ABC \cong \triangle XYZ \) given A(0,0), B(3,0), C(0,4) and X(1,1), Y(4,1), Z(1,5). <span class="fill-in-blank" style="min-width: 400px;"></span></p>
+            </div>
+        </section>
+
+        <!-- Slide 11: Exit Ticket -->
+        <section class="slide flex-col justify-center items-center">
+            <h2 class="text-4xl font-bold text-slate-800 w-full text-center mb-8">Exit Ticket</h2>
+            <div class="bg-slate-50 border border-slate-200 p-6 rounded-lg w-full max-w-2xl text-center">
+                <p class="text-2xl mb-4">Given \( \triangle WXY \cong \triangle R S T \), \( WX = 15 \), \( XY = 20 \), \( WY = 25 \), and \( ST = 3z - 1 \). Find the value of z.</p>
+                <div class="opacity-0 transition-opacity duration-500 answer mt-4">
+                    <p class="text-xl">\( XY \) corresponds to \( ST \).</p>
+                    <p class="text-lg font-mono">\( 20 = 3z - 1 \)</p>
+                    <p class="text-lg font-mono">\( 21 = 3z \)</p>
+                    <p class="text-2xl font-bold text-teal-700 mt-2">z = 7</p>
+                </div>
+                <div class="printable-only text-xl">Answer: <span class="fill-in-blank" style="min-width: 250px;"></span></div>
+            </div>
+            <button class="reveal-btn non-printable mt-8 bg-slate-200 text-slate-700 font-semibold px-6 py-3 rounded-lg hover:bg-slate-300 transition-colors">Reveal Answer</button>
+        </section>
+
+    </main>
+
+    <footer class="w-full max-w-5xl mx-auto mt-4 slide-footer non-printable">
+        <div class="flex justify-between items-center">
+            <button id="prevBtn" class="bg-slate-200 text-slate-700 font-semibold px-4 py-2 rounded-lg hover:bg-slate-300 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">Previous</button>
+            <p class="text-slate-600"><span id="current-slide">1</span> / <span id="total-slides">11</span></p>
+            <button id="nextBtn" class="bg-teal-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-teal-700 transition-colors">Next</button>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const slides = document.querySelectorAll('.slide');
+            const nextBtn = document.getElementById('nextBtn');
+            const prevBtn = document.getElementById('prevBtn');
+            const currentSlideSpan = document.getElementById('current-slide');
+            const totalSlidesSpan = document.getElementById('total-slides');
+            const revealBtns = document.querySelectorAll('.reveal-btn');
+
+            let currentSlide = 0;
+            totalSlidesSpan.textContent = slides.length;
+
+            function updateSlides() {
+                slides.forEach((slide, index) => {
+                    slide.classList.toggle('active', index === currentSlide);
+                });
+                currentSlideSpan.textContent = currentSlide + 1;
+                prevBtn.disabled = currentSlide === 0;
+                nextBtn.disabled = currentSlide === slides.length - 1;
+                
+                slides.forEach((slide, index) => {
+                    if (index !== currentSlide) {
+                        const answers = slide.querySelectorAll('.answer');
+                        answers.forEach(answer => {
+                            answer.style.opacity = '0';
+                        });
+                    }
+                });
+            }
+
+            nextBtn.addEventListener('click', () => {
+                if (currentSlide < slides.length - 1) {
+                    currentSlide++;
+                    updateSlides();
+                }
+            });
+
+            prevBtn.addEventListener('click', () => {
+                if (currentSlide > 0) {
+                    currentSlide--;
+                    updateSlides();
+                }
+            });
+
+            revealBtns.forEach(button => {
+                button.addEventListener('click', () => {
+                    const activeSlide = document.querySelector('.slide.active');
+                    const answers = activeSlide.querySelectorAll('.answer');
+                    answers.forEach(answer => {
+                        answer.style.opacity = '1';
+                    });
+                });
+            });
+
+            updateSlides();
+        });
+    </script>
+</body>
+</html>
+
