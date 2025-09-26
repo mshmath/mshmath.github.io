@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Foundations Unit 4 - How-To Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { 
+            font-family: 'Inter', sans-serif; 
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+        .example-box {
+            background-color: #f0f9ff; /* sky-50 */
+            border-left: 4px solid #0ea5e9; /* sky-500 */
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            border-radius: 0.5rem;
+        }
+        @media print {
+            body { 
+                background-color: white; 
+                color: black;
+                font-size: 1rem;
+            }
+            header, .non-printable { display: none !important; }
+            main { padding: 1rem !important; }
+            .printable-area {
+                box-shadow: none !important;
+                border: none !important;
+            }
+            .section {
+                page-break-inside: avoid;
+            }
+            h2, h3 { color: black !important; }
+             * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-slate-100">
+
+    <header class="bg-white shadow-md non-printable sticky top-0">
+        <div class="max-w-4xl mx-auto py-4 px-6 flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-slate-800">Math Foundations Unit 4: How-To Guide</h1>
+            <button onclick="window.print()" class="bg-violet-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-violet-700 transition-colors">
+                Print Guide
+            </button>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto p-6">
+        <div class="bg-white p-10 rounded-xl shadow-lg printable-area">
+
+            <!-- Part 1: Fraction Operations -->
+            <section class="section mb-16">
+                <h2 class="text-3xl font-bold text-violet-700 border-b-2 border-violet-200 pb-2 mb-6">Part 1: Fraction Operations</h2>
+                
+                <h3 class="text-2xl font-semibold text-slate-700 mt-6">How to Add or Subtract Fractions (with different denominators)</h3>
+                <ol class="list-decimal list-inside bg-slate-50 p-6 rounded-lg mt-4 space-y-2 text-lg">
+                    <li>Find a common denominator by multiplying the bottom numbers together.</li>
+                    <li>Rewrite each fraction as an equivalent fraction with the new denominator.</li>
+                    <li>Add or subtract the numerators. Keep the denominator the same.</li>
+                    <li>Simplify the final fraction if needed.</li>
+                </ol>
+                <div class="example-box text-lg">
+                    <p class="font-bold">Worked Example: \( \frac{2}{3} + \frac{1}{4} \)</p>
+                    <p><strong>Step 1 (Common Denominator):</strong> Multiply the denominators: \(3 \times 4 = 12\).</p>
+                    <p><strong>Step 2 (Rewrite Fractions):</strong><br>
+                    \( \frac{2}{3} = \frac{2 \times 4}{3 \times 4} = \frac{8}{12} \)<br>
+                    \( \frac{1}{4} = \frac{1 \times 3}{4 \times 3} = \frac{3}{12} \)</p>
+                    <p><strong>Step 3 (Add):</strong> \( \frac{8}{12} + \frac{3}{12} = \frac{8+3}{12} = \frac{11}{12} \)</p>
+                    <p><strong>Step 4 (Simplify):</strong> \(\frac{11}{12}\) is already in simplest form.</p>
+                </div>
+
+                <h3 class="text-2xl font-semibold text-slate-700 mt-10">How to Multiply Fractions</h3>
+                <ol class="list-decimal list-inside bg-slate-50 p-6 rounded-lg mt-4 space-y-2 text-lg">
+                    <li>Multiply the numerators (top numbers) together.</li>
+                    <li>Multiply the denominators (bottom numbers) together.</li>
+                    <li>Simplify the resulting fraction if needed.</li>
+                </ol>
+                 <div class="example-box text-lg">
+                    <p class="font-bold">Worked Example: \( \frac{3}{5} \times \frac{2}{9} \)</p>
+                    <p><strong>Step 1 (Multiply Numerators):</strong> \(3 \times 2 = 6\)</p>
+                    <p><strong>Step 2 (Multiply Denominators):</strong> \(5 \times 9 = 45\)</p>
+                    <p><strong>Result:</strong> \( \frac{6}{45} \)</p>
+                    <p><strong>Step 3 (Simplify):</strong> Both 6 and 45 can be divided by 3. \( \frac{6 \div 3}{45 \div 3} = \frac{2}{15} \)</p>
+                </div>
+                
+                <h3 class="text-2xl font-semibold text-slate-700 mt-10">How to Divide Fractions</h3>
+                <ol class="list-decimal list-inside bg-slate-50 p-6 rounded-lg mt-4 space-y-2 text-lg">
+                    <li><strong>KEEP</strong> the first fraction the same.</li>
+                    <li><strong>CHANGE</strong> the division sign to a multiplication sign.</li>
+                    <li><strong>FLIP</strong> the second fraction to its reciprocal.</li>
+                    <li>Multiply the fractions and simplify if needed.</li>
+                </ol>
+                 <div class="example-box text-lg">
+                    <p class="font-bold">Worked Example: \( \frac{1}{2} \div \frac{3}{4} \)</p>
+                    <p><strong>Step 1 (KEEP):</strong> \( \frac{1}{2} \)</p>
+                    <p><strong>Step 2 (CHANGE):</strong> \( \frac{1}{2} \times \)</p>
+                    <p><strong>Step 3 (FLIP):</strong> \( \frac{1}{2} \times \frac{4}{3} \)</p>
+                    <p><strong>Step 4 (Multiply):</strong> \( \frac{1 \times 4}{2 \times 3} = \frac{4}{6} \). Simplify by dividing by 2 to get \( \frac{2}{3} \).</p>
+                </div>
+            </section>
+
+            <!-- Part 2: Decimal Operations -->
+            <section class="section">
+                <h2 class="text-3xl font-bold text-violet-700 border-b-2 border-violet-200 pb-2 mb-6">Part 2: Decimal Operations</h2>
+                <h3 class="text-2xl font-semibold text-slate-700 mt-6">How to Add or Subtract Decimals</h3>
+                <ol class="list-decimal list-inside bg-slate-50 p-6 rounded-lg mt-4 space-y-2 text-lg">
+                    <li>Line up the numbers vertically so the decimal points are in a straight line.</li>
+                    <li>Add zeros as placeholders in any empty spots to the right.</li>
+                    <li>Add or subtract as you would with whole numbers.</li>
+                    <li>Bring the decimal point straight down into your answer.</li>
+                </ol>
+                <div class="example-box text-lg">
+                    <p class="font-bold">Worked Example: \( 24.7 + 5.91 \)</p>
+                    <pre class="font-mono text-left text-xl bg-white p-4 rounded-md mt-2">
+  24.70  (add a zero)
++  5.91
+-------
+  30.61</pre>
+                </div>
+
+                <h3 class="text-2xl font-semibold text-slate-700 mt-10">How to Multiply Decimals</h3>
+                <ol class="list-decimal list-inside bg-slate-50 p-6 rounded-lg mt-4 space-y-2 text-lg">
+                    <li>Multiply the numbers as if they were whole numbers (ignore the decimals).</li>
+                    <li>Count the total number of decimal places in both numbers you multiplied.</li>
+                    <li>Place the decimal point in your answer so it has that total number of decimal places.</li>
+                </ol>
+                 <div class="example-box text-lg">
+                    <p class="font-bold">Worked Example: \( 3.77 \times 2.8 \)</p>
+                     <pre class="font-mono text-left text-xl bg-white p-4 rounded-md mt-2">
+   3.77  (2 decimal places)
+ x  2.8  (1 decimal place)
+-------
+  3016
++ 7540
+-------
+ 10.556  (3 total decimal places)</pre>
+                </div>
+                
+                <h3 class="text-2xl font-semibold text-slate-700 mt-10">How to Divide Decimals</h3>
+                <ol class="list-decimal list-inside bg-slate-50 p-6 rounded-lg mt-4 space-y-2 text-lg">
+                    <li>If the divisor (the number you're dividing by) is not a whole number, move its decimal point to the right to make it one.</li>
+                    <li>Move the decimal point in the dividend (the number being divided) the same number of places to the right.</li>
+                    <li>Bring the decimal point straight up into the quotient (the answer).</li>
+                    <li>Divide as you would with whole numbers.</li>
+                </ol>
+                 <div class="example-box text-lg">
+                    <p class="font-bold">Worked Example: \( 12.45 \div 0.5 \)</p>
+                    <p><strong>Step 1 & 2:</strong> Move the decimal one place to the right in both numbers.<br>
+                    \( 0.5 \rightarrow 5 \)<br>
+                    \( 12.45 \rightarrow 124.5 \)</p>
+                    <p><strong>Step 3 & 4:</strong> The problem is now \( 124.5 \div 5 \). Divide normally.</p>
+                     <pre class="font-mono text-left text-xl bg-white p-4 rounded-md mt-2">
+   24.9
+  ____
+5|124.5
+  -10
+  ---
+   24
+  -20
+  ---
+    45
+   -45
+   ---
+     0</pre>
+                     <p>The answer is <strong>24.9</strong>.</p>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+</body>
+</html>
+
