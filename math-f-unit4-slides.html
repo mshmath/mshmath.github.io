@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Foundations - Week 4: Fractions & Decimals</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" xintegrity="sha384-n8MVd4RsNIU0KOVEMeaOePSceJajCnU1GfN4DFvWyMMitXU88EUT9ZAKwf/qt2OM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" xintegrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" xintegrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+              delimiters: [
+                  {left: "\\(", right: "\\)", display: false},
+                  {left: "\\[", right: "\\]", display: true}
+              ]
+            });
+        });
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .slide {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            min-height: 500px;
+        }
+        .slide:last-child {
+            margin-bottom: 0;
+        }
+        .i-do { border-left: 6px solid #3b82f6; }
+        .we-do { border-left: 6px solid #f97316; }
+        .you-do { border-left: 6px solid #16a34a; }
+        .practice-box {
+            border: 1px solid #e5e7eb;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-top: 1rem;
+        }
+        .green-level { border-left: 6px solid #22c55e; background-color: #f0fdf4; }
+        .yellow-level { border-left: 6px solid #f59e0b; background-color: #fffbeb; }
+        .red-level { border-left: 6px solid #ef4444; background-color: #fef2f2; }
+        .exit-ticket { border-top: 4px dotted #6b7280; margin-top: 2rem; padding-top: 2rem; }
+        
+        .katex {
+            font-size: 1.1em !important;
+        }
+        
+        .answer {
+            font-weight: 600;
+            color: #2563eb;
+        }
+        .handout-blank {
+            display: inline-block;
+            border-bottom: 1px solid #374151;
+            min-width: 60px;
+            height: 20px;
+            margin: 0 4px;
+        }
+
+        @media print {
+            body {
+                font-size: 11pt;
+                color: #000;
+                background-color: #fff;
+            }
+            .no-print {
+                display: none !important;
+            }
+            .container {
+                padding: 0; margin: 0; max-width: 100%; box-shadow: none;
+            }
+            .slide {
+                display: block !important;
+                box-shadow: none !important;
+                page-break-before: auto;
+                page-break-inside: avoid;
+                min-height: auto;
+                margin-bottom: 2rem;
+                border: 1px solid #ccc;
+            }
+            .i-do, .we-do, .you-do, .green-level, .yellow-level, .red-level {
+                border-left-width: 4px; background-color: #fff !important;
+            }
+            h1, h2, h3, p, strong { color: #000 !important; }
+            .bg-blue-50, .bg-orange-50, .bg-green-50, .bg-gray-50 {
+                background-color: #f9f9f9 !important;
+            }
+            .exit-ticket { border-top: 2px dotted #888; }
+
+            .answer {
+                visibility: hidden;
+                font-weight: normal;
+                color: black !important;
+            }
+            .answer::after {
+                content: "__________";
+                visibility: visible;
+                display: inline-block;
+                min-width: 60px;
+            }
+            .handout-blank {
+                 border-bottom: 1px solid black;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <div class="no-print fixed top-0 left-0 w-full bg-white/90 backdrop-blur-sm shadow-md p-4 z-50">
+        <div class="container mx-auto flex justify-between items-center max-w-5xl">
+            <h1 class="text-xl font-bold text-gray-700">Week 4 Slides: Fractions & Decimals</h1>
+            <div>
+                <button onclick="window.print()" class="bg-blue-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300">
+                    Print Handout
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8 max-w-5xl pt-24">
+        
+            <!-- Slide 1: Title -->
+            <div class="slide flex flex-col items-center justify-center text-center">
+                <h1 class="text-4xl sm:text-5xl font-bold text-gray-900">Week 4</h1>
+                <p class="text-2xl text-gray-700 mt-4">Operations with Fractions & Decimals</p>
+                <p class="text-lg text-indigo-600 mt-8">Student Notes & Practice</p>
+            </div>
+
+            <!-- Slide 2: Part 1 - Fractions Title -->
+            <div class="slide flex flex-col items-center justify-center text-center">
+                <h1 class="text-3xl font-bold text-gray-900">Part 1</h1>
+                <p class="text-4xl text-gray-700 mt-4">Operations with Fractions</p>
+            </div>
+
+            <!-- Slide 3: Adding & Subtracting Fractions Intro -->
+            <div class="slide">
+                <h2 class="text-2xl font-bold mb-4 pb-2 border-b">Topic: Adding & Subtracting Fractions</h2>
+                <p class="text-2xl text-center mt-16 p-8 bg-blue-50 rounded-lg"><strong>Goal:</strong> A simple way to find a common denominator is to <strong class="text-blue-600 text-3xl">multiply the two denominators</strong> together.</p>
+            </div>
+            
+            <!-- Slide 4: Add/Sub I Do -->
+            <div class="slide">
+                 <h2 class="text-2xl font-bold mb-4 pb-2 border-b">Adding Fractions: "I Do"</h2>
+                <div class="i-do bg-blue-50 p-4 rounded-lg">
+                    <h3 class="text-xl font-bold text-blue-800 mb-3">I Do (Teacher Example)</h3>
+                    <p class="font-semibold text-lg mb-2">Problem: You eat \(\frac{1}{2}\) of a pizza and a friend eats \(\frac{1}{3}\). How much did you eat together?</p>
+                    <p class="mb-4">We need to solve: <strong class="font-mono text-lg">\( \frac{1}{2} + \frac{1}{3} \)</strong></p>
+                    <ul class="space-y-3">
+                        <li><strong>Step 1: Multiply the denominators.</strong> This is your new common denominator.<br>
+                            <span class="ml-4 font-mono">\( 2 \times 3 = \) <span class="answer">6</span></span>
+                        </li>
+                        <li><strong>Step 2: Rewrite the fractions with the new denominator.</strong> Multiply the numerator of each fraction by the denominator of the *other* fraction.<br>
+                             <span class="ml-4 font-mono">For \(\frac{1}{2}\): \(1 \times 3 = \) <span class="answer">3</span>. So, \(\frac{1}{2} = \) <span class="answer">\( \frac{3}{6} \)</span></span><br>
+                             <span class="ml-4 font-mono">For \(\frac{1}{3}\): \(1 \times 2 = \) <span class="answer">2</span>. So, \(\frac{1}{3} = \) <span class="answer">\( \frac{2}{6} \)</span></span>
+                        </li>
+                        <li><strong>Step 3: Add the numerators.</strong> Keep the common denominator.<br>
+                            <span class="ml-4 font-mono">\( \frac{3}{6} + \frac{2}{6} = \frac{3 + 2}{6} = \) <span class="answer">\( \frac{5}{6} \)</span></span>
+                        </li>
+                         <li><strong>Step 4: Simplify if needed.</strong> <span class="answer">\( \frac{5}{6} \)</span> is already in simplest form.</li>
+                    </ul>
+                    <p class="mt-4 font-semibold text-blue-800">Answer: Together you ate <span class="answer">\( \frac{5}{6} \)</span> of the pizza.</p>
+                </div>
+            </div>
+
+            <!-- Slide 5: Add/Sub We Do/You Do -->
+            <div class="slide">
+                <h2 class="text-2xl font-bold mb-4 pb-2 border-b">Practice: Adding/Subtracting Fractions</h2>
+                <div class="we-do bg-orange-50 p-4 rounded-lg mb-6">
+                    <h3 class="text-xl font-bold text-orange-800 mb-3">We Do (Let's Try Together)</h3>
+                    <p class="font-semibold text-lg mb-2">Problem: <strong class="font-mono">\( \frac{3}{4} - \frac{1}{8} \)</strong></p>
+                    <ul class="space-y-2">
+                        <li>Multiply the denominators: \( 4 \times 8 \) =<span class="handout-blank"></span></li>
+                        <li>Rewrite the fractions: \( \frac{3}{4} = \frac{\_\_\_}{32} \) and \( \frac{1}{8} = \frac{\_\_\_}{32} \)</li>
+                        <li>Now, subtract: <span class="handout-blank"></span> - <span class="handout-blank"></span> = <span class="handout-blank"></span></li>
+                        <li>Can you simplify the answer? (Hint: Divide top and bottom by 4) <span class="handout-blank"></span></li>
+                    </ul>
+                </div>
+                <div class="you-do bg-green-50 p-4 rounded-lg">
+                    <h3 class="text-xl font-bold text-green-800 mb-3">You Do (Your Turn!)</h3>
+                    <p class="font-semibold text-lg mb-2">Problem: <strong class="font-mono">\( \frac{2}{5} + \frac{1}{10} \)</strong></p>
+                    <p class="mt-2">Show your steps below:</p>
+                </div>
+            </div>
+
+            <!-- Slide 6: Multiplying Fractions Intro & I Do -->
+            <div class="slide">
+                <h2 class="text-2xl font-bold mb-4 pb-2 border-b">Topic: Multiplying Fractions</h2>
+                <p class="text-xl text-center my-4 p-4 bg-green-50 rounded-lg"><strong>Goal:</strong> This is easier! Just <strong>multiply straight across</strong>.</p>
+                <div class="i-do bg-blue-50 p-4 rounded-lg">
+                    <h3 class="text-xl font-bold text-blue-800 mb-3">I Do (Teacher Example)</h3>
+                    <p class="font-semibold text-lg mb-2">Problem: Find <strong class="font-mono text-lg">\( \frac{1}{2} \) of \( \frac{3}{4} \)</strong>. ("Of" means multiply.)</p>
+                    <ul class="space-y-2">
+                        <li><strong>Step 1: Multiply the numerators (tops).</strong> <span class="ml-4 font-mono">\( 1 \times 3 = \) <span class="answer">3</span></span></li>
+                        <li><strong>Step 2: Multiply the denominators (bottoms).</strong> <span class="ml-4 font-mono">\( 2 \times 4 = \) <span class="answer">8</span></span></li>
+                        <li><strong>Step 3: Write the new fraction.</strong> <span class="ml-4 font-mono">Answer = <span class="answer">\( \frac{3}{8} \)</span></span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Slide 7: Multiply We Do/You Do -->
+            <div class="slide">
+                <h2 class="text-2xl font-bold mb-4 pb-2 border-b">Practice: Multiplying Fractions</h2>
+                <div class="we-do bg-orange-50 p-4 rounded-lg mb-6">
+                    <h3 class="text-xl font-bold text-orange-800 mb-3">We Do (Let's Try Together)</h3>
+                    <p class="font-semibold text-lg mb-2">Problem: <strong class="font-mono">\( \frac{2}{3} \times \frac{4}{5} \)</strong></p>
+                    <ul class="space-y-2">
+                        <li>Multiply the numerators: <span class="handout-blank"></span> \( \times \) <span class="handout-blank"></span> = <span class="handout-blank"></span></li>
+                        <li>Multiply the denominators: <span class="handout-blank"></span> \( \times \) <span class="handout-blank"></span> = <span class="handout-blank"></span></li>
+                        <li>Final Answer: <span class="handout-blank"></span></li>
+                    </ul>
+                </div>
+                <div class="you-do bg-green-50 p-4 rounded-lg">
+                    <h3 class="text-xl font-bold text-green-800 mb-3">You Do (Your Turn!)</h3>
+                    <p class="font-semibold text-lg mb-2">Problem: <strong class="font-mono">\( \frac{1}{4} \times \frac{2}{5} \)</strong></p>
+                    <p class="mt-2">Show your steps below:</p>
+                </div>
+            </div>
+
+            <!-- Slide 8: Fractions Independent Practice -->
+            <div class="slide">
+                <h2 class="text-2xl font-bold mb-4 pb-2 border-b">Fractions: Independent Practice</h2>
+                <p class="mb-6">Choose the level you feel comfortable starting with. Try to challenge yourself!</p>
+                <div class="green-level p-4 rounded-lg mb-4">
+                    <h3 class="text-xl font-bold text-green-800 mb-3">Green Level</h3>
+                    <div class="practice-box bg-white grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <h4 class="font-semibold text-gray-700">Add/Subtract</h4>
+                            <p class="mt-2">\( \frac{1}{8} + \frac{5}{8} \) </p>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-700">Multiply</h4>
+                            <p class="mt-2">\( \frac{3}{5} \times \frac{1}{2} \)</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="yellow-level p-4 rounded-lg mb-4">
+                    <h3 class="text-xl font-bold text-yellow-800 mb-3">Yellow Level</h3>
+                    <div class="practice-box bg-white grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <h4 class="font-semibold text-gray-700">Add/Subtract</h4>
+                            <p class="mt-2">\( \frac{5}{6} - \frac{1}{3} \) </p>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-700">Multiply</h4>
+                            <p class="mt-2">\( \frac{3}{4} \times \frac{2}{5} \)</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="red-level p-4 rounded-lg">
+                    <h3 class="text-xl font-bold text-red-800 mb-3">Red Level</h3>
+                     <div class="practice-box bg-white grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <h4 class="font-semibold text-gray-700">Add/Subtract</h4>
+                            <p class="mt-2">You walk \( \frac{2}{3} \) of a mile. Your friend walks \( \frac{1}{4} \) of a mile. How much farther do you walk?</p>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-700">Multiply</h4>
+                            <p class="mt-2">A recipe needs \( \frac{3}{4} \) cup of sugar. You make 3 batches. How much sugar do you need?</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 9: Fractions Exit Ticket -->
+            <div class="slide">
+                <div class="exit-ticket">
+                    <h2 class="text-3xl font-bold mb-6 text-center">Fractions: Exit Ticket</h2>
+                    <p class="mb-6 text-center">Show what you learned about fractions!</p>
+                    <div class="space-y-8">
+                        <div class="practice-box bg-gray-50 p-6"><p class="font-semibold text-xl">1. Solve: \( \frac{2}{3} + \frac{1}{6} \)</p></div>
+                        <div class="practice-box bg-gray-50 p-6"><p class="font-semibold text-xl">2. You have \(\frac{3}{4}\) of a pizza and you eat \(\frac{1}{2}\) of it. What fraction of the whole pizza did you eat?</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 10: Part 2 - Decimals Title -->
+            <div class="slide flex flex-col items-center justify-center text-center">
+                <h1 class="text-3xl font-bold text-gray-900">Part 2</h1>
+                <p class="text-4xl text-gray-700 mt-4">Operations with Decimals</p>
+            </div>
+
+            <!-- Slide 11: Decimals Review -->
+            <div class="slide">
+                <h2 class="text-2xl font-bold mb-4 pb-2 border-b">Topic: Operations with Decimals (Review)</h2>
+                <p class="mb-6 text-xl"><strong>Remember the key rules!</strong></p>
+                <div class="space-y-6">
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <h3 class="font-bold text-blue-800 text-xl">Adding & Subtracting Decimals</h3>
+                        <p class="text-lg mt-2">The most important rule: <strong>Line up the decimal points!</strong></p>
+                    </div>
+                    <div class="bg-green-50 p-4 rounded-lg">
+                        <h3 class="font-bold text-green-800 text-xl">Multiplying Decimals</h3>
+                        <p class="text-lg mt-2">1. Multiply the numbers ignoring the decimals.<br>2. Count the total number of decimal places in both numbers you multiplied.<br>3. Place the decimal in your answer so it has that many places.</p>
+                        <div class="mt-3 p-3 bg-white rounded-md border border-green-200">
+                            <p class="font-semibold">Example: \(1.2 \times 0.3\)</p>
+                            <ul class="list-disc list-inside mt-2">
+                                <li>Multiply: \(12 \times 3 = \) <span class="answer">36</span></li>
+                                <li>Count places: 1.2 (1 place) + 0.3 (1 place) = <span class="answer">2</span> total places.</li>
+                                <li>Place decimal: The answer needs 2 decimal places. So, <strong class="answer">0.36</strong>.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Slide 12: Decimals I Do -->
+            <div class="slide">
+                 <h2 class="text-2xl font-bold mb-4 pb-2 border-b">Decimals: "I Do"</h2>
+                <div class="i-do bg-blue-50 p-4 rounded-lg">
+                    <h3 class="text-xl font-bold text-blue-800 mb-3">I Do (Teacher Example)</h3>
+                    <p class="font-semibold text-lg mb-2">Problem 1 (Add): 5.2 + 12.75</p>
+                    <div class="font-mono text-lg bg-white p-4 rounded inline-block text-right">
+                        <p>  5.20</p>
+                        <p>+12.75</p>
+                        <hr class="border-gray-800 my-1">
+                        <p class="answer"> 17.95</p>
+                    </div>
+                    <p class="font-semibold text-lg mb-2 mt-4">Problem 2 (Multiply): A bag of chips costs $3.45. How much would 3 bags cost? (\(3.45 \times 3\))</p>
+                    <ul class="space-y-2">
+                        <li>Multiply \(345 \times 3 = \) <span class="answer">1035</span>.</li>
+                        <li>3.45 has 2 decimal places. 3 has 0. Total = <span class="answer">2</span>.</li>
+                        <li>Answer: <strong class="answer">$10.35</strong></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Slide 13: Decimals We Do / You Do -->
+            <div class="slide">
+                <h2 class="text-2xl font-bold mb-4 pb-2 border-b">Practice: Decimals</h2>
+                <div class="we-do bg-orange-50 p-4 rounded-lg mb-6">
+                    <h3 class="text-xl font-bold text-orange-800 mb-3">We Do (Let's Try Together)</h3>
+                    <p class="font-semibold text-lg mb-2">Problem: 20.5 - 8.1</p>
+                    <p class="mt-2">Line up the decimals and subtract.</p>
+                </div>
+                <div class="you-do bg-green-50 p-4 rounded-lg">
+                    <h3 class="text-xl font-bold text-green-800 mb-3">You Do (Your Turn!)</h3>
+                    <p class="font-semibold text-lg mb-2">A pen costs $1.25. You buy 4 pens. What is the total cost?</p>
+                    <p class="mt-2">Show your steps below:</p>
+                </div>
+            </div>
+            
+            <!-- Slide 14: Decimals Independent Practice -->
+            <div class="slide">
+                <h2 class="text-2xl font-bold mb-4 pb-2 border-b">Decimals: Independent Practice</h2>
+                <p class="mb-6">Choose the level you feel comfortable starting with.</p>
+                <div class="green-level p-4 rounded-lg mb-4">
+                    <h3 class="text-xl font-bold text-green-800 mb-3">Green Level</h3>
+                    <div class="practice-box bg-white space-y-3"><p>1. 10.5 + 4.2</p><p>2. \(5 \times 1.5\)</p></div>
+                </div>
+                <div class="yellow-level p-4 rounded-lg mb-4">
+                    <h3 class="text-xl font-bold text-yellow-800 mb-3">Yellow Level</h3>
+                    <div class="practice-box bg-white space-y-3"><p>1. A shirt is $15.75 and socks are $4.50. What is the total cost?</p><p>2. A movie ticket costs $9.50. How much would 4 tickets cost?</p></div>
+                </div>
+                <div class="red-level p-4 rounded-lg">
+                    <h3 class="text-xl font-bold text-red-800 mb-3">Red Level</h3>
+                    <div class="practice-box bg-white space-y-3"><p>1. You buy lunch for $8.67 and pay with a $20 bill. What is your change?</p><p>2. Gas costs $3.50 per gallon. Your car holds 10.5 gallons. How much to fill the tank?</p></div>
+                </div>
+            </div>
+
+            <!-- Slide 15: Decimals Exit Ticket -->
+            <div class="slide">
+                <div class="exit-ticket">
+                    <h2 class="text-3xl font-bold mb-6 text-center">Decimals: Exit Ticket</h2>
+                    <p class="mb-6 text-center">Show what you learned about decimals!</p>
+                    <div class="space-y-8">
+                        <div class="practice-box bg-gray-50 p-6"><p class="font-semibold text-xl">1. You have $15.50 and spend $8.25 on a movie ticket. How much money do you have left?</p></div>
+                        <div class="practice-box bg-gray-50 p-6"><p class="font-semibold text-xl">2. A garden is 5.5 ft long and 2 ft wide. What is its area? (Area = length \( \times \) width)</p></div>
+                    </div>
+                </div>
+            </div>
+        
+    </div>
+
+</body>
+</html>
+
