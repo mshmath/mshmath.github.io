@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 3 Slides: Radicals and Fractional Exponents</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .slide {
+            display: none;
+            min-height: 75vh;
+        }
+        .slide.active {
+            display: flex;
+        }
+        .math-xl {
+            font-size: 2.5rem;
+        }
+        .printable-only { display: none; }
+        
+        @media print {
+            body { background-color: white; color: black; }
+            body * { visibility: hidden; }
+            .printable-area, .printable-area * { visibility: visible; }
+            .printable-area {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+            }
+            .slide {
+                display: flex !important;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                width: 100%;
+                height: 98vh; /* Use vh for better page fit */
+                page-break-after: always;
+                border: 2px solid #e5e7eb;
+                box-shadow: none;
+                padding: 1.5rem;
+            }
+            .non-printable, .answer {
+                display: none !important;
+                visibility: hidden !important;
+            }
+            .printable-only {
+                display: block !important;
+                visibility: visible !important;
+                margin-top: 1rem;
+            }
+            .fill-in-blank {
+                display: inline-block;
+                min-width: 150px;
+                border-bottom: 1.5px solid black;
+                margin: 0 8px;
+                padding: 0 4px;
+                vertical-align: bottom;
+            }
+            .slide-footer, header { display: none !important; }
+            h1, h2, h3 { color: black !important; }
+             * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-slate-100 flex flex-col items-center justify-center min-h-screen p-4">
+
+    <header class="w-full max-w-5xl mx-auto mb-4">
+        <div class="flex justify-between items-center">
+            <h1 class="text-xl font-bold text-slate-700">Unit 3, Day 3: Radicals and Fractional Exponents</h1>
+            <button onclick="window.print()" class="non-printable bg-violet-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-violet-700 transition-colors text-sm">
+                Print Handout
+            </button>
+        </div>
+    </header>
+
+    <main id="presentation-container" class="w-full max-w-5xl bg-white rounded-xl shadow-lg p-8 printable-area">
+        <!-- Slide 1: Title -->
+        <section class="slide active flex-col justify-center items-center text-center">
+            <h1 class="text-5xl font-bold text-violet-700">Radicals as Fractional Exponents</h1>
+            <p class="text-2xl text-slate-600 mt-4">Algebra 1 - Unit 3, Day 3</p>
+        </section>
+
+        <!-- Slide 2: Objective -->
+        <section class="slide flex-col justify-center items-center text-center">
+            <h2 class="text-4xl font-bold text-slate-800">Today's Objective</h2>
+            <div class="bg-violet-50 border-l-4 border-violet-500 text-violet-800 p-6 rounded-r-lg mt-8 text-2xl max-w-3xl">
+                To understand and write radicals using fractional exponents, and to evaluate expressions in both forms.
+            </div>
+        </section>
+        
+        <!-- Slide 3: Warm Up -->
+        <section class="slide flex-col justify-start">
+            <h2 class="text-4xl font-bold text-slate-800 w-full text-center mb-8">Do Now: Exponents & Roots</h2>
+            <div class="text-3xl space-y-6 w-full max-w-2xl mx-auto">
+                <p class="text-2xl text-center mb-4">Simplify each expression.</p>
+                <!-- Question 1 -->
+                <div class="bg-violet-50 p-4 rounded-lg flex items-center justify-center space-x-4">
+                    <p class="non-printable">\( (x^3)^2 = ? \)</p>
+                    <div class="printable-only w-full text-2xl">1. &nbsp;&nbsp; \( (x^3)^2 = \) <span class="fill-in-blank"></span> </div>
+                </div>
+                 <!-- Question 2 -->
+                <div class="bg-violet-50 p-4 rounded-lg flex items-center justify-center space-x-4">
+                     <p class="non-printable">\( \sqrt{49} = ? \)</p>
+                     <div class="printable-only w-full text-2xl">2. &nbsp;&nbsp; \( \sqrt{49} = \) <span class="fill-in-blank"></span> </div>
+                </div>
+                <!-- Question 3 -->
+                <div class="bg-violet-50 p-4 rounded-lg flex items-center justify-center space-x-4">
+                    <p class="non-printable">\( \sqrt[3]{8} = ? \)</p>
+                    <div class="printable-only w-full text-2xl">3. &nbsp;&nbsp; \( \sqrt[3]{8} = \) <span class="fill-in-blank"></span> </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 4: The Main Concept -->
+        <section class="slide flex-col justify-center items-center text-center">
+            <h2 class="text-4xl font-bold text-slate-800">The Big Idea: Power over Root</h2>
+            <p class="text-2xl mt-6 max-w-3xl">A rational (fraction) exponent is just another way to write a radical.</p>
+            <div class="mt-8 text-4xl p-6 bg-slate-100 rounded-md">
+                 <p>\( b^{\frac{m}{n}} = (\sqrt[n]{b})^m \)</p>
+            </div>
+            <p class="text-2xl mt-8 max-w-3xl">Remember: The <strong class="text-violet-600">numerator (m)</strong> is the <strong class="text-violet-600">Power</strong>. The <strong class="text-violet-600">denominator (n)</strong> is the <strong class="text-violet-600">Root</strong>.</p>
+        </section>
+
+        <!-- Slide 5: Practice - Exponent to Radical -->
+        <section class="slide flex-col justify-start">
+            <h2 class="text-4xl font-bold text-slate-800 w-full text-center mb-8">Practice: Exponent to Radical Form</h2>
+            <div class="grid grid-cols-3 gap-6 w-full text-center non-printable">
+                <div>
+                    <h3 class="text-2xl font-bold text-violet-700 mb-4">I Do</h3>
+                    <p class="math-xl mb-4">\( x^{\frac{2}{3}} \)</p>
+                    <p class="math-xl font-bold text-slate-800 mt-2">\( (\sqrt[3]{x})^2 \)</p>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold text-violet-700 mb-4">We Do</h3>
+                    <p class="math-xl mb-4">\( 5^{\frac{1}{2}} \)</p>
+                    <div class="opacity-0 transition-opacity duration-500 answer">
+                        <p class="math-xl font-bold text-slate-800 mt-2">\( \sqrt{5} \)</p>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold text-violet-700 mb-4">You Do</h3>
+                    <p class="math-xl mb-4">\( a^{\frac{4}{5}} \)</p>
+                    <div class="opacity-0 transition-opacity duration-500 answer">
+                        <p class="math-xl font-bold text-slate-800 mt-2">\( (\sqrt[5]{a})^4 \)</p>
+                    </div>
+                </div>
+            </div>
+             <button class="reveal-btn non-printable mt-12 bg-slate-200 text-slate-700 font-semibold px-6 py-3 rounded-lg hover:bg-slate-300 transition-colors">Reveal Answers</button>
+             <div class="printable-only w-full text-xl space-y-6">
+                <p><strong>I Do:</strong> \( x^{\frac{2}{3}} \) = <span class="fill-in-blank">\( (\sqrt[3]{x})^2 \)</span></p>
+                <p><strong>We Do:</strong> \( 5^{\frac{1}{2}} \) = <span class="fill-in-blank" style="min-width: 200px;"></span></p>
+                <p><strong>You Do:</strong> \( a^{\frac{4}{5}} \) = <span class="fill-in-blank" style="min-width: 200px;"></span></p>
+             </div>
+        </section>
+
+        <!-- Slide 6: Practice - Radical to Exponent -->
+        <section class="slide flex-col justify-start">
+            <h2 class="text-4xl font-bold text-slate-800 w-full text-center mb-8">Practice: Radical to Exponent Form</h2>
+            <div class="grid grid-cols-3 gap-6 w-full text-center non-printable">
+                <div>
+                    <h3 class="text-2xl font-bold text-violet-700 mb-4">I Do</h3>
+                    <p class="math-xl mb-4">\( (\sqrt[4]{y})^3 \)</p>
+                    <p class="math-xl font-bold text-slate-800 mt-2">\( y^{\frac{3}{4}} \)</p>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold text-violet-700 mb-4">We Do</h3>
+                    <p class="math-xl mb-4">\( \sqrt{6} \)</p>
+                    <div class="opacity-0 transition-opacity duration-500 answer">
+                        <p class="math-xl font-bold text-slate-800 mt-2">\( 6^{\frac{1}{2}} \)</p>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold text-violet-700 mb-4">You Do</h3>
+                    <p class="math-xl mb-4">\( (\sqrt[5]{z})^2 \)</p>
+                    <div class="opacity-0 transition-opacity duration-500 answer">
+                        <p class="math-xl font-bold text-slate-800 mt-2">\( z^{\frac{2}{5}} \)</p>
+                    </div>
+                </div>
+            </div>
+             <button class="reveal-btn non-printable mt-12 bg-slate-200 text-slate-700 font-semibold px-6 py-3 rounded-lg hover:bg-slate-300 transition-colors">Reveal Answers</button>
+             <div class="printable-only w-full text-xl space-y-6">
+                <p><strong>I Do:</strong> \( (\sqrt[4]{y})^3 \) = <span class="fill-in-blank">\( y^{\frac{3}{4}} \)</span></p>
+                <p><strong>We Do:</strong> \( \sqrt{6} \) = <span class="fill-in-blank" style="min-width: 200px;"></span></p>
+                <p><strong>You Do:</strong> \( (\sqrt[5]{z})^2 \) = <span class="fill-in-blank" style="min-width: 200px;"></span></p>
+             </div>
+        </section>
+        
+        <!-- Slide 7: Evaluating Expressions -->
+        <section class="slide flex-col justify-start">
+            <h2 class="text-4xl font-bold text-slate-800 w-full text-center mb-8">Practice: Evaluating Expressions</h2>
+             <div class="grid grid-cols-3 gap-6 w-full text-center non-printable">
+                <div>
+                    <h3 class="text-2xl font-bold text-violet-700 mb-4">I Do</h3>
+                    <p class="math-xl mb-4">\( 8^{\frac{2}{3}} \)</p>
+                    <p class="text-xl">\( (\sqrt[3]{8})^2 \)</p>
+                    <p class="text-xl">\( (2)^2 \)</p>
+                    <p class="math-xl font-bold text-slate-800 mt-2">\( 4 \)</p>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold text-violet-700 mb-4">We Do</h3>
+                    <p class="math-xl mb-4">\( 25^{\frac{3}{2}} \)</p>
+                     <div class="opacity-0 transition-opacity duration-500 answer">
+                        <p class="text-xl">\( (\sqrt{25})^3 \)</p>
+                        <p class="text-xl">\( (5)^3 \)</p>
+                        <p class="math-xl font-bold text-slate-800 mt-2">\( 125 \)</p>
+                    </div>
+                </div>
+                 <div>
+                    <h3 class="text-2xl font-bold text-violet-700 mb-4">You Do</h3>
+                    <p class="math-xl mb-4">\( 16^{\frac{1}{4}} \)</p>
+                     <div class="opacity-0 transition-opacity duration-500 answer">
+                        <p class="text-xl">\( \sqrt[4]{16} \)</p>
+                        <p class="math-xl font-bold text-slate-800 mt-2">\( 2 \)</p>
+                    </div>
+                </div>
+            </div>
+             <button class="reveal-btn non-printable mt-12 bg-slate-200 text-slate-700 font-semibold px-6 py-3 rounded-lg hover:bg-slate-300 transition-colors">Reveal Answers</button>
+              <div class="printable-only w-full text-xl space-y-6">
+                <p><strong>I Do:</strong> \( 8^{\frac{2}{3}} \) = <span class="fill-in-blank">4</span></p>
+                <p><strong>We Do:</strong> \( 25^{\frac{3}{2}} \) = <span class="fill-in-blank" style="min-width: 200px;"></span></p>
+                <p><strong>You Do:</strong> \( 16^{\frac{1}{4}} \) = <span class="fill-in-blank" style="min-width: 200px;"></span></p>
+             </div>
+        </section>
+        
+        <!-- Slide 8: Independent Practice -->
+        <section class="slide flex-col justify-start">
+            <h2 class="text-4xl font-bold text-slate-800 w-full text-center mb-6">Independent Practice</h2>
+            <p class="text-slate-600 mb-6 text-center non-printable">Complete the following problems. Start with the green section!</p>
+            <div class="space-y-4 w-full max-w-3xl mx-auto non-printable">
+                <!-- Green -->
+                <div class="bg-green-50/80 border border-green-200 p-4 rounded-lg">
+                    <h3 class="font-bold text-green-700 mb-2">Rewrite or evaluate:</h3>
+                    <p class="math-xl">1. Rewrite \( x^{\frac{1}{4}} \) in radical form.</p>
+                    <p class="math-xl mt-4">2. Evaluate \( 9^{\frac{1}{2}} \)</p>
+                </div>
+                <!-- Yellow -->
+                <div class="bg-yellow-50/80 border border-yellow-200 p-4 rounded-lg">
+                    <h3 class="font-bold text-yellow-700 mb-2">Rewrite or evaluate:</h3>
+                    <p class="math-xl">3. Rewrite \( (\sqrt[5]{y})^2 \) in exponent form.</p>
+                    <p class="math-xl mt-4">4. Evaluate \( 27^{\frac{2}{3}} \)</p>
+                </div>
+                <!-- Red -->
+                <div class="bg-red-50/80 border border-red-200 p-4 rounded-lg">
+                    <h3 class="font-bold text-red-700 mb-2">Rewrite or evaluate:</h3>
+                    <p class="math-xl">5. Evaluate \( 32^{\frac{3}{5}} \)</p>
+                </div>
+            </div>
+             <div class="printable-only w-full text-xl space-y-4 mt-6">
+                <h3 class="text-2xl font-bold mb-4 text-center">Independent Practice</h3>
+                <p>1. Rewrite \( x^{\frac{1}{4}} \) in radical form: <span class="fill-in-blank"></span></p>
+                <p>2. Evaluate \( 9^{\frac{1}{2}} \): <span class="fill-in-blank"></span></p>
+                <p>3. Rewrite \( (\sqrt[5]{y})^2 \) in exponent form: <span class="fill-in-blank"></span></p>
+                <p>4. Evaluate \( 27^{\frac{2}{3}} \): <span class="fill-in-blank"></span></p>
+                <p>5. Evaluate \( 32^{\frac{3}{5}} \): <span class="fill-in-blank"></span></p>
+            </div>
+        </section>
+
+        <!-- Slide 9: Exit Ticket -->
+        <section class="slide flex-col justify-center items-center">
+            <h2 class="text-4xl font-bold text-slate-800 w-full text-center mb-8">Exit Ticket</h2>
+            <div class="bg-slate-50 border border-slate-200 p-6 rounded-lg w-full max-w-2xl text-center">
+                <p class="text-2xl mb-4">Evaluate the following expression completely:</p>
+                <p class="math-xl mb-6">\( 64^{\frac{2}{3}} \)</p>
+                <div class="opacity-0 transition-opacity duration-500 answer">
+                    <p class="text-xl">\( (\sqrt[3]{64})^2 \)</p>
+                    <p class="text-xl">\( (4)^2 \)</p>
+                    <p class="text-2xl font-bold text-violet-700 mt-2">Answer: \( 16 \)</p>
+                </div>
+                <div class="printable-only text-xl">\( 64^{\frac{2}{3}} \) = <span class="fill-in-blank" style="min-width: 200px;"></span></div>
+            </div>
+            <button class="reveal-btn non-printable mt-8 bg-slate-200 text-slate-700 font-semibold px-6 py-3 rounded-lg hover:bg-slate-300 transition-colors">Reveal Answer</button>
+        </section>
+
+    </main>
+
+    <footer class="w-full max-w-5xl mx-auto mt-4 slide-footer non-printable">
+        <div class="flex justify-between items-center">
+            <button id="prevBtn" class="bg-slate-200 text-slate-700 font-semibold px-4 py-2 rounded-lg hover:bg-slate-300 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">Previous</button>
+            <p class="text-slate-600"><span id="current-slide">1</span> / <span id="total-slides">9</span></p>
+            <button id="nextBtn" class="bg-violet-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-violet-700 transition-colors">Next</button>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const slides = document.querySelectorAll('.slide');
+            const nextBtn = document.getElementById('nextBtn');
+            const prevBtn = document.getElementById('prevBtn');
+            const currentSlideSpan = document.getElementById('current-slide');
+            const totalSlidesSpan = document.getElementById('total-slides');
+            const revealBtns = document.querySelectorAll('.reveal-btn');
+
+            let currentSlide = 0;
+            totalSlidesSpan.textContent = slides.length;
+
+            function updateSlides() {
+                slides.forEach((slide, index) => {
+                    slide.classList.toggle('active', index === currentSlide);
+                });
+                currentSlideSpan.textContent = currentSlide + 1;
+                prevBtn.disabled = currentSlide === 0;
+                nextBtn.disabled = currentSlide === slides.length - 1;
+                
+                slides.forEach((slide, index) => {
+                    if (index !== currentSlide) {
+                        const answers = slide.querySelectorAll('.answer');
+                        answers.forEach(answer => {
+                            answer.style.opacity = '0';
+                        });
+                    }
+                });
+            }
+
+            nextBtn.addEventListener('click', () => {
+                if (currentSlide < slides.length - 1) {
+                    currentSlide++;
+                    updateSlides();
+                }
+            });
+
+            prevBtn.addEventListener('click', () => {
+                if (currentSlide > 0) {
+                    currentSlide--;
+                    updateSlides();
+                }
+            });
+
+            revealBtns.forEach(button => {
+                button.addEventListener('click', () => {
+                    const activeSlide = document.querySelector('.slide.active');
+                    const answers = activeSlide.querySelectorAll('.answer');
+                    answers.forEach(answer => {
+                        answer.style.opacity = '1';
+                    });
+                });
+            });
+
+            updateSlides();
+        });
+    </script>
+</body>
+</html>
+
