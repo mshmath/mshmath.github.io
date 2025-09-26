@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geometry Unit 4: Triangles - Properties & Congruence</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; }
+        .lesson-section { scroll-margin-top: 5rem; }
+        details > summary { list-style: none; }
+        details > summary::-webkit-details-marker { display: none; }
+        .details-arrow { transition: transform 0.2s ease-in-out; }
+        details[open] .details-arrow { transform: rotate(90deg); }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800">
+
+    <!-- Header & Navigation -->
+    <header class="bg-white/90 backdrop-blur-sm shadow-md sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col sm:flex-row justify-between items-center py-4 border-b border-slate-200">
+                <h1 class="text-2xl font-bold text-slate-900">Unit 4: Triangles & Congruence</h1>
+                <nav class="mt-2 sm:mt-0">
+                    <ul class="flex space-x-2 sm:space-x-4 text-sm sm:text-base">
+                        <li><a href="#day1" class="font-semibold text-teal-600 hover:text-teal-800 transition">Day 1</a></li>
+                        <li><a href="#day2" class="font-semibold text-teal-600 hover:text-teal-800 transition">Day 2</a></li>
+                        <li><a href="#day3" class="font-semibold text-teal-600 hover:text-teal-800 transition">Day 3</a></li>
+                        <li><a href="#day4" class="font-semibold text-teal-600 hover:text-teal-800 transition">Day 4</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto p-4 sm:p-6 lg:p-8">
+        
+        <!-- Resources Navigation Card -->
+        <div class="bg-white p-6 rounded-xl shadow-lg mb-12">
+            <h2 class="text-3xl font-bold text-teal-700 mb-2">Unit 4 Resources</h2>
+            <p class="text-slate-600 mb-6">Use the buttons below to access slides, practice, and review materials for this unit.</p>
+            <div class="border-t border-b border-slate-200 py-6">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                    <a href="geo-unit4-worksheet.html" target="_blank" class="block w-full text-center bg-slate-100 text-slate-700 font-semibold px-4 py-3 rounded-lg hover:bg-slate-200 transition-colors">Practice Worksheet</a>
+                    <a href="geo-unit4-how-to-guide.html" target="_blank" class="block w-full text-center bg-slate-100 text-slate-700 font-semibold px-4 py-3 rounded-lg hover:bg-slate-200 transition-colors">How-To Guide / Organizer</a>
+                    <a href="geo-unit4-study-guide.html" target="_blank" class="block w-full text-center bg-slate-100 text-slate-700 font-semibold px-4 py-3 rounded-lg hover:bg-slate-200 transition-colors">Study Guide</a>
+                </div>
+                <!-- Daily Slides -->
+                <div class="space-y-4 mb-6">
+                    <h3 class="font-semibold text-lg text-slate-800">Daily Lesson Slides</h3>
+                    <div><h4 class="font-semibold text-slate-600 text-sm mb-1">Day 1: Triangle Inequality & Side/Angle Relationships</h4><a href="geo-unit4-day1-slides.html" target="_blank" class="block text-center bg-teal-500 text-white font-semibold px-4 py-2 rounded-lg hover:bg-teal-600 transition-colors text-sm">View Slides</a></div>
+                    <div><h4 class="font-semibold text-slate-600 text-sm mb-1">Day 2: Triangle Angle Sum & Exterior Angles</h4><a href="geo-unit4-day2-slides.html" target="_blank" class="block text-center bg-teal-500 text-white font-semibold px-4 py-2 rounded-lg hover:bg-teal-600 transition-colors text-sm">View Slides</a></div>
+                    <div><h4 class="font-semibold text-slate-600 text-sm mb-1">Day 3: Triangle Congruence (SSS, SAS, ASA)</h4><a href="geo-unit4-day3-slides.html" target="_blank" class="block text-center bg-teal-500 text-white font-semibold px-4 py-2 rounded-lg hover:bg-teal-600 transition-colors text-sm">View Slides</a></div>
+                    <div><h4 class="font-semibold text-slate-600 text-sm mb-1">Day 4: Congruence Proofs</h4><a href="geo-unit4-day4-slides.html" target="_blank" class="block text-center bg-teal-500 text-white font-semibold px-4 py-2 rounded-lg hover:bg-teal-600 transition-colors text-sm">View Slides</a></div>
+                </div>
+                 <a href="geo-unit4-quiz.html" target="_blank" class="block w-full text-center bg-teal-600 text-white font-bold px-4 py-3 rounded-lg hover:bg-teal-700 transition-colors">Take the Unit 4 Quiz</a>
+            </div>
+        </div>
+
+        <div class="space-y-4">
+            <!-- Day 1 -->
+            <details id="day1" class="lesson-section bg-white rounded-xl shadow-lg overflow-hidden" open>
+                <summary class="p-6 cursor-pointer flex justify-between items-center hover:bg-slate-50 transition-colors">
+                    <h3 class="text-2xl font-bold text-slate-800">Day 1: Triangle Inequality & Relationships</h3>
+                    <svg class="w-6 h-6 text-slate-500 details-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </summary>
+                <div class="p-6 border-t border-slate-200 space-y-4">
+                    <p class="bg-teal-50 border border-teal-200 text-teal-800 p-3 rounded-lg"><strong class="font-semibold">Objective:</strong> To determine if a triangle can exist and to compare side lengths and angle measures.</p>
+                    <p><strong>Triangle Inequality Theorem:</strong> The sum of the lengths of any two sides of a triangle must be greater than the length of the third side.</p>
+                    <p><strong>Side-Angle Relationship:</strong> In any triangle, the longest side is opposite the largest angle, and the shortest side is opposite the smallest angle.</p>
+                </div>
+            </details>
+
+            <!-- Day 2 -->
+            <details id="day2" class="lesson-section bg-white rounded-xl shadow-lg overflow-hidden">
+                <summary class="p-6 cursor-pointer flex justify-between items-center hover:bg-slate-50 transition-colors">
+                    <h3 class="text-2xl font-bold text-slate-800">Day 2: Angle Sum & Exterior Angles</h3>
+                    <svg class="w-6 h-6 text-slate-500 details-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </summary>
+                <div class="p-6 border-t border-slate-200 space-y-4">
+                    <p class="bg-teal-50 border border-teal-200 text-teal-800 p-3 rounded-lg"><strong class="font-semibold">Objective:</strong> To find missing angle measures in triangles.</p>
+                    <p><strong>Triangle Angle Sum Theorem:</strong> The three interior angles of any triangle always add up to 180°.</p>
+                    <p><strong>Exterior Angle Theorem:</strong> The measure of an exterior angle of a triangle is equal to the sum of the measures of its two remote interior angles.</p>
+                </div>
+            </details>
+
+            <!-- Day 3 -->
+            <details id="day3" class="lesson-section bg-white rounded-xl shadow-lg overflow-hidden">
+                <summary class="p-6 cursor-pointer flex justify-between items-center hover:bg-slate-50 transition-colors">
+                    <h3 class="text-2xl font-bold text-slate-800">Day 3: Triangle Congruence</h3>
+                    <svg class="w-6 h-6 text-slate-500 details-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </summary>
+                <div class="p-6 border-t border-slate-200 space-y-4">
+                    <p class="bg-teal-50 border border-teal-200 text-teal-800 p-3 rounded-lg"><strong class="font-semibold">Objective:</strong> To prove triangles are congruent using SSS, SAS, and ASA postulates.</p>
+                    <p><strong>Congruent Triangles:</strong> Triangles that have the exact same size and shape. All corresponding sides and angles are equal.</p>
+                    <ul class="list-disc list-inside ml-4">
+                        <li><strong>SSS (Side-Side-Side):</strong> If three sides of one triangle are congruent to three sides of another.</li>
+                        <li><strong>SAS (Side-Angle-Side):</strong> If two sides and the included angle of one triangle are congruent to those of another.</li>
+                        <li><strong>ASA (Angle-Side-Angle):</strong> If two angles and the included side of one triangle are congruent to those of another.</li>
+                    </ul>
+                </div>
+            </details>
+            
+            <!-- Day 4 -->
+            <details id="day4" class="lesson-section bg-white rounded-xl shadow-lg overflow-hidden">
+                <summary class="p-6 cursor-pointer flex justify-between items-center hover:bg-slate-50 transition-colors">
+                    <h3 class="text-2xl font-bold text-slate-800">Day 4: Congruence Proofs</h3>
+                    <svg class="w-6 h-6 text-slate-500 details-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </summary>
+                <div class="p-6 border-t border-slate-200 space-y-4">
+                    <p class="bg-teal-50 border border-teal-200 text-teal-800 p-3 rounded-lg"><strong class="font-semibold">Objective:</strong> To use congruence postulates to prove triangles are congruent in algebraic and coordinate problems.</p>
+                    <p>We use the congruence postulates (SSS, SAS, ASA, etc.) as reasons in proofs to show two triangles are identical. Once triangles are proven congruent, we know that their corresponding parts are also congruent (CPCTC).</p>
+                    <p>This can be applied on the coordinate plane by using the distance formula (to find side lengths) and slope formula (to find right angles).</p>
+                </div>
+            </details>
+        </div>
+    </main>
+
+    <footer class="text-center p-8 text-gray-500 text-sm">
+        <p>Aly Hatfield &nbsp;&bull;&nbsp; &copy; 2025</p>
+    </footer>
+
+</body>
+</html>
+
