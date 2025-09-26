@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Foundations Unit 4: Decimal & Fraction Operations</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; }
+        .lesson-section { scroll-margin-top: 5rem; }
+        .interactive-input { transition: all 0.3s ease-in-out; }
+        details > summary { list-style: none; }
+        details > summary::-webkit-details-marker { display: none; }
+        .details-arrow { transition: transform 0.2s ease-in-out; }
+        details[open] .details-arrow { transform: rotate(90deg); }
+        .printable-only { display: none; }
+        @media print {
+            header, .non-printable { display: none !important; }
+            .printable-only { display: block !important; }
+            main { padding: 0 !important; }
+            body { background-color: white; color: black; }
+            details { display: block !important; page-break-inside: avoid; }
+            details[open] summary { display: none; }
+            .lesson-section, .bg-white { box-shadow: none !important; border: 1px solid #ccc !important; }
+            h1, h2, h3, h4 { color: black !important; }
+            .fill-in-blank { display: inline-block; min-width: 120px; border-bottom: 1px solid black; margin: 0 4px; padding: 0 4px; }
+             * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800">
+    <!-- Header & Navigation -->
+    <header class="bg-white/90 backdrop-blur-sm shadow-md sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col sm:flex-row justify-between items-center py-4 border-b border-slate-200">
+                <h1 class="text-2xl font-bold text-slate-900">Math Foundations Unit 4: Operations</h1>
+                <nav class="mt-2 sm:mt-0">
+                    <ul class="flex space-x-4 sm:space-x-6 text-sm sm:text-base">
+                        <li><a href="#fractions" class="font-semibold text-violet-600 hover:text-violet-800 transition">Fraction Operations</a></li>
+                        <li><a href="#decimals" class="font-semibold text-violet-600 hover:text-violet-800 transition">Decimal Operations</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto p-4 sm:p-6 lg:p-8">
+        <!-- Introduction & Navigation Card -->
+        <div class="bg-white p-6 rounded-xl shadow-lg mb-12 non-printable">
+            <h2 class="text-3xl font-bold text-violet-700 mb-2">Unit 4 Resources & Lessons</h2>
+            <p class="text-slate-600 mb-6">Use the buttons below to access unit-wide resources or jump to a specific lesson.</p>
+            <div class="border-t border-b border-slate-200 py-6">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                    <a href="math-f-unit4-notes.html" target="_blank" class="block w-full text-center bg-slate-100 text-slate-700 font-semibold px-4 py-2 rounded-lg hover:bg-slate-200 transition-colors text-sm">Slides/Notes Packet</a>
+                    <a href="math-f-unit4-ws.html" target="_blank" class="block w-full text-center bg-slate-100 text-slate-700 font-semibold px-4 py-2 rounded-lg hover:bg-slate-200 transition-colors text-sm">Practice Worksheet</a>
+                    <a href="math-f-unit4-how-to-guide.html" target="_blank" class="block w-full text-center bg-slate-100 text-slate-700 font-semibold px-4 py-2 rounded-lg hover:bg-slate-200 transition-colors text-sm">How-To Guide</a>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <a href="math-f-unit4-study-guide.html" target="_blank" class="block w-full text-center bg-violet-500 text-white font-semibold px-4 py-2 rounded-lg hover:bg-violet-600 transition-colors text-sm">View Study Guide</a>
+                    <a href="math-f-unit4-quiz.html" target="_blank" class="block w-full text-center bg-violet-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-violet-700 transition-colors text-sm">Take Unit 4 Test</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="space-y-8">
+            <!-- Lesson 1: Fraction Operations -->
+            <details id="fractions" class="lesson-section bg-white rounded-xl shadow-lg overflow-hidden" open>
+                <summary class="p-6 cursor-pointer flex justify-between items-center hover:bg-slate-50 transition-colors non-printable">
+                    <h3 class="text-2xl font-bold text-slate-800">Part 1: Fraction Operations</h3>
+                    <svg class="w-6 h-6 text-slate-500 details-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </summary>
+                <div class="p-6 border-t border-slate-200 space-y-8">
+                    <p class="mb-2 bg-violet-50 border border-violet-200 text-violet-800 p-3 rounded-lg"><strong class="font-semibold">Objective:</strong> To add, subtract, multiply, and divide fractions, including those with unlike denominators.</p>
+                    
+                    <!-- I Do -->
+                    <div>
+                        <h4 class="text-xl font-semibold text-violet-700 mb-4">Key Concepts</h4>
+                        <div class="space-y-4">
+                            <div class="bg-violet-50 p-4 rounded-lg border border-violet-200">
+                                <p class="mb-2"><strong>Adding/Subtracting (Unlike Denominators):</strong> Find the Least Common Denominator (LCD), rewrite fractions, then add or subtract numerators.</p>
+                                <p class="font-mono text-center text-lg">\( \frac{1}{3} + \frac{2}{5} \rightarrow \frac{1 \cdot 5}{3 \cdot 5} + \frac{2 \cdot 3}{5 \cdot 3} \rightarrow \frac{5}{15} + \frac{6}{15} = \frac{11}{15} \)</p>
+                            </div>
+                            <div class="bg-violet-50 p-4 rounded-lg border border-violet-200">
+                                <p class="mb-2"><strong>Multiplying:</strong> Multiply the numerators, then multiply the denominators. Simplify if possible.</p>
+                                <p class="font-mono text-center text-lg">\( \frac{2}{3} \times \frac{1}{4} = \frac{2 \cdot 1}{3 \cdot 4} = \frac{2}{12} = \frac{1}{6} \)</p>
+                            </div>
+                             <div class="bg-violet-50 p-4 rounded-lg border border-violet-200">
+                                <p class="mb-2"><strong>Dividing:</strong> Keep the first fraction, change division to multiplication, and flip the second fraction (use the reciprocal).</p>
+                                <p class="font-mono text-center text-lg">\( \frac{3}{4} \div \frac{1}{2} \rightarrow \frac{3}{4} \times \frac{2}{1} = \frac{6}{4} = \frac{3}{2} \)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <!-- Lesson 2: Decimal Operations -->
+            <details id="decimals" class="lesson-section bg-white rounded-xl shadow-lg overflow-hidden" open>
+                 <summary class="p-6 cursor-pointer flex justify-between items-center hover:bg-slate-50 transition-colors non-printable">
+                    <h3 class="text-2xl font-bold text-slate-800">Part 2: Decimal Operations</h3>
+                    <svg class="w-6 h-6 text-slate-500 details-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </summary>
+                <div class="p-6 border-t border-slate-200 space-y-8">
+                    <p class="mb-2 bg-violet-50 border border-violet-200 text-violet-800 p-3 rounded-lg"><strong class="font-semibold">Objective:</strong> To add, subtract, multiply, and divide decimals accurately.</p>
+                    
+                    <!-- I Do -->
+                    <div>
+                        <h4 class="text-xl font-semibold text-violet-700 mb-4">Key Concepts</h4>
+                        <div class="space-y-4">
+                            <div class="bg-violet-50 p-4 rounded-lg border border-violet-200">
+                                <p class="mb-2"><strong>Adding/Subtracting:</strong> Line up the decimal points vertically. Add zeros as placeholders if needed.</p>
+                                <pre class="font-mono text-center text-lg">  12.50\n+  3.45\n-------\n  15.95</pre>
+                            </div>
+                            <div class="bg-violet-50 p-4 rounded-lg border border-violet-200">
+                                <p class="mb-2"><strong>Multiplying:</strong> Multiply as if they are whole numbers. Count the total decimal places in the factors to place the decimal in the product.</p>
+                                 <p class="font-mono text-center text-lg">\( 2.5 \times 1.3 \rightarrow 25 \times 13 = 325 \rightarrow 3.25 \) (2 total decimal places)</p>
+                            </div>
+                             <div class="bg-violet-50 p-4 rounded-lg border border-violet-200">
+                                <p class="mb-2"><strong>Dividing:</strong> Move the decimal in the divisor to make it a whole number. Move the decimal in the dividend the same number of places.</p>
+                                <p class="font-mono text-center text-lg">\( 15.5 \div 0.5 \rightarrow 155 \div 5 = 31 \)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </details>
+        </div>
+    </main>
+
+    <footer class="text-center mt-16 text-gray-500 non-printable">
+        <p>&copy; 2025 Aly Hatfield. All rights reserved.</p>
+        <br>
+    </footer>
+</body>
+</html>
