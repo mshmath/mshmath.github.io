@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>How to Make Your Interactive Class Binder</title>
+    <title>Class Binder Resources</title>
     <!-- Tailwind CSS for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         /* Use Inter font family */
         body {
@@ -17,71 +17,68 @@
         }
     </style>
 </head>
-<body class="bg-gray-100 text-gray-800">
+<body class="bg-gray-50 text-gray-800">
+
     <!-- Main Container -->
-    <div class="container mx-auto px-4 py-8 sm:py-12 md:py-16">
-        <div class="max-w-3xl mx-auto bg-white rounded-2xl shadow-lg p-6 sm:p-8 md:p-10 text-center">
+    <div class="container mx-auto px-4 py-12 sm:py-16">
+        <div class="max-w-xl mx-auto">
+            
             <!-- Header Section -->
-            <header>
-                <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                    Build Your Interactive Class Binder
+            <header class="text-center mb-8">
+                <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-2">
+                    Class Binder Setup
                 </h1>
-                <p class="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
-                    Welcome to the new semester! To stay organized and get the most out of each class, you will build an interactive binder. This binder will be your all-in-one resource for notes, assignments, and study materials. Start with a sturdy 3-ring binder. Then, print a <strong>Cover Page</strong> to personalize it for your class. Use the <strong>Note Paper Template</strong> for all your in-class notes and problem-solving. Finally, print the <strong>Dividers and Labels</strong> to create a separate section for each unit of study. This system will help you keep all your materials in chronological order, making it easy to review concepts and prepare for exams.
+                <p class="text-base text-gray-600">
+                    Download and print the resources below to build your binder for the semester.
                 </p>
             </header>
-            <!-- Button Container -->
-            <div class="mt-8 sm:mt-12 grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
-                <!--
-                  INSTRUCTIONS:
-                  Replace the '#' in the href attribute below with the actual link to your template file.
-                  For example: href="templates/cover-page.pdf" or a full URL.
-                  The 'target="_blank"' attribute opens the link in a new tab.
+
+            <!-- Links Container -->
+            <div class="bg-white border border-gray-200 rounded-xl p-6 sm:p-8 space-y-4">
+                <!-- 
+                    INSTRUCTIONS:
+                    Replace the '#' in the href attribute below with the actual link to your template file.
+                    For example: href="templates/cover-page.pdf" or a full URL.
+                    The 'target="_blank"' attribute opens the link in a new tab.
                 -->
-                <!-- Cover Page Button -->
-                <a href="binder-cover.html" target="_blank" class="group block bg-blue-500 hover:bg-blue-600 text-white font-semibold py-4 px-6 rounded-xl shadow-md transition-all duration-300 ease-in-out transform hover:-translate-y-1">
-                    <div class="flex items-center justify-center space-x-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform duration-300 group-hover:rotate-6"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg>
-                        <span>Cover Page Template</span>
-                    </div>
+
+                <!-- Cover Page Link -->
+                <a href="binder-cover.html" target="_blank" class="block w-full text-center bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium py-3 px-5 rounded-lg transition-colors duration-200">
+                    Cover Page
                 </a>
-                <!-- Note Paper Button -->
-                <a href="blank-taking-notes.html" target="_blank" class="group block bg-green-500 hover:bg-green-600 text-white font-semibold py-4 px-6 rounded-xl shadow-md transition-all duration-300 ease-in-out transform hover:-translate-y-1">
-                     <div class="flex items-center justify-center space-x-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform duration-300 group-hover:rotate-6"><path d="M2 6h4"/><path d="M2 10h4"/><path d="M2 14h4"/><path d="M2 18h4"/><rect width="16" height="20" x="4" y="2" rx="2"/><path d="M15 2v20"/></svg>
-                        <span>Note Paper Template</span>
-                    </div>
+                
+                <!-- Note Paper Link -->
+                <a href="blank-taking-notes.html" target="_blank" class="block w-full text-center bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium py-3 px-5 rounded-lg transition-colors duration-200">
+                    Note Paper Template
                 </a>
-                <!-- Dividers & Labels Button -->
-                <a href="binder-labels.html" target="_blank" class="group block bg-purple-500 hover:bg-purple-600 text-white font-semibold py-4 px-6 rounded-xl shadow-md transition-all duration-300 ease-in-out transform hover:-translate-y-1">
-                    <div class="flex items-center justify-center space-x-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform duration-300 group-hover:rotate-6"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
-                        <span>Dividers & Labels</span>
-                    </div>
+                
+                <!-- Dividers & Labels Link -->
+                <a href="binder-labels.html" target="_blank" class="block w-full text-center bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium py-3 px-5 rounded-lg transition-colors duration-200">
+                    Dividers & Labels
                 </a>
-                <!-- Table of Contents Button -->
-                <a href="binder-toc.html" target="_blank" class="group block bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-4 px-6 rounded-xl shadow-md transition-all duration-300 ease-in-out transform hover:-translate-y-1">
-                    <div class="flex items-center justify-center space-x-3">
-                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform duration-300 group-hover:rotate-6"><line x1="8" x2="21" y1="6" y2="6"/><line x1="8" x2="21" y1="12" y2="12"/><line x1="8" x2="21" y1="18" y2="18"/><line x1="3" x2="3.01" y1="6" y2="6"/><line x1="3" x2="3.01" y1="12" y2="12"/><line x1="3" x2="3.01" y1="18" y2="18"/></svg>
-                        <span>Table of Contents</span>
-                    </div>
+                
+                <!-- Table of Contents Link -->
+                <a href="binder-toc.html" target="_blank" class="block w-full text-center bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium py-3 px-5 rounded-lg transition-colors duration-200">
+                    Table of Contents
                 </a>
-                <!-- About Me Button -->
-                <a href="about-me.html" target="_blank" class="group block bg-orange-500 hover:bg-orange-600 text-white font-semibold py-4 px-6 rounded-xl shadow-md transition-all duration-300 ease-in-out transform hover:-translate-y-1 sm:col-span-2">
-                    <div class="flex items-center justify-center space-x-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform duration-300 group-hover:rotate-6"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                        <span>About Me</span>
-                    </div>
+                
+                <!-- About Me Link -->
+                <a href="about-me.html" target="_blank" class="block w-full text-center bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium py-3 px-5 rounded-lg transition-colors duration-200">
+                    About Me
                 </a>
             </div>
+            
         </div>
     </div>
-    <footer class="bg-slate-100 text-slate-500 py-5 mt-16 border-t border-slate-200">
+
+    <!-- Footer -->
+    <footer class="text-gray-500 py-5 mt-8 border-t border-gray-200">
         <div class="container mx-auto text-center">
             <p class="text-sm">
-                &nbsp;&bull;&nbsp; &copy; 2025 Aly Hatfield. All Rights Reserved. &nbsp;&bull;&nbsp;
+                &copy; 2025 Aly Hatfield. All Rights Reserved.
             </p>
         </div>
     </footer>
+
 </body>
 </html>
