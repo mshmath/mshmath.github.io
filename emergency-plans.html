@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>School Emergency Action Plan</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -28,120 +28,131 @@
             h1, h2, h3, h4 {
                 page-break-after: avoid;
             }
-            .protocol-section {
+            .protocol-card {
                 page-break-inside: avoid;
             }
         }
     </style>
 </head>
 <body class="bg-gray-100 p-4 sm:p-8">
-
-    <div class="max-w-4xl mx-auto bg-white p-6 sm:p-10 rounded-lg shadow-lg printable-content">
-
-        <!-- Header and Print Button -->
-        <header class="flex justify-between items-center border-b pb-4 mb-6 no-print">
-            <h1 class="text-2xl font-bold text-gray-800">School Emergency Action Plan</h1>
-            <button onclick="window.print()" class="bg-blue-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-300">
-                🖨️ Print Plan
+    <div class="max-w-4xl mx-auto bg-white p-6 sm:p-10 rounded-xl shadow-lg printable-content">
+        <!-- Header -->
+        <header class="flex justify-between items-start border-b-2 border-gray-200 pb-4 mb-6">
+            <div>
+                <h1 class="text-3xl font-extrabold text-gray-900">Emergency Action Plan</h1>
+                <p class="text-lg text-gray-600">The Excel Center | 2025-2026</p>
+            </div>
+            <button onclick="window.print()" class="no-print bg-blue-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-300 flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+                Print
             </button>
         </header>
 
-        <!-- Main Title -->
-        <div class="text-center mb-8">
-            <h2 class="text-4xl font-extrabold text-gray-900">Emergency Action Plan</h2>
-            <p class="text-lg text-gray-600 mt-2">The Excel Center | 2025-2026</p>
-        </div>
-
-        <!-- Key Contacts & Location -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-gray-50 p-6 rounded-lg border mb-10">
+        <!-- Quick Info Panel -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-gray-50 p-6 rounded-lg border border-gray-200 mb-10">
             <div>
                 <h3 class="text-xl font-bold text-gray-800 mb-2">My Location</h3>
                 <ul class="space-y-1 text-gray-700">
                     <li><strong>Teacher:</strong> Alexandra Hatfield</li>
-                    <li><strong>Room Number:</strong> 11</li>
+                    <li><strong>Room:</strong> 11</li>
                     <li><strong>Building:</strong> Excel Center, Melrose Plaza</li>
                 </ul>
             </div>
-            <div>
-                <h3 class="text-xl font-bold text-gray-800 mb-2">Emergency Contacts</h3>
-                <ul class="space-y-1 text-gray-700">
-                    <li><strong>Main Office:</strong>(540) 685-0450</li>
+            <div class="bg-red-100 border border-red-200 rounded-md p-4">
+                <h3 class="text-xl font-bold text-red-800 mb-2">Emergency Contacts</h3>
+                <ul class="space-y-1 text-red-700">
+                    <li class="font-bold text-lg">First: Call 911 for any immediate danger.</li>
+                    <li><strong>Main Office:</strong> (540) 685-0450</li>
                     <li><strong>School Resource Officer:</strong> (540) 566-5712</li>
-                    <li><strong>For any immediate danger, call 911 first.</strong></li>
                 </ul>
             </div>
         </div>
 
-        <!-- Emergency Protocols -->
-        <div class="space-y-8">
-
-            <!-- Fire Drill / Evacuation -->
-            <div class="protocol-section bg-orange-50 p-6 rounded-lg border-l-4 border-orange-500">
-                <h4 class="font-extrabold text-orange-800 text-2xl">Fire / Evacuation</h4>
-                <p class="text-orange-700 mt-1">Signal: Continuous alarm or announcement.</p>
-                <ol class="list-decimal list-inside mt-4 space-y-2 text-orange-900 font-medium">
-                    <li>Immediately cease all activities and get students' attention.</li>
-                    <li>Lead students to the primary evacuation route (see map).</li>
-                    <li>Take the class roster and emergency folder/kit.</li>
-                    <li>Close the classroom door; **DO NOT LOCK IT**.</li>
-                    <li>Proceed calmly and quietly to the designated assembly area: <strong>Old Melrose Fire House Parking Lot</strong>.</li>
-                    <li>Take attendance immediately and report any missing students to administration.</li>
+        <!-- Emergency Protocol Cards -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- EVACUATE -->
+            <div class="protocol-card bg-orange-50 p-6 rounded-lg border-l-8 border-orange-500 shadow-md">
+                <div class="flex items-center gap-4 mb-3">
+                    <div class="bg-orange-500 p-3 rounded-full text-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path><path d="M13.294 10.294a5.03 5.03 0 0 0-1.031-1.29.982.982 0 0 0-1.39.027 5.033 5.033 0 0 0-1.286 3.12.988.988 0 0 0 .991 1.077 5.033 5.033 0 0 0 3.916-1.127.988.988 0 0 0-.19-1.428zM12 7a.996.996 0 0 1 1-1h.01a.996.996 0 0 1 0 2H12a.996.996 0 0 1-1-1z"></path></svg>
+                    </div>
+                    <h2 class="text-3xl font-extrabold text-orange-800">EVACUATE</h2>
+                </div>
+                <p class="text-orange-700 font-semibold text-lg mb-4">Signal: Fire Alarm or "Evacuate" command.</p>
+                <ol class="list-decimal list-inside space-y-2 text-orange-900 font-medium text-base">
+                    <li><strong>STOP.</strong> Cease all activities.</li>
+                    <li><strong>LEAD</strong> students out using the primary evacuation route.</li>
+                    <li><strong>TAKE</strong> your roster and emergency kit.</li>
+                    <li><strong>CLOSE</strong> the door but **DO NOT LOCK IT**.</li>
+                    <li><strong>GO TO</strong> the assembly area: <strong>Old Melrose Fire House Parking Lot</strong>.</li>
+                    <li><strong>TAKE ATTENDANCE</strong> and report missing persons immediately.</li>
                 </ol>
             </div>
-
-            <!-- Lockdown / Active Threat -->
-            <div class="protocol-section bg-red-50 p-6 rounded-lg border-l-4 border-red-500">
-                <h4 class="font-extrabold text-red-800 text-2xl">Lockdown / Active Threat</h4>
-                <p class="text-red-700 mt-1">Signal: "Lockdown, Lockdown, Lockdown" announcement.</p>
-                <ol class="list-decimal list-inside mt-4 space-y-2 text-red-900 font-medium">
-                    <li>Clear the hallway and bring any nearby students into your room.</li>
-                    <li>Lock the classroom door and cover any windows on the door.</li>
-                    <li>Turn off all lights.</li>
-                    <li>Move all students to the safest corner of the room, away from doors and windows, and out of sight.</li>
-                    <li>Instruct everyone to remain completely **SILENT**. Silence all electronic devices.</li>
-                    <li>Do not open the door for anyone. Wait for the "All Clear" from an administrator in person with a key.</li>
+            <!-- LOCKDOWN -->
+            <div class="protocol-card bg-red-50 p-6 rounded-lg border-l-8 border-red-600 shadow-md">
+                <div class="flex items-center gap-4 mb-3">
+                    <div class="bg-red-600 p-3 rounded-full text-white">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                    </div>
+                    <h2 class="text-3xl font-extrabold text-red-800">LOCKDOWN</h2>
+                </div>
+                <p class="text-red-700 font-semibold text-lg mb-4">Signal: "Lockdown, Lockdown, Lockdown".</p>
+                <ol class="list-decimal list-inside space-y-2 text-red-900 font-medium text-base">
+                    <li><strong>GET IN.</strong> Pull anyone from the hallway into your room.</li>
+                    <li><strong>LOCK</strong> the door.</li>
+                    <li><strong>COVER</strong> windows on the door.</li>
+                    <li><strong>LIGHTS OFF.</strong></li>
+                    <li><strong>MOVE</strong> students to a safe corner, out of sight.</li>
+                    <li><strong>STAY SILENT.</strong> Wait for an administrator with a key.</li>
                 </ol>
             </div>
-            
-            <!-- Severe Weather / Shelter-in-Place -->
-            <div class="protocol-section bg-green-50 p-6 rounded-lg border-l-4 border-green-500">
-                <h4 class="font-extrabold text-green-800 text-2xl">Severe Weather / Shelter-in-Place</h4>
-                <p class="text-green-700 mt-1">Signal: "Shelter-in-Place" announcement (e.g., for tornado warning).</p>
-                <ol class="list-decimal list-inside mt-4 space-y-2 text-green-900 font-medium">
-                    <li>Move students into the designated shelter area: <strong>English Class Room 2</strong>.</li>
-                    <li>Instruct students to sit on the floor, facing the wall, in a "tuck and cover" position (head down, hands over head).</li>
-                    <li>Take the class roster to account for all students.</li>
-                    <li>Remain in the shelter area until the "All Clear" is given by administration.</li>
+            <!-- SHELTER -->
+            <div class="protocol-card bg-blue-50 p-6 rounded-lg border-l-8 border-blue-500 shadow-md">
+                <div class="flex items-center gap-4 mb-3">
+                    <div class="bg-blue-500 p-3 rounded-full text-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 17a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9.5C2 7 4 5 6.5 5H18c2.2 0 4 1.8 4 4v.5Z"></path><path d="m12 2-5.5 5h11L12 2Z"></path><path d="M12 19v-3"></path><path d="M6 19v-3"></path><path d="M18 19v-3"></path></svg>
+                    </div>
+                    <h2 class="text-3xl font-extrabold text-blue-800">SHELTER</h2>
+                </div>
+                <p class="text-blue-700 font-semibold text-lg mb-4">Signal: "Shelter-in-Place" command.</p>
+                <ol class="list-decimal list-inside space-y-2 text-blue-900 font-medium text-base">
+                    <li><strong>LEAD</strong> students to the shelter area: <strong>English Class Room 2</strong>.</li>
+                    <li><strong>TAKE</strong> your roster.</li>
+                    <li><strong>GET DOWN.</strong> Students should "tuck and cover" against a wall.</li>
+                    <li><strong>ACCOUNT</strong> for all students.</li>
+                    <li><strong>WAIT</strong> for the "All Clear" signal from administration.</li>
                 </ol>
             </div>
-
-            <!-- Medical Emergency -->
-            <div class="protocol-section bg-blue-50 p-6 rounded-lg border-l-4 border-blue-500">
-                <h4 class="font-extrabold text-blue-800 text-2xl">Medical Emergency</h4>
-                <p class="text-blue-700 mt-1">For any student or staff member in medical distress.</p>
-                <ol class="list-decimal list-inside mt-4 space-y-2 text-blue-900 font-medium">
-                    <li>Assess the situation for safety. Do not move an injured person unless they are in immediate danger.</li>
-                    <li>Use the classroom call button or send a reliable student with a pass to the Nurse or Main Office.</li>
-                    <li>Provide clear information: your location, the nature of the emergency, and the state of the individual.</li>
-                    <li>Keep other students calm and provide privacy for the affected individual.</li>
-                    <li>Provide first aid only if you are trained and certified.</li>
+            <!-- MEDICAL -->
+            <div class="protocol-card bg-green-50 p-6 rounded-lg border-l-8 border-green-500 shadow-md">
+                <div class="flex items-center gap-4 mb-3">
+                    <div class="bg-green-500 p-3 rounded-full text-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M5 10h14"></path></svg>
+                    </div>
+                    <h2 class="text-3xl font-extrabold text-green-800">MEDICAL</h2>
+                </div>
+                <p class="text-green-700 font-semibold text-lg mb-4">For any medical distress.</p>
+                <ol class="list-decimal list-inside space-y-2 text-green-900 font-medium text-base">
+                    <li><strong>STAY CALM.</strong> Assess the scene for safety.</li>
+                    <li><strong>CALL FOR HELP.</strong> Use the call button or send a student to the office.</li>
+                    <li><strong>GIVE INFO:</strong> Your location and the nature of the emergency.</li>
+                    <li><strong>PROVIDE SPACE.</strong> Keep other students away.</li>
+                    <li><strong>ASSIST</strong> only if you are trained and certified.</li>
                 </ol>
             </div>
-
         </div>
-
+        
         <!-- Map Section -->
-        <div class="mt-10 border-t pt-8">
-            <h3 class="text-2xl font-bold text-gray-800 mb-4">School Map & Evacuation Routes</h3>
-            <p class="mb-4 text-gray-700">A physical copy of the school map is posted by the door and is also located in the emergency folder.</p>
-            <div class="border-2 border-gray-300 rounded-lg p-2">
-                 <img src="excel-map.png" alt="Placeholder for school map" class="rounded w-full">
+        <div class="mt-12 border-t-2 border-gray-200 pt-8">
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">School Map & Evacuation Route</h3>
+            <div class="border-2 border-gray-300 rounded-lg p-2 bg-gray-50">
+                 <img src="excel-map.png" alt="School map showing evacuation routes" class="rounded w-full">
+                 <p class="text-center font-semibold text-gray-600 mt-2">A physical copy is posted by the door.</p>
             </div>
         </div>
-
     </div>
-<footer class="text-center mt-16 text-gray-500">
-            <p>&nbsp;&bull;&nbsp; &copy; 2025 Aly Hatfield. All rights reserved. &nbsp;&bull;&nbsp;</p>
-        </footer>
+    <footer class="text-center mt-12 mb-4 text-gray-500 text-sm no-print">
+        <p>&copy; 2025 Aly Hatfield. All rights reserved.</p>
+    </footer>
 </body>
 </html>
