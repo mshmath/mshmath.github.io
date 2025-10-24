@@ -1,178 +1,65 @@
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Algebra, Functions, and Data Analysis (AFDA) - Coming Soon!</title>
+    <title>Welcome to AFDA - Resource Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
         }
-        .background-pattern {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image:
-                linear-gradient(rgba(255, 255, 255, 0.96), rgba(255, 255, 255, 0.96)),
-                url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23dbeafe' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-            z-index: -1;
-        }
-        .countdown-box {
-            min-width: 80px;
-        }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
-    <div class="background-pattern"></div>
-    <div class="min-h-screen flex flex-col items-center justify-center p-4 text-center relative">
 
-        <header class="mb-8">
-            <h1 class="text-5xl md:text-6xl font-bold text-blue-600">Algebra, Functions, and Data Analysis (AFDA)</h1>
-            <p class="text-xl md:text-2xl text-gray-500 mt-2">is almost here!</p>
-        </header>
+<body class="bg-gray-100 text-gray-800">
+    <div class="min-h-screen flex flex-col items-center justify-center p-4">
 
-        <main class="w-full max-w-4xl">
-            <div class="bg-white/80 backdrop-blur-sm p-6 md:p-10 rounded-2xl shadow-lg border border-gray-200">
-                <h2 class="text-2xl md:text-3xl font-semibold text-gray-700">Launching Next Term</h2>
-                <p class="mt-3 text-gray-600 max-w-xl mx-auto">
-                    Get ready to explore advanced functions, conquer complex equations, and discover the beauty of mathematics in this intensive 8-week course.
-                </p>
+        <main class="w-full max-w-2xl text-center">
+            <div class="bg-white p-8 md:p-12 rounded-2xl shadow-lg border border-gray-200">
 
-                <!-- Countdown Timer -->
-                <div id="countdown" class="flex justify-center gap-2 md:gap-4 mt-8 text-gray-700">
-                    <div class="bg-blue-100/70 p-3 rounded-lg text-center countdown-box">
-                        <div id="days" class="text-3xl md:text-4xl font-bold">00</div>
-                        <div class="text-xs md:text-sm">Days</div>
-                    </div>
-                    <div class="bg-blue-100/70 p-3 rounded-lg text-center countdown-box">
-                        <div id="hours" class="text-3xl md:text-4xl font-bold">00</div>
-                        <div class="text-xs md:text-sm">Hours</div>
-                    </div>
-                    <div class="bg-blue-100/70 p-3 rounded-lg text-center countdown-box">
-                        <div id="minutes" class="text-3xl md:text-4xl font-bold">00</div>
-                        <div class="text-xs md:text-sm">Minutes</div>
-                    </div>
-                    <div class="bg-blue-100/70 p-3 rounded-lg text-center countdown-box">
-                        <div id="seconds" class="text-3xl md:text-4xl font-bold">00</div>
-                        <div class="text-xs md:text-sm">Seconds</div>
-                    </div>
+                <!-- Header Section -->
+                <header class="mb-10">
+                    <h1 class="text-4xl md:text-5xl font-bold text-gray-800">Welcome to AFDA!</h1>
+                    <p class="text-lg text-gray-500 mt-3">Your roadmap to success in Algebra, Functions, and Data Analysis and preparing for the VA SOL Exam.</p>
+                </header>
+
+                <!-- Navigation Buttons -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+                    <!-- Button 1: Syllabus -->
+                    <a href="afda-syllabus.html" target="_blank" class="bg-green-500 hover:bg-green-600 text-white font-semibold py-4 px-6 rounded-lg shadow-md transition-transform transform hover:scale-105 flex flex-col items-center justify-center">
+                        <svg class="w-8 h-8 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                        <span>Syllabus</span>
+                    </a>
+
+                    <!-- Button 2: Weekly Pacing -->
+                    <a href="afda-weekly-pacing.html" target="_blank" class="bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-4 px-6 rounded-lg shadow-md transition-transform transform hover:scale-105 flex flex-col items-center justify-center">
+                         <svg class="w-8 h-8 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
+                        <span>Weekly Pacing</span>
+                    </a>
+
+                    <!-- Button 3: Extra Practice -->
+                    <a href="extra-practice.html" target="_blank" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-4 px-6 rounded-lg shadow-md transition-transform transform hover:scale-105 flex flex-col items-center justify-center">
+                        <svg class="w-8 h-8 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+                        <span>Extra Practice</span>
+                    </a>
                 </div>
-            </div>
-
-            <!-- Topics Preview -->
-            <div class="mt-10">
-                 <h3 class="text-xl font-semibold text-center text-gray-700 mb-6">Units We'll Cover:</h3>
-                 <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-left max-w-4xl mx-auto">
-                     
-                    <!-- Unit 1 -->
-                    <li class="bg-white/80 backdrop-blur-sm p-4 rounded-lg shadow-sm border border-gray-200 flex items-start">
-                        <span class="text-blue-500 font-bold text-lg mr-3">1</span>
-                        <div>
-                            <h4 class="font-semibold">Polynomials, Rational & Radical Expressions</h4>
-                            <p class="text-sm text-gray-600">Extending knowledge of operations with various types of expressions.</p>
-                        </div>
-                    </li>
-                    
-                    <!-- Unit 2 -->
-                    <li class="bg-white/80 backdrop-blur-sm p-4 rounded-lg shadow-sm border border-gray-200 flex items-start">
-                        <span class="text-blue-500 font-bold text-lg mr-3">2</span>
-                        <div>
-                            <h4 class="font-semibold">Complex Numbers & Equations</h4>
-                            <p class="text-sm text-gray-600">Understanding imaginary numbers and their role in solving equations.</p>
-                        </div>
-                    </li>
-                    
-                    <!-- Unit 3 -->
-                    <li class="bg-white/80 backdrop-blur-sm p-4 rounded-lg shadow-sm border border-gray-200 flex items-start">
-                        <span class="text-blue-500 font-bold text-lg mr-3">3</span>
-                        <div>
-                            <h4 class="font-semibold">Quadratic Equations & Inequalities</h4>
-                            <p class="text-sm text-gray-600">Solving and graphing quadratics using various methods.</p>
-                        </div>
-                    </li>
-                    
-                    <!-- Unit 4 -->
-                    <li class="bg-white/80 backdrop-blur-sm p-4 rounded-lg shadow-sm border border-gray-200 flex items-start">
-                        <span class="text-blue-500 font-bold text-lg mr-3">4</span>
-                        <div>
-                            <h4 class="font-semibold">Systems of Equations</h4>
-                            <p class="text-sm text-gray-600">Solving systems involving non-linear, quadratic, and rational equations.</p>
-                        </div>
-                    </li>
-                    
-                    <!-- Unit 5 -->
-                    <li class="bg-white/80 backdrop-blur-sm p-4 rounded-lg shadow-sm border border-gray-200 flex items-start">
-                        <span class="text-blue-500 font-bold text-lg mr-3">5</span>
-                        <div>
-                            <h4 class="font-semibold">Radical & Polynomial Equations</h4>
-                            <p class="text-sm text-gray-600">Techniques for solving equations with radicals and higher-degree polynomials.</p>
-                        </div>
-                    </li>
-                    
-                    <!-- Unit 6 -->
-                    <li class="bg-white/80 backdrop-blur-sm p-4 rounded-lg shadow-sm border border-gray-200 flex items-start">
-                        <span class="text-blue-500 font-bold text-lg mr-3">6</span>
-                        <div>
-                            <h4 class="font-semibold">Functions & Inverses</h4>
-                            <p class="text-sm text-gray-600">Deepening understanding of function types, properties, and inverses.</p>
-                        </div>
-                    </li>
-
-                    <!-- Unit 7 -->
-                    <li class="bg-white/80 backdrop-blur-sm p-4 rounded-lg shadow-sm border border-gray-200 flex items-start md:col-start-2 lg:col-start-auto">
-                        <span class="text-blue-500 font-bold text-lg mr-3">7</span>
-                        <div>
-                            <h4 class="font-semibold">Statistics & Probability</h4>
-                            <p class="text-sm text-gray-600">Intro to data analysis and fundamental principles of probability.</p>
-                        </div>
-                    </li>
-
-                 </ul>
             </div>
         </main>
 
-        <footer class="mt-12 text-center text-gray-500 text-sm">
+        <footer class="absolute bottom-4 text-center text-gray-500 text-sm">
             <p> &nbsp;&bull;&nbsp; &copy; <span id="year"></span> Aly Hatfield. All rights reserved. &nbsp;&bull;&nbsp;</p>
         </footer>
     </div>
 
     <script>
-        // --- Countdown Timer Logic ---
-
-        // Set the date for the start of the next term.
-        // NOTE: Months are 0-indexed (0 = January, 11 = December)
-        const countdownDate = new Date("Oct 27, 2025 08:00:00").getTime();
-
-        const updateCountdown = setInterval(function() {
-            const now = new Date().getTime();
-            const distance = countdownDate - now;
-
-            // Time calculations
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            // Display the result in the respective elements
-            document.getElementById("days").innerText = String(days).padStart(2, '0');
-            document.getElementById("hours").innerText = String(hours).padStart(2, '0');
-            document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
-            document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
-
-            // If the countdown is over, display a message
-            if (distance < 0) {
-                clearInterval(updateCountdown);
-                document.getElementById("countdown").innerHTML = '<div class="text-2xl font-semibold text-green-600">Welcome to class!</div>';
-            }
-        }, 1000);
-
         // --- Dynamic Year for Footer ---
         document.getElementById("year").textContent = new Date().getFullYear();
     </script>
 </body>
-</html>
 
+</html>
