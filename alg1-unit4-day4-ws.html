@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 6, Day 4 Practice: Systems of Linear Inequalities</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$']]
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f1f5f9;
+        }
+        .worksheet-container {
+            font-family: 'Roboto Slab', serif;
+        }
+        .answer-box {
+            min-height: 80px;
+            border: 1px solid #94a3b8;
+            border-radius: 8px;
+            margin-top: 8px;
+            padding: 8px;
+        }
+
+        @media print {
+            body {
+                background-color: white !important;
+                font-size: 12pt;
+            }
+            .non-printable {
+                display: none !important;
+            }
+            .worksheet-container {
+                box-shadow: none !important;
+                border: none !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                max-width: 100% !important;
+            }
+            h1, h2, h3, p, li, strong {
+                color: black !important;
+            }
+            .answer-box {
+                border: 1px solid #6b7280;
+            }
+            section {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-slate-100">
+
+    <header class="bg-white p-4 non-printable shadow-md sticky top-0">
+        <div class="max-w-4xl mx-auto flex justify-between items-center">
+            <h1 class="text-xl font-bold text-slate-700">Unit 6, Day 4 Worksheet</h1>
+            <button onclick="window.print()" class="bg-teal-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-teal-700 transition-colors flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2H5zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1z"/>
+                </svg>
+                Print Worksheet
+            </button>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto p-4 sm:p-8">
+        <div class="worksheet-container bg-white p-12 rounded-lg shadow-xl border text-lg">
+            <!-- Header -->
+            <header class="border-b-2 border-slate-800 pb-4 mb-8">
+                <h1 class="text-4xl font-bold text-slate-800">Unit 6, Day 4 Practice: Systems of Inequalities</h1>
+                <p class="text-base text-slate-500 mt-2">SOL Standard: A.EI.2</p>
+                <div class="flex justify-between mt-6 text-xl">
+                    <p>Name: ___________________________________</p>
+                    <p>Date: _______________</p>
+                </div>
+            </header>
+
+            <!-- Example Section -->
+            <section class="mb-12">
+                <h2 class="text-3xl font-bold text-purple-700 mb-4">Worked Example</h2>
+                <div class="bg-purple-50 border border-purple-200 p-6 rounded-lg">
+                    <p class="font-bold text-xl text-slate-800 mb-2">Graph the system and identify a solution: $y \ge x - 2$ and $y < -x + 4$.</p>
+                    <div class="mt-4">
+                        <ol class="list-none space-y-2 text-slate-700">
+                            <li><strong class="font-sans text-purple-800">Step 1 (Graph the first inequality):</strong> For $y \ge x-2$, the line is <b>solid</b> because of "or equal to." We shade <b>above</b> because of "greater than."</li>
+                            <li><strong class="font-sans text-purple-800">Step 2 (Graph the second inequality):</strong> For $y < -x+4$, the line is <b>dotted</b> because it's just "less than." We shade <b>below</b> because of "less than."</li>
+                            <li><strong class="font-sans text-purple-800">Step 3 (Find the Solution Area):</strong> The solution is the region on the graph where the two shaded areas overlap.</li>
+                            <li><strong class="font-sans text-purple-800">Step 4 (Identify One Solution):</strong> Pick any point from the overlapping area. For example, the point $(0,0)$ is in the solution region. Let's check it:
+                                <br>$0 \ge 0-2 \Rightarrow 0 \ge -2$ (True)
+                                <br>$0 < -0+4 \Rightarrow 0 < 4$ (True)
+                                <br>Since it works for both, $(0,0)$ is a valid solution.
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Practice Problems -->
+            <div class="space-y-12">
+                <!-- Section 1 -->
+                <section>
+                    <h2 class="text-3xl font-bold text-slate-800 border-b border-slate-300 pb-2 mb-6">Part 1: Graphing Inequalities</h2>
+                    <p class="text-slate-600 mb-8">For each inequality, state if the line should be <b>solid</b> or <b>dotted</b> and if you should shade <b>above</b> or <b>below</b>.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-8 text-xl">
+                        <div><p class="font-semibold">1. $y > 3x - 2$</p><div class="answer-box"></div></div>
+                        <div><p class="font-semibold">2. $y \le -x + 5$</p><div class="answer-box"></div></div>
+                        <div><p class="font-semibold">3. $y < 8$</p><div class="answer-box"></div></div>
+                        <div><p class="font-semibold">4. $y \ge \frac{1}{2}x$</p><div class="answer-box"></div></div>
+                    </div>
+                </section>
+
+                <!-- Section 2: Solving Systems Graphically -->
+                <section>
+                    <h2 class="text-3xl font-bold text-slate-800 border-b border-slate-300 pb-2 mb-6">Part 2: Solving Systems by Graphing</h2>
+                    <p class="text-slate-600 mb-8">Graph each system on Desmos. Sketch the graph, showing the correct lines and the final overlapping solution area.</p>
+                     <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-8 text-xl">
+                        <div><p class="font-semibold">5. $y \le x + 2$<br>$y > -1$</p><div class="answer-box"></div></div>
+                        <div><p class="font-semibold">6. $y > -2x + 1$<br>$y < x - 2$</p><div class="answer-box"></div></div>
+                        <div><p class="font-semibold">7. $x+y \ge 3$<br>$y \le 5$</p><div class="answer-box"></div></div>
+                        <div><p class="font-semibold">8. $x < 4$<br>$y > -2$</p><div class="answer-box"></div></div>
+                        <div><p class="font-semibold">9. $y > 3x-4$<br>$y < 3x+1$</p><div class="answer-box"></div></div>
+                        <div><p class="font-semibold">10. $y \le -\frac{1}{2}x + 2$<br>$x \ge -2$</p><div class="answer-box"></div></div>
+                    </div>
+                </section>
+
+                 <!-- Section 3: Critical Thinking -->
+                <section>
+                    <h2 class="text-3xl font-bold text-slate-800 border-b border-slate-300 pb-2 mb-6">Part 3: Critical Thinking</h2>
+                     <div class="space-y-8 text-xl">
+                        <div>
+                            <p class="font-semibold">11. Circle all the points below that are solutions to the system shown in problem #5.</p>
+                            <p class="font-mono text-center my-4">(0,0) &nbsp;&nbsp;&nbsp; (3, -1) &nbsp;&nbsp;&nbsp; (-4, 2) &nbsp;&nbsp;&nbsp; (1, 3)</p>
+                            <div class="answer-box"></div>
+                        </div>
+                         <div>
+                            <p class="font-semibold">12. Is the point $(2, 3)$ a solution to the system in problem #6? Explain why or why not.</p>
+                            <div class="answer-box"></div>
+                        </div>
+                        <div>
+                            <p class="font-semibold">13. Write a system of two linear inequalities for which $(0,0)$ is a solution.</p>
+                            <div class="answer-box"></div>
+                        </div>
+                        <div>
+                            <p class="font-semibold">14. Look at the system: $y > x+4$ and $y < x-1$. Without graphing, what do you think the solution will be? Why?</p>
+                            <div class="answer-box"></div>
+                        </div>
+                        <div>
+                           <p class="font-semibold">15. You have at most 8 hours to study. Math ($x$) takes at least 3 hours. Science ($y$) takes at least 2 hours. Write a system of three inequalities to represent this situation.</p>
+                            <div class="answer-box"></div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

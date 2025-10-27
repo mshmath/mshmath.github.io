@@ -4,276 +4,316 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Algebra 1 Weekly Pacing Guide</title>
+    <title>Algebra 1 Pacing Guide</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        html { scroll-behavior: smooth; }
-        body { 
-            font-family: 'Inter', sans-serif; 
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* slate-50 */
+        }
+        .nav-link.active {
+            background-color: #0d9488; /* teal-600 */
+            color: white;
+            font-weight: 600;
+        }
+        .nav-link.active .nav-link-title {
+            color: white !important;
+        }
+        .nav-link.active .nav-link-week {
+             color: #ccfbf1 !important; /* teal-100 */
+        }
+        .nav-link:not(.active):hover {
             background-color: #f1f5f9; /* slate-100 */
         }
-        .lesson-section { scroll-margin-top: 5rem; }
-        details > summary { list-style: none; }
-        details > summary::-webkit-details-marker { display: none; }
-        .details-arrow { transition: transform 0.2s ease-in-out; }
-        details[open] .details-arrow { transform: rotate(90deg); }
-
-        /* Accordion Icon Transition */
-        .accordion-icon {
-            transition: transform 0.3s ease-in-out;
+        .unit-link-card .fa-arrow-right {
+            transition: transform 0.2s ease-in-out;
         }
-        
-        .non-printable {
-             /* This class is used to hide elements during printing */
+        .unit-link-card:hover .fa-arrow-right {
+            transform: translateX(4px);
         }
 
         /* Print Styles */
         @media print {
-            body {
-                background-color: white;
-                color: black;
-                font-size: 10pt;
-            }
-            header, .non-printable, footer {
-                display: none !important;
-            }
-            main {
-                padding: 0 !important;
-                margin: 0 !important;
-                max-width: 100% !important;
-            }
-            .printable-only {
-                display: block !important;
-            }
-            .accordion-item, .bg-white, .daily-pacing-card, .key-info-box {
+            body { background-color: white; color: black; font-size: 10pt; }
+            header, aside, .non-printable { display: none !important; }
+            main { padding: 0 !important; margin: 0 !important; max-width: 100% !important; }
+            .printable-content { display: block !important; box-shadow: none !important; border: none !important; }
+            .week-section { page-break-before: always; }
+            .week-section:first-child { page-break-before: auto; }
+            h1, h2, h3, h4, p, li, a { color: black !important; }
+            h1 { font-size: 24pt; border-bottom: 2px solid #ccc; padding-bottom: 8px; }
+            h2 { font-size: 18pt; }
+            h3 { font-size: 16pt; }
+            .daily-pacing-card, .key-info-box {
                 box-shadow: none !important;
                 border: 1px solid #ccc !important;
                 page-break-inside: avoid;
             }
-            h1, h2, h3, h4, p, li, a {
-                color: black !important;
-            }
-             h1 { font-size: 22pt; }
-             h2 { font-size: 18pt; }
-             h3 { font-size: 16pt; }
-            .accordion-content {
-                display: block !important;
-                max-height: none !important;
-                padding: 0 !important;
-            }
-            .accordion-header {
-                 display: block !important;
-                 border-bottom: 2px solid #ccc;
-            }
-             .accordion-header h3 {
-                 margin: 0;
-                 padding: 0;
-             }
-            .accordion-icon {
-                display: none !important;
-            }
-            .accordion-inner-content {
-                padding: 1rem !important;
-            }
-            .quick-links-section ul {
-                display: block;
-            }
-             .quick-links-section li {
-                 background-color: #eee !important;
-             }
         }
     </style>
 </head>
-<body class="bg-slate-100 text-slate-800">
+<body class="text-slate-800">
 
-    <!-- Main Content -->
-    <main class="max-w-4xl mx-auto p-4 sm:p-6 lg:p-8">
-
-        <!-- Introduction & Navigation Card -->
-        <div class="bg-white p-6 rounded-xl shadow-lg mb-12">
-            <h1 class="text-4xl md:text-5xl font-extrabold text-slate-800 text-center mb-4">Algebra 1 Pacing Guide</h1>
-             <p class="text-center text-slate-600 text-lg mb-8">
-                This guide outlines our 16-week plan. Click on any week to see the detailed daily schedule.
-            </p>
-            
-            <div class="border-t border-b border-slate-200 py-6 space-y-6">
-                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <button onclick="window.print()" class="w-full text-center bg-teal-600 text-white font-semibold px-4 py-3 rounded-lg hover:bg-teal-700 transition-colors text-base non-printable">Print Full Pacing Guide</button>
-                    <a href="blank-taking-notes.html" target="_blank" class="block w-full text-center bg-slate-600 text-white font-semibold px-4 py-3 rounded-lg hover:bg-slate-700 transition-colors text-base non-printable">Get Blank Notes Template</a>
+    <!-- Header -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-10 non-printable">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div>
+                    <h1 class="text-2xl font-bold text-slate-800">Algebra 1 Pacing Guide</h1>
+                    <p class="text-sm text-slate-500">A 16-week plan for success.</p>
                 </div>
-                
-                <!-- Quick Links Section -->
-                <div class="bg-slate-50 rounded-lg border border-slate-200 p-4 non-printable">
-                    <h4 class="font-semibold text-slate-700 mb-4 text-center">Quick Links to Interactive Unit Notes</h4>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6">
-                        <!-- Part A Links -->
-                        <div>
-                            <h5 class="font-bold text-slate-600 mb-2 text-center">Part A (Units 1-5)</h5>
-                            <ul class="space-y-2">
-                                <li><a href="alg1-unit-1.html" target="_blank" class="block p-2 bg-white hover:bg-teal-50 border border-slate-200 rounded-md text-teal-700 font-semibold transition-colors text-sm text-center">Unit 1: Expressions & Evaluation</a></li>
-                                <li><a href="alg1-unit2-notes.html" target="_blank" class="block p-2 bg-white hover:bg-teal-50 border border-slate-200 rounded-md text-teal-700 font-semibold transition-colors text-sm text-center">Unit 2: Polynomial Operations</a></li>
-                                <li><a href="alg1-unit3-notes.html" target="_blank" class="block p-2 bg-white hover:bg-teal-50 border border-slate-200 rounded-md text-teal-700 font-semibold transition-colors text-sm text-center">Unit 3: Radical Expressions</a></li>
-                                <li><a href="alg1-unit-6.html" target="_blank" class="block p-2 bg-white hover:bg-teal-50 border border-slate-200 rounded-md text-teal-700 font-semibold transition-colors text-sm text-center">Unit 4: Linear Equations</a></li>
-                                <li><a href="alg1-unit-7.html" target="_blank" class="block p-2 bg-white hover:bg-teal-50 border border-slate-200 rounded-md text-teal-700 font-semibold transition-colors text-sm text-center">Unit 5: Linear Inequalities</a></li>
-                            </ul>
-                        </div>
-                        <!-- Part B Links -->
-                        <div>
-                            <h5 class="font-bold text-slate-600 mb-2 text-center">Part B (Units 6-12)</h5>
-                            <ul class="space-y-2">
-                                <li><a href="alg1-unit-8.html" target="_blank" class="block p-2 bg-white hover:bg-teal-50 border border-slate-200 rounded-md text-teal-700 font-semibold transition-colors text-sm text-center">Unit 6: Systems of Equations</a></li>
-                                <li><a href="alg1-unit-9.html" target="_blank" class="block p-2 bg-white hover:bg-teal-50 border border-slate-200 rounded-md text-teal-700 font-semibold transition-colors text-sm text-center">Unit 7: Systems of Inequalities</a></li>
-                                <li><a href="alg1-unit-10.html" target="_blank" class="block p-2 bg-white hover:bg-teal-50 border border-slate-200 rounded-md text-teal-700 font-semibold transition-colors text-sm text-center">Unit 8: Linear Functions</a></li>
-                                <li><a href="alg1-unit-11.html" target="_blank" class="block p-2 bg-white hover:bg-teal-50 border border-slate-200 rounded-md text-teal-700 font-semibold transition-colors text-sm text-center">Unit 9: Function Types</a></li>
-                                <li><a href="alg1-unit-12.html" target="_blank" class="block p-2 bg-white hover:bg-teal-50 border border-slate-200 rounded-md text-teal-700 font-semibold transition-colors text-sm text-center">Unit 10: Quadratic Functions</a></li>
-                                <li><a href="alg1-unit-13.html" target="_blank" class="block p-2 bg-white hover:bg-teal-50 border border-slate-200 rounded-md text-teal-700 font-semibold transition-colors text-sm text-center">Unit 11: Exponential Functions</a></li>
-                                <li><a href="alg1-unit-14.html" target="_blank" class="block p-2 bg-white hover:bg-teal-50 border border-slate-200 rounded-md text-teal-700 font-semibold transition-colors text-sm text-center">Unit 12: Data & Statistics</a></li>
-                            </ul>
-                        </div>
-                    </div>
+                <div class="flex items-center gap-2">
+                    <button onclick="window.print()" class="text-center bg-teal-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-teal-700 transition-colors text-sm flex items-center gap-2">
+                        <i class="fas fa-print"></i> Print Guide
+                    </button>
+                    <a href="blank-taking-notes.html" target="_blank" class="text-center bg-slate-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-slate-700 transition-colors text-sm flex items-center gap-2">
+                        <i class="fas fa-file-pen"></i> Blank Notes
+                    </a>
                 </div>
             </div>
         </div>
+    </header>
 
-        <div class="space-y-4" id="pacing-guide-container">
-            <!-- Accordions will be populated by script -->
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col lg:flex-row lg:gap-8">
+
+            <!-- Sidebar Navigation -->
+            <aside class="order-2 lg:order-1 lg:w-3/12 xl:w-2/12 py-8 lg:sticky lg:top-20 lg:self-start non-printable">
+                <nav id="sidebar-nav" class="space-y-4"></nav>
+            </aside>
+
+            <!-- Main Display Area -->
+            <main class="order-1 lg:order-2 lg:w-9/12 xl:w-10/12 py-8">
+                <!-- Unit Links Grid -->
+                <div id="unit-links-container" class="mb-8 non-printable">
+                    <!-- Links will be populated by JavaScript -->
+                </div>
+
+                <!-- Separator -->
+                <div class="border-t border-slate-200 my-8 non-printable"></div> 
+                
+                <div class="non-printable">
+                    <h2 class="text-3xl font-extrabold text-slate-800 mb-6">Weekly Pacing Details</h2>
+                </div>
+
+
+                <!-- Weekly Content Display -->
+                <div id="weekly-content-display">
+                    <!-- Content will be populated by JavaScript -->
+                </div>
+                 <!-- Printable Version (Hidden by default) -->
+                <div id="printable-full-guide" class="hidden"></div>
+            </main>
         </div>
-    </main>
-
-    <footer class="text-center py-8 text-slate-500 text-sm non-printable">
-        <p>&copy; 2025 Aly Hatfield. All rights reserved.</p>
-    </footer>
+    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const unitData = [
-                { week: 1, title: "Unit 1 - Algebraic Expressions & Evaluation", part: "A", days: [ { day: "Monday", title: "Translating Words to Algebra", focus: "Converting verbal phrases into algebraic expressions." }, { day: "Tuesday", title: "Order of Operations (PEMDAS)", focus: "Applying PEMDAS to evaluate complex expressions." }, { day: "Wednesday", title: "Evaluating Expressions", focus: "Substituting values for variables and simplifying." }, { day: "Thursday", title: "Properties of Real Numbers", focus: "Understanding Commutative, Associative, & Distributive properties." } ], essentials: "<strong>Vocabulary:</strong> variable, constant, expression, equation, order of operations, commutative, associative, distributive." },
-                { week: 2, title: "Unit 2 - Polynomial Operations", part: "A", days: [ { day: "Monday", title: "Adding & Subtracting Polynomials", focus: "Combining like terms." }, { day: "Tuesday", title: "Multiplying Monomials & Binomials", focus: "Using the distributive property and FOIL method." }, { day: "Wednesday", title: "Multiplying Polynomials", focus: "Extending multiplication to larger polynomials." }, { day: "Thursday", title: "Special Products", focus: "Recognizing patterns for perfect square trinomials and difference of squares." } ], essentials: "<strong>Vocabulary:</strong> monomial, binomial, trinomial, polynomial, degree, like terms, FOIL." },
-                { week: 3, title: "Unit 3 - Factoring Polynomials", part: "A", days: [ { day: "Monday", title: "Greatest Common Factor (GCF)", focus: "Finding and factoring out the GCF from polynomials." }, { day: "Tuesday", title: "Factoring Trinomials (a=1)", focus: "Factoring simple trinomials into two binomials." }, { day: "Wednesday", title: "Factoring Trinomials (a>1)", focus: "Factoring more complex trinomials using various methods." }, { day: "Thursday", title: "Factoring Special Cases", focus: "Applying formulas for difference of squares and perfect square trinomials." } ], essentials: "<strong>Vocabulary:</strong> factor, GCF, difference of squares, perfect square trinomial." },
-                { week: 4, title: "Unit 4 - Polynomial Division & Quadratic Forms", part: "A", days: [ { day: "Monday", title: "Polynomial Long Division", focus: "Dividing polynomials using the long division algorithm." }, { day: "Tuesday", title: "Synthetic Division", focus: "Using the shortcut method of synthetic division for linear divisors." }, { day: "Wednesday", title: "Applying Division", focus: "Using polynomial division to factor and find roots." }, { day: "Thursday", title: "Intro to Quadratic Forms", focus: "Recognizing expressions that are in quadratic form." } ], essentials: "<strong>Vocabulary:</strong> dividend, divisor, quotient, remainder, synthetic division." },
-                { week: 5, title: "Unit 5 - Radical Expressions", part: "A" },
-                { week: 6, title: "Unit 6 - Linear Equations & Literal Equations", part: "A" },
-                { week: 7, title: "Unit 7 - Linear Inequalities", part: "A" },
-                { week: 8, title: "Review & Mid-Term", part: "A" },
-                { week: 9, title: "Unit 8 - Systems of Equations", part: "B" },
-                { week: 10, title: "Unit 9 - Systems of Inequalities", part: "B" },
-                { week: 11, title: "Unit 10 - Linear Functions", part: "B" },
-                { week: 12, title: "Unit 11 - Function Types & Comparisons", part: "B" },
-                { week: 13, title: "Unit 12 - Quadratic Functions", part: "B" },
-                { week: 14, title: "Unit 13 - Exponential Functions", part: "B" },
-                { week: 15, title: "Unit 14 - Bivariate Data", part: "B" },
-                { week: 16, title: "SOL Exam Review and Final Exam", part: "B" }
+            const allUnitData = [
+                { week: 1, unit: 1, title: "Expressions & Evaluation", part: "A", sol: "A.1, A.2a", link: "alg1-unit-1.html", topics: [ { name: "Translating Words to Algebra", focus: "Converting verbal phrases into algebraic expressions." }, { name: "Order of Operations (PEMDAS)", focus: "Applying PEMDAS to evaluate complex expressions." }, { name: "Evaluating Expressions", focus: "Substituting values for variables and simplifying." }, { name: "Properties of Real Numbers", focus: "Understanding Commutative, Associative, & Distributive properties." } ], essentials: "<strong>Vocabulary:</strong> variable, constant, expression, equation, order of operations, commutative, associative, distributive." },
+                { week: 2, unit: 2, title: "Polynomial Operations", part: "A", sol: "A.2b, A.2c", link: "alg1-unit2-notes.html", topics: [ { name: "Adding & Subtracting Polynomials", focus: "Combining like terms." }, { name: "Multiplying Monomials & Binomials", focus: "Using the distributive property and FOIL method." }, { name: "Multiplying Polynomials", focus: "Extending multiplication to larger polynomials." }, { name: "Special Products", focus: "Recognizing patterns for perfect square trinomials and difference of squares." } ], essentials: "<strong>Vocabulary:</strong> monomial, binomial, trinomial, polynomial, degree, like terms, FOIL." },
+                { week: 3, unit: 3, title: "Radical Expressions", part: "A", sol: "A.3", link: "alg1-unit3-notes.html", topics: [{name: "Simplifying Radicals", focus: "Finding the principal square root of whole numbers and algebraic expressions."}, {name: "Operations with Radicals", focus: "Adding, subtracting, multiplying, and dividing radical expressions."}], essentials: "<strong>Vocabulary:</strong> radical, radicand, perfect square, rationalize." },
+                { week: 4, unit: 4, title: "Linear Equations", part: "A", sol: "A.4a, A.4c", link: "alg1-unit4-notes.html", topics: [ { name: "Solving One & Two-Step Equations", focus: "Isolating variables using inverse operations." }, { name: "Solving Multi-Step Equations", focus: "Distributing and combining like terms to solve." }, { name: "Equations with Variables on Both Sides", focus: "Strategies for consolidating variables." }, { name: "Literal Equations & Formulas", focus: "Rearranging formulas to solve for a specific variable." } ], essentials: "<strong>Vocabulary:</strong> inverse operation, variable, coefficient, constant, literal equation." },
+                { week: 5, unit: 5, title: "Linear Inequalities", part: "A", sol: "A.5a, A.5b", link: "alg1-unit5-notes.html", topics: [{name: "Solving and Graphing Inequalities", focus: "Using inverse operations to solve and graphing solutions on a number line."}, {name: "Compound Inequalities", focus: "Solving and graphing 'and' and 'or' compound inequalities."}], essentials: "<strong>Vocabulary:</strong> inequality, solution set, compound inequality." },
+                { week: 6, unit: 6, title: "Systems of Equations", part: "B", sol: "A.4d, A.4e", link: "alg1-unit6-notes.html", topics: [{name: "Solving Systems by Graphing", focus: "Finding the point of intersection of two linear equations."}, {name: "Solving Systems by Substitution", focus: "Using substitution to solve for variables."}, {name: "Solving Systems by Elimination", focus: "Using elimination to solve for variables."}], essentials: "<strong>Vocabulary:</strong> system of equations, substitution, elimination, intersection." },
+                { week: 7, unit: 7, title: "Systems of Inequalities", part: "B", sol: "A.5d", link: "alg1-unit7-notes.html", topics: [{name: "Graphing Linear Inequalities", focus: "Graphing linear inequalities in two variables and identifying the solution region."}, {name: "Solving Systems of Inequalities", focus: "Finding the overlapping solution region for two or more linear inequalities."}], essentials: "<strong>Vocabulary:</strong> linear inequality, boundary line, half-plane, solution region." },
+                { week: 8, unit: 8, title: "Linear Functions", part: "B", sol: "A.6a, A.6b, A.7a", link: "alg1-unit8-notes.html", topics: [{name: "Slope and Rate of Change", focus: "Determining and interpreting slope and rate of change."}, {name: "Graphing Linear Functions", focus: "Graphing lines using slope-intercept, point-slope, and standard forms."}, {name: "Writing Linear Equations", focus: "Writing equations of lines given various information."}], essentials: "<strong>Vocabulary:</strong> function, domain, range, slope, y-intercept, slope-intercept form." },
+                { week: 9, unit: 9, title: "Function Types", part: "B", sol: "A.7a-f", link: "alg1-unit9-notes.html", topics: [{name: "Function Notation and Evaluation", focus: "Using function notation to represent and evaluate functions."}, {name: "Domain and Range", focus: "Identifying the domain and range of various function types."}], essentials: "<strong>Vocabulary:</strong> function notation, input, output, domain, range, relation." },
+                { week: 10, unit: 10, title: "Quadratic Functions", part: "B", sol: "A.4b, A.7", link: "alg1-unit-10-notes.html", topics: [{name: "Graphing Quadratic Functions", focus: "Identifying key features of parabolas and graphing them."}, {name: "Solving Quadratic Equations", focus: "Solving by factoring, square roots, and the quadratic formula."}], essentials: "<strong>Vocabulary:</strong> quadratic, parabola, vertex, axis of symmetry, roots, zeros, discriminant." },
+                { week: 11, unit: 11, title: "Exponential Functions", part: "B", sol: "A.7", link: "alg1-unit-11-notes.html", topics: [{name: "Properties of Exponents", focus: "Applying rules of exponents to simplify expressions."}, {name: "Graphing Exponential Functions", focus: "Graphing and identifying key features of exponential growth and decay functions."}], essentials: "<strong>Vocabulary:</strong> exponent, base, exponential growth, exponential decay, asymptote." },
+                { week: 12, unit: 12, title: "Data & Statistics", part: "B", sol: "A.8, A.9", link: "alg1-unit-12-notes.html", topics: [{name: "Measures of Central Tendency", focus: "Calculating and interpreting mean, median, mode, and range."}, {name: "Box-and-Whisker Plots", focus: "Creating and interpreting box plots and the five-number summary."}, {name: "Scatter Plots & Line of Best Fit", focus: "Analyzing bivariate data and finding regression lines."}], essentials: "<strong>Vocabulary:</strong> mean, median, mode, quartile, box plot, scatter plot, line of best fit, correlation." }
             ];
+            
+            // Filter out review/exam weeks to only show learning units
+            const unitData = allUnitData.filter(unit => !unit.isReview);
 
-            const container = document.getElementById('pacing-guide-container');
-            let currentPart = "A";
+            const navContainer = document.getElementById('sidebar-nav');
+            const contentDisplay = document.getElementById('weekly-content-display');
+            const printableContainer = document.getElementById('printable-full-guide');
+            
+            let currentPart = null;
 
-            const partAHeader = document.createElement('h2');
-            partAHeader.className = "text-3xl font-bold text-slate-700 border-b-2 border-slate-300 pb-2";
-            partAHeader.textContent = "Part A: The Math Foundation (Weeks 1-8)";
-            container.appendChild(partAHeader);
-
-            unitData.forEach(unit => {
-                if (unit.part === "B" && currentPart === "A") {
-                    currentPart = "B";
-                    const partBHeader = document.createElement('h2');
-                    partBHeader.className = "text-3xl font-bold text-slate-700 border-b-2 border-slate-300 pb-2 pt-8";
-                    partBHeader.textContent = `Part B: Advanced Applications (Weeks 9-16)`;
-                    container.appendChild(partBHeader);
-                }
-
-                const accordionItem = document.createElement('div');
-                accordionItem.className = 'accordion-item bg-white rounded-xl shadow-lg overflow-hidden';
+            // --- Initialization ---
+            function init() {
+                populateSidebar();
+                populateUnitLinksGrid();
+                populatePrintableVersion();
                 
-                let contentHTML = '';
-
-                if (unit.days) {
-                    let dailyContent = '';
-                    unit.days.forEach((day, index) => {
-                        const isQuizDay = (index === 3); // Thursday is quiz day for units 1-7
-                        const activities = `Slides, guided notes, SOL practice${isQuizDay ? `, and <strong class="text-red-600">Unit ${unit.week} Quiz</strong>` : '.'}`;
-                        dailyContent += `
-                            <div class="daily-pacing-card bg-slate-50 border border-slate-200 rounded-lg p-4 mb-4">
-                                <h4 class="font-bold text-teal-700">${day.day}: ${day.title}</h4>
-                                <ul class="list-disc list-inside text-slate-600 mt-1 text-sm">
-                                    <li><strong>Focus:</strong> ${day.focus}</li>
-                                    <li><strong>Activities:</strong> ${activities}</li>
-                                </ul>
-                            </div>
-                        `;
-                    });
-
-                    dailyContent += `
-                        <div class="daily-pacing-card bg-slate-50 border border-slate-200 rounded-lg p-4 mb-4">
-                            <h4 class="font-bold text-teal-700">Friday: Office Hours</h4>
-                            <ul class="list-disc list-inside text-slate-600 mt-1 text-sm">
-                                <li><strong>Time:</strong> 10 AM - 12 PM</li>
-                                <li><strong>Purpose:</strong> Tutoring, extra help, and make-up assignments.</li>
-                            </ul>
-                        </div>
-                    `;
-                    
-                    const essentialsContent = `
-                        <div class="key-info-box bg-teal-50 border-l-4 border-teal-500 p-4 rounded-r-lg mt-6">
-                            <h4 class="font-bold text-teal-800">Unit Essentials</h4>
-                            <p class="text-sm text-teal-900 mt-2">${unit.essentials}</p>
-                        </div>
-                    `;
-
-                    contentHTML = `
-                        <div class="accordion-inner-content p-6 border-t border-slate-200">
-                            ${dailyContent}
-                            ${essentialsContent}
-                        </div>
-                    `;
-                } else {
-                     contentHTML = `
-                        <div class="accordion-inner-content p-6 border-t border-slate-200">
-                            <p class="text-slate-500">Details for this week will be added soon.</p>
-                        </div>
-                    `;
+                // Display the first week by default
+                if(unitData.length > 0) {
+                    const firstWeek = unitData[0].week;
+                    displayWeekContent(firstWeek);
+                    updateActiveNavLink(firstWeek);
                 }
+            }
 
-
-                accordionItem.innerHTML = `
-                    <button class="accordion-header w-full p-6 text-left flex justify-between items-center hover:bg-slate-50 transition-colors">
-                        <h3 class="text-2xl font-bold text-slate-800">Week ${unit.week}: ${unit.title}</h3>
-                        <svg class="w-6 h-6 text-slate-500 accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                    </button>
-                    <div class="accordion-content" style="max-height: 0px;">
-                        ${contentHTML}
-                    </div>
-                `;
-                container.appendChild(accordionItem);
-            });
-
-            const accordionHeaders = document.querySelectorAll('.accordion-header');
-            accordionHeaders.forEach(header => {
-                header.addEventListener('click', function() {
-                    const content = this.nextElementSibling;
-                    const icon = this.querySelector('.accordion-icon');
+            // --- Populate UI Elements ---
+            function populateSidebar() {
+                unitData.forEach(unit => {
+                    // Add Part headers
+                    if (unit.part !== currentPart) {
+                        currentPart = unit.part;
+                        const partHeader = document.createElement('h3');
+                        partHeader.className = 'text-sm font-semibold text-slate-500 uppercase tracking-wider px-3 pt-4';
+                        partHeader.textContent = unit.part === 'A' ? 'Part A: Foundations' : 'Part B: Applications';
+                        navContainer.appendChild(partHeader);
+                    }
                     
-                    const isActive = content.style.maxHeight && content.style.maxHeight !== "0px";
-
-                    // Close all accordions
-                    accordionHeaders.forEach(otherHeader => {
-                        otherHeader.nextElementSibling.style.maxHeight = "0px";
-                        otherHeader.querySelector('.accordion-icon').style.transform = 'rotate(0deg)';
+                    const navLink = document.createElement('a');
+                    navLink.href = '#';
+                    navLink.className = 'nav-link flex items-center gap-4 p-3 rounded-lg transition-colors';
+                    navLink.dataset.week = unit.week;
+                    navLink.innerHTML = `
+                        <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-slate-200 text-slate-600 rounded-full text-xs font-bold nav-link-week">${unit.week}</div>
+                        <div class="flex-grow">
+                            <p class="font-medium text-slate-700 leading-tight nav-link-title">${unit.title}</p>
+                        </div>
+                    `;
+                    navLink.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        displayWeekContent(unit.week);
+                        updateActiveNavLink(unit.week);
                     });
+                    navContainer.appendChild(navLink);
+                });
+            }
 
-                    // If the clicked one was not active, open it
-                    if (!isActive) {
-                        content.style.maxHeight = content.scrollHeight + "px";
-                        icon.style.transform = 'rotate(180deg)';
+            function populateUnitLinksGrid() {
+                const container = document.getElementById('unit-links-container');
+                let partA_HTML = '';
+                let partB_HTML = '';
+
+                unitData.forEach(unit => {
+                    if (unit.link && unit.unit) {
+                        const cardHTML = `
+                            <a href="${unit.link}" target="_blank" class="unit-link-card block bg-white p-4 rounded-lg border border-slate-200 hover:border-teal-500 hover:shadow-md transition-all duration-200 group">
+                                <div class="flex items-center gap-4">
+                                    <div class="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-teal-100 text-teal-600 rounded-lg">
+                                        <i class="fas fa-calculator"></i>
+                                    </div>
+                                    <div class="flex-grow">
+                                        <p class="text-xs font-semibold text-slate-500">Unit ${unit.unit}</p>
+                                        <h5 class="font-bold text-slate-800 group-hover:text-teal-600 transition-colors">${unit.title}</h5>
+                                    </div>
+                                    <div class="ml-auto text-slate-400 group-hover:text-teal-600">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </div>
+                                </div>
+                            </a>
+                        `;
+                        if (unit.part === 'A') {
+                            partA_HTML += cardHTML;
+                        } else {
+                            partB_HTML += cardHTML;
+                        }
                     }
                 });
-            });
+
+                container.innerHTML = `
+                    <div class="bg-white p-6 sm:p-8 rounded-xl shadow-lg">
+                        <h2 class="text-3xl font-extrabold text-slate-800 mb-6">Unit Note Guides</h2>
+                        <div class="mb-8">
+                            <h3 class="text-lg font-bold text-slate-600 mb-4 border-b pb-2">Part A: Foundations</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                                ${partA_HTML}
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-slate-600 mb-4 border-b pb-2">Part B: Applications</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                                ${partB_HTML}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+
+            function generateWeekHTML(unit) {
+                let topicsContent = '';
+                if (unit.topics && unit.topics.length > 0) {
+                    topicsContent = unit.topics.map((topic, index) => `
+                        <div class="topic-item flex items-start gap-4 bg-slate-50 border border-slate-200 rounded-lg p-4">
+                            <div class="flex-shrink-0 w-6 h-6 flex items-center justify-center bg-teal-100 text-teal-700 font-bold rounded-full text-sm">${index + 1}</div>
+                            <div class="flex-grow">
+                                <h4 class="font-bold text-slate-800">${topic.name}</h4>
+                                <p class="text-slate-600 mt-1 text-sm"><strong>Focus:</strong> ${topic.focus}</p>
+                            </div>
+                        </div>
+                    `).join('');
+                } else {
+                    topicsContent = '<p class="text-slate-500">Topics for this week will be added soon.</p>';
+                }
+
+                const solContent = unit.sol ? `
+                    <div class="mb-6">
+                        <h3 class="text-xl font-bold text-slate-700 mb-2">VA SOL Standards</h3>
+                        <p class="bg-indigo-50 text-indigo-800 font-mono py-2 px-4 rounded-md text-sm">${unit.sol}</p>
+                    </div>
+                ` : '';
+
+                const essentialsContent = `
+                    <div class="key-info-box bg-teal-50 border-l-4 border-teal-500 p-4 rounded-r-lg mt-8">
+                        <h4 class="font-bold text-teal-800">Unit Vocabulary</h4>
+                        <div class="text-sm text-teal-900 mt-2">${unit.essentials}</div>
+                    </div>
+                `;
+
+                return `
+                    <div class="bg-white p-6 sm:p-8 rounded-xl shadow-lg">
+                        <div class="border-b border-slate-200 pb-4 mb-6">
+                            <p class="text-sm font-semibold text-teal-600 uppercase">Unit ${unit.unit} &bull; Week ${unit.week}</p>
+                            <h2 class="text-3xl md:text-4xl font-extrabold text-slate-800 mt-1">${unit.title}</h2>
+                        </div>
+                        ${solContent}
+                        <div class="mb-6">
+                            <h3 class="text-xl font-bold text-slate-700 mb-3">Unit Topics</h3>
+                            <div class="space-y-3">
+                                ${topicsContent}
+                            </div>
+                        </div>
+                        ${essentialsContent}
+                    </div>
+                `;
+            }
+
+            function populatePrintableVersion() {
+                let fullHTML = '<h1 class="text-center mb-8">Algebra 1 Full Pacing Guide</h1>';
+                 unitData.forEach(unit => {
+                     fullHTML += `<div class="week-section printable-content">${generateWeekHTML(unit)}</div>`;
+                });
+                printableContainer.innerHTML = fullHTML;
+            }
+
+
+            // --- Event Handlers & State Updaters ---
+            function displayWeekContent(weekNumber) {
+                const unit = unitData.find(u => u.week === weekNumber) || allUnitData.find(u => u.week === weekNumber);
+                if (unit) {
+                    contentDisplay.innerHTML = generateWeekHTML(unit);
+                }
+            }
+
+            function updateActiveNavLink(weekNumber) {
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    if (parseInt(link.dataset.week) === weekNumber) {
+                        link.classList.add('active');
+                    } else {
+                        link.classList.remove('active');
+                    }
+                });
+            }
+
+            // --- Run ---
+            init();
         });
     </script>
-
 </body>
 </html>
-
-
 

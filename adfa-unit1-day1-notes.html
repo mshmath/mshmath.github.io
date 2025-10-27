@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 1 Slides: Parent Functions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$']]
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* slate-50 */
+        }
+
+        .slide {
+            page-break-inside: avoid;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .slide:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+
+        .slide p, .slide ul, .slide ol {
+            line-height: 1.7;
+            letter-spacing: 0.01em;
+            word-spacing: 0.05em;
+        }
+
+        @media print {
+            body {
+                font-size: 10pt;
+                background-color: white !important;
+                color: black !important;
+            }
+
+            .non-printable {
+                display: none !important;
+            }
+
+            main {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+
+            .slide {
+                width: calc(50% - 0.25rem);
+                border: 2px solid #333;
+                box-shadow: none !important;
+                background-color: white !important;
+                padding: 0.5rem !important;
+                transform: none !important;
+            }
+            
+            .slide h2, .slide h3, .slide h4, .slide p, .slide li, .slide svg text, .slide svg path, .slide svg line {
+                color: black !important;
+                stroke: black !important;
+            }
+
+            .practice-columns {
+                display: flex;
+                flex-direction: row;
+                gap: 1rem;
+            }
+            .practice-columns > div {
+                flex: 1;
+                border: 1px solid #ccc !important;
+                background: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50">
+
+    <header class="bg-white/80 backdrop-blur-sm shadow-md p-4 sticky top-0 z-10 non-printable">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <h1 class="text-xl font-bold text-slate-800">AFDA - Unit 1, Day 1: Parent Functions</h1>
+            <button onclick="window.print()" class="bg-teal-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-teal-700 transition-colors flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
+                    <path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2H5zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1z"/>
+                </svg>
+                Print Slides
+            </button>
+        </div>
+    </header>
+
+    <main class="max-w-3xl mx-auto p-4 sm:p-6 lg:p-8 grid grid-cols-1 gap-8">
+        <!-- Slide 1: Title -->
+        <section class="slide bg-white rounded-xl shadow-lg p-8">
+            <h2 class="text-4xl font-extrabold text-teal-700">Unit 1, Day 1: Parent Functions</h2>
+            <p class="text-slate-500 mt-2">October 27, 2025</p>
+            <div class="mt-6 bg-teal-50 border-l-4 border-teal-500 p-4 rounded-r-lg">
+                <h3 class="font-bold text-teal-800 flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+                    </svg>
+                    Today's Goal
+                </h3>
+                <p class="text-teal-900 mt-2">I will be able to spot the three main "starter" graphs, know their simple equations, and draw them using the Desmos calculator website.</p>
+            </div>
+        </section>
+
+        <!-- Slide 2: Warm-up -->
+        <section class="slide bg-white rounded-xl shadow-lg p-8">
+            <h3 class="text-3xl font-bold text-slate-800 mb-4 flex items-center gap-3">
+                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-yellow-500" viewBox="0 0 16 16">
+                    <path d="M6 .5a.5.5 0 0 1 .5.5v3.111c.42-.152.88-.233 1.39-.233s.97.081 1.39.233V1a.5.5 0 0 1 1 0v3.111c.42.152.88.233 1.39.233s.97.081 1.39.233V1a.5.5 0 0 1 1 0v3.111a2.5 2.5 0 0 1 0 4.778V15a.5.5 0 0 1-1 0v-3.111a2.5 2.5 0 0 1-2.78 0V15a.5.5 0 0 1-1 0v-3.111a2.5 2.5 0 0 1-2.78 0V15a.5.5 0 0 1-1 0V9.889a2.5 2.5 0 0 1 0-4.778V1a.5.5 0 0 1 .5-.5z"/>
+                </svg>
+                Warm-Up
+            </h3>
+            <p class="text-slate-700 text-lg">In math, a <b class="text-teal-700">parent function</b> is like the original, basic model for a whole family of graphs. </p>
+            <p class="text-slate-600 mt-4">All the other graphs in the family are just slightly different versions of their parent. Today, we'll meet the three most important parents.</p>
+        </section>
+
+        <!-- Slide 3: I Do -->
+        <section class="slide bg-white rounded-xl shadow-lg p-8">
+            <h3 class="text-3xl font-bold text-slate-800 mb-4">I Do: The Linear Parent</h3>
+            <p class="text-slate-700 mb-4">The first parent is <b class="text-teal-700">Linear</b> (which just means a perfectly straight line). Its equation is super simple:</p>
+            <p class="text-center text-3xl font-mono bg-slate-100 p-4 rounded-lg my-6">$f(x) = x$</p>
+            <div class="w-full bg-slate-50 rounded-lg p-4 border border-slate-200">
+                <svg viewBox="0 0 100 100" class="w-full h-auto">
+                    <line x1="0" y1="50" x2="100" y2="50" stroke="#cbd5e1" stroke-width="0.5"/>
+                    <line x1="50" y1="0" x2="50" y2="100" stroke="#cbd5e1" stroke-width="0.5"/>
+                    <path d="M 0 100 L 100 0" stroke="#0d9488" stroke-width="2" fill="none"/>
+                </svg>
+            </div>
+            <ul class="list-disc list-inside mt-6 text-slate-600 space-y-1">
+                <li>Its graph is a straight line that cuts the graph in half.</li>
+                <li>It goes right through the <b class="text-teal-700">origin</b> (the center point where the lines cross).</li>
+                <li><b>See it for yourself:</b> Go to desmos.com and type <code>y=x</code>.</li>
+            </ul>
+        </section>
+
+        <!-- Slide 4: We Do -->
+        <section class="slide bg-white rounded-xl shadow-lg p-8">
+            <h3 class="text-3xl font-bold text-slate-800 mb-4">We Do: The Quadratic Parent</h3>
+            <p class="text-slate-700 mb-4">Next is the <b class="text-teal-700">Quadratic</b> parent. ("Quadratic" is a fancy word for graphs where the $x$ is squared, or $x^2$.)</p>
+            <p class="text-center text-3xl font-mono bg-slate-100 p-4 rounded-lg my-6">$f(x) = x^2$</p>
+            <div class="w-full bg-slate-50 rounded-lg p-4 border border-slate-200">
+                <svg viewBox="0 0 100 100" class="w-full h-auto">
+                    <line x1="0" y1="50" x2="100" y2="50" stroke="#cbd5e1" stroke-width="0.5"/>
+                    <line x1="50" y1="0" x2="50" y2="100" stroke="#cbd5e1" stroke-width="0.5"/>
+                    <path d="M 10 100 Q 50 0 90 100" stroke="#0d9488" stroke-width="2" fill="none"/>
+                </svg>
+            </div>
+            <ul class="list-disc list-inside mt-6 text-slate-600 space-y-1">
+                <li>Its graph is a "U-shape" called a <b class="text-teal-700">parabola</b>.</li>
+                <li>The bottom of the "U" is right at the origin (the center).</li>
+                <li><b>Let's graph it together:</b> In a new line in Desmos, type <code class="text-teal-800 bg-slate-100 p-1 rounded-md">$y=x^2$</code>.</li>
+            </ul>
+        </section>
+
+        <!-- Slide 5: You Do -->
+        <section class="slide bg-white rounded-xl shadow-lg p-8">
+            <h3 class="text-3xl font-bold text-slate-800 mb-4">You Do: The Exponential Parent</h3>
+            <p class="text-slate-700 mb-4">Finally, we have the <b class="text-teal-700">Exponential</b> parent. ("Exponential" means the letter $x$ is up in the exponent spot.)</p>
+            <p class="text-center text-3xl font-mono bg-slate-100 p-4 rounded-lg my-6">$f(x) = 2^x$</p>
+             <div class="w-full bg-slate-50 rounded-lg p-4 border border-slate-200">
+                <svg viewBox="0 0 100 100" class="w-full h-auto">
+                    <line x1="0" y1="50" x2="100" y2="50" stroke="#cbd5e1" stroke-width="0.5"/>
+                    <line x1="50" y1="0" x2="50" y2="100" stroke="#cbd5e1" stroke-width="0.5"/>
+                    <path d="M 0 48 C 40 45, 60 20, 100 0" stroke="#0d9488" stroke-width="2" fill="none" transform="translate(0, 25) scale(1, 0.7)"/>
+                </svg>
+            </div>
+            <p class="mt-6 text-slate-700"><b>Your turn:</b></p>
+            <ul class="list-disc list-inside mt-2 text-slate-600 space-y-1">
+                <li>Graph <code class="text-teal-800 bg-slate-100 p-1 rounded-md">$y=2^x$</code> in Desmos.</li>
+                <li>How would you describe its shape? It's like a ramp that gets super steep!</li>
+            </ul>
+        </section>
+
+        <!-- Slide 6: Independent Practice -->
+        <section class="slide bg-white rounded-xl shadow-lg p-8">
+            <h3 class="text-3xl font-bold text-slate-800 mb-4 flex items-center gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-indigo-500" viewBox="0 0 16 16">
+                    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                </svg>
+                Independent Practice
+            </h3>
+            <p class="text-slate-600 mb-6">Complete the level that feels right for you. Challenge yourself!</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
+                <!-- Green Level -->
+                <div class="bg-slate-50/70 border-t-4 border-green-500 p-6 rounded-lg shadow-lg flex flex-col">
+                    <div class="flex items-center gap-3">
+                        <div class="flex-shrink-0 w-10 h-10 rounded-full bg-green-100 flex items-center justify-center">
+                           <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-extrabold text-green-700">Green Level</h4>
+                            <p class="text-sm font-medium text-slate-500">Remembering</p>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-slate-200 flex-grow">
+                        <p class="text-base text-slate-700 leading-relaxed">Match the name to its equation:</p>
+                        <div class="mt-4 text-base text-slate-800 space-y-3">
+                            <p>1. Linear</p>
+                            <p>2. Quadratic</p>
+                            <p>3. Exponential</p>
+                        </div>
+                        <div class="font-mono mt-3 text-base text-teal-800 bg-slate-100 p-3 rounded-md border border-slate-200">
+                            <p>A) $y=x^2$</p>
+                            <p>B) $y=2^x$</p>
+                            <p>C) $y=x$</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Yellow Level -->
+                <div class="bg-slate-50/70 border-t-4 border-yellow-500 p-6 rounded-lg shadow-lg flex flex-col">
+                     <div class="flex items-center gap-3">
+                        <div class="flex-shrink-0 w-10 h-10 rounded-full bg-yellow-100 flex items-center justify-center">
+                            <svg class="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-extrabold text-yellow-700">Yellow Level</h4>
+                            <p class="text-sm font-medium text-slate-500">Applying</p>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-slate-200 flex-grow">
+                        <p class="text-base text-slate-700 leading-relaxed">Which parent graph on Desmos...</p>
+                        <ul class="list-disc list-inside mt-4 text-base text-slate-800 space-y-3">
+                            <li>...is a curved U-shape?</li>
+                            <li>...is a straight line?</li>
+                            <li>...starts flat and gets steep fast?</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Red Level -->
+                <div class="bg-slate-50/70 border-t-4 border-red-500 p-6 rounded-lg shadow-lg flex flex-col">
+                     <div class="flex items-center gap-3">
+                        <div class="flex-shrink-0 w-10 h-10 rounded-full bg-red-100 flex items-center justify-center">
+                           <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12s-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z"></path></svg>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-extrabold text-red-700">Red Level</h4>
+                            <p class="text-sm font-medium text-slate-500">Analyzing</p>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-slate-200 flex-grow">
+                        <p class="text-base text-slate-700 leading-relaxed">Answer the following:</p>
+                        <ul class="list-disc list-inside mt-4 text-base text-slate-800 space-y-3">
+                            <li>Which shape best models a thrown basketball's path?</li>
+                            <li>What point do all three parent graphs have in common?</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 7: Exit Ticket -->
+        <section class="slide bg-white rounded-xl shadow-lg p-8">
+            <h3 class="text-3xl font-bold text-slate-800 mb-4 flex items-center gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-red-500" viewBox="0 0 16 16">
+                    <path d="M1.5 3A1.5 1.5 0 0 0 0 4.5V13h1.875a1.875 1.875 0 0 1 0 3H.5a.5.5 0 0 0 0 1h1.375A1.875 1.875 0 0 1 1.875 16h12.25A1.875 1.875 0 0 1 16 14.125V4.5A1.5 1.5 0 0 0 14.5 3h-13zm0 1h13a.5.5 0 0 1 .5.5V6H1V4.5a.5.5 0 0 1 .5-.5zM1 7h14v7.125A.875.875 0 0 1 14.125 15H1.875A.875.875 0 0 1 1 14.125V7z"/>
+                    <path d="M4.5 0A1.5 1.5 0 0 0 3 1.5v1a.5.5 0 0 0 1 0v-1A.5.5 0 0 1 4.5 1h7a.5.5 0 0 1 .5.5v1a.5.5 0 0 0 1 0v-1A1.5 1.5 0 0 0 11.5 0h-7z"/>
+                </svg>
+                Exit Ticket
+            </h3>
+            <p class="text-slate-600 mb-6">On a separate piece of paper, answer the following before you leave.</p>
+            <div class="space-y-4">
+                <div class="flex items-start gap-4 bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <div class="flex-shrink-0 bg-teal-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-lg">1</div>
+                    <p class="text-slate-700 flex-grow">Write the equation for the <b>quadratic</b> (U-shape) parent.</p>
+                </div>
+                <div class="flex items-start gap-4 bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <div class="flex-shrink-0 bg-teal-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-lg">2</div>
+                    <p class="text-slate-700 flex-grow">Draw a quick sketch of the <b>linear</b> (straight line) parent.</p>
+                </div>
+                <div class="flex items-start gap-4 bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <div class="flex-shrink-0 bg-teal-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-lg">3</div>
+                    <p class="text-slate-700 flex-grow">Imagine money in a savings account growing with interest. Which graph shape would that look like? (Linear, Quadratic, or Exponential?)</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+</body>
+</html>
+
+
+
+
