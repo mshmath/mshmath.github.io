@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 2: Characteristics of Graphs</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [
+                    ['$', '$']
+                ]
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 800;
+        }
+        
+        p, li {
+            font-family: 'Lora', serif;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .lesson-section {
+            scroll-margin-top: 5rem;
+        }
+
+        details>summary {
+            list-style: none;
+        }
+
+        details>summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .details-arrow {
+            transition: transform 0.2s ease-in-out;
+        }
+
+        details[open] .details-arrow {
+            transform: rotate(90deg);
+        }
+
+        .key-term {
+            color: #0f766e;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        code {
+            background-color: #f1f5f9;
+            padding: 0.1em 0.4em;
+            border-radius: 4px;
+            font-family: monospace;
+            color: #4c1d95;
+            font-size: 0.9em;
+        }
+
+        @media print {
+            header, .non-printable { display: none !important; }
+            main { padding: 0 !important; }
+            body { background-color: white; color: black; }
+            details { display: block !important; page-break-inside: avoid; }
+            .lesson-section, .bg-white { box-shadow: none !important; border: 1px solid #ccc !important; }
+            .printable-only.fill-in-blank { display: inline-block !important; width: 120px; border-bottom: 1px solid black; margin: 0 4px; vertical-align: baseline; }
+            .printable-only.answer-block { display: block !important; min-height: 3rem; border: 1px solid #ccc; border-radius: 8px; margin-top: 0.5rem; padding: 0.5rem; }
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800">
+    <!-- Header & Navigation -->
+    <header class="bg-white/90 backdrop-blur-sm shadow-md sticky top-0 z-50 non-printable">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col sm:flex-row justify-between items-center py-4 border-b border-slate-200">
+                <h1 class="text-2xl font-bold text-slate-900">Unit 2: Characteristics of Graphs</h1>
+                <nav class="mt-2 sm:mt-0">
+                    <ul class="flex space-x-2 sm:space-x-4 text-sm sm:text-base">
+                        <li><a href="#day1" class="font-semibold text-teal-600 hover:text-teal-800 transition">Day 1</a></li>
+                        <li><a href="#day2" class="font-semibold text-teal-600 hover:text-teal-800 transition">Day 2</a></li>
+                        <li><a href="#day3" class="font-semibold text-teal-600 hover:text-teal-800 transition">Day 3</a></li>
+                        <li><a href="#day4" class="font-semibold text-teal-600 hover:text-teal-800 transition">Day 4</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto p-4 sm:p-6 lg:p-8">
+        <!-- Introduction & Navigation Card -->
+        <div class="bg-white p-6 rounded-xl shadow-lg mb-12 non-printable">
+            <h2 class="text-3xl font-extrabold text-teal-700 mb-2">Unit 2 Resources & Lessons</h2>
+            <p class="text-slate-600 mb-6">VA SOL Standard: AFDA.AF.2. This unit focuses on analyzing graphs to understand their key features. We will use the <a href="https://www.desmos.com/calculator" target="_blank" class="text-teal-600 font-semibold hover:underline">Desmos Graphing Calculator</a> to find these features visually.</p>
+            <div class="border-t border-b border-slate-200 py-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                    <a href="https://www.desmos.com/calculator" target="_blank" class="block w-full text-center bg-slate-100 text-slate-700 font-semibold px-4 py-2 rounded-lg hover:bg-slate-200 transition-colors text-sm">Open Desmos Calculator</a>
+                    <button onclick="window.print()" class="w-full text-center bg-teal-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-teal-700 transition-colors text-sm">Print Unit 2 Notes & Practice</button>
+                </div>
+                <div class="space-y-4">
+                    <h3 class="font-semibold text-lg text-slate-800 mb-2">Daily Lesson Slides</h3>
+                    <!-- Day 1 Links -->
+                    <div>
+                        <h4 class="font-semibold text-slate-600 text-sm mb-1">Day 1: Domain and Range</h4>
+                        <div class="flex space-x-2">
+                            <a href="afda-unit2-day1-slides.html" target="_blank" class="flex-1 text-center bg-teal-500 text-white font-semibold px-4 py-2 rounded-lg hover:bg-teal-600 transition-colors text-sm">View Slides</a>
+                            <a href="afda-unit2-day1-slides-print.html" target="_blank" class="flex-1 text-center bg-teal-700 text-white font-semibold px-4 py-2 rounded-lg hover:bg-teal-800 transition-colors text-sm">Print Slides</a>
+                        </div>
+                    </div>
+                    <!-- Day 2 Links -->
+                    <div>
+                        <h4 class="font-semibold text-slate-600 text-sm mb-1">Day 2: Intercepts and Zeros</h4>
+                        <div class="flex space-x-2">
+                             <a href="afda-unit2-day2-slides.html" target="_blank" class="flex-1 text-center bg-teal-500 text-white font-semibold px-4 py-2 rounded-lg hover:bg-teal-600 transition-colors text-sm">View Slides</a>
+                            <a href="afda-unit2-day2-slides-print.html" target="_blank" class="flex-1 text-center bg-teal-700 text-white font-semibold px-4 py-2 rounded-lg hover:bg-teal-800 transition-colors text-sm">Print Slides</a>
+                        </div>
+                    </div>
+                    <!-- Day 3 Links -->
+                    <div>
+                        <h4 class="font-semibold text-slate-600 text-sm mb-1">Day 3: Increasing & Decreasing Intervals</h4>
+                        <div class="flex space-x-2">
+                           <a href="afda-unit2-day3-slides.html" target="_blank" class="flex-1 text-center bg-teal-500 text-white font-semibold px-4 py-2 rounded-lg hover:bg-teal-600 transition-colors text-sm">View Slides</a>
+                            <a href="afda-unit2-day3-slides-print.html" target="_blank" class="flex-1 text-center bg-teal-700 text-white font-semibold px-4 py-2 rounded-lg hover:bg-teal-800 transition-colors text-sm">Print Slides</a>
+                        </div>
+                    </div>
+                    <!-- Day 4 Links -->
+                    <div>
+                        <h4 class="font-semibold text-slate-600 text-sm mb-1">Day 4: End Behavior & Asymptotes</h4>
+                        <div class="flex space-x-2">
+                            <a href="afda-unit2-day4-slides.html" target="_blank" class="flex-1 text-center bg-teal-500 text-white font-semibold px-4 py-2 rounded-lg hover:bg-teal-600 transition-colors text-sm">View Slides</a>
+                            <a href="afda-unit2-day4-slides-print.html" target="_blank" class="flex-1 text-center bg-teal-700 text-white font-semibold px-4 py-2 rounded-lg hover:bg-teal-800 transition-colors text-sm">Print Slides</a>
+                        </div>
+                    </div>
+                     <div class="mt-6">
+                        <h3 class="font-semibold text-lg text-slate-800">Unit 2 Worksheets</h3>
+                        <div class="flex space-x-2">
+                            <a href="afda-unit2-practice-ws.html" target="_blank" class="flex-1 text-center bg-indigo-500 text-white font-semibold px-4 py-2 rounded-lg hover:bg-indigo-600 transition-colors text-sm">Unit 2 Practice Worksheet</a>
+                            <a href="afda-unit2-study-guide.html" target="_blank" class="flex-1 text-center bg-indigo-700 text-white font-semibold px-4 py-2 rounded-lg hover:bg-indigo-800 transition-colors text-sm">Unit 2 Study Guide</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="space-y-8">
+            <!-- Lesson 1: Domain and Range -->
+            <details id="day1" class="lesson-section bg-white rounded-xl shadow-lg overflow-hidden" open>
+                <summary class="p-6 cursor-pointer flex justify-between items-center hover:bg-slate-50 transition-colors non-printable">
+                    <h3 class="text-2xl font-bold text-slate-800">Day 1: Domain and Range</h3>
+                    <svg class="w-6 h-6 text-slate-500 details-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </summary>
+                <div class="p-6 border-t border-slate-200">
+                    <p class="mb-8 bg-teal-50 border-l-4 border-teal-500 text-teal-900 p-4 rounded-r-lg"><strong class="font-semibold text-teal-800 font-sans">Objective:</strong> To find the domain and range of a function by looking at its graph.</p>
+                    <h4 class="text-xl font-semibold text-teal-700 mb-4">Notes</h4>
+                    <div class="space-y-5 mb-10">
+                        <p><b class="key-term">Domain:</b> A list of all possible <b class="key-term">x-values</b> (left to right) that the graph covers.</p>
+                        <p><b class="key-term">Range:</b> A list of all possible <b class="key-term">y-values</b> (bottom to top) that the graph covers.</p>
+                         <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                             <svg viewBox="0 0 150 100" class="w-full h-auto">
+                                 <defs>
+                                    <marker id="arrowhead" markerWidth="5" markerHeight="3.5" refX="0" refY="1.75" orient="auto"><polygon points="0 0, 5 1.75, 0 3.5" fill="#94a3b8"/></marker>
+                                </defs>
+                                 <line x1="10" y1="50" x2="140" y2="50" stroke="#94a3b8" stroke-width="0.5" marker-end="url(#arrowhead)"/>
+                                <text x="142" y="53" font-size="4" font-family="Inter" fill="#94a3b8">x</text>
+                                 <line x1="75" y1="95" x2="75" y2="5" stroke="#94a3b8" stroke-width="0.5" marker-end="url(#arrowhead)"/>
+                                <text x="71" y="10" font-size="4" font-family="Inter" fill="#94a3b8">y</text>
+                                 <path d="M 45 80 Q 75 10 105 80" stroke="#0d9488" stroke-width="2" fill="none"/>
+                                 <path d="M45,80 L45,50" stroke="#fb7185" stroke-width="1" stroke-dasharray="2,2"/>
+                                 <path d="M105,80 L105,50" stroke="#fb7185" stroke-width="1" stroke-dasharray="2,2"/>
+                                <text x="65" y="48" font-size="5" font-family="Inter" font-weight="bold" fill="#fb7185">Domain</text>
+                                <path d="M75,18 L75,18" stroke="#38bdf8" stroke-width="1" stroke-dasharray="2,2" transform="translate(-50,0)"/>
+                                <path d="M75,18 L75,90" stroke="#38bdf8" stroke-width="1" stroke-dasharray="2,2"/>
+                                <text x="78" y="55" font-size="5" font-family="Inter" font-weight="bold" fill="#38bdf8">Range</text>
+                            </svg>
+                         </div>
+                    </div>
+                    <div class="mb-8 p-6 border-l-4 border-sky-300 bg-sky-50 rounded-r-lg">
+                        <h5 class="text-lg font-semibold text-sky-800 mb-2">Desmos Exploration: Visualizing Domain and Range</h5>
+                        <ol class="list-decimal ml-5 mt-3 text-sm space-y-2 text-sky-900 font-sans">
+                            <li>In Desmos, graph the equation <code>y = (x-2)^2 + 1</code>.</li>
+                            <li><b>For Domain:</b> The arrows show it goes forever left and right. The domain is "All Real Numbers," or $(-\infty, \infty)$.</li>
+                            <li><b>For Range:</b> The lowest y-value it touches is 1. From there, it goes up forever. The range is "y is greater than or equal to 1," or $[1, \infty)$.</li>
+                        </ol>
+                    </div>
+                </div>
+            </details>
+
+            <!-- Lesson 2: Intercepts and Zeros -->
+            <details id="day2" class="lesson-section bg-white rounded-xl shadow-lg overflow-hidden">
+                <summary class="p-6 cursor-pointer flex justify-between items-center hover:bg-slate-50 transition-colors non-printable">
+                    <h3 class="text-2xl font-bold text-slate-800">Day 2: Intercepts and Zeros</h3>
+                    <svg class="w-6 h-6 text-slate-500 details-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </summary>
+                <div class="p-6 border-t border-slate-200">
+                    <p class="mb-8 bg-blue-50 border-l-4 border-blue-500 text-blue-900 p-4 rounded-r-lg"><strong class="font-semibold text-blue-800 font-sans">Objective:</strong> To find the x-intercepts, y-intercepts, and zeros of a function by clicking on its graph in Desmos.</p>
+                    <h4 class="text-xl font-semibold text-blue-700 mb-4">Notes</h4>
+                    <div class="space-y-5 mb-10">
+                        <p><b class="key-term">Y-Intercept:</b> The point where the graph <b class="key-term">crosses the vertical y-axis</b>.</p>
+                        <p><b class="key-term">X-Intercepts:</b> The points where the graph <b class="key-term">crosses the horizontal x-axis</b>.</p>
+                        <p><b class="key-term">Zeros:</b> This is just another name for the <b class="key-term">x-intercepts</b>. Finding the "zeros" means finding where the graph's height is zero.</p>
+                    </div>
+                    <div class="mb-8 p-6 border-l-4 border-sky-300 bg-sky-50 rounded-r-lg">
+                        <h5 class="text-lg font-semibold text-sky-800 mb-2">Desmos Exploration: Finding Intercepts</h5>
+                        <ol class="list-decimal ml-5 mt-3 text-sm space-y-2 text-sky-900 font-sans">
+                            <li>In Desmos, graph the equation <code>y = x^2 - 4</code>.</li>
+                            <li>Click on the points where the graph crosses the axes.</li>
+                            <li>Desmos will show gray dots with the coordinates. The point on the y-axis, $(0, -4)$, is the y-intercept. The points on the x-axis, $(-2, 0)$ and $(2, 0)$, are the x-intercepts (or zeros).</li>
+                        </ol>
+                    </div>
+                </div>
+            </details>
+
+            <!-- Lesson 3: Increasing and Decreasing Intervals -->
+            <details id="day3" class="lesson-section bg-white rounded-xl shadow-lg overflow-hidden">
+                <summary class="p-6 cursor-pointer flex justify-between items-center hover:bg-slate-50 transition-colors non-printable">
+                    <h3 class="text-2xl font-bold text-slate-800">Day 3: Increasing & Decreasing Intervals</h3>
+                    <svg class="w-6 h-6 text-slate-500 details-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </summary>
+                <div class="p-6 border-t border-slate-200">
+                     <p class="mb-8 bg-indigo-50 border-l-4 border-indigo-500 text-indigo-900 p-4 rounded-r-lg"><strong class="font-semibold text-indigo-800 font-sans">Objective:</strong> To identify the parts of a graph that are increasing (going uphill) or decreasing (going downhill).</p>
+                    <h4 class="text-xl font-semibold text-indigo-700 mb-4">Notes</h4>
+                    <div class="space-y-5 mb-10">
+                        <p>We always read a graph from <b class="key-term">left to right</b>.</p>
+                        <p><b class="key-term">Increasing Interval:</b> Any section of the graph that is going <b class="key-term">uphill</b>.</p>
+                        <p><b class="key-term">Decreasing Interval:</b> Any section of the graph that is going <b class="key-term">downhill</b>.</p>
+                        <p>We describe these sections using their <b class="key-term">x-values</b>. The point where the graph changes direction is called a <b class="key-term">turning point</b> or <b class="key-term">vertex</b>.</p>
+                    </div>
+                    <div class="mb-8 p-6 border-l-4 border-sky-300 bg-sky-50 rounded-r-lg">
+                        <h5 class="text-lg font-semibold text-sky-800 mb-2">Desmos Exploration: Finding Intervals</h5>
+                        <ol class="list-decimal ml-5 mt-3 text-sm space-y-2 text-sky-900 font-sans">
+                            <li>Graph <code>y = -x^2 + 2x + 3</code> in Desmos.</li>
+                            <li>Trace the graph from the left. It goes uphill until its peak. This is the increasing interval.</li>
+                            <li>After the peak, the graph goes downhill. This is the decreasing interval.</li>
+                            <li>Click on the peak (the vertex). Desmos shows its coordinates are $(1, 4)$. The x-value, $1$, is where the graph changes. It's increasing when $x < 1$ and decreasing when $x > 1$.</li>
+                        </ol>
+                    </div>
+                </div>
+            </details>
+            
+            <!-- Lesson 4: End Behavior and Asymptotes -->
+            <details id="day4" class="lesson-section bg-white rounded-xl shadow-lg overflow-hidden">
+                <summary class="p-6 cursor-pointer flex justify-between items-center hover:bg-slate-50 transition-colors non-printable">
+                    <h3 class="text-2xl font-bold text-slate-800">Day 4: End Behavior & Asymptotes</h3>
+                    <svg class="w-6 h-6 text-slate-500 details-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </summary>
+                <div class="p-6 border-t border-slate-200">
+                    <p class="mb-8 bg-purple-50 border-l-4 border-purple-500 text-purple-900 p-4 rounded-r-lg"><strong class="font-semibold text-purple-800 font-sans">Objective:</strong> To describe where the arrows of a graph are pointing (end behavior) and identify invisible boundary lines (asymptotes).</p>
+                    <h4 class="text-xl font-semibold text-purple-700 mb-4">Notes</h4>
+                    <div class="space-y-5 mb-10">
+                        <p><b class="key-term">End Behavior:</b> Describes what the arrows at the very ends of the graph are doing. We ask: as $x$ goes to the far left (to $-\infty$), where does $y$ go? As $x$ goes to the far right (to $\infty$), where does $y$ go?</p>
+                        <p><b class="key-term">Asymptote:</b> An <b class="key-term">invisible boundary line</b> that a graph approaches but never touches. This often happens with exponential graphs.</p>
+                    </div>
+                     <div class="mb-8 p-6 border-l-4 border-sky-300 bg-sky-50 rounded-r-lg">
+                        <h5 class="text-lg font-semibold text-sky-800 mb-2">Desmos Exploration: Seeing End Behavior</h5>
+                        <ol class="list-decimal ml-5 mt-3 text-sm space-y-2 text-sky-900 font-sans">
+                            <li>Graph <code>y = -x^2 + 5</code>. The left arrow points down (to $-\infty$) and the right arrow points down (to $-\infty$).</li>
+                            <li>Now, graph <code>y = 2^x</code>. The right arrow points up (to $\infty$).</li>
+                            <li>The left side of the <code>y=2^x</code> graph gets very close to the x-axis ($y=0$) but never touches it. That horizontal line at $y=0$ is an asymptote.</li>
+                        </ol>
+                    </div>
+                </div>
+            </details>
+        </div>
+    </main>
+</body>
+
+</html>
+

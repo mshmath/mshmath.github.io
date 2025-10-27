@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 1 Practice: Function Families & Transformations</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$']]
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f1f5f9;
+        }
+        .worksheet-container {
+            font-family: 'Roboto Slab', serif;
+        }
+        .answer-box {
+            min-height: 80px;
+            border: 1px solid #94a3b8;
+            border-radius: 8px;
+            margin-top: 8px;
+            padding: 8px;
+        }
+
+        @media print {
+            body {
+                background-color: white !important;
+                font-size: 11pt;
+            }
+            .non-printable {
+                display: none !important;
+            }
+            .worksheet-container {
+                box-shadow: none !important;
+                border: none !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                max-width: 100% !important;
+            }
+            h1, h2, h3, p, li, strong {
+                color: black !important;
+            }
+            .answer-box {
+                border: 1px solid #6b7280;
+            }
+            svg text, svg path, svg line {
+                stroke: black !important;
+            }
+            section {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-slate-100">
+
+    <header class="bg-white p-4 non-printable shadow-md sticky top-0">
+        <div class="max-w-4xl mx-auto flex justify-between items-center">
+            <h1 class="text-xl font-bold text-slate-700">Unit 1 Worksheet</h1>
+            <button onclick="window.print()" class="bg-teal-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-teal-700 transition-colors flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2H5zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1z"/>
+                </svg>
+                Print Worksheet
+            </button>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto p-4 sm:p-8">
+        <div class="worksheet-container bg-white p-12 rounded-lg shadow-xl border">
+            <!-- Header -->
+            <header class="border-b-2 border-slate-800 pb-4 mb-8">
+                <h1 class="text-3xl font-bold text-slate-800">Unit 1 Practice: Function Families & Transformations</h1>
+                <p class="text-sm text-slate-500 mt-2">SOL Standard: AFDA.AF.1</p>
+                <div class="flex justify-between mt-6 text-lg">
+                    <p>Name: ___________________________________</p>
+                    <p>Date: _______________</p>
+                </div>
+            </header>
+
+            <!-- Example Section -->
+            <section class="mb-10">
+                <h2 class="text-2xl font-bold text-teal-700 mb-4">Worked Example</h2>
+                <div class="bg-teal-50 border border-teal-200 p-6 rounded-lg">
+                    <p class="font-bold text-lg text-slate-800 mb-2">Describe all transformations for the equation $f(x) = - (x+2)^2 + 3$</p>
+                    <ol class="list-decimal list-inside space-y-2 text-slate-700">
+                        <li><b>Identify the Parent Function:</b> Because of the $x^2$, the parent function is <b>Quadratic</b>.</li>
+                        <li><b>Horizontal Shift:</b> The $(x+2)$ is inside the parentheses. This means a shift <b>left 2 units</b> (opposite of the sign).</li>
+                        <li><b>Reflection:</b> The negative sign in front is outside the function, which means a reflection (flip) over the <b>x-axis</b>.</li>
+                        <li><b>Vertical Shift:</b> The $+3$ at the end is outside the function, which means a shift <b>up 3 units</b>.</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Practice Problems -->
+            <div class="space-y-12">
+                <!-- Section 1: Identifying Parent Functions -->
+                <section>
+                    <h2 class="text-2xl font-bold text-slate-800 border-b border-slate-300 pb-2 mb-4">Part 1: Identify the Parent Function</h2>
+                    <p class="text-slate-600 mb-6">For each equation, write whether it belongs to the <b>Linear</b>, <b>Quadratic</b>, or <b>Exponential</b> family.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+                        <div>
+                            <p class="font-semibold text-lg">1. $f(x) = 3x - 5$</p>
+                            <div class="answer-box"></div>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-lg">2. $f(x) = (x+4)^2$</p>
+                            <div class="answer-box"></div>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-lg">3. $f(x) = 5^x + 1$</p>
+                            <div class="answer-box"></div>
+                        </div>
+                         <div>
+                            <p class="font-semibold text-lg">4. $f(x) = -x^2 - 8$</p>
+                            <div class="answer-box"></div>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-lg">5. $f(x) = 4(2^x)$</p>
+                            <div class="answer-box"></div>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-lg">6. $f(x) = \frac{1}{2}x + 10$</p>
+                            <div class="answer-box"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 2: Describing Transformations -->
+                <section>
+                    <h2 class="text-2xl font-bold text-slate-800 border-b border-slate-300 pb-2 mb-4">Part 2: Describe the Transformations</h2>
+                    <p class="text-slate-600 mb-6">For each equation, list all the transformations from its parent function.</p>
+                     <div>
+                        <p class="font-semibold text-lg">7. $f(x) = (x-5)^2 + 2$</p>
+                        <div class="answer-box"></div>
+                    </div>
+                     <div class="mt-6">
+                        <p class="font-semibold text-lg">8. $f(x) = -2^x - 1$</p>
+                        <div class="answer-box"></div>
+                    </div>
+                     <div class="mt-6">
+                        <p class="font-semibold text-lg">9. $f(x) = 3(x+1)$</p>
+                        <div class="answer-box"></div>
+                    </div>
+                    <div class="mt-6">
+                        <p class="font-semibold text-lg">10. $f(x) = 4x^2 - 3$</p>
+                        <div class="answer-box"></div>
+                    </div>
+                     <div class="mt-6">
+                        <p class="font-semibold text-lg">11. $f(x) = -(x+6)$</p>
+                        <div class="answer-box"></div>
+                    </div>
+                     <div class="mt-6">
+                        <p class="font-semibold text-lg">12. $f(x) = \frac{1}{2}(x-1)^2 + 5$</p>
+                        <div class="answer-box"></div>
+                    </div>
+                </section>
+
+                 <!-- Section 3: Writing Equations from Graphs -->
+                <section>
+                    <h2 class="text-2xl font-bold text-slate-800 border-b border-slate-300 pb-2 mb-4">Part 3: Write the Equation from the Graph</h2>
+                    <p class="text-slate-600 mb-6">Look at the graph. Identify the parent function, describe the shift(s), and write the final equation.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                        <div>
+                            <p class="font-semibold text-lg mb-2">13. Equation for Graph A:</p>
+                             <div class="bg-white p-4 border-2 border-slate-200 rounded-lg">
+                                <svg viewBox="0 0 100 100" class="w-full h-auto">
+                                    <!-- Axes -->
+                                    <line x1="0" y1="50" x2="100" y2="50" stroke="#94a3b8" stroke-width="0.5"/>
+                                    <line x1="50" y1="0" x2="50" y2="100" stroke="#94a3b8" stroke-width="0.5"/>
+                                    <!-- Parent Function (dotted) -->
+                                    <path d="M 10 100 Q 50 0 90 100" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="2,2" fill="none"/>
+                                    <!-- Transformed Function -->
+                                    <path d="M -10 100 Q 30 0 70 100" stroke="#1e293b" stroke-width="1.5" fill="none" transform="translate(0 -20)"/>
+                                    <text x="30" y="28" font-family="Inter" font-size="5" fill="#1e293b">A</text>
+                                </svg>
+                            </div>
+                            <div class="answer-box"></div>
+                        </div>
+                         <div>
+                            <p class="font-semibold text-lg mb-2">14. Equation for Graph B:</p>
+                             <div class="bg-white p-4 border-2 border-slate-200 rounded-lg">
+                                <svg viewBox="0 0 100 100" class="w-full h-auto">
+                                     <!-- Axes -->
+                                    <line x1="0" y1="50" x2="100" y2="50" stroke="#94a3b8" stroke-width="0.5"/>
+                                    <line x1="50" y1="0" x2="50" y2="100" stroke="#94a3b8" stroke-width="0.5"/>
+                                     <!-- Parent Function (dotted) -->
+                                    <path d="M 0 100 L 100 0" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="2,2" fill="none"/>
+                                     <!-- Transformed Function -->
+                                    <path d="M 0 100 L 100 0" stroke="#1e293b" stroke-width="1.5" fill="none" transform="translate(20 0)"/>
+                                    <text x="75" y="23" font-family="Inter" font-size="5" fill="#1e293b">B</text>
+                                </svg>
+                            </div>
+                            <div class="answer-box"></div>
+                        </div>
+                         <div class="md:col-span-2">
+                            <p class="font-semibold text-lg mb-2">15. Equation for Graph C:</p>
+                             <div class="bg-white p-4 border-2 border-slate-200 rounded-lg max-w-sm mx-auto">
+                                <svg viewBox="0 0 100 100" class="w-full h-auto">
+                                     <!-- Axes -->
+                                    <line x1="0" y1="50" x2="100" y2="50" stroke="#94a3b8" stroke-width="0.5"/>
+                                    <line x1="50" y1="0" x2="50" y2="100" stroke="#94a3b8" stroke-width="0.5"/>
+                                     <!-- Parent Function (dotted) -->
+                                    <path d="M 10 100 Q 50 0 90 100" stroke="#cbd5e1" stroke-width="1" fill="none" stroke-dasharray="2,2"/>
+                                     <!-- Transformed Function (Reflected and shifted) -->
+                                    <path d="M 30 20 Q 60 70 90 20" stroke="#1e293b" stroke-width="1.5" fill="none"/>
+                                    <text x="60" y="15" font-family="Inter" font-size="5" fill="#1e293b">C</text>
+                                </svg>
+                            </div>
+                            <div class="answer-box"></div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Section 4: Challenge Questions -->
+                <section>
+                    <h2 class="text-2xl font-bold text-slate-800 border-b border-slate-300 pb-2 mb-4">Part 4: Challenge</h2>
+                     <div>
+                        <p class="font-semibold text-lg">16. Write the equation for a linear function that has been stretched by a factor of 2 and moved up 1 unit.</p>
+                        <div class="answer-box"></div>
+                    </div>
+                     <div class="mt-6">
+                        <p class="font-semibold text-lg">17. Look at the equation $f(x) = x^2 - 5$. Where is its vertex (the bottom of the 'U') compared to the parent function? Explain how you know.</p>
+                        <div class="answer-box"></div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
+
