@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pre-Algebra Unit 1 - Interactive Lessons</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- MathJax Script for rendering high-quality math -->
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            --difficulty-green: #f0fdf4; /* green-50 */
+            --difficulty-green-border: #86efac; /* green-300 */
+            --difficulty-yellow: #fefce8; /* yellow-50 */
+            --difficulty-yellow-border: #fde047; /* yellow-400 */
+            --difficulty-red: #fef2f2; /* red-50 */
+            --difficulty-red-border: #fca5a5; /* red-300 */
+        }
+        .lesson-day {
+            page-break-before: always;
+        }
+        .lesson-day:first-child {
+            page-break-before: auto;
+        }
+
+        /* Styles for custom elements */
+        details > summary {
+            list-style: none;
+            cursor: pointer;
+            padding: 0.75rem 1rem;
+            background-color: #f8fafc; /* slate-50 */
+            border-radius: 0.5rem;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #e2e8f0; /* slate-200 */
+        }
+        details > summary::after {
+            content: '\f078'; /* Font Awesome "chevron-down" */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            transition: transform 0.2s ease-in-out;
+        }
+        details[open] > summary::after {
+            transform: rotate(180deg);
+        }
+        .notes-content {
+            padding: 1.25rem; /* Increased padding */
+            border: 1px solid #e2e8f0; /* slate-200 */
+            border-top: none;
+            border-radius: 0 0 0.5rem 0.5rem;
+        }
+
+        .practice-block {
+            border: 1px solid #e2e8f0; /* slate-200 */
+            border-radius: 0.5rem;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+        .practice-header {
+            background-color: #f8fafc; /* slate-50 */
+            padding: 0.5rem 1rem;
+            border-bottom: 1px solid #e2e8f0; /* slate-200 */
+        }
+        .practice-body {
+            padding: 1.25rem; /* Increased padding */
+        }
+        
+        /* Color coding for difficulty */
+        [data-difficulty="green"] {
+            background-color: var(--difficulty-green);
+            border-left: 4px solid var(--difficulty-green-border);
+            padding: 1.25rem; /* Increased padding */
+            border-radius: 0.25rem;
+        }
+        [data-difficulty="yellow"] {
+            background-color: var(--difficulty-yellow);
+            border-left: 4px solid var(--difficulty-yellow-border);
+            padding: 1.25rem; /* Increased padding */
+            border-radius: 0.25rem;
+        }
+        [data-difficulty="red"] {
+            background-color: var(--difficulty-red);
+            border-left: 4px solid var(--difficulty-red-border);
+            padding: 1.25rem; /* Increased padding */
+            border-radius: 0.25rem;
+        }
+
+        .answer-toggle {
+            display: inline-block;
+            background-color: #f1f5f9; /* slate-100 */
+            color: #334155; /* slate-700 */
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-top: 0.5rem;
+        }
+        .answer-toggle:hover {
+            background-color: #e2e8f0; /* slate-200 */
+        }
+        [data-answer], [data-steps] {
+            background-color: #f8fafc; /* slate-50 */
+            border: 1px solid #e2e8f0; /* slate-200 */
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            margin-top: 0.75rem; /* Increased margin */
+            color: #1e293b; /* slate-800 */
+        }
+
+        /* Print Styles */
+         /* Print Styles */
+        @media print {
+            header, .non-printable, .answer-toggle, details > summary::after {
+                display: none !important;
+            }
+            body {
+                background-color: white;
+                font-size: 12pt; /* Increased font size */
+                color: black;
+            }
+            main {
+                /* padding: 1rem !important; */ /* Old rule */
+                padding-left: 0.3in !important; /* New: Set left padding */
+                padding-right: 0.3in !important; /* New: Set right padding */
+                padding-top: 0 !important; /* New: Respect user's top margin */
+                padding-bottom: 0 !important; /* New: Respect user's bottom margin */
+                margin: 0 !important;
+                max-width: 100% !important;
+                width: 100% !important; /* Ensure it fills width */
+            }
+            .lesson-day, .bg-white, details {
+                box-shadow: none !important;
+                border: 1px solid #e2e8f0 !important;
+            }
+            h1, h2, h3, h4 {
+                color: black !important;
+            }
+            
+            /* Open all details and show steps for printing */
+            details {
+                page-break-inside: avoid;
+            }
+            details[open] > summary {
+                border-bottom: 1px solid #e2e8f0 !important;
+            }
+            details > summary {
+                background-color: white !important;
+            }
+            .notes-content {
+                border: none !important;
+            }
+
+            /* Show "We Do" steps */
+            [data-steps] {
+                display: block !important;
+                visibility: visible !important;
+                background-color: #f8fafc !important;
+                color: black !important;
+                border: 1px dashed #ccc !important;
+            }
+
+            /* Hide all final "Answers" */
+            [data-answer] {
+                display: none !important;
+                visibility: hidden !important;
+            }
+
+            .practice-block {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800">
+
+    <!-- Header -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-10">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div>
+                    <h1 class="text-2xl font-bold text-slate-800">Unit 1: Number Sense & Rational Numbers</h1>
+                </div>
+                <button onclick="window.print()" class="non-printable text-center bg-teal-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-teal-700 transition-colors text-sm flex items-center gap-2">
+                    <i class="fas fa-print"></i> Print Lessons
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto p-4 sm:p-6 lg:p-8 space-y-8">
+
+        <!-- Day 1: Integers & Absolute Value -->
+        <section class="lesson-day bg-white p-6 sm:p-8 rounded-xl shadow-lg border border-slate-200">
+            <h2 class="text-3xl font-extrabold text-slate-800 border-b pb-3 mb-6">Day 1: Integers on a Number Line & Absolute Value</h2>
+            
+            <!-- 1. Step-by-Step Notes -->
+            <details class="mb-6" open>
+                <summary class="text-xl">Step-by-Step Notes (Click to Expand)</summary>
+                <div class="notes-content space-y-6 text-xl"> <!-- Increased font size and spacing -->
+                    
+                    <p><strong>1. What is an Integer?</strong>
+                        <br>
+                        Integers are <strong>whole numbers</strong>. They are not fractions or decimals.
+                        <br>
+                        They include all <strong>positive</strong> whole numbers, all <strong>negative</strong> whole numbers, and <strong>zero (0)</strong>.
+                    </p>
+
+                    <!-- SVG Diagram for Integers -->
+                    <div class="bg-white p-4 rounded-lg border border-gray-200">
+                        <h4 class="font-semibold text-lg text-center text-slate-700 mb-3">Visualizing Integers</h4>
+                        <svg width="100%" height="100" viewBox="0 0 500 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Line -->
+                            <line x1="10" y1="50" x2="490" y2="50" stroke="#475569" stroke-width="2"/>
+                            <!-- Arrows -->
+                            <path d="M10 50L20 45M10 50L20 55" stroke="#475569" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M490 50L480 45M490 50L480 55" stroke="#475569" stroke-width="2" stroke-linecap="round"/>
+                            
+                            <!-- Ticks and Numbers -->
+                            <g text-anchor="middle" font-family="Inter, sans-serif" font-size="18" fill="#1e293b"> <!-- Increased SVG font -->
+                                <!-- 0 (Prominent Tick) -->
+                                <line x1="250" y1="42" x2="250" y2="58" stroke="#0f172a" stroke-width="2.5"/>
+                                <text x="250" y="80">0</text>
+                                
+                                <!-- Positives (Standard Ticks) -->
+                                <line x1="310" y1="45" x2="310" y2="55" stroke="#64748b" stroke-width="2"/>
+                                <text x="310" y="80">1</text>
+                                <line x1="370" y1="45" x2="370" y2="55" stroke="#64748b" stroke-width="2"/>
+                                <text x="370" y="80">2</text>
+                                <line x1="430" y1="45" x2="430" y2="55" stroke="#64748b" stroke-width="2"/>
+                                <text x="430" y="80">3</text>
+                                
+                                <!-- Negatives (Standard Ticks) -->
+                                <line x1="190" y1="45" x2="190" y2="55" stroke="#64748b" stroke-width="2"/>
+                                <text x="190" y="80">-1</text>
+                                <line x1="130" y1="45" x2="130" y2="55" stroke="#64748b" stroke-width="2"/>
+                                <text x="130" y="80">-2</text>
+                                <line x1="70" y1="45" x2="70" y2="55" stroke="#64748b" stroke-width="2"/>
+                                <text x="70" y="80">-3</text>
+                            </g>
+                            
+                            <!-- Labels -->
+                            <text x="400" y="30" fill="#15803d" font-size="16" font-weight="600" text-anchor="middle">Positive Numbers</text> <!-- Increased SVG font -->
+                            <text x="110" y="30" fill="#be123c" font-size="16" font-weight="600" text-anchor="middle">Negative Numbers</text> <!-- Increased SVG font -->
+                        </svg>
+                    </div>
+
+                    <p><strong>2. Number Line & Comparison:</strong>
+                        <br>
+                        Think of a number line like a bank account.
+                        <br>
+                        Numbers to the <strong>right are bigger</strong> (you have more money).
+                        <br>
+                        Numbers to the <strong>left are smaller</strong> (you owe money or have less).
+                        <br>
+                        <strong>Example:</strong> \(-2\) is bigger than \(-10\). It's better to owe $2 than to owe $10.
+                    </p>
+                    
+                    <!-- New Greater/Less Than Explanation -->
+                    <div class="my-3 text-lg p-3 bg-gray-50 rounded-md border border-gray-200"> <!-- Increased font -->
+                        <h4 class="font-semibold text-gray-700">Symbols for Comparing</h4>
+                        <ul class="list-none space-y-2 mt-2"> <!-- Increased spacing -->
+                            <li><span class="font-bold text-xl inline-block w-12 text-center">&lt;</span> means "less than". (Example: \(4 < 9\))</li>
+                            <li><span class="font-bold text-xl inline-block w-12 text-center">=</span> means "equal to". (Example: \(5 = 5\))</li>
+                            <li><span class="font-bold text-xl inline-block w-12 text-center">&gt;</span> means "greater than". (Example: \(8 > 3\))</li>
+                        </ul>
+                        <p class="mt-3 text-base text-gray-600 pl-4">Tip: Think of the symbol as an alligator's mouth. It always wants to eat the *bigger* number!</p>
+                    </div>
+
+                    <p><strong>3. Absolute Value (Distance from 0):</strong>
+                        <br>
+                        Absolute value is a number's <strong>distance from zero</strong>. That's it!
+                        <br>
+                        The answer is <strong>always positive (or zero)</strong> because you can't walk negative steps!
+                        <br>
+                        We use the symbol \(| \dots |\). Example: \(|5| = 5\) and \(|-5| = 5\).
+                    </p>
+                    
+                    <!-- SVG Diagram for Absolute Value -->
+                    <div class="bg-white p-4 rounded-lg border border-gray-200">
+                        <h4 class="font-semibold text-lg text-center text-slate-700 mb-3">Visualizing Absolute Value</h4>
+                        <svg width="100%" height="90" viewBox="0 0 500 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Number Line -->
+                            <line x1="10" y1="50" x2="490" y2="50" stroke="#475569" stroke-width="2"/>
+                            <!-- 0 (Prominent Tick) -->
+                            <line x1="250" y1="42" x2="250" y2="58" stroke="#0f172a" stroke-width="2.5"/>
+                            <text x="250" y="75" text-anchor="middle" font-size="18" fill="#1e293b">0</text> <!-- Increased SVG font -->
+                            
+                            <!-- -4 (Prominent Tick) -->
+                            <line x1="100" y1="42" x2="100" y2="58" stroke="#0f172a" stroke-width="2.5"/>
+                            <text x="100" y="75" text-anchor="middle" font-size="18" fill="#1e293b">-4</text> <!-- Increased SVG font -->
+                            
+                            <!-- 4 (Prominent Tick) -->
+                            <line x1="400" y1="42" x2="400" y2="58" stroke="#0f172a" stroke-width="2.5"/>
+                            <text x="400" y="75" text-anchor="middle" font-size="18" fill="#1e293b">4</text> <!-- Increased SVG font -->
+                            
+                            <!-- Arc for -4 to 0 -->
+                            <path d="M100 45C100 20 250 20 250 45" stroke="#be123c" stroke-width="2" stroke-dasharray="4 4"/>
+                            <text x="126" y="20" fill="#be123c" font-size="16" font-weight="600">Distance is 4</text> <!-- Increased SVG font -->
+                            <text x="145" y="80" fill="#be123c" font-size="18" font-weight="600">\(|-4| = 4\)</text> <!-- Increased SVG font -->
+
+                            <!-- Arc for 0 to 4 -->
+                            <path d="M250 45C250 20 400 20 400 45" stroke="#15803d" stroke-width="2" stroke-dasharray="4 4"/>
+                            <text x="280" y="20" fill="#15803d" font-size="16" font-weight="600">Distance is 4</text> <!-- Increased SVG font -->
+                            <text x="305" y="85" fill="#15803d" font-size="18" font-weight="600">\(|4| = 4\)</text> <!-- Increased SVG font -->
+                        </svg>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- 2. Guided Practice (I Do, We Do, You Do) -->
+            <h3 class="text-2xl font-bold text-slate-700 mb-4">Guided Practice</h3>
+            <div class="space-y-4">
+                <!-- I Do -->
+                <div class="practice-block">
+                    <div class="practice-header"><h4 class="font-semibold text-lg text-teal-700">I Do</h4></div>
+                    <div class="practice-body text-xl"> <!-- Increased font size -->
+                        <p class="mb-2"><strong>Problem:</strong> Compare \(-7\) and \(-4\) using <, >, or =.</p>
+                        <p><strong>Solution:</strong></p>
+                        <ol class="list-decimal list-inside ml-4 space-y-2"> <!-- Added spacing -->
+                            <li>I locate both numbers on a number line.</li>
+                            <li>I see that \(-7\) is to the *left* of \(-4\).</li>
+                            <li>Numbers to the left are *less than* numbers to the right. (It's worse to owe $7 than to owe $4).</li>
+                            <li>Therefore, \(-7 < -4\).</li>
+                        </ol>
+                    </div>
+                </div>
+                <!-- We Do -->
+                <div class="practice-block">
+                    <div class="practice-header"><h4 class="font-semibold text-lg text-teal-700">We Do</h4></div>
+                    <div class="practice-body text-xl"> <!-- Increased font size -->
+                        <p class="mb-2"><strong>Problem:</strong> Find the value of \(|-8| + |2|\).</p>
+                        <button class="answer-toggle" data-toggle-answer="answer-wd-1">Show Steps</button>
+                        <div id="answer-wd-1" data-steps hidden>
+                            <ol class="list-decimal list-inside ml-4 mt-2 space-y-2"> <!-- Added spacing -->
+                                <li>First, what is the absolute value of \(-8\)? (How far is -8 from 0? It's 8)</li>
+                                <li>Next, what is the absolute value of \(2\)? (How far is 2 from 0? It's 2)</li>
+                                <li>Now, add the results: \(8 + 2 = 10\).</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                <!-- You Do -->
+                <div class="practice-block">
+                    <div class="practice-header"><h4 class="font-semibold text-lg text-teal-700">You Do</h4></div>
+                    <div class="practice-body text-xl"> <!-- Increased font size -->
+                        <p class="mb-2"><strong>Problem:</strong> Compare \(-10\) and \(|-11|\) using <, >, or =.</p>
+                        <button class="answer-toggle" data-toggle-answer="answer-yd-1">Show Answer</button>
+                        <div id="answer-yd-1" data-answer hidden>
+                            <p>\(-10 < 11\) (Because \(|-11|\) is 11, and \(-10\) is less than \(11\))</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. Independent Practice -->
+            <h3 class="text-2xl font-bold text-slate-700 mt-8 mb-4">Independent Practice</h3>
+            <div class="space-y-4 text-xl"> <!-- Increased font size -->
+                <div data-difficulty="green">
+                    <p class="mb-2"><strong>(Green)</strong> Find the value of \(|-9|\).</p>
+                    <button class="answer-toggle" data-toggle-answer="answer-ip-1-1">Show Answer</button>
+                    <div id="answer-ip-1-1" data-answer hidden><p>9</p></div>
+                </div>
+                <div data-difficulty="yellow">
+                    <p class="mb-2"><strong>(Yellow)</strong> Find the value of \(|-5| - |3|\).</p>
+                    <button class="answer-toggle" data-toggle-answer="answer-ip-1-2">Show Answer</button>
+                    <div id="answer-ip-1-2" data-answer hidden><p>\(5 - 3 = 2\)</p></div>
+                </div>
+                <div data-difficulty="red">
+                    <p class="mb-2"><strong>(Red)</strong> Is the statement \(|-x| = x\) always, sometimes, or never true? Explain.</p>
+                    <button class="answer-toggle" data-toggle-answer="answer-ip-1-3">Show Answer</button>
+                    <div id="answer-ip-1-3" data-answer hidden>
+                        <p><strong>Sometimes.</strong>
+                        <br>
+                        It's true if \(x\) is positive or zero (Example: if \(x=5\), then \(|-(5)| = |-5| = 5\). This works.)
+                        <br>
+                        It's false if \(x\) is a negative number. (Example: if \(x = -3\), we plug it in: \(|-(-3)|\). The two negatives make a positive: \(|3|\), which is \(3\). But the original \(x\) was \(-3\). So, \(3\) is not equal to \(-3\).)
+                    </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. Exit Ticket -->
+            <h3 class="text-2xl font-bold text-slate-700 mt-8 mb-4">Exit Ticket</h3>
+            <div class="practice-block">
+                <div class="practice-body text-xl"> <!-- Increased font size -->
+                    <p class="mb-2">Order the following integers from least to greatest: \(5, -1, -8, 2, 0\)</p>
+                    <button class="answer-toggle" data-toggle-answer="answer-et-1">Show Answer</button>
+                    <div id="answer-et-1" data-answer hidden>
+                        <p>\(-8, -1, 0, 2, 5\)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Day 2: Adding & Subtracting Integers -->
+        <section class="lesson-day bg-white p-6 sm:p-8 rounded-xl shadow-lg border border-slate-200">
+            <h2 class="text-3xl font-extrabold text-slate-800 border-b pb-3 mb-6">Day 2: Adding & Subtracting Integers</h2>
+            
+            <!-- 1. Step-by-Step Notes -->
+            <details class="mb-6" open>
+                <summary class="text-xl">Step-by-Step Notes (Click to Expand)</summary>
+                <div class="notes-content space-y-6 text-xl"> <!-- Increased font size and spacing -->
+                    <div>
+                        <h4 class="font-semibold text-lg">Adding Integers (Combining)</h4>
+                        <p class="text-base text-gray-600">Think of positives as "good guys" and negatives as "bad guys".</p>
+                        <ul class="list-disc list-inside ml-4 space-y-3 mt-2"> <!-- Increased spacing -->
+                            <li><strong>Same Signs:</strong> If signs are the same, <strong>ADD</strong> the numbers and <strong>KEEP</strong> the sign.
+                                <br><span class="text-gray-600 pl-4">(Example: \((-5) + (-3) = -8\). 5 bad guys plus 3 bad guys = 8 bad guys.)</span>
+                            </li>
+                            <li><strong>Different Signs:</strong> If signs are different, <strong>SUBTRACT</strong> the smaller number from the bigger one.
+                                <br><span class="text-gray-600 pl-4"><strong>KEEP</strong> the sign of the <strong>bigger number</strong> (the one farther from zero).</span>
+                                <br><span class="text-gray-600 pl-4">(Example: \((-9) + 4\). Subtract: \(9 - 4 = 5\). The 9 is bigger and negative, so the answer is \(-5\).)</span>
+                            </li>
+                        </ul>
+                        <div class="mt-4 p-3 bg-gray-50 rounded-md border border-gray-200">
+                            <p class="font-medium text-gray-800">Visualizing on a Number Line:</p>
+                            <ul class="list-disc list-inside ml-4 mt-1 text-base text-gray-700 space-y-1"> <!-- Increased font and spacing -->
+                                <li><strong>Adding a positive:</strong> Move to the RIGHT. (Example: \(5 + 2 = 7\))</li>
+                                <li><strong>Adding a negative:</strong> Move to the LEFT. (Example: \(1 + (-3) = -2\))</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-semibold text-lg">Subtracting Integers (Finding the Difference)</h4>
+                        <p class="text-base text-gray-600">This is just like adding, but with one or two simple rules first.</p>
+                         <ul class="list-disc list-inside ml-4 space-y-3 mt-2"> <!-- Increased spacing -->
+                            <li><strong>Rule 1: Subtracting a Positive (like \(8 - 5\) or \(-2 - 3\))</strong>
+                                <br>Subtracting a positive number means you <strong>move to the LEFT</strong> on the number line.
+                                <br><span class="text-gray-600 pl-4">Example: \((-2) - 3\). Start at -2 and move 3 steps to the left. You land on \(-5\).</span>
+                            </li>
+                            <li><strong>Rule 2: Subtracting a Negative (like \(5 - (-3)\))</strong>
+                                <br>A "double negative" becomes a <strong>PLUS</strong>. Subtracting a negative is the same as <strong>adding a positive</strong>.
+                                <br><span class="text-gray-600 pl-4">Example: \(5 - (-3)\) becomes \(5 + 3\), which equals \(8\).</span>
+                                <br><span class="text-gray-600 pl-4">Example: \((-7) - (-2)\) becomes \((-7) + 2\), which equals \(-5\).</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </details>
+
+            <!-- 2. Guided Practice -->
+            <h3 class="text-2xl font-bold text-slate-700 mb-4">Guided Practice</h3>
+            <div class="space-y-4">
+                <div class="practice-block">
+                    <div class="practice-header"><h4 class="font-semibold text-lg text-teal-700">I Do</h4></div>
+                    <div class="practice-body text-xl"> <!-- Increased font size -->
+                        <p class="mb-2"><strong>Problem:</strong> \((-7) + 4\)</p>
+                        <ol class="list-decimal list-inside ml-4 space-y-2"> <!-- Added spacing -->
+                            <li>The signs are *different*.</li>
+                            <li>I subtract the numbers: \(7 - 4 = 3\).</li>
+                            <li>The number with the bigger absolute value is \(-7\), which is negative.</li>
+                            <li>My answer is \(-3\).</li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="practice-block">
+                    <div class="practice-header"><h4 class="font-semibold text-lg text-teal-700">We Do</h4></div>
+                    <div class="practice-body text-xl"> <!-- Increased font size -->
+                        <p class="mb-2"><strong>Problem:</strong> \((-5) - (-9)\)</p>
+                        <button class="answer-toggle" data-toggle-answer="answer-wd-2">Show Steps</button>
+                        <div id="answer-wd-2" data-steps hidden>
+                            <ol class="list-decimal list-inside ml-4 mt-2 space-y-2"> <!-- Added spacing -->
+                                <li>I see subtraction and a negative: \(- (-9)\). This is Rule 2.</li>
+                                <li>The "double negative" becomes a PLUS.</li>
+                                <li>My new problem is \((-5) + 9\).</li>
+                                <li>The signs are *different*. Subtract: \(9 - 5 = 4\).</li>
+                                <li>Keep the sign of the \(9\) (which is positive). The answer is \(4\).</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                <div class="practice-block">
+                    <div class="practice-header"><h4 class="font-semibold text-lg text-teal-700">You Do</h4></div>
+                    <div class="practice-body text-xl"> <!-- Increased font size -->
+                        <p class="mb-2"><strong>Problem:</strong> \(10 - 12\)</p>
+                        <button class="answer-toggle" data-toggle-answer="answer-yd-2">Show Answer</button>
+                        <div id="answer-yd-2" data-answer hidden>
+                            <p>\(-2\) (This is Rule 1. Start at 10, move 12 steps left. You land at -2.)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. Independent Practice -->
+            <h3 class="text-2xl font-bold text-slate-700 mt-8 mb-4">Independent Practice</h3>
+            <div class="space-y-4 text-xl"> <!-- Increased font size -->
+                <div data-difficulty="green">
+                    <p class="mb-2"><strong>(Green)</strong> \(8 + (-3)\)</p>
+                    <button class="answer-toggle" data-toggle-answer="answer-ip-2-1">Show Answer</button>
+                    <div id="answer-ip-2-1" data-answer hidden><p>5</p></div>
+                </div>
+                <div data-difficulty="yellow">
+                    <p class="mb-2"><strong>(Yellow)</strong> \((-2) - 5 + (-1)\)</p>
+                    <button class="answer-toggle" data-toggle-answer="answer-ip-2-2">Show Answer</button>
+                    <div id="answer-ip-2-2" data-answer hidden><p>First: \((-2) - 5\). Start at -2, move 5 left. \(= -7\). <br> Then: \((-7) + (-1)\). Same signs, add. \(= -8\)</p></div>
+                </div>
+                <div data-difficulty="red">
+                    <p class="mb-2"><strong>(Red)</strong> The temperature at 6 AM was \(-10^\circ F\). By noon, it had risen \(18^\circ F\). By 6 PM, it had dropped \(7^\circ F\) from its noon temperature. What was the temperature at 6 PM?</p>
+                    <button class="answer-toggle" data-toggle-answer="answer-ip-2-3">Show Answer</button>
+                    <div id="answer-ip-2-3" data-answer hidden><p>Noon: \(-10 + 18 = 8^\circ F\). <br> 6 PM: \(8 - 7 = 1^\circ F\).</p></div>
+                </div>
+            </div>
+
+            <!-- 4. Exit Ticket -->
+            <h3 class="text-2xl font-bold text-slate-700 mt-8 mb-4">Exit Ticket</h3>
+            <div class="practice-block">
+                <div class="practice-body text-xl"> <!-- Increased font size -->
+                    <p class="mb-2">Find the value of \((-6) - 10\).</p>
+                    <button class="answer-toggle" data-toggle-answer="answer-et-2">Show Answer</button>
+                    <div id="answer-et-2" data-answer hidden>
+                        <p>Start at -6, move 10 steps to the left. \(= -16\)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Day 3: Multiplying & Dividing Integers -->
+        <section class="lesson-day bg-white p-6 sm:p-8 rounded-xl shadow-lg border border-slate-200">
+            <h2 class="text-3xl font-extrabold text-slate-800 border-b pb-3 mb-6">Day 3: Multiplying & Dividing Integers</h2>
+            
+            <!-- 1. Step-by-Step Notes -->
+            <details class="mb-6" open>
+                <summary class="text-xl">Step-by-Step Notes (Click to Expand)</summary>
+                <div class="notes-content space-y-6 text-xl"> <!-- Increased font size and spacing -->
+                    <p>Good news! The rules for multiplying and dividing are the same, and they are simple.</p>
+                    <div>
+                        <h4 class="font-semibold text-lg">Rule 1: Same Signs = Positive</h4>
+                        <p>If the two numbers have the <strong>same sign</strong> (both positive or both negative), the answer is <strong>ALWAYS POSITIVE</strong>.</p>
+                        <ul class="list-disc list-inside ml-4 space-y-2"> <!-- Increased spacing -->
+                            <li>\( (5) \times (3) = 15 \)</li>
+                            <li>\( (-5) \times (-3) = 15 \)</li>
+                            <li>\( (10) \div (2) = 5 \)</li>
+                            <li>\( (-10) \div (-2) = 5 \)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-lg">Rule 2: Different Signs = Negative</h4>
+                        <p>If the two numbers have <strong>different signs</strong> (one positive, one negative), the answer is <strong>ALWAYS NEGATIVE</strong>.</p>
+                        <ul class="list-disc list-inside ml-4 space-y-2"> <!-- Increased spacing -->
+                            <li>\( (-6) \times (3) = -18 \)</li>
+                            <li>\( (6) \times (-3) = -18 \)</li>
+                            <li>\( (20) \div (-4) = -5 \)</li>
+                            <li>\( (-20) \div (4) = -5 \)</li>
+                        </ul>
+                    </div>
+                </div>
+            </details>
+
+            <!-- 2. Guided Practice -->
+            <h3 class="text-2xl font-bold text-slate-700 mb-4">Guided Practice</h3>
+            <div class="space-y-4">
+                <div class="practice-block">
+                    <div class="practice-header"><h4 class="font-semibold text-lg text-teal-700">I Do</h4></div>
+                    <div class="practice-body text-xl"> <!-- Increased font size -->
+                        <p class="mb-2"><strong>Problem:</strong> \((-6) \times (3)\)</p>
+                        <ol class="list-decimal list-inside ml-4 space-y-2"> <!-- Added spacing -->
+                            <li>I see the signs are *different* (one negative, one positive).</li>
+                            <li>I know the answer must be *negative* (Rule 2).</li>
+                            <li>I multiply the numbers: \(6 \times 3 = 18\).</li>
+                            <li>My answer is \(-18\).</li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="practice-block">
+                    <div class="practice-header"><h4 class="font-semibold text-lg text-teal-700">We Do</h4></div>
+                    <div class="practice-body text-xl"> <!-- Increased font size -->
+                        <p class="mb-2"><strong>Problem:</strong> \((-20) \div (-4)\)</p>
+                        <button class="answer-toggle" data-toggle-answer="answer-wd-3">Show Steps</button>
+                        <div id="answer-wd-3" data-steps hidden>
+                            <ol class="list-decimal list-inside ml-4 mt-2 space-y-2"> <!-- Added spacing -->
+                                <li>What are the signs? (They are the *same*.)</li>
+                                <li>What will the sign of the answer be? (It must be *positive* by Rule 1.)</li>
+                                <li>Now divide the numbers: \(20 \div 4 = 5\).</li>
+                                <li>The answer is \(5\).</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                <div class="practice-block">
+                    <div class="practice-header"><h4 class="font-semibold text-lg text-teal-700">You Do</h4></div>
+                    <div class="practice-body text-xl"> <!-- Increased font size -->
+                        <p class="mb-2"><strong>Problem:</strong> \((-5) \times (-8)\)</p>
+                        <button class="answer-toggle" data-toggle-answer="answer-yd-3">Show Answer</button>
+                        <div id="answer-yd-3" data-answer hidden>
+                            <p>\(40\) (Same signs, so the answer is positive.)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. Independent Practice -->
+            <h3 class="text-2xl font-bold text-slate-700 mt-8 mb-4">Independent Practice</h3>
+            <div class="space-y-4 text-xl"> <!-- Increased font size -->
+                <div data-difficulty="green">
+                    <p class="mb-2"><strong>(Green)</strong> \(-7 \times -2\)</p>
+                    <button class="answer-toggle" data-toggle-answer="answer-ip-3-1">Show Answer</button>
+                    <div id="answer-ip-3-1" data-answer hidden><p>14</p></div>
+                </div>
+                <div data-difficulty="yellow">
+                    <p class="mb-2"><strong>(Yellow)</strong> \(\frac{-50}{5}\)</p>
+                    <button class="answer-toggle" data-toggle-answer="answer-ip-3-2">Show Answer</button>
+                    <div id="answer-ip-3-2" data-answer hidden><p>-10</p></div>
+                </div>
+                <div data-difficulty="red">
+                    <p class="mb-2"><strong>(Red)</strong> \((-2) \times (-3) \times (-4)\)</p>
+                    <button class="answer-toggle" data-toggle-answer="answer-ip-3-3">Show Answer</button>
+                    <div id="answer-ip-3-3" data-answer hidden><p>First: \((-2) \times (-3) = 6\). (Same signs = positive) <br> Then: \((6) \times (-4) = -24\). (Different signs = negative)</p></div>
+                </div>
+            </div>
+
+            <!-- 4. Exit Ticket -->
+            <h3 class="text-2xl font-bold text-slate-700 mt-8 mb-4">Exit Ticket</h3>
+            <div class="practice-block">
+                <div class="practice-body text-xl"> <!-- Increased font size -->
+                    <p class="mb-2">Find the value of \(48 \div (-6)\).</p>
+                    <button class="answer-toggle" data-toggle-answer="answer-et-3">Show Answer</button>
+                    <div id="answer-et-3" data-answer hidden>
+                        <p>\(-8\)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Day 4: Rational Numbers & Equivalence -->
+        <section class="lesson-day bg-white p-6 sm:p-8 rounded-xl shadow-lg border border-slate-200">
+            <h2 class="text-3xl font-extrabold text-slate-800 border-b pb-3 mb-6">Day 4: Rational Numbers & Equivalence</h2>
+            
+            <!-- 1. Step-by-Step Notes -->
+            <details class="mb-6" open>
+                <summary class="text-xl">Step-by-Step Notes (Click to Expand)</summary>
+                <div class="notes-content space-y-6 text-xl"> <!-- Increased font size and spacing -->
+                    <p>Fractions, Decimals, and Percents are just three ways to show the same value.</p>
+                    
+                    <!-- New Conversion Flowchart -->
+                    <div class="bg-gray-50 p-4 rounded-lg border border-gray-200 text-center">
+                        <h4 class="font-semibold text-lg text-slate-700 mb-3">Conversion Flowchart</h4>
+                        <div class="flex flex-col md:flex-row justify-around items-center space-y-4 md:space-y-0 md:space-x-4">
+                            
+                            <!-- Fraction -->
+                            <div class="flex flex-col items-center">
+                                <div class="bg-white p-3 rounded-lg border-2 border-blue-500 shadow-md">
+                                    <span class="text-2xl font-bold text-blue-700">Fraction</span>
+                                    <span class="block text-2xl font-mono text-blue-600">\(\frac{3}{4}\)</span> <!-- Increased font -->
+                                </div>
+                                <div class="mt-2 text-blue-600 font-semibold text-lg"> <!-- Increased font -->
+                                    <i class="fas fa-arrow-down fa-lg"></i>
+                                    <span class="block">Top ÷ Bottom</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Decimal -->
+                            <div class="flex flex-col items-center">
+                                <div class="bg-white p-3 rounded-lg border-2 border-teal-500 shadow-md">
+                                    <span class="text-2xl font-bold text-teal-700">Decimal</span>
+                                    <span class="block text-2xl font-mono text-teal-600">0.75</span> <!-- Increased font -->
+                                </div>
+                                <div class="mt-2 text-teal-600 font-semibold text-lg"> <!-- Increased font -->
+                                    <i class="fas fa-arrow-right fa-lg"></i>
+                                    <span class="block">Move decimal 2 right</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Percent -->
+                            <div class="flex flex-col items-center">
+                                <div class="bg-white p-3 rounded-lg border-2 border-purple-500 shadow-md">
+                                    <span class="text-2xl font-bold text-purple-700">Percent</span>
+                                    <span class="block text-2xl font-mono text-purple-600">75%</span> <!-- Increased font -->
+                                </div>
+                                <div class="mt-2 text-purple-600 font-semibold text-lg"> <!-- Increased font -->
+                                    <i class="fas fa-arrow-left fa-lg"></i>
+                                    <span class="block">Move decimal 2 left</span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 class="font-semibold text-lg">Fraction \(\rightarrow\) Decimal</h4>
+                        <p>Divide the <strong>numerator</strong> by the <strong>denominator</strong>. (Top number goes "in" the division box)</p>
+                        <p>Example: \(\frac{3}{4} \rightarrow 3 \div 4 = 0.75\)</p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-lg">Decimal \(\rightarrow\) Percent</h4>
+                        <p>Move the decimal point <strong>TWO places to the RIGHT</strong> and add a % sign.</p>
+                        <p>Example: \(0.75 \rightarrow 75\%\)</p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-lg">Percent \(\rightarrow\) Decimal</h4>
+                        <p>Move the decimal point <strong>TWO places to the LEFT</strong> and remove the % sign.</p>
+                        <p>Example: \(62\% \rightarrow 0.62\)</p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-lg">Percent \(\rightarrow\) Fraction</h4>
+                        <p>Put the number over <strong>100</strong> and <strong>simplify</strong> (reduce the fraction).</p>
+                        <p>Example: \(62\% \rightarrow \frac{62}{100} \rightarrow \frac{31}{50}\) (divide top and bottom by 2)</p>
+                    </div>
+                </div>
+            </details>
+
+            <!-- 2. Guided Practice -->
+            <h3 class="text-2xl font-bold text-slate-700 mb-4">Guided Practice</h3>
+            <div class="space-y-4">
+                <div class="practice-block">
+                    <div class="practice-header"><h4 class="font-semibold text-lg text-teal-700">I Do</h4></div>
+                    <div class="practice-body text-xl"> <!-- Increased font size -->
+                        <p class="mb-2"><strong>Problem:</strong> Convert \(\frac{3}{5}\) to a decimal and a percent.</p>
+                        <ol class="list-decimal list-inside ml-4 space-y-2"> <!-- Added spacing -->
+                            <li><strong>To Decimal:</strong> I divide the top by the bottom: \(3 \div 5 = 0.6\).</li>
+                            <li><strong>To Percent:</strong> I move the decimal on \(0.6\) two places to the right: \(0.6 \rightarrow 0.60 \rightarrow 60\%\).</li>
+                            <li>Answer: \(0.6\) and \(60\%\).</li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="practice-block">
+                    <div class="practice-header"><h4 class="font-semibold text-lg text-teal-700">We Do</h4></div>
+                    <div class="practice-body text-xl"> <!-- Increased font size -->
+                        <p class="mb-2"><strong>Problem:</strong> Convert \(8\%\) to a decimal and a fraction.</p>
+                        <button class="answer-toggle" data-toggle-answer="answer-wd-4">Show Steps</button>
+                        <div id="answer-wd-4" data-steps hidden>
+                            <ol class="list-decimal list-inside ml-4 mt-2 space-y-2"> <!-- Added spacing -->
+                                <li><strong>To Decimal:</strong> Move the decimal on \(8\%\) two places to the left. We need to add a zero. \(8.\% \rightarrow 0.08\).</li>
+                                <li><strong>To Fraction:</strong> Put \(8\) over \(100\). \(\frac{8}{100}\).</li>
+                                <li>Can we simplify \(\frac{8}{100}\)? (Yes, divide both by 4).</li>
+                                <li>Answer: \(0.08\) and \(\frac{2}{25}\).</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                <div class="practice-block">
+                    <div class="practice-header"><h4 class="font-semibold text-lg text-teal-700">You Do</h4></div>
+                    <div class="practice-body text-xl"> <!-- Increased font size -->
+                        <p class="mb-2"><strong>Problem:</strong> Convert \(1.2\) to a percent and a fraction.</p>
+                        <button class="answer-toggle" data-toggle-answer="answer-yd-4">Show Answer</button>
+                        <div id="answer-yd-4" data-answer hidden>
+                            <p>Percent: \(1.2 \rightarrow 1.20 \rightarrow 120\%\) <br> Fraction: \(1 \frac{2}{10} \rightarrow 1 \frac{1}{5}\) (or \(\frac{6}{5}\))</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. Independent Practice -->
+            <h3 class="text-2xl font-bold text-slate-700 mt-8 mb-4">Independent Practice</h3>
+            <div class="space-y-4 text-xl"> <!-- Increased font size -->
+                <div data-difficulty="green">
+                    <p class="mb-2"><strong>(Green)</strong> Convert \(0.45\) to a percent.</p>
+                    <button class="answer-toggle" data-toggle-answer="answer-ip-4-1">Show Answer</button>
+                    <div id="answer-ip-4-1" data-answer hidden><p>45%</p></div>
+                </div>
+                <div data-difficulty="yellow">
+                    <p class="mb-2"><strong>(Yellow)</strong> Convert \(\frac{1}{8}\) to a decimal.</p>
+                    <button class="answer-toggle" data-toggle-answer="answer-ip-4-2">Show Answer</button>
+                    <div id="answer-ip-4-2" data-answer hidden><p>\(1 \div 8 = 0.125\)</p></div>
+                </div>
+                <div data-difficulty="red">
+                    <p class="mb-2"><strong>(Red)</strong> Which is greater, \(\frac{3}{8}\) or \(40\%\)? Show your work.</p>
+                    <button class="answer-toggle" data-toggle-answer="answer-ip-4-3">Show Answer</button>
+                    <div id="answer-ip-4-3" data-answer hidden><p>To compare, make them both decimals. <br> Convert \(\frac{3}{8}\) to a decimal: \(3 \div 8 = 0.375\). <br> Convert \(40\%\) to a decimal: \(0.40\). <br> Since \(0.40 > 0.375\), \(40\%\) is greater.</p></div>
+                </div>
+            </div>
+
+            <!-- 4. Exit Ticket -->
+            <h3 class="text-2xl font-bold text-slate-700 mt-8 mb-4">Exit Ticket</h3>
+            <div class="practice-block">
+                <div class="practice-body text-xl"> <!-- Increased font size -->
+                    <p class="mb-2">1. Convert \(7\%\) to a decimal.</p>
+                    <p class="mb-2">2. Convert \(0.6\) to a simplified fraction.</p>
+                    <button class="answer-toggle" data-toggle-answer="answer-et-4">Show Answers</button>
+                    <div id="answer-et-4" data-answer hidden>
+                        <p>1. \(0.07\) <br> 2. \(\frac{6}{10} \rightarrow \frac{3}{5}\)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- JavaScript for toggling answers -->
+    <script>
+        document.addEventListener('click', function(event) {
+            // Find the closest ancestor that is a button with the data-toggle-answer attribute
+            const toggleButton = event.target.closest('button[data-toggle-answer]');
+
+            if (toggleButton) {
+                event.preventDefault();
+                const targetId = toggleButton.getAttribute('data-toggle-answer');
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    // Toggle the 'hidden' attribute
+                    const isHidden = targetElement.hasAttribute('hidden');
+                    if (isHidden) {
+                        targetElement.removeAttribute('hidden');
+                        toggleButton.textContent = toggleButton.textContent.replace('Show', 'Hide');
+                    } else {
+                        targetElement.setAttribute('hidden', '');
+                        toggleButton.textContent = toggleButton.textContent.replace('Hide', 'Show');
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
+
