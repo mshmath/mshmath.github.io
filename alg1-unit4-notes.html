@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 4: Systems of Equations & Inequalities (Alg 1)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [
+                    ['$', '$']
+                ]
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 800;
+        }
+        
+        p, li {
+            font-family: 'Lora', serif;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .lesson-section {
+            scroll-margin-top: 5rem;
+        }
+
+        details>summary {
+            list-style: none;
+        }
+
+        details>summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .details-arrow {
+            transition: transform 0.2s ease-in-out;
+        }
+
+        details[open] .details-arrow {
+            transform: rotate(90deg);
+        }
+
+        .key-term {
+            color: #0f766e;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        code {
+            background-color: #f1f5f9;
+            padding: 0.1em 0.4em;
+            border-radius: 4px;
+            font-family: monospace;
+            color: #4c1d95;
+            font-size: 0.9em;
+        }
+
+        @media print {
+            header, .non-printable { display: none !important; }
+            main { padding: 0 !important; }
+            body { background-color: white; color: black; }
+            details { display: block !important; page-break-inside: avoid; }
+            .lesson-section, .bg-white { box-shadow: none !important; border: 1px solid #ccc !important; }
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800">
+    <!-- Header & Navigation -->
+    <header class="bg-white/90 backdrop-blur-sm shadow-md sticky top-0 z-50 non-printable">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col sm:flex-row justify-between items-center py-4 border-b border-slate-200">
+                <h1 class="text-2xl font-bold text-slate-900">Unit 4: Systems of Equations & Inequalities</h1>
+                <nav class="mt-2 sm:mt-0">
+                    <ul class="flex space-x-2 sm:space-x-4 text-sm sm:text-base">
+                        <li><a href="#day1" class="font-semibold text-teal-600 hover:text-teal-800 transition">Day 1</a></li>
+                        <li><a href="#day2" class="font-semibold text-teal-600 hover:text-teal-800 transition">Day 2</a></li>
+                        <li><a href="#day3" class="font-semibold text-teal-600 hover:text-teal-800 transition">Day 3</a></li>
+                        <li><a href="#day4" class="font-semibold text-teal-600 hover:text-teal-800 transition">Day 4</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto p-4 sm:p-6 lg:p-8">
+        <!-- Introduction & Navigation Card -->
+        <div class="bg-white p-6 rounded-xl shadow-lg mb-12 non-printable">
+            <h2 class="text-3xl font-extrabold text-teal-700 mb-2">Unit 4 Resources & Lessons</h2>
+            <p class="text-slate-600 mb-6">VA SOL Standard: A.EI.2. This unit focuses on solving systems of linear equations and inequalities using multiple methods. We will use the <a href="https://www.desmos.com/calculator" target="_blank" class="text-teal-600 font-semibold hover:underline">Desmos Graphing Calculator</a> to visualize our solutions.</p>
+            <div class="border-t border-b border-slate-200 py-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                    <a href="https://www.desmos.com/calculator" target="_blank" class="block w-full text-center bg-slate-100 text-slate-700 font-semibold px-4 py-2 rounded-lg hover:bg-slate-200 transition-colors text-sm">Open Desmos Calculator</a>
+                    <button onclick="window.print()" class="w-full text-center bg-teal-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-teal-700 transition-colors text-sm">Print Unit 4 Notes & Practice</button>
+                </div>
+                 <div class="space-y-4">
+                    <h3 class="font-semibold text-lg text-slate-800 mb-2">Daily Lesson Slides</h3>
+                    <!-- Day 1 Links -->
+                    <div>
+                        <h4 class="font-semibold text-slate-600 text-sm mb-1">Day 1: Solving Systems by Graphing</h4>
+                        <div class="flex space-x-2">
+                            <a href="alg1-unit4-day1-slides.html" target="_blank" class="flex-1 text-center bg-teal-500 text-white font-semibold px-4 py-2 rounded-lg hover:bg-teal-600 transition-colors text-sm">View Slides</a>
+                            <a href="alg1-unit4-day1-slides-print.html" target="_blank" class="flex-1 text-center bg-teal-700 text-white font-semibold px-4 py-2 rounded-lg hover:bg-teal-800 transition-colors text-sm">Print Slides</a>
+                        </div>
+                    </div>
+                    <!-- Day 2 Links -->
+                    <div>
+                        <h4 class="font-semibold text-slate-600 text-sm mb-1">Day 2: Solving Systems by Substitution</h4>
+                        <div class="flex space-x-2">
+                             <a href="alg1-unit4-day2-slides.html" target="_blank" class="flex-1 text-center bg-teal-500 text-white font-semibold px-4 py-2 rounded-lg hover:bg-teal-600 transition-colors text-sm">View Slides</a>
+                            <a href="alg1-unit4-day2-slides-print.html" target="_blank" class="flex-1 text-center bg-teal-700 text-white font-semibold px-4 py-2 rounded-lg hover:bg-teal-800 transition-colors text-sm">Print Slides</a>
+                        </div>
+                    </div>
+                    <!-- Day 3 Links -->
+                    <div>
+                        <h4 class="font-semibold text-slate-600 text-sm mb-1">Day 3: Solving Systems by Elimination</h4>
+                        <div class="flex space-x-2">
+                           <a href="alg1-unit4-day3-slides.html" target="_blank" class="flex-1 text-center bg-teal-500 text-white font-semibold px-4 py-2 rounded-lg hover:bg-teal-600 transition-colors text-sm">View Slides</a>
+                            <a href="alg1-unit4-day3-slides-print.html" target="_blank" class="flex-1 text-center bg-teal-700 text-white font-semibold px-4 py-2 rounded-lg hover:bg-teal-800 transition-colors text-sm">Print Slides</a>
+                        </div>
+                    </div>
+                    <!-- Day 4 Links -->
+                    <div>
+                        <h4 class="font-semibold text-slate-600 text-sm mb-1">Day 4: Systems of Inequalities</h4>
+                        <div class="flex space-x-2">
+                            <a href="alg1-unit4-day4-slides.html" target="_blank" class="flex-1 text-center bg-teal-500 text-white font-semibold px-4 py-2 rounded-lg hover:bg-teal-600 transition-colors text-sm">View Slides</a>
+                            <a href="alg1-unit4-day4-slides-print.html" target="_blank" class="flex-1 text-center bg-teal-700 text-white font-semibold px-4 py-2 rounded-lg hover:bg-teal-800 transition-colors text-sm">Print Slides</a>
+                        </div>
+                    </div>
+                     <div class="mt-6">
+                        <h3 class="font-semibold text-lg text-slate-800">Unit 4 Worksheets</h3>
+                        <div class="flex space-x-2">
+                            <a href="alg1-unit4-practice-ws.html" target="_blank" class="flex-1 text-center bg-indigo-500 text-white font-semibold px-4 py-2 rounded-lg hover:bg-indigo-600 transition-colors text-sm">Unit 4 Practice Worksheet</a>
+                            <a href="alg1-unit4-study-guide.html" target="_blank" class="flex-1 text-center bg-indigo-700 text-white font-semibold px-4 py-2 rounded-lg hover:bg-indigo-800 transition-colors text-sm">Unit 4 Study Guide</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="space-y-8">
+            <!-- Day 1: Solving Systems by Graphing -->
+            <details id="day1" class="lesson-section bg-white rounded-xl shadow-lg overflow-hidden" open>
+                <summary class="p-6 cursor-pointer flex justify-between items-center hover:bg-slate-50 transition-colors non-printable">
+                    <h3 class="text-2xl font-bold text-slate-800">Day 1: Solving Systems by Graphing</h3>
+                    <svg class="w-6 h-6 text-slate-500 details-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </summary>
+                <div class="p-6 border-t border-slate-200">
+                    <p class="mb-8 bg-teal-50 border-l-4 border-teal-500 text-teal-900 p-4 rounded-r-lg"><strong class="font-semibold text-teal-800 font-sans">Objective:</strong> To find the solution of a system of two linear equations by graphing them and finding their point of intersection.</p>
+                    <h4 class="text-xl font-semibold text-teal-700 mb-4">Notes</h4>
+                    <div class="space-y-5 mb-10">
+                        <p>A <b class="key-term">system of equations</b> is just two or more equations that we work with at the same time. For linear equations, the graphs are straight lines.</p>
+                        <p>The <b class="key-term">solution</b> to the system is the one point $(x, y)$ where the lines <b class="key-term">cross</b> or <b class="key-term">intersect</b>. This point is the only point that makes both equations true.</p>
+                        <p>There are three possibilities:
+                            <ul class="list-disc list-inside ml-4">
+                                <li>The lines cross at one point (<b>one solution</b>).</li>
+                                <li>The lines are parallel and never cross (<b>no solution</b>).</li>
+                                <li>The lines are the exact same line (<b>infinitely many solutions</b>).</li>
+                            </ul>
+                        </p>
+                    </div>
+                    <div class="mb-8 p-6 border-l-4 border-sky-300 bg-sky-50 rounded-r-lg">
+                        <h5 class="text-lg font-semibold text-sky-800 mb-2">Desmos Exploration: Finding the Intersection</h5>
+                        <ol class="list-decimal ml-5 mt-3 text-sm space-y-2 text-sky-900 font-sans">
+                            <li>In Desmos, type your first equation: <code>y = 2x - 3</code>.</li>
+                            <li>In a new line, type your second equation: <code>y = -x + 3</code>.</li>
+                            <li>Look at the graph. The two lines cross at a single point. Click on that point!</li>
+                            <li>Desmos will show you a gray dot with the coordinates of the intersection. In this case, it's $(2, 1)$. That's the solution to the system.</li>
+                        </ol>
+                    </div>
+                </div>
+            </details>
+            
+            <!-- Day 2: Solving Systems by Substitution -->
+            <details id="day2" class="lesson-section bg-white rounded-xl shadow-lg overflow-hidden">
+                <summary class="p-6 cursor-pointer flex justify-between items-center hover:bg-slate-50 transition-colors non-printable">
+                    <h3 class="text-2xl font-bold text-slate-800">Day 2: Solving Systems by Substitution</h3>
+                    <svg class="w-6 h-6 text-slate-500 details-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </summary>
+                <div class="p-6 border-t border-slate-200">
+                    <p class="mb-8 bg-blue-50 border-l-4 border-blue-500 text-blue-900 p-4 rounded-r-lg"><strong class="font-semibold text-blue-800 font-sans">Objective:</strong> To solve a system of equations algebraically using the substitution method.</p>
+                    <h4 class="text-xl font-semibold text-blue-700 mb-4">Notes</h4>
+                    <div class="space-y-5 mb-10">
+                        <p><b class="key-term">Substitution</b> means to replace one thing with something it is equal to. This method is best when one of the equations is already solved for a variable (like $y = \dots$ or $x = \dots$).</p>
+                        <h5 class="font-bold text-blue-800">Steps for Substitution:</h5>
+                        <ol class="list-decimal list-inside ml-4">
+                            <li>Solve one equation for one variable (e.g., get $y$ by itself).</li>
+                            <li><b class="key-term">Substitute</b> this expression into the *other* equation.</li>
+                            <li>Solve the new, single-variable equation.</li>
+                            <li>Plug your answer back into one of the original equations to find the second variable.</li>
+                        </ol>
+                    </div>
+                    <div class="mb-8 p-6 border-l-4 border-sky-300 bg-sky-50 rounded-r-lg">
+                        <h5 class="text-lg font-semibold text-sky-800 mb-2">Step-by-Step Example</h5>
+                        <p class="font-bold text-sky-900">Solve the system: $y = x + 1$ and $3x + 2y = 8$.</p>
+                        <ol class="list-decimal ml-5 mt-3 text-sm space-y-2 text-sky-900 font-sans">
+                            <li><b>Step 1:</b> The first equation is already solved for $y$. It tells us that $y$ is the same as $x+1$.</li>
+                            <li><b>Step 2:</b> In the second equation, replace the $y$ with $(x+1)$. This gives us: $3x + 2(x+1) = 8$.</li>
+                            <li><b>Step 3:</b> Solve this new equation for $x$.<br> $3x + 2x + 2 = 8$ (Distribute)<br> $5x + 2 = 8$ (Combine like terms)<br> $5x = 6$ (Subtract 2)<br> $x = 6/5$ or $1.2$.</li>
+                            <li><b>Step 4:</b> Plug $x=1.2$ back into the easy equation: $y = (1.2) + 1 = 2.2$.</li>
+                            <li><b>Solution:</b> The solution is the point $(1.2, 2.2)$. You can check this by graphing in Desmos!</li>
+                        </ol>
+                    </div>
+                </div>
+            </details>
+
+            <!-- Day 3: Solving Systems by Elimination -->
+            <details id="day3" class="lesson-section bg-white rounded-xl shadow-lg overflow-hidden">
+                <summary class="p-6 cursor-pointer flex justify-between items-center hover:bg-slate-50 transition-colors non-printable">
+                    <h3 class="text-2xl font-bold text-slate-800">Day 3: Solving Systems by Elimination</h3>
+                    <svg class="w-6 h-6 text-slate-500 details-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </summary>
+                <div class="p-6 border-t border-slate-200">
+                     <p class="mb-8 bg-indigo-50 border-l-4 border-indigo-500 text-indigo-900 p-4 rounded-r-lg"><strong class="font-semibold text-indigo-800 font-sans">Objective:</strong> To solve a system of equations algebraically by adding or subtracting the equations to eliminate a variable.</p>
+                    <h4 class="text-xl font-semibold text-indigo-700 mb-4">Notes</h4>
+                    <div class="space-y-5 mb-10">
+                        <p><b class="key-term">Elimination</b> is a method for solving systems where you add the two equations together to make one of the variables disappear. This method is best when both equations are in standard form ($Ax + By = C$) and have variables that can be easily cancelled out.</p>
+                        <p>The goal is to get one variable to have the same coefficient but the <b class="key-term">opposite sign</b> in each equation (like $+2y$ and $-2y$).</p>
+                    </div>
+                    <div class="mb-8 p-6 border-l-4 border-sky-300 bg-sky-50 rounded-r-lg">
+                        <h5 class="text-lg font-semibold text-sky-800 mb-2">Step-by-Step Example</h5>
+                        <p class="font-bold text-sky-900">Solve the system: $2x + 3y = 4$ and $x - 3y = -1$.</p>
+                         <ol class="list-decimal ml-5 mt-3 text-sm space-y-2 text-sky-900 font-sans">
+                            <li><b>Step 1:</b> Look at the equations. Notice that we have a $+3y$ in the first equation and a $-3y$ in the second. They are perfect opposites!</li>
+                            <li><b>Step 2:</b> Add the two equations together, column by column.
+                                <br>$(2x + x) + (3y - 3y) = (4 - 1)$
+                                <br>$3x + 0 = 3$
+                                <br>$3x = 3$.</li>
+                            <li><b>Step 3:</b> Solve the resulting equation for $x$: $x = 1$.</li>
+                            <li><b>Step 4:</b> Plug $x=1$ back into either original equation to find $y$. Let's use the second one: $(1) - 3y = -1 \Rightarrow -3y = -2 \Rightarrow y = 2/3$.</li>
+                            <li><b>Solution:</b> The solution is $(1, 2/3)$.</li>
+                        </ol>
+                    </div>
+                </div>
+            </details>
+            
+            <!-- Day 4: Systems of Linear Inequalities -->
+            <details id="day4" class="lesson-section bg-white rounded-xl shadow-lg overflow-hidden">
+                <summary class="p-6 cursor-pointer flex justify-between items-center hover:bg-slate-50 transition-colors non-printable">
+                    <h3 class="text-2xl font-bold text-slate-800">Day 4: Systems of Linear Inequalities</h3>
+                    <svg class="w-6 h-6 text-slate-500 details-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </summary>
+                <div class="p-6 border-t border-slate-200">
+                    <p class="mb-8 bg-purple-50 border-l-4 border-purple-500 text-purple-900 p-4 rounded-r-lg"><strong class="font-semibold text-purple-800 font-sans">Objective:</strong> To represent the solution to a system of two linear inequalities graphically.</p>
+                    <h4 class="text-xl font-semibold text-purple-700 mb-4">Notes</h4>
+                    <div class="space-y-5 mb-10">
+                         <p>This combines what we learned about systems and inequalities. The goal is to graph two or more inequalities on the same plane.</p>
+                        <p>The solution is the area on the graph where <b class="key-term">all the shaded regions from all the inequalities overlap</b>. Any point in this overlapping region is a solution.</p>
+                        <p>Remember the rules for graphing a single inequality:
+                            <ul class="list-disc list-inside ml-4">
+                                <li><b>Solid Line</b> for $\le$ or $\ge$.</li>
+                                <li><b>Dotted Line</b> for $<$ or $>$.</li>
+                                <li>Shade <b>above</b> for $y > \dots$ and <b>below</b> for $y < \dots$.</li>
+                            </ul>
+                        </p>
+                    </div>
+                     <div class="mb-8 p-6 border-l-4 border-sky-300 bg-sky-50 rounded-r-lg">
+                        <h5 class="text-lg font-semibold text-sky-800 mb-2">Desmos Exploration: Finding the Overlap</h5>
+                        <ol class="list-decimal ml-5 mt-3 text-sm space-y-2 text-sky-900 font-sans">
+                            <li>In Desmos, graph the first inequality, for example: <code>y < 2x + 1</code>.</li>
+                            <li>In a new line, graph the second inequality, for example: <code>y >= -x - 2</code>.</li>
+                            <li>Desmos shades each inequality with a different color.</li>
+                            <li>The solution to the system is the section of the graph where the two colors overlap.</li>
+                        </ol>
+                    </div>
+                </div>
+            </details>
+        </div>
+    </main>
+</body>
+
+</html>
