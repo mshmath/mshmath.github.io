@@ -13,46 +13,50 @@
             font-family: 'Inter', sans-serif;
         }
 
+        /* Print-specific styles */
         @media print {
             body {
                 background-color: #fff;
-                font-family: sans-serif;
+                font-family: sans-serif; /* Use a standard print font */
             }
             .no-print {
-                display: none !important;
+                display: none !important; /* Hide elements marked as no-print */
             }
             #chart-container {
                 display: grid;
-                grid-template-columns: repeat(4, 1fr); /* Better layout for printing */
+                grid-template-columns: repeat(4, 1fr); /* Force 4 columns for a better paper layout */
                 gap: 1rem;
+                padding: 0;
+                margin: 0;
             }
             /* Reset card styles for printing */
             #chart-container > div {
                 background-color: #ffffff !important;
                 color: #000000 !important;
-                border: 1px solid #ccc;
-                box-shadow: none;
+                border: 1px solid #ccc !important;
+                box-shadow: none !important;
                 padding: 0.5rem; /* Reduce padding for print */
-                 -webkit-print-color-adjust: exact; /* Necessary for some browsers */
+                 -webkit-print-color-adjust: exact; /* Ensures colors print in Chrome/Safari */
             }
             #chart-container h2 {
-                color: #000000 !important;
+                color: #000000 !important; /* Black header text for print */
                 border-bottom-color: #ccc !important;
                 font-size: 1.1rem;
             }
             #chart-container p {
                  font-size: 0.9rem;
                  line-height: 1.2;
+                 color: #000000 !important;
             }
         }
     </style>
 </head>
-<body class="bg-slate-100">
+<body class="bg-slate-50"> <!-- Changed background to a lighter gray -->
 
     <div class="container mx-auto px-4 py-8">
         <header class="text-center mb-10 no-print">
             <h1 class="text-5xl font-extrabold text-slate-800">Multiplication Chart</h1>
-            <p class="text-slate-600 mt-2 text-lg">A handy chart for all the times tables from 1 to 24.</p>
+            <p class="text-slate-600 mt-2 text-lg">A chart for times tables 1 to 24.</p>
         </header>
 
         <main id="chart-container" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-5">
@@ -71,50 +75,50 @@
             const chartContainer = document.getElementById('chart-container');
             const printButton = document.getElementById('print-button');
 
-            const numberWords = [
-                'One', 'Two', 'Three', 'Four', 'Five', 'Six', 
-                'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve',
-                'Thirteen', 'Fourteen', 'Fifteen', 'Sixteen', 'Seventeen', 'Eighteen',
-                'Nineteen', 'Twenty', 'Twenty-One', 'Twenty-Two', 'Twenty-Three', 'Twenty-Four'
+            // A smaller, more muted palette of text colors for the headers
+            const headerColors = [
+                'text-sky-700', 
+                'text-emerald-700', 
+                'text-amber-700', 
+                'text-rose-700', 
+                'text-indigo-700', 
+                'text-slate-700'
             ];
             
-            const colors = [
-                'bg-rose-500', 'bg-orange-500', 'bg-amber-500', 'bg-lime-500', 
-                'bg-green-500', 'bg-teal-500', 'bg-cyan-500', 'bg-sky-500', 
-                'bg-blue-500', 'bg-indigo-500', 'bg-violet-500', 'bg-fuchsia-500',
-                'bg-rose-600', 'bg-orange-600', 'bg-amber-600', 'bg-lime-600',
-                'bg-green-600', 'bg-teal-600', 'bg-cyan-600', 'bg-sky-600',
-                'bg-blue-600', 'bg-indigo-600', 'bg-violet-600', 'bg-fuchsia-600'
-            ];
-
             // --- Generate the Multiplication Chart ---
             function generateChart() {
                 for (let i = 1; i <= 24; i++) {
                     const tableCard = document.createElement('div');
-                    const colorClass = colors[(i - 1) % colors.length];
-                    tableCard.className = `p-4 rounded-lg shadow-md text-white ${colorClass}`;
+                    // Use a clean white background with a border and shadow
+                    tableCard.className = 'p-4 rounded-lg shadow-md bg-white border border-slate-200';
 
+                    const colorClass = headerColors[(i - 1) % headerColors.length];
+                    
                     const cardHeader = document.createElement('h2');
-                    cardHeader.className = 'text-2xl font-bold text-center mb-3 border-b border-white/30 pb-2';
-                    cardHeader.textContent = numberWords[i - 1];
+                    // Apply the color class only to the header
+                    cardHeader.className = `text-2xl font-bold text-center mb-3 border-b border-slate-200 pb-2 ${colorClass}`;
+                    cardHeader.textContent = `Times Table: ${i}`; // Use numbers for clarity
                     tableCard.appendChild(cardHeader);
-
+                    
                     const problemsContainer = document.createElement('div');
-                    problemsContainer.className = 'space-y-1 text-lg font-medium';
-
+                    // Use a standard dark text color for readability
+                    problemsContainer.className = 'space-y-1 text-base font-medium text-slate-700'; 
+                    
                     for (let j = 1; j <= 12; j++) {
                         const problem = document.createElement('p');
                         problem.className = 'text-center';
                         const result = i * j;
-                        problem.textContent = `${i} \u00D7 ${j} = ${result}`;
+                        // Use the multiplication symbol for clarity
+                        problem.textContent = `${i} \u00D7 ${j} = ${result}`; 
                         problemsContainer.appendChild(problem);
                     }
-                    
+                                        
                     tableCard.appendChild(problemsContainer);
                     chartContainer.appendChild(tableCard);
                 }
             }
 
+            // --- Print Button Event ---
             printButton.addEventListener('click', () => {
                 window.print();
             });
@@ -125,4 +129,3 @@
     </script>
 </body>
 </html>
-

@@ -31,7 +31,7 @@
             color: #ef4444;
             visibility: visible;
         }
-        /* Style for number input arrows */
+        /* Style for number input arrows (hides them) */
         input[type=number]::-webkit-inner-spin-button,
         input[type=number]::-webkit-outer-spin-button {
             -webkit-appearance: none;
@@ -47,42 +47,41 @@
                 color: #000;
                 font-family: sans-serif;
             }
-
             .no-print {
                 display: none !important;
             }
-            
             .container {
                 width: 100%;
                 margin: 0;
                 padding: 0;
             }
-
             #worksheet-container {
                 display: grid;
-                grid-template-columns: repeat(3, 1fr);
+                grid-template-columns: repeat(3, 1fr); /* 3 columns for a clean print layout */
                 gap: 1.5rem;
             }
-
             .bg-white { /* Card style reset for print */
                 box-shadow: none !important;
                 border: 1px solid #ccc !important;
                 padding: 10px;
             }
-
             h2 {
                 font-size: 1.2rem;
                 margin-bottom: 1rem;
             }
-
+            /* Style inputs for printing as blank lines */
             input[type=number] {
                 border: none;
                 border-bottom: 1px solid #333;
                 border-radius: 0;
                 background-color: transparent !important;
                 color: #000 !important;
+                width: 4rem !important; /* Give some space for writing */
             }
-
+            /* Hide problem labels on print, show only input lines */
+            label.problem-label {
+                color: #000 !important;
+            }
             .feedback-icon {
                 display: none !important;
             }
@@ -105,7 +104,7 @@
         </div>
 
         <footer class="mt-10 text-center no-print">
-            <div class="flex justify-center items-center gap-4">
+            <div class="flex flex-wrap justify-center items-center gap-4">
                 <button id="check-button" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-transform transform hover:scale-105">
                     Check Answers
                 </button>
@@ -146,42 +145,47 @@
                     tableTitle.textContent = `${i} Times Table`;
                     tableCard.appendChild(tableTitle);
                     
+                    // Container for all problem rows
                     const problemsContainer = document.createElement('div');
-                    problemsContainer.className = 'space-y-2';
+                    problemsContainer.className = 'space-y-3'; // Added more vertical spacing
 
                     for (let j = 1; j <= 12; j++) {
                         const correctAnswer = i * j;
                         
                         // Create a row for each problem
                         const problemRow = document.createElement('div');
-                        problemRow.className = 'flex items-center justify-between text-lg';
+                        // Centered the items and added a gap for cleaner alignment
+                        problemRow.className = 'flex items-center justify-center gap-2 text-lg'; 
 
                         // The problem text (e.g., "1 x 1 =")
                         const problemLabel = document.createElement('label');
-                        problemLabel.className = 'text-slate-600';
+                        // Added fixed-width and text-right to align all the '=' signs
+                        problemLabel.className = 'w-20 text-right text-slate-600 font-medium problem-label'; 
                         problemLabel.textContent = `${i} \u00D7 ${j} =`; // Using the multiplication symbol
-
+                        
                         // The input field for the answer
                         const answerInput = document.createElement('input');
                         answerInput.type = 'number';
-                        answerInput.className = 'w-20 text-center border-2 border-slate-300 rounded-md py-1 transition-all duration-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500';
+                        // Increased width slightly for easier input
+                        answerInput.className = 'w-24 text-center border-2 border-slate-300 rounded-md py-1 transition-all duration-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500'; 
                         answerInput.dataset.correctAnswer = correctAnswer;
-
+                        
                         // The icon for feedback (tick or cross)
                         const feedbackIcon = document.createElement('span');
-                        feedbackIcon.className = 'feedback-icon w-6 text-center'; // Fixed width for alignment
-
+                        // Aligned left to stay next to the input box
+                        feedbackIcon.className = 'feedback-icon w-6 text-left'; 
+                        
                         problemRow.appendChild(problemLabel);
                         problemRow.appendChild(answerInput);
                         problemRow.appendChild(feedbackIcon);
                         problemsContainer.appendChild(problemRow);
                     }
-
+                    
                     tableCard.appendChild(problemsContainer);
                     worksheetContainer.appendChild(tableCard);
                 }
             }
-            
+                        
             // --- Check the answers ---
             checkButton.addEventListener('click', () => {
                 const inputs = document.querySelectorAll('#worksheet-container input');
@@ -216,7 +220,9 @@
 
                 // Display the score
                 const totalQuestions = inputs.length;
-                scoreContainer.textContent = `You got ${correctCount} out of ${totalQuestions} correct!`;
+                if (totalQuestions > 0) {
+                     scoreContainer.textContent = `You got ${correctCount} out of ${totalQuestions} correct!`;
+                }
             });
 
             // --- Reset the worksheet ---
@@ -229,17 +235,17 @@
                     feedbackIcon.classList.remove('correct-icon', 'incorrect-icon');
                     feedbackIcon.textContent = '';
                 });
-                scoreContainer.textContent = '';
+                scoreContainer.textContent = ''; // Clear the score
             });
 
+            // --- Print Button ---
             printButton.addEventListener('click', () => {
                 window.print();
             });
-            
+                        
             // Initial generation of the worksheet on page load
             generateWorksheet();
         });
     </script>
 </body>
 </html>
-

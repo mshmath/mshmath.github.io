@@ -1,158 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AFDA Weekly Pacing Guide</title>
+    <title>AFDA Pacing Guide</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         html {
             scroll-behavior: smooth;
         }
-
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f1f5f9;
-            /* slate-100 */
+            background-color: #f8fafc; /* slate-50 */
         }
-
-        .lesson-section {
-            scroll-margin-top: 5rem;
+        .nav-link.active {
+            background-color: #0d9488; /* teal-600 */
+            color: white;
+            font-weight: 600;
         }
-
-        details>summary {
-            list-style: none;
+        .nav-link.active .nav-link-title {
+            color: white !important;
         }
-
-        details>summary::-webkit-details-marker {
-            display: none;
+        .nav-link.active .nav-link-week {
+             color: #ccfbf1 !important; /* teal-100 */
         }
-
-        .details-arrow {
+        .nav-link:not(.active):hover {
+            background-color: #f1f5f9; /* slate-100 */
+        }
+        .unit-link-card .fa-arrow-right {
             transition: transform 0.2s ease-in-out;
         }
-
-        details[open] .details-arrow {
-            transform: rotate(90deg);
-        }
-
-        /* Accordion Icon Transition */
-        .accordion-icon {
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .non-printable {
-            /* This class is used to hide elements during printing */
+        .unit-link-card:hover .fa-arrow-right {
+            transform: translateX(4px);
         }
 
         /* Print Styles */
         @media print {
-            body {
-                background-color: white;
-                color: black;
-                font-size: 10pt;
-            }
-
-            header,
-            .non-printable,
-            footer {
-                display: none !important;
-            }
-
-            main {
-                padding: 0 !important;
-                margin: 0 !important;
-                max-width: 100% !important;
-            }
-
-            .printable-only {
-                display: block !important;
-            }
-
-            .accordion-item,
-            .bg-white,
-            .daily-pacing-card,
-            .key-info-box {
+            body { background-color: white; color: black; font-size: 10pt; }
+            header, aside, .non-printable { display: none !important; }
+            main { padding: 0 !important; margin: 0 !important; max-width: 100% !important; }
+            .printable-content { display: block !important; box-shadow: none !important; border: none !important; }
+            .week-section { page-break-before: always; }
+            .week-section:first-child { page-break-before: auto; }
+            h1, h2, h3, h4, p, li, a { color: black !important; }
+            h1 { font-size: 24pt; border-bottom: 2px solid #ccc; padding-bottom: 8px; }
+            h2 { font-size: 18pt; }
+            h3 { font-size: 16pt; }
+            .daily-pacing-card, .key-info-box {
                 box-shadow: none !important;
                 border: 1px solid #ccc !important;
                 page-break-inside: avoid;
             }
-
-            h1,
-            h2,
-            h3,
-            h4,
-            p,
-            li,
-            a {
-                color: black !important;
-            }
-
-            h1 {
-                font-size: 22pt;
-            }
-
-            h2 {
-                font-size: 18pt;
-            }
-
-            h3 {
-                font-size: 16pt;
-            }
-
-            .accordion-content {
-                display: block !important;
-                max-height: none !important;
-                padding: 0 !important;
-            }
-
-            .accordion-header {
-                display: block !important;
-                border-bottom: 2px solid #ccc;
-            }
-
-            .accordion-header h3 {
-                margin: 0;
-                padding: 0;
-            }
-
-            .accordion-icon {
-                display: none !important;
-            }
-
-            .accordion-inner-content {
-                padding: 1rem !important;
-            }
-
-            .quick-links-section ul {
-                display: block;
-            }
-
-            .quick-links-section li {
-                background-color: #eee !important;
-            }
         }
     </style>
 </head>
+<body class="text-slate-800">
 
-<body class="bg-slate-100 text-slate-800">
+    <!-- Header -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-10 non-printable">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div>
+                    <h1 class="text-2xl font-bold text-slate-800">AFDA Pacing Guide</h1>
+                    <p class="text-sm text-slate-500">An 8-week plan for success.</p>
+                </div>
+                <div class="flex items-center gap-2">
+                    <button onclick="window.print()" class="text-center bg-teal-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-teal-700 transition-colors text-sm flex items-center gap-2">
+                        <i class="fas fa-print"></i> Print Guide
+                    </button>
+                    <a href="blank-taking-notes.html" target="_blank" class="text-center bg-slate-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-slate-700 transition-colors text-sm flex items-center gap-2">
+                        <i class="fas fa-file-pen"></i> Blank Notes
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
 
     <!-- Main Content -->
-    <main class="max-w-4xl mx-auto p-4 sm:p-6 lg:p-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col lg:flex-row lg:gap-8">
 
-        <!-- Introduction & Navigation Card -->
-        <div class="bg-white p-6 rounded-xl shadow-lg mb-12">
-            <h1 class="text-4xl md:text-5xl font-extrabold text-slate-800 text-center mb-4">AFDA Pacing Guide</h1>
-            <p class="text-center text-slate-600 text-lg mb-8">
-                This guide outlines our plan from October to February. Click on any week to see the detailed daily schedule.
-            </p>
+            <!-- Sidebar Navigation -->
+            <aside class="order-2 lg:order-1 lg:w-3/12 xl:w-2/12 py-8 lg:sticky lg:top-20 lg:self-start non-printable">
+                <nav id="sidebar-nav" class="space-y-4"></nav>
+            </aside>
 
-            <div class="border-t border-b border-slate-200 py-6 space-y-6">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <button onclick="window.print()" class="w-full text-center bg-teal-600 text-white font-semibold px-4 py-3 rounded-lg hover:bg-teal-700 transition-colors text-base non-printable">Print Full Pacing Guide</button>
-                    <a href="blank-taking-notes.html" target="_blank" class="block w-full text-center bg-slate-600 text-white font-semibold px-4 py-3 rounded-lg hover:bg-slate-700 transition-colors text-base non-printable">Get Blank Notes Template</a>
+            <!-- Main Display Area -->
+            <main class="order-1 lg:order-2 lg:w-9/12 xl:w-10/12 py-8">
+                <!-- Unit Links Grid -->
+                <div id="unit-links-container" class="mb-8 non-printable">
+                    <!-- Links will be populated by JavaScript -->
                 </div>
 
                 <!-- Quick Links Section -->
@@ -168,295 +107,315 @@
                         <li><a href="afda-unit7-notes.html" target="_blank" class="block p-2 bg-white hover:bg-teal-50 border border-slate-200 rounded-md text-teal-700 font-semibold transition-colors text-sm text-center">Unit 7: Counting Methods</a></li>
                         <li><a href="afda-unit8-notes.html" target="_blank" class="block p-2 bg-white hover:bg-teal-50 border border-slate-200 rounded-md text-teal-700 font-semibold transition-colors text-sm text-center">Unit 8: Normal Distribution</a></li>
                     </ul>
+                <!-- Separator -->
+                <div class="border-t border-slate-200 my-8 non-printable"></div> 
+                
+                <div class="non-printable">
+                    <h2 class="text-3xl font-extrabold text-slate-800 mb-6">Weekly Pacing Details</h2>
                 </div>
-            </div>
-        </div>
 
-        <div class="space-y-4" id="pacing-guide-container">
-            <!-- Accordions will be populated by script -->
-        </div>
-    </main>
 
-    <footer class="text-center py-8 text-slate-500 text-sm non-printable">
-        <p>&copy; 2025 Aly Hatfield. All rights reserved.</p>
-    </footer>
+                <!-- Weekly Content Display -->
+                <div id="weekly-content-display">
+                    <!-- Content will be populated by JavaScript -->
+                </div>
+                 <!-- Printable Version (Hidden by default) -->
+                <div id="printable-full-guide" class="hidden"></div>
+            </main>
+        </div>
+    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const unitData = [{
-                week: 1,
-                title: "Unit 1 - Function Families & Transformations",
-                days: [{
-                    day: "Monday",
-                    title: "Parent Functions",
-                    focus: "Identifying graphs and equations for linear, quadratic, and exponential parent functions."
-                }, {
-                    day: "Tuesday",
-                    title: "Translations",
-                    focus: "Applying vertical and horizontal shifts to parent functions."
-                }, {
-                    day: "Wednesday",
-                    title: "Reflections",
-                    focus: "Reflecting functions across the x-axis and y-axis."
-                }, {
-                    day: "Thursday",
-                    title: "Dilations",
-                    focus: "Applying vertical and horizontal stretches and compressions."
-                }],
-                essentials: "<strong>Vocabulary:</strong> parent function, transformation, translation, reflection, dilation, linear, quadratic, exponential."
-            }, {
-                week: 2,
-                title: "Unit 2 - Analyzing Function Graphs",
-                days: [{
-                    day: "Monday",
-                    title: "Domain & Range",
-                    focus: "Determining the domain and range of a function from its graph."
-                }, {
-                    day: "Tuesday",
-                    title: "Intervals",
-                    focus: "Identifying intervals where a function is increasing, decreasing, or constant."
-                }, {
-                    day: "Wednesday",
-                    title: "Key Features",
-                    focus: "Finding zeros, intercepts, and absolute maximum/minimum values."
-                }, {
-                    day: "Thursday",
-                    title: "End Behavior & Asymptotes",
-                    focus: "Describing the end behavior of a function and identifying any asymptotes."
-                }],
-                essentials: "<strong>Vocabulary:</strong> domain, range, increasing, decreasing, constant, zero, intercept, maximum, minimum, end behavior, asymptote."
-            }, {
-                week: 3,
-                title: "Unit 3 - Systems of Inequalities & Linear Programming",
-                days: [{
-                    day: "Monday",
-                    title: "Graphing Linear Inequalities",
-                    focus: "Graphing single linear inequalities in two variables."
-                }, {
-                    day: "Tuesday",
-                    title: "Systems of Linear Inequalities",
-                    focus: "Finding the solution set for systems of linear inequalities by graphing."
-                }, {
-                    day: "Wednesday",
-                    title: "Feasible Regions",
-                    focus: "Identifying the feasible region and its vertices for a system of constraints."
-                }, {
-                    day: "Thursday",
-                    title: "Optimization",
-                    focus: "Using an objective function to find the maximum or minimum value within a feasible region."
-                }],
-                essentials: "<strong>Vocabulary:</strong> linear inequality, system of inequalities, solution set, constraint, feasible region, vertices, optimization, objective function."
-            }, {
-                week: 4,
-                title: "Unit 4 - Bivariate Data & Curve of Best Fit",
-                days: [{
-                    day: "Monday",
-                    title: "Scatterplots",
-                    focus: "Creating and interpreting scatterplots for bivariate data."
-                }, {
-                    day: "Tuesday",
-                    title: "Linear Regression",
-                    focus: "Finding the line of best fit for a linear data set."
-                }, {
-                    day: "Wednesday",
-                    title: "Quadratic & Exponential Regression",
-                    focus: "Determining the curve of best fit for quadratic and exponential data."
-                }, {
-                    day: "Thursday",
-                    title: "Making Predictions",
-                    focus: "Using mathematical models to make predictions and analyze their reasonableness."
-                }],
-                essentials: "<strong>Vocabulary:</strong> bivariate data, scatterplot, association, correlation, line of best fit, curve of best fit, regression."
-            }, {
-                week: 5,
-                title: "Unit 5 - Designing Studies",
-                days: [{
-                    day: "Monday",
-                    title: "Sampling Techniques",
-                    focus: "Comparing simple random, stratified, and cluster sampling."
-                }, {
-                    day: "Tuesday",
-                    title: "Bias",
-                    focus: "Identifying biased sampling methods and sources of bias in studies."
-                }, {
-                    day: "Wednesday",
-                    title: "Study Types",
-                    focus: "Distinguishing between an experiment and an observational study."
-                }, {
-                    day: "Thursday",
-                    title: "Experimental Design",
-                    focus: "Understanding the roles of control, randomization, and minimization of error."
-                }],
-                essentials: "<strong>Vocabulary:</strong> population, sample, random sampling, stratified sampling, cluster sampling, bias, observational study, experiment, control group."
-            }, {
-                week: 6,
-                title: "Unit 6 - Probability",
-                days: [{
-                    day: "Monday",
-                    title: "Theoretical Probability",
-                    focus: "Calculating theoretical probability and understanding sample spaces."
-                }, {
-                    day: "Tuesday",
-                    title: "Event Types",
-                    focus: "Defining and identifying complementary, dependent, and independent events."
-                }, {
-                    day: "Wednesday",
-                    title: "Conditional Probability",
-                    focus: "Calculating the probability of an event given that another event has occurred."
-                }, {
-                    day: "Thursday",
-                    title: "Representing Probability",
-                    focus: "Using Venn diagrams and two-way tables to calculate probabilities."
-                }],
-                essentials: "<strong>Vocabulary:</strong> probability, sample space, event, mutually exclusive, complementary, independent, dependent, conditional probability."
-            }, {
-                week: 7,
-                title: "Unit 7 - Permutations & Combinations",
-                days: [{
-                    day: "Monday",
-                    title: "Fundamental Counting Principle",
-                    focus: "Using the counting principle to find the number of possible outcomes."
-                }, {
-                    day: "Tuesday",
-                    title: "Permutations",
-                    focus: "Calculating the number of arrangements when order matters."
-                }, {
-                    day: "Wednesday",
-                    title: "Combinations",
-                    focus: "Calculating the number of selections when order does not matter."
-                }, {
-                    day: "Thursday",
-                    title: "Application to Probability",
-                    focus: "Using permutations and combinations to solve complex probability problems."
-                }],
-                essentials: "<strong>Vocabulary:</strong> Fundamental Counting Principle, permutation, combination, factorial."
-            }, {
-                week: 8,
-                title: "Unit 8 - The Normal Distribution & Z-Scores",
-                days: [{
-                    day: "Monday",
-                    title: "Normal Distribution",
-                    focus: "Identifying the properties of a normal distribution curve."
-                }, {
-                    day: "Tuesday",
-                    title: "The Empirical Rule",
-                    focus: "Using the 68-95-99.7 rule to analyze normally distributed data."
-                }, {
-                    day: "Wednesday",
-                    title: "Z-Scores",
-                    focus: "Calculating and interpreting the z-score for a data point."
-                }, {
-                    day: "Thursday",
-                    title: "Comparing Data",
-                    focus: "Using z-scores to compare values from different normally distributed data sets."
-                }],
-                essentials: "<strong>Vocabulary:</strong> normal distribution, mean, standard deviation, Empirical Rule, z-score, standard normal distribution."
-            }, {
-                week: 9,
-                title: "SOL Exam Review & Final Exam",
-                days: [],
-                essentials: "Comprehensive review of all AFDA topics in preparation for the Virginia SOL exam."
-            }];
-
-            const container = document.getElementById('pacing-guide-container');
-            const mainHeader = document.createElement('h2');
-            mainHeader.className = "text-3xl font-bold text-slate-700 border-b-2 border-slate-300 pb-2";
-            mainHeader.textContent = "AFDA Term (Weeks 1-9)";
-            container.appendChild(mainHeader);
-
-            unitData.forEach(unit => {
-
-                const accordionItem = document.createElement('div');
-                accordionItem.className = 'accordion-item bg-white rounded-xl shadow-lg overflow-hidden';
-
-                let contentHTML = '';
-
-                if (unit.days && unit.days.length > 0) {
-                    let dailyContent = '';
-                    unit.days.forEach((day, index) => {
-                        const isQuizDay = (index === 3); // Thursday is quiz day
-                        const activities = `Slides, guided notes, SOL practice${isQuizDay ? `, and <strong class="text-red-600">Unit ${unit.week} Quiz</strong>` : '.'}`;
-                        dailyContent += `
-                            <div class="daily-pacing-card bg-slate-50 border border-slate-200 rounded-lg p-4 mb-4">
-                                <h4 class="font-bold text-teal-700">${day.day}: ${day.title}</h4>
-                                <ul class="list-disc list-inside text-slate-600 mt-1 text-sm">
-                                    <li><strong>Focus:</strong> ${day.focus}</li>
-                                    <li><strong>Activities:</strong> ${activities}</li>
-                                </ul>
-                            </div>
-                        `;
-                    });
-
-                    dailyContent += `
-                        <div class="daily-pacing-card bg-slate-50 border border-slate-200 rounded-lg p-4 mb-4">
-                            <h4 class="font-bold text-teal-700">Friday: Office Hours</h4>
-                            <ul class="list-disc list-inside text-slate-600 mt-1 text-sm">
-                                <li><strong>Time:</strong> 10 AM - 12 PM</li>
-                                <li><strong>Purpose:</strong> Tutoring, extra help, and make-up assignments.</li>
-                            </ul>
-                        </div>
-                    `;
-
-                    const essentialsContent = `
-                        <div class="key-info-box bg-teal-50 border-l-4 border-teal-500 p-4 rounded-r-lg mt-6">
-                            <h4 class="font-bold text-teal-800">Unit Essentials</h4>
-                            <p class="text-sm text-teal-900 mt-2">${unit.essentials}</p>
-                        </div>
-                    `;
-
-                    contentHTML = `
-                        <div class="accordion-inner-content p-6 border-t border-slate-200">
-                            ${dailyContent}
-                            ${essentialsContent}
-                        </div>
-                    `;
-                } else {
-                    contentHTML = `
-                        <div class="accordion-inner-content p-6 border-t border-slate-200">
-                             <div class="key-info-box bg-teal-50 border-l-4 border-teal-500 p-4 rounded-r-lg">
-                                <h4 class="font-bold text-teal-800">Unit Focus</h4>
-                                <p class="text-sm text-teal-900 mt-2">${unit.essentials}</p>
-                            </div>
-                        </div>
-                    `;
+            // All data for the AFDA pacing guide
+            const allUnitData = [
+                { 
+                    week: 1, 
+                    unit: 1, 
+                    title: "Function Families & Transformations", 
+                    sol: "AFDA.1", // Placeholder SOL
+                    link: "afda-unit-1.html", 
+                    topics: [ 
+                        { name: "Parent Functions", focus: "Identifying graphs and equations for linear, quadratic, and exponential parent functions." }, 
+                        { name: "Translations", focus: "Applying vertical and horizontal shifts to parent functions." }, 
+                        { name: "Reflections", focus: "Reflecting functions across the x-axis and y-axis." },
+                        { name: "Dilations", focus: "Applying vertical and horizontal stretches and compressions." }
+                    ], 
+                    essentials: "<strong>Vocabulary:</strong> parent function, transformation, translation, reflection, dilation, linear, quadratic, exponential." 
+                },
+                { 
+                    week: 2, 
+                    unit: 2, 
+                    title: "Analyzing Function Graphs", 
+                    sol: "AFDA.1", // Placeholder SOL
+                    link: "afda-unit-2.html", 
+                    topics: [ 
+                        { name: "Domain & Range", focus: "Determining the domain and range of a function from its graph." }, 
+                        { name: "Intervals", focus: "Identifying intervals where a function is increasing, decreasing, or constant." }, 
+                        { name: "Key Features", focus: "Finding zeros, intercepts, and absolute maximum/minimum values." },
+                        { name: "End Behavior & Asymptotes", focus: "Describing the end behavior of a function and identifying any asymptotes." }
+                    ], 
+                    essentials: "<strong>Vocabulary:</strong> domain, range, increasing, decreasing, constant, zero, intercept, maximum, minimum, end behavior, asymptote." 
+                },
+                { 
+                    week: 3, 
+                    unit: 3, 
+                    title: "Systems of Inequalities & Linear Programming", 
+                    sol: "AFDA.2", // Placeholder SOL
+                    link: "afda-unit-3.html", 
+                    topics: [ 
+                        { name: "Graphing Linear Inequalities", focus: "Graphing single linear inequalities in two variables." }, 
+                        { name: "Systems of Linear Inequalities", focus: "Finding the solution set for systems of linear inequalities by graphing." }, 
+                        { name: "Feasible Regions", focus: "Identifying the feasible region and its vertices for a system of constraints." },
+                        { name: "Optimization", focus: "Using an objective function to find the maximum or minimum value within a feasible region." }
+                    ], 
+                    essentials: "<strong>Vocabulary:</strong> linear inequality, system of inequalities, solution set, constraint, feasible region, vertices, optimization, objective function." 
+                },
+                { 
+                    week: 4, 
+                    unit: 4, 
+                    title: "Bivariate Data & Curve of Best Fit", 
+                    sol: "AFDA.4", // Placeholder SOL
+                    link: "afda-unit-4.html", 
+                    topics: [ 
+                        { name: "Scatterplots", focus: "Creating and interpreting scatterplots for bivariate data." }, 
+                        { name: "Linear Regression", focus: "Finding the line of best fit for a linear data set." }, 
+                        { name: "Quadratic & Exponential Regression", focus: "Determining the curve of best fit for quadratic and exponential data." },
+                        { name: "Making Predictions", focus: "Using mathematical models to make predictions and analyze their reasonableness." }
+                    ], 
+                    essentials: "<strong>Vocabulary:</strong> bivariate data, scatterplot, association, correlation, line of best fit, curve of best fit, regression." 
+                },
+                { 
+                    week: 5, 
+                    unit: 5, 
+                    title: "Designing Studies", 
+                    sol: "AFDA.6", // Placeholder SOL
+                    link: "afda-unit-5.html", 
+                    topics: [ 
+                        { name: "Sampling Techniques", focus: "Comparing simple random, stratified, and cluster sampling." }, 
+                        { name: "Bias", focus: "Identifying biased sampling methods and sources of bias in studies." }, 
+                        { name: "Study Types", focus: "Distinguishing between an experiment and an observational study." },
+                        { name: "Experimental Design", focus: "Understanding the roles of control, randomization, and minimization of error." }
+                    ], 
+                    essentials: "<strong>Vocabulary:</strong> population, sample, random sampling, stratified sampling, cluster sampling, bias, observational study, experiment, control group." 
+                },
+                { 
+                    week: 6, 
+                    unit: 6, 
+                    title: "Probability", 
+                    sol: "AFDA.8", // Placeholder SOL
+                    link: "afda-unit-6.html", 
+                    topics: [ 
+                        { name: "Theoretical Probability", focus: "Calculating theoretical probability and understanding sample spaces." }, 
+                        { name: "Event Types", focus: "Defining and identifying complementary, dependent, and independent events." }, 
+                        { name: "Conditional Probability", focus: "Calculating the probability of an event given that another event has occurred." },
+                        { name: "Representing Probability", focus: "Using Venn diagrams and two-way tables to calculate probabilities." }
+                    ], 
+                    essentials: "<strong>Vocabulary:</strong> probability, sample space, event, mutually exclusive, complementary, independent, dependent, conditional probability." 
+                },
+                { 
+                    week: 7, 
+                    unit: 7, 
+                    title: "Permutations & Combinations", 
+                    sol: "AFDA.8", // Placeholder SOL
+                    link: "afda-unit-7.html", 
+                    topics: [ 
+                        { name: "Fundamental Counting Principle", focus: "Using the counting principle to find the number of possible outcomes." }, 
+                        { name: "Permutations", focus: "Calculating the number of arrangements when order matters." }, 
+                        { name: "Combinations", focus: "Calculating the number of selections when order does not matter." },
+                        { name: "Application to Probability", focus: "Using permutations and combinations to solve complex probability problems." }
+                    ], 
+                    essentials: "<strong>Vocabulary:</strong> Fundamental Counting Principle, permutation, combination, factorial." 
+                },
+                { 
+                    week: 8, 
+                    unit: 8, 
+                    title: "The Normal Distribution & Z-Scores", 
+                    sol: "AFDA.7", // Placeholder SOL
+                    link: "afda-unit-8.html", 
+                    topics: [ 
+                        { name: "Normal Distribution", focus: "Identifying the properties of a normal distribution curve." }, 
+                        { name: "The Empirical Rule", focus: "Using the 68-95-99.7 rule to analyze normally distributed data." }, 
+                        { name: "Z-Scores", focus: "Calculating and interpreting the z-score for a data point." },
+                        { name: "Comparing Data", focus: "Using z-scores to compare values from different normally distributed data sets." }
+                    ], 
+                    essentials: "<strong>Vocabulary:</strong> normal distribution, mean, standard deviation, Empirical Rule, z-score, standard normal distribution." 
+                },
+                { 
+                    week: 9, 
+                    title: "SOL Exam Review & Final Exam", 
+                    isReview: true, 
+                    essentials: "Comprehensive review of all AFDA topics in preparation for the Virginia SOL exam." 
                 }
+            ];
+            
+            // Filter out review/exam weeks to only show learning units
+            const unitData = allUnitData.filter(unit => !unit.isReview);
 
-                accordionItem.innerHTML = `
-                    <button class="accordion-header w-full p-6 text-left flex justify-between items-center hover:bg-slate-50 transition-colors">
-                        <h3 class="text-2xl font-bold text-slate-800">Week ${unit.week}: ${unit.title}</h3>
-                        <svg class="w-6 h-6 text-slate-500 accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                    </button>
-                    <div class="accordion-content" style="max-height: 0px;">
-                        ${contentHTML}
-                    </div>
-                `;
-                container.appendChild(accordionItem);
-            });
+            const navContainer = document.getElementById('sidebar-nav');
+            const contentDisplay = document.getElementById('weekly-content-display');
+            const printableContainer = document.getElementById('printable-full-guide');
+            
+            // --- Initialization ---
+            function init() {
+                populateSidebar();
+                populateUnitLinksGrid();
+                populatePrintableVersion();
+                
+                // Display the first week by default
+                if(unitData.length > 0) {
+                    const firstWeek = unitData[0].week;
+                    displayWeekContent(firstWeek);
+                    updateActiveNavLink(firstWeek);
+                }
+            }
 
-            const accordionHeaders = document.querySelectorAll('.accordion-header');
-            accordionHeaders.forEach(header => {
-                header.addEventListener('click', function() {
-                    const content = this.nextElementSibling;
-                    const icon = this.querySelector('.accordion-icon');
-
-                    const isActive = content.style.maxHeight && content.style.maxHeight !== "0px";
-
-                    // Close all accordions
-                    accordionHeaders.forEach(otherHeader => {
-                        otherHeader.nextElementSibling.style.maxHeight = "0px";
-                        otherHeader.querySelector('.accordion-icon').style.transform = 'rotate(0deg)';
+            // --- Populate UI Elements ---
+            function populateSidebar() {
+                unitData.forEach(unit => {
+                    const navLink = document.createElement('a');
+                    navLink.href = '#';
+                    navLink.className = 'nav-link flex items-center gap-4 p-3 rounded-lg transition-colors';
+                    navLink.dataset.week = unit.week;
+                    navLink.innerHTML = `
+                        <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-slate-200 text-slate-600 rounded-full text-xs font-bold nav-link-week">${unit.week}</div>
+                        <div class="flex-grow">
+                            <p class="font-medium text-slate-700 leading-tight nav-link-title">${unit.title}</p>
+                        </div>
+                    `;
+                    navLink.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        displayWeekContent(unit.week);
+                        updateActiveNavLink(unit.week);
                     });
+                    navContainer.appendChild(navLink);
+                });
+            }
 
-                    // If the clicked one was not active, open it
-                    if (!isActive) {
-                        content.style.maxHeight = content.scrollHeight + "px";
-                        icon.style.transform = 'rotate(180deg)';
+            function populateUnitLinksGrid() {
+                const container = document.getElementById('unit-links-container');
+                let allUnits_HTML = '';
+
+                unitData.forEach(unit => {
+                    if (unit.link && unit.unit) {
+                        // Manually map titles since the link text and unit title differ slightly
+                        let linkTitle = unit.title;
+                        if (unit.unit === 1) linkTitle = "Function Families";
+                        if (unit.unit === 3) linkTitle = "Linear Programming";
+                        if (unit.unit === 4) linkTitle = "Bivariate Data";
+                        if (unit.unit === 7) linkTitle = "Counting Methods";
+                        if (unit.unit === 8) linkTitle = "Normal Distribution";
+
+                        const cardHTML = `
+                            <a href="${unit.link}" target="_blank" class="unit-link-card block bg-white p-4 rounded-lg border border-slate-200 hover:border-teal-500 hover:shadow-md transition-all duration-200 group">
+                                <div class="flex items-center gap-4">
+                                    <div class="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-teal-100 text-teal-600 rounded-lg">
+                                        <i class="fas fa-calculator"></i>
+                                    </div>
+                                    <div class="flex-grow">
+                                        <p class="text-xs font-semibold text-slate-500">Unit ${unit.unit}</p>
+                                        <h5 class="font-bold text-slate-800 group-hover:text-teal-600 transition-colors">${linkTitle}</h5>
+                                    </div>
+                                    <div class="ml-auto text-slate-400 group-hover:text-teal-600">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </div>
+                                </div>
+                            </a>
+                        `;
+                        allUnits_HTML += cardHTML;
                     }
                 });
-            });
+
+                container.innerHTML = `
+                    <div class="bg-white p-6 sm:p-8 rounded-xl shadow-lg">
+                        <h2 class="text-3xl font-extrabold text-slate-800 mb-6">Unit Note Guides</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                            ${allUnits_HTML}
+                        </div>
+                    </div>
+                `;
+            }
+
+
+            function generateWeekHTML(unit) {
+                let topicsContent = '';
+                if (unit.topics && unit.topics.length > 0) {
+                    topicsContent = unit.topics.map((topic, index) => `
+                        <div class="topic-item flex items-start gap-4 bg-slate-50 border border-slate-200 rounded-lg p-4">
+                            <div class="flex-shrink-0 w-6 h-6 flex items-center justify-center bg-teal-100 text-teal-700 font-bold rounded-full text-sm">${index + 1}</div>
+                            <div class="flex-grow">
+                                <h4 class="font-bold text-slate-800">${topic.name}</h4>
+                                <p class="text-slate-600 mt-1 text-sm"><strong>Focus:</strong> ${topic.focus}</p>
+                            </div>
+                        </div>
+                    `).join('');
+                } else {
+                    topicsContent = '<p class="text-slate-500">Topics for this week will be added soon.</p>';
+                }
+
+                const solContent = unit.sol ? `
+                    <div class="mb-6">
+                        <h3 class="text-xl font-bold text-slate-700 mb-2">VA SOL Standards</h3>
+                        <p class="bg-indigo-50 text-indigo-800 font-mono py-2 px-4 rounded-md text-sm">${unit.sol}</p>
+                    </div>
+                ` : '';
+
+                const essentialsContent = `
+                    <div class="key-info-box bg-teal-50 border-l-4 border-teal-500 p-4 rounded-r-lg mt-8">
+                        <h4 class="font-bold text-teal-800">Unit Vocabulary</h4>
+                        <div class="text-sm text-teal-900 mt-2">${unit.essentials}</div>
+                    </div>
+                `;
+
+                return `
+                    <div class="bg-white p-6 sm:p-8 rounded-xl shadow-lg">
+                        <div class="border-b border-slate-200 pb-4 mb-6">
+                            <p class="text-sm font-semibold text-teal-600 uppercase">Unit ${unit.unit} &bull; Week ${unit.week}</p>
+                            <h2 class="text-3xl md:text-4xl font-extrabold text-slate-800 mt-1">${unit.title}</h2>
+                        </div>
+                        ${solContent}
+                        <div class="mb-6">
+                            <h3 class="text-xl font-bold text-slate-700 mb-3">Unit Topics</h3>
+                            <div class="space-y-3">
+                                ${topicsContent}
+                            </div>
+                        </div>
+                        ${essentialsContent}
+                    </div>
+                `;
+            }
+
+            function populatePrintableVersion() {
+                let fullHTML = '<h1 class="text-center mb-8">AFDA Full Pacing Guide</h1>';
+                 unitData.forEach(unit => {
+                     fullHTML += `<div class="week-section printable-content">${generateWeekHTML(unit)}</div>`;
+                });
+                printableContainer.innerHTML = fullHTML;
+            }
+
+
+            // --- Event Handlers & State Updaters ---
+            function displayWeekContent(weekNumber) {
+                const unit = allUnitData.find(u => u.week === weekNumber);
+                if (unit) {
+                    contentDisplay.innerHTML = generateWeekHTML(unit);
+                }
+            }
+
+            function updateActiveNavLink(weekNumber) {
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    if (parseInt(link.dataset.week) === weekNumber) {
+                        link.classList.add('active');
+                    } else {
+                        link.classList.remove('active');
+                    }
+                });
+            }
+
+            // --- Run ---
+            init();
         });
     </script>
-
 </body>
-
 </html>
+
