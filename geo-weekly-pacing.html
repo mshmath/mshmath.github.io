@@ -1,383 +1,291 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Geometry Weekly Pacing Guide</title>
+    <title>Geometry Pacing Guide</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        html { scroll-behavior: smooth; }
-        body { 
-            font-family: 'Inter', sans-serif; 
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* slate-50 */
+        }
+        .nav-link.active {
+            background-color: #0d9488; /* teal-600 */
+            color: white;
+            font-weight: 600;
+        }
+        .nav-link.active .nav-link-title {
+            color: white !important;
+        }
+        .nav-link.active .nav-link-week {
+             color: #ccfbf1 !important; /* teal-100 */
+        }
+        .nav-link:not(.active):hover {
             background-color: #f1f5f9; /* slate-100 */
         }
-        .lesson-section { scroll-margin-top: 5rem; }
-        details > summary { list-style: none; }
-        details > summary::-webkit-details-marker { display: none; }
-        .details-arrow { transition: transform 0.2s ease-in-out; }
-        details[open] .details-arrow { transform: rotate(90deg); }
-
-        /* Accordion Icon Transition */
-        .accordion-icon {
-            transition: transform 0.3s ease-in-out;
+        .unit-link-card .fa-arrow-right {
+            transition: transform 0.2s ease-in-out;
         }
-        
-        .non-printable {
-             /* This class is used to hide elements during printing */
+        .unit-link-card:hover .fa-arrow-right {
+            transform: translateX(4px);
         }
 
         /* Print Styles */
         @media print {
-            body {
-                background-color: white;
-                color: black;
-                font-size: 10pt;
-            }
-            header, .non-printable, footer {
-                display: none !important;
-            }
-            main {
-                padding: 0 !important;
-                margin: 0 !important;
-                max-width: 100% !important;
-            }
-            .printable-only {
-                display: block !important;
-            }
-            .accordion-item, .bg-white, .daily-pacing-card, .key-info-box {
+            body { background-color: white; color: black; font-size: 10pt; }
+            header, aside, .non-printable { display: none !important; }
+            main { padding: 0 !important; margin: 0 !important; max-width: 100% !important; }
+            .printable-content { display: block !important; box-shadow: none !important; border: none !important; }
+            .week-section { page-break-before: always; }
+            .week-section:first-child { page-break-before: auto; }
+            h1, h2, h3, h4, p, li, a { color: black !important; }
+            h1 { font-size: 24pt; border-bottom: 2px solid #ccc; padding-bottom: 8px; }
+            h2 { font-size: 18pt; }
+            h3 { font-size: 16pt; }
+            .daily-pacing-card, .key-info-box {
                 box-shadow: none !important;
                 border: 1px solid #ccc !important;
                 page-break-inside: avoid;
             }
-            h1, h2, h3, h4, p, li, a {
-                color: black !important;
-            }
-             h1 { font-size: 22pt; }
-             h2 { font-size: 18pt; }
-             h3 { font-size: 16pt; }
-            .accordion-content {
-                display: block !important;
-                max-height: none !important;
-                padding: 0 !important;
-            }
-            .accordion-header {
-                 display: block !important;
-                 border-bottom: 2px solid #ccc;
-            }
-             .accordion-header h3 {
-                 margin: 0;
-                 padding: 0;
-             }
-            .accordion-icon {
-                display: none !important;
-            }
-            .accordion-inner-content {
-                padding: 1rem !important;
-            }
-            .quick-links-section ul {
-                display: block;
-            }
-             .quick-links-section li {
-                 background-color: #eee !important;
-             }
         }
     </style>
 </head>
-<body class="bg-slate-100 text-slate-800">
+<body class="text-slate-800">
+
+    <!-- Header -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-10 non-printable">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div>
+                    <h1 class="text-2xl font-bold text-slate-800">Geometry Pacing Guide</h1>
+                    <p class="text-sm text-slate-500">A 8-week plan for success.</p>
+                </div>
+                <div class="flex items-center gap-2">
+                    <button onclick="window.print()" class="text-center bg-teal-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-teal-700 transition-colors text-sm flex items-center gap-2">
+                        <i class="fas fa-print"></i> Print Guide
+                    </button>
+                    <a href="blank-taking-notes.html" target="_blank" class="text-center bg-slate-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-slate-700 transition-colors text-sm flex items-center gap-2">
+                        <i class="fas fa-file-pen"></i> Blank Notes
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
 
     <!-- Main Content -->
-    <main class="max-w-4xl mx-auto p-4 sm:p-6 lg:p-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col lg:flex-row lg:gap-8">
 
-        <!-- Introduction & Navigation Card -->
-        <div class="bg-white p-6 rounded-xl shadow-lg mb-12">
-            <h1 class="text-4xl md:text-5xl font-extrabold text-slate-800 text-center mb-4">Geometry Pacing Guide</h1>
-             <p class="text-center text-slate-600 text-lg mb-8">
-                This guide outlines our 8-week plan. Click on any week to see the detailed daily schedule.
-            </p>
-            
-            <div class="border-t border-b border-slate-200 py-6 space-y-6">
-                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <button onclick="window.print()" class="w-full text-center bg-teal-600 text-white font-semibold px-4 py-3 rounded-lg hover:bg-teal-700 transition-colors text-base non-printable">Print Full Pacing Guide</button>
-                    <a href="blank-taking-notes.html" target="_blank" class="block w-full text-center bg-slate-600 text-white font-semibold px-4 py-3 rounded-lg hover:bg-slate-700 transition-colors text-base non-printable">Get Blank Notes Template</a>
+            <!-- Sidebar Navigation -->
+            <aside class="order-2 lg:order-1 lg:w-3/12 xl:w-2/12 py-8 lg:sticky lg:top-20 lg:self-start non-printable">
+                <nav id="sidebar-nav" class="space-y-4"></nav>
+            </aside>
+
+            <!-- Main Display Area -->
+            <main class="order-1 lg:order-2 lg:w-9/12 xl:w-10/12 py-8">
+                <!-- Unit Links Grid -->
+                <div id="unit-links-container" class="mb-8 non-printable">
+                    <!-- Links will be populated by JavaScript -->
                 </div>
+
+                <!-- Separator -->
+                <div class="border-t border-slate-200 my-8 non-printable"></div> 
                 
-                <!-- Quick Links Section -->
-                <div class="bg-slate-50 rounded-lg border border-slate-200 p-4 non-printable">
-                    <h4 class="font-semibold text-slate-700 mb-2">Quick Links to Interactive Unit Notes</h4>
-                     <p class="text-slate-600 mb-4 text-sm">
-                        Click on any unit below to access its interactive notes and quiz.
-                    </p>
-                    <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                        <li><a href="geo-unit1-notes.html" target="_blank" class="block p-2 bg-white hover:bg-teal-50 border border-slate-200 rounded-md text-teal-700 font-semibold transition-colors text-sm">Unit 1: Reasoning & Logic</a></li>
-                        <li><a href="geo-unit2-notes.html" target="_blank" class="block p-2 bg-white hover:bg-teal-50 border border-slate-200 rounded-md text-teal-700 font-semibold transition-colors text-sm">Unit 2: Lines & Angles</a></li>
-                        <li><a href="geo-unit3-notes.html" target="_blank" class="block p-2 bg-white hover:bg-teal-50 border border-slate-200 rounded-md text-teal-700 font-semibold transition-colors text-sm">Unit 3: Graph Transformations</a></li>
-                        <li><a href="geo-unit4-notes.html" target="_blank" class="block p-2 bg-white hover:bg-teal-50 border border-slate-200 rounded-md text-teal-700 font-semibold transition-colors text-sm">Unit 4: Triangles Congruence</a></li>
-                        <li><a href="geo-unit5--notes.html" target="_blank" class="block p-2 bg-white hover:bg-teal-50 border border-slate-200 rounded-md text-teal-700 font-semibold transition-colors text-sm">Unit 5: Similarity & Trig</a></li>
-                        <li><a href="geo-unit6-notes.html" target="_blank" class="block p-2 bg-white hover:bg-teal-50 border border-slate-200 rounded-md text-teal-700 font-semibold transition-colors text-sm">Unit 6: Polygons & Circles</a></li>
-                        <li><a href="geo-unit7-notes.html" target="_blank" class="block p-2 bg-white hover:bg-teal-50 border border-slate-200 rounded-md text-teal-700 font-semibold transition-colors text-sm">Unit 7: 3D Figures</a></li>
-                    </ul>
+                <div class="non-printable">
+                    <h2 class="text-3xl font-extrabold text-slate-800 mb-6">Weekly Pacing Details</h2>
                 </div>
-            </div>
+
+
+                <!-- Weekly Content Display -->
+                <div id="weekly-content-display">
+                    <!-- Content will be populated by JavaScript -->
+                </div>
+                 <!-- Printable Version (Hidden by default) -->
+                <div id="printable-full-guide" class="hidden"></div>
+            </main>
         </div>
-
-        <div class="space-y-4">
-            <!-- Week 1 Accordion -->
-            <div class="accordion-item bg-white rounded-xl shadow-lg overflow-hidden">
-                <button class="accordion-header w-full p-6 text-left flex justify-between items-center hover:bg-slate-50 transition-colors">
-                    <h3 class="text-2xl font-bold text-slate-800">Week 1: Reasoning, Logic & Venn Diagrams</h3>
-                    <svg class="w-6 h-6 text-slate-500 accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                </button>
-                <div class="accordion-content" style="max-height: 0px;">
-                    <div class="accordion-inner-content p-6 border-t border-slate-200">
-                        <!-- Daily Cards for Week 1 -->
-                        <div class="daily-pacing-card bg-slate-50 border border-slate-200 rounded-lg p-4 mb-4">
-                            <h4 class="font-bold text-teal-700">Monday: Conditional Statements & Truth Values</h4>
-                            <ul class="list-disc list-inside text-slate-600 mt-1 text-sm">
-                                <li><strong>Focus:</strong> Intro to propositions, true/false statements.</li>
-                                <li><strong>Activities:</strong> Warm-up, interactive notes, example problems.</li>
-                            </ul>
-                        </div>
-                        <div class="daily-pacing-card bg-slate-50 border border-slate-200 rounded-lg p-4 mb-4">
-                            <h4 class="font-bold text-teal-700">Tuesday: Converse, Inverse, Contrapositive</h4>
-                            <ul class="list-disc list-inside text-slate-600 mt-1 text-sm">
-                                <li><strong>Focus:</strong> Transforming conditional statements.</li>
-                                <li><strong>Activities:</strong> Interactive notes, in-class practice.</li>
-                            </ul>
-                        </div>
-                        <div class="daily-pacing-card bg-slate-50 border border-slate-200 rounded-lg p-4 mb-4">
-                            <h4 class="font-bold text-teal-700">Wednesday: Symbolic Logic</h4>
-                            <ul class="list-disc list-inside text-slate-600 mt-1 text-sm">
-                                <li><strong>Focus:</strong> Translating statements into symbolic form.</li>
-                                <li><strong>Activities:</strong> Interactive notes, IXL/SOL practice.</li>
-                            </ul>
-                        </div>
-                        <div class="daily-pacing-card bg-slate-50 border border-slate-200 rounded-lg p-4 mb-4">
-                            <h4 class="font-bold text-teal-700">Thursday: Venn Diagrams</h4>
-                             <ul class="list-disc list-inside text-slate-600 mt-1 text-sm">
-                                <li><strong>Focus:</strong> Representing set relationships visually.</li>
-                                <li><strong>Activities:</strong> Interactive notes, practice, <strong class="text-red-600">Unit 1 Quiz</strong>.</li>
-                            </ul>
-                        </div>
-                         <div class="key-info-box bg-teal-50 border-l-4 border-teal-500 p-4 rounded-r-lg mt-6">
-                            <h4 class="font-bold text-teal-800">Unit 1 Essentials</h4>
-                            <p class="text-sm text-teal-900 mt-2"><strong>Vocabulary:</strong> conditional, converse, inverse, contrapositive, negation, conjunction, disjunction, Venn diagram.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Week 2 Accordion -->
-            <div class="accordion-item bg-white rounded-xl shadow-lg overflow-hidden">
-                <button class="accordion-header w-full p-6 text-left flex justify-between items-center hover:bg-slate-50 transition-colors">
-                    <h3 class="text-2xl font-bold text-slate-800">Week 2: Lines, Angles, and Parallelism</h3>
-                    <svg class="w-6 h-6 text-slate-500 accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                </button>
-                <div class="accordion-content" style="max-height: 0px;">
-                    <div class="accordion-inner-content p-6 border-t border-slate-200">
-                        <div class="daily-pacing-card bg-slate-50 border border-slate-200 rounded-lg p-4 mb-4">
-                            <h4 class="font-bold text-teal-700">Monday: Parallel Lines & Transversals</h4>
-                            <ul class="list-disc list-inside text-slate-600 mt-1 text-sm">
-                                <li><strong>Focus:</strong> Identifying angles formed by a transversal.</li>
-                                <li><strong>Activities:</strong> Warm-up, interactive notes, examples.</li>
-                            </ul>
-                        </div>
-                        <div class="daily-pacing-card bg-slate-50 border border-slate-200 rounded-lg p-4 mb-4">
-                            <h4 class="font-bold text-teal-700">Tuesday: Angle Relationships</h4>
-                            <ul class="list-disc list-inside text-slate-600 mt-1 text-sm">
-                                <li><strong>Focus:</strong> Alternate interior/exterior, corresponding angles.</li>
-                                <li><strong>Activities:</strong> Interactive notes, in-class practice.</li>
-                            </ul>
-                        </div>
-                        <div class="daily-pacing-card bg-slate-50 border border-slate-200 rounded-lg p-4 mb-4">
-                            <h4 class="font-bold text-teal-700">Wednesday: Proving Lines Parallel</h4>
-                            <ul class="list-disc list-inside text-slate-600 mt-1 text-sm">
-                                <li><strong>Focus:</strong> Using angle relationships to prove parallelism.</li>
-                                <li><strong>Activities:</strong> Interactive notes, IXL/SOL practice.</li>
-                            </ul>
-                        </div>
-                        <div class="daily-pacing-card bg-slate-50 border border-slate-200 rounded-lg p-4 mb-4">
-                            <h4 class="font-bold text-teal-700">Thursday: Problem Solving</h4>
-                             <ul class="list-disc list-inside text-slate-600 mt-1 text-sm">
-                                <li><strong>Focus:</strong> Applying angle relationships to solve problems.</li>
-                                <li><strong>Activities:</strong> Practice, <strong class="text-red-600">Unit 2 Quiz</strong>.</li>
-                            </ul>
-                        </div>
-                         <div class="key-info-box bg-teal-50 border-l-4 border-teal-500 p-4 rounded-r-lg mt-6">
-                            <h4 class="font-bold text-teal-800">Unit 2 Essentials</h4>
-                            <p class="text-sm text-teal-900 mt-2"><strong>Vocabulary:</strong> transversal, alternate interior/exterior, corresponding, same-side interior, parallel.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Week 3 Accordion -->
-             <div class="accordion-item bg-white rounded-xl shadow-lg overflow-hidden">
-                <button class="accordion-header w-full p-6 text-left flex justify-between items-center hover:bg-slate-50 transition-colors">
-                    <h3 class="text-2xl font-bold text-slate-800">Week 3: Transformations & Symmetry</h3>
-                    <svg class="w-6 h-6 text-slate-500 accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                </button>
-                <div class="accordion-content" style="max-height: 0px;">
-                    <div class="accordion-inner-content p-6 border-t border-slate-200">
-                        <div class="daily-pacing-card bg-slate-50 border border-slate-200 rounded-lg p-4 mb-4">
-                            <h4 class="font-bold text-teal-700">Monday: Lines & Point Symmetry</h4>
-                            <ul class="list-disc list-inside text-slate-600 mt-1 text-sm">
-                                <li><strong>Focus:</strong> Intro to types of symmetry.</li>
-                                <li><strong>Activities:</strong> Warm-up, interactive notes, examples.</li>
-                            </ul>
-                        </div>
-                        <div class="daily-pacing-card bg-slate-50 border border-slate-200 rounded-lg p-4 mb-4">
-                            <h4 class="font-bold text-teal-700">Tuesday: Reflections and Rotations</h4>
-                            <ul class="list-disc list-inside text-slate-600 mt-1 text-sm">
-                                <li><strong>Focus:</strong> Reflecting figures across lines and rotating around points.</li>
-                                <li><strong>Activities:</strong> Interactive notes, in-class practice.</li>
-                            </ul>
-                        </div>
-                        <div class="daily-pacing-card bg-slate-50 border border-slate-200 rounded-lg p-4 mb-4">
-                            <h4 class="font-bold text-teal-700">Wednesday: Translations and Dilations</h4>
-                            <ul class="list-disc list-inside text-slate-600 mt-1 text-sm">
-                                <li><strong>Focus:</strong> Sliding and resizing figures.</li>
-                                <li><strong>Activities:</strong> Interactive notes, IXL/SOL practice.</li>
-                            </ul>
-                        </div>
-                        <div class="daily-pacing-card bg-slate-50 border border-slate-200 rounded-lg p-4 mb-4">
-                            <h4 class="font-bold text-teal-700">Thursday: Sequences of Transformations</h4>
-                             <ul class="list-disc list-inside text-slate-600 mt-1 text-sm">
-                                <li><strong>Focus:</strong> Combining multiple transformations.</li>
-                                <li><strong>Activities:</strong> Practice, <strong class="text-red-600">Unit 3 Quiz</strong>.</li>
-                            </ul>
-                        </div>
-                         <div class="key-info-box bg-teal-50 border-l-4 border-teal-500 p-4 rounded-r-lg mt-6">
-                            <h4 class="font-bold text-teal-800">Unit 3 Essentials</h4>
-                            <p class="text-sm text-teal-900 mt-2"><strong>Vocabulary:</strong> symmetry, reflection, rotation, translation, dilation, preimage, image.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Week 4 Accordion -->
-             <div class="accordion-item bg-white rounded-xl shadow-lg overflow-hidden">
-                <button class="accordion-header w-full p-6 text-left flex justify-between items-center hover:bg-slate-50 transition-colors">
-                    <h3 class="text-2xl font-bold text-slate-800">Week 4: Triangles & Congruence</h3>
-                    <svg class="w-6 h-6 text-slate-500 accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                </button>
-                <div class="accordion-content" style="max-height: 0px;">
-                    <div class="accordion-inner-content p-6 border-t border-slate-200">
-                        <!-- Daily Cards for Week 4 -->
-                         <div class="key-info-box bg-teal-50 border-l-4 border-teal-500 p-4 rounded-r-lg mt-6">
-                            <h4 class="font-bold text-teal-800">Unit 4 Essentials</h4>
-                            <p class="text-sm text-teal-900 mt-2"><strong>Vocabulary:</strong> congruent, triangle inequality, SSS, SAS, ASA, AAS, HL.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Week 5 Accordion -->
-             <div class="accordion-item bg-white rounded-xl shadow-lg overflow-hidden">
-                <button class="accordion-header w-full p-6 text-left flex justify-between items-center hover:bg-slate-50 transition-colors">
-                    <h3 class="text-2xl font-bold text-slate-800">Week 5: Similarity & Trigonometry</h3>
-                    <svg class="w-6 h-6 text-slate-500 accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                </button>
-                <div class="accordion-content" style="max-height: 0px;">
-                    <div class="accordion-inner-content p-6 border-t border-slate-200">
-                        <!-- Daily Cards for Week 5 -->
-                         <div class="key-info-box bg-teal-50 border-l-4 border-teal-500 p-4 rounded-r-lg mt-6">
-                            <h4 class="font-bold text-teal-800">Unit 5 Essentials</h4>
-                            <p class="text-sm text-teal-900 mt-2"><strong>Vocabulary:</strong> similar triangles, AA, trigonometry, sine, cosine, tangent, Pythagorean Theorem.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Week 6 Accordion -->
-             <div class="accordion-item bg-white rounded-xl shadow-lg overflow-hidden">
-                <button class="accordion-header w-full p-6 text-left flex justify-between items-center hover:bg-slate-50 transition-colors">
-                    <h3 class="text-2xl font-bold text-slate-800">Week 6: Polygons & Circles</h3>
-                    <svg class="w-6 h-6 text-slate-500 accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                </button>
-                <div class="accordion-content" style="max-height: 0px;">
-                    <div class="accordion-inner-content p-6 border-t border-slate-200">
-                        <!-- Daily Cards for Week 6 -->
-                         <div class="key-info-box bg-teal-50 border-l-4 border-teal-500 p-4 rounded-r-lg mt-6">
-                            <h4 class="font-bold text-teal-800">Unit 6 Essentials</h4>
-                            <p class="text-sm text-teal-900 mt-2"><strong>Vocabulary:</strong> parallelogram, rhombus, trapezoid, sector, arc, inscribed angle, central angle, circle equation.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Week 7 Accordion -->
-             <div class="accordion-item bg-white rounded-xl shadow-lg overflow-hidden">
-                <button class="accordion-header w-full p-6 text-left flex justify-between items-center hover:bg-slate-50 transition-colors">
-                    <h3 class="text-2xl font-bold text-slate-800">Week 7: 3D Figures</h3>
-                    <svg class="w-6 h-6 text-slate-500 accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                </button>
-                <div class="accordion-content" style="max-height: 0px;">
-                    <div class="accordion-inner-content p-6 border-t border-slate-200">
-                        <!-- Daily Cards for Week 7 -->
-                         <div class="key-info-box bg-teal-50 border-l-4 border-teal-500 p-4 rounded-r-lg mt-6">
-                            <h4 class="font-bold text-teal-800">Unit 7 Essentials</h4>
-                            <p class="text-sm text-teal-900 mt-2"><strong>Vocabulary:</strong> surface area, volume, cross-section, prism, pyramid, sphere, scaling, similarity ratio.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Week 8 Accordion -->
-             <div class="accordion-item bg-white rounded-xl shadow-lg overflow-hidden">
-                <button class="accordion-header w-full p-6 text-left flex justify-between items-center hover:bg-slate-50 transition-colors">
-                    <h3 class="text-2xl font-bold text-slate-800">Week 8: Review & Final Exam</h3>
-                    <svg class="w-6 h-6 text-slate-500 accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                </button>
-                <div class="accordion-content" style="max-height: 0px;">
-                    <div class="accordion-inner-content p-6 border-t border-slate-200">
-                         <div class="daily-pacing-card bg-slate-50 border border-slate-200 rounded-lg p-4 mb-4">
-                            <h4 class="font-bold text-teal-700">Monday - Thursday: Comprehensive Review</h4>
-                            <ul class="list-disc list-inside text-slate-600 mt-1 text-sm">
-                                <li><strong>Focus:</strong> Review all units, targeted practice with released SOL test problems, Q&A sessions.</li>
-                                <li><strong>Goal:</strong> Intensive preparation for the Geometry Final exam.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </main>
-
-    <footer class="text-center py-8 text-slate-500 text-sm non-printable">
-        <p>&copy; 2025 Aly Hatfield. All rights reserved.</p>
-    </footer>
+    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const accordionHeaders = document.querySelectorAll('.accordion-header');
+            // All data for the Geometry pacing guide
+            const allUnitData = [
+                { week: 1, unit: 1, title: "Reasoning & Logic", sol: "G.1, G.2", link: "geo-unit1-notes.html", topics: [ { name: "Conditional Statements", focus: "Intro to propositions, truth values, and conditional statements." }, { name: "Converse, Inverse, & Contrapositive", focus: "Transforming conditional statements." }, { name: "Symbolic Logic & Venn Diagrams", focus: "Translating statements and representing set relationships visually." } ], essentials: "<strong>Vocabulary:</strong> conditional, converse, inverse, contrapositive, negation, conjunction, disjunction, Venn diagram." },
+                { week: 2, unit: 2, title: "Lines & Angles", sol: "G.3", link: "geo-unit2-notes.html", topics: [ { name: "Parallel Lines & Transversals", focus: "Identifying angles formed by a transversal (alternate interior/exterior, corresponding)." }, { name: "Proving Lines Parallel", focus: "Using angle relationships to prove parallelism." }, { name: "Angle Problem Solving", focus: "Applying angle relationships to solve algebraic problems." } ], essentials: "<strong>Vocabulary:</strong> transversal, alternate interior/exterior, corresponding, same-side interior, parallel." },
+                { week: 3, unit: 3, title: "Graph Transformations", sol: "G.4", link: "geo-unit3-notes.html", topics: [ { name: "Symmetry, Reflections, & Rotations", focus: "Identifying symmetry and performing reflections and rotations." }, { name: "Translations & Dilations", focus: "Sliding figures (translations) and resizing them (dilations)." }, { name: "Sequences of Transformations", focus: "Combining multiple transformations to map one figure to another." } ], essentials: "<strong>Vocabulary:</strong> symmetry, reflection, rotation, translation, dilation, preimage, image." },
+                { week: 4, unit: 4, title: "Triangles Congruence", sol: "G.5, G.6", link: "geo-unit4-notes.html", topics: [ { name: "Triangle Properties", focus: "Classifying triangles and understanding the Triangle Inequality Theorem." }, { name: "Congruence Postulates (SSS, SAS, ASA)", focus: "Proving triangles congruent using SSS, SAS, and ASA." }, { name: "Congruence Postulates (AAS, HL)", focus: "Proving triangles congruent using AAS and Hypotenuse-Leg (HL)." } ], essentials: "<strong>Vocabulary:</strong> congruent, triangle inequality, SSS, SAS, ASA, AAS, HL." },
+                { week: 5, unit: 5, title: "Similarity & Trig", sol: "G.7, G.8", link: "geometry-unit5-interactive-notes.html", topics: [ { name: "Similar Triangles", focus: "Proving triangles similar using AA, SSS, and SAS similarity." }, { name: "Pythagorean Theorem", focus: "Applying the Pythagorean Theorem and its converse." }, { name: "Intro to Trigonometry", focus: "Defining sine, cosine, and tangent (SOH CAH TOA)." }, { name: "Solving Right Triangles", focus: "Using trig ratios to find missing sides and angles." } ], essentials: "<strong>Vocabulary:</strong> similar triangles, AA, trigonometry, sine, cosine, tangent, Pythagorean Theorem." },
+                { week: 6, unit: 6, title: "Polygons & Circles", sol: "G.9, G.10", link: "geometry-unit6-interactive-notes.html", topics: [ { name: "Properties of Polygons", focus: "Understanding interior/exterior angles of convex polygons." }, { name: "Properties of Quadrilaterals", focus: "Investigating parallelograms, rhombuses, and trapezoids." }, { name: "Circle Properties", focus: "Understanding central angles, inscribed angles, arcs, and sectors." }, { name: "Equation of a Circle", focus: "Writing and graphing the equation of a circle." } ], essentials: "<strong>Vocabulary:</strong> parallelogram, rhombus, trapezoid, sector, arc, inscribed angle, central angle, circle equation." },
+                { week: 7, unit: 7, title: "3D Figures", sol: "G.11, G.12", link: "geometry-unit7-interactive-notes.html", topics: [ { name: "Surface Area", focus: "Calculating the surface area of prisms, pyramids, and spheres." }, { name: "Volume", focus: "Calculating the volume of prisms, pyramids, and spheres." }, { name: "Scaling & Similarity", focus: "Understanding the effects of scaling on surface area and volume." } ], essentials: "<strong>Vocabulary:</strong> surface area, volume, cross-section, prism, pyramid, sphere, scaling, similarity ratio." },
+                { week: 8, title: "Review & Final Exam", isReview: true, essentials: "A comprehensive review and final exam covering all topics from the semester." }
+            ];
+            
+            // Filter out review/exam weeks to only show learning units
+            const unitData = allUnitData.filter(unit => !unit.isReview);
 
-            accordionHeaders.forEach(header => {
-                header.addEventListener('click', function() {
-                    const content = this.nextElementSibling;
-                    const icon = this.querySelector('.accordion-icon');
+            const navContainer = document.getElementById('sidebar-nav');
+            const contentDisplay = document.getElementById('weekly-content-display');
+            const printableContainer = document.getElementById('printable-full-guide');
+            
+            // --- Initialization ---
+            function init() {
+                populateSidebar();
+                populateUnitLinksGrid();
+                populatePrintableVersion();
+                
+                // Display the first week by default
+                if(unitData.length > 0) {
+                    const firstWeek = unitData[0].week;
+                    displayWeekContent(firstWeek);
+                    updateActiveNavLink(firstWeek);
+                }
+            }
 
-                    // Toggle active class for styling
-                    this.classList.toggle('active');
-                    
-                    if (content.style.maxHeight && content.style.maxHeight !== "0px") {
-                        // Collapse
-                        content.style.maxHeight = "0px";
-                        icon.style.transform = 'rotate(0deg)';
-                    } else {
-                        // Expand
-                        content.style.maxHeight = content.scrollHeight + "px";
-                        icon.style.transform = 'rotate(180deg)';
+            // --- Populate UI Elements ---
+            function populateSidebar() {
+                unitData.forEach(unit => {
+                    const navLink = document.createElement('a');
+                    navLink.href = '#';
+                    navLink.className = 'nav-link flex items-center gap-4 p-3 rounded-lg transition-colors';
+                    navLink.dataset.week = unit.week;
+                    navLink.innerHTML = `
+                        <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-slate-200 text-slate-600 rounded-full text-xs font-bold nav-link-week">${unit.week}</div>
+                        <div class="flex-grow">
+                            <p class="font-medium text-slate-700 leading-tight nav-link-title">${unit.title}</p>
+                        </div>
+                    `;
+                    navLink.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        displayWeekContent(unit.week);
+                        updateActiveNavLink(unit.week);
+                    });
+                    navContainer.appendChild(navLink);
+                });
+            }
+
+            function populateUnitLinksGrid() {
+                const container = document.getElementById('unit-links-container');
+                let allUnits_HTML = '';
+
+                unitData.forEach(unit => {
+                    if (unit.link && unit.unit) {
+                        const cardHTML = `
+                            <a href="${unit.link}" target="_blank" class="unit-link-card block bg-white p-4 rounded-lg border border-slate-200 hover:border-teal-500 hover:shadow-md transition-all duration-200 group">
+                                <div class="flex items-center gap-4">
+                                    <div class="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-teal-100 text-teal-600 rounded-lg">
+                                        <i class="fas fa-calculator"></i>
+                                    </div>
+                                    <div class="flex-grow">
+                                        <p class="text-xs font-semibold text-slate-500">Unit ${unit.unit}</p>
+                                        <h5 class="font-bold text-slate-800 group-hover:text-teal-600 transition-colors">${unit.title}</h5>
+                                    </div>
+                                    <div class="ml-auto text-slate-400 group-hover:text-teal-600">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </div>
+                                </div>
+                            </a>
+                        `;
+                        allUnits_HTML += cardHTML;
                     }
                 });
-            });
+
+                container.innerHTML = `
+                    <div class="bg-white p-6 sm:p-8 rounded-xl shadow-lg">
+                        <h2 class="text-3xl font-extrabold text-slate-800 mb-6">Unit Note Guides</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                            ${allUnits_HTML}
+                        </div>
+                    </div>
+                `;
+            }
+
+
+            function generateWeekHTML(unit) {
+                let topicsContent = '';
+                if (unit.topics && unit.topics.length > 0) {
+                    topicsContent = unit.topics.map((topic, index) => `
+                        <div class="topic-item flex items-start gap-4 bg-slate-50 border border-slate-200 rounded-lg p-4">
+                            <div class="flex-shrink-0 w-6 h-6 flex items-center justify-center bg-teal-100 text-teal-700 font-bold rounded-full text-sm">${index + 1}</div>
+                            <div class="flex-grow">
+                                <h4 class="font-bold text-slate-800">${topic.name}</h4>
+                                <p class="text-slate-600 mt-1 text-sm"><strong>Focus:</strong> ${topic.focus}</p>
+                            </div>
+                        </div>
+                    `).join('');
+                } else {
+                    topicsContent = '<p class="text-slate-500">Topics for this week will be added soon.</p>';
+                }
+
+                const solContent = unit.sol ? `
+                    <div class="mb-6">
+                        <h3 class="text-xl font-bold text-slate-700 mb-2">VA SOL Standards</h3>
+                        <p class="bg-indigo-50 text-indigo-800 font-mono py-2 px-4 rounded-md text-sm">${unit.sol}</p>
+                    </div>
+                ` : '';
+
+                const essentialsContent = `
+                    <div classs="key-info-box bg-teal-50 border-l-4 border-teal-500 p-4 rounded-r-lg mt-8">
+                        <h4 class="font-bold text-teal-800">Unit Vocabulary</h4>
+                        <div class="text-sm text-teal-900 mt-2">${unit.essentials}</div>
+                    </div>
+                `;
+
+                return `
+                    <div class="bg-white p-6 sm:p-8 rounded-xl shadow-lg">
+                        <div class="border-b border-slate-200 pb-4 mb-6">
+                            <p class="text-sm font-semibold text-teal-600 uppercase">Unit ${unit.unit} &bull; Week ${unit.week}</p>
+                            <h2 class="text-3xl md:text-4xl font-extrabold text-slate-800 mt-1">${unit.title}</h2>
+                        </div>
+                        ${solContent}
+                        <div class="mb-6">
+                            <h3 class="text-xl font-bold text-slate-700 mb-3">Unit Topics</h3>
+                            <div class="space-y-3">
+                                ${topicsContent}
+                            </div>
+                        </div>
+                        ${essentialsContent}
+                    </div>
+                `;
+            }
+
+            function populatePrintableVersion() {
+                let fullHTML = '<h1 class="text-center mb-8">Geometry Full Pacing Guide</h1>';
+                 unitData.forEach(unit => {
+                     fullHTML += `<div class="week-section printable-content">${generateWeekHTML(unit)}</div>`;
+                });
+                printableContainer.innerHTML = fullHTML;
+            }
+
+
+            // --- Event Handlers & State Updaters ---
+            function displayWeekContent(weekNumber) {
+                const unit = unitData.find(u => u.week === weekNumber) || allUnitData.find(u => u.week === weekNumber);
+                if (unit) {
+                    contentDisplay.innerHTML = generateWeekHTML(unit);
+                }
+            }
+
+            function updateActiveNavLink(weekNumber) {
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    if (parseInt(link.dataset.week) === weekNumber) {
+                        link.classList.add('active');
+                    } else {
+                        link.classList.remove('active');
+                    }
+                });
+            }
+
+            // --- Run ---
+            init();
         });
     </script>
-
 </body>
 </html>
-
-
-
 
