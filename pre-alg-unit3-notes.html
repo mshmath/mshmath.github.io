@@ -1,0 +1,500 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Probability Lesson 1 - Printable Notes</title>
+    <!-- Google Fonts: Poppins (Headers) and Lato (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        /* 1. BASE SETUP */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            line-height: 1.6;
+            background-color: #f8f9fa; /* Light gray background for screen */
+            margin: 0;
+            padding: 0;
+            color: #212529;
+        }
+
+        .page-container {
+            width: 8.5in;
+            min-height: 11in;
+            margin: 20px auto;
+            padding: 0.75in;
+            background-color: #ffffff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            border-radius: 8px;
+        }
+        
+        /* 2. TYPOGRAPHY */
+        h1, h2, h3, h4, math {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: #000;
+            margin-top: 0;
+        }
+
+        h1 {
+            font-size: 28pt;
+            text-align: center;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        
+        h2 {
+            font-size: 18pt;
+            color: #007bff; /* Blue accent */
+            margin-bottom: 10px;
+            margin-top: 24px;
+        }
+        
+        h3 {
+            font-size: 14pt;
+            font-weight: 700;
+            color: #343a40;
+            margin-bottom: 8px;
+        }
+        
+        p, li {
+            font-size: 12pt;
+            margin-bottom: 10px;
+        }
+        
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        li {
+            padding-left: 30px;
+            position: relative;
+            margin-bottom: 12px;
+        }
+        
+        li i {
+            position: absolute;
+            left: 0;
+            top: 5px;
+            color: #007bff;
+            font-size: 16px;
+        }
+        
+        strong {
+            font-weight: 700;
+            color: #000;
+        }
+        
+        /* 3. LAYOUT GRID */
+        .section-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            width: 100%;
+            margin-bottom: 15px;
+            /* Ensure sections don't break across pages */
+            page-break-inside: avoid; 
+        }
+
+        .notes-content {
+            padding-right: 15px;
+        }
+        
+        .notes-lines {
+            --line-height: 28px; /* Control line spacing */
+            min-height: 150px; /* Give some default space */
+            background-image: repeating-linear-gradient(
+                to bottom, 
+                #e0e0e0 0, 
+                #e0e0e0 1px, 
+                transparent 1px, 
+                transparent var(--line-height)
+            );
+            background-size: 100% var(--line-height);
+            border-left: 1px solid #ced4da;
+            padding-left: 15px;
+        }
+        
+        /* 4. CONTENT BLOCKS */
+        .header-block {
+            text-align: left;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+        }
+        
+        .header-block p {
+            font-size: 14pt;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+        }
+
+        .example-box {
+            background-color: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+        
+        .example-box p {
+            margin-bottom: 8px;
+        }
+        
+        .example-box h4 {
+            font-size: 13pt;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+        
+        .example-box .step {
+            font-size: 11pt;
+            color: #495057;
+        }
+        
+        .example-box .blank {
+            display: inline-block;
+            width: 100px;
+            border-bottom: 1px solid #333;
+            margin: 0 5px;
+            height: 16px;
+        }
+
+        /* 5. MATHML STYLES */
+        .formula-container {
+           display: math; 
+           margin: 10px 0;
+           font-size: 1.2em; 
+           color: #000;
+           padding: 10px;
+           background-color: #f8f9fa;
+           border-radius: 4px;
+           border: 1px solid #e0e0e0;
+        }
+         
+         .formula-container math,
+         .formula-container mi,
+         .formula-container mo,
+         .formula-container mn,
+         .formula-container mfrac,
+         .formula-container mtext {
+            font-family: 'Poppins', sans-serif;
+            color: #000;
+            font-weight: 600;
+            font-size: 1em; 
+         }
+         
+         /* New style for inline fractions */
+         math.inline-frac {
+            font-size: 1.1em;
+            vertical-align: -0.2em; /* Adjusted for better line-height */
+            margin: 0 2px;
+         }
+         math.inline-frac mi,
+         math.inline-frac mn,
+         math.inline-frac mfrac {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 1em; /* inherit */
+         }
+         
+         .definition {
+            font-size: 11pt;
+            color: #495057;
+            font-style: italic;
+         }
+         
+         /* 6. PRACTICE SECTION */
+         .practice-section {
+            margin-top: 30px;
+            border-top: 1px solid #ccc;
+            padding-top: 20px;
+         }
+         
+         .practice-grid {
+             display: grid;
+             grid-template-columns: 1fr 1fr 1fr;
+             gap: 20px;
+         }
+         
+         .practice-box {
+            border-radius: 8px;
+            padding: 15px;
+            border: 2px solid;
+         }
+         
+         .practice-box h4 {
+            margin: 0 0 10px 0;
+            padding: 0;
+            font-size: 14pt;
+         }
+         
+         .practice-box p {
+            font-size: 11pt;
+            margin: 0;
+         }
+         
+         /* Color-coded levels */
+         .practice-box.green { border-color: #28a745; }
+         .practice-box.green h4 { color: #28a745; }
+         
+         .practice-box.yellow { border-color: #ffc107; }
+         .practice-box.yellow h4 { color: #ffc107; }
+         
+         .practice-box.red { border-color: #dc3545; }
+         .practice-box.red h4 { color: #dc3545; }
+         
+         /* 7. PRINT STYLES */
+        @media print {
+            body {
+                background-color: #ffffff;
+                margin: 0;
+                padding: 0;
+            }
+            
+            .page-container {
+                width: 100%;
+                min-height: 0;
+                margin: 0;
+                padding: 0;
+                box-shadow: none;
+                border-radius: 0;
+            }
+            
+            @page {
+                margin: 0.75in;
+            }
+            
+            /* Ensure background lines print */
+            .notes-lines {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            
+            .practice-section {
+                 page-break-before: always; /* Start practice on new page if needed */
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="page-container">
+        <!-- Page Header -->
+        <div class="header-block">
+            <p><strong>Lesson 1: What is Probability?</strong></p>
+            <p>Name: _________________________</p>
+        </div>
+
+        <!-- Section 1: What is Probability? -->
+        <div class="section-grid">
+            <div class="notes-content">
+                <h2><i class="fa-solid fa-star"></i> What is Probability?</h2>
+                <ul>
+                    <li><i class="fa-solid fa-check"></i> <strong>Probability:</strong> A number from <strong>0 to 1</strong> that shows how <strong>likely</strong> something is to happen (how good its chance is).</li>
+                    <li><i class="fa-solid fa-circle-xmark"></i> <strong>0 = Impossible</strong> (it will <u>never</u> happen).</li>
+                    <li><i class="fa-solid fa-circle-half-stroke"></i> <strong>0.5 (or <math class="inline-frac"><mfrac><mn>1</mn><mn>2</mn></mfrac></math>) = Equally Likely</strong> (it has a 50/50 chance).</li>
+                    <li><i class="fa-solid fa-circle-check"></i> <strong>1 = Certain</strong> (it will <u>always</u> happen).</li>
+                </ul>
+            </div>
+            <div class="notes-lines">
+                <!-- This div is for notes, lines are drawn by CSS -->
+            </div>
+        </div>
+
+        <!-- Section 2: Two Types -->
+        <div class="section-grid">
+            <div class="notes-content">
+                <h2><i class="fa-solid fa-lightbulb"></i> Two Types of Probability</h2>
+                <div class="example-box" style="background-color: #e6f7ff;">
+                    <h4>Theoretical Probability</h4>
+                    <p>This is what <strong>should</strong> happen based on math. (It's the "perfect world" guess).</p>
+                    <p class="step"><strong>Example:</strong> A coin <strong>should</strong> land on heads <math class="inline-frac"><mfrac><mn>1</mn><mn>2</mn></mfrac></math> of the time.</p>
+                </div>
+                <div class="example-box" style="background-color: #fffbe6;">
+                    <h4>Experimental Probability</h4>
+                    <p>This is what <strong>actually</strong> happens when you do an experiment. (It's what happens in the "real world" when you test it).</p>
+                    <p class="step"><strong>Example:</strong> You flip a coin 10 times and it <strong>actually</strong> lands on heads 4 times.</p>
+                </div>
+            </div>
+            <div class="notes-lines"></div>
+        </div>
+
+        <!-- Section 3: I Do / We Do Theoretical -->
+        <div class="section-grid">
+            <div class="notes-content">
+                <h2><i class="fa-solid fa-calculator"></i> Theoretical Probability</h2>
+                <p><strong>The Formula:</strong></p>
+                <div class="formula-container" style="display: math;">
+                    <math>
+                        <mi>P</mi><mo>(</mo><mi>event</mi><mo>)</mo><mo>=</mo>
+                        <mfrac>
+                            <mrow><mtext># of Favorable Outcomes</mtext></mrow>
+                            <mrow><mtext>Total # of Possible Outcomes</mtext></mrow>
+                        </mfrac>
+                    </math>
+                </div>
+                <p class="definition"><strong>Favorable outcomes:</strong> This is what you <strong>want</strong> to happen (like rolling a 4). It's the "winner" or "target" you're looking for.</p>
+                <p class="definition"><strong>Total possible outcomes:</strong> This is <strong>all</strong> the things that could happen (like rolling 1, 2, 3, 4, 5, or 6). It's every single possibility.</p>
+                
+                <div class="example-box">
+                    <h4>I Do: What is P(rolling a 4) on a 6-sided die?</h4>
+                    <p class="step"><strong>Step 1: Find the "Favorable" number.</strong><br>
+                    How many faces on the die are a "4"? Just one. <br>
+                    So, our favorable number is <strong>1</strong>.</p>
+                    <p class="step"><strong>Step 2: Find the "Total" number.</strong><br>
+                    How many faces are on the die in total? Six (1, 2, 3, 4, 5, 6).<br>
+                    So, our total number is <strong>6</strong>.</p>
+                    <p class="step"><strong>Step 3: Write the fraction.</strong><br>
+                    We write the probability as (Favorable / Total).<br>
+                    The answer is <strong><math class="inline-frac"><mfrac><mn>1</mn><mn>6</mn></mfrac></math></strong>.</p>
+                </div>
+                
+                <div class="example-box">
+                    <h4>We Do: What is P(rolling an even #)? (2, 4, 6)</h4>
+                    <p class="step"><strong>Step 1:</strong> Favorable outcomes? <span class="blank"></span></p>
+                    <p class="step"><strong>Step 2:</strong> Total outcomes? <span class="blank"></span></p>
+                    <p class="step"><strong>Step 3:</strong> Write the fraction: 
+                        <span style="display: inline-flex; flex-direction: column; text-align: center; vertical-align: middle; position: relative; top: 0.1em; margin: 0 8px;">
+                            <span class="blank" style="width: 50px; margin: 0;"></span>
+                            <span style="border-top: 1.5px solid #333; display: block; width: 50px; margin: 2px 0;"></span>
+                            <span class="blank" style="width: 50px; margin: 0;"></span>
+                        </span>
+                    </p>
+                </div>
+            </div>
+            <div class="notes-lines"></div>
+        </div>
+
+        <!-- Section 4: I Do / We Do Experimental -->
+        <div class="section-grid">
+            <div class="notes-content">
+                <h2><i class="fa-solid fa-flask"></i> Experimental Probability</h2>
+                <p><strong>The Formula:</strong></p>
+                <div class="formula-container" style="display: math;">
+                    <math>
+                        <mi>P</mi><mo>(</mo><mi>event</mi><mo>)</mo><mo>=</mo>
+                        <mfrac>
+                            <mrow><mtext># of times event happened</mtext></mrow>
+                            <mrow><mtext>Total # of trials</mtext></mrow>
+                        </mfrac>
+                    </math>
+                </div>
+                <p class="definition"><strong># of times event happened:</strong> How many times your event (like "Heads") <strong>actually</strong> showed up in your experiment.</p>
+                <p class="definition"><strong>Total # of trials:</strong> The <strong>total number of times</strong> you tried the experiment (how many times you flipped the coin, spun the spinner, etc. in total).</p>
+                
+                <div class="example-box">
+                    <h4>I Do: I tossed a coin 20 times. It landed on HEADS 12 times. What is P(Heads)?</h4>
+                    <p class="step"><strong>Step 1: Find the "Happened" number.</strong><br>
+                    How many times did "Heads" happen? The problem says <strong>12</strong> times. This is our top number.</p>
+                    <p class="step"><strong>Step 2: Find the "Total" number.</strong><br>
+                    How many times did we flip the coin in total? The problem says <strong>20</strong> times. This is our bottom number.</p>
+                    <p class="step"><strong>Step 3: Write the fraction.</strong><br>
+                    We write the probability as (Happened / Total).<br>
+                    The answer is <strong><math class="inline-frac"><mfrac><mn>12</mn><mn>20</mn></mfrac></math></strong>.</p>
+                </div>
+                
+                <div class="example-box">
+                    <h4>We Do: I spun a spinner 50 times. It landed on Blue 25 times. What is P(Blue)?</h4>
+                    <p class="step"><strong>Step 1:</strong> Times it happened? <span class="blank"></span></p>
+                    <p class="step"><strong>Step 2:</strong> Total trials? <span class="blank"></span></p>
+                    <p class="step"><strong>Step 3:</strong> Write the fraction: 
+                        <span style="display: inline-flex; flex-direction: column; text-align: center; vertical-align: middle; position: relative; top: 0.1em; margin: 0 8px;">
+                            <span class="blank" style="width: 50px; margin: 0;"></span>
+                            <span style="border-top: 1.5px solid #333; display: block; width: 50px; margin: 2px 0;"></span>
+                            <span class="blank" style="width: 50px; margin: 0;"></span>
+                        </span>
+                    </p>
+                </div>
+            </div>
+            <div class="notes-lines"></div>
+        </div>
+        
+        <!-- Section 5: Online Tools -->
+        <div class="section-grid" style="margin-top: 20px; padding-top: 15px; border-top: 1px solid #ccc; page-break-inside: avoid;">
+            <div class="notes-content">
+                <h2><i class="fa-solid fa-laptop"></i> Online Tools for Experiments</h2>
+                <div class="example-box" style="background-color: #e6f7ff;">
+                    <p>You can use this free website for your experiments! Go to:</p>
+                    <h3 style="text-align: center; color: #0056b3;">toytheater.com/virtual-manipulatives</h3>
+                    <p>On that page, look for the "Probability" section. You can find:</p>
+                    <ul>
+                        <li><i class="fa-solid fa-check"></i> <strong>Dice</strong> (to roll)</li>
+                        <li><i class="fa-solid fa-check"></i> <strong>Spinner</strong> (you can change the sections)</li>
+                        <li><i class="fa-solid fa-check"></i> <strong>Coin Toss</strong> (to flip)</li>
+                        <li><i class="fa-solid fa-check"></i> <strong>Marbles</strong> (to pull from a bag)</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="notes-lines">
+                <!-- Lines for notes about the tools -->
+            </div>
+        </div>
+        
+        <!-- Section 6: Independent Practice -->
+        <!-- This grid wrapper provides the separation and layout -->
+        <div class="section-grid" style="margin-top: 30px; border-top: 1px solid #ccc; padding-top: 20px;">
+            <!-- The content column. Reset margins/padding on the practice-section div itself -->
+            <div class="notes-content practice-section" style="margin-top: 0; border-top: none; padding-top: 0;">
+                <h2><i class="fa-solid fa-pen-ruler"></i> You Do: Independent Practice</h2>
+                <div class="practice-grid">
+                    <div class="practice-box green">
+                        <h4><i class="fa-solid fa-circle"></i> Green Level</h4>
+                        <p>A bag has 3 red marbles and 2 blue marbles. What is the *theoretical* probability of picking a blue marble?</p>
+                    </div>
+                    <div class="practice-box yellow">
+                        <h4><i class="fa-solid fa-circle"></i> Yellow Level</h4>
+                        <p>You roll a die 15 times. You roll a "5" three times. What is the *experimental* probability of rolling a 5? What is the *theoretical* probability?</p>
+                    </div>
+                    <div class="practice-box red">
+                        <h4><i class="fa-solid fa-circle"></i> Red Level</h4>
+                        <p>A spinner has 4 equal sections (A, B, C, D). You spin it 40 times. It lands on A 12 times. Why is the *experimental* probability different from the *theoretical* probability?</p>
+                    </div>
+                </div>
+            </div>
+            <!-- The new notes column -->
+            <div class="notes-lines">
+            </div>
+        </div>
+        
+        <!-- Section 7: Exit Ticket -->
+        <!-- This grid wrapper provides the separation and layout -->
+        <div class="section-grid" style="margin-top: 30px; border-top: 1px solid #ccc; padding-top: 20px;">
+             <!-- The content column. Reset margins/padding on the practice-section div itself -->
+            <div class="notes-content practice-section" style="margin-top: 0; border-top: none; padding-top: 0;">
+                <h2><i class="fa-solid fa-ticket"></i> Exit Ticket</h2>
+                <div class="practice-grid" style="grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <div class="example-box" style="width: 100%; margin: 0;">
+                        <h4>Ticket 1</h4>
+                        <p>What is the *theoretical* probability of rolling a "1" on a 6-sided die?</p>
+                    </div>
+                    <div class="example-box" style="width: 100%; margin: 0;">
+                        <h4>Ticket 2</h4>
+                        <p>A coin is flipped 30 times. It lands on tails 18 times. What is the *experimental* probability of landing on tails?</p>
+                    </div>
+                </div>
+            </div>
+            <!-- The new notes column -->
+            <div class="notes-lines">
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
