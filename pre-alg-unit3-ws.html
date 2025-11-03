@@ -1,0 +1,633 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 1: Probability Practice</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        /* Base styles */
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 850px; /* Adjusted width for single column */
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            overflow: hidden; 
+        }
+
+        .header {
+            padding: 30px 40px;
+            background-color: #5b86e5;
+            color: white;
+            border-bottom: 5px solid #36d1dc;
+            border-radius: 12px 12px 0 0;
+        }
+
+        .header h1 {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            margin: 5px 0 0;
+            opacity: 0.9;
+        }
+
+        /* Single-column section wrapper */
+        .section-wrapper {
+            padding: 25px 40px; /* More horizontal padding */
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .section-wrapper:last-child {
+            border-bottom: none;
+        }
+
+        /* Content styles */
+        h2 {
+            font-family: 'Poppins', sans-serif;
+            color: #1a73e8;
+            font-size: 1.6em;
+            margin-top: 0;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+        }
+        
+        h2 i {
+            margin-right: 12px;
+        }
+
+        h3 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 1.3em;
+            margin-top: 25px;
+        }
+        
+        p, li {
+            font-size: 11pt;
+            margin-bottom: 15px;
+        }
+        
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 10px;
+        }
+        
+        li i {
+            position: absolute;
+            left: 0;
+            top: 5px;
+            color: #1a73e8;
+            font-size: 0.9em;
+        }
+
+        strong {
+            font-weight: 700;
+        }
+        
+        .info-box {
+            font-size: 10pt;
+            background-color: #e6f7ff;
+            border: 1px solid #b3e0ff;
+            border-radius: 8px;
+            padding: 10px 15px;
+            margin-top: 15px;
+        }
+
+        /* Math formula styles */
+         .formula-container {
+            font-size: 1.4em;
+            font-weight: 600;
+            margin: 15px 0;
+            padding: 15px;
+            background-color: #f4f4f4;
+            border-radius: 8px;
+            text-align: center;
+         }
+         
+         .formula-container mfrac,
+         .formula-container mi,
+         .formula-container mn,
+         .formula-container mo,
+         .formula-container mtext {
+            font-family: 'Poppins', sans-serif;
+            color: #000;
+            font-weight: 600;
+            font-size: 1em; 
+         }
+         
+         /* Inline fractions */
+         math.inline-frac {
+            font-size: 1.1em;
+            vertical-align: -0.2em;
+            margin: 0 2px;
+         }
+         math.inline-frac mi,
+         math.inline-frac mn,
+         math.inline-frac mfrac {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 1em;
+         }
+
+        /* Problem/Question Box Styles */
+        .problem-box {
+            margin-top: 20px;
+            padding: 15px 20px;
+            background-color: #f9f9f9;
+            border: 1px solid #e0e0e0;
+            border-left: 5px solid #1a73e8;
+            border-radius: 8px;
+        }
+
+        .problem-box p {
+            margin: 0;
+            font-size: 11pt;
+        }
+        
+        .worked-example {
+            margin-top: 20px;
+            padding: 15px 20px;
+            background-color: #f0fff4; /* Light green */
+            border: 1px solid #c6f6d5; /* Green border */
+            border-left: 5px solid #38a169; /* Darker green left border */
+            border-radius: 8px;
+        }
+        
+        .worked-example p {
+            margin: 0;
+            font-size: 11pt;
+        }
+        
+        .worked-example .step-answer {
+            font-weight: 700;
+            color: #2f855a; /* Dark green answer text */
+        }
+        
+        .problem-box p.step {
+            margin-top: 12px;
+            font-family: 'Lato', sans-serif;
+            font-size: 11pt;
+            color: #333;
+        }
+        
+        /* Blank for answers */
+        .blank {
+            display: inline-block;
+            width: 100px;
+            height: 20px;
+            border-bottom: 1.5px solid #333;
+            margin: 0 5px;
+            vertical-align: -5px;
+        }
+        
+        /* Blank fraction */
+        .blank-frac {
+            display: inline-flex;
+            flex-direction: column;
+            text-align: center;
+            vertical-align: middle;
+            position: relative;
+            top: 0.1em;
+            margin: 0 8px;
+        }
+        .blank-frac .blank {
+            width: 60px;
+            margin: 0;
+        }
+        .blank-frac .frac-bar {
+            border-top: 1.5px solid #333;
+            display: block;
+            width: 60px;
+            margin: 2px 0;
+        }
+        
+        /* Wide blank for text answers */
+        .blank-wide {
+            display: block;
+            width: 100%;
+            height: 25px;
+            border-bottom: 1.5px solid #333;
+            margin-top: 10px;
+        }
+
+        /* Print styles */
+        @media print {
+            body {
+                padding: 0;
+                background-color: #fff;
+                font-size: 10pt; /* Smaller font for printing */
+            }
+
+            .container {
+                box-shadow: none;
+                border-radius: 0;
+                max-width: 100%;
+            }
+            
+            .problem-box {
+                 page-break-inside: avoid;
+            }
+
+            .header {
+                border-radius: 0;
+                padding: 20px;
+                background: #eee; /* No color background */
+                color: #000;
+                border-bottom: 2px solid #ccc;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+                color: #000;
+            }
+            
+            .header p {
+                color: #333;
+                font-size: 1.1em;
+            }
+
+            .section-wrapper {
+                padding: 15px 20px;
+                border-bottom: 1px solid #ccc;
+            }
+            
+            h2 {
+                color: #000;
+                font-size: 1.4em;
+                page-break-after: avoid;
+            }
+            
+            h3 {
+                page-break-after: avoid;
+            }
+            
+            p, li, .problem-box p {
+                font-size: 10pt;
+            }
+            
+            .problem-box {
+                border-left-width: 3px;
+                border-color: #aaa;
+                background-color: #f9f9f9;
+            }
+            
+            /* Hide icons in print */
+            i.fa-solid {
+                color: #000 !important; /* Make icons black */
+            }
+            
+            .info-box {
+                background-color: #f0f0f0;
+                border: 1px solid #ccc;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header class="header">
+            <h1>Lesson 1: Practice Worksheet</h1>
+            <p>Probability & Statistics</p>
+        </header>
+
+        <!-- Section 1: Vocabulary -->
+        <div class="section-wrapper">
+            <h2><i class="fa-solid fa-book-bookmark"></i> Section 1: Vocabulary</h2>
+            
+            <div class="problem-box">
+                <h3>Problem 1: Matching</h3>
+                <p>Match the probability to its meaning. Draw a line to the correct answer.</p>
+            
+                <div style="display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 15px 30px; margin-top: 15px;">
+                    <!-- Column 1 -->
+                    <ul>
+                        <li><strong>A. Probability = 1</strong></li>
+                        <li style="margin-top: 20px;"><strong>B. Probability = 0</strong></li>
+                        <li style="margin-top: 20px;"><strong>C. Probability = <math class="inline-frac"><mfrac><mn>1</mn><mn>2</mn></mfrac></math></strong></li>
+                    </ul>
+                    <!-- Column 2 -->
+                    <ul>
+                        <li>Equally Likely (50/50)</li>
+                        <li style="margin-top: 20px;">Impossible (will not happen)</li>
+                        <li style="margin-top: 20px;">Certain (will always happen)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2: Theoretical Probability -->
+        <div class="section-wrapper">
+            <h2><i class="fa-solid fa-calculator"></i> Section 2: Theoretical Probability</h2>
+            <p>Find the theoretical probability for each problem. Show your steps!</p>
+            
+            <div class="worked-example">
+                <h3><i class="fa-solid fa-star"></i> Worked Example</h3>
+                <p>You flip a coin. <strong>What is P(Heads)?</strong></p>
+                <p class="step"><strong>Step 1: Favorable outcomes?</strong> <span class="step-answer">1</span> (There is one "Heads" side)</p>
+                <p class="step"><strong>Step 2: Total outcomes?</strong> <span class="step-answer">2</span> (There are two sides total: Heads, Tails)</p>
+                <p class="step"><strong>Step 3: Write the fraction:</strong>
+                    <math class="inline-frac">
+                        <mfrac>
+                          <mn>1</mn>
+                          <mn>2</mn>
+                        </mfrac>
+                    </math>
+                </p>
+            </div>
+            
+            <div class="problem-box">
+                <h3>Problem 3: Marbles</h3>
+                <p>A bag has <strong>5 Green</strong> marbles, <strong>3 Red</strong> marbles, and <strong>2 Blue</strong> marbles. <strong>What is P(Green)?</strong></p>
+                <p class="step"><strong>Step 1: Favorable outcomes?</strong> <span class="blank"></span></p>
+                <p class="step"><strong>Step 2: Total outcomes?</strong> (5 + 3 + 2) <span class="blank"></span></p>
+                <p class="step"><strong>Step 3: Write the fraction:</strong>
+                    <span class="blank-frac">
+                        <span class="blank"></span>
+                        <span class="frac-bar"></span>
+                        <span class="blank"></span>
+                    </span>
+                </p>
+            </div>
+            
+            <div class="problem-box">
+                <h3>Problem 4: Spinner</h3>
+                <p>A spinner has 8 equal sections (numbered 1-8). <strong>What is P(spinning an odd number)?</strong> (Odd numbers are 1, 3, 5, 7).</p>
+                <p class="step"><strong>Step 1: Favorable outcomes?</strong> <span class="blank"></span></p>
+                <p class="step"><strong>Step 2: Total outcomes?</strong> <span class="blank"></span></p>
+                <p class="step"><strong>Step 3: Write the fraction:</strong>
+                    <span class="blank-frac">
+                        <span class="blank"></span>
+                        <span class="frac-bar"></span>
+                        <span class="blank"></span>
+                    </span>
+                </p>
+            </div>
+
+            <div class="problem-box">
+                <h3>Problem 5: Deck of Cards</h3>
+                <div class="info-box">
+                    <strong>Card Info:</strong> A standard deck has 52 cards. There are 4 "suits" (Hearts, Diamonds, Clubs, Spades). Hearts and Diamonds are Red. Clubs and Spades are Black. Each suit has 13 cards (A, 2-10, J, Q, K).
+                </div>
+                <p style="margin-top: 10px;"><strong>What is P(drawing a Heart)?</strong></p>
+                <p class="step"><strong>Step 1: Favorable outcomes?</strong> (There are 13 Hearts) <span class="blank"></span></p>
+                <p class="step"><strong>Step 2: Total outcomes?</strong> (Total cards) <span class="blank"></span></p>
+                <p class="step"><strong>Step 3: Write the fraction:</strong>
+                    <span class="blank-frac">
+                        <span class="blank"></span>
+                        <span class="frac-bar"></span>
+                        <span class="blank"></span>
+                    </span>
+                </p>
+            </div>
+
+            <div class="problem-box">
+                <h3>Problem 6: Marbles (Again)</h3>
+                <p>Using the same bag from Problem 3 (<strong>5 Green, 3 Red, 2 Blue</strong>). <strong>What is P(Red <u>or</u> Blue)?</strong></p>
+                <p class="step"><strong>Step 1: Favorable outcomes?</strong> (How many Red? + How many Blue?) <span class="blank"></span></p>
+                <p class="step"><strong>Step 2: Total outcomes?</strong> <span class="blank"></span></p>
+                <p class="step"><strong>Step 3: Write the fraction:</strong>
+                    <span class="blank-frac">
+                        <span class="blank"></span>
+                        <span class="frac-bar"></span>
+                        <span class="blank"></span>
+                    </span>
+                </p>
+            </div>
+
+            <div class="problem-box">
+                <h3>Problem 7: Spinner (Again)</h3>
+                <p>Using the same spinner from Problem 4 (numbered 1-8). <strong>What is P(a number greater than 6)?</strong> (This means P(7 or 8)).</p>
+                <p class="step"><strong>Step 1: Favorable outcomes?</strong> <span class="blank"></span></p>
+                <p class="step"><strong>Step 2: Total outcomes?</strong> <span class="blank"></span></p>
+                <p class="step"><strong>Step 3: Write the fraction:</strong>
+                    <span class="blank-frac">
+                        <span class="blank"></span>
+                        <span class="frac-bar"></span>
+                        <span class="blank"></span>
+                    </span>
+                </p>
+            </div>
+            
+            <div class="problem-box">
+                <h3>Problem 8: Letters</h3>
+                <p>You put tiles for each letter of the word <strong>"STATISTICS"</strong> into a bag. <strong>What is P(picking a "T")?</strong></p>
+                <p class="step"><strong>Step 1: Favorable outcomes?</strong> (Count the "T"s) <span class="blank"></span></p>
+                <p class="step"><strong>Step 2: Total outcomes?</strong> (Count all the letters) <span class="blank"></span></p>
+                <p class="step"><strong>Step 3: Write the fraction:</strong>
+                    <span class="blank-frac">
+                        <span class="blank"></span>
+                        <span class="frac-bar"></span>
+                        <span class="blank"></span>
+                    </span>
+                </p>
+            </div>
+
+            <div class="problem-box">
+                <h3>Problem 9: Letters (Again)</h3>
+                <p>Using the same letters from <strong>"STATISTICS"</strong>. <strong>What is P(picking a vowel)?</strong> (Vowels are A, E, I, O, U).</p>
+                <p class="step"><strong>Step 1: Favorable outcomes?</strong> (Count the vowels: A, I, I) <span class="blank"></span></p>
+                <p class="step"><strong>Step 2: Total outcomes?</strong> (Total letters) <span class="blank"></span></p>
+                <p class="step"><strong>Step 3: Write the fraction:</strong>
+                    <span class="blank-frac">
+                        <span class="blank"></span>
+                        <span class="frac-bar"></span>
+                        <span class="blank"></span>
+                    </span>
+                </p>
+            </div>
+
+            <div class="problem-box">
+                <h3>Problem 10: Deck of Cards (Again)</h3>
+                <p>Using the same deck from Problem 5. <strong>What is P(drawing a Black card)?</strong> (Clubs and Spades are Black).</p>
+                <p class="step"><strong>Step 1: Favorable outcomes?</strong> (13 Clubs + 13 Spades) <span class="blank"></span></p>
+                <p class="step"><strong>Step 2: Total outcomes?</strong> <span class="blank"></span></p>
+                <p class="step"><strong>Step 3: Write the fraction:</strong>
+                    <span class="blank-frac">
+                        <span class="blank"></span>
+                        <span class="frac-bar"></span>
+                        <span class="blank"></span>
+                    </span>
+                </p>
+            </div>
+        </div>
+        
+        <!-- Section 3: Experimental Probability -->
+        <div class="section-wrapper">
+            <h2><i class="fa-solid fa-flask-vial"></i> Section 3: Experimental Probability</h2>
+            <p>Find the experimental probability for each problem. Show your steps!</p>
+            
+            <div class="problem-box">
+                <h3>Problem 11: Coin Toss</h3>
+                <p>You flip a coin <strong>40 times</strong>. It lands on <strong>Tails 22 times</strong>. <strong>What is the <u>experimental</u> P(Tails)?</strong></p>
+                <p class="step"><strong>Step 1: Times it happened?</strong> <span class="blank"></span></p>
+                <p class="step"><strong>Step 2: Total trials?</strong> <span class="blank"></span></p>
+                <p class="step"><strong>Step 3: Write the fraction:</strong>
+                    <span class="blank-frac">
+                        <span class="blank"></span>
+                        <span class="frac-bar"></span>
+                        <span class="blank"></span>
+                    </span>
+                </p>
+            </div>
+            
+            <div class="problem-box">
+                <h3>Problem 12: Rolling a Die</h3>
+                <p>You roll a die <strong>25 times</strong>. You roll a <strong>"6" four times</strong>. <strong>What is the <u>experimental</u> P(6)?</strong></p>
+                <p class="step"><strong>Step 1: Times it happened?</strong> <span class="blank"></span></p>
+                <p class="step"><strong>Step 2: Total trials?</strong> <span class="blank"></span></p>
+                <p class="step"><strong>Step 3: Write the fraction:</strong>
+                    <span class="blank-frac">
+                        <span class="blank"></span>
+                        <span class="frac-bar"></span>
+                        <span class="blank"></span>
+                    </span>
+                </p>
+            </div>
+
+            <div class="problem-box">
+                <h3>Problem 13: Spinner</h3>
+                <p>You spin a spinner <strong>50 times</strong>. The results are: <strong>Red: 20 times, Blue: 10 times, Green: 20 times.</strong></p>
+                <p class="step"><strong>A. What is the <u>experimental</u> P(Red)?</strong>
+                    <span class="blank-frac">
+                        <span class="blank"></span>
+                        <span class="frac-bar"></span>
+                        <span class="blank"></span>
+                    </span>
+                </p>
+                <p class="step"><strong>B. What is the <u>experimental</u> P(Blue)?</strong>
+                    <span class="blank-frac">
+                        <span class="blank"></span>
+                        <span class="frac-bar"></span>
+                        <span class="blank"></span>
+                    </span>
+                </p>
+                <p class="step"><strong>C. What is the <u>experimental</u> P(Green)?</strong>
+                    <span class="blank-frac">
+                        <span class="blank"></span>
+                        <span class="frac-bar"></span>
+                        <span class="blank"></span>
+                    </span>
+                </p>
+            </div>
+
+            <div class="problem-box">
+                <h3>Problem 14: Drawing Marbles</h3>
+                <p>You draw a marble from a bag, record its color, and put it back. You do this <strong>30 times</strong>. You get <strong>12 Red, 10 Blue, and 8 Green</strong>. <strong>What is the <u>experimental</u> P(Blue)?</strong></p>
+                <p class="step"><strong>Step 1: Times it happened?</strong> (How many Blue?) <span class="blank"></span></p>
+                <p class="step"><strong>Step 2: Total trials?</strong> (Total draws) <span class="blank"></span></p>
+                <p class="step"><strong>Step 3: Write the fraction:</strong>
+                    <span class="blank-frac">
+                        <span class="blank"></span>
+                        <span class="frac-bar"></span>
+                        <span class="blank"></span>
+                    </span>
+                </p>
+            </div>
+
+            <div class="problem-box">
+                <h3>Problem 15: Survey</h3>
+                <p>You ask <strong>100 students</strong> what their favorite pet is. <strong>55 said Dog, 30 said Cat, 15 said Other.</strong> Based on this experiment, <strong>what is P(next student prefers Dog)?</strong></p>
+                <p class="step"><strong>Step 1: Times it happened?</strong> (How many said Dog?) <span class="blank"></span></p>
+                <p class="step"><strong>Step 2: Total trials?</strong> (Total students) <span class="blank"></span></p>
+                <p class="step"><strong>Step 3: Write the fraction:</strong>
+                    <span class="blank-frac">
+                        <span class="blank"></span>
+                        <span class="frac-bar"></span>
+                        <span class="blank"></span>
+                    </span>
+                </p>
+            </div>
+            
+            <div class="problem-box">
+                <h3>Problem 16: Weather</h3>
+                <p>A weather app said there was a 20% chance of rain each day. For the <strong>last 10 days</strong>, it <strong>rained on 3</strong> of those days.</p>
+                <p class="step"><strong>A. What was the <u>experimental</u> P(Rain)?</strong>
+                    <span class="blank-frac">
+                        <span class="blank"></span>
+                        <span class="frac-bar"></span>
+                        <span class="blank"></span>
+                    </span>
+                </p>
+                <p class="step"><strong>B. What was the <u>theoretical</u> P(Rain) according to the app?</strong>
+                    (Hint: 20% = <math class="inline-frac"><mfrac><mn>20</mn><mn>100</mn></mfrac></math>)
+                </p>
+            </div>
+
+        </div>
+
+        <!-- Section 4: Comparing -->
+        <div class="section-wrapper">
+            <h2><i class="fa-solid fa-magnifying-glass-chart"></i> Section 4: Think About It</h2>
+            <p>Answer the following questions. Explain your thinking!</p>
+            
+            <div class="problem-box" style="border-left-color: #fbbc05;">
+                <h3>Problem 19: Comparing P(6)</h3>
+                <p>Look back at <strong>Problem 12</strong> (where you rolled a die 25 times and got a "6" four times).</p>
+                
+                <p class="step" style="margin-top: 20px;"><strong>A. What was your <u>experimental</u> P(6)?</strong>
+                    <span class="blank-frac">
+                        <span class="blank"></span>
+                        <span class="frac-bar"></span>
+                        <span class="blank"></span>
+                    </span>
+                </p>
+                
+                <p class="step" style="margin-top: 20px;"><strong>B. What is the <u>theoretical</u> P(6) on a normal die?</strong>
+                    <span class="blank-frac">
+                        <span class="blank"></span>
+                        <span class="frac-bar"></span>
+                        <span class="blank"></span>
+                    </span>
+                </p>
+                
+                <p class="step" style="margin-top: 20px;"><strong>C. Are your answers for A and B the same? Why do you think that is?</strong>
+                    <span class="blank-wide"></span>
+                    <span class="blank-wide"></span>
+                </p>
+            </div>
+            
+            <div class="problem-box" style="border-left-color: #fbbc05;">
+                <h3>Problem 20: Which Spinner is Fair?</h3>
+                <p>A "fair" spinner means all sections are the same size. Two spinners were spun <strong>100 times</strong> each.</p>
+                <ul style="padding-left: 20px; list-style-type: disc;">
+                    <li><strong>Spinner A Results:</strong> Red: 24, Blue: 26, Green: 25, Yellow: 25</li>
+                    <li><strong>Spinner B Results:</strong> Red: 70, Blue: 10, Green: 10, Yellow: 10</li>
+                </ul>
+                <p style="margin-top: 15px;">Which spinner (A or B) is <strong>more likely</strong> to be a fair spinner? Why do you think so?</p>
+                <span class="blank-wide"></span>
+                <span class="blank-wide"></span>
+            </div>
+
+        </div>
+
+    </div> <!-- /container -->
+
+</body>
+</html>
+
