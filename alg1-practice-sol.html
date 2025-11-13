@@ -1,0 +1,1033 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Algebra 1 SOL Practice Test (2023 Standards)</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- MathJax for rendering math equations -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['\\(', '\\)']], // Use \(...\) for inline
+          displayMath: [['\\[', '\\]']], // Use \[...\] for display
+          processEscapes: true,
+          processEnvironments: true
+        },
+        options: {
+          skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+        }
+      };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <style>
+        /* Base font */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f5f7;
+        }
+
+        /* Print-specific styles */
+        @media print {
+            .no-print { display: none; }
+            @page { margin: 0.75in; }
+            body { margin: 0; font-size: 11pt; }
+            #test-container {
+                padding: 0;
+                margin: 0;
+                max-width: 100%;
+                box-shadow: none;
+                border: none;
+            }
+            h1 { font-size: 18pt; }
+            .question-item {
+                page-break-inside: avoid;
+                margin-bottom: 1.25rem;
+            }
+            .question-text { font-size: 12pt; margin-bottom: 0.5rem; }
+            .options-list { list-style-type: upper-alpha; margin-left: 2rem; font-size: 11pt; }
+            /* Hide answer key when printing */
+            #answer-key { display: none; }
+        }
+        
+        /* Style for the answer key */
+        #answer-key {
+            border-top: 2px solid #e2e8f0;
+            margin-top: 3rem;
+            padding-top: 2rem;
+        }
+        #answer-key h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        #answer-key-list {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 0.75rem;
+        }
+        #answer-key-list li {
+            font-size: 0.9rem;
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 0.5rem;
+            border-radius: 0.375rem;
+            font-weight: 500;
+        }
+
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <div id="test-container" class="container mx-auto max-w-4xl p-8 my-10 bg-white rounded-lg shadow-lg">
+
+        <!-- Header with Title and Buttons -->
+        <header class="flex flex-col sm:flex-row justify-between items-center mb-8 pb-4 border-b">
+            <h1 class="text-3xl font-bold text-gray-800 text-center sm:text-left mb-4 sm:mb-0">
+                Dynamic Algebra 1 Practice Test
+            </h1>
+            <div class="no-print flex space-x-3">
+                <button id="generate-btn" class="bg-green-600 text-white py-2 px-4 rounded-lg shadow-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-all">
+                    Generate New Test
+                </button>
+                <button id="print-btn" class="bg-blue-600 text-white py-2 px-4 rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all">
+                    Print Test
+                </button>
+            </div>
+        </header>
+
+        <!-- Loading Spinner -->
+        <div id="loading-spinner" class="text-center py-10 no-print" style="display: none;">
+            <svg class="animate-spin h-10 w-10 text-blue-600 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            <p class="mt-2 text-lg font-medium text-gray-700">Generating new questions...</p>
+        </div>
+
+        <!-- Test Content Area -->
+        <div id="test-content">
+            <!-- Questions will be injected here by JavaScript -->
+        </div>
+
+        <!-- Answer Key Area -->
+        <div id="answer-key" class="no-print">
+            <h2>Answer Key</h2>
+            <ol id="answer-key-list">
+                <!-- Answer key will be injected here -->
+            </ol>
+        </div>
+    </div>
+
+    <!-- Main Test Generation Script -->
+    <script>
+        // --- Utility Functions ---
+        
+        /**
+         * Generates a random integer between min (inclusive) and max (inclusive).
+         * @param {number} min - The minimum value.
+         * @param {number} max - The maximum value.
+         * @param {number[]} [exclude] - An optional array of numbers to exclude.
+         * @returns {number} A random integer.
+         */
+        function getRand(min, max, exclude = []) {
+            let num;
+            do {
+                num = Math.floor(Math.random() * (max - min + 1)) + min;
+            } while (exclude.includes(num));
+            return num;
+        }
+
+        /**
+         * Shuffles an array in place using the Fisher-Yates algorithm.
+         * @param {Array<any>} array - The array to shuffle.
+         * @returns {Array<any>} The shuffled array.
+         */
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        /**
+         * Formats a coefficient for a polynomial (e.g., handles 1, -1, 0).
+         * @param {number} n - The coefficient number.
+         * @param {boolean} [isLeading=false] - Is this the first term?
+         * @returns {string} The formatted coefficient string.
+         */
+        function formatCoeff(n, isLeading = false) {
+            if (n === 0) return "";
+            if (isLeading) {
+                if (n === 1) return "";
+                if (n === -1) return "-";
+                return n;
+            }
+            if (n === 1) return " + ";
+            if (n === -1) return " - ";
+            if (n > 0) return ` + ${n}`;
+            return ` - ${Math.abs(n)}`;
+        }
+
+        // --- Question Generator Functions ---
+        // Each function returns an object:
+        // { question: "string", options: ["A", "B", "C", "D"], answer: "A" }
+
+        function genQ1() {
+            const a = getRand(2, 5);
+            const b = getRand(2, 5);
+            const c = getRand(2, 6);
+            const d = getRand(2, 5);
+            const e = getRand(2, 6);
+            const coeff = a * b - d;
+            const constant = -a * c - d * e;
+            const q = `Which expression is equivalent to \\(${a}(${b}x - ${c}) - ${d}(x + ${e})\\)?`;
+            const ans = `\\(${coeff}x ${constant > 0 ? '+' : '-'} ${Math.abs(constant)}\\)`;
+            const d1 = `\\(${a * b - d}x ${-a * c + d * e > 0 ? '+' : '-'} ${Math.abs(-a * c + d * e)}\\)`; // Sign error on e
+            const d2 = `\\(${a * b + d}x ${-a * c - d * e > 0 ? '+' : '-'} ${Math.abs(-a * c - d * e)}\\)`; // Distrib error on d
+            const d3 = `\\(${a + b - d}x ${-c - e > 0 ? '+' : '-'} ${Math.abs(-c - e)}\\)`; // Bad math
+            return { question: q, options: [ans, d1, d2, d3] };
+        }
+
+        function genQ2() {
+            const r1 = getRand(2, 10) * (getRand(0, 1) ? 1 : -1);
+            const r2 = getRand(2, 10) * (getRand(0, 1) ? 1 : -1);
+            if (r1 === r2 || r1 === -r2) return genQ2(); // Avoid simple cases
+            const b = r1 + r2;
+            const c = r1 * r2;
+            const q = `Which of the following is a factor of \\(x^2 ${formatCoeff(b)}x ${formatCoeff(c)}\\)?`;
+            const ans = `\\((x ${r1 > 0 ? '+' : '-'} ${Math.abs(r1)})\\)`;
+            const d1 = `\\((x ${r2 > 0 ? '+' : '-'} ${Math.abs(r2)})\\)`; // The other factor
+            const d2 = `\\((x ${-r1 > 0 ? '+' : '-'} ${Math.abs(r1)})\\)`; // Sign error
+            const d3 = `\\((x ${-r2 > 0 ? '+' : '-'} ${Math.abs(r2)})\\)`; // Sign error
+            return { question: q, options: [ans, d1, d2, d3] };
+        }
+
+        function genQ3() {
+            const primes = [2, 3, 5, 7];
+            const squares = [4, 9, 16, 25];
+            const p = primes[getRand(0, 3)];
+            const s = squares[getRand(0, 3)];
+            const num = s * p;
+            const s_root = Math.sqrt(s);
+            const q = `What is \\(\\sqrt{${num}}\\) in simplest radical form?`;
+            const ans = `\\(${s_root}\\sqrt{${p}}\\)`
+            const d1 = `\\(${p}\\sqrt{${s_root}}\\)`
+            const d2 = `\\(${s}\\sqrt{${p}}\\)`
+            const d3 = `\\(${num / 2}\\sqrt{2}\\)`
+            return { question: q, options: [ans, d1, d2, d3] };
+        }
+
+        function genQ4() {
+            const a = getRand(3, 7);
+            const b = getRand(2, 10);
+            const c = getRand(2, 5);
+            const d = getRand(2, 10);
+            const q = `What is the solution to \\(${a}x - ${b} = ${c}(x + ${d})\\)?`;
+            const ans = `\\(x = ${ (c*d + b) / (a-c) }\\)`;
+            if (a === c) return genQ4(); // Avoid no solution/infinite
+            const ansVal = (c*d + b) / (a-c);
+            const d1 = `\\(x = ${ (c*d - b) / (a-c) }\\)`;
+            const d2 = `\\(x = ${ (b - c*d) / (a-c) }\\)`;
+            const d3 = `\\(x = ${ (c*d + b) / (a+c) }\\)`;
+            return { question: q, options: [ans, d1, d2, d3] };
+        }
+
+        function genQ5() {
+            const a = getRand(2, 5) * -1;
+            const b = getRand(5, 15);
+            const c = getRand(20, 40);
+            const q = `What is the solution to the inequality \\(${a}x + ${b} < ${c}\\)?`;
+            const ansVal = (c - b) / a;
+            const ans = `\\(x > ${ansVal}\\)`; // Flipped sign
+            const d1 = `\\(x < ${ansVal}\\)`; // Not flipped
+            const d2 = `\\(x > ${ (c+b)/a }\\)`;
+            const d3 = `\\(x < ${ (c-b) / Math.abs(a) }\\)`;
+            return { question: q, options: [ans, d1, d2, d3] };
+        }
+        
+        function genQ6() {
+            const m = getRand(2, 4);
+            const b = getRand(1, 5);
+            const x = getRand(2, 5);
+            const y = m * x + b;
+            const c = getRand(1, 3);
+            const d = getRand(1, 3);
+            const e = c * x + d * y;
+            const q = `What is the solution to this system of equations?
+                        \\[\\begin{cases} y = ${m}x + ${b} \\\\ ${c}x + ${d}y = ${e} \\end{cases}\\]`
+            const ans = `(${x}, ${y})`;
+            const d1 = `(${y}, ${x})`;
+            const d2 = `(${x + 1}, ${y + m})`;
+            const d3 = `(${x - 1}, ${y - m})`;
+            return { question: q, options: [ans, d1, d2, d3] };
+        }
+        
+        function genQ7() {
+            const z1 = getRand(-10, -1);
+            const z2 = getRand(2, 10, [-z1]);
+            const b = -(z1 + z2);
+            const c = z1 * z2;
+            const q = `What are the zeros of the function \\(f(x) = x^2 ${formatCoeff(b)}x ${formatCoeff(c)}\\)?`;
+            const ans = `\\(x = ${z1}\\) and \\(x = ${z2}\\)`;
+            const d1 = `\\(x = ${-z1}\\) and \\(x = ${-z2}\\)`;
+            const d2 = `\\(x = ${z1}\\) and \\(x = ${-z2}\\)`;
+            const d3 = `\\(x = ${b}\\) and \\(x = ${c}\\)`;
+            return { question: q, options: [ans, d1, d2, d3] };
+        }
+
+        function genQ8() {
+            const m = getRand(2, 5);
+            const x1 = getRand(-5, -1);
+            const y1 = getRand(1, 5);
+            const b = y1 - m * x1;
+            const x2 = getRand(2, 5);
+            const y2 = m * x2 + b;
+            const q = `Which equation represents a line that passes through the points \\((${x1}, ${y1})\\) and \\((${x2}, ${y2})\\)?`;
+            const ans = `\\(y = ${m}x + ${b}\\)`;
+            const d1 = `\\(y = ${-m}x + ${y1 - (-m * x1)}\\)`;
+            const d2 = `\\(y = \\frac{1}{${m}}x + ${b}\\)`;
+            const d3 = `\\(y = ${m}x - ${b}\\)`;
+            return { question: q, options: [ans, d1, d2, d3] };
+        }
+
+        function genQ9() {
+            const h = getRand(-5, 5, [0]);
+            const k = getRand(-5, 5, [0]);
+            const q = `The graph of a function \\(f(x) = (x ${formatCoeff(-h)})^2 ${formatCoeff(k)}\\) is a parabola. What is the range of the function?`;
+            const ans = `All real numbers \\(\\ge ${k}\\)`;
+            const d1 = `All real numbers \\(\\le ${k}\\)`;
+            const d2 = `All real numbers \\(\\ge ${h}\\)`;
+            const d3 = `All real numbers`;
+            return { question: q, options: [ans, d1, d2, d3] };
+        }
+
+        function genQ10() {
+            const q1 = getRand(20, 40);
+            const med = getRand(q1 + 5, q1 + 20);
+            const q3 = getRand(med + 5, med + 20);
+            const iqr = q3 - q1;
+            const q = `A data set is summarized by a box-and-whisker plot. The first quartile (Q1) is ${q1}, the median is ${med}, and the third quartile (Q3) is ${q3}. What is the interquartile range (IQR) of the data?`;
+            const ans = `${iqr}`;
+            const d1 = `${med - q1}`;
+            const d2 = `${q3 - med}`;
+            const d3 = `${q3 + q1}`;
+            return { question: q, options: [ans, d1, d2, d3] };
+        }
+        
+        function genQ11() {
+            const a = getRand(2, 4);
+            const b = getRand(2, 4);
+            const c = getRand(2, 4);
+            const p = getRand(2, 3);
+            const q = `Which expression is equivalent to \\((${a}x^${b}y^${c})^${p}\\)?`;
+            const ans = `\\(${Math.pow(a,p)}x^${b*p}y^${c*p}\\)`;
+            const d1 = `\\(${a*p}x^${b*p}y^${c*p}\\)`;
+            const d2 = `\\(${Math.pow(a,p)}x^${b+p}y^${c+p}\\)`;
+            const d3 = `\\(${a}x^${b*p}y^${c*p}\\)`;
+            return { question: q, options: [ans, d1, d2, d3] };
+        }
+
+        function genQ12() {
+            const a = getRand(2, 5);
+            const b = getRand(1, 10);
+            const c = getRand(1, a - 1); // a - c = result
+            const result = a - c;
+            const x1 = b + result;
+            const x2 = b - result;
+            const q = `What is the solution to \\(${a} - |x - ${b}| = ${c}\\)?`;
+            const ans = `\\(x = ${x1}\\) and \\(x = ${x2}\\)`;
+            const d1 = `\\(x = ${x1}\\) only`;
+            const d2 = `\\(x = ${x2}\\) only`;
+            const d3 = `No solution`;
+            return { question: q, options: [ans, d1, d2, d3] };
+        }
+
+        function genQ13() {
+            const a = getRand(2, 4);
+            const b = getRand(2, 5) * -1;
+            const c = getRand(1, 5);
+            const x = getRand(-4, -2);
+            const ansVal = a * (x*x) + b * x + c;
+            const q = `If \\(f(x) = ${a}x^2 ${formatCoeff(b)}x + ${c}\\), what is \\(f(${x})\\)?`;
+            const ans = `${ansVal}`;
+            const d1 = `${a * (x*x) - b * x + c}`; // sign error
+            const d2 = `${a * x + b * x + c}`; // no exponent
+            const d3 = `${a * (x*x) + b * x - c}`; // sign error
+            return { question: q, options: [ans, d1, d2, d3] };
+        }
+
+        function genQ14() {
+            const a = getRand(2, 6);
+            const b = getRand(2, 6);
+            const c = getRand(b*2, b*10);
+            if (c % b !== 0) return genQ14(); // Ensure clean intercept
+            const q = `The equation \\(${a}x + ${b}y = ${c}\\) is rewritten in slope-intercept form. What is the \\(y\\)-intercept?`;
+            const ans = `${c / b}`;
+            const d1 = `${c}`;
+            const d2 = `\\(-\\frac{${a}}{${b}}\\)`
+            const d3 = `${c / a}`;
+            return { question: q, options: [ans, d1, d2, d3] };
+        }
+
+        function genQ15() {
+            const a = 3; // Prime to make it easier
+            const r1 = getRand(2, 6); // (ax - r1)
+            const r2 = getRand(2, 6) * (getRand(0,1) ? 1 : -1); // (x + r2)
+            const b = a * r2 - r1;
+            const c = -r1 * r2;
+            const q = `Which expression is a factor of \\(${a}x^2 ${formatCoeff(b)}x ${formatCoeff(c)}\\)?`;
+            const ans = `\\((${a}x ${-r1 > 0 ? '+' : '-'} ${Math.abs(r1)})\\)`;
+            const d1 = `\\((x ${r2 > 0 ? '+' : '-'} ${Math.abs(r2)})\\)`; // The other factor
+            const d2 = `\\((${a}x ${r1 > 0 ? '+' : '-'} ${Math.abs(r1)})\\)`; // Sign error
+            const d3 = `\\((x ${-r2 > 0 ? '+' : '-'} ${Math.abs(r2)})\\)`; // Sign error
+            return { question: q, options: [ans, d1, d2, d3] };
+        }
+
+        function genQ16() {
+            const mean = getRand(40, 60);
+            const std = getRand(2, 8);
+            const z = getRand(1, 3);
+            const val = mean + z * std;
+            const q = `A data set has a mean of ${mean} and a standard deviation of ${std}. What is the \\(z\\)-score for a data point of ${val}?`;
+            const ans = `${z}`;
+            const d1 = `${-z}`;
+            const d2 = `${val - mean}`;
+            const d3 = `${(val - mean) / (std*std)}`;
+            return { question: q, options: [ans, d1, d2, d3] };
+        }
+        
+        function genQ17() {
+            const a = getRand(1, 5);
+            const b = getRand(1, 5);
+            const c = getRand(1, 5);
+            const d = getRand(1, 5);
+            const e = getRand(1, 5);
+            const f = getRand(1, 5);
+            const x = getRand(-3, 3);
+            const y1 = getRand(1, 5);
+            const y2 = getRand(6, 10);
+            const q = `Which of the following relations is NOT a function?`;
+            const ans = `\\(\\{(${a}, ${b}), (${c}, ${d}), (${x}, ${y1}), (${x}, ${y2})\\}\\)`;
+            const d1 = `\\(\\{(${a}, ${b}), (${c}, ${d}), (${e}, ${f}), (${x}, ${y1})\\}\\)`;
+            const d2 = `\\(\\{(${a}, ${b}), (${c}, ${b}), (${e}, ${b}), (${x}, ${b})\\}\\)`;
+            const d3 = `\\(\\{(${a}, ${b}), (${a+1}, ${c}), (${a+2}, ${d}), (${a+3}, ${e})\\}\\)`;
+            return { question: q, options: [ans, d1, d2, d3] };
+        }
+
+        function genQ18() {
+            const x = getRand(-2, 3, [0]);
+            const y = getRand(-2, 3, [0]);
+            const a = getRand(2, 5);
+            const b = getRand(2, 5);
+            const c = getRand(2, 5);
+            const d = getRand(2, 5);
+            if (a*d === b*c) return genQ18(); // no parallel
+            const e = a * x + b * y;
+            const f = c * x + d * y;
+            const q = `What is the solution to the system: 
+                        \\[\\begin{cases} ${a}x + ${b}y = ${e} \\\\ ${c}x + ${d}y = ${f} \\end{cases}\\]`;
+            const ans = `(${x}, ${y})`;
+            const d1 = `(${x + 1}, ${y - 1})`;
+            const d2 = `(${x - 1}, ${y + 1})`;
+            const d3 = `(${y}, ${x})`;
+            return { question: q, options: [ans, d1, d2, d3] };
+        }
+        
+        function genQ19() {
+            const rateD = getRand(20, 50);
+            const rateM = (getRand(10, 30) / 100).toFixed(2);
+            const d = getRand(2, 5);
+            const m = getRand(100, 300);
+            const cost = rateD * d + rateM * m;
+            const q = `The cost, \\(C\\), of renting a car is given by the formula \\(C = ${rateD}d + ${rateM}m\\), where \\(d\\) is the number of days and \\(m\\) is the number of miles driven. What is the cost of renting a car for ${d} days and driving ${m} miles?`;
+            const ans = `\\$${cost.toFixed(2)}`;
+            const d1 = `\\$${(rateD * d).toFixed(2)}`;
+            const d2 = `\\$${(rateM * m).toFixed(2)}`;
+            const d3 = `\\$${(rateD * m + rateM * d).toFixed(2)}`;
+            return { question: q, options: [ans, d1, d2, d3] };
+        }
+
+        function genQ20() {
+            const cubes = [8, 27, 64];
+            const primes = [2, 3, 5];
+            const c = cubes[getRand(0, 2)];
+            const p = primes[getRand(0, 2)];
+            const num = c * p;
+            const q = `What is \\(\\sqrt[3]{${num}}\\) in simplest radical form?`;
+            const ans = `\\(${Math.cbrt(c)}\\sqrt[3]{${p}}\\)`
+            const d1 = `\\(${p}\\sqrt[3]{${Math.cbrt(c)}}\\)`
+            const d2 = `\\(${c / 2}\\sqrt[3]{2}\\)`
+            const d3 = `\\(${Math.cbrt(c)}\\sqrt{${p}}\\)`
+            return { question: q, options: [ans, d1, d2, d3] };
+        }
+
+        function genQ21() {
+            const a = getRand(2, 6);
+            const b = getRand(2, 6) * -1;
+            const c = getRand(1, 5);
+            const d = getRand(1, 5);
+            const e = getRand(1, 5);
+            const f = getRand(1, 5) * -1;
+            const q = `Which expression is equivalent to \\((${a}x^2 ${formatCoeff(b)}x + ${c}) - (${d}x^2 ${formatCoeff(e)}x ${formatCoeff(f)})\\)?`;
+            const ans = `\\(${a-d}x^2 ${formatCoeff(b-e)}x ${formatCoeff(c-f)}\\)`;
+            const d1 = `\\(${a-d}x^2 ${formatCoeff(b+e)}x ${formatCoeff(c+f)}\\)`; // Forget to distribute negative
+            const d2 = `\\(${a+d}x^2 ${formatCoeff(b+e)}x ${formatCoeff(c+f)}\\)`;
+            const d3 = `\\(${a-d}x^2 ${formatCoeff(b-e)}x ${formatCoeff(c+f)}\\)`;
+            return { question: q, options: [ans, d1, d2, d3] };
+        }
+
+        function genQ22() {
+            const m = getRand(-3, 3, [0]); // Can be positive or negative slope
+            const b = getRand(-3, 3, [0, 1, -1]); // Exclude 0, 1, -1 to ensure a whole number
+            const inequalities = ['<', '>', '\\le', '\\ge'];
+            const inequality = inequalities[getRand(0, 3)];
+
+            const lineType = (inequality === '<' || inequality === '>') ? "dashed" : "solid";
+            const shadeDir = (inequality === '<' || inequality === '\\le') ? "below" : "above";
+
+            const q = `Which graph best represents the solution to the inequality \\(y ${inequality} ${formatCoeff(m, true)}x ${formatCoeff(b)}\\)?`;
+            
+            const y_int = b;
+            const pt1 = m * 1 + b;
+            
+            const ans = `A ${lineType} line through (0, ${y_int}) and (1, ${pt1}), shaded ${shadeDir}.`;
+            const d1 = `A ${lineType === 'dashed' ? 'solid' : 'dashed'} line through (0, ${y_int}) and (1, ${pt1}), shaded ${shadeDir}.`; // Wrong line type
+            const d2 = `A ${lineType} line through (0, ${y_int}) and (1, ${pt1}), shaded ${shadeDir === 'above' ? 'below' : 'above'}.`; // Wrong shading
+            const d3 = `A ${lineType === 'dashed' ? 'solid' : 'dashed'} line through (0, ${y_int}) and (1, ${pt1}), shaded ${shadeDir === 'above' ? 'below' : 'above'}.`; // Both wrong
+
+            return { question: q, options: [ans, d1, d2, d3] };
+        }
+        
+        function genQ23() {
+            const z1 = getRand(-5, -1);
+            const z2 = getRand(2, 8, [-z1]);
+            const b = -(z1 + z2);
+            const c = -(z1 * z2);
+            const q = `What are the solutions to \\(x^2 ${formatCoeff(b)}x = ${c}\\)?`;
+            const ans = `\\(x = ${z1}\\) and \\(x = ${z2}\\)`;
+            const d1 = `\\(x = ${-z1}\\) and \\(x = ${-z2}\\)`;
+            const d2 = `\\(x = ${z1}\\) and \\(x = ${-z2}\\)`;
+            const d3 = `\\(x = ${-z1}\\) and \\(x = ${z2}\\)`;
+            return { question: q, options: [ans, d1, d2, d3] };
+        }
+        
+        function genQ24() {
+            const k = getRand(2, 8);
+            const x1 = getRand(2, 10);
+            const y1 = k * x1;
+            const x2 = getRand(x1 + 1, 20);
+            const y2 = k * x2;
+            const q = `The variable \\(y\\) varies directly as \\(x\\). If \\(y = ${y1}\\) when \\(x = ${x1}\\), what is the value of \\(y\\) when \\(x = ${x2}\\)?`;
+            const ans = `${y2}`;
+            const d1 = `${k}`;
+            const d2 = `${y1 / x2}`;
+            const d3 = `${x2 / k}`;
+            return { question: q, options: [ans, d1, d2, d3] };
+        }
+
+        function genQ25() {
+            // Domain/Range from a discrete set of points
+            const d1 = getRand(-5, -1);
+            const d2 = getRand(0, 2);
+            const d3 = getRand(3, 5);
+            const r1 = getRand(-5, -1);
+            const r2 = getRand(0, 2);
+            const r3 = getRand(3, 5);
+            const r4 = getRand(6, 9);
+            const q = `What is the domain of the relation given by the set of points \\(\\{(${d1}, ${r1}), (${d2}, ${r2}), (${d3}, ${r3}), (${d1}, ${r4})\\}\\)?`;
+            const ans = `\\(\\{${d1}, ${d2}, ${d3}\\}\\)`;
+            const d1_opt = `\\(\\{${r1}, ${r2}, ${r3}, ${r4}\\}\\)`; // This is the range
+            const d2_opt = `\\(\\{${d1}, ${d2}, ${d3}, ${d1}\\}\\)`; // Repeats d1
+            const d3_opt = `All real numbers`;
+            return { question: q, options: [ans, d1_opt, d2_opt, d3_opt] };
+        }
+
+        function genQ26() {
+            // Simple word problem -> equation
+            const initial = getRand(20, 50);
+            const rate = getRand(5, 15);
+            const q = `A plumber charges a \\$${initial} service fee plus \\$${rate} per hour of work. Which equation represents the total cost, \\(C\\), for \\(h\\) hours of work?`;
+            const ans = `\\(C = ${rate}h + ${initial}\\)`;
+            const d1 = `\\(C = ${initial}h + ${rate}\\)`; // Flipped
+            const d2 = `\\(C = ${initial} + ${rate} + h\\)`; // Added
+            const d3 = `\\(C = ${initial} - ${rate}h\\)`; // Subtracted
+            return { question: q, options: [ans, d1, d2, d3] };
+        }
+
+        function genQ27() {
+            // Identify x-intercept from standard form
+            const a = getRand(2, 5);
+            const c = getRand(2, 5);
+            const val = getRand(10, 30);
+            if (val % a !== 0 || val % c !== 0) return genQ27(); // ensure clean intercepts
+            const x_int = val / a;
+            const y_int = val / c;
+            
+            const q = `What is the \\(x\\)-intercept of the line \\(${a}x + ${c}y = ${val}\\)?`;
+            const ans = `(${x_int}, 0)`;
+            const d1 = `(${y_int}, 0)`;
+            const d2 = `(0, ${y_int})`; // y-intercept
+            const d3 = `(0, ${x_int})`;
+            return { question: q, options: [ans, d1, d2, d3] };
+        }
+
+        function genQ28() {
+            const m_num = 1;
+            const m_den = getRand(2, 5);
+            const m_perp = -m_den;
+            const x1 = getRand(1, 3);
+            const y1 = getRand(1, 5);
+            const b_perp = y1 - m_perp * x1;
+            const q = `Which equation represents a line perpendicular to \\(y = \\frac{${m_num}}{${m_den}}x - ${getRand(1,5)}\\) that passes through the point \\((${x1}, ${y1})\\)?`;
+            const ans = `\\(y = ${m_perp}x ${formatCoeff(b_perp)}\\)`;
+            const d1 = `\\(y = \\frac{${m_num}}{${m_den}}x ${formatCoeff(y1 - (m_num/m_den)*x1)}\\)`; // Parallel
+            const d2 = `\\(y = ${m_den}x ${formatCoeff(y1 - m_den*x1)}\\)`; // Reciprocal, not negative
+            const d3 = `\\(y = ${m_perp}x ${formatCoeff(-b_perp)}\\)`; // Sign error on b
+            return { question: q, options: [ans, d1, d2, d3] };
+        }
+        
+        function genQ29() {
+            const a = getRand(2, 4);
+            const h = getRand(-5, 5, [0, 1, -1]); // Exclude 0, 1, -1 to ensure a whole number
+            const k = getRand(-5, 5, [0, 1, -1]); // Exclude 0, 1, -1 to ensure a whole number
+            const q = `What is the vertex of the parabola \\(y = ${a}(x ${formatCoeff(-h)})^2 ${formatCoeff(k)}\\)?`;
+            const ans = `(${h}, ${k})`;
+            const d1 = `(${-h}, ${k})`;
+            const d2 = `(${h}, ${-k})`;
+            const d3 = `(${k}, ${h})`;
+            return { question: q, options: [ans, d1, d2, d3] };
+        }
+
+        function genQ30() {
+            // (2x - 1)(x + 3) = 2x^2 + 6x - x - 3 = 2x^2 + 5x - 3. Zeros: 1/2, -3
+            const a = 2;
+            const z1_num = 1;
+            const z1_den = 2; // (2x - 1)
+            const z2 = getRand(-4, -2); // (x + 3)
+            const b = a * z2 - z1_num;
+            const c = -z1_num * z2;
+            const q = `Which is a solution to \\(${a}x^2 ${formatCoeff(b)}x ${formatCoeff(c)} = 0\\)?`;
+            const ans = `\\(x = \\frac{1}{2}\\)`;
+            const d1 = `\\(x = ${z2}\\)`;
+            const d2 = `\\(x = -\\frac{1}{2}\\)`;
+            const d3 = `\\(x = ${-z2}\\)`;
+            return { question: q, options: [ans, d1, d2, d3] };
+        }
+
+        function genQ31() {
+            const q = `The formula for the volume of a cone is \\(V = \\frac{1}{3}\\pi r^2 h\\). Which equation is solved for \\(h\\)?`;
+            const ans = `\\(h = \\frac{3V}{\\pi r^2}\\)`;
+            const d1 = `\\(h = \\frac{V}{3\\pi r^2}\\)`;
+            const d2 = `\\(h = 3V\\pi r^2\\)`;
+            const d3 = `\\(h = \\frac{3\\pi V}{r^2}\\)`;
+            return { question: q, options: [ans, d1, d2, d3] };
+        }
+
+        function genQ32() {
+            const p0 = getRand(4000, 6000);
+            const r = (getRand(2, 4) / 100).toFixed(2); // 2-4%
+            const t = [0, 5, 10, 15, 20];
+            const data = t.map(year => {
+                let pop = p0 * Math.pow(1 + parseFloat(r), year);
+                return `(${2000+year}, ${Math.round(pop)})`
+            }).join(', ');
+            const q = `The data below shows the population of a town over time. Which type of function would best model this data?
+                        <br>{ ${data} }`; // Removed MathJax \\(\\{...\\}\\)
+            const ans = `Exponential`;
+            const d1 = `Linear`;
+            const d2 = `Quadratic`;
+            const d3 = `Constant`;
+            return { question: q, options: [ans, d1, d2, d3] };
+        }
+
+        function genQ33() {
+            const a = getRand(4, 7);
+            const b = getRand(1, 3);
+            const c = a - 2; // 2
+            const d = getRand(5, 12);
+            // 5(x+1) <= 3x + 11
+            // 5x+5 <= 3x + 11
+            // 2x <= 6 -> x <= 3
+            const ansVal = (d - (a*b)) / (a - c);
+            const q = `What is the solution to \\(${a}(x + ${b}) \\le ${c}x + ${d}\\)?`;
+            const ans = `\\(x \\le ${ansVal}\\)`;
+            const d1 = `\\(x \\ge ${ansVal}\\)`;
+            const d2 = `\\(x \\le ${ (d - (a*b)) / (a+c) }\\)`;
+            const d3 = `\\(x \\le ${ (d + (a*b)) / (a-c) }\\)`;
+            return { question: q, options: [ans, d1, d2, d3] };
+        }
+
+        function genQ34() {
+            const a = getRand(3, 7);
+            const b = getRand(2, 5) * -1;
+            const c = getRand(1, 4);
+            const d = getRand(b+3, 8);
+            const q = `Which expression is equivalent to \\((x^${a}y^{${b}}) \\cdot (x^${c}y^${d})\\)?`;
+            const ans = `\\(x^${a+c}y^${b+d}\\)`;
+            const d1 = `\\(x^${a*c}y^${b*d}\\)`;
+            const d2 = `\\(x^${a+c}y^${b-d}\\)`;
+            const d3 = `\\(x^${a-c}y^${b+d}\\)`;
+            return { question: q, options: [ans, d1, d2, d3] };
+        }
+        
+        function genQ35() {
+            // -10 < 3x + 2 <= 14
+            // -12 < 3x <= 12
+            // -4 < x <= 4
+            const a = getRand(2, 4);
+            const b = getRand(1, 5);
+            const r1 = getRand(5, 10);
+            const r2 = getRand(15, 25);
+            const l = -r1;
+            const q = `Which value of \\(x\\) is in the solution set of \\(${l} < ${a}x + ${b} \\le ${r2}\\)?`;
+            const left = (l - b) / a;
+            const right = (r2 - b) / a;
+            const ans = `${Math.floor(right)}`;
+            const d1 = `${Math.ceil(right) + 1}`;
+            const d2 = `${Math.floor(left) - 1}`;
+            const d3 = `${Math.ceil(left) - 1}`;
+            return { question: q, options: [ans, d1, d2, d3] };
+        }
+
+        function genQ36() {
+            const w = getRand(3, 8);
+            const diff = getRand(2, 5);
+            const l = w + diff;
+            const area = w * l;
+            const q = `The length of a rectangle is ${diff} inches more than its width. If the area is ${area} square inches, what is the width?`;
+            const ans = `${w} inches`;
+            const d1 = `${l} inches`;
+            const d2 = `${w + 1} inches`;
+            const d3 = `${diff} inches`;
+            return { question: q, options: [ans, d1, d2, d3] };
+        }
+
+        function genQ37() {
+            // y = x^2 - 8x + 11
+            // h = -b/2a = -(-8)/2 = 4
+            // k = 16 - 32 + 11 = -5
+            const a = 1;
+            const b = getRand(2, 6) * -2; // even b
+            const c = getRand(5, 15);
+            const h = -b / (2*a);
+            const k = a*h*h + b*h + c;
+            const q = `What is the vertex of the parabola \\(y = x^2 ${formatCoeff(b)}x + ${c}\\)?`;
+            const ans = `(${h}, ${k})`;
+            const d1 = `(${-h}, ${k})`;
+            const d2 = `(${h}, ${-k})`;
+            const d3 = `(${-b}, ${c})`;
+            return { question: q, options: [ans, d1, d2, d3] };
+        }
+
+        function genQ38() {
+            const val = getRand(20000, 30000);
+            const rate = getRand(8, 15);
+            const r = rate / 100;
+            const b = 1 - r;
+            const q = `A car purchased for \\$${val.toLocaleString()} depreciates at a rate of ${rate}% per year. Which function models the value of the car, \\(V\\), after \\(t\\) years?`;
+            const ans = `\\(V(t) = ${val}(${b})^t\\)`;
+            const d1 = `\\(V(t) = ${val}(${r})^t\\)`;
+            const d2 = `\\(V(t) = ${val}(${1+r})^t\\)`;
+            const d3 = `\\(V(t) = ${val} - ${r}t\\)`;
+            return { question: q, options: [ans, d1, d2, d3] };
+        }
+
+        function genQ39() {
+            const base = getRand(10, 20);
+            const set = `\\(\\{${base}, ${base+2}, ${base+3}, ${base+5}, ${base+7}, ${base*10}\\}\\)`;
+            const q = `Which of the following data sets is most likely to have a larger mean than median?`;
+            const ans = set; // Skewed right
+            const d1 = `\\(\\{${base*10}, ${base*10-7}, ${base*10-5}, ${base*10-3}, ${base*10-2}, ${base}\\}\\)`; // Skewed left
+            const d2 = `\\(\\{${base}, ${base+2}, ${base+4}, ${base+6}, ${base+8}, ${base+10}\\}\\)`; // Symmetric
+            const d3 = `\\(\\{${base}, ${base}, ${base}, ${base}, ${base}, ${base}\\}\\)`; // No variance
+            return { question: q, options: [ans, d1, d2, d3] };
+        }
+
+        function genQ40() {
+            const a = getRand(2, 3);
+            const b = getRand(-4, 4, [0]); // Allow b to be positive or negative
+            const c = getRand(-5, 5, [0]); // Allow c to be positive or negative
+            
+            const q = `What are the approximate solutions to \\(${a}x^2 ${formatCoeff(b)}x ${formatCoeff(c)} = 0\\)?`;
+
+            // Calculate the discriminant
+            const disc = b*b - 4*a*c;
+
+            let ans = "";
+            let d1 = "";
+            let d2 = "";
+            let d3 = "";
+
+            if (disc < 0) {
+                // Case 1: No real solution
+                ans = "No real solution";
+                
+                // Create plausible-looking distractors based on the absolute value
+                const fake_disc_sqrt = Math.sqrt(Math.abs(disc));
+                const x_fake_1 = (-b + fake_disc_sqrt) / (2*a);
+                const x_fake_2 = (-b - fake_disc_sqrt) / (2*a);
+                
+                d1 = `\\(x \\approx ${x_fake_1.toFixed(2)}\\) and \\(x \\approx ${x_fake_2.toFixed(2)}\\)`;
+                d2 = `\\(x = ${-c / a}\\)`; // A simple, incorrect guess
+                d3 = `\\(x = ${-b / a}\\)`; // Another simple, incorrect guess
+                
+            } else {
+                // Case 2: Real solutions exist
+                const x1 = (-b + Math.sqrt(disc)) / (2*a);
+                const x2 = (-b - Math.sqrt(disc)) / (2*a);
+                
+                ans = `\\(x \\approx ${x1.toFixed(2)}\\) and \\(x \\approx ${x2.toFixed(2)}\\)`;
+                
+                // Distractor 1 (sign error on b)
+                d1 = `\\(x \\approx ${(b + Math.sqrt(disc)) / (2*a)}\\)`; 
+                
+                // Distractor 2 (forgot 2a)
+                d2 = `\\(x \\approx ${(-b + Math.sqrt(disc)) / a}\\)`; 
+                
+                // Distractor 3 (sign error on 4ac, but we must avoid NaN)
+                const fake_disc_d3 = Math.abs(b*b + 4*a*c); // Use Math.abs to prevent NaN
+                d3 = `\\(x \\approx ${(-b + Math.sqrt(fake_disc_d3)) / (2*a)}\\)`;
+            }
+
+            return { question: q, options: [ans, d1, d2, d3] };
+        }
+        
+        function genQ41() {
+            const a = getRand(2, 10);
+            const q = `What is the domain of the function \\(f(x) = \\sqrt{x - ${a}}\\)?`;
+            const ans = `\\(x \\ge ${a}\\)`;
+            const d1 = `\\(x \\le ${a}\\)`;
+            const d2 = `\\(x \\ge 0\\)`;
+            const d3 = `All real numbers`;
+            return { question: q, options: [ans, d1, d2, d3] };
+        }
+
+        function genQ42() {
+            // a + c = total
+            // Pa*a + Pc*c = revenue
+            const Pa = 12;
+            const Pc = 8;
+            const a = getRand(80, 120);
+            const c = getRand(50, 70);
+            const total = a + c;
+            const revenue = Pa * a + Pc * c;
+            const q = `A movie theater sells adult tickets for \\$${Pa} and child tickets for \\$${Pc}. On a day, ${total} tickets were sold for a total of \\$${revenue.toLocaleString()}. How many adult tickets were sold?`;
+            const ans = `${a}`;
+            const d1 = `${c}`;
+            const d2 = `${a + 10}`;
+            const d3 = `${c - 10}`;
+            return { question: q, options: [ans, d1, d2, d3] };
+        }
+
+        function genQ43() {
+            const a = getRand(2, 7);
+            const b = getRand(2, 7, [a]);
+            const q = `Which expression is equivalent to \\(${a*a}x^2 - ${b*b}y^2\\)?`;
+            const ans = `\\((${a}x - ${b}y)(${a}x + ${b}y)\\)`;
+            const d1 = `\\((${a}x - ${b}y)(${a}x - ${b}y)\\)`;
+            const d2 = `\\((${a}x + ${b}y)(${a}x + ${b}y)\\)`;
+            const d3 = `\\((${a*a}x - ${b*b}y)(x + y)\\)`;
+            return { question: q, options: [ans, d1, d2, d3] };
+        }
+        
+        function genQ44() {
+            const m = getRand(2, 5);
+            const b = getRand(-10, -3);
+            const y = getRand(m*3, m*8);
+            const x = (y - b) / m;
+            const q = `If \\(f(x) = ${m}x ${formatCoeff(b)}\\), what is \\(x\\) when \\(f(x) = ${y}\\)?`;
+            const ans = `${x}`;
+            const d1 = `${m*y + b}`;
+            const d2 = `${(y+b)/m}`;
+            const d3 = `${y}`;
+            return { question: q, options: [ans, d1, d2, d3] };
+        }
+
+        function genQ45() {
+            const n1 = getRand(5, 10);
+            const n2 = getRand(n1+1, n1+5);
+            const n3 = getRand(n2+1, n2+5);
+            const n4 = getRand(n3+1, n3+5);
+            const outlier = getRand(n4*2, n4*3);
+            const q = `The data set \\(\\{${n1}, ${n2}, ${n3}, ${n4}, ${outlier}\\}\\) is given. If the outlier ${outlier} is removed, which statement is true?`;
+            const ans = `The range decreases.`;
+            const d1 = `The mean increases.`;
+            const d2 = `The median increases.`;
+            const d3 = `The median decreases.`;
+            return { question: q, options: [ans, d1, d2, d3] };
+        }
+        
+        function genQ46() {
+            const q = `Which point is in the solution set of the system?
+                        \\[\\begin{cases} y < 2x + 1 \\\\ y \\ge -x - 2 \\end{cases}\\]`;
+            // Test (0,0): 0 < 1 (T), 0 >= -2 (T).
+            const ans = `(0, 0)`;
+            // Test (2,5): 5 < 5 (F)
+            const d1 = `(2, 5)`;
+            // Test (-3,0): 0 < -5 (F)
+            const d2 = `(-3, 0)`;
+            // Test (-1,-3): -3 < -1 (T), -3 >= -1 (F)
+            const d3 = `(-1, -3)`;
+            return { question: q, options: [ans, d1, d2, d3] };
+        }
+
+        function genQ47() {
+            const x = getRand(4, 6);
+            // At x=4: x^2=16, 2^x=16. Equal.
+            // At x=5: x^2=25, 2^x=32. g(x) > f(x).
+            // At x=6: x^2=36, 2^x=64. g(x) > f(x).
+            const q = `Which statement is true about the function \\(f(x) = x^2\\) and \\(g(x) = 2^x\\) for \\(x \\ge ${x}\\)?`;
+            const ans = `\\(g(x)\\) will be greater than or equal to \\(f(x)\\).`;
+            const d1 = `\\(f(x)\\) will always be greater than \\(g(x)\\).`;
+            const d2 = `The functions are never equal.`;
+            const d3 = `The functions are only equal at \\(x = ${x}\\).`;
+            return { question: q, options: [ans, d1, d2, d3] };
+        }
+
+        function genQ48() {
+            const mean = getRand(70, 80);
+            const std = getRand(3, 8);
+            // 1 std dev
+            const q = `The scores on a test are normally distributed with a mean of ${mean} and a standard deviation of ${std}. What percentage of students scored between ${mean - std} and ${mean + std}?`;
+            const ans = `68%`;
+            const d1 = `34%`;
+            const d2 = `95%`;
+            const d3 = `50%`;
+            return { question: q, options: [ans, d1, d2, d3] };
+        }
+
+        function genQ49() {
+            const h = getRand(2, 5); // left
+            const k = getRand(2, 5); // down
+            const q = `The graph of \\(f(x) = x^2\\) is translated ${h} units left and ${k} units down. What is the equation of the new function, \\(g(x)\\)?`;
+            const ans = `\\(g(x) = (x + ${h})^2 - ${k}\\)`;
+            const d1 = `\\(g(x) = (x - ${h})^2 - ${k}\\)`;
+            const d2 = `\\(g(x) = (x + ${h})^2 + ${k}\\)`;
+            const d3 = `\\(g(x) = (x - ${h})^2 + ${k}\\)`;
+            return { question: q, options: [ans, d1, d2, d3] };
+        }
+        
+        function genQ50() {
+            // (0, a) -> a is y-int
+            // (1, a*b)
+            const a = getRand(2, 4);
+            const b = getRand(2, 5, [a]);
+            const y1 = a * b;
+            const q = `A graph of an exponential function passes through the points (0, ${a}) and (1, ${y1}). Which equation represents this function?`;
+            const ans = `\\(y = ${a}(${b})^x\\)`;
+            const d1 = `\\(y = ${b}(${a})^x\\)`;
+            const d2 = `\\(y = ${a}(\\frac{1}{${b}})^x\\)`;
+            const d3 = `\\(y = ${y1-a}x + ${a}\\)`;
+            return { question: q, options: [ans, d1, d2, d3] };
+        }
+
+
+        // --- Main Generation Function ---
+        
+        const allQuestionGenerators = [
+            genQ1, genQ2, genQ3, genQ4, genQ5, genQ6, genQ7, genQ8, genQ9, genQ10,
+            genQ11, genQ12, genQ13, genQ14, genQ15, genQ16, genQ17, genQ18, genQ19, genQ20,
+            genQ21, genQ22, genQ23, genQ24, genQ25, genQ26, genQ27, genQ28, genQ29, genQ30,
+            genQ31, genQ32, genQ33, genQ34, genQ35, genQ36, genQ37, genQ38, genQ39, genQ40,
+            genQ41, genQ42, genQ43, genQ44, genQ45, genQ46, genQ47, genQ48, genQ49, genQ50
+        ];
+        
+        const answerKey = [];
+
+        function generateTest() {
+            const testContent = document.getElementById('test-content');
+            const keyContent = document.getElementById('answer-key-list');
+            const spinner = document.getElementById('loading-spinner');
+            
+            // Clear old content and show spinner
+            testContent.innerHTML = '';
+            keyContent.innerHTML = '';
+            answerKey.length = 0; // Clear the answer key array
+            spinner.style.display = 'block';
+
+            // Use setTimeout to allow spinner to render before blocking thread
+            setTimeout(() => {
+                const testList = document.createElement('ol');
+                testList.className = 'list-decimal list-outside space-y-8 ml-6';
+
+                allQuestionGenerators.forEach((genFunc, index) => {
+                    const qData = genFunc();
+                    
+                    // 1. Store the correct answer (which is always at index 0 by design)
+                    const correctAnswer = qData.options[0]; 
+                    
+                    // 2. Shuffle the options array
+                    const options = shuffleArray(qData.options);
+                    
+                    // 3. Find the new index of the stored correct answer
+                    const answerIndex = options.indexOf(correctAnswer); 
+                    
+                    const answerLetter = 'ABCD'[answerIndex];
+
+                    answerKey.push(answerLetter);
+
+                    // Create question HTML
+                    const li = document.createElement('li');
+                    li.className = 'question-item';
+                    
+                    const p = document.createElement('p');
+                    p.className = 'question-text text-lg font-medium text-gray-900 mb-3';
+                    p.innerHTML = qData.question;
+                    li.appendChild(p);
+
+                    const optionsOl = document.createElement('ol');
+                    optionsOl.className = 'options-list list-none space-y-2 ml-6';
+                    optionsOl.style.listStyleType = 'upper-alpha';
+                    
+                    options.forEach((opt, i) => {
+                        const optLi = document.createElement('li');
+                        optLi.innerHTML = opt;
+                        optionsOl.appendChild(optLi);
+                    });
+                    
+                    li.appendChild(optionsOl);
+                    testList.appendChild(li);
+
+                    // Add to answer key
+                    const keyLi = document.createElement('li');
+                    keyLi.textContent = `${index + 1}. ${answerLetter}`;
+                    keyContent.appendChild(keyLi);
+                });
+
+                testContent.appendChild(testList);
+                
+                // Hide spinner
+                spinner.style.display = 'none';
+
+                // Tell MathJax to re-render the new content
+                if (window.MathJax) {
+                    MathJax.typesetPromise([testContent]);
+                }
+            }, 50); // 50ms delay
+        }
+
+        // --- Event Listeners ---
+        
+        // Generate test on initial page load
+        window.addEventListener('DOMContentLoaded', generateTest);
+
+        // Re-generate test when button is clicked
+        document.getElementById('generate-btn').onclick = generateTest;
+
+        // Print test
+        document.getElementById('print-btn').onclick = function() {
+            window.print();
+        }
+
+    </script>
+
+</body>
+</html>
