@@ -1,0 +1,1511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOL Test Simulator</title>
+    <!-- We'll use Tailwind CSS for rapid and clean styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Using Inter as a clean, modern font similar to the test UI -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons for the UI (Font Awesome) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- MathJax for rendering high-quality math -->
+    <script>
+        // MathJax Configuration
+        window.MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']], // Use \(...\) for inline math
+                displayMath: [['\\[', '\\]']] // Use \[...\] for display math
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+
+    <style>
+        /* Base styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Main layout */
+        .test-container {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            width: 100%;
+        }
+        
+        /* New Results Screen Style */
+        .results-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* Header: Contains test info and user menu */
+        .test-header {
+            background-color: #ffffff;
+            border-bottom: 2px solid #d1d5db;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 60px;
+            flex-shrink: 0;
+        }
+
+        .test-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #111827;
+        }
+        
+        /* User menu & tools dropdown */
+        .user-menu {
+            position: relative;
+        }
+        .user-menu-button {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: #f3f4f6;
+            border: 1px solid #d1d5db;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .user-menu-button:hover {
+            background-color: #e5e7eb;
+        }
+        .user-menu-dropdown {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 100%;
+            margin-top: 0.5rem;
+            background-color: white;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            z-index: 50;
+            width: 220px;
+        }
+        .user-menu-dropdown.active {
+            display: block;
+        }
+        .user-menu-item {
+            display: block;
+            width: 100%;
+            padding: 0.75rem 1rem;
+            text-align: left;
+            font-weight: 500;
+            border-bottom: 1px solid #f3f4f6;
+            cursor: pointer;
+        }
+        .user-menu-item:hover {
+            background-color: #f9fafb;
+        }
+        .user-menu-item i {
+            margin-right: 0.75rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        /* Question Navigation: Top bar with tools */
+        .question-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 1.5rem;
+            background-color: #f9fafb;
+            border-bottom: 1px solid #d1d5db;
+            flex-shrink: 0;
+        }
+
+        .question-nav-group {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .nav-button {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: #ffffff;
+            border: 1px solid #d1d5db;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .nav-button:hover {
+            background-color: #f3f4f6;
+        }
+        .nav-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .tool-button {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: #ffffff;
+            border: 1px solid #d1d5db;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .tool-button:hover {
+            background-color: #f3f4f6;
+        }
+        .tool-button.active {
+            background-color: #dbeafe;
+            border-color: #3b82f6;
+            color: #2563eb;
+        }
+
+        /* Main content area: Question and answer */
+        .main-content {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: center;
+        }
+        .question-container {
+            width: 100%;
+            max-width: 900px;
+        }
+        
+        .question-header {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .question-body {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        .question-body p {
+            margin-bottom: 1rem;
+        }
+        .question-body img {
+            max-width: 100%;
+            border-radius: 0.375rem;
+            border: 1px solid #d1d5db;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Answer Area */
+        .answer-area {
+            background-color: #ffffff;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+        }
+
+        /* Multiple Choice */
+        .mc-option {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.375rem;
+            margin-bottom: 0.75rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .mc-option:hover {
+            background-color: #f9fafb;
+        }
+        .mc-option.selected {
+            border-color: #3b82f6;
+            background-color: #eff6ff;
+            box-shadow: 0 0 0 2px #bfdbfe;
+        }
+        .mc-option input[type="radio"] {
+            width: 1.25rem;
+            height: 1.25rem;
+            margin-right: 1rem;
+            accent-color: #3b82f6;
+        }
+        .mc-option-label {
+            flex: 1;
+        }
+        
+        /* Strikethrough style for Answer Eliminator */
+        .mc-option-label.strikethrough {
+            text-decoration: line-through;
+            text-decoration-thickness: 2px;
+            text-decoration-color: #ef4444;
+            opacity: 0.7;
+        }
+        
+        /* Multi-Select (MS) - uses checkbox */
+        .ms-option {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.375rem;
+            margin-bottom: 0.75rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .ms-option:hover {
+            background-color: #f9fafb;
+        }
+        .ms-option.selected {
+            border-color: #3b82f6;
+            background-color: #eff6ff;
+            box-shadow: 0 0 0 2px #bfdbfe;
+        }
+        .ms-option input[type="checkbox"] {
+            width: 1.25rem;
+            height: 1.25rem;
+            margin-right: 1rem;
+            accent-color: #3b82f6;
+            pointer-events: none; /* Let the div handle clicks */
+        }
+        .ms-option-label {
+            flex: 1;
+        }
+        
+        /* Strikethrough style for Answer Eliminator */
+        .ms-option-label.strikethrough {
+            text-decoration: line-through;
+            text-decoration-thickness: 2px;
+            text-decoration-color: #ef4444;
+            opacity: 0.7;
+        }
+        
+        /* Fill-in-the-Blank (FIB) */
+        .fib-container {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .fib-label {
+            font-weight: 500;
+        }
+        .fib-input {
+            width: 150px;
+            padding: 0.5rem 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.375rem;
+            font-size: 1rem;
+        }
+        .fib-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 2px #bfdbfe;
+        }
+        
+        /* Dropdown */
+        .dropdown-container {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .dropdown-label {
+            font-weight: 500;
+        }
+        .dropdown-select {
+            width: 200px;
+            padding: 0.5rem 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.375rem;
+            font-size: 1rem;
+            background-color: white;
+        }
+        .dropdown-select:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 2px #bfdbfe;
+        }
+        
+        /* Hot Spot (Styles removed as it's no longer used) */
+
+        /* Review Screen Modal */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.6);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+        }
+        .modal-overlay.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background-color: #ffffff;
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .modal-header {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .modal-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+        .modal-close-button {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #9ca3af;
+        }
+        .modal-close-button:hover {
+            color: #333;
+        }
+        
+        .modal-body {
+            padding: 1.5rem;
+            overflow-y: auto;
+        }
+        
+        /* Review Screen Grid */
+        #review-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 1rem;
+        }
+        .review-item {
+            border: 1px solid #d1d5db;
+            border-radius: 0.375rem;
+            padding: 1rem;
+            font-weight: 500;
+        }
+        .review-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        .review-item-status {
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+        .review-item-status.answered {
+            color: #16a34a;
+        }
+        .review-item-status.flagged {
+            color: #ea580c;
+        }
+        
+        .review-item-body {
+            font-size: 0.875rem;
+            color: #374151;
+            /* Truncate long question text */
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .review-item-button {
+            display: block;
+            width: 100%;
+            text-align: center;
+            margin-top: 1rem;
+            padding: 0.5rem;
+            background-color: #3b82f6;
+            color: white;
+            border-radius: 0.375rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: background-color 0.2s;
+        }
+        .review-item-button:hover {
+            background-color: #2563eb;
+        }
+        
+        /* Tool Modal (Calculator, Formula Sheet) */
+        #tool-modal .modal-body {
+            padding: 0;
+            height: 600px;
+        }
+        #tool-modal-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 0 0 0.5rem 0.5rem;
+        }
+
+    </style>
+</head>
+
+<body>
+    <!-- This body content will be replaced by the results screen on finish -->
+    <div class="test-container" id="test-container">
+        <!-- ======================== -->
+        <!--      TEST HEADER         -->
+        <!-- ======================== -->
+        <header class="test-header">
+            <div class="test-title">Algebra 1 SOL Practice</div>
+            
+            <div class="user-menu">
+                <button id="user-menu-btn" class="user-menu-button">
+                    <span>Student Name</span>
+                    <i class="fa-solid fa-user"></i>
+                    <i class="fa-solid fa-caret-down"></i>
+                </button>
+                <div id="user-menu-dropdown" class="user-menu-dropdown">
+                    <button class="user-menu-item" id="finish-btn">
+                        <i class="fa-solid fa-check-to-slot"></i>
+                        Finish Test
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- ======================== -->
+        <!--    QUESTION NAVIGATION   -->
+        <!-- ======================== -->
+        <nav class="question-nav">
+            <div class="question-nav-group">
+                <button class="nav-button" id="prev-btn">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    Back
+                </button>
+                <button class="nav-button" id="next-btn">
+                    Next
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+            
+            <div class="question-nav-group">
+                <button class="tool-button" id="review-btn" title="Review Questions">
+                    <i class="fa-solid fa-list-check"></i>
+                    <span>Review</span>
+                </button>
+                <button class="tool-button" id="flag-btn" title="Flag for Review">
+                    <i class="fa-regular fa-flag"></i>
+                    <span>Flag</span>
+                </button>
+                <button class="tool-button" id="strikethrough-btn" title="Answer Eliminator">
+                    <i class="fa-solid fa-strikethrough"></i>
+                    <span>Eliminator</span>
+                </button>
+                <button class="tool-button" id="calculator-btn" title="Calculator">
+                    <i class="fa-solid fa-calculator"></i>
+                    <span>Calculator</span>
+                </button>
+                <button class="tool-button" id="formula-btn" title="Formula Sheet">
+                    <i class="fa-solid fa-sheet-plastic"></i>
+                    <span>Formula Sheet</span>
+                </button>
+            </div>
+        </nav>
+
+        <!-- ======================== -->
+        <!--      MAIN CONTENT        -->
+        <!-- ======================== -->
+        <main class="main-content">
+            <div class="question-container" id="question-container">
+                <!-- Question content will be dynamically loaded here -->
+            </div>
+        </main>
+    </div>
+
+    <!-- ======================== -->
+    <!--     MODALS (Pop-ups)     -->
+    <!-- ======================== -->
+    
+    <!-- Review Screen Modal -->
+    <div class="modal-overlay" id="review-modal">
+        <div class="modal-content">
+            <header class="modal-header">
+                <h2 class="modal-title">Review Questions</h2>
+                <button class="modal-close-button" data-close-modal="review-modal">&times;</button>
+            </header>
+            <section class="modal-body">
+                <div id="review-grid">
+                    <!-- Review items will be dynamically loaded here -->
+                </div>
+            </section>
+        </div>
+    </div>
+    
+    <!-- Tool Modal (for Calculator and Formula Sheet) -->
+    <div class="modal-overlay" id="tool-modal">
+        <div class="modal-content">
+            <header class="modal-header">
+                <h2 class="modal-title" id="tool-modal-title">Tool</h2>
+                <button class="modal-close-button" data-close-modal="tool-modal">&times;</button>
+            </header>
+            <section class="modal-body">
+                <iframe id="tool-modal-iframe" src=""></iframe>
+            </section>
+        </div>
+    </div>
+    
+    <!-- Finish Test Confirmation Modal -->
+    <div class="modal-overlay" id="finish-modal">
+        <div class="modal-content" style="max-width: 500px;">
+            <header class="modal-header">
+                <h2 class="modal-title">Finish Test</h2>
+                <button class="modal-close-button" data-close-modal="finish-modal">&times;</button>
+            </header>
+            <section class="modal-body">
+                <p class="mb-6">Are you sure you want to finish the test? You will not be able to change your answers.</p>
+                <div class="flex justify-end gap-3">
+                    <button class="nav-button" data-close-modal="finish-modal">Cancel</button>
+                    <button class="nav-button bg-green-600 text-white hover:bg-green-700" id="confirm-finish-btn">Finish Test</button>
+                </div>
+            </section>
+        </div>
+    </div>
+
+
+    <!-- ======================== -->
+    <!--        JAVASCRIPT          -->
+    <!-- ======================== -->
+    <script>
+        // -----------------------------
+        // --- HELPER FUNCTIONS ---
+        // -----------------------------
+        
+        // Gets a random integer between min (inclusive) and max (inclusive)
+        function getRandomInt(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+        
+        // Shuffles an array in-place
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        // -----------------------------
+        // --- QUESTION BANK
+        // -----------------------------
+        // This bank contains TEMPLATES for generating questions.
+        // Each template has a 'generator' function that creates a unique question.
+        // All math is now formatted with LaTeX using \( ... \)
+        
+        const questionBank = [
+            {
+                // SOL: A.1 (Expressions)
+                // Template for: What is the slope of Ax + By = C?
+                type: "fib",
+                generator: () => {
+                    const A = getRandomInt(2, 10);
+                    const B = getRandomInt(2, 10);
+                    const C = getRandomInt(5, 20);
+                    
+                    // Simplify the fraction for the answer
+                    function gcd(a, b) {
+                        return b === 0 ? a : gcd(b, a % b);
+                    }
+                    const divisor = gcd(Math.abs(A), Math.abs(B));
+                    const num = -A / divisor;
+                    const den = B / divisor;
+                    
+                    let answer = `${num}/${den}`;
+                    if (den === 1) answer = num.toString();
+                    if (den === -1) answer = (-num).toString();
+                    if (num === 0) answer = "0";
+
+                    return {
+                        type: "fib",
+                        text: `What is the slope of the line represented by the equation <strong>\\( ${A}x + ${B}y = ${C} \\)</strong>? <br><br> (Enter as a fraction or integer)`,
+                        prompt: "Slope:",
+                        correctAnswer: answer // Answer is a plain string for checking
+                    };
+                }
+            },
+            {
+                // SOL: A.2 (Expressions)
+                // Template for: (ax^b)^c
+                type: "mc",
+                generator: () => {
+                    const a = getRandomInt(2, 5);
+                    const b = getRandomInt(2, 5);
+                    const c = getRandomInt(2, 4);
+
+                    const correctText = `\\( ${Math.pow(a, c)}x^{${b * c}} \\)`;
+                    const correctIndex = 0;
+                    
+                    let options = [
+                        correctText,
+                        `\\( ${a * c}x^{${b * c}} \\)`, // Distractor 1
+                        `\\( ${Math.pow(a, c)}x^{${b + c}} \\)`, // Distractor 2
+                        `\\( ${a * c}x^{${b + c}} \\)`  // Distractor 3
+                    ];
+                    
+                    // Shuffle options
+                    const optionMap = [0, 1, 2, 3];
+                    shuffleArray(optionMap);
+                    
+                    const newOptions = optionMap.map(i => options[i]);
+                    const newCorrectIndex = optionMap.indexOf(correctIndex);
+
+                    return {
+                        type: "mc",
+                        text: `Which expression is equivalent to <strong>\\( (${a}x^{${b}})^{${c}} \\)</strong> ?`,
+                        options: newOptions,
+                        correctAnswer: newCorrectIndex
+                    };
+                }
+            },
+            {
+                // SOL: A.2 (Expressions)
+                // Template for: Factoring x^2 + bx + c
+                type: "ms",
+                generator: () => {
+                    const r1 = getRandomInt(-6, -1); // root 1
+                    let r2 = getRandomInt(1, 6);   // root 2
+                    if (r1 === r2 || r1 === -r2) r2 += 1; // ensure roots are different
+
+                    const b = r1 + r2;
+                    const c = r1 * r2;
+                    
+                    const bSign = b > 0 ? '+' : '-';
+                    const cSign = c > 0 ? '+' : '-';
+                    const bVal = Math.abs(b) === 1 ? '' : Math.abs(b); // Handle 1x
+                    
+                    const text = `Which of the following are factors of <strong>\\( x^2 ${bSign} ${bVal}x ${cSign} ${Math.abs(c)} \\)</strong>? <br><br> (Select all that apply)`;
+
+                    // Correct options
+                    let correctOptions = [`\\( (x ${r1 > 0 ? '+' : '-'} ${Math.abs(r1)}) \\)`, `\\( (x ${r2 > 0 ? '+' : '-'} ${Math.abs(r2)}) \\)`];
+                    
+                    // Distractor options
+                    let distractors = [
+                        `\\( (x ${r1 > 0 ? '-' : '+'} ${Math.abs(r1)}) \\)`, // Flipped sign
+                        `\\( (x ${r2 > 0 ? '-' : '+'} ${Math.abs(r2)}) \\)`, // Flipped sign
+                        `\\( (x - ${Math.abs(c)}) \\)`, // Using c
+                        `\\( (x + 1) \\)`
+                    ];
+                    
+                    shuffleArray(distractors);
+                    let options = [...correctOptions, distractors[0], distractors[1]];
+                    
+                    const optionMap = options.map((val, i) => i);
+                    shuffleArray(optionMap);
+                    
+                    const newOptions = optionMap.map(i => options[i]);
+                    const newCorrectIndices = [optionMap.indexOf(0), optionMap.indexOf(1)].sort((a, b) => a - b);
+                    
+                    return {
+                        type: "ms",
+                        text: text,
+                        options: newOptions,
+                        correctAnswer: newCorrectIndices // e.g., [0, 2]
+                    };
+                }
+            },
+            {
+                // SOL: A.7 (Functions)
+                // Template for: Geometry Dropdown (Adapted for domain/range)
+                type: "dropdown",
+                generator: () => {
+                    const context = [
+                        { q: "The height of a ball thrown in the air", a: "Range" },
+                        { q: "The number of students in a classroom", a: "Domain" },
+                        { q: "The total cost of buying 'x' tickets", a: "Range" },
+                        { q: "The number of hours worked in a week", a: "Domain" }
+                    ];
+                    const item = context[getRandomInt(0, 3)];
+                    
+                    return {
+                        type: "dropdown",
+                        text: "Identify the correct term for the given context.",
+                        prompt: `In the functional relationship described by "${item.q}", the set of all possible output values (e.g., height, cost) is called the:`,
+                        options: ["Domain", "Range", "Slope", "Intercept"],
+                        correctAnswer: item.a
+                    };
+                }
+            },
+            {
+                // SOL: A.4 (Equations/Inequalities)
+                // Template for: Solve linear equation
+                type: "fib",
+                generator: () => {
+                    const a = getRandomInt(2, 6);
+                    const b = getRandomInt(3, 10);
+                    const c = getRandomInt(1, 5);
+                    const d = getRandomInt(10, 30);
+                    // Equation: a(x + b) - c = d
+                    const answer = (d + c - (a*b)) / a;
+                    
+                    return {
+                        type: "fib",
+                        text: `Solve for x: <strong>\\( ${a}(x + ${b}) - ${c} = ${d} \\)</strong>`,
+                        prompt: "x =",
+                        correctAnswer: answer.toString()
+                    };
+                }
+            },
+            {
+                // SOL: A.3 (Expressions)
+                // Template for: Simplify radical
+                type: "mc",
+                generator: () => {
+                    const inside = [8, 12, 18, 20, 24, 27, 28, 32];
+                    const val = inside[getRandomInt(0, inside.length-1)];
+                    
+                    let correctText = "";
+                    if (val === 8) correctText = "\\( 2\\sqrt{2} \\)";
+                    if (val === 12) correctText = "\\( 2\\sqrt{3} \\)";
+                    if (val === 18) correctText = "\\( 3\\sqrt{2} \\)";
+                    if (val === 20) correctText = "\\( 2\\sqrt{5} \\)";
+                    if (val === 24) correctText = "\\( 2\\sqrt{6} \\)";
+                    if (val === 27) correctText = "\\( 3\\sqrt{3} \\)";
+                    if (val === 28) correctText = "\\( 2\\sqrt{7} \\)";
+                    if (val === 32) correctText = "\\( 4\\sqrt{2} \\)";
+                    
+                    let options = [correctText, `\\( ${val/2}\\sqrt{2} \\)`, `\\( 2\\sqrt{${val/2}} \\)`, `\\( ${val}\\sqrt{1} \\)`];
+                    shuffleArray(options);
+                    const newCorrectIndex = options.indexOf(correctText);
+
+                    return {
+                        type: "mc",
+                        text: `Which expression is equivalent to <strong>\\( \\sqrt{${val}} \\)</strong> in simplest radical form?`,
+                        options: options,
+                        correctAnswer: newCorrectIndex
+                    };
+                }
+            },
+            {
+                // SOL: A.7 (Functions)
+                // Template for: Evaluate function
+                type: "fib",
+                generator: () => {
+                    const a = getRandomInt(2, 5); // x^2 coeff
+                    const b = getRandomInt(-5, 5); // x coeff
+                    const c = getRandomInt(-10, 10); // constant
+                    const x = getRandomInt(-3, 3);
+                    
+                    const answer = (a * x * x) + (b * x) + c;
+                    
+                    const bSign = b > 0 ? '+' : '-';
+                    const cSign = c > 0 ? '+' : '-';
+                    
+                    return {
+                        type: "fib",
+                        text: `Given <strong>\\( f(x) = ${a}x^2 ${bSign} ${Math.abs(b)}x ${cSign} ${Math.abs(c)} \\)</strong>, what is the value of <strong>\\( f(${x}) \\)</strong>?`,
+                        prompt: "\\( f(x) \\) =",
+                        correctAnswer: answer.toString()
+                    };
+                }
+            },
+            {
+                // SOL: A.4 (Equations/Inequalities)
+                // Template for: Solve quadratic equation for roots
+                type: "ms",
+                generator: () => {
+                    const r1 = getRandomInt(-5, 5);
+                    let r2 = getRandomInt(-5, 5);
+                    if (r1 === r2) r2 += 1; // ensure roots are different
+
+                    const b = -(r1 + r2);
+                    const c = r1 * r2;
+                    
+                    const bSign = b > 0 ? '+' : '-';
+                    const bVal = Math.abs(b) === 1 ? '' : Math.abs(b);
+                    const cSign = c > 0 ? '+' : '-';
+
+                    const text = `Find the solutions for <strong>\\( x^2 ${bSign} ${bVal}x ${cSign} ${Math.abs(c)} = 0 \\)</strong>. <br><br> (Select all that apply)`;
+
+                    // Correct options
+                    let correctOptions = [`\\( ${r1} \\)`, `\\( ${r2} \\)`];
+                    
+                    // Distractor options
+                    let distractors = [
+                        `\\( ${-r1} \\)`,
+                        `\\( ${-r2} \\)`,
+                        `\\( ${r1+1} \\)`,
+                        `\\( ${r2-1} \\)`
+                    ];
+                    
+                    shuffleArray(distractors);
+                    let options = [...correctOptions, distractors[0], distractors[1]];
+                    // Ensure unique options
+                    options = [...new Set(options)]; 
+                    while (options.length < 4) {
+                        options.push(`\\( ${getRandomInt(-10, 10)} \\)`);
+                        options = [...new Set(options)];
+                    }
+                    
+                    const optionMap = options.map((val, i) => i);
+                    shuffleArray(optionMap);
+                    
+                    const newOptions = optionMap.map(i => options[i]);
+                    const newCorrectIndices = [optionMap.indexOf(correctOptions[0]), optionMap.indexOf(correctOptions[1])].sort((a, b) => a - b);
+                    
+                    return {
+                        type: "ms",
+                        text: text,
+                        options: newOptions,
+                        correctAnswer: newCorrectIndices
+                    };
+                }
+            },
+            {
+                // SOL: A.6 (Functions)
+                // Template for: Find x-intercept from equation
+                type: "fib",
+                generator: () => {
+                    const m = getRandomInt(2, 5);
+                    const b = m * getRandomInt(2, 5); // Ensure a nice integer intercept
+                    const xIntercept = -b / m;
+                    
+                    return {
+                        type: "fib",
+                        text: `What is the x-intercept of the line <strong>\\( y = ${m}x + ${b} \\)</strong>?`,
+                        prompt: "x-intercept:",
+                        correctAnswer: xIntercept.toString()
+                    };
+                }
+            },
+            {
+                // SOL: A.6 (Functions)
+                // Template for: Find y-intercept from equation
+                type: "fib",
+                generator: () => {
+                    const m = getRandomInt(2, 5);
+                    const b = getRandomInt(2, 10);
+                    
+                    return {
+                        type: "fib",
+                        text: `What is the y-intercept of the line <strong>\\( y = ${m}x - ${b} \\)</strong>?`,
+                        prompt: "y-intercept:",
+                        correctAnswer: (-b).toString()
+                    };
+                }
+            },
+            {
+                // SOL: A.5 (Equations/Inequalities)
+                // Template for: Solve system of equations
+                type: "fib",
+                generator: () => {
+                    // x + y = a
+                    // 2x - y = b
+                    let x, y, a, b;
+                    do {
+                        a = getRandomInt(5, 15);
+                        b = getRandomInt(1, 10);
+                        x = (a + b) / 3;
+                    } while (x % 1 !== 0);
+                    
+                    y = a - x;
+                    
+                    return {
+                        type: "fib",
+                        text: `Solve the system of equations: <br><strong>\\( x + y = ${a} \\)</strong><br><strong>\\( 2x - y = ${b} \\)</strong>`,
+                        prompt: "What is the value of x?",
+                        correctAnswer: x.toString()
+                    };
+                }
+            },
+            {
+                // SOL: A.8 (Statistics)
+                // Template for: Direct/Inverse Variation
+                type: "dropdown",
+                generator: () => {
+                    const relations = [
+                        { q: "The number of hours you work and the amount you get paid", a: "Directly" },
+                        { q: "The speed of a car and the time it takes to reach a destination", a: "Inversely" },
+                        { q: "The number of items you buy and the total cost", a: "Directly" },
+                        { q: "The number of people painting a fence and the time it takes to finish", a: "Inversely" }
+                    ];
+                    const item = relations[getRandomInt(0, 3)];
+                    
+                    return {
+                        type: "dropdown",
+                        text: "Identify the relationship.",
+                        prompt: `"${item.q}" <br><br> These two quantities vary:`,
+                        options: ["Directly", "Inversely", "Neither directly nor inversely"],
+                        correctAnswer: item.a
+                    };
+                }
+            },
+            {
+                // SOL: A.9 (Statistics)
+                // Template for: Z-Score
+                type: "fib",
+                generator: () => {
+                    const mean = getRandomInt(70, 80);
+                    const stdDev = getRandomInt(5, 10);
+                    const score = mean + (getRandomInt(-2, 2) * stdDev); // Get a nice z-score
+                    
+                    const z = (score - mean) / stdDev;
+                    
+                    return {
+                        type: "fib",
+                        text: `A data set has a mean (\\( \\mu \\)) of <strong>${mean}</strong> and a standard deviation (\\( \\sigma \\)) of <strong>${stdDev}</strong>. What is the z-score for a data point of <strong>${score}</strong>?`,
+                        prompt: "z-score =",
+                        correctAnswer: z.toString()
+                    };
+                }
+            },
+            {
+                // SOL: A.2 (Expressions)
+                // Template for: Add polynomials
+                type: "mc",
+                generator: () => {
+                    const a = getRandomInt(2, 5); // x^2
+                    const b = getRandomInt(2, 5); // x
+                    const c = getRandomInt(2, 5); // const
+                    
+                    const d = getRandomInt(2, 5); // x^2
+                    const e = getRandomInt(-5, -2); // x
+                    const f = getRandomInt(-5, -2); // const
+                    
+                    const correctText = `\\( ${a+d}x^2 + ${b+e}x + ${c+f} \\)`;
+                    let options = [
+                        correctText,
+                        `\\( ${a-d}x^2 + ${b-e}x + ${c-f} \\)`, // Distractor (subtracted)
+                        `\\( ${a+d}x^2 + ${b+e}x - ${c+f} \\)`, // Distractor (sign error)
+                        `\\( ${a+d}x^4 + ${b+e}x^2 + ${c+f} \\)` // Distractor (added exponents)
+                    ];
+                    
+                    shuffleArray(options);
+                    const newCorrectIndex = options.indexOf(correctText);
+                    
+                    return {
+                        type: "mc",
+                        text: `Simplify the expression: <strong>\\( (${a}x^2 + ${b}x + ${c}) + (${d}x^2 + ${e}x + ${f}) \\)</strong>`,
+                        options: options,
+                        correctAnswer: newCorrectIndex
+                    };
+                }
+            },
+            {
+                // SOL: A.5 (Equations/Inequalities)
+                // Template for: Absolute value equation
+                type: "ms",
+                generator: () => {
+                    const a = getRandomInt(2, 5);
+                    const b = getRandomInt(1, 10);
+                    // |x + a| = b
+                    const r1 = b - a;
+                    const r2 = -b - a;
+
+                    const text = `Find the solutions for <strong>\\( |x + ${a}| = ${b} \\)</strong>. <br><br> (Select all that apply)`;
+
+                    let correctOptions = [`\\( ${r1} \\)`, `\\( ${r2} \\)`];
+                    let distractors = [
+                        `\\( ${a - b} \\)`, // Flipped
+                        `\\( ${a + b} \\)`, // Flipped
+                        `\\( ${b} \\)`
+                    ];
+                    
+                    shuffleArray(distractors);
+                    let options = [...correctOptions, distractors[0], distractors[1]];
+                    options = [...new Set(options)];
+                    while (options.length < 4) {
+                        options.push(`\\( ${getRandomInt(-10, 10)} \\)`);
+                        options = [...new Set(options)];
+                    }
+
+                    const optionMap = options.map((val, i) => i);
+                    shuffleArray(optionMap);
+                    
+                    const newOptions = optionMap.map(i => options[i]);
+                    const newCorrectIndices = [optionMap.indexOf(correctOptions[0]), optionMap.indexOf(correctOptions[1])].sort((a, b) => a - b);
+                    
+                    return {
+                        type: "ms",
+                        text: text,
+                        options: newOptions,
+                        correctAnswer: newCorrectIndices
+                    };
+                }
+            }
+        ];
+
+ 
+        // -----------------------------
+        // --- APPLICATION STATE
+        // -----------------------------
+        let currentQuestionIndex = 0;
+        let strikethroughActive = false;
+        let questions = []; // This will be filled with 50 generated questions
+        let answers = [];   // This will be filled with 50 answer objects
+ 
+        // -----------------------------
+        // --- DOM ELEMENT REFERENCES
+        // -----------------------------
+        const questionContainer = document.getElementById('question-container');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const flagBtn = document.getElementById('flag-btn');
+        const strikethroughBtn = document.getElementById('strikethrough-btn');
+        const reviewBtn = document.getElementById('review-btn');
+        const calculatorBtn = document.getElementById('calculator-btn');
+        const formulaBtn = document.getElementById('formula-btn');
+        const userMenuBtn = document.getElementById('user-menu-btn');
+        const userMenuDropdown = document.getElementById('user-menu-dropdown');
+        const finishBtn = document.getElementById('finish-btn');
+        const confirmFinishBtn = document.getElementById('confirm-finish-btn');
+        
+        
+        // -----------------------------
+        // --- TEST GENERATION
+        // -----------------------------
+        function generateTest() {
+            questions = [];
+            answers = [];
+            
+            for (let i = 0; i < 50; i++) {
+                // Pick a random template from the bank
+                const template = questionBank[getRandomInt(0, questionBank.length - 1)];
+                // Generate a new, unique question from that template
+                const newQuestion = template.generator();
+                questions.push(newQuestion);
+                
+                // Initialize the answer object for this question
+                let initialValue = null;
+                if (newQuestion.type === 'ms') {
+                    initialValue = []; // Empty array for multi-select
+                }
+                answers.push({
+                    answered: false,
+                    flagged: false,
+                    value: initialValue,
+                    strikethrough: []
+                });
+            }
+        }
+        
+
+        // -----------------------------
+        // --- QUESTION RENDERING
+        // -----------------------------
+        function renderQuestion(index) {
+            const q = questions[index];
+            const a = answers[index];
+            currentQuestionIndex = index;
+            let html = "";
+
+            // --- Question Header and Body ---
+            html += `
+                <div class="question-header">Question ${index + 1} of 50</div>
+                <div class="question-body">
+                    <p>${q.text}</p>
+                </div>
+                <div class="answer-area">
+            `;
+
+            // --- Answer Type ---
+            if (q.type === "mc") {
+                html += q.options.map((option, i) => `
+                    <div class="mc-option ${a.value === i ? 'selected' : ''}" data-option-index="${i}">
+                        <input type="radio" name="mc-option" id="option-${i}" ${a.value === i ? 'checked' : ''} readonly>
+                        <label class="mc-option-label ${a.strikethrough.includes(i) ? 'strikethrough' : ''}" for="option-${i}">
+                            ${option}
+                        </label>
+                    </div>
+                `).join('');
+            }
+            else if (q.type === "ms") {
+                html += q.options.map((option, i) => `
+                    <div class="ms-option ${a.value.includes(i) ? 'selected' : ''}" data-option-index="${i}">
+                        <input type="checkbox" id="option-${i}" ${a.value.includes(i) ? 'checked' : ''} readonly>
+                        <label class="ms-option-label ${a.strikethrough.includes(i) ? 'strikethrough' : ''}" for="option-${i}">
+                            ${option}
+                        </label>
+                    </div>
+                `).join('');
+            }
+            else if (q.type === "fib") {
+                html += `
+                    <div class="fib-container">
+                        <label class="fib-label" for="fib-input">${q.prompt}</label>
+                        <input type="text" id="fib-input" class="fib-input" value="${a.value || ''}">
+                    </div>
+                `;
+            }
+            else if (q.type === "dropdown") {
+                html += `
+                    <div class="dropdown-container">
+                        <label class="dropdown-label" for="dropdown-select">${q.prompt}</label>
+                        <select id="dropdown-select" class="dropdown-select">
+                            <option value="default" ${a.value === null ? 'selected' : ''}>Select...</option>
+                            ${q.options.map((option, i) => `
+                                <option value="${option}" ${a.value === option ? 'selected' : ''}>${option}</option>
+                            `).join('')}
+                        </select>
+                    </div>
+                `;
+            }
+
+            html += `</div>`; // Close answer-area
+            questionContainer.innerHTML = html;
+            
+            // Tell MathJax to typeset the new content
+            if (window.MathJax && window.MathJax.typesetPromise) {
+                window.MathJax.typesetPromise([questionContainer]);
+            }
+
+            // Add event listeners for the new content
+            addAnswerListeners(q.type);
+            
+            // Update UI
+            updateNavButtons();
+            updateFlagButton();
+            updateStrikethroughButton(q.type);
+        }
+
+        // -----------------------------
+        // --- UI & STATE UPDATES
+        // -----------------------------
+        function updateNavButtons() {
+            prevBtn.disabled = (currentQuestionIndex === 0);
+            nextBtn.disabled = (currentQuestionIndex === questions.length - 1);
+        }
+        
+        function updateFlagButton() {
+            if (answers[currentQuestionIndex].flagged) {
+                flagBtn.classList.add('active');
+                flagBtn.innerHTML = '<i class="fa-solid fa-flag"></i> <span>Flagged</span>';
+            } else {
+                flagBtn.classList.remove('active');
+                flagBtn.innerHTML = '<i class="fa-regular fa-flag"></i> <span>Flag</span>';
+            }
+        }
+        
+        function updateStrikethroughButton(questionType) {
+            if (questionType !== 'mc' && questionType !== 'ms') {
+                strikethroughBtn.disabled = true;
+                strikethroughBtn.classList.remove('active');
+                strikethroughActive = false;
+            } else {
+                strikethroughBtn.disabled = false;
+                if (strikethroughActive) {
+                    strikethroughBtn.classList.add('active');
+                } else {
+                    strikethroughBtn.classList.remove('active');
+                }
+            }
+        }
+        
+        function saveAnswer(value) {
+            answers[currentQuestionIndex].value = value;
+            if (Array.isArray(value)) {
+                answers[currentQuestionIndex].answered = value.length > 0;
+            } else {
+                answers[currentQuestionIndex].answered = (value !== null && value !== "" && value !== undefined && value !== 'default');
+            }
+        }
+ 
+        // -----------------------------
+        // --- EVENT LISTENERS
+        // -----------------------------
+        
+        // --- Navigation ---
+        prevBtn.addEventListener('click', () => {
+            if (currentQuestionIndex > 0) {
+                renderQuestion(currentQuestionIndex - 1);
+            }
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentQuestionIndex < questions.length - 1) {
+                renderQuestion(currentQuestionIndex + 1);
+            }
+        });
+        
+        // --- User Menu ---
+        userMenuBtn.addEventListener('click', () => {
+            userMenuDropdown.classList.toggle('active');
+        });
+        
+        document.addEventListener('click', (e) => {
+            if (userMenuBtn && !userMenuBtn.contains(e.target) && userMenuDropdown && !userMenuDropdown.contains(e.target)) {
+                userMenuDropdown.classList.remove('active');
+            }
+        });
+
+        // --- Tools ---
+        flagBtn.addEventListener('click', () => {
+            answers[currentQuestionIndex].flagged = !answers[currentQuestionIndex].flagged;
+            updateFlagButton();
+        });
+
+        strikethroughBtn.addEventListener('click', () => {
+            if (questions[currentQuestionIndex].type === 'mc' || questions[currentQuestionIndex].type === 'ms') {
+                strikethroughActive = !strikethroughActive;
+                strikethroughBtn.classList.toggle('active');
+            }
+        });
+        
+        calculatorBtn.addEventListener('click', () => {
+            openToolModal('Calculator', 'https://www.desmos.com/testing/virginia/graphing');
+        });
+        
+        formulaBtn.addEventListener('click', () => {
+            // Link to the official VDOE Algebra 1 Formula Sheet PDF
+            openToolModal('Formula Sheet', 'https://www.doe.virginia.gov/home/showpublisheddocument/56033/638581953851970000');
+        });
+
+        // --- Answer Listeners (Dynamic) ---
+        function addAnswerListeners(questionType) {
+            if (questionType === 'mc') {
+                document.querySelectorAll('.mc-option').forEach(el => {
+                    el.addEventListener('click', (e) => {
+                        const optionIndex = parseInt(el.dataset.optionIndex);
+                        const label = el.querySelector('.mc-option-label');
+                        
+                        if (strikethroughActive) {
+                            // Toggle strikethrough
+                            const strikeIndex = answers[currentQuestionIndex].strikethrough.indexOf(optionIndex);
+                            if (strikeIndex > -1) {
+                                answers[currentQuestionIndex].strikethrough.splice(strikeIndex, 1);
+                                label.classList.remove('strikethrough');
+                            } else {
+                                answers[currentQuestionIndex].strikethrough.push(optionIndex);
+                                label.classList.add('strikethrough');
+                            }
+                        } else {
+                            // Select answer
+                            saveAnswer(optionIndex);
+                            // Visually update selection
+                            document.querySelectorAll('.mc-option').forEach(opt => opt.classList.remove('selected'));
+                            el.classList.add('selected');
+                            el.querySelector('input[type="radio"]').checked = true;
+                        }
+                    });
+                });
+            }
+            else if (questionType === 'ms') {
+                document.querySelectorAll('.ms-option').forEach(el => {
+                    el.addEventListener('click', (e) => {
+                        const optionIndex = parseInt(el.dataset.optionIndex);
+                        const label = el.querySelector('.ms-option-label');
+                        const checkbox = el.querySelector('input[type="checkbox"]');
+                        
+                        if (strikethroughActive) {
+                            // Toggle strikethrough
+                            const strikeIndex = answers[currentQuestionIndex].strikethrough.indexOf(optionIndex);
+                            if (strikeIndex > -1) {
+                                answers[currentQuestionIndex].strikethrough.splice(strikeIndex, 1);
+                                label.classList.remove('strikethrough');
+                            } else {
+                                answers[currentQuestionIndex].strikethrough.push(optionIndex);
+                                label.classList.add('strikethrough');
+                            }
+                        } else {
+                            // Toggle answer selection
+                            el.classList.toggle('selected');
+                            checkbox.checked = !checkbox.checked;
+                            
+                            // Build array of selected answers
+                            const selectedIndices = [];
+                            document.querySelectorAll('.ms-option.selected').forEach(selectedEl => {
+                                selectedIndices.push(parseInt(selectedEl.dataset.optionIndex));
+                            });
+                            saveAnswer(selectedIndices);
+                        }
+                    });
+                });
+            }
+            else if (questionType === "fib") {
+                document.getElementById('fib-input').addEventListener('input', (e) => {
+                    saveAnswer(e.target.value.trim());
+                });
+            }
+            else if (questionType === "dropdown") {
+                document.getElementById('dropdown-select').addEventListener('change', (e) => {
+                    saveAnswer(e.target.value);
+                });
+            }
+        }
+
+        // -----------------------------
+        // --- MODAL HANDLING
+        // -----------------------------
+        
+        // --- Generic Modal Open/Close ---
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.add('active');
+        }
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+            
+            // Special cleanup for tool modal
+            if (modalId === 'tool-modal') {
+                document.getElementById('tool-modal-iframe').src = "about:blank";
+            }
+        }
+        
+        document.querySelectorAll('[data-close-modal]').forEach(el => {
+            el.addEventListener('click', () => {
+                closeModal(el.dataset.closeModal);
+            });
+        });
+
+        // --- Review Modal ---
+        reviewBtn.addEventListener('click', () => {
+            renderReviewScreen();
+            openModal('review-modal');
+        });
+        
+        function renderReviewScreen() {
+            const grid = document.getElementById('review-grid');
+            grid.innerHTML = ''; // Clear old content
+            
+            questions.forEach((q, index) => {
+                const a = answers[index];
+                let status = "Not Answered";
+                let statusClass = "";
+                
+                if (a.flagged) {
+                    status = "Flagged";
+                    statusClass = "flagged";
+                } else if (a.answered) {
+                    status = "Answered";
+                    statusClass = "answered";
+                }
+                
+                const itemHtml = `
+                    <div class="review-item">
+                        <div class="review-item-header">
+                            <strong>Question ${index + 1}</strong>
+                            <span class="review-item-status ${statusClass}">${status}</span>
+                        </div>
+                        <div class="review-item-body">
+                            ${q.text.substring(0, 50)}...
+                        </div>
+                        <a href="#" class="review-item-button" data-goto-q="${index}">Go to Question</a>
+                    </div>
+                `;
+                grid.innerHTML += itemHtml;
+            });
+            
+            // Add listeners for "Go to Question" buttons
+            document.querySelectorAll('.review-item-button').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const index = parseInt(e.target.dataset.gotoQ);
+                    renderQuestion(index);
+                    closeModal('review-modal');
+                });
+            });
+        }
+        
+        // --- Tool Modal ---
+        function openToolModal(title, url) {
+            document.getElementById('tool-modal-title').textContent = title;
+            document.getElementById('tool-modal-iframe').src = url;
+            openModal('tool-modal');
+        }
+        
+        // --- Finish Test Modals ---
+        finishBtn.addEventListener('click', () => {
+            openModal('finish-modal');
+        });
+        
+        confirmFinishBtn.addEventListener('click', () => {
+            gradeTest();
+        });
+        
+
+        // -----------------------------
+        // --- GRADING & RESULTS
+        // -----------------------------
+        
+        function gradeTest() {
+            let score = 0;
+            
+            for (let i = 0; i < questions.length; i++) {
+                const q = questions[i];
+                const a = answers[i];
+                let isCorrect = false;
+
+                if (q.type === 'mc' || q.type === 'dropdown' || q.type === 'fib') {
+                    // Simple comparison
+                    isCorrect = (a.value == q.correctAnswer);
+                } 
+                else if (q.type === 'ms') {
+                    // Array comparison
+                    const correct = q.correctAnswer.sort((a,b) => a-b);
+                    const given = a.value.sort((a,b) => a-b);
+                    isCorrect = JSON.stringify(correct) === JSON.stringify(given);
+                } 
+                
+                if (isCorrect) {
+                    score++;
+                }
+            }
+            
+            showResultsScreen(score);
+        }
+        
+        function showResultsScreen(score) {
+            const resultsHtml = `
+                <div class="results-container">
+                    <h1 class="text-4xl font-bold mb-4">Test Complete!</h1>
+                    <p class="text-2xl mb-8">You got <strong>${score}</strong> out of <strong>50</strong> questions correct.</p>
+                    <button class="nav-button bg-blue-600 text-white hover:bg-blue-700 text-lg px-8 py-4" id="start-new-test-btn">
+                        Start New Test
+                    </button>
+                </div>
+            `;
+            
+            document.body.innerHTML = resultsHtml;
+            
+            document.getElementById('start-new-test-btn').addEventListener('click', () => {
+                window.location.reload();
+            });
+        }
+
+        // -----------------------------
+        // --- INITIALIZATION
+        // -----------------------------
+        window.onload = () => {
+            generateTest();
+            renderQuestion(0);
+        };
+        
+    </script>
+</body>
+</html>
