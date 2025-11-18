@@ -10,7 +10,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
     <!-- Icons for the UI (Font Awesome) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
@@ -41,7 +40,6 @@
             flex-direction: column;
             overflow: hidden;
         }
-
         /* Main layout */
         .test-container {
             display: flex;
@@ -49,7 +47,6 @@
             height: 100%;
             width: 100%;
         }
-        
         /* New Results Screen Style */
         .results-container {
             display: flex;
@@ -60,7 +57,6 @@
             text-align: center;
             padding: 2rem;
         }
-
         /* Header: Contains test info and user menu */
         .test-header {
             background-color: #ffffff;
@@ -72,13 +68,11 @@
             height: 60px;
             flex-shrink: 0;
         }
-
         .test-title {
             font-size: 1.125rem;
             font-weight: 600;
             color: #111827;
         }
-        
         /* User menu & tools dropdown */
         .user-menu {
             position: relative;
@@ -131,7 +125,6 @@
             width: 20px;
             text-align: center;
         }
-
         /* Question Navigation: Top bar with tools */
         .question-nav {
             display: flex;
@@ -142,13 +135,11 @@
             border-bottom: 1px solid #d1d5db;
             flex-shrink: 0;
         }
-
         .question-nav-group {
             display: flex;
             align-items: center;
             gap: 0.75rem;
         }
-
         .nav-button {
             display: flex;
             align-items: center;
@@ -168,7 +159,6 @@
             opacity: 0.5;
             cursor: not-allowed;
         }
-        
         .tool-button {
             display: flex;
             align-items: center;
@@ -189,7 +179,6 @@
             border-color: #3b82f6;
             color: #2563eb;
         }
-
         /* Main content area: Question and answer */
         .main-content {
             flex-grow: 1;
@@ -202,7 +191,6 @@
             width: 100%;
             max-width: 900px;
         }
-        
         .question-header {
             font-size: 1.125rem;
             font-weight: 600;
@@ -210,7 +198,6 @@
             padding-bottom: 0.5rem;
             border-bottom: 1px solid #e5e7eb;
         }
-        
         .question-body {
             font-size: 1rem;
             line-height: 1.6;
@@ -226,7 +213,6 @@
             margin-top: 1rem;
             margin-bottom: 1rem;
         }
-
         /* Answer Area */
         .answer-area {
             background-color: #ffffff;
@@ -234,7 +220,6 @@
             border-radius: 0.5rem;
             padding: 1.5rem;
         }
-
         /* Multiple Choice */
         .mc-option {
             display: flex;
@@ -263,7 +248,6 @@
         .mc-option-label {
             flex: 1;
         }
-        
         /* Strikethrough style for Answer Eliminator */
         .mc-option-label.strikethrough {
             text-decoration: line-through;
@@ -271,7 +255,6 @@
             text-decoration-color: #ef4444;
             opacity: 0.7;
         }
-        
         /* Multi-Select (MS) - uses checkbox */
         .ms-option {
             display: flex;
@@ -301,7 +284,6 @@
         .ms-option-label {
             flex: 1;
         }
-        
         /* Strikethrough style for Answer Eliminator */
         .ms-option-label.strikethrough {
             text-decoration: line-through;
@@ -309,7 +291,6 @@
             text-decoration-color: #ef4444;
             opacity: 0.7;
         }
-        
         /* Fill-in-the-Blank (FIB) */
         .fib-container {
             display: flex;
@@ -331,7 +312,6 @@
             border-color: #3b82f6;
             box-shadow: 0 0 0 2px #bfdbfe;
         }
-        
         /* Dropdown */
         .dropdown-container {
             display: flex;
@@ -354,9 +334,7 @@
             border-color: #3b82f6;
             box-shadow: 0 0 0 2px #bfdbfe;
         }
-        
         /* Hot Spot (Styles removed as it's no longer used) */
-
         /* Review Screen Modal */
         .modal-overlay {
             position: fixed;
@@ -370,7 +348,6 @@
         .modal-overlay.active {
             display: flex;
         }
-        
         .modal-content {
             background-color: #ffffff;
             border-radius: 0.5rem;
@@ -381,7 +358,6 @@
             display: flex;
             flex-direction: column;
         }
-        
         .modal-header {
             padding: 1rem 1.5rem;
             border-bottom: 1px solid #e5e7eb;
@@ -403,12 +379,10 @@
         .modal-close-button:hover {
             color: #333;
         }
-        
         .modal-body {
             padding: 1.5rem;
             overflow-y: auto;
         }
-        
         /* Review Screen Grid */
         #review-grid {
             display: grid;
@@ -437,7 +411,6 @@
         .review-item-status.flagged {
             color: #ea580c;
         }
-        
         .review-item-body {
             font-size: 0.875rem;
             color: #374151;
@@ -446,7 +419,6 @@
             overflow: hidden;
             text-overflow: ellipsis;
         }
-        
         .review-item-button {
             display: block;
             width: 100%;
@@ -463,7 +435,6 @@
         .review-item-button:hover {
             background-color: #2563eb;
         }
-        
         /* Tool Modal (Calculator, Formula Sheet) */
         #tool-modal .modal-body {
             padding: 0;
@@ -476,9 +447,30 @@
             border-radius: 0 0 0.5rem 0.5rem;
         }
 
+        /* UPDATED: Styles for tables in questions AND answers */
+        .question-body table,
+        .answer-area table {
+            width: 100%;
+            max-width: 350px; /* Keep them from getting too wide */
+            margin: 1rem auto; /* Center the table */
+            border-collapse: collapse;
+            border: 1px solid #d1d5db;
+            border-radius: 0.375rem; /* Rounded corners */
+            overflow: hidden; /* Keep corners rounded */
+        }
+        .question-body th, .question-body td,
+        .answer-area th, .answer-area td {
+            border: 1px solid #d1d5db;
+            padding: 0.625rem; /* A bit more padding */
+            text-align: center;
+        }
+        .question-body th,
+        .answer-area th {
+            background-color: #f9fafb;
+            font-weight: 600; /* Bolder header text */
+        }
     </style>
 </head>
-
 <body>
     <!-- This body content will be replaced by the results screen on finish -->
     <div class="test-container" id="test-container">
@@ -486,8 +478,8 @@
         <!--      TEST HEADER         -->
         <!-- ======================== -->
         <header class="test-header">
-            <div class="test-title">Algebra 1 SOL Practice</div>
-            
+            <div class="test-title">Algebra 1 SOL Practice (2023 Standards)</div>
+
             <div class="user-menu">
                 <button id="user-menu-btn" class="user-menu-button">
                     <span>Student Name</span>
@@ -517,7 +509,7 @@
                     <i class="fa-solid fa-arrow-right"></i>
                 </button>
             </div>
-            
+
             <div class="question-nav-group">
                 <button class="tool-button" id="review-btn" title="Review Questions">
                     <i class="fa-solid fa-list-check"></i>
@@ -555,7 +547,7 @@
     <!-- ======================== -->
     <!--     MODALS (Pop-ups)     -->
     <!-- ======================== -->
-    
+
     <!-- Review Screen Modal -->
     <div class="modal-overlay" id="review-modal">
         <div class="modal-content">
@@ -570,7 +562,7 @@
             </section>
         </div>
     </div>
-    
+
     <!-- Tool Modal (for Calculator and Formula Sheet) -->
     <div class="modal-overlay" id="tool-modal">
         <div class="modal-content">
@@ -583,7 +575,7 @@
             </section>
         </div>
     </div>
-    
+
     <!-- Finish Test Confirmation Modal -->
     <div class="modal-overlay" id="finish-modal">
         <div class="modal-content" style="max-width: 500px;">
@@ -601,7 +593,6 @@
         </div>
     </div>
 
-
     <!-- ======================== -->
     <!--        JAVASCRIPT          -->
     <!-- ======================== -->
@@ -609,12 +600,12 @@
         // -----------------------------
         // --- HELPER FUNCTIONS ---
         // -----------------------------
-        
+
         // Gets a random integer between min (inclusive) and max (inclusive)
         function getRandomInt(min, max) {
             return Math.floor(Math.random() * (max - min + 1)) + min;
         }
-        
+
         // Shuffles an array in-place
         function shuffleArray(array) {
             for (let i = array.length - 1; i > 0; i--) {
@@ -623,13 +614,51 @@
             }
         }
 
+        /**
+         * NEW: Evaluates a string as a number, supporting decimals and fractions.
+         * @param {string} answerString - The user's input string.
+         * @returns {number} The numeric value, or NaN if not a valid number/fraction.
+         */
+        function evaluateNumericAnswer(answerString) {
+            if (typeof answerString !== 'string' || answerString.trim() === "") {
+                return NaN;
+            }
+            const str = answerString.trim();
+
+            // 1. Check for fraction
+            if (str.includes('/')) {
+                const parts = str.split('/');
+                if (parts.length === 2) {
+                    const numerator = parseFloat(parts[0]);
+                    const denominator = parseFloat(parts[1]);
+                    // Ensure both are valid numbers and denominator is not zero
+                    if (!isNaN(numerator) && !isNaN(denominator) && denominator !== 0) {
+                        return numerator / denominator;
+                    }
+                }
+            }
+
+            // 2. Check for number (int, decimal, ".5", "-.5")
+            // This regex ensures it's a valid number format and not just "5." or "."
+            if (str.match(/^-?(\d+(\.\d*)?|\.\d+)$/)) {
+                const num = parseFloat(str);
+                if (!isNaN(num) && isFinite(num)) {
+                    return num;
+                }
+            }
+
+            // If it's neither, return NaN
+            return NaN;
+        }
+
+
         // -----------------------------
-        // --- QUESTION BANK
+        // --- QUESTION BANK        
         // -----------------------------
         // This bank contains TEMPLATES for generating questions.
         // Each template has a 'generator' function that creates a unique question.
         // All math is now formatted with LaTeX using \( ... \)
-        
+
         const questionBank = [
             {
                 // SOL: A.1 (Expressions)
@@ -639,7 +668,7 @@
                     const A = getRandomInt(2, 10);
                     const B = getRandomInt(2, 10);
                     const C = getRandomInt(5, 20);
-                    
+
                     // Simplify the fraction for the answer
                     function gcd(a, b) {
                         return b === 0 ? a : gcd(b, a % b);
@@ -647,17 +676,20 @@
                     const divisor = gcd(Math.abs(A), Math.abs(B));
                     const num = -A / divisor;
                     const den = B / divisor;
-                    
-                    let answer = `${num}/${den}`;
+
+                    let answer;
                     if (den === 1) answer = num.toString();
-                    if (den === -1) answer = (-num).toString();
-                    if (num === 0) answer = "0";
+                    else if (den === -1) answer = (-num).toString();
+                    else if (num === 0) answer = "0";
+                    // Keep it as a fraction if not a simple integer
+                    else if (den < 0) answer = `${-num}/${-den}`; // e.g. -2/-3 -> 2/3
+                    else answer = `${num}/${den}`; // e.g. -2/3
 
                     return {
                         type: "fib",
                         text: `What is the slope of the line represented by the equation <strong>\\( ${A}x + ${B}y = ${C} \\)</strong>? <br><br> (Enter as a fraction or integer)`,
                         prompt: "Slope:",
-                        correctAnswer: answer // Answer is a plain string for checking
+                        correctAnswer: answer // Answer is a plain string for checking (e.g., "-2/3")
                     };
                 }
             },
@@ -666,24 +698,32 @@
                 // Template for: (ax^b)^c
                 type: "mc",
                 generator: () => {
-                    const a = getRandomInt(2, 5);
+                    let a = getRandomInt(2, 5);
                     const b = getRandomInt(2, 5);
-                    const c = getRandomInt(2, 4);
+                    let c = getRandomInt(2, 4);
+
+                    // --- FIX ---
+                    // Ensure a != c to prevent (a*c) and (a^c) from being the same
+                    // e.g., if a=2 and c=2, both distractors would be 4.
+                    if (a === c) {
+                        c += 1;
+                    }
+                    // --- END FIX ---
 
                     const correctText = `\\( ${Math.pow(a, c)}x^{${b * c}} \\)`;
                     const correctIndex = 0;
-                    
+
                     let options = [
                         correctText,
                         `\\( ${a * c}x^{${b * c}} \\)`, // Distractor 1
                         `\\( ${Math.pow(a, c)}x^{${b + c}} \\)`, // Distractor 2
                         `\\( ${a * c}x^{${b + c}} \\)`  // Distractor 3
                     ];
-                    
+
                     // Shuffle options
                     const optionMap = [0, 1, 2, 3];
                     shuffleArray(optionMap);
-                    
+
                     const newOptions = optionMap.map(i => options[i]);
                     const newCorrectIndex = optionMap.indexOf(correctIndex);
 
@@ -706,16 +746,17 @@
 
                     const b = r1 + r2;
                     const c = r1 * r2;
-                    
-                    const bSign = b > 0 ? '+' : '-';
+
+                    const bSign = b > 0 ? '+' : (b < 0 ? '-' : '');
                     const cSign = c > 0 ? '+' : '-';
-                    const bVal = Math.abs(b) === 1 ? '' : Math.abs(b); // Handle 1x
-                    
-                    const text = `Which of the following are factors of <strong>\\( x^2 ${bSign} ${bVal}x ${cSign} ${Math.abs(c)} \\)</strong>? <br><br> (Select all that apply)`;
+                    const bVal = (Math.abs(b) === 1 || b === 0) ? '' : Math.abs(b);
+                    const bTerm = b === 0 ? '' : `${bSign} ${bVal}x`;
+
+                    const text = `Which of the following are factors of <strong>\\( x^2 ${bTerm} ${cSign} ${Math.abs(c)} \\)</strong>? <br><br> (Select all that apply)`;
 
                     // Correct options
                     let correctOptions = [`\\( (x ${r1 > 0 ? '+' : '-'} ${Math.abs(r1)}) \\)`, `\\( (x ${r2 > 0 ? '+' : '-'} ${Math.abs(r2)}) \\)`];
-                    
+
                     // Distractor options
                     let distractors = [
                         `\\( (x ${r1 > 0 ? '-' : '+'} ${Math.abs(r1)}) \\)`, // Flipped sign
@@ -723,16 +764,33 @@
                         `\\( (x - ${Math.abs(c)}) \\)`, // Using c
                         `\\( (x + 1) \\)`
                     ];
-                    
-                    shuffleArray(distractors);
-                    let options = [...correctOptions, distractors[0], distractors[1]];
+
+                    // --- FIX ---
+                    // Use a Set to ensure all 4 options are unique
+                    let options = [...correctOptions, ...distractors];
+                    options = [...new Set(options)]; // De-duplicate
+
+                    // Ensure we have at least 4 unique options
+                    let extraRoot = 1;
+                    while (options.length < 4) {
+                        extraRoot++;
+                        options.push(`\\( (x + ${extraRoot}) \\)`);
+                        options = [...new Set(options)]; // Re-filter
+                    }
+                    // If we have more than 4, slice it
+                    options = options.slice(0, 4);
+                    // --- END FIX ---
                     
                     const optionMap = options.map((val, i) => i);
                     shuffleArray(optionMap);
-                    
+
                     const newOptions = optionMap.map(i => options[i]);
-                    const newCorrectIndices = [optionMap.indexOf(0), optionMap.indexOf(1)].sort((a, b) => a - b);
-                    
+                    // Find the new indices of the correct answers after shuffling
+                    const newCorrectIndices = [
+                        optionMap.indexOf(options.indexOf(correctOptions[0])),
+                        optionMap.indexOf(options.indexOf(correctOptions[1]))
+                    ].sort((a, b) => a - b);
+
                     return {
                         type: "ms",
                         text: text,
@@ -743,23 +801,68 @@
             },
             {
                 // SOL: A.7 (Functions)
-                // Template for: Geometry Dropdown (Adapted for domain/range)
-                type: "dropdown",
+                // REPLACED: Domain/Range scenario
+                // NEW: Identify function from table
+                type: "mc",
                 generator: () => {
-                    const context = [
-                        { q: "The height of a ball thrown in the air", a: "Range" },
-                        { q: "The number of students in a classroom", a: "Domain" },
-                        { q: "The total cost of buying 'x' tickets", a: "Range" },
-                        { q: "The number of hours worked in a week", a: "Domain" }
-                    ];
-                    const item = context[getRandomInt(0, 3)];
+                    const x1 = getRandomInt(1, 5);
+                    const x2 = x1 + 1;
+                    const x3 = x2 + 1;
                     
+                    // Correct: Each x has one y
+                    const correctTable = `
+                        <table>
+                            <thead><tr><th>\\( x \\)</th><th>\\( y \\)</th></tr></thead>
+                            <tbody>
+                                <tr><td>${x1}</td><td>${getRandomInt(1, 10)}</td></tr>
+                                <tr><td>${x2}</td><td>${getRandomInt(1, 10)}</td></tr>
+                                <tr><td>${x3}</td><td>${getRandomInt(1, 10)}</td></tr>
+                            </tbody>
+                        </table>`;
+                    
+                    // Distractor 1: x1 repeats
+                    const distractor1 = `
+                        <table>
+                            <thead><tr><th>\\( x \\)</th><th>\\( y \\)</th></tr></thead>
+                            <tbody>
+                                <tr><td>${x1}</td><td>${getRandomInt(1, 10)}</td></tr>
+                                <tr><td>${x1}</td><td>${getRandomInt(11, 20)}</td></tr>
+                                <tr><td>${x2}</td><td>${getRandomInt(1, 10)}</td></tr>
+                            </tbody>
+                        </table>`;
+                    
+                    // Distractor 2: x2 repeats
+                    const distractor2 = `
+                        <table>
+                            <thead><tr><th>\\( x \\)</th><th>\\( y \\)</th></tr></thead>
+                            <tbody>
+                                <tr><td>${x1}</td><td>${getRandomInt(1, 10)}</td></tr>
+                                <tr><td>${x2}</td><td>${getRandomInt(1, 10)}</td></tr>
+                                <tr><td>${x2}</td><td>${getRandomInt(11, 20)}</td></tr>
+                            </tbody>
+                        </table>`;
+
+                    // Distractor 3: x3 repeats
+                    const distractor3 = `
+                        <table>
+                            <thead><tr><th>\\( x \\)</th><th>\\( y \\)</th></tr></thead>
+                            <tbody>
+                                <tr><td>${x1}</td><td>${getRandomInt(1, 10)}</td></tr>
+                                <tr><td>${x2}</td><td>${getRandomInt(1, 10)}</td></tr>
+                                <tr><td>${x3}</td><td>${getRandomInt(1, 10)}</td></tr>
+                                <tr><td>${x3}</td><td>${getRandomInt(11, 20)}</td></tr>
+                            </tbody>
+                        </table>`;
+
+                    let options = [correctTable, distractor1, distractor2, distractor3];
+                    shuffleArray(options);
+                    const newCorrectIndex = options.indexOf(correctTable);
+
                     return {
-                        type: "dropdown",
-                        text: "Identify the correct term for the given context.",
-                        prompt: `In the functional relationship described by "${item.q}", the set of all possible output values (e.g., height, cost) is called the:`,
-                        options: ["Domain", "Range", "Slope", "Intercept"],
-                        correctAnswer: item.a
+                        type: "mc",
+                        text: "Which table represents a relation where \\( y \\) is a function of \\( x \\)?",
+                        options: options,
+                        correctAnswer: newCorrectIndex
                     };
                 }
             },
@@ -773,13 +876,202 @@
                     const c = getRandomInt(1, 5);
                     const d = getRandomInt(10, 30);
                     // Equation: a(x + b) - c = d
-                    const answer = (d + c - (a*b)) / a;
-                    
+                    // a*x + a*b - c = d
+                    // a*x = d + c - a*b
+                    // x = (d + c - a*b) / a
+                    const answer = (d + c - (a * b)) / a;
+
                     return {
                         type: "fib",
                         text: `Solve for x: <strong>\\( ${a}(x + ${b}) - ${c} = ${d} \\)</strong>`,
                         prompt: "x =",
                         correctAnswer: answer.toString()
+                    };
+                }
+            },
+            {
+                // SOL: A.F.3/A.F.4 (Functions - Graphing Linear/Quadratic)
+                // NEW: Identify equation from a graph
+                // UPDATED: Removed placeholder image, now text-only description
+                type: "mc",
+                generator: () => {
+                    const type = getRandomInt(0, 1); // 0 = Linear, 1 = Quadratic
+                    
+                    if (type === 0) { // Linear
+                        const m = getRandomInt(-2, 2);
+                        if (m === 0) m = -1; // Avoid horizontal lines for this example
+                        const b = getRandomInt(-3, 3);
+                        
+                        const correctOption = `\\( y = ${m}x ${b >= 0 ? '+' : '-'} ${Math.abs(b)} \\)`;
+                        // UPDATED: Text-only question
+                        const text = `Which linear equation describes a line with a <strong>slope of ${m}</strong> and a <strong>y-intercept of ${b}</strong>?`;
+                        
+                        let options = [
+                            correctOption,
+                            `\\( y = ${-m}x ${b >= 0 ? '+' : '-'} ${Math.abs(b)} \\)`, // Flipped slope
+                            `\\( y = ${m}x ${b >= 0 ? '-' : '+'} ${Math.abs(b)} \\)`, // Flipped intercept
+                            `\\( y = ${b}x ${m >= 0 ? '+' : '-'} ${Math.abs(m)} \\)`  // Flipped m and b
+                        ];
+                        
+                        options = [...new Set(options)];
+                        shuffleArray(options);
+                        const newCorrectIndex = options.indexOf(correctOption);
+
+                        return {
+                            type: "mc",
+                            text: text, // No more graphImage
+                            options: options,
+                            correctAnswer: newCorrectIndex
+                        };
+                    } else { // Quadratic
+                        const h = getRandomInt(-4, 4);
+                        const k = getRandomInt(-4, 4);
+                        const a = getRandomInt(0, 1) === 0 ? 1 : -1; // Opens up or down
+                        
+                        const opening = a === 1 ? "opens up" : "opens down";
+                        const correctOption = `\\( y = ${a === 1 ? '' : '-'} (x ${h > 0 ? '-' : '+'} ${Math.abs(h)})^2 ${k > 0 ? '+' : '-'} ${Math.abs(k)} \\)`;
+                        
+                        // UPDATED: Text-only question
+                        const text = `Which quadratic equation matches a parabola that <strong>${opening}</strong> and has its vertex at <strong>\\( (${h}, ${k}) \\)</strong>?`;
+                        
+                        let options = [
+                            correctOption,
+                            `\\( y = ${a === 1 ? '' : '-'} (x ${h > 0 ? '+' : '-'} ${Math.abs(h)})^2 ${k > 0 ? '-' : '+'} ${Math.abs(k)} \\)`, // Flipped k
+                            `\\( y = ${a === 1 ? '' : '-'} (x ${h > 0 ? '-' : '+'} ${Math.abs(k)})^2 ${k > 0 ? '+' : '-'} ${Math.abs(h)} \\)`, // Flipped h and k
+                            `\\( y = ${a === -1 ? '' : '-'} (x ${h > 0 ? '-' : '+'} ${Math.abs(h)})^2 ${k > 0 ? '+' : '-'} ${Math.abs(k)} \\)`  // Flipped a
+                        ];
+                        
+                        options = [...new Set(options)];
+                        shuffleArray(options);
+                        const newCorrectIndex = options.indexOf(correctOption);
+
+                        return {
+                            type: "mc",
+                            text: text, // No more graphImage
+                            options: options,
+                            correctAnswer: newCorrectIndex
+                        };
+                    }
+                }
+            },
+            {
+                // SOL: A.DS.1 (Data & Stats - Box Plots)
+                // NEW: Analyze box plot
+                // UPDATED: Added clear text description to supplement the placeholder
+                type: "mc",
+                generator: () => {
+                    const q1 = getRandomInt(10, 20);
+                    const med = q1 + getRandomInt(3, 8);
+                    const q3 = med + getRandomInt(3, 8);
+                    const min = q1 - getRandomInt(2, 5);
+                    const max = q3 + getRandomInt(2, 5);
+                    
+                    const iqr = q3 - q1;
+                    
+                    // UPDATED: Clearer text description
+                    const text = `A data set is summarized by the five-number summary and box plot shown below:
+                        <ul class="list-disc list-inside ml-4 my-4">
+                            <li>Minimum: ${min}</li>
+                            <li>Q1: ${q1}</li>
+                            <li>Median: ${med}</li>
+                            <li>Q3: ${q3}</li>
+                            <li>Maximum: ${max}</li>
+                        </ul>
+                    What is the <strong>interquartile range (IQR)</strong> of the data?`;
+                    
+                    // Generate a placeholder image describing the box plot
+                    const graphText = `Box Plot%5CnMin=${min} | Q1=${q1} | Med=${med} | Q3=${q3} | Max=${max}`;
+                    const graphImage = `<img src="https://placehold.co/450x150/f0f2f5/333333?text=${graphText}" alt="box plot">`;
+
+                    const correctOption = `\\( ${iqr} \\)`;
+                    let options = [
+                        correctOption,
+                        `\\( ${max - min} \\)`, // Range
+                        `\\( ${med} \\)`, // Median
+                        `\\( ${max - q3} \\)`  // Upper whisker length
+                    ];
+                    
+                    options = [...new Set(options)];
+                    while(options.length < 4) {
+                        options.push(`\\( ${getRandomInt(1,30)} \\)`);
+                        options = [...new Set(options)];
+                    }
+                    shuffleArray(options);
+                    const newCorrectIndex = options.indexOf(correctOption);
+
+                    return {
+                        type: "mc",
+                        text: `${text} <br><br> ${graphImage}`, // Keep image as visual aid, but text has all info
+                        options: options,
+                        correctAnswer: newCorrectIndex
+                    };
+                }
+            },
+            {
+                // SOL: A.4 (Equations/Inequalities)
+                // Template for: Solve quadratic equation for roots
+                type: "ms",
+                generator: () => {
+                    const r1 = getRandomInt(-5, 5);
+                    let r2 = getRandomInt(-5, 5);
+                    // --- FIX ---
+                    // Ensure roots are different and not just opposites
+                    if (r1 === r2 || r1 === -r2) r2 += 1;
+                    if (r2 === 0 && r1 !== 0) { /* fine */ }
+                    else if (r2 === 0 && r1 === 0) r2 = 1; // both 0
+                    // --- END FIX ---
+
+                    const b = -(r1 + r2);
+                    const c = r1 * r2;
+
+                    const bSign = b > 0 ? '+' : (b < 0 ? '-' : '');
+                    const cSign = c > 0 ? '+' : (c < 0 ? '-' : '');
+                    const bVal = (Math.abs(b) === 1 || b === 0) ? '' : Math.abs(b);
+                    const bTerm = b === 0 ? '' : `${bSign} ${bVal}x`;
+                    const cTerm = c === 0 ? '' : `${cSign} ${Math.abs(c)}`;
+
+
+                    const text = `Find the solutions for <strong>\\( x^2 ${bTerm} ${cTerm} = 0 \\)</strong>. <br><br> (Select all that apply)`;
+                    
+                    // Correct options
+                    let correctOptions = [`\\( ${r1} \\)`, `\\( ${r2} \\)`];
+
+                    // Distractor options
+                    let distractors = [
+                        `\\( ${-r1} \\)`,
+                        `\\( ${-r2} \\)`,
+                        `\\( ${r1 + 1} \\)`,
+                        `\\( ${r2 - 1} \\)`
+                    ];
+
+                    // Use Set to de-duplicate
+                    let options = [...correctOptions, ...distractors];
+                    options = [...new Set(options)];
+                    
+                    // Ensure we have at least 4 unique options
+                    let extraVal = 10;
+                    while (options.length < 4) {
+                        options.push(`\\( ${extraVal} \\)`);
+                        extraVal++;
+                        options = [...new Set(options)]; // Re-filter
+                    }
+                    // Slice to exactly 4 if we have too many
+                    options = options.slice(0, 4);
+
+                    const optionMap = options.map((val, i) => i);
+                    shuffleArray(optionMap);
+
+                    const newOptions = optionMap.map(i => options[i]);
+                    const newCorrectIndices = [
+                        optionMap.indexOf(options.indexOf(correctOptions[0])), 
+                        optionMap.indexOf(options.indexOf(correctOptions[1]))
+                    ].sort((a, b) => a - b);
+
+                    return {
+                        type: "ms",
+                        text: text,
+                        options: newOptions,
+                        correctAnswer: newCorrectIndices
                     };
                 }
             },
@@ -790,7 +1082,7 @@
                 generator: () => {
                     const inside = [8, 12, 18, 20, 24, 27, 28, 32];
                     const val = inside[getRandomInt(0, inside.length-1)];
-                    
+
                     let correctText = "";
                     if (val === 8) correctText = "\\( 2\\sqrt{2} \\)";
                     if (val === 12) correctText = "\\( 2\\sqrt{3} \\)";
@@ -800,11 +1092,17 @@
                     if (val === 27) correctText = "\\( 3\\sqrt{3} \\)";
                     if (val === 28) correctText = "\\( 2\\sqrt{7} \\)";
                     if (val === 32) correctText = "\\( 4\\sqrt{2} \\)";
+
+                    let options = [correctText, `\\( ${val/2}\\sqrt{2} \\)`, `\\( 2\\sqrt{${val/2}} \\)`, `\\( ${Math.round(val/4)}\\sqrt{${val/Math.round(val/4)}} \\)`];
+                    // Use Set to de-duplicate
+                    options = [...new Set(options)];
+                    while(options.length < 4) {
+                        options.push(`\\( ${getRandomInt(2,5)}\\sqrt{${getRandomInt(2,5)}} \\)`);
+                        options = [...new Set(options)];
+                    }
                     
-                    let options = [correctText, `\\( ${val/2}\\sqrt{2} \\)`, `\\( 2\\sqrt{${val/2}} \\)`, `\\( ${val}\\sqrt{1} \\)`];
                     shuffleArray(options);
                     const newCorrectIndex = options.indexOf(correctText);
-
                     return {
                         type: "mc",
                         text: `Which expression is equivalent to <strong>\\( \\sqrt{${val}} \\)</strong> in simplest radical form?`,
@@ -819,72 +1117,24 @@
                 type: "fib",
                 generator: () => {
                     const a = getRandomInt(2, 5); // x^2 coeff
-                    const b = getRandomInt(-5, 5); // x coeff
-                    const c = getRandomInt(-10, 10); // constant
+                    let b = getRandomInt(-5, 5); // x coeff
+                    if (b === 0) b = 1; // avoid b=0
+                    let c = getRandomInt(-10, 10); // constant
+                    if (c === 0) c = -1; // avoid c=0
                     const x = getRandomInt(-3, 3);
-                    
+
                     const answer = (a * x * x) + (b * x) + c;
-                    
+
                     const bSign = b > 0 ? '+' : '-';
                     const cSign = c > 0 ? '+' : '-';
-                    
+                    const bVal = Math.abs(b) === 1 ? '' : Math.abs(b);
+
+
                     return {
                         type: "fib",
-                        text: `Given <strong>\\( f(x) = ${a}x^2 ${bSign} ${Math.abs(b)}x ${cSign} ${Math.abs(c)} \\)</strong>, what is the value of <strong>\\( f(${x}) \\)</strong>?`,
+                        text: `Given <strong>\\( f(x) = ${a}x^2 ${bSign} ${bVal}x ${cSign} ${Math.abs(c)} \\)</strong>, what is the value of <strong>\\( f(${x}) \\)</strong>?`,
                         prompt: "\\( f(x) \\) =",
                         correctAnswer: answer.toString()
-                    };
-                }
-            },
-            {
-                // SOL: A.4 (Equations/Inequalities)
-                // Template for: Solve quadratic equation for roots
-                type: "ms",
-                generator: () => {
-                    const r1 = getRandomInt(-5, 5);
-                    let r2 = getRandomInt(-5, 5);
-                    if (r1 === r2) r2 += 1; // ensure roots are different
-
-                    const b = -(r1 + r2);
-                    const c = r1 * r2;
-                    
-                    const bSign = b > 0 ? '+' : '-';
-                    const bVal = Math.abs(b) === 1 ? '' : Math.abs(b);
-                    const cSign = c > 0 ? '+' : '-';
-
-                    const text = `Find the solutions for <strong>\\( x^2 ${bSign} ${bVal}x ${cSign} ${Math.abs(c)} = 0 \\)</strong>. <br><br> (Select all that apply)`;
-
-                    // Correct options
-                    let correctOptions = [`\\( ${r1} \\)`, `\\( ${r2} \\)`];
-                    
-                    // Distractor options
-                    let distractors = [
-                        `\\( ${-r1} \\)`,
-                        `\\( ${-r2} \\)`,
-                        `\\( ${r1+1} \\)`,
-                        `\\( ${r2-1} \\)`
-                    ];
-                    
-                    shuffleArray(distractors);
-                    let options = [...correctOptions, distractors[0], distractors[1]];
-                    // Ensure unique options
-                    options = [...new Set(options)]; 
-                    while (options.length < 4) {
-                        options.push(`\\( ${getRandomInt(-10, 10)} \\)`);
-                        options = [...new Set(options)];
-                    }
-                    
-                    const optionMap = options.map((val, i) => i);
-                    shuffleArray(optionMap);
-                    
-                    const newOptions = optionMap.map(i => options[i]);
-                    const newCorrectIndices = [optionMap.indexOf(correctOptions[0]), optionMap.indexOf(correctOptions[1])].sort((a, b) => a - b);
-                    
-                    return {
-                        type: "ms",
-                        text: text,
-                        options: newOptions,
-                        correctAnswer: newCorrectIndices
                     };
                 }
             },
@@ -896,10 +1146,11 @@
                     const m = getRandomInt(2, 5);
                     const b = m * getRandomInt(2, 5); // Ensure a nice integer intercept
                     const xIntercept = -b / m;
-                    
+
                     return {
                         type: "fib",
-                        text: `What is the x-intercept of the line <strong>\\( y = ${m}x + ${b} \\)</strong>?`,
+                        answerType: "point", // NEW: Specify this is a point question
+                        text: `What is the x-intercept of the line <strong>\\( y = ${m}x + ${b} \\)</strong>? <br><br> (Enter as a number or coordinate pair)`,
                         prompt: "x-intercept:",
                         correctAnswer: xIntercept.toString()
                     };
@@ -912,10 +1163,11 @@
                 generator: () => {
                     const m = getRandomInt(2, 5);
                     const b = getRandomInt(2, 10);
-                    
+
                     return {
                         type: "fib",
-                        text: `What is the y-intercept of the line <strong>\\( y = ${m}x - ${b} \\)</strong>?`,
+                        answerType: "point", // NEW: Specify this is a point question
+                        text: `What is the y-intercept of the line <strong>\\( y = ${m}x - ${b} \\)</strong>? <br><br> (Enter as a number or coordinate pair)`,
                         prompt: "y-intercept:",
                         correctAnswer: (-b).toString()
                     };
@@ -933,10 +1185,10 @@
                         a = getRandomInt(5, 15);
                         b = getRandomInt(1, 10);
                         x = (a + b) / 3;
-                    } while (x % 1 !== 0);
-                    
+                    } while (x % 1 !== 0); // Loop until x is a whole number
+
                     y = a - x;
-                    
+
                     return {
                         type: "fib",
                         text: `Solve the system of equations: <br><strong>\\( x + y = ${a} \\)</strong><br><strong>\\( 2x - y = ${b} \\)</strong>`,
@@ -947,42 +1199,285 @@
             },
             {
                 // SOL: A.8 (Statistics)
-                // Template for: Direct/Inverse Variation
-                type: "dropdown",
+                // REPLACED: Variation
+                // NEW: Linear Regression
+                type: "mc",
                 generator: () => {
-                    const relations = [
-                        { q: "The number of hours you work and the amount you get paid", a: "Directly" },
-                        { q: "The speed of a car and the time it takes to reach a destination", a: "Inversely" },
-                        { q: "The number of items you buy and the total cost", a: "Directly" },
-                        { q: "The number of people painting a fence and the time it takes to finish", a: "Inversely" }
-                    ];
-                    const item = relations[getRandomInt(0, 3)];
+                    // Base line y = mx + b
+                    const m = getRandomInt(2, 6);
+                    const b = getRandomInt(5, 15);
                     
+                    let dataTableHtml = `
+                        <table>
+                            <thead><tr><th>Hours Studied (\\( x \\))</th><th>Test Score (\\( y \\))</th></tr></thead>
+                            <tbody>`;
+                    
+                    // Generate 5 data points with some noise
+                    for (let x = 1; x <= 5; x++) {
+                        let y = (m * x) + b + getRandomInt(-2, 2);
+                        dataTableHtml += `<tr><td>${x}</td><td>${y}</td></tr>`;
+                    }
+                    dataTableHtml += `</tbody></table>`;
+                    
+                    // Students will use Desmos (y1 ~ mx1 + b1) to find m and b.
+                    // We provide the "correct" m and b as options.
+                    // The student's calculated regression will be very close to this.
+                    const correctOption = `\\( y = ${m}x + ${b} \\)`;
+                    
+                    let options = [
+                        correctOption,
+                        `\\( y = ${b}x + ${m} \\)`, // Flipped m and b
+                        `\\( y = ${m - 1}x + ${b + 3} \\)`, // Close, but wrong
+                        `\\( y = ${m * 2}x + ${b / 2} \\)` // Way off
+                    ];
+                    
+                    options = [...new Set(options)];
+                    while(options.length < 4) {
+                        options.push(`\\( y = ${getRandomInt(1,10)}x + ${getRandomInt(1,10)} \\)`);
+                        options = [...new Set(options)];
+                    }
+
+                    shuffleArray(options);
+                    const newCorrectIndex = options.indexOf(correctOption);
+
                     return {
-                        type: "dropdown",
-                        text: "Identify the relationship.",
-                        prompt: `"${item.q}" <br><br> These two quantities vary:`,
-                        options: ["Directly", "Inversely", "Neither directly nor inversely"],
-                        correctAnswer: item.a
+                        type: "mc",
+                        text: `A teacher collected data on the number of hours students studied for a test and their final scores. The data is shown in the table. <br><br> ${dataTableHtml} <br> Which equation <strong>best</strong> represents the line of best fit for this data?`,
+                        options: options,
+                        correctAnswer: newCorrectIndex
                     };
                 }
             },
             {
                 // SOL: A.9 (Statistics)
-                // Template for: Z-Score
+                // REPLACED: Z-Score
+                // NEW: Population Standard Deviation
                 type: "fib",
                 generator: () => {
-                    const mean = getRandomInt(70, 80);
-                    const stdDev = getRandomInt(5, 10);
-                    const score = mean + (getRandomInt(-2, 2) * stdDev); // Get a nice z-score
+                    const data = [];
+                    for (let i = 0; i < 5; i++) {
+                        data.push(getRandomInt(1, 20));
+                    }
                     
-                    const z = (score - mean) / stdDev;
-                    
+                    const mean = data.reduce((a, b) => a + b, 0) / data.length;
+                    const variance = data.reduce((sum, val) => sum + Math.pow(val - mean, 2), 0) / data.length;
+                    const stdDev = Math.sqrt(variance);
+
+                    const dataString = data.join(', ');
+
                     return {
                         type: "fib",
-                        text: `A data set has a mean (\\( \\mu \\)) of <strong>${mean}</strong> and a standard deviation (\\( \\sigma \\)) of <strong>${stdDev}</strong>. What is the z-score for a data point of <strong>${score}</strong>?`,
-                        prompt: "z-score =",
-                        correctAnswer: z.toString()
+                        text: `Find the <strong>population standard deviation (σ)</strong> for the following data set. Round to two decimal places if necessary. <br><br> <strong>\\( \\{${dataString}\\} \\)</strong>`,
+                        prompt: "σ =",
+                        correctAnswer: stdDev.toString() // Grading logic handles rounding
+                    };
+                }
+            },
+            {
+                // SOL: A.1 (Expressions)
+                // NEW: Translating algebraic expressions
+                type: "mc",
+                generator: () => {
+                    const a = getRandomInt(2, 5); // "twice", "3 times", etc.
+                    const b = getRandomInt(3, 10); // "5 less than", "8 more than"
+                    const op = getRandomInt(0, 1); // 0 = less than, 1 = more than
+
+                    const text = op === 0 ? 
+                        `Which algebraic expression represents "<strong>${b} less than ${a} times a number, x</strong>"?` :
+                        `Which algebraic expression represents "<strong>${b} more than ${a} times a number, x</strong>"?`;
+
+                    const correctOption = op === 0 ? `\\( ${a}x - ${b} \\)` : `\\( ${a}x + ${b} \\)`;
+                    let options = [
+                        correctOption,
+                        op === 0 ? `\\( ${b} - ${a}x \\)` : `\\( ${b}x + ${a} \\)`, // Common reversal
+                        op === 0 ? `\\( ${a}(x - ${b}) \\)` : `\\( ${a}(x + ${b}) \\)`, // Distractor
+                        op === 0 ? `\\( ${a}x + ${b} \\)` : `\\( ${a}x - ${b} \\)` // Flipped operation
+                    ];
+                    
+                    options = [...new Set(options)];
+                    shuffleArray(options);
+                    const newCorrectIndex = options.indexOf(correctOption);
+
+                    return {
+                        type: "mc",
+                        text: text,
+                        options: options,
+                        correctAnswer: newCorrectIndex
+                    };
+                }
+            },
+            {
+                // SOL: A.2 (Expressions)
+                // NEW: Polynomial Subtraction
+                type: "mc",
+                generator: () => {
+                    const a = getRandomInt(3, 8); // x^2
+                    const b = getRandomInt(2, 6); // x
+                    const c = getRandomInt(1, 5); // const
+
+                    const d = getRandomInt(1, 2); // x^2
+                    const e = getRandomInt(-5, -2); // x (negative to force sign change)
+                    const f = getRandomInt(-5, -2); // const
+
+                    // (a-d)x^2 + (b-e)x + (c-f)
+                    const correctText = `\\( ${a - d}x^2 + ${b - e}x + ${c - f} \\)`;
+                    let options = [
+                        correctText,
+                        `\\( ${a + d}x^2 + ${b + e}x + ${c + f} \\)`, // Distractor (Added)
+                        `\\( ${a - d}x^2 + ${b + e}x + ${c + f} \\)`, // Distractor (Forgot to distribute negative to b/c)
+                        `\\( ${a - d}x^2 + ${b - e}x + ${c + f} \\)`  // Distractor (Forgot to distribute to c)
+                    ];
+                    
+                    options = [...new Set(options)];
+                    while(options.length < 4) {
+                        options.push(`\\( ${getRandomInt(2,10)}x^2 + ${getRandomInt(2,10)}x + ${getRandomInt(2,10)} \\)`);
+                        options = [...new Set(options)];
+                    }
+
+                    shuffleArray(options);
+                    const newCorrectIndex = options.indexOf(correctText);
+
+                    return {
+                        type: "mc",
+                        text: `Simplify the expression: <strong>\\( (${a}x^2 + ${b}x + ${c}) - (${d}x^2 + ${e}x + ${f}) \\)</strong>`,
+                        options: options,
+                        correctAnswer: newCorrectIndex
+                    };
+                }
+            },
+            {
+                // SOL: A.EO.4c (Polynomial Operations - Multiplication)
+                // NEW: Polynomial Multiplication
+                type: "mc",
+                generator: () => {
+                    const a = getRandomInt(1, 3); // ax
+                    const b = getRandomInt(2, 5); // + b
+                    const c = getRandomInt(1, 3); // cx
+                    const d = getRandomInt(2, 5); // + d
+
+                    // (ax + b)(cx + d) = acx^2 + adx + bcx + bd
+                    // acx^2 + (ad + bc)x + bd
+                    const ac = a * c;
+                    const ad_bc = (a * d) + (b * c);
+                    const bd = b * d;
+                    
+                    const correctText = `\\( ${ac}x^2 + ${ad_bc}x + ${bd} \\)`;
+                    
+                    let options = [
+                        correctText,
+                        `\\( ${ac}x^2 + ${bd} \\)`, // Distractor (FOIL fail - only F and L)
+                        `\\( ${a+c}x^2 + ${b+d}x \\)`, // Distractor (Added terms)
+                        `\\( ${ac}x^2 + (${(a*d)}-(${(b*c)}))x + ${bd} \\)` // Distractor (subtracted inner terms)
+                    ];
+                    
+                    options = [...new Set(options)];
+                    while(options.length < 4) {
+                        options.push(`\\( ${getRandomInt(2,10)}x^2 + ${getRandomInt(2,10)}x + ${getRandomInt(2,10)} \\)`);
+                        options = [...new Set(options)];
+                    }
+
+                    shuffleArray(options);
+                    const newCorrectIndex = options.indexOf(correctText);
+
+                    return {
+                        type: "mc",
+                        text: `Which expression is equivalent to <strong>\\( (${a}x + ${b})(${c}x + ${d}) \\)</strong>?`,
+                        options: options,
+                        correctAnswer: newCorrectIndex
+                    };
+                }
+            },
+            {
+                // SOL: A.3 (Expressions)
+                // NEW: Simplifying Rational Expressions
+                type: "mc",
+                generator: () => {
+                    const a = getRandomInt(2, 7);
+                    const a_sq = a * a;
+                    // (x^2 - a^2) / (x - a)
+                    const text = `Which expression is equivalent to <strong>\\( \\frac{x^2 - ${a_sq}}{x - ${a}} \\)</strong>, assuming \\( x \\neq ${a} \\)?`;
+
+                    const correctOption = `\\( x + ${a} \\)`;
+                    let options = [
+                        correctOption,
+                        `\\( x - ${a} \\)`, // Common mistake
+                        `\\( x^2 - ${a} \\)`, // Bad cancellation
+                        `\\( x - ${a_sq} \\)` // Bad cancellation
+                    ];
+
+                    options = [...new Set(options)];
+                    shuffleArray(options);
+                    const newCorrectIndex = options.indexOf(correctOption);
+
+                    return {
+                        type: "mc",
+                        text: text,
+                        options: options,
+                        correctAnswer: newCorrectIndex
+                    };
+                }
+            },
+            {
+                // SOL: A.5 (Equations/Inequalities)
+                // NEW: Solving Inequalities (with sign flip)
+                type: "mc",
+                generator: () => {
+                    const a = getRandomInt(2, 5); // Negative coefficient
+                    const b = getRandomInt(1, 5);
+                    const c = a * getRandomInt(3, 7); // Ensure nice number
+                    // -a(x + b) < c
+                    // -ax - ab < c
+                    // -ax < c + ab
+                    // x > -(c + ab) / a
+                    const text = `Solve the inequality: <strong>\\( -${a}(x + ${b}) < ${c} \\)</strong>`;
+                    const answerVal = -(c + a*b) / a;
+
+                    const correctOption = `\\( x > ${answerVal} \\)`; // Flipped sign
+                    let options = [
+                        correctOption,
+                        `\\( x < ${answerVal} \\)`, // Forgot to flip sign
+                        `\\( x > ${-(c / a) - b} \\)`, // Distributed wrong
+                        `\\( x < ${-(c / a) - b} \\)`  // Distributed wrong and forgot flip
+                    ];
+
+                    options = [...new Set(options)];
+                    shuffleArray(options);
+                    const newCorrectIndex = options.indexOf(correctOption);
+                    
+                    return {
+                        type: "mc",
+                        text: text,
+                        options: options,
+                        correctAnswer: newCorrectIndex
+                    };
+                }
+            },
+            {
+                // SOL: A.5 (Equations/Inequalities)
+                // NEW: System of Inequalities (check solution)
+                type: "mc",
+                generator: () => {
+                    // System:
+                    // y < 2x + 1
+                    // y >= -x + 3
+                    const text = `Which ordered pair is a solution to this system of inequalities? <br><strong>\\( y < 2x + 1 \\)</strong><br><strong>\\( y \\ge -x + 3 \\)</strong>`;
+                    
+                    const correctOption = `\\( (3, 4) \\)`; // 4 < 7 (T), 4 >= 0 (T)
+                    let options = [
+                        correctOption,
+                        `\\( (0, 0) \\)`, // 0 < 1 (T), 0 >= 3 (F)
+                        `\\( (1, 5) \\)`, // 5 < 3 (F)
+                        `\\( (4, 9) \\)`  // 9 < 9 (F)
+                    ];
+
+                    shuffleArray(options);
+                    const newCorrectIndex = options.indexOf(correctOption);
+
+                    return {
+                        type: "mc",
+                        text: text,
+                        options: options,
+                        correctAnswer: newCorrectIndex
                     };
                 }
             },
@@ -994,22 +1489,29 @@
                     const a = getRandomInt(2, 5); // x^2
                     const b = getRandomInt(2, 5); // x
                     const c = getRandomInt(2, 5); // const
-                    
+
                     const d = getRandomInt(2, 5); // x^2
                     const e = getRandomInt(-5, -2); // x
                     const f = getRandomInt(-5, -2); // const
-                    
-                    const correctText = `\\( ${a+d}x^2 + ${b+e}x + ${c+f} \\)`;
+
+                    const correctText = `\\( ${a + d}x^2 + ${b + e}x + ${c + f} \\)`;
                     let options = [
                         correctText,
-                        `\\( ${a-d}x^2 + ${b-e}x + ${c-f} \\)`, // Distractor (subtracted)
-                        `\\( ${a+d}x^2 + ${b+e}x - ${c+f} \\)`, // Distractor (sign error)
-                        `\\( ${a+d}x^4 + ${b+e}x^2 + ${c+f} \\)` // Distractor (added exponents)
+                        `\\( ${a - d}x^2 + ${b - e}x + ${c - f} \\)`, // Distractor (subtracted)
+                        `\\( ${a + d}x^2 + ${b + e}x \\)`, // Distractor (missing constant)
+                        `\\( ${a + d}x^4 + ${b + e}x^2 + ${c + f} \\)` // Distractor (added exponents)
                     ];
-                    
+
+                    // De-duplicate
+                    options = [...new Set(options)];
+                    while(options.length < 4) {
+                        options.push(`\\( ${getRandomInt(2,10)}x^2 + ${getRandomInt(2,10)}x + ${getRandomInt(2,10)} \\)`);
+                        options = [...new Set(options)];
+                    }
+
                     shuffleArray(options);
                     const newCorrectIndex = options.indexOf(correctText);
-                    
+
                     return {
                         type: "mc",
                         text: `Simplify the expression: <strong>\\( (${a}x^2 + ${b}x + ${c}) + (${d}x^2 + ${e}x + ${f}) \\)</strong>`,
@@ -1028,30 +1530,40 @@
                     // |x + a| = b
                     const r1 = b - a;
                     const r2 = -b - a;
-
+                    
                     const text = `Find the solutions for <strong>\\( |x + ${a}| = ${b} \\)</strong>. <br><br> (Select all that apply)`;
-
+                    
                     let correctOptions = [`\\( ${r1} \\)`, `\\( ${r2} \\)`];
                     let distractors = [
                         `\\( ${a - b} \\)`, // Flipped
                         `\\( ${a + b} \\)`, // Flipped
-                        `\\( ${b} \\)`
+                        `\\( ${b} \\)`,
+                        `\\( ${-a} \\)`
                     ];
+
+                    // Use Set to de-duplicate
+                    let options = [...correctOptions, ...distractors];
+                    options = [...new Set(options)]; 
                     
-                    shuffleArray(distractors);
-                    let options = [...correctOptions, distractors[0], distractors[1]];
-                    options = [...new Set(options)];
+                    // Ensure we have at least 4 unique options
+                    let extraVal = 10;
                     while (options.length < 4) {
-                        options.push(`\\( ${getRandomInt(-10, 10)} \\)`);
+                        options.push(`\\( ${extraVal} \\)`);
+                        extraVal++;
                         options = [...new Set(options)];
                     }
+                    // Slice to exactly 4 if we have too many
+                    options = options.slice(0, 4);
 
                     const optionMap = options.map((val, i) => i);
                     shuffleArray(optionMap);
-                    
+
                     const newOptions = optionMap.map(i => options[i]);
-                    const newCorrectIndices = [optionMap.indexOf(correctOptions[0]), optionMap.indexOf(correctOptions[1])].sort((a, b) => a - b);
-                    
+                    const newCorrectIndices = [
+                        optionMap.indexOf(options.indexOf(correctOptions[0])), 
+                        optionMap.indexOf(options.indexOf(correctOptions[1]))
+                    ].sort((a, b) => a - b);
+
                     return {
                         type: "ms",
                         text: text,
@@ -1062,7 +1574,6 @@
             }
         ];
 
- 
         // -----------------------------
         // --- APPLICATION STATE
         // -----------------------------
@@ -1070,7 +1581,7 @@
         let strikethroughActive = false;
         let questions = []; // This will be filled with 50 generated questions
         let answers = [];   // This will be filled with 50 answer objects
- 
+
         // -----------------------------
         // --- DOM ELEMENT REFERENCES
         // -----------------------------
@@ -1086,22 +1597,21 @@
         const userMenuDropdown = document.getElementById('user-menu-dropdown');
         const finishBtn = document.getElementById('finish-btn');
         const confirmFinishBtn = document.getElementById('confirm-finish-btn');
-        
-        
+
         // -----------------------------
         // --- TEST GENERATION
         // -----------------------------
         function generateTest() {
             questions = [];
             answers = [];
-            
+
             for (let i = 0; i < 50; i++) {
                 // Pick a random template from the bank
                 const template = questionBank[getRandomInt(0, questionBank.length - 1)];
                 // Generate a new, unique question from that template
                 const newQuestion = template.generator();
                 questions.push(newQuestion);
-                
+
                 // Initialize the answer object for this question
                 let initialValue = null;
                 if (newQuestion.type === 'ms') {
@@ -1116,7 +1626,6 @@
             }
         }
         
-
         // -----------------------------
         // --- QUESTION RENDERING
         // -----------------------------
@@ -1180,7 +1689,7 @@
 
             html += `</div>`; // Close answer-area
             questionContainer.innerHTML = html;
-            
+
             // Tell MathJax to typeset the new content
             if (window.MathJax && window.MathJax.typesetPromise) {
                 window.MathJax.typesetPromise([questionContainer]);
@@ -1188,7 +1697,7 @@
 
             // Add event listeners for the new content
             addAnswerListeners(q.type);
-            
+
             // Update UI
             updateNavButtons();
             updateFlagButton();
@@ -1202,7 +1711,7 @@
             prevBtn.disabled = (currentQuestionIndex === 0);
             nextBtn.disabled = (currentQuestionIndex === questions.length - 1);
         }
-        
+
         function updateFlagButton() {
             if (answers[currentQuestionIndex].flagged) {
                 flagBtn.classList.add('active');
@@ -1212,7 +1721,7 @@
                 flagBtn.innerHTML = '<i class="fa-regular fa-flag"></i> <span>Flag</span>';
             }
         }
-        
+
         function updateStrikethroughButton(questionType) {
             if (questionType !== 'mc' && questionType !== 'ms') {
                 strikethroughBtn.disabled = true;
@@ -1227,7 +1736,7 @@
                 }
             }
         }
-        
+
         function saveAnswer(value) {
             answers[currentQuestionIndex].value = value;
             if (Array.isArray(value)) {
@@ -1235,12 +1744,12 @@
             } else {
                 answers[currentQuestionIndex].answered = (value !== null && value !== "" && value !== undefined && value !== 'default');
             }
-        }
- 
+        } 
+
         // -----------------------------
         // --- EVENT LISTENERS
         // -----------------------------
-        
+
         // --- Navigation ---
         prevBtn.addEventListener('click', () => {
             if (currentQuestionIndex > 0) {
@@ -1253,12 +1762,12 @@
                 renderQuestion(currentQuestionIndex + 1);
             }
         });
-        
+
         // --- User Menu ---
         userMenuBtn.addEventListener('click', () => {
             userMenuDropdown.classList.toggle('active');
         });
-        
+
         document.addEventListener('click', (e) => {
             if (userMenuBtn && !userMenuBtn.contains(e.target) && userMenuDropdown && !userMenuDropdown.contains(e.target)) {
                 userMenuDropdown.classList.remove('active');
@@ -1277,11 +1786,11 @@
                 strikethroughBtn.classList.toggle('active');
             }
         });
-        
+
         calculatorBtn.addEventListener('click', () => {
             openToolModal('Calculator', 'https://www.desmos.com/testing/virginia/graphing');
         });
-        
+
         formulaBtn.addEventListener('click', () => {
             // Link to the official VDOE Algebra 1 Formula Sheet PDF
             openToolModal('Formula Sheet', 'https://www.doe.virginia.gov/home/showpublisheddocument/56033/638581953851970000');
@@ -1294,7 +1803,7 @@
                     el.addEventListener('click', (e) => {
                         const optionIndex = parseInt(el.dataset.optionIndex);
                         const label = el.querySelector('.mc-option-label');
-                        
+
                         if (strikethroughActive) {
                             // Toggle strikethrough
                             const strikeIndex = answers[currentQuestionIndex].strikethrough.indexOf(optionIndex);
@@ -1322,7 +1831,7 @@
                         const optionIndex = parseInt(el.dataset.optionIndex);
                         const label = el.querySelector('.ms-option-label');
                         const checkbox = el.querySelector('input[type="checkbox"]');
-                        
+
                         if (strikethroughActive) {
                             // Toggle strikethrough
                             const strikeIndex = answers[currentQuestionIndex].strikethrough.indexOf(optionIndex);
@@ -1337,7 +1846,7 @@
                             // Toggle answer selection
                             el.classList.toggle('selected');
                             checkbox.checked = !checkbox.checked;
-                            
+
                             // Build array of selected answers
                             const selectedIndices = [];
                             document.querySelectorAll('.ms-option.selected').forEach(selectedEl => {
@@ -1350,7 +1859,7 @@
             }
             else if (questionType === "fib") {
                 document.getElementById('fib-input').addEventListener('input', (e) => {
-                    saveAnswer(e.target.value.trim());
+                    saveAnswer(e.target.value); // Save the raw string value
                 });
             }
             else if (questionType === "dropdown") {
@@ -1363,20 +1872,20 @@
         // -----------------------------
         // --- MODAL HANDLING
         // -----------------------------
-        
+
         // --- Generic Modal Open/Close ---
         function openModal(modalId) {
             document.getElementById(modalId).classList.add('active');
         }
         function closeModal(modalId) {
             document.getElementById(modalId).classList.remove('active');
-            
+
             // Special cleanup for tool modal
             if (modalId === 'tool-modal') {
                 document.getElementById('tool-modal-iframe').src = "about:blank";
             }
         }
-        
+
         document.querySelectorAll('[data-close-modal]').forEach(el => {
             el.addEventListener('click', () => {
                 closeModal(el.dataset.closeModal);
@@ -1388,16 +1897,16 @@
             renderReviewScreen();
             openModal('review-modal');
         });
-        
+
         function renderReviewScreen() {
             const grid = document.getElementById('review-grid');
             grid.innerHTML = ''; // Clear old content
-            
+
             questions.forEach((q, index) => {
                 const a = answers[index];
                 let status = "Not Answered";
                 let statusClass = "";
-                
+
                 if (a.flagged) {
                     status = "Flagged";
                     statusClass = "flagged";
@@ -1405,7 +1914,7 @@
                     status = "Answered";
                     statusClass = "answered";
                 }
-                
+
                 const itemHtml = `
                     <div class="review-item">
                         <div class="review-item-header">
@@ -1420,7 +1929,7 @@
                 `;
                 grid.innerHTML += itemHtml;
             });
-            
+
             // Add listeners for "Go to Question" buttons
             document.querySelectorAll('.review-item-button').forEach(btn => {
                 btn.addEventListener('click', (e) => {
@@ -1431,55 +1940,103 @@
                 });
             });
         }
-        
+
         // --- Tool Modal ---
         function openToolModal(title, url) {
             document.getElementById('tool-modal-title').textContent = title;
             document.getElementById('tool-modal-iframe').src = url;
             openModal('tool-modal');
         }
-        
+
         // --- Finish Test Modals ---
         finishBtn.addEventListener('click', () => {
             openModal('finish-modal');
         });
-        
+
         confirmFinishBtn.addEventListener('click', () => {
             gradeTest();
         });
         
-
         // -----------------------------
         // --- GRADING & RESULTS
         // -----------------------------
-        
+
         function gradeTest() {
             let score = 0;
-            
+
             for (let i = 0; i < questions.length; i++) {
                 const q = questions[i];
                 const a = answers[i];
                 let isCorrect = false;
 
-                if (q.type === 'mc' || q.type === 'dropdown' || q.type === 'fib') {
+                if (q.type === 'mc' || q.type === 'dropdown') {
                     // Simple comparison
                     isCorrect = (a.value == q.correctAnswer);
                 } 
+                else if (q.type === 'fib') {
+                    // --- UPDATED GRADING LOGIC ---
+                    const userText = (a.value || "").trim(); // Get user's raw text
+                    const correctVal = evaluateNumericAnswer(q.correctAnswer); // Get the correct *number*
+                    let parsedUserVal = NaN;
+
+                    if (q.answerType === 'point') {
+                        // --- Handle Point/Coordinate Answers ---
+                        
+                        // 1. Try parsing as a number first
+                        let numericTry = evaluateNumericAnswer(userText);
+                        if (!isNaN(numericTry)) {
+                            parsedUserVal = numericTry;
+                        } else {
+                            // 2. Try parsing as a coordinate point
+                            // Remove spaces, parentheses: "(-2 , 0)" -> "-2,0"
+                            const cleanedText = userText.replace(/[\s\(\)]/g, ''); 
+                            const parts = cleanedText.split(',');
+
+                            if (parts.length === 2) {
+                                const part1 = evaluateNumericAnswer(parts[0]);
+                                const part2 = evaluateNumericAnswer(parts[1]);
+
+                                if (!isNaN(part1) && !isNaN(part2)) {
+                                    // For x-intercept, we check (val, 0)
+                                    if (q.prompt.includes('x-intercept')) {
+                                        if (part2 === 0) parsedUserVal = part1;
+                                    }
+                                    // For y-intercept, we check (0, val)
+                                    else if (q.prompt.includes('y-intercept')) {
+                                        if (part1 === 0) parsedUserVal = part2;
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+                        // --- Handle Standard Numeric Answers ---
+                        parsedUserVal = evaluateNumericAnswer(userText);
+                    }
+
+                    // 3. Now compare the extracted number with rounding
+                    if (!isNaN(parsedUserVal) && !isNaN(correctVal)) {
+                        // Use rounding to 2 decimal places
+                        const userRounded = Math.round(parsedUserVal * 100) / 100;
+                        const correctRounded = Math.round(correctVal * 100) / 100;
+                        isCorrect = (userRounded === correctRounded);
+                    }
+                    // --- END UPDATED LOGIC ---
+                }
                 else if (q.type === 'ms') {
                     // Array comparison
                     const correct = q.correctAnswer.sort((a,b) => a-b);
                     const given = a.value.sort((a,b) => a-b);
                     isCorrect = JSON.stringify(correct) === JSON.stringify(given);
-                } 
-                
+                }
+
                 if (isCorrect) {
                     score++;
                 }
             }
-            
+
             showResultsScreen(score);
         }
-        
+
         function showResultsScreen(score) {
             const resultsHtml = `
                 <div class="results-container">
@@ -1490,9 +2047,9 @@
                     </button>
                 </div>
             `;
-            
+
             document.body.innerHTML = resultsHtml;
-            
+
             document.getElementById('start-new-test-btn').addEventListener('click', () => {
                 window.location.reload();
             });
@@ -1505,7 +2062,6 @@
             generateTest();
             renderQuestion(0);
         };
-        
     </script>
 </body>
 </html>
