@@ -243,6 +243,26 @@
                 page-break-after: always;
             }
         }
+
+        /* Footer Style */
+        .footer {
+            position: absolute;
+            bottom: 20px;
+            left: 0; /* Ensures it spans the full width of the page, ignoring parent padding */
+            width: 100%;
+            text-align: center;
+            font-size: 9pt; /* Slightly smaller for subtle look */
+            color: #888;
+            font-family: sans-serif;
+            background: white; /* Clean background to hide any grid lines behind it */
+            padding: 5px 0;
+        }
+        
+        /* Specific tweak for Notebook design to blend better */
+        .design-notebook .footer {
+            background: transparent; /* Notebook lines can show through on this one */
+            color: #555;
+        }
     </style>
 </head>
 <body>
@@ -272,6 +292,7 @@
                 </div>
             </div>
         </div>
+        <div class="footer">• © 2025 Aly Hatfield. All Rights Reserved. •</div>
     </div>
 
     <!-- PAGE 2: RETRO POP -->
@@ -300,6 +321,7 @@
                 </div>
             </div>
         </div>
+        <div class="footer">• © 2025 Aly Hatfield. All Rights Reserved. •</div>
     </div>
 
     <!-- PAGE 3: MINIMALIST GRID -->
@@ -331,9 +353,8 @@
                 <div class="grid-line"></div>
             </div>
         </div>
+        <div class="footer">• © 2025 Aly Hatfield. All Rights Reserved. •</div>
     </div>
-        <footer class="text-center mt-16 text-gray-500">
-            <p>&nbsp;&bull;&nbsp; &copy; 2025 Aly Hatfield. All rights reserved. &nbsp;&bull;&nbsp;</p>
-        </footer>
+
 </body>
 </html>
