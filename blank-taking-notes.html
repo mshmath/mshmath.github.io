@@ -3,147 +3,609 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Math Notes Template</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Math Note Templates</title>
+    
+    <!-- Importing Clean, Readable Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+
     <style>
+        /* Global Reset & Print Settings */
+        * {
+            box-sizing: border-box;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        @page {
+            size: letter;
+            margin: 0;
+        }
+
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f8fafc;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            font-family: 'Quicksand', sans-serif;
+            color: #222; /* Darker black for visibility */
         }
-        .note-container {
-            background-color: white;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-            border: 1px solid #e2e8f0;
-            margin-bottom: 2rem;
-        }
-        .note-header {
-            padding: 1rem 1.5rem;
-            border-bottom: 1px solid #e2e8f0;
+
+        /* The Page Container */
+        .page {
+            width: 8.5in;
+            height: 11in;
+            margin: 20px auto;
+            background: white;
+            position: relative;
+            overflow: hidden;
+            page-break-after: always;
+            padding: 0.5in 0.6in; /* Standard print margins inside the container */
             display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            align-items: center;
+            flex-direction: column;
         }
-        .note-header input {
-            border: none;
-            border-bottom: 1px solid #cbd5e1;
-            padding: 0.25rem 0;
-            background-color: transparent;
+
+        /* --- SHARED HEADER --- */
+        .header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 1rem;
+            border-bottom: 3px solid #000;
+            padding-bottom: 0.5rem;
+            height: 60px;
         }
-        .note-header input:focus {
-            outline: none;
-            border-bottom-color: #6366f1;
+
+        .header-title {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 2rem;
+            color: #000;
+            margin: 0;
+            line-height: 1;
         }
-        .note-body {
-            padding: 1.5rem;
+
+        .header-inputs {
+            display: flex;
+            gap: 2rem;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem; /* Larger font for visibility */
+            text-transform: uppercase;
         }
-        textarea {
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input-line {
+            width: 150px;
+            border-bottom: 2px solid #666; /* Darker line */
+            height: 1.5rem;
+        }
+
+        /* --- FOOTER --- */
+        .footer {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
             width: 100%;
-            border: 1px solid #e2e8f0;
+            text-align: center;
+            font-size: 10pt;
+            color: #666;
+            background: white;
+        }
+
+        /* --- SHARED BOX STYLES --- */
+        .section-label {
+            font-size: 1rem; /* Increased size */
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.25rem;
+            color: #444; /* Darker grey */
+        }
+
+        /* Dot Grid Box */
+        .box-dots {
+            flex-grow: 1;
+            border: 2px solid #000;
             border-radius: 8px;
+            /* High contrast dots */
+            background-image: radial-gradient(#666 1.5px, transparent 1.5px); 
+            background-size: 20px 20px;
+        }
+
+        /* Lined Notes Box */
+        .box-lines {
+            flex-grow: 1;
+            /* Darker lines for visibility */
+            background-image: linear-gradient(transparent 95%, #999 95%); 
+            background-size: 100% 2rem; /* Wide spacing */
+            background-position: 0 1.9rem;
+        }
+
+        .summary-box {
+            height: 150px;
+            border: 2px solid #000;
+            border-radius: 8px;
+            position: relative;
             padding: 1rem;
-            resize: vertical;
-            min-height: 150px;
+            margin-bottom: 1rem;
         }
-        textarea:focus {
-            outline: none;
-            border-color: #6366f1;
-            box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+
+        .summary-label {
+            position: absolute;
+            top: -14px;
+            left: 15px;
+            background: white;
+            padding: 0 10px;
+            font-weight: 700;
+            font-size: 1rem;
+            text-transform: uppercase;
+            border: 2px solid #000;
+            border-radius: 12px;
         }
+
+        /* --- STYLE 1: SPLIT FOCUS --- */
+        .split-container {
+            display: flex;
+            flex-grow: 1;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .col-visual { width: 35%; display: flex; flex-direction: column; }
+        .col-linear { width: 65%; display: flex; flex-direction: column; }
+
+        /* --- STYLE 2: CORNELL --- */
+        .cornell-container {
+            display: flex;
+            flex-grow: 1;
+            border: 2px solid #000;
+            margin-bottom: 1rem;
+        }
+        .cornell-cues {
+            width: 30%;
+            border-right: 3px solid #000;
+            background-image: linear-gradient(transparent 95%, #ddd 95%);
+            background-size: 100% 2rem;
+        }
+        .cornell-notes {
+            width: 70%;
+            background-image: linear-gradient(transparent 95%, #999 95%);
+            background-size: 100% 2rem;
+            background-position: 0 1.9rem;
+        }
+        .cornell-header-label {
+            text-align: center;
+            font-size: 1rem;
+            color: #444;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+
+        /* --- STYLE 3: PROBLEM BLOCKS (Adjusted for 5 blocks) --- */
+        .problem-block {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 0.6rem; /* Tighter margin to fit 5 */
+            border: 2px solid #000;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .block-header {
+            background: #eee;
+            padding: 3px 15px;
+            border-bottom: 2px solid #000;
+            font-weight: 700;
+            font-size: 0.95rem;
+            display: flex;
+            justify-content: space-between;
+        }
+        .block-content { display: flex; flex-grow: 1; }
+        .block-problem {
+            width: 30%;
+            border-right: 2px solid #000;
+            padding: 8px;
+            background-image: radial-gradient(#aaa 1px, transparent 1px);
+            background-size: 15px 15px;
+        }
+        .block-work {
+            width: 70%;
+            background-image: linear-gradient(transparent 95%, #999 95%);
+            background-size: 100% 2rem;
+            background-position: 0 1.9rem;
+        }
+
+        /* --- STYLE 4: LOGIC BREAKDOWN --- */
+        .logic-container { flex-grow: 1; display: flex; flex-direction: column; }
+        .logic-problem-box {
+            height: 120px;
+            border: 2px solid #000;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            position: relative;
+            background-image: radial-gradient(#aaa 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        .logic-table-header { display: flex; width: 100%; margin-bottom: 0.2rem; }
+        .logic-col-header { font-weight: 700; text-transform: uppercase; font-size: 1rem; color: #222; }
+        .logic-main-box {
+            flex-grow: 1;
+            border: 2px solid #000;
+            border-radius: 8px;
+            display: flex;
+            margin-bottom: 1.5rem;
+            background: white;
+        }
+        .logic-col-steps { width: 55%; border-right: 3px solid #000; display: flex; flex-direction: column; }
+        .logic-col-why { width: 45%; display: flex; flex-direction: column; }
+        .logic-row { flex-grow: 1; border-bottom: 1px solid #666; display: flex; min-height: 2.5rem; }
+        .logic-row:last-child { border-bottom: none; }
+        .step-num {
+            width: 40px;
+            border-right: 1px dashed #666;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #444;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+        .reflection-box {
+            height: 120px;
+            border: 2px solid #000;
+            border-radius: 8px;
+            position: relative;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            background-image: linear-gradient(transparent 95%, #ddd 95%);
+            background-size: 100% 2rem;
+        }
+
+        /* --- STYLE 5: HALF SHEET TEMPLATES (Warm Up / Exit Ticket) --- */
+        .half-sheet-container {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .half-sheet {
+            height: 48%; /* Slightly less than 50 to accommodate cut line margin */
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .cut-line {
+            height: 4%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .cut-line::before {
+            content: '';
+            width: 105%;
+            height: 1px;
+            border-bottom: 3px dashed #999;
+            margin-left: -2.5%;
+        }
+        
+        .cut-icon {
+            background: white;
+            padding: 0 10px;
+            color: #666;
+            font-size: 0.8rem;
+            position: absolute;
+            z-index: 2;
+        }
+
+        .hs-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid #000;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+        
+        .hs-title {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .hs-inputs {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .hs-input-item {
+            display: flex;
+            flex-direction: column;
+        }
+        .hs-label { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; color: #444; }
+        .hs-line { width: 120px; border-bottom: 2px solid #444; height: 1.2rem;}
+
+        .hs-stack {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            /* UPDATED: Increased gap to 15px for better spacing */
+            gap: 15px; 
+            flex-grow: 1;
+        }
+
+        .hs-box {
+            border: 2px solid #000;
+            border-radius: 6px;
+            position: relative;
+            background: white;
+            /* Flex-basis handling is done inline for layouts */
+        }
+
+        .hs-box-label {
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            background: white;
+            padding: 0 5px;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            border: 2px solid #000;
+            border-radius: 4px;
+        }
+
         @media print {
-            body {
-                background-color: white;
-            }
-            .no-print {
-                display: none;
-            }
-            .note-container {
-                box-shadow: none;
-                border: 1px solid #94a3b8;
-                page-break-inside: avoid;
-            }
-            textarea {
-                border: 1px solid #94a3b8;
-                height: 300px; /* Set a fixed height for printing */
-            }
-            .print-full-page {
-                height: 80vh;
-            }
+            body { background: none; }
+            .page { margin: 0; box-shadow: none; }
         }
+
     </style>
 </head>
-<body class="p-4 sm:p-6 lg:p-8">
-    <div class="max-w-4xl mx-auto">
-        <h1 class="text-3xl font-bold text-center text-slate-800 mb-4">Class Notes</h1>
-        <div class="text-center mb-8 no-print">
-            <button onclick="window.print()" class="bg-indigo-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-indigo-700 transition-colors">
-                Print Blank Notes
-            </button>
-        </div>
+<body>
 
-        <!-- Cornell Notes Template -->
-        <div class="note-container">
-            <div class="note-header bg-slate-50">
-                <h2 class="text-2xl font-semibold text-slate-700 mr-auto">Math Class Notes</h2>
-                <input type="text" placeholder="Name..." class="w-40">
-                <input type="text" placeholder="Date..." class="w-32">
-                <input type="text" placeholder="Class..." class="w-32">
-                <input type="text" placeholder="Unit/Topic..." class="w-48">
-            </div>
-            <div class="note-body grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="md:col-span-1">
-                    <h3 class="font-semibold text-lg text-slate-800 mb-2">Cues & Questions</h3>
-                    <p class="text-sm text-slate-500 mb-2">Write main ideas, key questions, and vocabulary here.</p>
-                    <textarea placeholder="e.g., What is the product rule for exponents?"></textarea>
+    <!-- PAGE 1: SPLIT FOCUS (ADHD Friendly) -->
+    <div class="page">
+        <div class="header-row">
+            <h1 class="header-title">Notes</h1>
+            <div class="header-inputs">
+                <div class="input-group">
+                    <span>Topic</span>
+                    <div class="input-line"></div>
                 </div>
-                <div class="md:col-span-2">
-                    <h3 class="font-semibold text-lg text-slate-800 mb-2">Main Notes</h3>
-                    <p class="text-sm text-slate-500 mb-2">Record what the teacher writes on the board: definitions, examples, diagrams, etc.</p>
-                    <textarea placeholder="aᵐ ⋅ aⁿ = aᵐ⁺ⁿ ..."></textarea>
-                </div>
-                <div class="md:col-span-3">
-                    <h3 class="font-semibold text-lg text-slate-800 mb-2">Summary & Reflection</h3>
-                    <p class="text-sm text-slate-500 mb-2">After class, summarize the main points of the lesson in your own words.</p>
-                    <textarea placeholder="Today I learned how to use the laws of exponents to simplify expressions..."></textarea>
+                <div class="input-group">
+                    <span>Date</span>
+                    <div class="input-line" style="width: 100px;"></div>
                 </div>
             </div>
         </div>
 
-        <!-- Warm-Up Template -->
-        <div class="note-container">
-            <div class="note-header bg-blue-50">
-                <h2 class="text-2xl font-semibold text-blue-700 mr-auto">Warm-Up</h2>
-                <input type="text" placeholder="Name..." class="w-40">
-                <input type="text" placeholder="Date..." class="w-32">
-                <input type="text" placeholder="Class..." class="w-32">
+        <div class="split-container">
+            <div class="col-visual">
+                <div class="section-label">Sketch & Graph</div>
+                <div class="box-dots"></div>
             </div>
-            <div class="note-body">
-                <h3 class="font-semibold text-lg text-slate-800 mb-2">Problem / Question:</h3>
-                <textarea class="print-full-page" placeholder="Write the warm-up problem here, or leave blank for students to copy from the board..."></textarea>
+            <div class="col-linear">
+                <div class="section-label">Notes & Steps</div>
+                <div class="box-lines"></div>
             </div>
         </div>
 
-        <!-- Cool-Down / Exit Ticket Template -->
-        <div class="note-container">
-            <div class="note-header bg-purple-50">
-                <h2 class="text-2xl font-semibold text-purple-700 mr-auto">Cool-Down / Exit Ticket</h2>
-                <input type="text" placeholder="Name..." class="w-40">
-                <input type="text" placeholder="Date..." class="w-32">
-                <input type="text" placeholder="Class..." class="w-32">
-            </div>
-            <div class="note-body">
-                <h3 class="font-semibold text-lg text-slate-800 mb-2">Reflection / Question:</h3>
-                <textarea class="print-full-page" placeholder="Write the cool-down question here, or leave blank for students to answer..."></textarea>
-            </div>
-
+        <div class="summary-box">
+            <div class="summary-label">Key Takeaways & Formulas</div>
         </div>
-<footer class="text-center mt-16 text-gray-500">
-            <p>&nbsp;&bull;&nbsp; &copy; 2025 Aly Hatfield. All rights reserved. &nbsp;&bull;&nbsp;</p>
-        </footer>
+        <div class="footer">• © 2025 Aly Hatfield. All Rights Reserved. •</div>
     </div>
+
+    <!-- PAGE 2: CLASSIC LAYOUT (Modified Cornell) -->
+    <div class="page">
+        <div class="header-row">
+            <h1 class="header-title">Topic:</h1>
+            <div class="header-inputs">
+                <div class="input-group">
+                    <div class="input-line" style="width: 300px; border-bottom: none;"></div>
+                </div>
+                <div class="input-group">
+                    <span>Date</span>
+                    <div class="input-line" style="width: 100px;"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cornell-container">
+            <div class="cornell-cues">
+                <div class="cornell-header-label">Key Concepts</div>
+            </div>
+            <div class="cornell-notes">
+                <div class="cornell-header-label">Main Notes</div>
+            </div>
+        </div>
+
+        <div class="summary-box" style="height: 120px;">
+            <div class="summary-label">Summary</div>
+        </div>
+        <div class="footer">• © 2025 Aly Hatfield. All Rights Reserved. •</div>
+    </div>
+
+    <!-- PAGE 3: THE PROBLEM SOLVER (5 Blocks) -->
+    <div class="page">
+        <div class="header-row">
+            <h1 class="header-title">Problem Set</h1>
+            <div class="header-inputs">
+                <div class="input-group">
+                    <span>Unit</span>
+                    <div class="input-line"></div>
+                </div>
+                <div class="input-group">
+                    <span>Name</span>
+                    <div class="input-line"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-block">
+            <div class="block-header"><span>Problem 01</span></div>
+            <div class="block-content">
+                <div class="block-problem"></div> 
+                <div class="block-work"></div>    
+            </div>
+        </div>
+
+        <div class="problem-block">
+            <div class="block-header"><span>Problem 02</span></div>
+            <div class="block-content">
+                <div class="block-problem"></div>
+                <div class="block-work"></div>
+            </div>
+        </div>
+
+        <div class="problem-block">
+            <div class="block-header"><span>Problem 03</span></div>
+            <div class="block-content">
+                <div class="block-problem"></div>
+                <div class="block-work"></div>
+            </div>
+        </div>
+        
+        <div class="problem-block">
+            <div class="block-header"><span>Problem 04</span></div>
+            <div class="block-content">
+                <div class="block-problem"></div>
+                <div class="block-work"></div>
+            </div>
+        </div>
+
+        <div class="problem-block" style="margin-bottom: 0;">
+            <div class="block-header"><span>Problem 05</span></div>
+            <div class="block-content">
+                <div class="block-problem"></div>
+                <div class="block-work"></div>
+            </div>
+        </div>
+
+        <div class="footer">• © 2025 Aly Hatfield. All Rights Reserved. •</div>
+    </div>
+    
+    <!-- PAGE 4: THE LOGIC BREAKDOWN (Deep Dive) -->
+    <div class="page">
+        <div class="header-row">
+            <h1 class="header-title">Process & Logic</h1>
+            <div class="header-inputs">
+                <div class="input-group">
+                    <span>Topic</span>
+                    <div class="input-line"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="logic-container">
+            <div class="section-label">Target Problem / Equation</div>
+            <div class="logic-problem-box"></div>
+            
+            <div class="logic-table-header">
+                <div class="logic-col-header" style="width: 55%;">The Steps (Process)</div>
+                <div class="logic-col-header" style="width: 45%; padding-left: 10px;">The Logic (Why?)</div>
+            </div>
+            
+            <div class="logic-main-box">
+                <div class="logic-col-steps">
+                    <div class="logic-row"><div class="step-num">1</div></div>
+                    <div class="logic-row"><div class="step-num">2</div></div>
+                    <div class="logic-row"><div class="step-num">3</div></div>
+                    <div class="logic-row"><div class="step-num">4</div></div>
+                    <div class="logic-row"><div class="step-num">5</div></div>
+                    <div class="logic-row"><div class="step-num">6</div></div>
+                    <div class="logic-row"><div class="step-num">7</div></div>
+                    <div class="logic-row" style="border-bottom:none;"><div class="step-num">8</div></div>
+                </div>
+                <div class="logic-col-why">
+                    <div class="logic-row"></div>
+                    <div class="logic-row"></div>
+                    <div class="logic-row"></div>
+                    <div class="logic-row"></div>
+                    <div class="logic-row"></div>
+                    <div class="logic-row"></div>
+                    <div class="logic-row"></div>
+                    <div class="logic-row" style="border-bottom:none;"></div>
+                </div>
+            </div>
+            
+            <div class="summary-box" style="height: 150px; margin-bottom: 2rem;">
+                <div class="summary-label">Critical Reflection</div>
+                <div style="font-size: 1rem; color: #444; margin-bottom: 0.5rem; font-style: italic;">
+                    Did I miss a step? Which part was most confusing?
+                </div>
+                <div style="width: 100%; height: 100%; background-image: linear-gradient(transparent 95%, #999 95%); background-size: 100% 2rem;"></div>
+            </div>
+        </div>
+        <div class="footer">• © 2025 Aly Hatfield. All Rights Reserved. •</div>
+    </div>
+
+    <!-- PAGE 5: WARM UP & EXIT TICKET COMBO -->
+    <div class="page">
+        <div class="half-sheet-container">
+            
+            <!-- TOP HALF: WARM UP -->
+            <div class="half-sheet">
+                <div class="hs-header">
+                    <div class="hs-title">Daily Warm Up</div>
+                    <div class="hs-inputs">
+                        <div class="hs-input-item"><span class="hs-label">Name</span><div class="hs-line"></div></div>
+                        <div class="hs-input-item"><span class="hs-label">Topic</span><div class="hs-line" style="width: 150px;"></div></div>
+                    </div>
+                </div>
+                <!-- Updated: Used flex values instead of height % to accommodate larger gaps -->
+                <div class="hs-stack">
+                    <div class="hs-box" style="flex: 1.5; background-image: radial-gradient(#aaa 1px, transparent 1px); background-size: 15px 15px;">
+                        <div class="hs-box-label">1. The Problem</div>
+                    </div>
+                    <div class="hs-box" style="flex: 4; background-image: linear-gradient(transparent 95%, #999 95%); background-size: 100% 2rem; background-position: 0 1.5rem;">
+                        <div class="hs-box-label">2. Solution & Work</div>
+                    </div>
+                    <div class="hs-box" style="flex: 2.5; background-image: linear-gradient(transparent 95%, #999 95%); background-size: 100% 2rem; background-position: 0 1.5rem;">
+                        <div class="hs-box-label">3. My Process (How I did it)</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CUT LINE -->
+            <div class="cut-line">
+                <div class="cut-icon">✂ Cut Here</div>
+            </div>
+
+            <!-- BOTTOM HALF: EXIT TICKET -->
+            <div class="half-sheet" style="padding-bottom: 0;">
+                <div class="hs-header">
+                    <div class="hs-title">Exit Ticket</div>
+                    <div class="hs-inputs">
+                        <div class="hs-input-item"><span class="hs-label">Name</span><div class="hs-line"></div></div>
+                        <div class="hs-input-item"><span class="hs-label">Date</span><div class="hs-line"></div></div>
+                    </div>
+                </div>
+                <div class="hs-stack">
+                    <div class="hs-box" style="flex: 2; background-image: radial-gradient(#aaa 1px, transparent 1px); background-size: 15px 15px;">
+                        <div class="hs-box-label">1. The Problem</div>
+                    </div>
+                    <div class="hs-box" style="flex: 3; background-image: linear-gradient(transparent 95%, #999 95%); background-size: 100% 2rem; background-position: 0 1.5rem;">
+                        <div class="hs-box-label">2. Solve It</div>
+                    </div>
+                    <div class="hs-box" style="flex: 3; background-image: linear-gradient(transparent 95%, #999 95%); background-size: 100% 2rem; background-position: 0 1.5rem;">
+                        <div class="hs-box-label">3. Explain (Why does this work?)</div>
+                    </div>
+                </div>
+                <div class="footer" style="bottom: 5px;">• © 2025 Aly Hatfield. All Rights Reserved. •</div>
+            </div>
+
+        </div>
+    </div>
+
 </body>
 </html>
-
-
