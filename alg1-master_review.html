@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A-Hat Math: Comprehensive Algebra 1 Review</title>
+    
+    <!-- 1. FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600;700&family=Fredoka:wght@500;700&display=swap" rel="stylesheet">
+
+    <!-- 2. MATHJAX -->
+    <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      chtml: { scale: 1.15 }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        /* 3. GLOBAL STYLES */
+        * {
+            box-sizing: border-box;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        @page {
+            size: letter;
+            margin: 0.5in;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+            font-family: 'Quicksand', sans-serif;
+            color: #000;
+            font-size: 19px; /* Large Print */
+            line-height: 1.6;
+        }
+
+        /* PAGE CONTAINER */
+        .page-content {
+            max-width: 950px;
+            margin: 0 auto;
+            background: white;
+            padding: 0.7in;
+            border: 2px solid #000;
+            box-shadow: 5px 5px 0px rgba(0,0,0,0.2);
+        }
+
+        /* HEADERS */
+        header {
+            text-align: center;
+            border-bottom: 4px solid #000;
+            padding-bottom: 25px;
+            margin-bottom: 50px;
+        }
+
+        h1 {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 3rem;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #000;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            margin: 10px 0 0 0;
+            color: #333;
+            font-weight: 700;
+        }
+
+        /* SVG ICONS */
+        .icon {
+            width: 24px;
+            height: 24px;
+            fill: #000;
+            vertical-align: text-bottom;
+            margin-right: 8px;
+        }
+
+        /* UNIT BLOCKS */
+        .unit-block {
+            margin-bottom: 60px;
+            border: 4px solid #000;
+            border-radius: 12px;
+            overflow: hidden;
+            page-break-inside: avoid;
+        }
+
+        .unit-header {
+            background: #000;
+            color: white;
+            padding: 15px 25px;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .unit-body {
+            padding: 30px;
+            background: #fff;
+        }
+
+        /* SUB-SECTIONS */
+        .sub-section {
+            margin-bottom: 30px;
+        }
+
+        .section-label {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.4rem;
+            text-transform: uppercase;
+            border-bottom: 2px solid #000;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* CONTENT BOXES */
+        .box-concept {
+            background: #fff;
+            border: 2px solid #000;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+
+        .box-desmos {
+            background: #f0f0f0; /* Light Gray for contrast */
+            border: 2px dashed #000;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+
+        .box-checklist {
+            background: #fff;
+            border: 2px solid #000;
+            padding: 0; /* Grid handles padding */
+            border-radius: 8px;
+        }
+
+        /* LISTS & TEXT */
+        ul { margin: 0; padding-left: 25px; }
+        li { margin-bottom: 15px; } /* Increased spacing for readability */
+        
+        /* Math Display */
+        .math-display {
+            display: block;
+            font-family: 'Times New Roman', serif;
+            font-size: 1.5rem;
+            background: #f9f9f9;
+            padding: 10px 15px; /* Tighter vertical padding */
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            margin: 5px 0 0 0; /* Reduced top margin to sit closer to text */
+            text-align: center;
+            font-weight: bold;
+            overflow-x: auto;
+            line-height: 2.5;
+        }
+
+        /* Highlighting without color */
+        .bold-box {
+            border: 2px solid #000;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 800;
+        }
+
+        /* --- DESMOS CODE STYLE (Keycap Look) --- */
+        code {
+            font-family: 'Courier New', monospace;
+            background: #fff;
+            color: #000;
+            border: 2px solid #000;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: 900;
+            box-shadow: 3px 3px 0px rgba(0,0,0,0.2); /* Pop effect */
+            margin: 0 4px;
+            display: inline-block; /* Keeps box intact */
+            line-height: 1.2;
+        }
+
+        /* CHECKLIST GRID */
+        .check-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* 2 Columns */
+        }
+
+        .check-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            border-bottom: 1px solid #ccc;
+            border-right: 1px solid #ccc;
+            text-decoration: none;
+            color: #000;
+            font-weight: 600;
+        }
+        
+        .check-item:nth-child(2n) { border-right: none; }
+        .check-item:nth-last-child(1), .check-item:nth-last-child(2) { border-bottom: none; }
+
+        .checkbox {
+            width: 24px;
+            height: 24px;
+            border: 2px solid #000;
+            margin-right: 15px;
+            background: white;
+            flex-shrink: 0;
+        }
+
+        .code-badge {
+            background: #000;
+            color: #fff;
+            font-family: monospace;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+            margin-right: 12px;
+            font-size: 1.1rem;
+        }
+        
+        .check-cat {
+            grid-column: 1 / -1;
+            background: #eee;
+            padding: 8px 15px;
+            font-weight: 800;
+            font-size: 1rem;
+            text-transform: uppercase;
+            border-bottom: 1px solid #ccc;
+            border-top: 1px solid #ccc;
+        }
+        .check-cat:first-child { border-top: none; }
+
+        /* TABLE STYLE FOR SYMBOLS */
+        .symbol-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        .symbol-item {
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+        }
+        .symbol-char {
+            font-family: 'Times New Roman', serif;
+            font-size: 1.4rem;
+            font-weight: bold;
+            /* UPDATED: Increased width to prevent crowding */
+            min-width: 80px; 
+            text-align: center;
+            margin-right: 15px;
+        }
+
+        /* FOOTER */
+        .footer {
+            margin-top: 50px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #000;
+            border-top: 4px solid #000;
+            padding-top: 20px;
+        }
+
+        @media print {
+            body { background: none; padding: 0; }
+            .page-content { box-shadow: none; border: none; padding: 0; width: 100%; }
+            .unit-block { border: 4px solid #000; }
+            .box-desmos { background: #f4f4f4 !important; }
+            code { border: 2px solid #000 !important; box-shadow: none !important; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="page-content">
+
+    <header>
+        <h1>Master Algebra 1 Review</h1>
+        <h2>Study Guide & Practice Checklist</h2>
+    </header>
+
+    <!-- ========================================= -->
+    <!-- UNIT 1: EXPRESSIONS -->
+    <!-- ========================================= -->
+    <div class="unit-block">
+        <div class="unit-header">Unit 1: Expressions & Exponents</div>
+        <div class="unit-body">
+            
+            <!-- TRANSLATION GUIDE -->
+            <div class="sub-section">
+                <div class="section-label">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M12,2C6.48,2 2,6.48 2,12C2,17.52 6.48,22 12,22C17.52,22 22,17.52 22,12C22,6.48 17.52,2 12,2M13,17H11V15H13V17M13,13H11V7H13V13Z"/></svg>
+                    Common Symbols
+                </div>
+                <div class="box-concept">
+                    <div class="symbol-grid">
+                        <div class="symbol-item"><span class="symbol-char">&lt;</span> Less Than</div>
+                        <div class="symbol-item"><span class="symbol-char">&gt;</span> Greater Than</div>
+                        <div class="symbol-item"><span class="symbol-char">=</span> Equal To</div>
+                        <div class="symbol-item"><span class="symbol-char">$\pi$</span> Pi ($\approx 3.14$)</div>
+                        <div class="symbol-item"><span class="symbol-char">$|x|$</span> Absolute Value</div>
+                        <div class="symbol-item"><span class="symbol-char">( )</span> Parentheses (Group)</div>
+                        <div class="symbol-item"><span class="symbol-char">$\cdot$ or *</span> Multiply</div>
+                        <div class="symbol-item"><span class="symbol-char">$\div$ or /</span> Divide</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sub-section">
+                <div class="section-label">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M14,17H7V15H14M17,13H7V11H17M17,9H7V7H17M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3Z"/></svg>
+                    Translating Words
+                </div>
+                <div class="box-concept">
+                    <ul>
+                        <li><strong>Addition (+):</strong> Sum, Plus, Increased by, More than, Total.</li>
+                        <li><strong>Subtraction (-):</strong> Difference, Minus, Decreased by.</li>
+                        <li><strong>Multiplication (x):</strong> Product, Times, Twice (x2), Of.</li>
+                        <li><strong>Division (÷):</strong> Quotient, Split, Ratio, Half (÷2).</li>
+                        <li><strong>Equals (=):</strong> Is, Yields, Results in, Same as.</li>
+                    </ul>
+                    <div style="border: 2px solid #000; padding: 10px; text-align: center; margin-top: 15px; font-weight: bold;">
+                        ⚠️ SWITCH WORD ALERT! ⚠️<br>
+                        "Less than" and "Subtracted from"<br>
+                        means you must <span class="bold-box">FLIP</span> the order.<br>
+                        <em>"5 less than x" becomes </em> $x - 5$
+                    </div>
+                </div>
+            </div>
+
+            <!-- CONCEPTS -->
+            <div class="sub-section">
+                <div class="section-label">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M12,2C6.48,2 2,6.48 2,12C2,17.52 6.48,22 12,22C17.52,22 22,17.52 22,12C22,6.48 17.52,2 12,2M13,17H11V15H13V17M13,13H11V7H13V13Z"/></svg>
+                    Exponent Rules
+                </div>
+                <div class="box-concept">
+                    <ul>
+                        <li><strong>Multiplying Bases?</strong> <span class="bold-box">ADD</span> the exponents.
+                            <div class="math-display">$x^{2} \cdot x^{3} = x^{5}$</div>
+                        </li>
+                        <li><strong>Dividing Bases?</strong> <span class="bold-box">SUBTRACT</span> the exponents.
+                            <div class="math-display">$\frac{x^{5}}{x^{2}} = x^{3}$</div>
+                        </li>
+                        <li><strong>Power to Power?</strong> <span class="bold-box">MULTIPLY</span> the exponents.
+                            <div class="math-display">$(x^{2})^{3} = x^{6}$</div>
+                        </li>
+                        <li><strong>Negative Exponent?</strong> <span class="bold-box">FLIP</span> the fraction.
+                            <div class="math-display">$x^{-2} = \frac{1}{x^{2}}$</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- DESMOS -->
+            <div class="sub-section">
+                <div class="section-label">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M19,3H5C3.9,3,3,3.9,3,5v14c0,1.1,0.9,2,2,2h14c1.1,0,2-0.9,2-2V5C21,3.9,20.1,3,19,3z M15.5,16.5l-2.25-6 L11,16.5l-2.25-6L6.5,16.5H5V7h1.5l2.25,6L11,7l2.25,6L15.5,7H17v9.5H15.5z"/></svg>
+                    Desmos Shortcuts
+                </div>
+                <div class="box-desmos">
+                    <p style="margin-bottom:15px; font-style:italic;">Type these codes to create symbols:</p>
+                    <ul>
+                        <li><strong>Exponents ($x^2$):</strong> Press <code>Shift + 6</code> (the ^ key)</li>
+                        <li><strong>Square Root ($\sqrt{x}$):</strong> Type <code>sqrt</code></li>
+                        <li><strong>Cube Root ($\sqrt[3]{x}$):</strong> Type <code>cbrt</code></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- PRACTICE -->
+            <div class="sub-section">
+                <div class="section-label">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3M19,19H5V5H19V19M10,17L5,12L6.41,10.59L10,14.17L17.59,6.58L19,8L10,17Z"/></svg>
+                    Practice Checklist
+                </div>
+                <div class="box-checklist">
+                    <div class="check-grid">
+                        <div class="check-cat">Translating & Evaluating</div>
+                        <a href="https://www.ixl.com/search?q=D7K" target="_blank" class="check-item"><div class="checkbox"></div><span class="code-badge">D7K</span> Write Variable Expr</a>
+                        <a href="https://www.ixl.com/search?q=AZT" target="_blank" class="check-item"><div class="checkbox"></div><span class="code-badge">AZT</span> Evaluate Integers</a>
+                        <a href="https://www.ixl.com/search?q=M9A" target="_blank" class="check-item"><div class="checkbox"></div><span class="code-badge">M9A</span> Evaluate Rationals</a>
+                        <a href="https://www.ixl.com/search?q=RM8" target="_blank" class="check-item"><div class="checkbox"></div><span class="code-badge">RM8</span> Evaluate Exponents</a>
+                        
+                        <div class="check-cat">Radicals</div>
+                        <a href="https://www.ixl.com/search?q=ZFF" target="_blank" class="check-item"><div class="checkbox"></div><span class="code-badge">ZFF</span> Simplify Radicals</a>
+                        <a href="https://www.ixl.com/search?q=93J" target="_blank" class="check-item"><div class="checkbox"></div><span class="code-badge">93J</span> Square Roots</a>
+                        <a href="https://www.ixl.com/search?q=RNT" target="_blank" class="check-item"><div class="checkbox"></div><span class="code-badge">RNT</span> Cube Roots</a>
+                        <a href="https://www.ixl.com/search?q=DLV" target="_blank" class="check-item"><div class="checkbox"></div><span class="code-badge">DLV</span> Add/Sub Radicals</a>
+                        <a href="https://www.ixl.com/search?q=BKA" target="_blank" class="check-item"><div class="checkbox"></div><span class="code-badge">BKA</span> Multiply Radicals</a>
+                        
+                        <div class="check-cat">Exponents</div>
+                        <a href="https://www.ixl.com/search?q=SCM" target="_blank" class="check-item"><div class="checkbox"></div><span class="code-badge">SCM</span> Negative Exponents</a>
+                        <a href="https://www.ixl.com/search?q=HQD" target="_blank" class="check-item"><div class="checkbox"></div><span class="code-badge">HQD</span> Multiplication Rule</a>
+                        <a href="https://www.ixl.com/search?q=RWY" target="_blank" class="check-item"><div class="checkbox"></div><span class="code-badge">RWY</span> Power Rule</a>
+                        <a href="https://www.ixl.com/search?q=9SS" target="_blank" class="check-item"><div class="checkbox"></div><span class="code-badge">9SS</span> Division Rule</a>
+                        <a href="https://www.ixl.com/search?q=48P" target="_blank" class="check-item"><div class="checkbox"></div><span class="code-badge">48P</span> Mixed Rules</a>
+                        <a href="https://www.ixl.com/search?q=79C" target="_blank" class="check-item"><div class="checkbox"></div><span class="code-badge">79C</span> Equivalent Expr</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ========================================= -->
+    <!-- UNIT 2: EQUATIONS -->
+    <!-- ========================================= -->
+    <div class="unit-block">
+        <div class="unit-header">Unit 2: Equations & Inequalities</div>
+        <div class="unit-body">
+            
+            <div class="sub-section">
+                <div class="section-label">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M12,2C6.48,2 2,6.48 2,12C2,17.52 6.48,22 12,22C17.52,22 22,17.52 22,12C22,6.48 17.52,2 12,2M13,17H11V15H13V17M13,13H11V7H13V13Z"/></svg>
+                    Key Concepts
+                </div>
+                <div class="box-concept">
+                    <ul>
+                        <li><strong>Literal Equation:</strong> An equation with mostly letters (e.g., $A=LW$). Treat the extra letters like regular numbers.</li>
+                        <li><strong>Inequalities Rule:</strong> If you multiply or divide by a <span class="bold-box">NEGATIVE</span>, you must <span class="bold-box">FLIP</span> the symbol!
+                            <div class="math-display">
+                                $-2x > 10$ <br>
+                                $\frac{-2x}{-2} < \frac{10}{-2}$ <br>
+                                $x < -5$
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sub-section">
+                <div class="section-label">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M5,21L12,2L19,21H5M12,18C11.45,18 11,17.55 11,17C11,16.45 11.45,16 12,16C12.55,16 13,16.45 13,17C13,17.55 12.55,18 12,18M11,14H13V10H11V14Z"/></svg>
+                    Graphing Inequalities Guide
+                </div>
+                <div class="box-concept">
+                    <table style="width:100%; text-align:center; border-collapse: collapse;">
+                        <tr style="border-bottom: 2px solid #000;">
+                            <th style="padding:10px;">Symbol</th>
+                            <th>Circle</th>
+                            <th>Bracket/Paren</th>
+                            <th>Meaning</th>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #ccc;">
+                            <td style="padding:10px; font-weight:bold;">$<$ or $>$</td>
+                            <td><strong>Open</strong> $\circ$</td>
+                            <td>( Parentheses )</td>
+                            <td>NOT Included</td>
+                        </tr>
+                        <tr>
+                            <td style="padding:10px; font-weight:bold;">$\le$ or $\ge$</td>
+                            <td><strong>Closed</strong> $\bullet$</td>
+                            <td>[ Brackets ]</td>
+                            <td>Included</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="sub-section">
+                <div class="section-label">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M19,3H5C3.9,3,3,3.9,3,5v14c0,1.1,0.9,2,2,2h14c1.1,0,2-0.9,2-2V5C21,3.9,20.1,3,19,3z M15.5,16.5l-2.25-6 L11,16.5l-2.25-6L6.5,16.5H5V7h1.5l2.25,6L11,7l2.25,6L15.5,7H17v9.5H15.5z"/></svg>
+                    Desmos Hack: The "Line 1 / Line 2" Trick
+                </div>
+                <div class="box-desmos">
+                    <ul>
+                        <li><strong>How to Solve Equations:</strong>
+                            <br>1. Type Left Side in Line 1 ($y = -2x+5$).
+                            <br>2. Type Right Side in Line 2 ($y = 15$).
+                            <br>3. Click the intersection dot. The <strong>X-value</strong> is your answer.
+                        </li>
+                        <li><strong>Inequality Symbols:</strong>
+                            <br>$\le$ (Less or Equal): Type <code><=</code>
+                            <br>$\ge$ (Greater or Equal): Type <code>>=</code>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sub-section">
+                <div class="section-label">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3M19,19H5V5H19V19M10,17L5,12L6.41,10.59L10,14.17L17.59,6.58L19,8L10,17Z"/></svg>
+                    Practice Checklist
+                </div>
+                <div class="box-checklist">
+                    <div class="check-grid">
+                        <div class="check-cat">Solving Equations</div>
+                        <a href="https://www.ixl.com/search?q=H8Q" target="_blank" class="check-item"><div class="checkbox"></div><span class="code-badge">H8Q</span> Properties</a>
+                        <a href="https://www.ixl.com/search?q=BHL" target="_blank" class="check-item"><div class="checkbox"></div><span class="code-badge">BHL</span> Distributive Prop</a>
+                        <a href="https://www.ixl.com/search?q=7XT" target="_blank" class="check-item"><div class="checkbox"></div><span class="code-badge">7XT</span> 2-Step Equations</a>
+                        <a href="https://www.ixl.com/search?q=7K2" target="_blank" class="check-item"><div class="checkbox"></div><span class="code-badge">7K2</span> Vars on One Side</a>
+                        <a href="https://www.ixl.com/search?q=7XM" target="_blank" class="check-item"><div class="checkbox"></div><span class="code-badge">7XM</span> Vars on Both Sides</a>
+                        <a href="https://www.ixl.com/search?q=MNS" target="_blank" class="check-item"><div class="checkbox"></div><span class="code-badge">MNS</span> Mixed Review</a>
+                        
+                        <div class="check-cat">Advanced Equations</div>
+                        <a href="https://www.ixl.com/search?q=XJQ" target="_blank" class="check-item"><div class="checkbox"></div><span class="code-badge">XJQ</span> Adv. Inequalities</a>
+                        <a href="https://www.ixl.com/search?q=5TX" target="_blank" class="check-item"><div class="checkbox"></div><span class="code-badge">5TX</span> Graph Inequalities</a>
+                        <a href="https://www.ixl.com/search?q=E6Z" target="_blank" class="check-item"><div class="checkbox"></div><span class="code-badge">E6Z</span> Literal Equations</a>
+                        <a href="https://www.ixl.com/search?q=5NC" target="_blank" class="check-item"><div class="checkbox"></div><span class="code-badge">5NC</span> # of Solutions</a>
+                        <a href="https://www.ixl.com/search?q=JXC" target="_blank" class="check-item"><div class="checkbox"></div><span class="code-badge">JXC</span> Check Solutions</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ========================================= -->
+    <!-- UNIT 3: FUNCTIONS -->
+    <!-- ========================================= -->
+    <div class="unit-block">
+        <div class="unit-header">Unit 3: Functions & Graphs</div>
+        <div class="unit-body">
+            
+            <div class="sub-section">
+                <div class="section-label">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M12,2C6.48,2 2,6.48 2,12C2,17.52 6.48,22 12,22C17.52,22 22,17.52 22,12C22,6.48 17.52,2 12,2M13,17H11V15H13V17M13,13H11V7H13V13Z"/></svg>
+                    Key Concepts
+                </div>
+                <div class="box-concept">
+                    <ul>
+                        <li><strong>Slope ($m$):</strong> Rise over Run. How steep the line is.</li>
+                        <li><strong>Y-Intercept ($b$):</strong> Where the line hits the vertical Y-axis. The "Start".</li>
+                        <li><strong>Equation Forms:</strong>
+                            <div class="math-display">
+                                Graphing: $y = \mathbf{m}x + \mathbf{b}$
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sub-section">
+                <div class="section-label">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M19,3H5C3.9,3,3,3.9,3,5v14c0,1.1,0.9,2,2,2h14c1.1,0,2-0.9,2-2V5C21,3.9,20.1,3,19,3z M15.5,16.5l-2.25-6 L11,16.5l-2.25-6L6.5,16.5H5V7h1.5l2.25,6L11,7l2.25,6L15.5,7H17v9.5H15.5z"/></svg>
+                    Desmos Hacks
+                </div>
+                <div class="box-desmos">
+                    <ul>
+                        <li><strong>Find Slope & Y-Int:</strong> Type the equation (e.g., $3x+2y=12$). Look at the graph. Click the gray dots on the axes.</li>
+                        <li><strong>Find Slope from Points:</strong> 
+                            <br>1. Add a table (+ Table).
+                            <br>2. Enter the points. 
+                            <br>3. Select <strong>Linear Regression</strong> from the dropdown menu (or type <code>y1 ~ mx1 + b</code>).
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sub-section">
+                <div class="section-label">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3M19,19H5V5H19V19M10,17L5,12L6.41,10.59L10,14.17L17.59,6.58L19,8L10,17Z"/></svg>
+                    Practice Checklist
+                </div>
+                <div class="box-checklist">
+                    <div class="check-grid">
+                        <div class="check-cat">Slope & Intercepts</div>
+                        <a href="https://www.ixl.com/search?q=84L" target="_blank" class="check-item"><div class="checkbox"></div><span class="code-badge">84L</span> Find Slope (Graph)</a>
+                        <a href="https://www.ixl.com/search?q=77C" target="_blank" class="check-item"><div class="checkbox"></div><span class="code-badge">77C</span> Slope (2 Points)</a>
+                        <a href="https://www.ixl.com/search?q=KC6" target="_blank" class="check-item"><div class="checkbox"></div><span class="code-badge">KC6</span> Find Slope (Eq)</a>
+                        <a href="https://www.ixl.com/search?q=R5T" target="_blank" class="check-item"><div class="checkbox"></div><span class="code-badge">R5T</span> Slope & Y-Int</a>
+                        <a href="https://www.ixl.com/search?q=8SN" target="_blank" class="check-item"><div class="checkbox"></div><span class="code-badge">8SN</span> Intercepts</a>
+                        
+                        <div class="check-cat">Writing & Graphing</div>
+                        <a href="https://www.ixl.com/search?q=HPT" target="_blank" class="check-item"><div class="checkbox"></div><span class="code-badge">HPT</span> Write Eq (Slope-Int)</a>
+                        <a href="https://www.ixl.com/search?q=28V" target="_blank" class="check-item"><div class="checkbox"></div><span class="code-badge">28V</span> Write Eq (Pt-Slope)</a>
+                        <a href="https://www.ixl.com/search?q=V55" target="_blank" class="check-item"><div class="checkbox"></div><span class="code-badge">V55</span> Graph Eq (Slope-Int)</a>
+                        <a href="https://www.ixl.com/search?q=NCP" target="_blank" class="check-item"><div class="checkbox"></div><span class="code-badge">NCP</span> Graph Eq (Standard)</a>
+                        <a href="https://www.ixl.com/search?q=L85" target="_blank" class="check-item"><div class="checkbox"></div><span class="code-badge">L85</span> Domain & Range</a>
+                        <a href="https://www.ixl.com/search?q=72X" target="_blank" class="check-item"><div class="checkbox"></div><span class="code-badge">72X</span> Parallel/Perp Lines</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ========================================= -->
+    <!-- UNIT 4: SYSTEMS -->
+    <!-- ========================================= -->
+    <div class="unit-block">
+        <div class="unit-header">Unit 4: Systems of Equations</div>
+        <div class="unit-body">
+            
+            <div class="sub-section">
+                <div class="section-label">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M12,2C6.48,2 2,6.48 2,12C2,17.52 6.48,22 12,22C17.52,22 22,17.52 22,12C22,6.48 17.52,2 12,2M13,17H11V15H13V17M13,13H11V7H13V13Z"/></svg>
+                    Key Concepts
+                </div>
+                <div class="box-concept">
+                    <ul>
+                        <li><strong>System:</strong> Two or more equations graphed together.</li>
+                        <li><strong>Solution:</strong> The point $(x, y)$ where lines <span class="bold-box">INTERSECT</span>.</li>
+                        <li><strong>No Solution:</strong> Parallel lines (never cross).</li>
+                        <li><strong>Infinite Solutions:</strong> Same line (on top of each other).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sub-section">
+                <div class="section-label">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M19,3H5C3.9,3,3,3.9,3,5v14c0,1.1,0.9,2,2,2h14c1.1,0,2-0.9,2-2V5C21,3.9,20.1,3,19,3z M15.5,16.5l-2.25-6 L11,16.5l-2.25-6L6.5,16.5H5V7h1.5l2.25,6L11,7l2.25,6L15.5,7H17v9.5H15.5z"/></svg>
+                    Desmos Hack: Just Graph It
+                </div>
+                <div class="box-desmos">
+                    <ul>
+                        <li>1. Type Equation 1 in Box 1.</li>
+                        <li>2. Type Equation 2 in Box 2.</li>
+                        <li>3. <strong>Click the gray dot</strong> where they cross. That coordinate is your answer.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sub-section">
+                <div class="section-label">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3M19,19H5V5H19V19M10,17L5,12L6.41,10.59L10,14.17L17.59,6.58L19,8L10,17Z"/></svg>
+                    Practice Checklist
+                </div>
+                <div class="box-checklist">
+                    <div class="check-grid">
+                        <div class="check-cat">Solving Systems</div>
+                        <a href="https://www.ixl.com/search?q=W9J" target="_blank" class="check-item"><div class="checkbox"></div><span class="code-badge">W9J</span> Solve by Graphing</a>
+                        <a href="https://www.ixl.com/search?q=Y5Y" target="_blank" class="check-item"><div class="checkbox"></div><span class="code-badge">Y5Y</span> Solve by Substitution</a>
+                        <a href="https://www.ixl.com/search?q=A62" target="_blank" class="check-item"><div class="checkbox"></div><span class="code-badge">A62</span> Solve by Elimination</a>
+                        <a href="https://www.ixl.com/search?q=85D" target="_blank" class="check-item"><div class="checkbox"></div><span class="code-badge">85D</span> Verify Solutions</a>
+                        
+                        <div class="check-cat">Inequalities</div>
+                        <a href="https://www.ixl.com/search?q=T53" target="_blank" class="check-item"><div class="checkbox"></div><span class="code-badge">T53</span> Graph Linear Ineq</a>
+                        <a href="https://www.ixl.com/search?q=VVK" target="_blank" class="check-item"><div class="checkbox"></div><span class="code-badge">VVK</span> System Inequalities</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ========================================= -->
+    <!-- UNIT 5: POLYNOMIALS & CHARACTERISTICS -->
+    <!-- ========================================= -->
+    <div class="unit-block">
+        <div class="unit-header">Unit 5: Polynomials & Characteristics</div>
+        <div class="unit-body">
+            
+            <div class="sub-section">
+                <div class="section-label">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M12,2C6.48,2 2,6.48 2,12C2,17.52 6.48,22 12,22C17.52,22 22,17.52 22,12C22,6.48 17.52,2 12,2M13,17H11V15H13V17M13,13H11V7H13V13Z"/></svg>
+                    Key Concepts (Definitions)
+                </div>
+                <div class="box-concept">
+                    <ul>
+                        <li><strong>Vertex (Max/Min):</strong> The highest or lowest point of the graph.</li>
+                        <li><strong>Zeros / Roots / X-Intercepts:</strong> Where the graph crosses the <strong>X-axis</strong> ($y=0$).</li>
+                        <li><strong>Y-Intercept:</strong> Where the graph crosses the <strong>Y-axis</strong> ($x=0$).</li>
+                        <li><strong>Turning Point:</strong> Where a curve changes direction (bumps/dips in a Cubic function).</li>
+                        <li><strong>Domain:</strong> How far Left and Right the graph goes (X-values).</li>
+                        <li><strong>Range:</strong> How far Down and Up the graph goes (Y-values).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sub-section">
+                <div class="section-label">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M19,3H5C3.9,3,3,3.9,3,5v14c0,1.1,0.9,2,2,2h14c1.1,0,2-0.9,2-2V5C21,3.9,20.1,3,19,3z M15.5,16.5l-2.25-6 L11,16.5l-2.25-6L6.5,16.5H5V7h1.5l2.25,6L11,7l2.25,6L15.5,7H17v9.5H15.5z"/></svg>
+                    Desmos Hack: Finding Characteristics
+                </div>
+                <div class="box-desmos">
+                    <ul>
+                        <li><strong>Step 1:</strong> Type the quadratic equation ($y = x^2 - 5x + 6$).</li>
+                        <li><strong>Step 2:</strong> Look at the graph.</li>
+                        <li><strong>Step 3:</strong> <strong>Click the gray dots.</strong> Desmos will instantly highlight the Roots, Vertex, and Y-intercept coordinates for you.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sub-section">
+                <div class="section-label">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3M19,19H5V5H19V19M10,17L5,12L6.41,10.59L10,14.17L17.59,6.58L19,8L10,17Z"/></svg>
+                    Practice Checklist
+                </div>
+                <div class="box-checklist">
+                    <div class="check-grid">
+                        <div class="check-cat">Operations & Factoring</div>
+                        <a href="https://www.ixl.com/search?q=2LM" target="_blank" class="check-item"><div class="checkbox"></div><span class="code-badge">2LM</span> Add/Subtract Poly</a>
+                        <a href="https://www.ixl.com/search?q=2Y4" target="_blank" class="check-item"><div class="checkbox"></div><span class="code-badge">2Y4</span> Multiply Binomials</a>
+                        <a href="https://www.ixl.com/search?q=ZZU" target="_blank" class="check-item"><div class="checkbox"></div><span class="code-badge">ZZU</span> GCF of Monomials</a>
+                        <a href="https://www.ixl.com/search?q=J7X" target="_blank" class="check-item"><div class="checkbox"></div><span class="code-badge">J7X</span> Factor Monomial</a>
+                        <a href="https://www.ixl.com/search?q=B48" target="_blank" class="check-item"><div class="checkbox"></div><span class="code-badge">B48</span> Divide by Monomial</a>
+                        
+                        <div class="check-cat">Characteristics & Exp</div>
+                        <a href="https://www.ixl.com/search?q=HQA" target="_blank" class="check-item"><div class="checkbox"></div><span class="code-badge">HQA</span> Solve (Sq Roots)</a>
+                        <a href="https://www.ixl.com/search?q=XCF" target="_blank" class="check-item"><div class="checkbox"></div><span class="code-badge">XCF</span> Quadratic Formula</a>
+                        <a href="https://www.ixl.com/search?q=YJZ" target="_blank" class="check-item"><div class="checkbox"></div><span class="code-badge">YJZ</span> Characteristics</a>
+                        <a href="https://www.ixl.com/search?q=HW8" target="_blank" class="check-item"><div class="checkbox"></div><span class="code-badge">HW8</span> Graph Characteristics</a>
+                        <a href="https://www.ixl.com/search?q=5QL" target="_blank" class="check-item"><div class="checkbox"></div><span class="code-badge">5QL</span> Graph Exp Func</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ========================================= -->
+    <!-- UNIT 6: STATISTICS -->
+    <!-- ========================================= -->
+    <div class="unit-block">
+        <div class="unit-header">Unit 6: Statistics</div>
+        <div class="unit-body">
+            
+            <div class="sub-section">
+                <div class="section-label">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M12,2C6.48,2 2,6.48 2,12C2,17.52 6.48,22 12,22C17.52,22 22,17.52 22,12C22,6.48 17.52,2 12,2M13,17H11V15H13V17M13,13H11V7H13V13Z"/></svg>
+                    Function Families (Visuals)
+                </div>
+                <div class="box-concept">
+                    <ul>
+                        <li><strong>Linear ($y=mx+b$):</strong> A straight line.</li>
+                        <li><strong>Quadratic ($y=ax^2$):</strong> A "U" shape (Parabola).</li>
+                        <li><strong>Exponential ($y=ab^x$):</strong> A "J" curve (Hockey Stick).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sub-section">
+                <div class="section-label">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M19,3H5C3.9,3,3,3.9,3,5v14c0,1.1,0.9,2,2,2h14c1.1,0,2-0.9,2-2V5C21,3.9,20.1,3,19,3z M15.5,16.5l-2.25-6 L11,16.5l-2.25-6L6.5,16.5H5V7h1.5l2.25,6L11,7l2.25,6L15.5,7H17v9.5H15.5z"/></svg>
+                    Desmos Hack: Stats Codes
+                </div>
+                <div class="box-desmos">
+                    <p style="margin-bottom:10px;"><strong>Option 1:</strong> Type numbers directly: <code>mean(1, 5, 8)</code></p>
+                    <p style="margin-bottom:15px;"><strong>Option 2:</strong> Make a List! <br>
+                       1. Type <code>L = [1, 5, 8, 10]</code> (Use square brackets).<br>
+                       2. Then use <code>L</code> in the codes below.</p>
+                    <ul>
+                        <li><strong>Mean (Average):</strong> Type <code>mean(L)</code></li>
+                        <li><strong>Median (Middle):</strong> Type <code>median(L)</code></li>
+                        <li><strong>Standard Deviation:</strong> Type <code>stdev(L)</code></li>
+                        <li><strong>Range:</strong> Type <code>max(L) - min(L)</code></li>
+                        <li><strong>Stats (5-Number Summary):</strong> Type <code>stats(L)</code> to get Min, Q1, Median, Q3, Max.</li>
+                        <li><strong>IQR (Interquartile Range):</strong> Find Q3 and Q1 using <code>stats(L)</code>, then subtract: $Q3 - Q1$.</li>
+                        <li><strong>Regression (The Menu):</strong> 
+                            <br>1. Add a Table ($+$).
+                            <br>2. Click the <strong>Magnifying Glass</strong> (Zoom Fit).
+                            <br>3. Select the Function Type from the dropdown (Linear, Quadratic, Exponential).
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sub-section">
+                <div class="section-label">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3M19,19H5V5H19V19M10,17L5,12L6.41,10.59L10,14.17L17.59,6.58L19,8L10,17Z"/></svg>
+                    Practice Checklist
+                </div>
+                <div class="box-checklist">
+                    <div class="check-grid">
+                        <div class="check-cat">Scatterplots & Trends</div>
+                        <a href="https://www.ixl.com/search?q=0QZ" target="_blank" class="check-item"><div class="checkbox"></div><span class="code-badge">0QZ</span> Line of Best Fit Eq</a>
+                        <a href="https://www.ixl.com/search?q=17E" target="_blank" class="check-item"><div class="checkbox"></div><span class="code-badge">17E</span> Correlation Coeff</a>
+                        <a href="https://www.ixl.com/search?q=UWX" target="_blank" class="check-item"><div class="checkbox"></div><span class="code-badge">UWX</span> Interpret Regression</a>
+                        
+                        <div class="check-cat">Data Analysis</div>
+                        <a href="https://www.ixl.com/search?q=F6N" target="_blank" class="check-item"><div class="checkbox"></div><span class="code-badge">F6N</span> Biased Samples</a>
+                        <a href="https://www.ixl.com/search?q=RP8" target="_blank" class="check-item"><div class="checkbox"></div><span class="code-badge">RP8</span> Outliers</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="footer">• © 2026 Aly Hatfield. All Rights Reserved. •</div>
+
+</div>
+
+</body>
+</html>
