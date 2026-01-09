@@ -7,13 +7,13 @@
     <!-- 1. FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600;700&family=Fredoka:wght@500;700&family=Courier+Prime:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Fredoka:wght@500;600;700&family=Courier+Prime:wght@700&display=swap" rel="stylesheet">
     <!-- 2. MATHJAX -->
     <script>
     window.MathJax = {
       tex: {
         inlineMath: [['$', '$'], ['\\(', '\\)']],
-        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        displayMath: [['$$', '$$']]
       },
       chtml: { scale: 1.15 }
     };
@@ -44,9 +44,8 @@
             margin: 0 auto;
             background: white;
             padding: 0.7in;
-            border: 3px solid #000;
-            /* Solid Black Shadow for Pop */
-            box-shadow: 10px 10px 0px #000; 
+            border: 2px solid #000;
+            box-shadow: 5px 5px 0px rgba(0,0,0,0.2);
             position: relative;
         }
 
@@ -55,24 +54,19 @@
             position: fixed;
             top: 20px;
             right: 20px;
-            background: #fff;
-            color: #000;
-            border: 3px solid #000;
+            background: #000;
+            color: #fff;
+            border: none;
             padding: 10px 20px;
             font-family: 'Fredoka', sans-serif;
             font-size: 1.2rem;
             cursor: pointer;
             border-radius: 8px;
-            box-shadow: 5px 5px 0px #000;
+            box-shadow: 3px 3px 0px rgba(0,0,0,0.3);
             z-index: 1000;
-            font-weight: 700;
-            transition: transform 0.1s;
         }
         
-        .print-btn:active {
-            transform: translate(2px, 2px);
-            box-shadow: 3px 3px 0px #000;
-        }
+        .print-btn:hover { background: #333; }
 
         @media print {
             .print-btn { display: none; }
@@ -83,7 +77,7 @@
         /* HEADERS */
         header {
             text-align: center;
-            border-bottom: 5px solid #000;
+            border-bottom: 4px solid #000;
             padding-bottom: 25px;
             margin-bottom: 50px;
         }
@@ -100,17 +94,17 @@
         h2 {
             font-size: 1.5rem;
             margin: 10px 0 0 0;
-            color: #444;
+            color: #333;
             font-weight: 700;
         }
 
-        /* ICONS */
-        .icon-inline {
-            width: 30px;
-            height: 30px;
+        /* SVG ICONS */
+        .icon {
+            width: 28px;
+            height: 28px;
             fill: #000;
-            vertical-align: middle;
-            margin-right: 5px;
+            vertical-align: text-bottom;
+            margin-right: 10px;
         }
 
         /* UNIT BLOCKS */
@@ -125,31 +119,31 @@
         .unit-header {
             background: #000;
             color: white;
-            padding: 15px 25px;
+            padding: 18px 25px;
             font-family: 'Fredoka', sans-serif;
-            font-size: 1.8rem;
+            font-size: 2rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
 
         .unit-body {
-            padding: 30px;
+            padding: 35px;
             background: #fff;
         }
 
         /* SUB-SECTIONS */
         .sub-section {
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
 
         .section-label {
             font-family: 'Fredoka', sans-serif;
-            font-size: 1.4rem;
+            font-size: 1.6rem;
             text-transform: uppercase;
             border-bottom: 3px solid #000;
-            margin-bottom: 15px;
-            padding-bottom: 5px;
+            margin-bottom: 20px;
+            padding-bottom: 8px;
             display: flex;
             align-items: center;
         }
@@ -157,54 +151,57 @@
         /* CONTENT BOXES */
         .box-concept {
             background: #fff;
-            border: 3px solid #000;
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 25px;
-            /* Solid Shadow */
-            box-shadow: 6px 6px 0px #000;
+            border: 2px solid #000;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
         }
 
         .box-desmos {
-            background: #f4f4f4; 
+            background: #f0f0f0;
             border: 3px dashed #000;
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 25px;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
         }
 
         /* LISTS & TEXT */
         ul { margin: 0; padding-left: 25px; }
-        li { margin-bottom: 20px; } 
+        
+        li { 
+            margin-bottom: 25px; 
+            font-size: 1.2rem;
+        } 
 
         /* EMPHASIS STYLES */
         .vocab-term {
             font-weight: 800;
             text-decoration: underline;
             text-decoration-thickness: 3px;
+            font-size: 1.2rem;
         }
 
-        .important { 
-            font-weight: 800; 
-            text-transform: uppercase;
-            border-bottom: 3px solid #000;
+        .important {
+            font-weight: 800;
         }
 
-        .answer { 
-            font-weight: 900; 
-            font-size: 1.1em; 
+        /* Answer Style (Bold, No Underline) */
+        .answer {
+            font-weight: 900;
+            font-size: 1.25rem;
         }
 
         /* EXAMPLE BOX */
         .ex-box {
-            background-color: #eee;
+            background-color: #f9f9f9;
             border-left: 6px solid #000;
-            padding: 10px 15px;
-            margin-top: 8px;
+            padding: 15px 20px;
+            margin-top: 12px;
             font-family: 'Quicksand', sans-serif;
-            font-size: 1rem;
             font-weight: 600;
+            font-size: 1.15rem;
             color: #000;
+            line-height: 1.5;
         }
 
         /* CODE & MATH */
@@ -212,143 +209,167 @@
             font-family: 'Courier Prime', monospace;
             background: #fff;
             color: #000;
-            padding: 2px 6px;
-            border-radius: 4px;
+            padding: 4px 10px;
+            border-radius: 6px;
             border: 2px solid #000;
-            font-size: 0.95rem;
+            font-size: 1.1rem;
             font-weight: 700;
             display: inline-block;
-            box-shadow: 2px 2px 0px #000;
+            box-shadow: 3px 3px 0px #000;
+            margin: 0 4px;
         }
 
         /* 2-COLUMN GRID FOR LISTS */
         .grid-list {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 20px;
+            gap: 30px;
         }
 
         /* VISUAL REPRESENTATION TABLES */
         .visual-table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 10px;
-            font-size: 0.9rem;
+            margin-top: 15px;
+            font-size: 1rem;
             border: 2px solid #000;
         }
         .visual-table th, .visual-table td {
             border: 1px solid #000;
-            padding: 10px;
+            padding: 12px;
             text-align: center;
         }
         .visual-table th { 
             background: #000; 
             color: #fff; 
             font-family: 'Fredoka', sans-serif;
+            letter-spacing: 1px;
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 700px) {
             .grid-list { grid-template-columns: 1fr; }
             .page-content { padding: 20px; }
             h1 { font-size: 2.2rem; }
+            .unit-header { font-size: 1.5rem; }
         }
 
         /* FOOTER */
         .footer {
-            margin-top: 50px;
+            margin-top: 60px;
             text-align: center;
-            font-size: 0.9rem;
+            font-size: 1rem;
             color: #000;
             border-top: 4px solid #000;
-            padding-top: 20px;
+            padding-top: 25px;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
 
-<!-- PRINT BUTTON -->
-<button class="print-btn" onclick="window.print()">
-    <svg class="icon-inline" viewBox="0 0 24 24"><path d="M19,8H5C3.34,8 2,9.34 2,11V17H6V21H18V17H22V11C22,9.34 20.66,8 19,8M16,19H8V14H16V19M19,12C18.45,12 18,11.55 18,11C18,10.45 18.45,10 19,10C19.55,10 20,10.45 20,11C20,11.55 19.55,12 19,12M6,11H18V6H6V11Z"/></svg>
-    Print Guide
-</button>
+<button class="print-btn" onclick="window.print()">Print Study Guide</button>
 
 <div class="page-content">
     <header>
         <h1>Algebra 1 Master Review</h1>
-        <h2>SOL 2023 Study Guide & Cheat Sheet</h2>
+        <h2>SOL 2023 Comprehensive Study Guide</h2>
     </header>
 
     <!-- ================= UNIT 1 ================= -->
     <div class="unit-block">
-        <div class="unit-header">Unit 1: Expressions, Exponents & Operations</div>
+        <div class="unit-header">Unit 1: Expressions & Operations</div>
         <div class="unit-body">
             
+            <!-- VOCABULARY -->
+            <div class="sub-section">
+                <div class="section-label">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M14,17H7V15H14M17,13H7V11H17M17,9H7V7H17M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3Z"/></svg>
+                    Basic Vocabulary
+                </div>
+                <div class="box-concept">
+                    <ul>
+                        <li><span class="vocab-term">Variable:</span> A letter representing a number.
+                            <div class="ex-box">Ex: In $3x + 5$, the variable is <span class="answer">x</span>.</div>
+                        </li>
+                        <li><span class="vocab-term">Coefficient:</span> The number multiplied <strong>in front</strong> of a variable.
+                            <div class="ex-box">Ex: In $\mathbf{5}x - 2$, the coefficient is <span class="answer">5</span>.</div>
+                        </li>
+                        <li><span class="vocab-term">Constant:</span> A number <strong>by itself</strong> (no variable).
+                            <div class="ex-box">Ex: In $2x + \mathbf{7}$, the constant is <span class="answer">7</span>.</div>
+                        </li>
+                        <li><span class="vocab-term">Leading Coefficient:</span> The coefficient of the term with the <strong>highest exponent</strong>.
+                            <div class="ex-box">Ex: $7 - 2x + 5x^3$. Highest power is 3. Leading Coeff is <span class="answer">5</span>.</div>
+                        </li>
+                        <li><span class="vocab-term">Substitution:</span> Plugging a number in for a variable.
+                            <div class="ex-box">Ex: Evaluate $3x + 2$ when $x=4$. <br> $3(4) + 2 = 12 + 2 =$ <span class="answer">14</span>.</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
             <!-- TRANSLATING -->
             <div class="sub-section">
                 <div class="section-label">
-                    <svg class="icon-inline" viewBox="0 0 24 24"><path d="M3,17.25V21H6.75L17.81,9.94L14.06,6.19L3,17.25M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04Z"/></svg>
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M3,17.25V21H6.75L17.81,9.94L14.06,6.19L3,17.25M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04Z"/></svg>
                     Translating Words to Math
                 </div>
                 <div class="box-concept">
                     <div class="grid-list">
                         <div>
-                            <p><strong>ADDITION (+)</strong></p>
+                            <p><strong>➕ Addition (Sum)</strong></p>
                             <ul>
-                                <li>Sum, Plus, Total</li>
                                 <li>Increased by</li>
                                 <li>More than</li>
-                                <li>Combined</li>
+                                <li>Combined / Total</li>
+                                <li>Plus</li>
                             </ul>
                         </div>
                         <div>
-                            <p><strong>SUBTRACTION (-)</strong></p>
+                            <p><strong>➖ Subtraction (Difference)</strong></p>
                             <ul>
-                                <li>Difference, Minus</li>
                                 <li>Decreased by</li>
-                                <li>Less than (FLIP!)</li>
-                                <li>Subtracted from (FLIP!)</li>
+                                <li>Minus</li>
+                                <li>Less than (FLIP)</li>
+                                <li>Subtracted from (FLIP)</li>
                             </ul>
                         </div>
                         <div>
-                            <p><strong>MULTIPLICATION (x)</strong></p>
+                            <p><strong>✖️ Multiplication (Product)</strong></p>
                             <ul>
-                                <li>Product, Times</li>
-                                <li>Twice ($\times 2$), Squared ($x^2$)</li>
-                                <li>Per, Each</li>
-                                <li>Of (usually means multiply)</li>
+                                <li>Times / Of</li>
+                                <li>Twice ($2x$)</li>
+                                <li>Per / Each</li>
+                                <li>Squared ($x^2$)</li>
                             </ul>
                         </div>
                         <div>
-                            <p><strong>DIVISION (÷)</strong></p>
+                            <p><strong>➗ Division (Quotient)</strong></p>
                             <ul>
-                                <li>Quotient, Ratio</li>
+                                <li>Ratio of</li>
                                 <li>Split into</li>
-                                <li>Half ($\div  2$)</li>
+                                <li>Half ($\div 2$)</li>
                                 <li>Average</li>
                             </ul>
                         </div>
                     </div>
-                    <div style="border: 2px dashed #000; padding:15px; margin-top:20px;">
-                        <p><span class="important">1️⃣ PARENTHESIS RULE:</span> <br> Words like "Sum of" or "Difference of" signal grouping in Parenthesis.</p>
+                    <div style="border: 3px dashed #000; padding:20px; margin-top:30px; border-radius: 8px;">
+                        <p><span class="important">⚠️ THE PARENTHESIS RULE:</span> Words like "Sum of" or "Difference of" signal grouping.</p>
                         <div class="ex-box">"Twice the sum of a number and 5" $\rightarrow$ <span class="answer">2(x + 5)</span></div>
                         
-                        <p style="margin-top:15px;"><span class="important"></div>2️⃣ SWITCH RULE:</span> <br> "Less Than" and "Subtracted From" mean FLIP THE ORDER.</p>
-                        <div class="ex-box">"5 less than x" $\rightarrow$ <span class="answer">x - 5</span></div></div>
+                        <p style="margin-top:20px;"><span class="important">⚠️ THE SWITCH RULE:</span> "Less Than" and "Subtracted From" mean FLIP THE ORDER.</p>
+                        <div class="ex-box">"5 less than x" <br> $\rightarrow$ <span class="answer">$\mathbf{x - 5}$</span></div>
                     </div>
                 </div>
             </div>
 
-            <!-- POLYNOMIALS -->
+            <!-- POLYNOMIAL OPS -->
             <div class="sub-section">
                 <div class="section-label">
-                    <svg class="icon-inline" viewBox="0 0 24 24"><path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"/></svg>
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"/></svg>
                     Polynomial Operations
                 </div>
                 <div class="box-concept">
                     <ul>
-                        <li><span class="vocab-term">Leading Coefficient:</span> The number in front of the term with the <strong>highest exponent</strong>.
-                            <div class="ex-box">Ex: $7 - 2x + 5x^3$. Highest power is 3. Leading Coeff is <span class="answer">5</span>.</div>
-                        </li>
                         <li><span class="vocab-term">Adding:</span> Combine Like Terms only.
                             <div class="ex-box">$(2x + 5) + (3x - 2) \rightarrow (2x+3x) + (5-2) \rightarrow$ <span class="answer">$5x + 3$</span></div>
                         </li>
@@ -369,18 +390,18 @@
             <!-- EXPONENTS & RADICALS -->
             <div class="sub-section">
                 <div class="section-label">
-                    <svg class="icon-inline" viewBox="0 0 24 24"><path d="M7,2V13H10V22L17,10H14V2H7Z"/></svg>
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M7,2V13H10V22L17,10H14V2H7Z"/></svg>
                     Exponents & Radicals
                 </div>
                 <div class="box-concept">
                     <div class="grid-list">
                         <div>
                             <strong>Perfect Squares</strong>
-                            <div style="font-size:0.9rem; margin-top:5px; line-height:1.4;">1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144, 169, 196, 225</div>
+                            <div style="font-size:1.3rem; margin-top:5px; line-height:1.4; font-family:'Courier Prime'; font-weight:700;">1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144, 169, 196, 225</div>
                         </div>
                         <div>
                             <strong>Perfect Cubes</strong>
-                            <div style="font-size:0.9rem; margin-top:5px; line-height:1.4;">1, 8, 27, 64, 125, 216, 343</div>
+                            <div style="font-size:1.3rem; margin-top:5px; line-height:1.4; font-family:'Courier Prime'; font-weight:700;">1, 8, 27, 64, 125, 216, 343</div>
                         </div>
                     </div>
                     <ul style="margin-top:20px;">
@@ -420,7 +441,7 @@
             <!-- SOLVING EQUATIONS -->
             <div class="sub-section">
                 <div class="section-label">
-                    <svg class="icon-inline" viewBox="0 0 24 24"><path d="M12,13A5,5 0 0,1 7,8H9A3,3 0 0,0 12,11A3,3 0 0,0 15,8H17A5,5 0 0,1 12,13M12,3A3,3 0 0,1 15,6H9A3,3 0 0,1 12,3M19,17H22V21H2V17H5V10H2V6H5A7,7 0 0,1 12,1A7,7 0 0,1 19,6H22V10H19V17Z"/></svg>
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M12,13A5,5 0 0,1 7,8H9A3,3 0 0,0 12,11A3,3 0 0,0 15,8H17A5,5 0 0,1 12,13M12,3A3,3 0 0,1 15,6H9A3,3 0 0,1 12,3M19,17H22V21H2V17H5V10H2V6H5A7,7 0 0,1 12,1A7,7 0 0,1 19,6H22V10H19V17Z"/></svg>
                     Solving Equations
                 </div>
                 <div class="box-concept">
@@ -450,7 +471,7 @@
             <!-- INEQUALITIES -->
             <div class="sub-section">
                 <div class="section-label">
-                    <svg class="icon-inline" viewBox="0 0 24 24"><path d="M18.5,12L6,20V4L18.5,12Z"/></svg>
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M18.5,12L6,20V4L18.5,12Z"/></svg>
                     Solving & Graphing Inequalities
                 </div>
                 <div class="box-concept">
@@ -497,7 +518,7 @@
 
             <div class="sub-section">
                 <div class="section-label">
-                    <svg class="icon-inline" viewBox="0 0 24 24"><path d="M19,3H5C3.9,3,3,3.9,3,5v14c0,1.1,0.9,2,2,2h14c1.1,0,2-0.9,2-2V5C21,3.9,20.1,3,19,3z M15.5,16.5l-2.25-6 L11,16.5l-2.25-6L6.5,16.5H5V7h1.5l2.25,6L11,7l2.25,6L15.5,7H17v9.5H15.5z"/></svg>
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M19,3H5C3.9,3,3,3.9,3,5v14c0,1.1,0.9,2,2,2h14c1.1,0,2-0.9,2-2V5C21,3.9,20.1,3,19,3z M15.5,16.5l-2.25-6 L11,16.5l-2.25-6L6.5,16.5H5V7h1.5l2.25,6L11,7l2.25,6L15.5,7H17v9.5H15.5z"/></svg>
                     Desmos Solving Trick
                 </div>
                 <div class="box-desmos">
@@ -515,13 +536,13 @@
 
     <!-- ================= UNIT 3 ================= -->
     <div class="unit-block">
-        <div class="unit-header">Unit 3: Functions & Linear Graphs</div>
+        <div class="unit-header">Unit 3: Functions & Statistics</div>
         <div class="unit-body">
 
             <!-- FUNCTIONS -->
             <div class="sub-section">
                 <div class="section-label">
-                    <svg class="icon-inline" viewBox="0 0 24 24"><path d="M15.5,17C15.5,18.1 14.6,19 13.5,19H9.5A1.5,1.5 0 0,1 8,17.5V14H6.5V12.5H8V10.5C8,8.57 9.57,7 11.5,7H13.5V8.5H11.5C10.4,8.5 9.5,9.4 9.5,10.5V12.5H13.5V14H9.5V17.5H13.5C14.6,17.5 15.5,16.6 15.5,15.5V13H17V15.5A1.5,1.5 0 0,1 15.5,17Z"/></svg>
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M15.5,17C15.5,18.1 14.6,19 13.5,19H9.5A1.5,1.5 0 0,1 8,17.5V14H6.5V12.5H8V10.5C8,8.57 9.57,7 11.5,7H13.5V8.5H11.5C10.4,8.5 9.5,9.4 9.5,10.5V12.5H13.5V14H9.5V17.5H13.5C14.6,17.5 15.5,16.6 15.5,15.5V13H17V15.5A1.5,1.5 0 0,1 15.5,17Z"/></svg>
                     Functions: Is it a Function?
                 </div>
                 <div class="box-concept">
@@ -544,7 +565,7 @@
             <!-- SLOPE -->
             <div class="sub-section">
                 <div class="section-label">
-                    <svg class="icon-inline" viewBox="0 0 24 24"><path d="M16,6L18.29,8.29L13.41,13.17L9.41,9.17L2,16.59L3.41,18L9.41,12L13.41,16L19.71,9.71L22,12V6H16Z"/></svg>
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M16,6L18.29,8.29L13.41,13.17L9.41,9.17L2,16.59L3.41,18L9.41,12L13.41,16L19.71,9.71L22,12V6H16Z"/></svg>
                     Slope & Equations
                 </div>
                 <div class="box-concept">
@@ -577,7 +598,7 @@
         <div class="unit-body">
             <div class="sub-section">
                 <div class="section-label">
-                    <svg class="icon-inline" viewBox="0 0 24 24"><path d="M18,13V15H13V20H15V22H9V20H11V15H6V13H11V8H9V6H11V2H13V6H15V8H13V13H18Z"/></svg>
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M18,13V15H13V20H15V22H9V20H11V15H6V13H11V8H9V6H11V2H13V6H15V8H13V13H18Z"/></svg>
                     Finding Solutions
                 </div>
                 <div class="box-concept">
@@ -613,7 +634,7 @@
             <!-- FACTORING -->
             <div class="sub-section">
                 <div class="section-label">
-                    <svg class="icon-inline" viewBox="0 0 24 24"><path d="M16,6L18.29,8.29L13.41,13.17L9.41,9.17L2,16.59L3.41,18L9.41,12L13.41,16L19.71,9.71L22,12V6H16Z"/></svg>
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M16,6L18.29,8.29L13.41,13.17L9.41,9.17L2,16.59L3.41,18L9.41,12L13.41,16L19.71,9.71L22,12V6H16Z"/></svg>
                     Factoring Strategies
                 </div>
                 <div class="box-concept">
@@ -643,7 +664,7 @@
             <!-- TRANSFORMATION -->
             <div class="sub-section">
                 <div class="section-label">
-                    <svg class="icon-inline" viewBox="0 0 24 24"><path d="M21,11L14,4V8C7,9 4,14 3,19C5.5,15.5 9,13.9 14,13.9V18L21,11Z"/></svg>
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M21,11L14,4V8C7,9 4,14 3,19C5.5,15.5 9,13.9 14,13.9V18L21,11Z"/></svg>
                     Graph Transformations
                 </div>
                 <div class="box-concept">
@@ -670,30 +691,53 @@
 
             <div class="sub-section">
                 <div class="section-label">
-                    <svg class="icon-inline" viewBox="0 0 24 24"><path d="M22,21H2V3H4V19H6V17H10V19H12V16H16V19H18V17H22V21M18,14H22V16H18V14M12,6H16V9H12V6M16,15H12V10H16V15M6,10H10V12H6V10M10,16H6V13H10V16Z"/></svg>
-                    Curve of Best Fit (Regression)
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M22,21H2V3H4V19H6V17H10V19H12V16H16V19H18V17H22V21M18,14H22V16H18V14M12,6H16V9H12V6M16,15H12V10H16V15M6,10H10V12H6V10M10,16H6V13H10V16Z"/></svg>
+                    Statistics & Data
                 </div>
-                <div class="box-desmos">
-                    <p>Don't guess! Use the calculator to find the exact equation.</p>
-                    <ol>
-                        <li>Click <strong>+</strong> and add a <strong>Table</strong>. Type your points.</li>
-                        <li>Type the regression code in the next box based on the shape:
-                            <ul>
-                                <li><strong>Linear:</strong> <span class="key-cap">y1 ~ mx1 + b</span></li>
-                                <li><strong>Quadratic:</strong> <span class="key-cap">y1 ~ ax1^2 + bx1 + c</span></li>
-                                <li><strong>Exponential:</strong> <span class="key-cap">y1 ~ ab^x1</span> (Check "Log Mode")</li>
-                            </ul>
+                <div class="box-concept">
+                    <ul>
+                        <li><span class="vocab-term">Mean:</span> The Average. Add all numbers and divide by how many there are.</li>
+                        <li><span class="vocab-term">Median:</span> The Middle number. (Order least to greatest first).</li>
+                        <li><span class="vocab-term">Mode:</span> The number that appears <strong>the most</strong>.</li>
+                        <li><span class="vocab-term">Range:</span> The spread. Range = Max - Min.</li>
+                        <li><span class="vocab-term">IQR (Interquartile Range):</span> Middle 50%. Formula: $Q3 - Q1$.
+                            <div class="ex-box">Ex: $Q3 = 20, Q1 = 15$ <br> $\rightarrow IQR = 20 - 15 = $ <span class="answer">5</span>.</div>
                         </li>
-                        <li><strong>Check $r^2$:</strong> The closer to 1, the better the fit.</li>
-                        <li><strong>Write the Equation:</strong> Replace variables with the numbers Desmos gives you.</li>
-                    </ol>
+                        <li><span class="vocab-term">Z-Score:</span> Number of standard deviations a value is from the mean.
+                            <div class="ex-box">Formula: <span class="answer">$z = \frac{\text{Value} - \text{Mean}}{\text{Standard Deviation}}$</span></div>
+                            <div class="ex-box">Ex: Value=85, Mean=75, SD=5. <br> $z = \frac{85-75}{5} = \frac{10}{5} =$ <span class="answer">2</span>.</div>
+                        </li>
+                        <li><span class="vocab-term">Correlation ($r$):</span> How close dots are to a line.
+                            <div class="ex-box">
+                                $r \approx 1$ or $-1$: <span class="answer"><strong>Strong</strong> Correlation</span>.<br>
+                                $r \approx 0$: <span class="answer"><strong>Weak</strong>/No Correlation</span>.
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
 
             <div class="sub-section">
                 <div class="section-label">
-                    <svg class="icon-inline" viewBox="0 0 24 24"><path d="M19,3H5C3.9,3,3,3.9,3,5v14c0,1.1,0.9,2,2,2h14c1.1,0,2-0.9,2-2V5C21,3.9,20.1,3,19,3z"/></svg>
-                    Statistics & Desmos Codes
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M19,3H5C3.9,3,3,3.9,3,5v14c0,1.1,0.9,2,2,2h14c1.1,0,2-0.9,2-2V5C21,3.9,20.1,3,19,3z M15.5,16.5l-2.25-6 L11,16.5l-2.25-6L6.5,16.5H5V7h1.5l2.25,6L11,7l2.25,6L15.5,7H17v9.5H15.5z"/></svg>
+                    Hack: Curve of Best Fit (Regression)
+                </div>
+                <div class="box-desmos">
+                    <p style="margin-bottom:10px;"><strong>Step 1:</strong> Add a Table ($+$) and type your points.</p>
+                    <p style="margin-bottom:10px;"><strong>Step 2:</strong> Type the code for the shape that fits best:</p>
+                    <ul>
+                        <li><strong>Linear ($y=mx+b$):</strong> Type <span class="key-cap">y1 ~ mx1 + b</span></li>
+                        <li><strong>Quadratic ($y=ax^2$):</strong> Type <span class="key-cap">y1 ~ ax1^2 + bx1 + c</span></li>
+                        <li><strong>Exponential ($y=ab^x$):</strong> Type <span class="key-cap">y1 ~ ab^x1</span> (Check "Log Mode")</li>
+                    </ul>
+                    <p style="margin-top:10px;"><strong>Step 3:</strong> Look for <strong>$r^2$</strong>. The closer to 1, the better the fit.</p>
+                </div>
+            </div>
+
+            <div class="sub-section">
+                <div class="section-label">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M19,3H5C3.9,3,3,3.9,3,5v14c0,1.1,0.9,2,2,2h14c1.1,0,2-0.9,2-2V5C21,3.9,20.1,3,19,3z"/></svg>
+                    Hack: Statistics Codes
                 </div>
                 <div class="box-desmos">
                     <p><strong>Step 1:</strong> Type data as a list: <span class="key-cap">L = [5, 8, 12, 15]</span></p>
@@ -705,9 +749,6 @@
                         <li><span class="vocab-term">Range</span> (Max - Min): <span class="key-cap">max(L) - min(L)</span></li>
                         <li><span class="vocab-term">Standard Deviation</span>: <span class="key-cap">stdev(L)</span></li>
                         <li><span class="vocab-term">IQR</span> ($Q3 - Q1$): Find Q1/Q3 using <span class="key-cap">stats(L)</span>.</li>
-                        <li><span class="vocab-term">Z-Score</span>: Formula $\rightarrow z = \frac{\text{Value} - \text{Mean}}{\text{Std Dev}}$
-                            <div class="ex-box">Ex: Value=85, Mean=75, Std Dev=5$. <br> $z = \frac{(85-75)}{5}= $ <span class="answer">2</span>.</div>
-                        </li>
                     </ul>
                 </div>
             </div>
