@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Your Why - Writing Prompt</title>
+    
+    <!-- Importing Clean, Readable Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500&family=Quicksand:wght@400;500;700&family=Patrick+Hand&display=swap" rel="stylesheet">
+
+    <style>
+        /* Global Reset & Print Settings */
+        * {
+            box-sizing: border-box;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        @page {
+            size: letter;
+            margin: 0;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            font-family: 'Quicksand', sans-serif;
+            color: #222;
+        }
+
+        /* The Page Container */
+        .page {
+            width: 8.5in;
+            height: 11in;
+            margin: 20px auto;
+            background: white;
+            position: relative;
+            overflow: hidden;
+            page-break-after: always;
+            padding: 0.75in; /* Comfortable margins */
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header Section */
+        .header {
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #333;
+            padding-bottom: 1rem;
+        }
+
+        .title {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 2.5rem;
+            color: #000;
+            margin: 0 0 0.5rem 0;
+            line-height: 1;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: #555;
+            font-weight: 500;
+        }
+
+        /* Instructions / Prompt Box */
+        .prompt-box {
+            background-color: #f9f9f9;
+            border: 2px solid #333;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .prompt-label {
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            background: white;
+            padding: 0 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            border: 2px solid #333;
+            border-radius: 4px;
+        }
+
+        .prompt-text {
+            font-size: 1rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+
+        .prompt-questions {
+            font-weight: 700;
+            color: #333;
+            font-size: 1.05rem;
+            margin-bottom: 1rem;
+            font-family: 'Fredoka', sans-serif;
+        }
+
+        .guidelines {
+            font-size: 0.9rem;
+            color: #666;
+            font-style: italic;
+            border-top: 1px dashed #aaa;
+            padding-top: 0.8rem;
+        }
+
+        /* Writing Area */
+        .writing-area {
+            flex-grow: 1;
+            width: 100%;
+            /* Lined Paper Effect */
+            background-image: linear-gradient(transparent 95%, #999 95%);
+            background-size: 100% 2rem; /* Comfortable line height */
+            background-position: 0 1.9rem;
+            border-top: 2px solid #333; /* Strong top line to start */
+            position: relative;
+        }
+
+        /* Quote / Encouragement */
+        .quote {
+            position: absolute;
+            bottom: 50px;
+            right: 0.75in;
+            font-family: 'Patrick Hand', cursive; /* Handwritten feel */
+            font-size: 1.2rem;
+            color: #555;
+            text-align: right;
+            transform: rotate(-2deg);
+            background: white;
+            padding: 5px;
+        }
+
+        /* Footer */
+        .footer {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            font-size: 9pt;
+            color: #888;
+        }
+
+        @media print {
+            body { background: none; }
+            .page { margin: 0; box-shadow: none; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="page">
+        <!-- Header -->
+        <div class="header">
+            <h1 class="title">Finding Your Why</h1>
+            <div class="subtitle">A Personal Reflection on Your Journey Back to School</div>
+        </div>
+
+        <!-- The Prompt Instructions -->
+        <div class="prompt-box">
+            <div class="prompt-label">The Assignment</div>
+            
+            <div class="prompt-text">
+                Welcome back. Taking the step to return to school is an incredibly brave decision. It takes courage to restart a journey, but you are here for a reason. Before we dive into the work, let's take a moment to understand that reason.
+            </div>
+
+            <div class="prompt-questions">
+                • What was the moment that made you say "It's time"? <br>
+                • What is your drive? Who or what are you doing this for? <br>
+                • What does your future look like after this program? (A new job, degree, certificate, friends, or just to learn?) <br>
+                • How does it feel to take this first step? <br>
+                • On the hard days, what thought will keep you moving forward?
+            </div>
+
+            <div class="guidelines">
+                <strong>Instructions:</strong> This is a "Free Write." Do not worry about spelling, grammar, punctuation, or sentence structure. Just let your thoughts flow onto the paper. This is for you to express yourself freely.
+            </div>
+        </div>
+
+        <!-- Writing Lines -->
+        <div class="writing-area">
+            <!-- Lines are generated by CSS background -->
+        </div>
+
+        <!-- Encouraging Note -->
+        <div class="quote">
+            "It's never too late to be who you might have been."
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">• © 2025 Aly Hatfield. All Rights Reserved. •</div>
+    </div>
+
+    <!-- PAGE 2: Extra Writing Space -->
+    <div class="page">
+        <!-- Minimal Header -->
+        <div class="header" style="border-bottom: none; margin-bottom: 0.5rem; padding-bottom: 0.5rem;">
+            <div class="subtitle" style="text-align: right; font-style: italic;">Finding Your Why (Continued)</div>
+        </div>
+
+        <!-- Full Page Writing Area -->
+        <div class="writing-area" style="border-top: 2px solid #333;">
+            <!-- Lines are generated by CSS background -->
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">• © 2025 Aly Hatfield. All Rights Reserved. •</div>
+    </div>
+
+</body>
+</html>

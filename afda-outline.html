@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AFDA: Class Materials</title>
+    
+    <!-- 1. FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* 2. GLOBAL STYLES */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            font-family: 'Quicksand', sans-serif;
+            color: #222;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* PAGE CONTAINER */
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 40px auto;
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            gap: 40px;
+        }
+
+        /* SIDEBAR (Navigation) */
+        .sidebar {
+            width: 280px;
+            flex-shrink: 0;
+        }
+
+        .sidebar-nav {
+            position: sticky;
+            top: 20px;
+            background: white;
+            border: 3px solid #000;
+            border-radius: 12px;
+            padding: 15px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .nav-item {
+            display: block;
+            padding: 12px 10px;
+            margin-bottom: 5px;
+            text-decoration: none;
+            color: #555;
+            font-weight: 600;
+            font-size: 1rem;
+            border-radius: 6px;
+            transition: all 0.2s;
+            border-left: 4px solid transparent;
+        }
+
+        .nav-item:hover {
+            background-color: #f9f9f9;
+            color: #000;
+            border-left-color: #ccc;
+        }
+
+        .nav-item.active {
+            background-color: #000;
+            color: white;
+            border-left-color: #000;
+        }
+
+        /* MAIN CONTENT */
+        .main-content {
+            flex-grow: 1;
+        }
+
+        /* HEADER */
+        .page-header {
+            background: white;
+            border: 3px solid #000;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 6px 6px 0px rgba(0,0,0,0.1);
+        }
+
+        .header-text h1 {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 2.2rem;
+            margin: 0;
+            color: #000;
+            line-height: 1.1;
+        }
+
+        .header-text p {
+            color: #555;
+            margin-top: 5px;
+        }
+
+        .print-btn {
+            background: #000;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-family: 'Fredoka', sans-serif;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* UNIT CARDS DISPLAY */
+        .content-card {
+            background: white;
+            border: 3px solid #000;
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 30px;
+            display: none; /* Hidden by default */
+            flex-direction: column;
+        }
+        
+        .content-card.visible {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .unit-header {
+            text-align: center;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+
+        .unit-kicker {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1rem;
+            color: #666;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+            background: #f0f0f0;
+            padding: 4px 12px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        .unit-title {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 2.8rem;
+            color: #000;
+            margin: 10px 0 20px 0;
+            line-height: 1.1;
+        }
+
+        /* BUTTON */
+        .material-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: #000;
+            border: 2px solid #000;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: white;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: all 0.2s;
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.2);
+            font-family: 'Fredoka', sans-serif;
+            margin: 0 auto 20px auto; /* Centered */
+        }
+
+        .material-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 6px 6px 0px rgba(0,0,0,0.2);
+            background-color: #333;
+        }
+        
+        .btn-icon { width: 24px; height: 24px; fill: white; }
+
+        /* INFO SECTIONS */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            text-align: left;
+        }
+
+        .info-col h3 {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            border-bottom: 2px solid #333;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        /* TOPICS LIST */
+        .topic-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .topic-list li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            font-size: 1rem;
+            color: #444;
+        }
+        .topic-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #000;
+            font-weight: bold;
+        }
+
+        /* TERMS TAGS */
+        .terms-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .term-tag {
+            background: #f0f8ff;
+            color: #0050c0;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: 1px solid #cce0ff;
+        }
+
+        /* SOL BADGES */
+        .sol-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .sol-badge {
+            background: #eee;
+            color: #333;
+            padding: 5px 12px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-weight: 700;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: auto;
+            color: #888;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .container { flex-direction: column; }
+            .sidebar { width: 100%; }
+            .sidebar-nav { position: static; max-height: none; display: flex; flex-direction: column; }
+            .unit-title { font-size: 2.2rem; }
+            .info-grid { grid-template-columns: 1fr; gap: 20px; }
+            .material-btn { width: 100%; }
+        }
+
+        /* PRINT STYLES */
+        @media print {
+            body { background: white; }
+            .sidebar, header, .print-btn, footer { display: none !important; }
+            .container { display: block; margin: 0; padding: 0; }
+            .content-card { 
+                display: flex !important;
+                border: 2px solid #000;
+                margin-bottom: 20px;
+                page-break-inside: avoid;
+                min-height: auto;
+                padding: 20px;
+                box-shadow: none;
+            }
+            .material-btn { display: none; } /* Hide button on print */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- SIDEBAR NAVIGATION -->
+        <aside class="sidebar">
+            <nav class="sidebar-nav" id="sidebarNav">
+                <!-- Javascript will populate this -->
+            </nav>
+        </aside>
+
+        <!-- MAIN CONTENT AREA -->
+        <main class="main-content">
+            
+            <div class="page-header">
+                <div class="header-text">
+                    <h1>Class Materials</h1>
+                    <p>Select a unit to view standards, topics, and resources.</p>
+                </div>
+                <button onclick="window.print()" class="print-btn">
+                    <svg style="width:20px;height:20px;fill:white;" viewBox="0 0 24 24"><path d="M18,3H6V7H18M19,12A1,1 0 0,1 18,11A1,1 0 0,1 19,10A1,1 0 0,1 20,11A1,1 0 0,1 19,12M16,19H8V14H16M19,8H5A3,3 0 0,0 2,11V17H6V21H18V17H22V11A3,3 0 0,0 19,8Z" /></svg>
+                    Print List
+                </button>
+            </div>
+
+            <div id="contentArea">
+                <!-- Javascript will populate cards here -->
+            </div>
+
+        </main>
+
+    </div>
+
+    <footer>
+        &copy; 2026 Aly Hatfield. All Rights Reserved.
+    </footer>
+
+    <script>
+        // --- DATA OBJECT ---
+        const units = [
+            { 
+                id: 1, 
+                title: "Function Families & Transformations", 
+                week: "Week 1",
+                sols: ["AFDA.1"],
+                topics: ["Linear, Quadratic, Exponential Parent Functions", "Translations (Shifts)", "Reflections & Dilations", "Domain & Range"],
+                terms: ["Parent Function", "Transformation", "Translation", "Dilation", "Reflection"]
+            },
+            { 
+                id: 2, 
+                title: "Analyzing Function Graphs", 
+                week: "Week 2",
+                sols: ["AFDA.1", "AFDA.4"],
+                topics: ["Intervals (Increasing/Decreasing/Constant)", "Zeros & Intercepts", "End Behavior & Asymptotes", "Min/Max Values"],
+                terms: ["Interval", "Zero", "Intercept", "Asymptote", "End Behavior"]
+            },
+            { 
+                id: 3, 
+                title: "Linear Programming", 
+                week: "Week 3",
+                sols: ["AFDA.2"],
+                topics: ["Systems of Inequalities", "Feasible Regions", "Vertices & Constraints", "Optimization (Max/Min)"],
+                terms: ["Feasible Region", "Constraint", "Objective Function", "Optimization"]
+            },
+            { 
+                id: 4, 
+                title: "Bivariate Data", 
+                week: "Week 4",
+                sols: ["AFDA.3", "AFDA.4"],
+                topics: ["Scatterplots", "Curve of Best Fit (Linear, Quadratic, Exp)", "Regression Analysis", "Predictions & Residuals"],
+                terms: ["Bivariate Data", "Scatterplot", "Regression", "Correlation Coefficient (r)"]
+            },
+            { 
+                id: 5, 
+                title: "Designing Studies", 
+                week: "Week 5",
+                sols: ["AFDA.6"],
+                topics: ["Sampling Methods (Random, Stratified, Cluster)", "Bias in Surveys", "Experiments vs Observational Studies", "Control Groups"],
+                terms: ["Sample", "Population", "Bias", "Random Sampling", "Experiment"]
+            },
+            { 
+                id: 6, 
+                title: "Probability", 
+                week: "Week 6",
+                sols: ["AFDA.6"],
+                topics: ["Theoretical vs Experimental", "Independent & Dependent Events", "Conditional Probability", "Venn Diagrams & Tables"],
+                terms: ["Event", "Outcome", "Mutually Exclusive", "Independent", "Conditional"]
+            },
+            { 
+                id: 7, 
+                title: "Counting Methods", 
+                week: "Week 7",
+                sols: ["AFDA.6"],
+                topics: ["Fundamental Counting Principle", "Permutations (Order Matters)", "Combinations (Order Doesn't Matter)", "Factorials"],
+                terms: ["Permutation", "Combination", "Factorial (!)", "Arrangement"]
+            },
+            { 
+                id: 8, 
+                title: "Normal Distribution", 
+                week: "Week 8",
+                sols: ["AFDA.7"],
+                topics: ["The Bell Curve", "Mean & Standard Deviation", "Z-Scores", "Empirical Rule (68-95-99.7)"],
+                terms: ["Normal Distribution", "Standard Deviation", "Z-Score", "Mean (μ)"]
+            },
+            { 
+                id: 9, 
+                title: "Review & Final Exam", 
+                week: "Week 9",
+                sols: ["ALL SOLs"],
+                topics: ["Comprehensive Review", "Final Assessment"],
+                terms: ["Review", "Assessment"]
+            }
+        ];
+
+        // --- RENDER FUNCTIONS ---
+        const navContainer = document.getElementById('sidebarNav');
+        const contentContainer = document.getElementById('contentArea');
+
+        units.forEach((unit, index) => {
+            // 1. Sidebar Link
+            const navLink = document.createElement('a');
+            navLink.href = "#";
+            navLink.className = `nav-item ${index === 0 ? 'active' : ''}`;
+            navLink.textContent = `Unit ${unit.id}: ${unit.title}`;
+            navLink.onclick = (e) => {
+                e.preventDefault();
+                showUnit(index);
+            };
+            navContainer.appendChild(navLink);
+
+            // 2. Content Card
+            // SOL Badges
+            const solBadges = unit.sols.map(sol => `<span class="sol-badge">${sol}</span>`).join('');
+            // Topics
+            const topicsList = unit.topics.map(topic => `<li>${topic}</li>`).join('');
+            // Terms
+            const termsTags = unit.terms.map(term => `<span class="term-tag">${term}</span>`).join('');
+
+            const card = document.createElement('div');
+            card.className = `content-card ${index === 0 ? 'visible' : ''}`;
+            card.id = `card-${index}`;
+            
+            card.innerHTML = `
+                <div class="unit-header">
+                    <div class="unit-kicker">${unit.week}</div>
+                    <h2 class="unit-title">Unit ${unit.id}: ${unit.title}</h2>
+                    
+                    <a href="#" class="material-btn">
+                        <svg class="btn-icon" viewBox="0 0 24 24"><path d="M20,6h-8l-2-2H4C2.9,4,2,4.9,2,6v12c0,1.1,0.9,2,2,2h16c1.1,0,2-0.9,2-2V8C22,6.9,21.1,6,20,6z M14,14v-2h-3v-3H9v3H6v2h3v3h2v-3H14z"/></svg>
+                        Unit ${unit.id} Materials
+                    </a>
+
+                    <div class="sol-container">
+                        ${solBadges}
+                    </div>
+                </div>
+
+                <div class="info-grid">
+                    <div class="info-col">
+                        <h3>Key Topics</h3>
+                        <ul class="topic-list">
+                            ${topicsList}
+                        </ul>
+                    </div>
+                    <div class="info-col">
+                        <h3>Key Terms & Symbols</h3>
+                        <div class="terms-container">
+                            ${termsTags}
+                        </div>
+                    </div>
+                </div>
+            `;
+            contentContainer.appendChild(card);
+        });
+
+        // --- INTERACTION ---
+        function showUnit(index) {
+            // Update Nav Classes
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(item => item.classList.remove('active'));
+            navItems[index].classList.add('active');
+
+            // Update Card Visibility
+            const cards = document.querySelectorAll('.content-card');
+            cards.forEach(card => {
+                card.classList.remove('visible');
+                card.style.display = 'none'; 
+            });
+            
+            const activeCard = document.getElementById(`card-${index}`);
+            activeCard.style.display = 'flex'; 
+            
+            // Timeout to allow display:flex to apply before adding opacity transition class
+            setTimeout(() => {
+                activeCard.classList.add('visible');
+            }, 10);
+            
+            // Scroll to top on mobile
+            if(window.innerWidth < 900) {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+    </script>
+
+</body>
+</html>

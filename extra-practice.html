@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extra Practice & Tools</title>
+    
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- ICONS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* --- GLOBAL STYLES --- */
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            font-family: 'Quicksand', sans-serif;
+            color: #222;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 40px auto;
+            padding: 20px;
+            flex: 1;
+        }
+
+        /* HEADER */
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 50px 20px;
+            background: white;
+            border: 3px solid #000;
+            border-radius: 20px;
+            box-shadow: 8px 8px 0px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 3.5rem;
+            margin: 0 0 15px 0;
+            color: #000;
+            line-height: 1.1;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: #555;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* SECTION STYLES */
+        .section-header {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 2rem;
+            color: #000;
+            margin-top: 60px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 3px solid #000;
+            padding-bottom: 10px;
+        }
+
+        .section-desc {
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+            color: #666;
+        }
+
+        /* CARD GRID */
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            background: white;
+            border: 3px solid #000;
+            border-radius: 16px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 6px 6px 0px rgba(0,0,0,0.05);
+            height: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 8px 8px 0px rgba(0,0,0,0.15);
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            color: #000;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.5rem;
+            margin: 0 0 10px 0;
+            color: #000;
+        }
+
+        .card p {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        /* Standard Buttons inside cards */
+        .card-btn {
+            display: block;
+            background: #fff;
+            color: #000;
+            text-decoration: none;
+            padding: 10px 15px;
+            border: 2px solid #000;
+            border-radius: 8px;
+            font-weight: 700;
+            text-align: center;
+            transition: all 0.2s;
+            font-family: 'Quicksand', sans-serif;
+            margin-top: auto; /* Pushes button to bottom */
+        }
+
+        .card-btn:hover {
+            background: #000;
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.2);
+        }
+
+        /* SOL Hub Specific Styles */
+        .sol-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+        }
+
+        .sol-card {
+            background: white;
+            border: 4px solid #000; /* Thicker border for major hubs */
+            border-radius: 20px;
+            padding: 40px; /* More padding for importance */
+            box-shadow: 10px 10px 0px rgba(0,0,0,0.1);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.2s;
+        }
+
+        .sol-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .sol-title {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            color: #000;
+        }
+        
+        .sol-text {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        /* Updated: White Background Button for SOL */
+        .sol-btn {
+            background: #fff;
+            color: #000;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.2rem;
+            transition: all 0.2s;
+            border: 3px solid #000;
+            display: inline-block;
+        }
+
+        .sol-btn:hover {
+            background: #f4f4f4;
+            transform: translateY(-3px);
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.1);
+        }
+
+        /* EXTRA CREDIT SECTION */
+        .extra-credit-section {
+            margin-top: 80px;
+            text-align: center;
+            padding: 50px;
+            background: #fff; 
+            color: #000;
+            border: 4px solid #000; /* Thick border */
+            border-radius: 25px;
+            box-shadow: 12px 12px 0px rgba(0,0,0,0.1);
+        }
+
+        /* Updated: White Background Button for Extra Credit */
+        .ec-btn {
+            display: inline-block;
+            background: #fff;
+            color: #000;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.3rem;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            margin-top: 25px;
+            transition: all 0.2s;
+            border: 3px solid #000;
+        }
+
+        .ec-btn:hover {
+            background: #f4f4f4;
+            transform: scale(1.05);
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.1);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: auto;
+            color: #888;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .section-header { font-size: 1.5rem; }
+            .sol-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <header>
+            <h1>Extra Practice & Tools</h1>
+            <p class="subtitle">Your ultimate guide to free math tools, study aids, and SOL review materials.</p>
+        </header>
+
+        <!-- SECTION 1: ESSENTIAL TOOLS -->
+        <div class="section-header"><i class="fa-solid fa-calculator" style="margin-right: 15px;"></i> Essential Tools</div>
+        <div class="section-desc">Calculators and tools to create your own study materials.</div>
+        
+        <div class="resources-grid">
+            <!-- Desmos -->
+            <div class="card">
+                <div class="card-icon"><i class="fa-solid fa-chart-line"></i></div>
+                <h3>Desmos Calculator</h3>
+                <p>The official graphing calculator used on the SOL. Plot functions, create tables, and visualize algebraic concepts.</p>
+                <a href="https://www.desmos.com/testing/virginia/graphing" target="_blank" class="card-btn">Launch Desmos</a>
+            </div>
+
+            <!-- NotebookLM -->
+            <div class="card">
+                <div class="card-icon"><i class="fa-solid fa-book-open-reader"></i></div>
+                <h3>NotebookLM</h3>
+                <p>Upload your notes or class slides. You can make study guides, flashcards, and tests to help yourself learn.</p>
+                <a href="https://notebooklm.google.com/" target="_blank" class="card-btn">Create Study Materials</a>
+            </div>
+
+            <!-- Multiplication Chart -->
+            <div class="card">
+                <div class="card-icon"><i class="fa-solid fa-table"></i></div>
+                <h3>Multiplication Chart</h3>
+                <p>A simple reference chart for times tables 1-12 to help speed up your mental math.</p>
+                <a href="multiplication-chart.html" target="_blank" class="card-btn">View Chart</a>
+            </div>
+        </div>
+
+        <!-- SECTION 2: SOL PREP HUBS -->
+        <div class="section-header"><i class="fa-solid fa-flag-usa" style="margin-right: 15px;"></i> SOL Prep Hubs</div>
+        <div class="section-desc">Central hubs for all End-of-Course test materials.</div>
+
+        <div class="sol-grid">
+            <!-- Algebra 1 Hub -->
+            <div class="sol-card">
+                <div class="sol-title">Algebra 1 SOL Hub</div>
+                <p class="sol-text">Access released tests, practice tools, formula sheets, and study guides.</p>
+                <a href="alg1-sol-hub.html" target="_blank" class="sol-btn">Enter Algebra 1 Hub &rarr;</a>
+            </div>
+
+            <!-- Geometry Hub -->
+            <div class="sol-card">
+                <div class="sol-title">Geometry SOL Hub</div>
+                <p class="sol-text">Access geometry proofs, formula sheets, and practice exams.</p>
+                <a href="geo-sol-hub.html" target="_blank" class="sol-btn">Enter Geometry Hub &rarr;</a>
+            </div>
+        </div>
+
+        <!-- SECTION 3: PRACTICE & LEARN -->
+        <div class="section-header"><i class="fa-solid fa-laptop-code" style="margin-right: 15px;"></i> Practice & Learn</div>
+        <div class="section-desc">Interactive lessons, videos, and unlimited practice problems.</div>
+
+        <div class="resources-grid">
+            <!-- IXL -->
+            <div class="card">
+                <div class="card-icon"><i class="fa-solid fa-list-check"></i></div>
+                <h3>IXL Math</h3>
+                <p>Adaptive practice. Great for drilling specific topics until you reach mastery.</p>
+                <a href="https://www.ixl.com/math" target="_blank" class="card-btn">Go to IXL</a>
+            </div>
+
+            <!-- Math-Aids -->
+            <div class="card">
+                <div class="card-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                <h3>Math-Aids</h3>
+                <p>Generates unlimited printable worksheets with answer keys for any topic.</p>
+                <a href="https://www.math-aids.com/" target="_blank" class="card-btn">Go to Math-Aids</a>
+            </div>
+
+            <!-- School Yourself -->
+            <div class="card">
+                <div class="card-icon"><i class="fa-solid fa-person-chalkboard"></i></div>
+                <h3>School Yourself</h3>
+                <p>Interactive video lessons that adapt to your answers. Choose your own path.</p>
+                <a href="https://schoolyourself.org/" target="_blank" class="card-btn">Go to School Yourself</a>
+            </div>
+
+            <!-- CK-12 -->
+            <div class="card">
+                <div class="card-icon"><i class="fa-solid fa-book"></i></div>
+                <h3>CK-12</h3>
+                <p>Free digital textbooks with videos, interactives, and practice quizzes built in.</p>
+                <a href="https://www.ck12.org/student/" target="_blank" class="card-btn">Go to CK-12</a>
+            </div>
+
+            <!-- Math Planet -->
+            <div class="card">
+                <div class="card-icon"><i class="fa-solid fa-earth-americas"></i></div>
+                <h3>Math Planet</h3>
+                <p>Full online courses for Pre-Algebra, Algebra 1, Algebra 2, and Geometry.</p>
+                <a href="https://www.mathplanet.com/" target="_blank" class="card-btn">Go to Math Planet</a>
+            </div>
+
+            <!-- Chili Math -->
+            <div class="card">
+                <div class="card-icon"><i class="fa-solid fa-pepper-hot"></i></div>
+                <h3>Chili Math</h3>
+                <p>Simple lessons and notes to help you learn math concepts at your own pace.</p>
+                <a href="https://www.chilimath.com/" target="_blank" class="card-btn">Go to Chili Math</a>
+            </div>
+        </div>
+
+        <!-- SECTION 4: FUN & CHALLENGE -->
+        <div class="section-header"><i class="fa-solid fa-brain" style="margin-right: 15px;"></i> Challenge Zone</div>
+        <div class="section-desc">Logic puzzles and games to keep your brain sharp.</div>
+
+        <div class="resources-grid">
+            <!-- Brilliant -->
+            <div class="card">
+                <div class="card-icon"><i class="fa-solid fa-lightbulb"></i></div>
+                <h3>Brilliant</h3>
+                <p>Interactive logic puzzles and courses that teach you how to think like a mathematician.</p>
+                <a href="https://brilliant.org/courses/" target="_blank" class="card-btn">Try Brilliant</a>
+            </div>
+
+            <!-- FreeRice -->
+            <div class="card">
+                <div class="card-icon"><i class="fa-solid fa-bowl-rice"></i></div>
+                <h3>FreeRice</h3>
+                <p>Answer basic math questions. For every correct answer, rice is donated to those in need.</p>
+                <a href="https://play.freerice.com/categories/basic-math-pre-algebra" target="_blank" class="card-btn">Play FreeRice</a>
+            </div>
+
+            <!-- QuickMaffs -->
+            <div class="card">
+                <div class="card-icon"><i class="fa-solid fa-stopwatch"></i></div>
+                <h3>QuickMaffs</h3>
+                <p>A fast-paced arithmetic game to improve your mental math speed.</p>
+                <a href="https://quickmaffs.com/math-games" target="_blank" class="card-btn">Play QuickMaffs</a>
+            </div>
+        </div>
+
+        <!-- EXTRA CREDIT SECTION -->
+        <div class="extra-credit-section">
+            <h2 style="font-family: 'Fredoka'; font-size: 2.5rem; margin-bottom: 10px;">Looking for Extra Credit?</h2>
+            <p style="font-size: 1.2rem; max-width: 600px; margin: 0 auto; color: #555;">Complete specialized review packets to earn bonus points on your next unit quiz.</p>
+            <a href="extra_credit.html" target="_blank" class="ec-btn">Go to Extra Credit Page &rarr;</a>
+        </div>
+
+    </div>
+
+    <footer>
+        &copy; 2026 Aly Hatfield. All Rights Reserved.
+    </footer>
+
+</body>
+</html>

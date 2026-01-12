@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Wall: Geometry Unit 1</title>
+    
+    <!-- 1. FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <!-- 2. MATHJAX -->
+    <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+      chtml: { scale: 1.1 } 
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        /* 3. GLOBAL STYLES */
+        * {
+            box-sizing: border-box;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+            font-family: 'Quicksand', sans-serif;
+            color: #1f2937;
+            line-height: 1.4;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* PAGE CONTAINER */
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 40px auto;
+            padding: 20px;
+            flex: 1;
+        }
+
+        /* HEADER */
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        h1 {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 3.5rem;
+            margin: 0;
+            color: #000;
+            letter-spacing: 1px;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: #555;
+            font-weight: 700;
+        }
+
+        /* PRINT BUTTON */
+        .print-btn-container {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .print-btn {
+            background: #000;
+            color: white;
+            border: none;
+            padding: 12px 35px;
+            border-radius: 50px;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: transform 0.2s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .print-btn:hover {
+            transform: translateY(-2px);
+            background: #333;
+        }
+
+        /* WORD WALL GRID */
+        .wall-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+        }
+
+        /* CARD STYLE - REVISED FOR CLARITY */
+        .word-card {
+            background: white;
+            border: 3px solid #000;
+            border-radius: 16px;
+            overflow: hidden; /* Keeps content inside rounded corners */
+            display: flex;
+            flex-direction: column;
+            box-shadow: 8px 8px 0px rgba(0,0,0,0.1);
+            page-break-inside: avoid;
+            height: 100%;
+        }
+
+        /* CARD HEADER (Title) */
+        .card-header {
+            background: #000;
+            color: #fff;
+            padding: 15px 20px;
+            text-align: center;
+            border-bottom: 3px solid #000;
+        }
+
+        .word-title {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        /* CARD BODY (Definition) */
+        .card-body {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+        }
+
+        .word-def {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #333;
+            line-height: 1.6;
+            text-align: left; /* Left align is easier to read */
+        }
+
+        /* CARD FOOTER (Example) */
+        .card-footer {
+            background: #f1f5f9;
+            border-top: 2px dashed #ccc;
+            padding: 20px;
+            text-align: center;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .word-example {
+            font-size: 1.5rem;
+            font-weight: bold;
+            font-family: 'Times New Roman', serif;
+            color: #000;
+        }
+
+        .ex-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: #666;
+            font-weight: 700;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        /* Logic Colors */
+        .p-blue { color: #2563eb; font-weight: 800; }
+        .q-red { color: #dc2626; font-weight: 800; }
+        .neg-purple { color: #9333ea; font-weight: 800; }
+        .keyword { font-weight: 800; text-decoration: underline; text-decoration-thickness: 2px; }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: auto;
+            color: #888;
+        }
+
+        /* PRINT STYLES */
+        @media print {
+            body { background: white; font-size: 12pt; }
+            .container { margin: 0; padding: 0; max-width: 100%; }
+            header, .print-btn-container, footer { display: none !important; }
+            
+            .wall-grid { 
+                display: grid;
+                grid-template-columns: 1fr 1fr; /* Force 2 columns */
+                gap: 20px;
+            }
+            
+            .word-card { 
+                box-shadow: none;
+                break-inside: avoid;
+                min-height: 3.5in;
+                margin-bottom: 20px;
+                border: 3px solid #000;
+            }
+
+            .card-header {
+                background: #fff; /* Save ink */
+                color: #000;
+                border-bottom: 3px solid #000;
+            }
+            
+            .card-footer { background: #f9f9f9 !important; border-top: 2px solid #000; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <header>
+            <h1>Geometry Word Wall</h1>
+            <p class="subtitle">Unit 1: Logic & Reasoning</p>
+        </header>
+
+        <div class="print-btn-container">
+            <button onclick="window.print()" class="print-btn">
+                Print Cards
+            </button>
+        </div>
+
+        <div class="wall-grid">
+
+            <!-- 1. Inductive -->
+            <div class="word-card">
+                <div class="card-header">
+                    <h2 class="word-title">Inductive Reasoning</h2>
+                </div>
+                <div class="card-body">
+                    <div class="word-def">
+                        Using observed <span class="keyword">patterns</span> or specific examples to make a guess (conjecture) about what comes next.
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <span class="ex-label">Example</span>
+                    <div class="word-example" style="font-family: 'Quicksand', sans-serif;">
+                        2, 4, 6, 8... Next is <strong>10</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Deductive -->
+            <div class="word-card">
+                <div class="card-header">
+                    <h2 class="word-title">Deductive Reasoning</h2>
+                </div>
+                <div class="card-body">
+                    <div class="word-def">
+                        Using <span class="keyword">facts</span>, definitions, and logic rules to prove a conclusion must be true.
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <span class="ex-label">Example</span>
+                    <div class="word-example" style="font-family: 'Quicksand', sans-serif;">
+                        Proofs & Laws of Logic
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. Conditional -->
+            <div class="word-card">
+                <div class="card-header">
+                    <h2 class="word-title">Conditional</h2>
+                </div>
+                <div class="card-body">
+                    <div class="word-def">
+                        An "If-Then" statement. It links a hypothesis ($p$) to a conclusion ($q$).
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <span class="ex-label">Symbol</span>
+                    <div class="word-example">
+                        $\mathbf{\color{#2563eb}p} \rightarrow \mathbf{\color{#dc2626}q}$
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. Hypothesis -->
+            <div class="word-card">
+                <div class="card-header">
+                    <h2 class="word-title">Hypothesis ($p$)</h2>
+                </div>
+                <div class="card-body">
+                    <div class="word-def">
+                        The "If" part of a conditional statement. It is the <span class="keyword">given</span> information.
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <span class="ex-label">Example</span>
+                    <div class="word-example" style="font-family: 'Quicksand', sans-serif;">
+                        If <span class="p-blue">it rains</span>, then...
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. Conclusion -->
+            <div class="word-card">
+                <div class="card-header">
+                    <h2 class="word-title">Conclusion ($q$)</h2>
+                </div>
+                <div class="card-body">
+                    <div class="word-def">
+                        The "Then" part of a conditional statement. It is the <span class="keyword">result</span>.
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <span class="ex-label">Example</span>
+                    <div class="word-example" style="font-family: 'Quicksand', sans-serif;">
+                        ...then <span class="q-red">the grass is wet</span>.
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. Negation -->
+            <div class="word-card">
+                <div class="card-header">
+                    <h2 class="word-title">Negation ($\sim$)</h2>
+                </div>
+                <div class="card-body">
+                    <div class="word-def">
+                        The opposite of a statement. We usually just add the word <strong>"not"</strong>.
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <span class="ex-label">Symbol</span>
+                    <div class="word-example">
+                        $\sim p$ <span style="font-size: 1rem; color: #555;">(Read as "Not p")</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 7. Converse -->
+            <div class="word-card">
+                <div class="card-header">
+                    <h2 class="word-title">Converse</h2>
+                </div>
+                <div class="card-body">
+                    <div class="word-def">
+                        Formed by <span class="keyword">FLIPPING</span> the order of the hypothesis and conclusion.
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <span class="ex-label">Symbol</span>
+                    <div class="word-example">
+                        $\mathbf{\color{#dc2626}q} \rightarrow \mathbf{\color{#2563eb}p}$
+                    </div>
+                </div>
+            </div>
+
+            <!-- 8. Inverse -->
+            <div class="word-card">
+                <div class="card-header">
+                    <h2 class="word-title">Inverse</h2>
+                </div>
+                <div class="card-body">
+                    <div class="word-def">
+                        Formed by <span class="keyword">NEGATING</span> (adding "not") to both the hypothesis and conclusion.
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <span class="ex-label">Symbol</span>
+                    <div class="word-example">
+                        $\sim \mathbf{p} \rightarrow \sim \mathbf{q}$
+                    </div>
+                </div>
+            </div>
+
+            <!-- 9. Contrapositive -->
+            <div class="word-card">
+                <div class="card-header">
+                    <h2 class="word-title">Contrapositive</h2>
+                </div>
+                <div class="card-body">
+                    <div class="word-def">
+                        Formed by <span class="keyword">FLIPPING</span> and <span class="keyword">NEGATING</span> both parts.
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <span class="ex-label">Symbol</span>
+                    <div class="word-example">
+                        $\sim \mathbf{q} \rightarrow \sim \mathbf{p}$
+                    </div>
+                </div>
+            </div>
+
+            <!-- 10. Biconditional -->
+            <div class="word-card">
+                <div class="card-header">
+                    <h2 class="word-title">Biconditional</h2>
+                </div>
+                <div class="card-body">
+                    <div class="word-def">
+                        A statement that contains the phrase <strong>"if and only if"</strong>. It works forwards and backwards.
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <span class="ex-label">Symbol</span>
+                    <div class="word-example">
+                        $p \leftrightarrow q$
+                    </div>
+                </div>
+            </div>
+
+            <!-- 11. Counterexample -->
+            <div class="word-card">
+                <div class="card-header">
+                    <h2 class="word-title">Counterexample</h2>
+                </div>
+                <div class="card-body">
+                    <div class="word-def">
+                        A specific example that proves a statement is <span class="keyword" style="color: #dc2626;">FALSE</span>.
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <span class="ex-label">Example</span>
+                    <div class="word-example" style="font-family: 'Quicksand', sans-serif; font-size:1.2rem;">
+                        "All birds fly."<br>
+                        Counterexample: <strong>Penguin</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 12. Law of Detachment -->
+            <div class="word-card">
+                <div class="card-header">
+                    <h2 class="word-title">Law of Detachment</h2>
+                </div>
+                <div class="card-body">
+                    <div class="word-def">
+                        If the rule "$p \rightarrow q$" is true, and we know $p$ happened, then $q$ must happen.
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <span class="ex-label">Conclusion</span>
+                    <div class="word-example">
+                        $\therefore q$ is True
+                    </div>
+                </div>
+            </div>
+
+            <!-- 13. Law of Syllogism -->
+            <div class="word-card">
+                <div class="card-header">
+                    <h2 class="word-title">Law of Syllogism</h2>
+                </div>
+                <div class="card-body">
+                    <div class="word-def">
+                        The Chain Rule. If A implies B, and B implies C, then A implies C.
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <span class="ex-label">Example</span>
+                    <div class="word-example" style="font-size: 1.3rem;">
+                        If $A \to B$ and $B \to C$,<br>then <strong>$A \to C$</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 14. Venn Diagram -->
+            <div class="word-card">
+                <div class="card-header">
+                    <h2 class="word-title">Venn Diagram</h2>
+                </div>
+                <div class="card-body">
+                    <div class="word-def">
+                        A visual diagram using circles to show relationships between sets.
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <span class="ex-label">Visual</span>
+                    <div class="word-example">
+                        <svg width="100" height="60" viewBox="0 0 100 60">
+                            <circle cx="35" cy="30" r="25" fill="none" stroke="black" stroke-width="2" />
+                            <circle cx="65" cy="30" r="25" fill="none" stroke="black" stroke-width="2" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 15. Union -->
+            <div class="word-card">
+                <div class="card-header">
+                    <h2 class="word-title">Union ($\cup$)</h2>
+                </div>
+                <div class="card-body">
+                    <div class="word-def">
+                        Everything in Set A <strong>OR</strong> Set B (or both). It means "all of it".
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <span class="ex-label">Example</span>
+                    <div class="word-example" style="font-family: 'Quicksand', sans-serif;">
+                        Shade Everything
+                    </div>
+                </div>
+            </div>
+
+            <!-- 16. Intersection -->
+            <div class="word-card">
+                <div class="card-header">
+                    <h2 class="word-title">Intersection ($\cap$)</h2>
+                </div>
+                <div class="card-body">
+                    <div class="word-def">
+                        The elements that are in <strong>BOTH</strong> Set A <strong>AND</strong> Set B.
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <span class="ex-label">Example</span>
+                    <div class="word-example" style="font-family: 'Quicksand', sans-serif;">
+                        Shade the Overlap
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2026 Aly Hatfield. All Rights Reserved.
+    </footer>
+
+</body>
+</html>

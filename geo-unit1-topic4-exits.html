@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Topic 4: Exit Tickets</title>
+    
+    <!-- Importing Clean, Readable Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Global Reset & Print Settings */
+        * {
+            box-sizing: border-box;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        @page {
+            size: letter;
+            margin: 0.25in;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            font-family: 'Quicksand', sans-serif;
+            color: #222;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* The Page Container */
+        .page {
+            width: 8in;
+            height: 10.5in;
+            margin: 20px auto;
+            background: white;
+            position: relative;
+            overflow: hidden;
+            page-break-after: always;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-content: space-between;
+        }
+
+        /* Problem Card (Quarter Page) */
+        .problem-card {
+            width: 49%;
+            height: 49%;
+            border: 4px solid #000;
+            border-radius: 20px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            background: white;
+            justify-content: space-between;
+        }
+
+        /* Cut Guides */
+        .cut-guide-h {
+            position: absolute; top: 50%; left: 0; width: 100%; border-bottom: 2px dashed #bbb; z-index: 0; pointer-events: none;
+        }
+        .cut-guide-v {
+            position: absolute; left: 50%; top: 0; height: 100%; border-right: 2px dashed #bbb; z-index: 0; pointer-events: none;
+        }
+        .cut-icon {
+            position: absolute; background: white; padding: 5px; color: #999; font-size: 16px; z-index: 1;
+        }
+
+        /* Card Header */
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
+
+        .card-title {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .card-id {
+            background: #000;
+            color: #fff;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        /* Problem Content */
+        .content-area {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            gap: 10px;
+        }
+
+        .question-text {
+            font-size: 1.3rem;
+            line-height: 1.4;
+            margin-bottom: 5px;
+            font-weight: 500;
+            width: 100%;
+        }
+
+        /* Math Display */
+        .math-display {
+            font-family: 'Times New Roman', serif;
+            font-style: italic;
+            font-weight: bold;
+            font-size: 1.8rem;
+            margin: 5px 0;
+            display: block;
+            color: #000;
+        }
+
+        /* Venn Visuals */
+        .venn-svg {
+            margin: 5px 0;
+            width: 140px;
+            height: 90px;
+        }
+
+        /* Answer Line */
+        .answer-box {
+            width: 100%;
+            margin-top: 10px;
+            text-align: left;
+        }
+        .answer-label {
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            color: #666;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .answer-line {
+            width: 100%;
+            height: 40px;
+            border-bottom: 3px solid #000;
+            background-color: #f9f9f9;
+        }
+
+        /* Footer inside card */
+        .card-footer {
+            margin-top: auto;
+            background: #f4f4f4;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #555;
+            font-weight: 600;
+        }
+
+        @media print {
+            body { background: none; display: block; }
+            .page { margin: 0 auto; box-shadow: none; width: 100%; height: 100%; }
+            .problem-card { box-shadow: none; page-break-inside: avoid; border: 3px solid #000; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PAGE 1: EXIT TICKETS -->
+    <div class="page">
+        <!-- Cut Guides -->
+        <div class="cut-guide-h"></div>
+        <div class="cut-guide-v"></div>
+        <div class="cut-icon" style="top: 49%; left: 1%;">✂</div>
+        <div class="cut-icon" style="top: 1%; left: 49%;">✂</div>
+
+        <!-- Card 1: Identifying Regions -->
+        <div class="problem-card">
+            <div class="card-header">
+                <span class="card-title">Exit Ticket</span>
+                <span class="card-id">#1</span>
+            </div>
+            <div class="content-area">
+                <div class="question-text">
+                    <strong>Identify the Region:</strong>
+                </div>
+                <!-- Visual Venn: Shaded Intersection -->
+                <svg class="venn-svg" viewBox="0 0 100 60">
+                    <circle cx="35" cy="30" r="25" fill="none" stroke="black" stroke-width="2" />
+                    <circle cx="65" cy="30" r="25" fill="none" stroke="black" stroke-width="2" />
+                    <!-- Shade Middle -->
+                    <defs><clipPath id="clipA"><circle cx="35" cy="30" r="25" /></clipPath></defs>
+                    <circle cx="65" cy="30" r="25" fill="#999" clip-path="url(#clipA)" />
+                </svg>
+                <div class="answer-box">
+                    <span class="answer-label">Which symbol? (&cup; or &cap;)</span>
+                    <div class="answer-line"></div>
+                </div>
+            </div>
+            <div class="card-footer">SOL G.1.c</div>
+        </div>
+
+        <!-- Card 2: Relationships -->
+        <div class="problem-card">
+            <div class="card-header">
+                <span class="card-title">Exit Ticket</span>
+                <span class="card-id">#2</span>
+            </div>
+            <div class="content-area">
+                <div class="question-text">
+                    <strong>What is the relationship?</strong><br>
+                    "All squares are rectangles."
+                </div>
+                <!-- Visual: Subset -->
+                <svg class="venn-svg" viewBox="0 0 100 60" style="height:70px;">
+                    <circle cx="50" cy="30" r="28" fill="none" stroke="black" stroke-width="2" />
+                    <circle cx="50" cy="30" r="15" fill="none" stroke="black" stroke-width="2" />
+                    <text x="50" y="33" font-size="8" text-anchor="middle" font-weight="bold">S</text>
+                    <text x="50" y="12" font-size="8" text-anchor="middle" font-weight="bold">R</text>
+                </svg>
+                <div class="answer-box">
+                    <span class="answer-label">Subset, Disjoint, or Overlap?</span>
+                    <div class="answer-line"></div>
+                </div>
+            </div>
+            <div class="card-footer">Think: Inside or Separate?</div>
+        </div>
+
+        <!-- Card 3: Calculations -->
+        <div class="problem-card">
+            <div class="card-header">
+                <span class="card-title">Exit Ticket</span>
+                <span class="card-id">#3</span>
+            </div>
+            <div class="content-area">
+                <div class="question-text">
+                    <strong>Calculate:</strong><br>
+                    Set A = 20 items<br>
+                    Set B = 15 items<br>
+                    Intersection = 5 items
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">How many are in A ONLY?</span>
+                    <div class="answer-line"></div>
+                </div>
+            </div>
+            <div class="card-footer">A total minus Both</div>
+        </div>
+
+        <!-- Card 4: Shading Logic -->
+        <div class="problem-card">
+            <div class="card-header">
+                <span class="card-title">Exit Ticket</span>
+                <span class="card-id">#4</span>
+            </div>
+            <div class="content-area">
+                <div class="question-text">
+                    <strong>Shade the Region:</strong><br>
+                    <span class="math-display">~A</span>
+                </div>
+                <!-- Blank Venn for shading -->
+                <svg class="venn-svg" viewBox="0 0 120 80" style="width:180px; height:100px;">
+                    <rect x="2" y="2" width="116" height="76" fill="none" stroke="black" stroke-width="2" />
+                    <circle cx="40" cy="40" r="25" fill="white" stroke="black" stroke-width="2" />
+                    <circle cx="80" cy="40" r="25" fill="white" stroke="black" stroke-width="2" />
+                    <text x="35" y="45" font-size="10">A</text>
+                    <text x="80" y="45" font-size="10">B</text>
+                </svg>
+            </div>
+            <div class="card-footer">"Not A" (Everything outside A)</div>
+        </div>
+
+    </div>
+
+</body>
+</html>

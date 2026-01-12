@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to AFDA</title>
+    
+    <!-- 1. FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* 2. GLOBAL STYLES */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            font-family: 'Quicksand', sans-serif;
+            color: #222;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* PAGE CONTAINER */
+        .container {
+            max-width: 800px;
+            width: 100%;
+            margin: 40px auto;
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* HEADER */
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 40px 20px;
+            background: white;
+            border: 3px solid #000;
+            border-radius: 16px;
+            box-shadow: 8px 8px 0px rgba(0,0,0,0.1);
+            width: 100%;
+        }
+
+        h1 {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 3rem;
+            margin: 0 0 10px 0;
+            color: #000;
+            line-height: 1.1;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #555;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* BUTTON GRID */
+        .btn-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .action-btn {
+            background: white;
+            border: 3px solid #000;
+            border-radius: 12px;
+            padding: 30px 20px;
+            text-align: center;
+            text-decoration: none;
+            color: #222;
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 160px;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 6px 6px 0px #000;
+            background: #fff;
+        }
+
+        .btn-icon {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 15px;
+            fill: #000;
+            transition: transform 0.2s;
+        }
+
+        .action-btn:hover .btn-icon {
+            transform: scale(1.1);
+        }
+
+        .btn-title {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .btn-desc {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: auto;
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 600px) {
+            h1 { font-size: 2.2rem; }
+            .btn-grid { grid-template-columns: 1fr; }
+            .action-btn { padding: 25px; min-height: auto; flex-direction: row; text-align: left; justify-content: start; gap: 20px; }
+            .btn-icon { margin-bottom: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- HEADER -->
+        <header>
+            <h1>AFDA</h1>
+            <p class="subtitle">Algebra, Functions & Data Analysis<br>Using math to model the real world.</p>
+        </header>
+
+        <!-- MAIN BUTTONS -->
+        <div class="btn-grid">
+            
+            <!-- Syllabus Button -->
+            <a href="afda-syl-site.html" target="_blank" class="action-btn">
+                <!-- Book/Clipboard Icon -->
+                <svg class="btn-icon" viewBox="0 0 24 24"><path d="M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3M19,19H5V5H19V19M7,7H17V9H7V7M7,11H17V13H7V11M7,15H14V17H7V15Z"/></svg>
+                <div style="display:flex; flex-direction:column;">
+                    <span class="btn-title">Syllabus</span>
+                    <span class="btn-desc">Course info & policies</span>
+                </div>
+            </a>
+
+            <!-- Class Materials Button -->
+            <a href="afda-outline.html" target="_blank" class="action-btn">
+                <!-- Chart/Data Icon -->
+                <svg class="btn-icon" viewBox="0 0 24 24"><path d="M16,11.78L20.24,4.45L21.97,5.45L16.74,14.5L10.23,10.75L5.46,19H22V21H2V3H4V17.54L9.5,8L16,11.78Z"/></svg>
+                <div style="display:flex; flex-direction:column;">
+                    <span class="btn-title">Class Materials</span>
+                    <span class="btn-desc">Unit slides & datasets</span>
+                </div>
+            </a>
+
+        </div>
+
+    </div>
+
+    <footer>
+        &copy; 2026 Aly Hatfield. All Rights Reserved.
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Excel Center - Academic Calendar</title>
+    
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- ICONS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* --- GLOBAL STYLES --- */
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            font-family: 'Quicksand', sans-serif;
+            color: #222;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 40px auto;
+            padding: 20px;
+            flex: 1;
+        }
+
+        /* HEADER */
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 40px 20px;
+            background: white;
+            border: 3px solid #000;
+            border-radius: 20px;
+            box-shadow: 8px 8px 0px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 3rem;
+            margin: 0 0 10px 0;
+            color: #000;
+            line-height: 1.1;
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            color: #555;
+            max-width: 700px;
+            margin: 0 auto;
+            font-weight: 600;
+        }
+
+        /* KEY DATES CARD */
+        .dates-card {
+            background: #fff;
+            border: 3px solid #000;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 6px 6px 0px rgba(0,0,0,0.05);
+        }
+
+        .section-title {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #eee;
+            padding-bottom: 10px;
+            color: #000;
+            text-align: center;
+        }
+
+        .dates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .date-group h3 {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: #000;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .date-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        .date-list li {
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px dashed #eee;
+            padding-bottom: 2px;
+        }
+
+        /* LEGEND */
+        .legend {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            background: #fff;
+            border: 2px solid #000;
+            padding: 15px;
+            border-radius: 15px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        .dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            margin-right: 8px;
+            border: 1px solid rgba(0,0,0,0.2);
+        }
+
+        /* COLORS */
+        .c-green { background-color: #22c55e; }
+        .c-red { background-color: #ef4444; }
+        .c-amber { background-color: #f59e0b; }
+        .c-blue { background-color: #3b82f6; }
+        .c-violet { background-color: #8b5cf6; }
+        .c-gray { background-color: #64748b; }
+
+        /* CALENDAR GRID */
+        #calendar-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .month-card {
+            background: #fff;
+            border: 3px solid #000;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 6px 6px 0px rgba(0,0,0,0.05);
+            page-break-inside: avoid;
+        }
+
+        .month-header {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.8rem;
+            text-align: center;
+            margin-bottom: 15px;
+            color: #000;
+        }
+
+        .cal-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+        }
+
+        .day-header {
+            text-align: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: #666;
+            padding-bottom: 5px;
+        }
+
+        .day-cell {
+            min-height: 100px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 5px;
+            position: relative;
+            background: #fff;
+        }
+
+        .day-number {
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 4px;
+            color: #444;
+        }
+
+        /* Events inside calendar */
+        .event-pill {
+            font-size: 0.75rem;
+            padding: 3px 6px;
+            border-radius: 4px;
+            margin-top: 2px;
+            color: white;
+            font-weight: 600;
+            line-height: 1.2;
+            text-shadow: 0 1px 1px rgba(0,0,0,0.1);
+        }
+
+        /* Off Days */
+        .off-day {
+            background-color: #f9f9f9;
+        }
+        .off-day .day-number {
+            color: #aaa;
+        }
+
+        /* Friday Tutoring Style */
+        .friday-tutoring {
+            background-color: #f0f9ff; /* Very light blue background */
+            border-color: #bae6fd;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: auto;
+            color: #888;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2rem; }
+            .dates-grid { grid-template-columns: 1fr; }
+            .day-cell { min-height: 80px; }
+            .event-pill { font-size: 0.65rem; }
+        }
+        
+        @media print {
+            .container { max-width: none; width: 100%; margin: 0; padding: 0; }
+            header, .dates-card, .legend { page-break-after: avoid; }
+            .month-card { break-inside: avoid; margin-bottom: 20px; border: 2px solid #000; box-shadow: none; }
+            body { background: white; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <header>
+            <h1>The Excel Center</h1>
+            <p class="subtitle">Academic Calendar 2025-2026</p>
+        </header>
+
+        <!-- KEY DATES -->
+        <div class="dates-card">
+            <h2 class="section-title"><i class="fa-regular fa-calendar-check" style="margin-right:10px;"></i> Key Dates at a Glance</h2>
+            <div class="dates-grid">
+                
+                <!-- Terms -->
+                <div class="date-group">
+                    <h3><i class="fa-solid fa-graduation-cap" style="color: #22c55e;"></i> School Terms</h3>
+                    <ul class="date-list">
+                        <li><strong>Term 1:</strong> <span>August 25 - October 17</span></li>
+                        <li><strong>Term 2:</strong> <span>October 27 - December 19</span></li>
+                        <li><strong>Term 3:</strong> <span>January 5 - February 27</span></li>
+                        <li><strong>Term 4:</strong> <span>March 9 - May 8</span></li>
+                        <li><strong>Term 5:</strong> <span>May 18 - July 10</span></li>
+                    </ul>
+                </div>
+
+                <!-- Breaks -->
+                <div class="date-group">
+                    <h3><i class="fa-solid fa-mug-hot" style="color: #f59e0b;"></i> School Breaks</h3>
+                    <ul class="date-list">
+                        <li><strong>October Midterm:</strong> <span>Oct 21 - Oct 24</span></li>
+                        <li><strong>Thanksgiving:</strong> <span>Nov 26 - Nov 28</span></li>
+                        <li><strong>Winter Break:</strong> <span>Dec 22 - Jan 2</span></li>
+                        <li><strong>March Midterm:</strong> <span>Mar 2 - Mar 6</span></li>
+                        <li><strong>Spring Break:</strong> <span>Mar 30 - Apr 3</span></li>
+                        <li><strong>May Midterm:</strong> <span>May 11 - May 15</span></li>
+                    </ul>
+                </div>
+
+                <!-- Holidays -->
+                <div class="date-group">
+                    <h3><i class="fa-solid fa-flag-usa" style="color: #ef4444;"></i> Holidays (No School)</h3>
+                    <ul class="date-list">
+                        <li><strong>Labor Day:</strong> <span>September 1</span></li>
+                        <li><strong>MLK Jr. Day:</strong> <span>January 19</span></li>
+                        <li><strong>Easter Monday:</strong> <span>April 6</span></li>
+                        <li><strong>Memorial Day:</strong> <span>May 25</span></li>
+                        <li><strong>Juneteenth:</strong> <span>June 19</span></li>
+                        <li><strong>Independence Day:</strong> <span>July 3 (Observed)</span></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- LEGEND -->
+        <div class="legend">
+            <div class="legend-item"><span class="dot c-green"></span> Term Dates</div>
+            <div class="legend-item"><span class="dot c-red"></span> National Holiday</div>
+            <div class="legend-item"><span class="dot c-amber"></span> School Break</div>
+            <div class="legend-item"><span class="dot c-blue"></span> Teacher PD</div>
+            <div class="legend-item"><span class="dot c-violet"></span> New Staff</div>
+            <div class="legend-item"><span class="dot c-gray"></span> Tutoring (Fridays)</div>
+        </div>
+
+        <!-- CALENDAR GRID CONTAINER -->
+        <div id="calendar-container"></div>
+
+    </div>
+
+    <footer>
+        &copy; 2026 Aly Hatfield. All Rights Reserved.
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const calendarContainer = document.getElementById('calendar-container');
+
+            // --- EVENT DATA ---
+            // 'noSchool: true' grays out the day
+            const events = {
+                // August 2025
+                '8-6': [{ title: 'New Staff', type: 'c-violet', noSchool: true }],
+                '8-11': [{ title: 'Teachers Return', type: 'c-blue', noSchool: true }],
+                '8-12': [{ title: 'Professional Development', type: 'c-blue', noSchool: true }],
+                '8-13': [{ title: 'Professional Development', type: 'c-blue', noSchool: true }],
+                '8-14': [{ title: 'Professional Development', type: 'c-blue', noSchool: true }],
+                '8-18': [{ title: 'Professional Development', type: 'c-blue', noSchool: true }],
+                '8-19': [{ title: 'Professional Development', type: 'c-blue', noSchool: true }],
+                '8-20': [{ title: 'Professional Development', type: 'c-blue', noSchool: true }],
+                '8-21': [{ title: 'Professional Development', type: 'c-blue', noSchool: true }],
+                '8-22': [{ title: 'Professional Development', type: 'c-blue', noSchool: true }],
+                '8-25': [{ title: 'Term 1 Begins', type: 'c-green' }],
+                // September 2025
+                '9-1': [{ title: 'Labor Day', type: 'c-red', noSchool: true }],
+                '9-19': [{ title: 'Teacher Conference', type: 'c-blue', noSchool: true }],
+                // October 2025
+                '10-17': [{ title: 'End Term 1', type: 'c-green' }],
+                '10-21': [{ title: 'Midterm Break', type: 'c-amber', noSchool: true }],
+                '10-22': [{ title: 'Midterm Break', type: 'c-amber', noSchool: true }],
+                '10-23': [{ title: 'Midterm Break', type: 'c-amber', noSchool: true }],
+                '10-24': [{ title: 'Midterm Break', type: 'c-amber', noSchool: true }],
+                '10-27': [{ title: 'Term 2 Begins', type: 'c-green' }],
+                // November 2025
+                '11-11': [{ title: 'Veterans Day', type: 'c-green' }], // Normal school day
+                '11-21': [{ title: 'Teacher Conference', type: 'c-blue', noSchool: true }],
+                '11-26': [{ title: 'Thanksgiving Break', type: 'c-red', noSchool: true }],
+                '11-27': [{ title: 'Thanksgiving Break', type: 'c-red', noSchool: true }],
+                '11-28': [{ title: 'Thanksgiving Break', type: 'c-red', noSchool: true }],
+                // December 2025
+                '12-19': [{ title: 'End Term 2', type: 'c-green' }],
+                '12-22': [{ title: 'Winter Break', type: 'c-amber', noSchool: true }],
+                '12-23': [{ title: 'Winter Break', type: 'c-amber', noSchool: true }],
+                '12-24': [{ title: 'Winter Break', type: 'c-amber', noSchool: true }],
+                '12-25': [{ title: 'Winter Break', type: 'c-amber', noSchool: true }],
+                '12-26': [{ title: 'Winter Break', type: 'c-amber', noSchool: true }],
+                '12-29': [{ title: 'Winter Break', type: 'c-amber', noSchool: true }],
+                '12-30': [{ title: 'Winter Break', type: 'c-amber', noSchool: true }],
+                '12-31': [{ title: 'Winter Break', type: 'c-amber', noSchool: true }],
+                // January 2026
+                '1-1': [{ title: 'Winter Break', type: 'c-amber', noSchool: true }],
+                '1-2': [{ title: 'Winter Break', type: 'c-amber', noSchool: true }],
+                '1-5': [{ title: 'Term 3 Begins', type: 'c-green' }],
+                '1-19': [{ title: 'MLK Jr. Day', type: 'c-red', noSchool: true }],
+                '1-30': [{ title: 'Teacher Conference', type: 'c-blue', noSchool: true }],
+                // February 2026
+                '2-27': [{ title: 'End Term 3', type: 'c-green' }],
+                // March 2026
+                '3-2': [{ title: 'Midterm Break', type: 'c-amber', noSchool: true }],
+                '3-3': [{ title: 'Midterm Break', type: 'c-amber', noSchool: true }],
+                '3-4': [{ title: 'Midterm Break', type: 'c-amber', noSchool: true }],
+                '3-5': [{ title: 'Midterm Break', type: 'c-amber', noSchool: true }],
+                '3-6': [{ title: 'Midterm Break', type: 'c-amber', noSchool: true }],
+                '3-9': [{ title: 'Term 4 Begins', type: 'c-green' }],
+                '3-30': [{ title: 'Spring Break', type: 'c-amber', noSchool: true }],
+                '3-31': [{ title: 'Spring Break', type: 'c-amber', noSchool: true }],
+                // April 2026
+                '4-1': [{ title: 'Spring Break', type: 'c-amber', noSchool: true }],
+                '4-2': [{ title: 'Spring Break', type: 'c-amber', noSchool: true }],
+                '4-3': [{ title: 'Spring Break', type: 'c-amber', noSchool: true }],
+                '4-6': [{ title: 'Easter Monday', type: 'c-red', noSchool: true }],
+                '4-10': [{ title: 'Teacher Conference', type: 'c-blue', noSchool: true }],
+                // May 2026
+                '5-8': [{ title: 'End Term 4', type: 'c-green' }],
+                '5-11': [{ title: 'Midterm Break', type: 'c-amber', noSchool: true }],
+                '5-12': [{ title: 'Midterm Break', type: 'c-amber', noSchool: true }],
+                '5-13': [{ title: 'Midterm Break', type: 'c-amber', noSchool: true }],
+                '5-14': [{ title: 'Midterm Break', type: 'c-amber', noSchool: true }],
+                '5-15': [{ title: 'Midterm Break', type: 'c-amber', noSchool: true }],
+                '5-18': [{ title: 'Term 5 Begins', type: 'c-green' }],
+                '5-25': [{ title: 'Memorial Day', type: 'c-red', noSchool: true }],
+                // June 2026
+                '6-12': [{ title: 'Teacher Conference', type: 'c-blue', noSchool: true }],
+                '6-19': [{ title: 'Juneteenth', type: 'c-red', noSchool: true }],
+                // July 2026
+                '7-3': [{ title: 'Independence Day (Observed)', type: 'c-red', noSchool: true }],
+                '7-10': [{ title: 'End Term 5', type: 'c-green' }],
+            };
+
+            // Generate calendars
+            for (let i = 0; i < 12; i++) {
+                const month = (7 + i) % 12; // Start August
+                const year = 2025 + Math.floor((7 + i) / 12);
+                generateMonth(year, month, calendarContainer, events);
+            }
+        });
+
+        function generateMonth(year, month, container, events) {
+            const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+            const monthDiv = document.createElement('div');
+            monthDiv.className = 'month-card';
+
+            const header = document.createElement('h3');
+            header.className = 'month-header';
+            header.textContent = `${monthNames[month]} ${year}`;
+            monthDiv.appendChild(header);
+
+            const grid = document.createElement('div');
+            grid.className = 'cal-grid';
+
+            // Day headers
+            daysOfWeek.forEach(day => {
+                const dayHeader = document.createElement('div');
+                dayHeader.className = 'day-header';
+                dayHeader.textContent = day;
+                grid.appendChild(dayHeader);
+            });
+
+            const firstDayOfMonth = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+            // Empty cells
+            for (let i = 0; i < firstDayOfMonth; i++) {
+                grid.appendChild(document.createElement('div'));
+            }
+
+            // Days
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dayCell = document.createElement('div');
+                dayCell.className = 'day-cell';
+                
+                let isNoSchool = false;
+                const eventKey = `${month + 1}-${day}`;
+
+                // Check for Friday Tutoring Logic
+                const dayOfWeek = new Date(year, month, day).getDay();
+                const isFriday = (dayOfWeek === 5);
+
+                // Add events
+                if (events[eventKey]) {
+                    events[eventKey].forEach(eventData => {
+                        const eventDiv = document.createElement('div');
+                        eventDiv.className = `event-pill ${eventData.type}`;
+                        eventDiv.textContent = eventData.title;
+                        dayCell.appendChild(eventDiv);
+                        
+                        if (eventData.noSchool) {
+                            isNoSchool = true;
+                        }
+                    });
+                }
+
+                // Apply Friday Tutoring Label if no other "No School" event
+                if (isFriday && !isNoSchool) {
+                    dayCell.classList.add('friday-tutoring');
+                    // Add label if there isn't already a big event pill blocking space
+                    if (!events[eventKey]) {
+                        const tutorLabel = document.createElement('div');
+                        tutorLabel.className = 'event-pill c-gray';
+                        tutorLabel.textContent = 'Tutoring Day';
+                        dayCell.appendChild(tutorLabel);
+                    }
+                }
+
+                const dayNumber = document.createElement('div');
+                dayNumber.className = 'day-number';
+                dayNumber.textContent = day;
+                dayCell.prepend(dayNumber);
+
+                // Off-day styling (Weekends + Holidays)
+                if (dayOfWeek === 6 || dayOfWeek === 0 || isNoSchool) {
+                    dayCell.classList.add('off-day');
+                }
+
+                grid.appendChild(dayCell);
+            }
+
+            monthDiv.appendChild(grid);
+            container.appendChild(monthDiv);
+        }
+    </script>
+</body>
+</html>

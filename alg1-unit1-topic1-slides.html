@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algebra 1: Translating Expressions</title>
+    
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- ICONS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* --- 1. CORE VARIABLES & RESET --- */
+        :root {
+            --bg-color: #f4f4f4;
+            --card-bg: #ffffff;
+            --border-color: #000000;
+            --shadow-color: rgba(0,0,0,0.1);
+            --font-heading: 'Fredoka', sans-serif;
+            --font-body: 'Quicksand', sans-serif;
+            --font-math: 'Times New Roman', serif;
+            
+            /* IXL Difficulty Colors */
+            --ixl-green: #22c55e;
+            --ixl-orange: #f97316;
+            --ixl-red: #ef4444;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-color);
+            font-family: var(--font-body);
+            color: #222;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        /* --- 2. SLIDESHOW CONTAINER (Resized to 1100px) --- */
+        .slide-container {
+            width: 100%;
+            max-width: 1100px;
+            aspect-ratio: 16 / 9;
+            background: var(--card-bg);
+            border: 4px solid var(--border-color);
+            border-radius: 20px;
+            box-shadow: 12px 12px 0px rgba(0,0,0,0.15);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- 3. SLIDE STYLES --- */
+        .slide {
+            flex: 1;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 60px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            overflow-y: auto;
+        }
+
+        .slide.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        /* TYPOGRAPHY (Adjusted for 1100px) */
+        h1, h2, h3 { 
+            font-family: var(--font-heading); 
+            text-transform: uppercase;
+            line-height: 1.2;
+            color: #000;
+        }
+
+        h1 { font-size: 3.5rem; margin-bottom: 10px; text-align: center; }
+        h2 { font-size: 2.2rem; margin-bottom: 25px; border-bottom: 3px solid #000; padding-bottom: 8px; width: 100%; text-align: center; }
+        h3 { font-size: 1.4rem; margin-bottom: 10px; }
+        
+        p, li { font-size: 1.2rem; line-height: 1.6; font-weight: 600; }
+        
+        /* Consistent Math Styling */
+        .math { 
+            font-family: var(--font-math); 
+            font-style: italic; 
+            font-weight: bold; 
+            font-size: 1.15em; 
+        }
+
+        /* --- 4. COMPONENTS --- */
+        
+        /* Grid Layouts */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            width: 100%;
+            height: 100%;
+            align-items: start;
+        }
+
+        .card {
+            border: 3px solid #000;
+            border-radius: 12px;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 6px 6px 0px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            height: 100%;
+        }
+
+        .card-title {
+            font-family: var(--font-heading);
+            font-size: 1.6rem;
+            border-bottom: 2px solid #eee;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            text-align: center;
+        }
+
+        /* Symbol Badge */
+        .symbol-badge {
+            background: #000;
+            color: #fff;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-math);
+            font-size: 1.8rem;
+            margin-left: 10px;
+            vertical-align: middle;
+            padding-bottom: 4px;
+        }
+
+        /* Keyword Lists */
+        .word-list {
+            font-size: 1.1rem;
+            line-height: 2;
+            padding-left: 15px;
+        }
+        
+        .example-box {
+            margin-top: auto;
+            background: #f0f0f0;
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 1.4rem;
+            border: 2px dashed #ccc;
+        }
+
+        /* Pro Tip / Alert */
+        .pro-tip {
+            background: #eee;
+            border: 3px dashed #000;
+            border-radius: 16px;
+            padding: 25px;
+            width: 100%;
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+        .tip-icon { font-size: 3rem; }
+
+        /* Checklist Styles */
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        .check-box {
+            width: 28px;
+            height: 28px;
+            border: 3px solid #000;
+            margin-right: 15px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+        }
+        .check-box i {
+            font-size: 1rem;
+            color: #000;
+        }
+        .check-box.checked {
+            background: #e0e0e0;
+        }
+
+        /* IXL Buttons */
+        .ixl-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .ixl-btn {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border: 3px solid #000;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #000;
+            font-weight: 700;
+            font-size: 1.1rem;
+            background: #fff;
+            transition: transform 0.1s, box-shadow 0.1s;
+        }
+        .ixl-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.2);
+        }
+        
+        /* Differentiated Colors */
+        .ixl-green { border-left: 15px solid var(--ixl-green); }
+        .ixl-orange { border-left: 15px solid var(--ixl-orange); }
+
+        .ixl-standard {
+            font-size: 0.9rem;
+            color: #666;
+            margin-left: auto;
+            background: #eee;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-family: var(--font-body);
+        }
+
+        /* Practice Levels */
+        .level-card {
+            flex: 1;
+            border: 3px solid #000;
+            border-radius: 12px;
+            padding: 15px;
+            background: #fff;
+            box-shadow: 5px 5px 0px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+        }
+        .level-header {
+            font-family: var(--font-heading);
+            background: #000;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        /* --- 5. NAVIGATION --- */
+        .nav-bar {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 40px;
+            pointer-events: none;
+        }
+
+        .nav-btn {
+            pointer-events: auto;
+            background: #fff;
+            border: 3px solid #000;
+            color: #000;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.2);
+            transition: transform 0.1s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .nav-btn:hover { transform: scale(1.1); }
+
+        .slide-counter {
+            pointer-events: auto;
+            background: #000;
+            color: #fff;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-family: var(--font-heading);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* --- 6. PRINT STYLES --- */
+        .print-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 120px; 
+            background: #000;
+            color: #fff;
+            border: none;
+            padding: 10px 25px;
+            font-family: var(--font-heading);
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 30px;
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.3);
+            z-index: 1000;
+        }
+
+        @media print {
+            body { background: #fff; padding: 0; display: block; }
+            .print-btn, .nav-bar { display: none !important; }
+            .slide-container {
+                width: 100%; max-width: none; min-height: 0; border: none; box-shadow: none; border-radius: 0; display: block; overflow: visible;
+                aspect-ratio: auto;
+            }
+            .slide {
+                display: block !important; opacity: 1 !important; page-break-after: always; border-bottom: 2px dashed #000; padding: 40px; height: auto;
+            }
+            .card { break-inside: avoid; border: 2px solid #000; box-shadow: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <button class="print-btn" onclick="window.print()">
+        <i class="fa-solid fa-print"></i> Print Notes
+    </button>
+
+    <div class="slide-container">
+        
+        <!-- Slide 1: Title -->
+        <div class="slide active">
+            <div style="border: 4px solid #000; padding: 50px; border-radius: 20px; text-align: center; box-shadow: 10px 10px 0px rgba(0,0,0,0.1); background: #fff;">
+                <div style="font-family: 'Fredoka'; font-size: 1.8rem; letter-spacing: 3px; margin-bottom: 20px;">UNIT 1 • TOPIC 1</div>
+                <h1>Translating Expressions</h1>
+                <p style="color: #555; margin-top: 20px; font-size: 1.5rem;">Verbal Phrases to Algebraic Notation</p>
+                <div style="margin-top: 30px; display: inline-block; background: #000; color: #fff; padding: 10px 30px; border-radius: 50px; font-weight: bold; font-family: 'Fredoka'; font-size: 1.2rem;">Standard A.EO.1.a</div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Objectives -->
+        <div class="slide">
+            <h2>Objectives & Standards</h2>
+            <div class="pro-tip" style="background: #fff; border: 3px solid #000; flex-direction: column; align-items: flex-start; padding: 30px;">
+                <h3><i class="fa-solid fa-bullseye"></i> Learning Goals:</h3>
+                <ul style="list-style-type: square; padding-left: 20px; margin-top: 15px;">
+                    <li style="margin-bottom: 10px;">Translate between verbal quantitative situations and algebraic expressions.</li>
+                    <li style="margin-bottom: 10px;">Include contextual situations (Word Problems).</li>
+                    <li>Evaluate expressions for given replacement values.</li>
+                </ul>
+            </div>
+            <div style="margin-top: 30px; font-size: 1.2rem; color: #444; text-align: center; max-width: 900px; line-height: 1.5;">
+                <strong>Standard A.EO.1.a:</strong> Translate between verbal quantitative situations and algebraic expressions, including contextual situations.
+            </div>
+        </div>
+
+        <!-- Slide 3: Definitions Part 1 -->
+        <div class="slide">
+            <h2>Definitions: Expression vs. Equation</h2>
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-title">Expression</div>
+                    <p>A math phrase containing numbers, variables, and operations.</p>
+                    <div class="example-box">
+                        <span class="math">3x + 5</span>
+                    </div>
+                    <p style="text-align: center; color: #d32f2f; font-weight: bold; margin-top: 15px; font-size: 1.2rem;">NO EQUAL SIGN</p>
+                </div>
+                <div class="card">
+                    <div class="card-title">Equation</div>
+                    <p>A math sentence stating that two expressions are equal.</p>
+                    <div class="example-box">
+                        <span class="math">3x + 5 = 20</span>
+                    </div>
+                    <p style="text-align: center; color: #16a34a; font-weight: bold; margin-top: 15px; font-size: 1.2rem;">HAS EQUAL SIGN</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Definitions Part 2 -->
+        <div class="slide">
+            <h2>Definitions: The Parts</h2>
+            <div class="card" style="width: 100%; align-items: center; justify-content: center; text-align: center;">
+                <div style="font-size: 4.5rem; margin-bottom: 30px; font-weight: bold; font-family: 'Times New Roman', serif;">
+                    <span style="color: #000;">5</span><span style="color: #d32f2f;">x</span> <span style="color: #000;">+</span> <span style="color: #16a34a;">2</span>
+                </div>
+                
+                <div style="display: flex; gap: 40px; text-align: left;">
+                    <div>
+                        <h3 style="color: #d32f2f; margin-bottom: 10px;">Variable</h3>
+                        <p>A symbol (usually a letter) for an unknown value.<br>Ex: <span class="math">x, y, n</span></p>
+                    </div>
+                    <div style="width: 3px; background: #eee; height: 80px;"></div>
+                    <div>
+                        <h3 style="color: #16a34a; margin-bottom: 10px;">Constant</h3>
+                        <p>A number on its own that does not change.<br>Ex: <span class="math">2, 5, -8</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Addition & Subtraction -->
+        <div class="slide">
+            <h2>Addition & Subtraction Keywords</h2>
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-title">Addition <span class="symbol-badge">+</span></div>
+                    <div class="word-list">
+                        <div>• Sum</div>
+                        <div>• Plus</div>
+                        <div>• Increased by</div>
+                        <div>• More than</div>
+                        <div>• Combined / Total</div>
+                    </div>
+                    <div class="example-box"><span class="math">x + 7</span></div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Subtraction <span class="symbol-badge">&minus;</span></div>
+                    <div class="word-list">
+                        <div>• Difference</div>
+                        <div>• Minus</div>
+                        <div>• Decreased by</div>
+                        <div>• <strong style="color: #d32f2f;">Less than (Flip)</strong></div>
+                        <div>• <strong style="color: #d32f2f;">Subtracted from (Flip)</strong></div>
+                    </div>
+                    <div class="example-box"><span class="math">x &minus; 7</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Multiplication & Division -->
+        <div class="slide">
+            <h2>Multiplication & Division Keywords</h2>
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-title">Multiplication <span class="symbol-badge">&times;</span></div>
+                    <div class="word-list">
+                        <div>• Product</div>
+                        <div>• Times</div>
+                        <div>• Of</div>
+                        <div>• Twice (x2)</div>
+                        <div>• Double (x2) / Triple (x3)</div>
+                    </div>
+                    <div class="example-box"><span class="math">5x</span></div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Division <span class="symbol-badge">&divide;</span></div>
+                    <div class="word-list">
+                        <div>• Quotient</div>
+                        <div>• Divided by</div>
+                        <div>• Ratio of</div>
+                        <div>• Split into</div>
+                        <div>• Half (÷2)</div>
+                    </div>
+                    <div class="example-box"><span class="math">x &divide; 5</span> or <span class="math">x/5</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Powers & Roots -->
+        <div class="slide">
+            <h2>Powers & Roots</h2>
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-title">Powers <span class="symbol-badge" style="font-size: 1.2rem;">xⁿ</span></div>
+                    <div class="word-list">
+                        <div style="margin-bottom: 15px;"><strong>Squared:</strong> Raised to the 2nd power</div>
+                        <div style="background: #eee; padding: 8px; border-radius: 6px; text-align: center; margin-bottom: 20px;"><span class="math">x<sup>2</sup></span></div>
+                        
+                        <div style="margin-bottom: 15px;"><strong>Cubed:</strong> Raised to the 3rd power</div>
+                        <div style="background: #eee; padding: 8px; border-radius: 6px; text-align: center;"><span class="math">x<sup>3</sup></span></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Roots <span class="symbol-badge" style="font-size: 1.2rem;">&radic;</span></div>
+                    <div class="word-list">
+                        <div style="margin-bottom: 15px;"><strong>Square Root:</strong></div>
+                        <div style="background: #eee; padding: 8px; border-radius: 6px; text-align: center; margin-bottom: 20px;"><span class="math">&radic;x</span></div>
+                        
+                        <div style="margin-bottom: 15px;"><strong>Cube Root:</strong></div>
+                        <div style="background: #eee; padding: 8px; border-radius: 6px; text-align: center;"><span class="math">&#8731;x</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Turn Around Rule -->
+        <div class="slide">
+            <h2><i class="fa-solid fa-triangle-exclamation" style="color: #d32f2f;"></i> The "Turn-Around" Rule</h2>
+            
+            <div class="pro-tip">
+                <div class="tip-icon"><i class="fa-solid fa-rotate"></i></div>
+                <div>
+                    <h3 style="font-size: 1.8rem;">Flip the Order!</h3>
+                    <p style="font-size: 1.2rem;">If you see <strong>"Than"</strong> or <strong>"From"</strong>, the number mentioned first goes last!</p>
+                </div>
+            </div>
+
+            <div class="grid-2" style="margin-top: 30px;">
+                <div class="card">
+                    <div class="card-title">Example 1</div>
+                    <p style="font-size: 1.3rem; text-align: center;">"5 <strong>less than</strong> a number <span class="math">x</span>"</p>
+                    <div style="margin-top: auto; text-align: center;">
+                        <p style="font-size: 2.5rem; margin-bottom: 10px;" class="math">x &minus; 5</p>
+                        <p style="font-size: 1rem; color: #d32f2f; text-decoration: line-through;">Wrong: 5 &minus; x</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Example 2</div>
+                    <p style="font-size: 1.3rem; text-align: center;">"10 <strong>subtracted from</strong> <span class="math">y</span>"</p>
+                    <div style="margin-top: auto; text-align: center;">
+                        <p style="font-size: 2.5rem;" class="math">y &minus; 10</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Special Cases -->
+        <div class="slide">
+            <h2>Grouping Symbols</h2>
+            <div class="card" style="width: 100%; max-width: 800px;">
+                <div class="card-title">Parentheses <span class="symbol-badge" style="font-size: 1.2rem;">( )</span></div>
+                <p style="font-size: 1.2rem; text-align: center; margin-bottom: 25px;">Use parentheses when an operation happens to a group.</p>
+                
+                <div class="grid-2" style="gap: 20px;">
+                    <div style="background: #f9f9f9; padding: 15px; border-radius: 10px;">
+                        <p style="text-align: center;">"Twice <strong>the sum of</strong> <span class="math">x</span> and 5"</p>
+                        <p style="text-align: center; font-size: 1.6rem; margin-top: 10px;" class="math">2(x + 5)</p>
+                    </div>
+                    <div style="background: #f9f9f9; padding: 15px; border-radius: 10px;">
+                        <p style="text-align: center;">"5 times <strong>the difference of</strong> <span class="math">y</span> and 3"</p>
+                        <p style="text-align: center; font-size: 1.6rem; margin-top: 10px;" class="math">5(y &minus; 3)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Inequalities -->
+        <div class="slide">
+            <h2>Inequalities</h2>
+            <div class="card" style="width: 100%; max-width: 800px;">
+                <div class="card-title">Comparison Symbols</div>
+                <div class="grid-2" style="gap: 30px;">
+                    <ul style="font-size: 1.2rem; line-height: 2.5; list-style: none; padding: 0; text-align: right; padding-right: 20px;">
+                        <li><strong>Is less than:</strong></li>
+                        <li><strong>Is greater than:</strong></li>
+                        <li><strong>Is at most:</strong></li>
+                        <li><strong>Is at least:</strong></li>
+                    </ul>
+                    <ul style="font-size: 1.2rem; line-height: 2.5; list-style: none; padding: 0;">
+                        <li><span class="math">&lt;</span></li>
+                        <li><span class="math">&gt;</span></li>
+                        <li><span class="math">&le;</span></li>
+                        <li><span class="math">&ge;</span></li>
+                    </ul>
+                </div>
+                <div style="margin-top: 20px; padding: 15px; background: #fff3cd; border: 3px solid #ffecb3; border-radius: 10px; text-align: center; font-size: 1.1rem;">
+                    <strong>Important Difference:</strong><br>
+                    "Less than" = Subtract (<span class="math">&minus;</span>)<br> 
+                    "<strong>IS</strong> less than" = Inequality (<span class="math">&lt;</span>)
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Guided Practice -->
+        <div class="slide">
+            <h2>Guided Practice</h2>
+            <div style="width: 100%; max-width: 900px;">
+                
+                <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px dashed #ccc; padding: 25px 0;">
+                    <div style="font-size: 1.4rem;">1. The product of 8 and a number <span class="math">k</span>.</div>
+                    <div style="font-family: 'Fredoka'; font-size: 1.4rem; color: #fff; background: #000; padding: 8px 20px; border-radius: 8px; cursor: pointer;" onclick="this.innerHTML='8k'">Click to Reveal</div>
+                </div>
+
+                <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px dashed #ccc; padding: 25px 0;">
+                    <div style="font-size: 1.4rem;">2. A number <span class="math">y</span> decreased by 12.</div>
+                    <div style="font-family: 'Fredoka'; font-size: 1.4rem; color: #fff; background: #000; padding: 8px 20px; border-radius: 8px; cursor: pointer;" onclick="this.innerHTML='y &minus; 12'">Click to Reveal</div>
+                </div>
+
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 25px 0;">
+                    <div style="font-size: 1.4rem;">3. 4 less than twice a number <span class="math">x</span>.</div>
+                    <div style="font-family: 'Fredoka'; font-size: 1.4rem; color: #fff; background: #000; padding: 8px 20px; border-radius: 8px; cursor: pointer;" onclick="this.innerHTML='2x &minus; 4'">Click to Reveal</div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Slide 12: Independent Practice Level 1 & 2 -->
+        <div class="slide">
+            <h2>Independent Practice</h2>
+            <div class="grid-2">
+                <!-- Level 1 -->
+                <div class="level-card">
+                    <div class="level-header">Level 1 (Basic)</div>
+                    <ol style="padding-left: 20px; font-size: 1.1rem; line-height: 1.8;">
+                        <li>Sum of <span class="math">x</span> and 9.</li>
+                        <li>Quotient of <span class="math">n</span> and 5.</li>
+                        <li><span class="math">y</span> increased by 2.</li>
+                    </ol>
+                </div>
+                
+                <!-- Level 2 -->
+                <div class="level-card">
+                    <div class="level-header">Level 2 (Turn-Around)</div>
+                    <ol style="padding-left: 20px; font-size: 1.1rem; line-height: 1.8;">
+                        <li>8 less than <span class="math">k</span>.</li>
+                        <li>Twice <span class="math">x</span> squared.</li>
+                        <li>Product of 5 and <span class="math">y</span>, plus 3.</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 13: Independent Practice Level 3 -->
+        <div class="slide">
+            <h2>Independent Practice</h2>
+            <div class="level-card" style="width: 100%; max-width: 800px;">
+                <div class="level-header">Level 3 (Complex & Inequalities)</div>
+                <ol style="padding-left: 20px; font-size: 1.3rem; line-height: 2;">
+                    <li>3 times the sum of <span class="math">x</span> and 4.</li>
+                    <li>A number <span class="math">n</span> is at least 10.</li>
+                    <li>The quotient of <span class="math">y</span> and 2 is less than 5.</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- Slide 14: What's Next? (Updated) -->
+        <div class="slide">
+            <div class="grid-2">
+                
+                <!-- Left: Checklist -->
+                <div class="card">
+                    <div class="card-title">What's Next?</div>
+                    <div style="display: flex; flex-direction: column; height: 100%; padding-left: 10px;">
+                        <div class="checklist-item">
+                            <div class="check-box checked"><i class="fa-solid fa-check"></i></div> 
+                            Topic 1 Warm Up
+                        </div>
+                        <div class="checklist-item">
+			<div class="check-box checked"><i class="fa-solid fa-check"></i></div> 
+                            Lesson Slides
+                        </div>
+                        <div class="checklist-item"><div class="check-box"></div> Practice Worksheet</div>
+                        <div class="checklist-item"><div class="check-box"></div> IXL Practice</div>
+                        <div class="checklist-item"><div class="check-box"></div> Topic 1 Exit Ticket</div>
+                        <div class="checklist-item" style="margin-top: auto; color: #d32f2f; font-weight: bold; font-size: 1.1rem;">
+                            <i class="fa-solid fa-triangle-exclamation" style="margin-right: 15px;"></i> Mini Quiz Prep (Any Time!)
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Differentiated IXL -->
+                <div class="card" style="background: #fcfcfc;">
+                    <div class="card-title">IXL Practice</div>
+                    <div style="text-align: center; color: #555; margin-bottom: 20px; font-weight: bold;">Standard A.EO.1.a</div>
+                    
+                    <div class="ixl-container">
+                        <!-- Easy/Green -->
+                        <a href="https://www.ixl.com/math/algebra-1/write-variable-expressions" target="_blank" class="ixl-btn ixl-green">
+                            <span>Write variable expressions</span>
+                            <span class="ixl-standard">A.EO.1.a</span>
+                        </a>
+
+                        <!-- Medium/Orange -->
+                        <a href="https://www.ixl.com/math/algebra-1/write-variable-expressions-word-problems" target="_blank" class="ixl-btn ixl-orange">
+                            <span>Write variable expressions: word problems</span>
+                            <span class="ixl-standard">A.EO.1.a</span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="nav-bar">
+            <button id="prevBtn" class="nav-btn"><i class="fa-solid fa-arrow-left"></i></button>
+            <div class="slide-counter">1 / 14</div>
+            <button id="nextBtn" class="nav-btn"><i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const counter = document.querySelector('.slide-counter');
+        let currentSlide = 0;
+
+        function updateSlides() {
+            slides.forEach((slide, index) => {
+                slide.classList.remove('active');
+                if (index === currentSlide) {
+                    slide.classList.add('active');
+                }
+            });
+            counter.textContent = `${currentSlide + 1} / ${slides.length}`;
+            
+            // Visual feedback on buttons
+            prevBtn.style.opacity = currentSlide === 0 ? 0.3 : 1;
+            nextBtn.style.opacity = currentSlide === slides.length - 1 ? 0.3 : 1;
+        }
+
+        nextBtn.addEventListener('click', () => {
+            if (currentSlide < slides.length - 1) {
+                currentSlide++;
+                updateSlides();
+            }
+        });
+
+        prevBtn.addEventListener('click', () => {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateSlides();
+            }
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' && currentSlide < slides.length - 1) {
+                currentSlide++;
+                updateSlides();
+            }
+            if (e.key === 'ArrowLeft' && currentSlide > 0) {
+                currentSlide--;
+                updateSlides();
+            }
+        });
+
+        // Init
+        updateSlides();
+    </script>
+    <footer style="margin-top: 2rem; color: #9ca3af; font-size: 0.9rem;">
+        &copy; 2026 Aly Hatfield. All rights reserved.
+    </footer>
+</body>
+</html>

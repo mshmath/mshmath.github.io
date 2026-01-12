@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graphic Organizer: Geometry Unit 1</title>
+    
+    <!-- 1. FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <!-- 2. MATHJAX -->
+    <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+      chtml: { scale: 1.2 } 
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        /* 3. GLOBAL STYLES */
+        * {
+            box-sizing: border-box;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            font-family: 'Quicksand', sans-serif;
+            color: #222;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* PAGE CONTAINER */
+        .container {
+            max-width: 950px;
+            width: 100%;
+            margin: 40px auto;
+            padding: 20px;
+            flex: 1;
+        }
+
+        /* HEADER */
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: white;
+            border: 3px solid #000;
+            border-radius: 16px;
+            box-shadow: 8px 8px 0px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 2.8rem;
+            margin: 0 0 10px 0;
+            color: #000;
+            line-height: 1.1;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: #444;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .sol-badge {
+            display: inline-block;
+            background: #eee;
+            color: #000;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            margin-top: 10px;
+        }
+
+        /* PRINT BUTTON */
+        .print-btn-container {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .print-btn {
+            background: #000;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: transform 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .print-btn:hover {
+            transform: scale(1.05);
+            background: #333;
+        }
+
+        /* CONTENT CARDS */
+        .card {
+            background: white;
+            border: 3px solid #000;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 6px 6px 0px rgba(0,0,0,0.05);
+        }
+
+        .card-title {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.8rem;
+            border-bottom: 3px solid #000;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            color: #000;
+        }
+
+        /* ESSENTIAL QUESTION BOX */
+        .eq-box {
+            background: #f0f0f0;
+            border: 2px dashed #000;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+        
+        .eq-label {
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        /* TABLES */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        th {
+            background: #000;
+            color: white;
+            padding: 12px;
+            font-family: 'Fredoka', sans-serif;
+            text-align: left;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        td {
+            border: 2px solid #ddd;
+            padding: 12px;
+            vertical-align: middle;
+        }
+
+        tr:nth-child(even) { background-color: #f9f9f9; }
+
+        /* KEYWORD HIGHLIGHTS */
+        .kw {
+            font-weight: bold;
+            color: #000;
+            text-decoration: underline;
+            text-decoration-thickness: 2px;
+        }
+
+        /* MATH SYMBOLS */
+        .logic-sym {
+            font-family: 'Times New Roman', serif;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* VOCAB GRID */
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .vocab-item {
+            border: 2px solid #000;
+            border-radius: 8px;
+            padding: 15px;
+            background: #fff;
+        }
+
+        .vocab-word {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.2rem;
+            color: #000;
+            display: block;
+            margin-bottom: 5px;
+            text-decoration: underline;
+            text-decoration-color: #ccc;
+            text-decoration-thickness: 3px;
+        }
+
+        /* VENN SVG */
+        .venn-svg {
+            display: block;
+            margin: 0 auto;
+            max-width: 150px;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: auto;
+            color: #888;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 700px) {
+            h1 { font-size: 2.2rem; }
+            .vocab-grid { grid-template-columns: 1fr; }
+            th, td { padding: 10px; font-size: 0.95rem; }
+        }
+
+        /* PRINT STYLES */
+        @media print {
+            body { background: white; }
+            .container { margin: 0; padding: 0; max-width: 100%; }
+            header, .print-btn-container, footer { display: none !important; }
+            .card { border: 2px solid #000; box-shadow: none; margin-bottom: 20px; page-break-inside: avoid; }
+            .eq-box { background: white; border: 2px solid #000; }
+            th { color: black; background: #eee; border-bottom: 2px solid #000; }
+            td { border: 1px solid #000; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- HEADER -->
+        <header>
+            <h1>Geometry: Unit 1</h1>
+            <p class="subtitle">Logic, Reasoning & Venn Diagrams</p>
+            <div class="sol-badge">VA SOL Standards: G.1a, G.1b, G.1c</div>
+        </header>
+
+        <!-- PRINT BUTTON -->
+        <div class="print-btn-container">
+            <button onclick="window.print()" class="print-btn">
+                <svg style="width:20px;height:20px;fill:white;" viewBox="0 0 24 24"><path d="M18,3H6V7H18M19,12A1,1 0 0,1 18,11A1,1 0 0,1 19,10A1,1 0 0,1 20,11A1,1 0 0,1 19,12M16,19H8V14H16M19,8H5A3,3 0 0,0 2,11V17H6V21H18V17H22V11A3,3 0 0,0 19,8Z" /></svg>
+                Print Organizer
+            </button>
+        </div>
+
+        <!-- ESSENTIAL QUESTION -->
+        <div class="eq-box">
+            <span class="eq-label">Essential Question</span>
+            "How can we use logic and diagrams to determine the validity of an argument?"
+        </div>
+
+        <!-- SECTION 1: LOGIC FORMS -->
+        <div class="card">
+            <div class="card-title">1. Conditional Statements (SOL G.1a)</div>
+            <p style="margin-bottom: 15px;">Original Statement: If <span class="kw">hypothesis (p)</span>, then <span class="kw">conclusion (q)</span>.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 25%;">Form</th>
+                        <th style="width: 20%; text-align: center;">Symbol</th>
+                        <th style="width: 55%;">Rule & Meaning</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Conditional</strong></td>
+                        <td style="text-align: center;" class="logic-sym">$p \rightarrow q$</td>
+                        <td>If $p$, then $q$. (Original)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Converse</strong></td>
+                        <td style="text-align: center;" class="logic-sym">$q \rightarrow p$</td>
+                        <td><span class="kw">FLIP</span> the order.<br>If $q$, then $p$.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Inverse</strong></td>
+                        <td style="text-align: center;" class="logic-sym">$\sim p \rightarrow \sim q$</td>
+                        <td><span class="kw">NEGATE</span> both.<br>If not $p$, then not $q$.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Contrapositive</strong></td>
+                        <td style="text-align: center;" class="logic-sym">$\sim q \rightarrow \sim p$</td>
+                        <td><span class="kw">FLIP & NEGATE</span>.<br>If not $q$, then not $p$. (Equivalent to Original!)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Biconditional</strong></td>
+                        <td style="text-align: center;" class="logic-sym">$p \leftrightarrow q$</td>
+                        <td>Original & Converse are both True.<br>"$p$ <span class="kw">if and only if</span> $q$" (iff)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- SECTION 2: LAWS OF LOGIC -->
+        <div class="card">
+            <div class="card-title">2. Deductive Reasoning (SOL G.1b)</div>
+            
+            <div style="margin-bottom: 20px;">
+                <h3 style="font-family: 'Fredoka'; margin-bottom: 5px;">Law of Detachment</h3>
+                <div style="background: #f9f9f9; padding: 15px; border-left: 5px solid #000;">
+                    If $p \rightarrow q$ is true,<br>
+                    And $p$ happens (is true),<br>
+                    Then <span class="kw">$q$ is true</span>.
+                </div>
+            </div>
+
+            <div>
+                <h3 style="font-family: 'Fredoka'; margin-bottom: 5px;">Law of Syllogism (Chain Rule)</h3>
+                <div style="background: #f9f9f9; padding: 15px; border-left: 5px solid #000;">
+                    If $p \rightarrow q$ is true,<br>
+                    And $q \rightarrow r$ is true,<br>
+                    Then <span class="kw">$p \rightarrow r$ is true</span>.
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 3: VENN DIAGRAMS -->
+        <div class="card">
+            <div class="card-title">3. Venn Diagrams & Sets (SOL G.1c)</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 25%;">Term</th>
+                        <th style="width: 20%; text-align: center;">Symbol</th>
+                        <th>Visual / Meaning</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Union</strong></td>
+                        <td style="text-align: center;" class="logic-sym">$A \cup B$</td>
+                        <td>
+                            "A <span class="kw">OR</span> B" (Everything in both circles)<br>
+                            <span style="font-size: 0.9rem; color: #555;">Shade All</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Intersection</strong></td>
+                        <td style="text-align: center;" class="logic-sym">$A \cap B$</td>
+                        <td>
+                            "A <span class="kw">AND</span> B" (Only the overlap)<br>
+                            <span style="font-size: 0.9rem; color: #555;">Shade Middle</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Complement</strong></td>
+                        <td style="text-align: center;" class="logic-sym">$\sim A$</td>
+                        <td>
+                            "<span class="kw">NOT</span> A" (Everything outside A)<br>
+                            <span style="font-size: 0.9rem; color: #555;">Shade Outside Circle</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- SECTION 4: VOCABULARY -->
+        <div class="card">
+            <div class="card-title">Key Vocabulary</div>
+            <div class="vocab-grid">
+                <div class="vocab-item">
+                    <span class="vocab-word">Inductive Reasoning</span>
+                    Using patterns or specific examples to make a conjecture (guess).
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-word">Deductive Reasoning</span>
+                    Using facts, definitions, and logic laws to prove a conclusion.
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-word">Counterexample</span>
+                    One specific example that proves a statement is FALSE.
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-word">Logically Equivalent</span>
+                    Statements that always have the same truth value (e.g., Conditional & Contrapositive).
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-word">Subset</span>
+                    When every element of Set A is also in Set B (Circle A is inside Circle B).
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-word">Disjoint Sets</span>
+                    Sets that have no elements in common (Circles do not touch).
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        &copy; 2026 Aly Hatfield. All Rights Reserved.
+    </footer>
+
+</body>
+</html>

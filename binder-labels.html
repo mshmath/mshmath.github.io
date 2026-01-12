@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binder Dividers & Labels</title>
+    
+    <!-- 1. FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* 2. GLOBAL STYLES */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            font-family: 'Quicksand', sans-serif;
+            color: #333; /* Softened Black */
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* PAGE CONTAINER */
+        .container {
+            max-width: 900px;
+            width: 100%;
+            margin: 40px auto;
+            padding: 20px;
+            flex: 1; /* Pushes footer to bottom */
+        }
+
+        /* HEADER */
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px 20px;
+            background: white;
+            border: 3px solid #333;
+            border-radius: 16px;
+            box-shadow: 8px 8px 0px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 2.8rem;
+            margin: 0 0 10px 0;
+            color: #222;
+            line-height: 1.1;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        /* INSTRUCTION BOX */
+        .instruction-box {
+            background: #fff;
+            border: 2px dashed #555;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .print-btn {
+            background: #333;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.1rem;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: transform 0.1s;
+        }
+
+        .print-btn:hover {
+            transform: scale(1.05);
+            background: #000;
+        }
+
+        /* EDITABLE CONTENT STYLING */
+        [contenteditable]:hover, [contenteditable]:focus {
+            background-color: #f0f8ff;
+            outline: 2px dashed #0074d9;
+            border-radius: 4px;
+            cursor: text;
+        }
+
+        /* --- PREVIEW SECTION (Screen Only) --- */
+        .preview-section {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        /* DIVIDER CARD (Screen Preview) */
+        .divider-card {
+            background: white;
+            border: 3px solid #333;
+            border-radius: 12px;
+            height: 400px; /* Scaled down for preview */
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-left: 80px; /* Space for hole punch */
+            box-shadow: 6px 6px 0px rgba(0,0,0,0.1);
+        }
+
+        /* Hole Punch Guide Visual */
+        .hole-guide-visual {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 50px;
+            border-right: 2px dashed #ccc;
+            background: #f9f9f9;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+        }
+        .hole {
+            width: 15px;
+            height: 15px;
+            border: 1px solid #ccc;
+            border-radius: 50%;
+            background: #fff;
+        }
+
+        /* Tab Visual */
+        .tab-visual {
+            position: absolute;
+            right: 0;
+            top: 40px;
+            width: 40px;
+            height: 80px;
+            background: #333;
+            border-radius: 10px 0 0 10px;
+        }
+
+        .divider-title {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: #222;
+            margin: 0;
+            line-height: 1.1;
+        }
+
+        .divider-subtitle {
+            font-size: 1.2rem;
+            color: #555;
+            margin-top: 10px;
+        }
+
+        /* LABELS GRID */
+        .labels-section-header {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 5px;
+            color: #333;
+        }
+
+        .labels-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+        }
+
+        .label-card {
+            background: white;
+            border: 2px solid #333;
+            border-radius: 8px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            box-shadow: 3px 3px 0px rgba(0,0,0,0.1);
+            color: #333;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            background: #fff;
+            border-top: 3px solid #333;
+            margin-top: auto; /* Pushes to bottom */
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* --- RESPONSIVE STYLES --- */
+        @media (max-width: 600px) {
+            .container { margin: 20px auto; width: 95%; }
+            h1 { font-size: 2.2rem; }
+            .divider-card { height: 300px; padding-left: 60px; }
+            .divider-title { font-size: 2.2rem; }
+            .hole-guide-visual { width: 40px; }
+            .tab-visual { width: 30px; height: 60px; }
+            .labels-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        /* --- PRINT STYLES --- */
+        @media print {
+            @page {
+                size: letter portrait;
+                margin: 0; /* Full bleed */
+            }
+            
+            body {
+                background: white;
+                font-size: 12pt;
+                display: block; /* Remove flex layout for print flow */
+            }
+
+            /* Hide UI elements */
+            .container { max-width: 100%; margin: 0; padding: 0; }
+            header, .instruction-box, footer { display: none; }
+            
+            /* Re-style for actual print output */
+            .preview-section { display: block; }
+
+            /* Full Page Divider */
+            .divider-card {
+                width: 8.5in;
+                height: 11in;
+                border: none;
+                border-radius: 0;
+                box-shadow: none;
+                margin: 0;
+                page-break-after: always; /* Each divider on new page */
+                padding: 1in;
+                padding-left: 1.2in; /* Extra for holes */
+                position: relative;
+            }
+
+            /* Real Hole Guide for Print */
+            .hole-guide-visual {
+                width: 0.8in;
+                border-right: 1px dashed #bbb;
+                background: none;
+            }
+            .hole { border-color: #ddd; }
+
+            /* Tab - Ensure it prints dark */
+            .tab-visual {
+                background: #333 !important; 
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+                width: 0.5in;
+                height: 1.5in;
+                border-radius: 0.2in 0 0 0.2in;
+            }
+
+            /* Divider Text Scaling */
+            .divider-title { font-size: 4rem; }
+            .divider-subtitle { font-size: 1.5rem; }
+
+            /* Labels Section - Force New Page */
+            .labels-section-container {
+                page-break-before: always;
+                padding: 0.5in;
+            }
+            
+            .labels-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr); /* 2 cols for standard labels */
+                gap: 0.2in;
+            }
+
+            .label-card {
+                border: 2px solid #000;
+                box-shadow: none;
+                height: 1.5in; /* Standard label height */
+                font-size: 1.5rem;
+                page-break-inside: avoid;
+            }
+
+            /* Remove edit styles */
+            [contenteditable]:hover, [contenteditable]:focus {
+                background: none;
+                outline: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- HEADER (Hidden on Print) -->
+        <header>
+            <h1>Binder Dividers & Labels</h1>
+            <p class="subtitle">Customizable organizers for your AhatMath binder.</p>
+        </header>
+
+        <!-- INSTRUCTIONS (Hidden on Print) -->
+        <div class="instruction-box">
+            <p><strong>How to use:</strong> Click on any text below ("Unit 1", "Notes", etc.) to rename it. <br>When you are ready, click the button below to generate your dividers.</p>
+            <button onclick="window.print()" class="print-btn">🖨️ Print Dividers</button>
+        </div>
+
+        <div class="preview-section">
+            
+            <!-- DIVIDER 1 -->
+            <div class="divider-card">
+                <div class="hole-guide-visual">
+                    <div class="hole"></div><div class="hole"></div><div class="hole"></div>
+                </div>
+                <div class="tab-visual" style="top: 10%;"></div>
+                
+                <h2 class="divider-title" contenteditable="true">Unit 1</h2>
+                <div class="divider-subtitle" contenteditable="true">Expressions & Operations</div>
+            </div>
+
+            <!-- DIVIDER 2 -->
+            <div class="divider-card">
+                <div class="hole-guide-visual">
+                    <div class="hole"></div><div class="hole"></div><div class="hole"></div>
+                </div>
+                <div class="tab-visual" style="top: 35%;"></div>
+                
+                <h2 class="divider-title" contenteditable="true">Unit 2</h2>
+                <div class="divider-subtitle" contenteditable="true">Equations & Inequalities</div>
+            </div>
+
+            <!-- DIVIDER 3 -->
+            <div class="divider-card">
+                <div class="hole-guide-visual">
+                    <div class="hole"></div><div class="hole"></div><div class="hole"></div>
+                </div>
+                <div class="tab-visual" style="top: 60%;"></div>
+                
+                <h2 class="divider-title" contenteditable="true">Unit 3</h2>
+                <div class="divider-subtitle" contenteditable="true">Functions</div>
+            </div>
+
+            <!-- LABELS SECTION -->
+            <div class="labels-section-container">
+                <h3 class="labels-section-header">Binder Tabs & Labels</h3>
+                <div class="labels-grid">
+                    <div class="label-card" contenteditable="true">Notes</div>
+                    <div class="label-card" contenteditable="true">Homework</div>
+                    <div class="label-card" contenteditable="true">Quizzes</div>
+                    <div class="label-card" contenteditable="true">Projects</div>
+                    <div class="label-card" contenteditable="true">Warm Ups</div>
+                    <div class="label-card" contenteditable="true">Exit Tickets</div>
+                    <div class="label-card" contenteditable="true">Vocab</div>
+                    <div class="label-card" contenteditable="true">Formulas</div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <footer>
+        &copy; 2026 Aly Hatfield. All Rights Reserved.
+    </footer>
+
+</body>
+</html>

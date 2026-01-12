@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geometry: Venn Diagrams & Applications</title>
+    
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- ICONS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* --- 1. CORE VARIABLES & RESET --- */
+        :root {
+            --bg-color: #f4f4f4;
+            --card-bg: #ffffff;
+            --border-color: #000000;
+            --shadow-color: rgba(0,0,0,0.1);
+            --font-heading: 'Fredoka', sans-serif;
+            --font-body: 'Quicksand', sans-serif;
+            --font-math: 'Times New Roman', serif;
+            
+            /* Logic Colors */
+            --set-a: #3b82f6; /* Blue */
+            --set-b: #ef4444; /* Red */
+            --set-c: #22c55e; /* Green */
+            --overlap: #a855f7; /* Purple */
+            --universe: #64748b; /* Grey */
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-color);
+            font-family: var(--font-body);
+            color: #222;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        /* --- 2. SLIDESHOW CONTAINER (1100px, 16:9) --- */
+        .slide-container {
+            width: 100%;
+            max-width: 1100px;
+            aspect-ratio: 16 / 9;
+            background: var(--card-bg);
+            border: 4px solid var(--border-color);
+            border-radius: 20px;
+            box-shadow: 12px 12px 0px rgba(0,0,0,0.15);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- 3. SLIDE STYLES --- */
+        .slide {
+            flex: 1;
+            display: none;
+            flex-direction: column;
+            justify-content: flex-start; /* Flow from top */
+            align-items: center;
+            padding: 40px 60px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .slide.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        /* TYPOGRAPHY */
+        h1, h2, h3 { 
+            font-family: var(--font-heading); 
+            text-transform: uppercase;
+            line-height: 1.2;
+            color: #000;
+        }
+
+        h1 { font-size: 3rem; margin-bottom: 10px; text-align: center; }
+        h2 { font-size: 2.2rem; margin-bottom: 25px; border-bottom: 3px solid #000; padding-bottom: 8px; width: 100%; text-align: center; }
+        h3 { font-size: 1.4rem; margin-bottom: 10px; }
+        
+        p, li { font-size: 1.3rem; line-height: 1.6; font-weight: 600; }
+        
+        /* Key Terms: Bold AND Underlined */
+        .key-term {
+            font-weight: 800;
+            text-decoration: underline;
+            text-decoration-thickness: 3px;
+            text-underline-offset: 4px;
+            color: #000;
+        }
+
+        /* Math/Logic Styling */
+        .logic-font { 
+            font-family: var(--font-math); 
+            font-style: italic; 
+            font-weight: bold; 
+            font-size: 1.3em; 
+        }
+
+        /* --- 4. COMPONENTS --- */
+        
+        /* Grid Layouts */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            width: 100%;
+            align-items: start;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            border: 3px solid #000;
+            border-radius: 12px;
+            padding: 25px;
+            background: #fff;
+            box-shadow: 6px 6px 0px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            height: 100%;
+        }
+
+        .card-title {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            border-bottom: 2px solid #eee;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            text-align: center;
+        }
+
+        /* Vocab Box */
+        .vocab-box {
+            background: #fff;
+            border: 3px solid #000;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            width: 100%;
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.05);
+        }
+
+        /* VENN DIAGRAM STYLES */
+        .venn-container {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            margin: 0 auto;
+        }
+
+        .circle {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            position: absolute;
+            top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            opacity: 0.8;
+            border: 3px solid #000;
+        }
+
+        .circle-a {
+            background-color: rgba(59, 130, 246, 0.4); /* Blue */
+            left: 20px;
+        }
+
+        .circle-b {
+            background-color: rgba(239, 68, 68, 0.4); /* Red */
+            right: 20px;
+        }
+        
+        /* 3-Set Venn Specifics */
+        .venn-3-container {
+            position: relative;
+            width: 320px;
+            height: 320px;
+            margin: 0 auto;
+        }
+        
+        .circle-3 {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            position: absolute;
+            border: 3px solid #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .c3-top {
+            background-color: rgba(59, 130, 246, 0.3); /* Blue */
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .c3-left {
+            background-color: rgba(239, 68, 68, 0.3); /* Red */
+            bottom: 20px;
+            left: 0;
+        }
+
+        .c3-right {
+            background-color: rgba(34, 197, 94, 0.3); /* Green */
+            bottom: 20px;
+            right: 0;
+        }
+
+        /* Guided Practice Reveal */
+        .guided-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px dashed #000;
+            padding: 20px 0;
+            width: 100%;
+        }
+        
+        .reveal-btn {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.1rem;
+            color: #fff;
+            background: #000;
+            padding: 10px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            border: none;
+            transition: transform 0.1s;
+        }
+        .reveal-btn:active { transform: scale(0.95); }
+        
+        /* Independent Practice Levels */
+        .practice-container {
+            width: 100%;
+            max-width: 900px;
+            text-align: center;
+            padding-bottom: 40px;
+        }
+        
+        .practice-problem {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 20px 0;
+            padding: 20px;
+            background: #fff;
+            border: 3px solid #000;
+            border-radius: 15px;
+            box-shadow: 5px 5px 0px rgba(0,0,0,0.1);
+            text-align: left;
+        }
+
+        .level-header {
+            color: #000;
+            padding: 10px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            border: 3px solid #000;
+            background: #fff;
+        }
+        
+        .lh-1 { border-left: 15px solid #22c55e; }
+        .lh-2 { border-left: 15px solid #f59e0b; }
+        .lh-3 { border-left: 15px solid #ef4444; }
+
+        /* Checklist Styles */
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .check-box {
+            width: 24px;
+            height: 24px;
+            border: 3px solid #000;
+            margin-right: 15px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+        }
+        .check-box i { font-size: 0.9rem; color: #000; }
+        .check-box.checked { background: #e0e0e0; }
+
+        /* IXL Buttons */
+        .ixl-btn {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border: 3px solid #000;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #000;
+            font-weight: 700;
+            font-size: 1.1rem;
+            background: #fff;
+            transition: transform 0.1s;
+            margin-bottom: 15px;
+        }
+        .ixl-btn:hover { transform: translateY(-2px); box-shadow: 4px 4px 0px rgba(0,0,0,0.2); }
+        .ixl-green { border-left: 12px solid #22c55e; }
+        .ixl-orange { border-left: 12px solid #f59e0b; }
+        .ixl-red { border-left: 12px solid #ef4444; }
+
+        /* --- 5. NAVIGATION --- */
+        .nav-bar {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 40px;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        .nav-btn {
+            pointer-events: auto;
+            background: #fff;
+            border: 3px solid #000;
+            color: #000;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.2);
+            transition: transform 0.1s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .nav-btn:hover { transform: scale(1.1); }
+
+        .slide-counter {
+            pointer-events: auto;
+            background: #000;
+            color: #fff;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-family: var(--font-heading);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* --- 6. PRINT STYLES --- */
+        .print-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 120px; 
+            background: #000;
+            color: #fff;
+            border: none;
+            padding: 10px 25px;
+            font-family: var(--font-heading);
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 30px;
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.3);
+            z-index: 1000;
+        }
+
+        @media print {
+            body { background: #fff; padding: 0; display: block; }
+            .print-btn, .nav-bar { display: none !important; }
+            .slide-container {
+                width: 100%; max-width: none; min-height: 0; border: none; box-shadow: none; border-radius: 0; display: block; overflow: visible;
+                aspect-ratio: auto;
+            }
+            .slide {
+                display: block !important; opacity: 1 !important; page-break-after: always; border-bottom: 2px dashed #000; padding: 30px; height: auto;
+            }
+            .reveal-btn { display: none; }
+            .guided-row div[id^="ans"] { display: block !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <button class="print-btn" onclick="window.print()">
+        <i class="fa-solid fa-print"></i> Print Notes
+    </button>
+
+    <div class="slide-container">
+        
+        <!-- Slide 1: Title -->
+        <div class="slide active" style="justify-content: center;">
+            <div style="border: 4px solid #000; padding: 40px; border-radius: 20px; text-align: center; box-shadow: 10px 10px 0px rgba(0,0,0,0.1); background: #fff; width: 80%;">
+                <div style="font-family: 'Fredoka'; font-size: 1.5rem; letter-spacing: 3px; margin-bottom: 15px;">UNIT 1 • TOPIC 4</div>
+                <h1>Venn Diagrams</h1>
+                <p style="color: #555; margin-top: 15px; font-size: 1.4rem;">Sets, Intersections, & Logical Applications</p>
+                <div style="margin-top: 25px; display: inline-block; background: #000; color: #fff; padding: 10px 30px; border-radius: 50px; font-weight: bold; font-family: 'Fredoka'; font-size: 1.1rem;">Standard G.1</div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Objectives -->
+        <div class="slide">
+            <h2>Objectives & Standards</h2>
+            <div class="card" style="width: 100%; max-width: 900px; padding: 40px;">
+                <h3><i class="fa-solid fa-bullseye"></i> Today's Goals:</h3>
+                <ul style="list-style-type: square; padding-left: 20px; margin-top: 20px; font-size: 1.3rem; line-height: 1.8;">
+                    <li>Identify <span class="key-term">Union</span> (&cup;) and <span class="key-term">Intersection</span> (&cap;) regions.</li>
+                    <li>Interpret logical relationships using Venn Diagrams.</li>
+                    <li>Use diagrams to solve real-world problems.</li>
+                    <li>Understand <span class="key-term">Subsets</span> and <span class="key-term">Disjoint Sets</span>.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 3: Vocab - Sets & Elements (FIXED CENTER) -->
+        <div class="slide">
+            <h2>Anatomy of a Venn Diagram</h2>
+            <div class="grid-2">
+                <div class="card" style="justify-content: center; padding: 40px; align-items: center;">
+                    <!-- Venn Visual: Universe Box -->
+                    <div style="width: 300px; height: 300px; border: 3px solid #666; position: relative; background: #f9f9f9; display: flex; justify-content: center; align-items: center;">
+                        <span style="position: absolute; top: 10px; left: 10px; font-weight: bold; color: #666;">U (Universe)</span>
+                        
+                        <!-- Circle A Centered -->
+                        <div style="width: 180px; height: 180px; border: 3px solid var(--set-a); border-radius: 50%; display: flex; flex-direction: column; justify-content: center; align-items: center; background: rgba(59, 130, 246, 0.2); position: relative;">
+                            <span style="font-size: 2rem; color: var(--set-a); font-weight: bold; margin-bottom: 5px;">A</span>
+                            <span style="font-size: 1.2rem; font-weight: bold;">&bull; x</span>
+                        </div>
+
+                        <!-- Element Outside A but Inside U -->
+                        <div style="position: absolute; bottom: 20px; right: 20px; font-weight: bold; color: #444;">
+                            &bull; y (Not in A)
+                        </div>
+                    </div>
+                </div>
+                <div class="vocab-box">
+                    <p style="margin-bottom: 15px;"><span class="key-term">Set (A):</span> A collection of objects (the circle).</p>
+                    <p style="margin-bottom: 15px;"><span class="key-term">Element (x):</span> An object inside the set.</p>
+                    <p style="margin-bottom: 15px;"><span class="key-term">Universe (U):</span> The box containing <strong>everything</strong>.</p>
+                    <p><span class="key-term">Complement (~A):</span> Everything in the box but <strong>outside</strong> the circle (like point y).</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Union vs Intersection -->
+        <div class="slide">
+            <h2>Union vs. Intersection</h2>
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-title">Union (A &cup; B)</div>
+                    <p style="text-align: center;">"Everything in A <strong>OR</strong> B"</p>
+                    <div class="venn-container">
+                        <div class="circle circle-a" style="background: rgba(59, 130, 246, 0.6);"></div>
+                        <div class="circle circle-b" style="background: rgba(239, 68, 68, 0.6);"></div>
+                    </div>
+                    <p style="text-align: center; margin-top: 10px;">(All shaded)</p>
+                </div>
+                <div class="card">
+                    <div class="card-title">Intersection (A &cap; B)</div>
+                    <p style="text-align: center;">"Everything in A <strong>AND</strong> B"</p>
+                    <div class="venn-container">
+                        <div class="circle circle-a"></div>
+                        <div class="circle circle-b"></div>
+                        <!-- Overlap Patch -->
+                        <div style="position: absolute; width: 60px; height: 120px; left: 120px; top: 40px; background: var(--overlap); border-radius: 50%; opacity: 0.8;"></div>
+                    </div>
+                    <p style="text-align: center; margin-top: 10px;">(Only the middle)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Guided Practice - Symbols -->
+        <div class="slide">
+            <h2>Guided Practice: Shading</h2>
+            <div style="width: 100%; max-width: 900px;">
+                <p style="font-size: 1.3rem; margin-bottom: 20px;">Match the symbol to the meaning.</p>
+                
+                <div class="guided-row">
+                    <div style="font-size: 1.4rem;">1. A &cup; B</div>
+                    <button class="reveal-btn" onclick="document.getElementById('ans1').style.display='block'; this.style.display='none';">Reveal</button>
+                    <div id="ans1" style="display: none; text-align: right; font-size: 1.4rem;">
+                        <strong>Union (OR)</strong> - Shade Everything.
+                    </div>
+                </div>
+                
+                <div class="guided-row">
+                    <div style="font-size: 1.4rem;">2. A &cap; B</div>
+                    <button class="reveal-btn" onclick="document.getElementById('ans2').style.display='block'; this.style.display='none';">Reveal</button>
+                    <div id="ans2" style="display: none; text-align: right; font-size: 1.4rem;">
+                        <strong>Intersection (AND)</strong> - Shade Middle.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: The Complement (Not) -->
+        <div class="slide">
+            <h2>The Complement (~A or A')</h2>
+            <div class="vocab-box">
+                <h3 style="color: #000;">Definition</h3>
+                <p style="margin-top: 10px;">Everything in the Universe that is <span class="key-term">NOT</span> in Set A.</p>
+            </div>
+            
+            <div class="card" style="width: 500px; height: 300px; background: #ddd; position: relative; display: flex; align-items: center; justify-content: center;">
+                <span style="position: absolute; top: 10px; left: 10px; font-weight: bold;">U (Shaded)</span>
+                <!-- Unshaded Circle A -->
+                <div style="width: 180px; height: 180px; background: #fff; border: 3px solid #000; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                    <span style="font-size: 2rem; font-weight: bold;">A</span>
+                </div>
+            </div>
+            <p style="margin-top: 15px; font-size: 1.2rem;">Shade the box, leave the circle blank.</p>
+        </div>
+
+        <!-- Slide 7: Logical Relationships -->
+        <div class="slide">
+            <h2>Logical Relationships</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; width: 100%;">
+                
+                <!-- Subset -->
+                <div class="card" style="padding: 15px;">
+                    <div class="card-title">Subset</div>
+                    <div style="position: relative; height: 150px; display: flex; justify-content: center; align-items: center;">
+                        <div style="width: 140px; height: 140px; border: 3px solid var(--set-b); border-radius: 50%; display: flex; justify-content: center; align-items: center;">
+                            <div style="width: 80px; height: 80px; border: 3px solid var(--set-a); border-radius: 50%; background: #e0f2fe;"></div>
+                        </div>
+                    </div>
+                    <p style="text-align: center; font-size: 1rem;">"All A are B"</p>
+                </div>
+
+                <!-- Overlap -->
+                <div class="card" style="padding: 15px;">
+                    <div class="card-title">Overlap</div>
+                    <div style="position: relative; height: 150px;">
+                        <div style="position: absolute; width: 100px; height: 100px; border: 3px solid var(--set-a); border-radius: 50%; left: 10px; top: 25px;"></div>
+                        <div style="position: absolute; width: 100px; height: 100px; border: 3px solid var(--set-b); border-radius: 50%; right: 10px; top: 25px;"></div>
+                    </div>
+                    <p style="text-align: center; font-size: 1rem;">"Some A are B"</p>
+                </div>
+
+                <!-- Disjoint -->
+                <div class="card" style="padding: 15px;">
+                    <div class="card-title">Disjoint</div>
+                    <div style="position: relative; height: 150px; display: flex; justify-content: space-between; align-items: center; padding: 0 10px;">
+                        <div style="width: 80px; height: 80px; border: 3px solid var(--set-a); border-radius: 50%;"></div>
+                        <div style="width: 80px; height: 80px; border: 3px solid var(--set-b); border-radius: 50%;"></div>
+                    </div>
+                    <p style="text-align: center; font-size: 1rem;">"No A are B"</p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Slide 8: Guided Practice - Reading -->
+        <div class="slide">
+            <h2>Reading Venn Diagrams</h2>
+            <div style="display: flex; gap: 40px; align-items: center; width: 100%; max-width: 1000px;">
+                <!-- Diagram -->
+                <div style="position: relative; width: 300px; height: 200px;">
+                    <div class="circle circle-a" style="opacity: 1; background: none; display: block;">
+                        <span style="position: absolute; left: 40px; top: 60px;">10</span>
+                    </div>
+                    <div class="circle circle-b" style="opacity: 1; background: none; display: block;">
+                        <span style="position: absolute; right: 40px; top: 60px;">20</span>
+                    </div>
+                    <span style="position: absolute; left: 135px; top: 80px; font-weight: bold;">5</span>
+                </div>
+
+                <!-- Questions -->
+                <div style="flex: 1;">
+                    <p style="margin-bottom: 15px;"><strong>A = Soccer, B = Tennis</strong></p>
+                    <div class="guided-row">
+                        <div>1. How many play BOTH?</div>
+                        <button class="reveal-btn" onclick="document.getElementById('ans3').style.display='block'; this.style.display='none';">Reveal</button>
+                        <div id="ans3" style="display: none;"><strong>5</strong></div>
+                    </div>
+                    <div class="guided-row">
+                        <div>2. How many play Soccer?</div>
+                        <button class="reveal-btn" onclick="document.getElementById('ans4').style.display='block'; this.style.display='none';">Reveal</button>
+                        <div id="ans4" style="display: none;"><strong>15</strong> (10+5)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: 3-Circle Venn Diagrams (REBUILT & FIXED) -->
+        <div class="slide">
+            <h2>Three Sets Overlap</h2>
+            <p style="margin-bottom: 20px;">Analyzing 3 overlapping categories (A, B, C).</p>
+            
+            <div class="venn-3-container">
+                <!-- Circle A (Top Center) -->
+                <div class="circle-3 c3-top">
+                    <span style="position: absolute; top: 10px; font-weight: bold; color: var(--set-a);">A</span>
+                </div>
+                
+                <!-- Circle B (Bottom Left) -->
+                <div class="circle-3 c3-left">
+                    <span style="position: absolute; bottom: 30px; left: 20px; font-weight: bold; color: var(--set-b);">B</span>
+                </div>
+                
+                <!-- Circle C (Bottom Right) -->
+                <div class="circle-3 c3-right">
+                    <span style="position: absolute; bottom: 30px; right: 25px; font-weight: bold; color: var(--set-c);">C</span>
+                </div>
+
+                <!-- Labels for Regions -->
+                <div style="position: absolute; top: 152px; left: 160px; transform: translate(-50%, -50%); font-weight: bold; font-size: 0.85rem; z-index: 10;">
+                    All 3
+                </div>
+            </div>
+            
+            <p style="margin-top: 10px;">The center region represents A &cap; B &cap; C</p>
+        </div>
+
+        <!-- Slide 10: Guided Practice - 3 Circles -->
+        <div class="slide">
+            <h2>Locating Regions (3 Sets)</h2>
+            <div style="width: 100%; max-width: 900px;">
+                <p style="font-size: 1.3rem; margin-bottom: 20px;">Where is: "In A and B, but NOT C"?</p>
+                
+                <div class="guided-row">
+                    <div style="font-size: 1.4rem;">Find region: (A &cap; B &cap; ~C)</div>
+                    <button class="reveal-btn" onclick="document.getElementById('ans5').style.display='block'; this.style.display='none';">Reveal</button>
+                    <div id="ans5" style="display: none; text-align: right; font-size: 1.3rem;">
+                        The top overlap between A and B, <br><strong>excluding</strong> the center triangle.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Independent Practice Level 1 -->
+        <div class="slide">
+            <h2 class="level-header lh-1">Independent Practice: Level 1</h2>
+            <p style="margin-bottom: 20px;">Shading & Symbols</p>
+            <div class="practice-container">
+                <div class="practice-problem">
+                    1) Draw a Venn Diagram and shade A &cup; B.
+                </div>
+                <div class="practice-problem">
+                    2) Draw a Venn Diagram and shade ~A.
+                </div>
+                <div class="practice-problem">
+                    3) What region represents "Neither A nor B"?
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12: Independent Practice Level 2 -->
+        <div class="slide">
+            <h2 class="level-header lh-2">Independent Practice: Level 2</h2>
+            <p style="margin-bottom: 20px;">Calculations</p>
+            <div class="practice-container">
+                <div class="practice-problem">
+                    1) Set A has 20 items. Set B has 15. Intersection is 5. Find Total.
+                </div>
+                <div class="practice-problem">
+                    2) Given 50 students total. 30 take Math, 25 take English. 10 take both. How many take neither?
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 13: Independent Practice Level 3 -->
+        <div class="slide">
+            <h2 class="level-header lh-3">Independent Practice: Level 3</h2>
+            <p style="margin-bottom: 20px;">Logic Translation</p>
+            <div class="practice-container">
+                <div class="practice-problem">
+                    1) Draw the diagram for: "Some dogs are brown." "All brown things are objects."
+                </div>
+                <div class="practice-problem">
+                    2) Shade the region: (A &cup; B) &cap; C.
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 14: What's Next? -->
+        <div class="slide">
+            <div class="grid-2">
+                <!-- Checklist -->
+                <div class="card">
+                    <div class="card-title">What's Next?</div>
+                    <div style="display: flex; flex-direction: column; height: 100%; padding-left: 10px;">
+                        <div class="checklist-item">
+                            <div class="check-box checked"><i class="fa-solid fa-check"></i></div> 
+                            Topic Warm Up
+                        </div>
+                        <div class="checklist-item">
+                            <div class="check-box checked"><i class="fa-solid fa-check"></i></div> 
+                            Lesson Slides
+                        </div>
+                        <div class="checklist-item"><div class="check-box"></div> Practice Worksheet</div>
+                        <div class="checklist-item"><div class="check-box"></div> IXL Practice</div>
+                        <div class="checklist-item"><div class="check-box"></div> Topic 4 Exit Ticket</div>
+                    </div>
+                </div>
+
+                <!-- IXL Practice -->
+                <div class="card" style="background: #fcfcfc;">
+                    <div class="card-title">IXL Practice</div>
+                    <div style="text-align: center; color: #555; margin-bottom: 20px; font-weight: bold;">Standard G.1</div>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <a href="https://www.ixl.com/math/geometry/sort-polygons-into-venn-diagrams" target="_blank" class="ixl-btn ixl-green">
+                            <span>Sort Polygons</span>
+                            <span style="margin-left: auto; background: #eee; padding: 2px 8px; border-radius: 4px; font-size: 0.9rem;">Review</span>
+                        </a>
+                        <a href="https://www.ixl.com/math/geometry/use-venn-diagrams-to-solve-problems" target="_blank" class="ixl-btn ixl-orange">
+                            <span>Solve Problems</span>
+                            <span style="margin-left: auto; background: #eee; padding: 2px 8px; border-radius: 4px; font-size: 0.9rem;">Prob</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="nav-bar">
+            <button id="prevBtn" class="nav-btn"><i class="fa-solid fa-arrow-left"></i></button>
+            <div class="slide-counter">1 / 14</div>
+            <button id="nextBtn" class="nav-btn"><i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const counter = document.querySelector('.slide-counter');
+        let currentSlide = 0;
+
+        function updateSlides() {
+            slides.forEach((slide, index) => {
+                slide.classList.remove('active');
+                if (index === currentSlide) {
+                    slide.classList.add('active');
+                }
+            });
+            counter.textContent = `${currentSlide + 1} / ${slides.length}`;
+            
+            prevBtn.style.opacity = currentSlide === 0 ? 0.3 : 1;
+            nextBtn.style.opacity = currentSlide === slides.length - 1 ? 0.3 : 1;
+        }
+
+        nextBtn.addEventListener('click', () => {
+            if (currentSlide < slides.length - 1) {
+                currentSlide++;
+                updateSlides();
+            }
+        });
+
+        prevBtn.addEventListener('click', () => {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateSlides();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' && currentSlide < slides.length - 1) {
+                currentSlide++;
+                updateSlides();
+            }
+            if (e.key === 'ArrowLeft' && currentSlide > 0) {
+                currentSlide--;
+                updateSlides();
+            }
+        });
+
+        updateSlides();
+    </script>
+    <footer style="margin-top: 2rem; color: #9ca3af; font-size: 0.9rem;">
+        &copy; 2026 Aly Hatfield. All rights reserved.
+    </footer>
+</body>
+</html>

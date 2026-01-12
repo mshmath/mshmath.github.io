@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Venn Diagrams & Applications Drill</title>
+    
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* GLOBAL SETTINGS */
+        * {
+            box-sizing: border-box;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        @page {
+            size: letter;
+            margin: 0.5in;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+            font-family: 'Quicksand', sans-serif;
+            color: #000;
+            line-height: 1.5;
+        }
+
+        /* PAGE CONTAINER */
+        .page {
+            width: 8.5in;
+            min-height: 11in;
+            height: auto;
+            margin: 20px auto;
+            background: white;
+            padding: 0.5in;
+            position: relative;
+            page-break-after: always;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        /* HEADER */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            border-bottom: 3px solid #000;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+
+        .title-group h1 {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 2rem;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            line-height: 1.2;
+        }
+
+        .title-group h2 {
+            font-size: 1.1rem;
+            margin: 5px 0 0 0;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .name-group {
+            text-align: right;
+            font-weight: 700;
+            font-size: 1rem;
+            min-width: 150px;
+        }        
+
+        .name-line {
+            display: inline-block;
+            width: 150px;
+            border-bottom: 2px solid #000;
+            margin-left: 5px;
+        }
+
+        /* NOTES SECTION */
+        .cheat-sheet-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .note-card {
+            border: 2px solid #000;
+            border-radius: 8px;
+            padding: 10px;
+            background: #fff;
+            text-align: center;
+        }
+
+        .note-title {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .note-desc {
+            font-size: 0.9rem;
+            line-height: 1.3;
+            margin-bottom: 8px;
+        }
+
+        .key-term {
+            font-weight: 800;
+            text-decoration: underline;
+        }
+
+        /* MATH SYMBOLS */
+        .math-sym { font-family: 'Times New Roman', serif; font-weight: bold; font-size: 1.2rem; }
+
+        /* PROBLEM SECTIONS */
+        .section-title {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.3rem;
+            background: #f0f0f0;
+            padding: 8px 15px;
+            border-radius: 6px;
+            border: 2px solid #000;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .instruction-line {
+            font-size: 1.1rem; 
+            margin-bottom: 15px; 
+            font-style: italic;
+            color: #333;
+            font-weight: 600;
+        }
+
+        /* GRIDS */
+        .problem-grid {
+            display: grid;
+            gap: 20px 30px; 
+            margin-bottom: 20px;
+        }
+        .cols-2 { grid-template-columns: 1fr 1fr; }
+        .cols-1 { grid-template-columns: 1fr; }
+
+        .problem-item {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            margin-bottom: 12px;
+            break-inside: avoid;
+        }
+
+        .p-content {
+            display: flex;
+            gap: 10px;
+            align-items: baseline;
+        }
+
+        .p-num { font-weight: 700; min-width: 25px; font-size: 1.1rem;}
+        .p-text { font-size: 1.1rem; line-height: 1.4; flex: 1; }
+        
+        .p-writing-line {
+            border-bottom: 2px solid #000;
+            height: 25px;
+            width: 100%;
+            margin-top: 5px;
+        }
+
+        /* Visuals for Problems */
+        .problem-visual {
+            width: 100%;
+            max-width: 250px;
+            margin: 10px auto;
+            display: block;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 8px;
+            background: #fff;
+        }
+
+        /* FOOTER */
+        .footer {
+            margin-top: auto;
+            width: 100%;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #555;
+            border-top: 1px solid #ccc;
+            padding-top: 10px;
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+        }
+
+        /* ANSWER KEY */
+        .key-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            font-size: 0.9rem;
+        }
+        .key-item { 
+            border-bottom: 1px solid #eee; 
+            padding: 5px 0; 
+        }
+        .key-ans { font-weight: 700; text-decoration: underline; }
+
+        @media print {
+            body { background: none; padding: 0; }
+            .page { margin: 0; box-shadow: none; border: none; width: 100%; min-height: auto; }
+            .footer { position: relative; bottom: auto; margin-top: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ================= PAGE 1: NOTES & STUDY GUIDE ================= -->
+    <div class="page">
+        <div class="header">
+            <div class="title-group">
+                <h1>Logic: Topic 4</h1>
+                <h2>Venn Diagrams & Applications</h2>
+            </div>
+            <div class="name-group">
+                Name: <span class="name-line"></span><br>
+                Date: <span class="name-line"></span>
+            </div>
+        </div>
+
+        <!-- VISUAL CHEAT SHEET -->
+        <div class="cheat-sheet-grid">
+            
+            <!-- Union -->
+            <div class="note-card">
+                <div class="note-title">Union (&cup;)</div>
+                <div class="note-desc">"A <strong>OR</strong> B"<br>(Shade Everything)</div>
+                <svg width="100" height="70" viewBox="0 0 100 70">
+                    <circle cx="35" cy="35" r="30" fill="#bbb" stroke="black" stroke-width="2" />
+                    <circle cx="65" cy="35" r="30" fill="#bbb" stroke="black" stroke-width="2" opacity="0.8" />
+                    <text x="25" y="40" font-family="sans-serif" font-size="12" font-weight="bold">A</text>
+                    <text x="70" y="40" font-family="sans-serif" font-size="12" font-weight="bold">B</text>
+                </svg>
+            </div>
+
+            <!-- Intersection -->
+            <div class="note-card">
+                <div class="note-title">Intersection (&cap;)</div>
+                <div class="note-desc">"A <strong>AND</strong> B"<br>(Shade Middle)</div>
+                <svg width="100" height="70" viewBox="0 0 100 70">
+                    <defs>
+                        <clipPath id="cut-off-left">
+                            <circle cx="65" cy="35" r="30" />
+                        </clipPath>
+                    </defs>
+                    <circle cx="35" cy="35" r="30" fill="none" stroke="black" stroke-width="2" />
+                    <circle cx="65" cy="35" r="30" fill="none" stroke="black" stroke-width="2" />
+                    <!-- Intersection Shading -->
+                    <circle cx="35" cy="35" r="30" fill="#666" clip-path="url(#cut-off-left)" />
+                    <text x="20" y="40" font-family="sans-serif" font-size="12" font-weight="bold">A</text>
+                    <text x="75" y="40" font-family="sans-serif" font-size="12" font-weight="bold">B</text>
+                </svg>
+            </div>
+
+            <!-- Complement -->
+            <div class="note-card">
+                <div class="note-title">Complement (~)</div>
+                <div class="note-desc">"<strong>NOT</strong> A"<br>(Shade Outside)</div>
+                <svg width="100" height="70" viewBox="0 0 100 70">
+                    <rect x="2" y="2" width="96" height="66" fill="#bbb" stroke="black" stroke-width="2" />
+                    <circle cx="50" cy="35" r="25" fill="white" stroke="black" stroke-width="2" />
+                    <text x="45" y="40" font-family="sans-serif" font-size="12" font-weight="bold">A</text>
+                </svg>
+            </div>
+
+        </div>
+
+        <!-- LOGICAL RELATIONSHIPS -->
+        <div style="border: 2px solid #000; border-radius: 8px; padding: 15px; margin-bottom: 25px;">
+            <h3 style="font-family: 'Fredoka'; margin: 0 0 10px 0; text-transform: uppercase; font-size: 1.1rem;">Relationships to Know</h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; text-align: center;">
+                <div>
+                    <strong>Subset</strong><br>
+                    "All A are B"<br>
+                    (Circle inside Circle)
+                </div>
+                <div style="border-left: 1px solid #ccc; border-right: 1px solid #ccc;">
+                    <strong>Disjoint</strong><br>
+                    "No A are B"<br>
+                    (Circles don't touch)
+                </div>
+                <div>
+                    <strong>Overlap</strong><br>
+                    "Some A are B"<br>
+                    (Standard Venn)
+                </div>
+            </div>
+        </div>
+
+        <!-- COUNTING FORMULA -->
+        <div class="section-title">The Counting Formula</div>
+        <div style="border: 2px dashed #000; padding: 15px; text-align: center; font-size: 1.1rem; border-radius: 10px; font-weight: bold;">
+            Total = (A only) + (B only) + (Both) + (Neither)
+        </div>
+
+        <div class="footer">• © 2026 Aly Hatfield. All Rights Reserved. •</div>
+    </div>
+
+    <!-- ================= PAGE 2: LEVELS 1 & 2 ================= -->
+    <div class="page">
+        <div class="header">
+            <div class="title-group">
+                <h1>Venn Drill</h1>
+                <h2>Levels 1-2: Symbols & Regions</h2>
+            </div>
+        </div>
+
+        <!-- LEVEL 1 -->
+        <div class="section-title">Level 1: Translating Symbols</div>
+        <div class="instruction-line">Identify the meaning (Union, Intersection, Complement) or description.</div>
+        
+        <div class="problem-grid cols-2">
+            <div class="problem-item">
+                <div class="p-content"><span class="p-num">1.</span> <span class="p-text"><span class="math-sym">A &cup; B</span></span></div>
+                <div class="p-writing-line"></div>
+            </div>
+            <div class="problem-item">
+                <div class="p-content"><span class="p-num">2.</span> <span class="p-text"><span class="math-sym">A &cap; B</span></span></div>
+                <div class="p-writing-line"></div>
+            </div>
+            <div class="problem-item">
+                <div class="p-content"><span class="p-num">3.</span> <span class="p-text"><span class="math-sym">~A</span></span></div>
+                <div class="p-writing-line"></div>
+            </div>
+            <div class="problem-item">
+                <div class="p-content"><span class="p-num">4.</span> <span class="p-text"><span class="math-sym">~B</span></span></div>
+                <div class="p-writing-line"></div>
+            </div>
+            <div class="problem-item">
+                <div class="p-content"><span class="p-num">5.</span> <span class="p-text">"A or B"</span></div>
+                <div class="p-writing-line"></div>
+            </div>
+            <div class="problem-item">
+                <div class="p-content"><span class="p-num">6.</span> <span class="p-text">"A and B"</span></div>
+                <div class="p-writing-line"></div>
+            </div>
+            <div class="problem-item">
+                <div class="p-content"><span class="p-num">7.</span> <span class="p-text">"Not A"</span></div>
+                <div class="p-writing-line"></div>
+            </div>
+            <div class="problem-item">
+                <div class="p-content"><span class="p-num">8.</span> <span class="p-text"><span class="math-sym">~(A &cup; B)</span> (Neither)</span></div>
+                <div class="p-writing-line"></div>
+            </div>
+        </div>
+
+        <!-- LEVEL 2 -->
+        <div class="section-title">Level 2: Describing Regions</div>
+        <div class="instruction-line">Refer to the diagram below to identify the region (Region 1, 2, 3, or 4).</div>
+
+        <!-- Diagram for Reference (UPSCALED) -->
+        <div style="text-align: center; margin-bottom: 30px; margin-top: 20px;">
+            <svg width="450" height="280" viewBox="0 0 450 280">
+                <!-- Universe Box -->
+                <rect x="2" y="2" width="446" height="276" fill="none" stroke="black" stroke-width="3" />
+                <text x="15" y="30" font-family="sans-serif" font-size="16" font-weight="bold">Universe</text>
+                
+                <!-- Circle A -->
+                <circle cx="160" cy="140" r="100" fill="none" stroke="black" stroke-width="3" />
+                <text x="80" y="150" font-family="sans-serif" font-size="28" font-weight="bold">1</text>
+                <text x="70" y="50" font-family="sans-serif" font-size="20" font-weight="bold">Set A</text>
+                
+                <!-- Circle B -->
+                <circle cx="290" cy="140" r="100" fill="none" stroke="black" stroke-width="3" />
+                <text x="350" y="150" font-family="sans-serif" font-size="28" font-weight="bold">3</text>
+                <text x="350" y="50" font-family="sans-serif" font-size="20" font-weight="bold">Set B</text>
+                
+                <!-- Middle -->
+                <text x="215" y="150" font-family="sans-serif" font-size="28" font-weight="bold">2</text>
+                
+                <!-- Outside -->
+                <text x="410" y="250" font-family="sans-serif" font-size="28" font-weight="bold">4</text>
+            </svg>
+        </div>
+
+        <div class="problem-grid cols-1">
+            <div class="problem-item">
+                <div class="p-content"><span class="p-num">9.</span> <span class="p-text">Which region represents <span class="math-sym">A &cap; B</span>?</span></div>
+                <div class="p-writing-line"></div>
+            </div>
+            <div class="problem-item">
+                <div class="p-content"><span class="p-num">10.</span> <span class="p-text">Which region is "In A only"?</span></div>
+                <div class="p-writing-line"></div>
+            </div>
+            <div class="problem-item">
+                <div class="p-content"><span class="p-num">11.</span> <span class="p-text">Which region is "In B but not A"?</span></div>
+                <div class="p-writing-line"></div>
+            </div>
+            <div class="problem-item">
+                <div class="p-content"><span class="p-num">12.</span> <span class="p-text">Which region represents <span class="math-sym">~(A &cup; B)</span>?</span></div>
+                <div class="p-writing-line"></div>
+            </div>
+            <div class="problem-item">
+                <div class="p-content"><span class="p-num">13.</span> <span class="p-text">If A is Soccer and B is Tennis, who plays both?</span></div>
+                <div class="p-writing-line"></div>
+            </div>
+            <div class="problem-item">
+                <div class="p-content"><span class="p-num">14.</span> <span class="p-text">Who plays neither sport?</span></div>
+                <div class="p-writing-line"></div>
+            </div>
+        </div>
+
+        <div class="footer">• © 2026 Aly Hatfield. All Rights Reserved. •</div>
+    </div>
+
+    <!-- ================= PAGE 3: LEVELS 3 & 4 ================= -->
+    <div class="page">
+        <div class="header">
+            <div class="title-group">
+                <h1>Venn Drill</h1>
+                <h2>Levels 3-4: Applications</h2>
+            </div>
+        </div>
+
+        <!-- LEVEL 3 -->
+        <div class="section-title">Level 3: Solving Word Problems</div>
+        <div class="instruction-line">Use the diagrams to calculate totals.</div>
+
+        <div style="display: flex; gap: 30px; align-items: flex-start; margin-bottom: 25px;">
+            <!-- Diagram for Data Set 1 (UPSCALED) -->
+            <svg width="320" height="200" viewBox="0 0 320 200" style="border: 2px solid #000; background: #fff; border-radius: 8px; flex-shrink: 0;">
+                <circle cx="110" cy="100" r="75" fill="none" stroke="black" stroke-width="2" />
+                <circle cx="210" cy="100" r="75" fill="none" stroke="black" stroke-width="2" />
+                
+                <text x="60" y="110" font-weight="bold" font-size="20">10</text> <!-- A Only -->
+                <text x="150" y="110" font-weight="bold" font-size="20">5</text> <!-- Middle -->
+                <text x="240" y="110" font-weight="bold" font-size="20">7</text> <!-- B Only -->
+                
+                <text x="30" y="30" font-weight="bold" font-size="16">Art (A)</text>
+                <text x="230" y="30" font-weight="bold" font-size="16">Music (B)</text>
+                
+                <text x="280" y="180" font-weight="bold" font-size="20">8</text> <!-- Outside -->
+            </svg>
+            
+            <div style="font-size: 1.2rem; flex: 1; padding-top: 10px;">
+                <strong>Problem Set A:</strong><br>
+                Look at the Venn Diagram for Art and Music classes to answer questions 15-18.
+                <br><br>
+                Total Students in diagram: _____
+            </div>
+        </div>
+
+        <div class="problem-grid cols-2">
+            <div class="problem-item">
+                <div class="p-content"><span class="p-num">15.</span> <span class="p-text">How many take Art TOTAL? (10+5)</span></div>
+                <div class="p-writing-line"></div>
+            </div>
+            <div class="problem-item">
+                <div class="p-content"><span class="p-num">16.</span> <span class="p-text">How many take Music TOTAL? (7+5)</span></div>
+                <div class="p-writing-line"></div>
+            </div>
+            <div class="problem-item">
+                <div class="p-content"><span class="p-num">17.</span> <span class="p-text">How many take Art OR Music?</span></div>
+                <div class="p-writing-line"></div>
+            </div>
+            <div class="problem-item">
+                <div class="p-content"><span class="p-num">18.</span> <span class="p-text">Total number of students surveyed?</span></div>
+                <div class="p-writing-line"></div>
+            </div>
+        </div>
+
+        <div class="instruction-line" style="margin-top: 30px; border-top: 2px dashed #ccc; padding-top: 20px;">
+            <strong>Problem Set B:</strong> 50 People Surveyed. 20 like Vanilla, 15 like Chocolate, 10 like Both.
+        </div>
+
+        <div class="problem-grid cols-2">
+            <div class="problem-item">
+                <div class="p-content"><span class="p-num">19.</span> <span class="p-text">Vanilla Only? (20 - 10)</span></div>
+                <div class="p-writing-line"></div>
+            </div>
+            <div class="problem-item">
+                <div class="p-content"><span class="p-num">20.</span> <span class="p-text">Chocolate Only? (15 - 10)</span></div>
+                <div class="p-writing-line"></div>
+            </div>
+            <div class="problem-item">
+                <div class="p-content"><span class="p-num">21.</span> <span class="p-text">Like Neither? (50 - Union)</span></div>
+                <div class="p-writing-line"></div>
+            </div>
+            <div class="problem-item">
+                <div class="p-content"><span class="p-num">22.</span> <span class="p-text">Probability of liking Both?</span></div>
+                <div class="p-writing-line"></div>
+            </div>
+        </div>
+
+        <!-- LEVEL 4 -->
+        <div class="section-title">Level 4: Geometric Logic</div>
+        <div class="instruction-line">Identify the relationship: Subset, Disjoint, or Overlap.</div>
+        
+        <div class="problem-grid cols-1">
+            <div class="problem-item">
+                <div class="p-content"><span class="p-num">23.</span> <span class="p-text">Set Q = Quadrilaterals, Set P = Parallelograms.</span></div>
+                <div class="p-writing-line"></div>
+            </div>
+            <div class="problem-item">
+                <div class="p-content"><span class="p-num">24.</span> <span class="p-text">Set T = Triangles, Set C = Circles.</span></div>
+                <div class="p-writing-line"></div>
+            </div>
+            <div class="problem-item">
+                <div class="p-content"><span class="p-num">25.</span> <span class="p-text">Set E = Equilateral Triangles, Set I = Isosceles Triangles.</span></div>
+                <div class="p-writing-line"></div>
+            </div>
+            <div class="problem-item">
+                <div class="p-content"><span class="p-num">26.</span> <span class="p-text">Set R = Rectangles, Set H = Rhombi. (Intersection is Squares).</span></div>
+                <div class="p-writing-line"></div>
+            </div>
+        </div>
+
+        <div class="problem-grid cols-2">
+            <div class="problem-item">
+                <div class="p-content"><span class="p-num">27.</span> <span class="p-text">Where does a Square go in Q26 diagram?</span></div>
+                <div class="p-writing-line"></div>
+            </div>
+            <div class="problem-item">
+                <div class="p-content"><span class="p-num">28.</span> <span class="p-text">Where does a Trapezoid go in Q23 diagram?</span></div>
+                <div class="p-writing-line"></div>
+            </div>
+            <div class="problem-item">
+                <div class="p-content"><span class="p-num">29.</span> <span class="p-text">True/False: <span class="math-sym">P &sub; Q</span> (P is a subset of Q).</span></div>
+                <div class="p-writing-line"></div>
+            </div>
+            <div class="problem-item">
+                <div class="p-content"><span class="p-num">30.</span> <span class="p-text">True/False: <span class="math-sym">T &cap; C</span> is empty.</span></div>
+                <div class="p-writing-line"></div>
+            </div>
+            <div class="problem-item">
+                <div class="p-content"><span class="p-num">31.</span> <span class="p-text">If x is in <span class="math-sym">A &cap; B</span>, is it in A? (Yes/No)</span></div>
+                <div class="p-writing-line"></div>
+            </div>
+            <div class="problem-item">
+                <div class="p-content"><span class="p-num">32.</span> <span class="p-text">If x is in <span class="math-sym">A &cup; B</span>, is it definitely in A? (Yes/No)</span></div>
+                <div class="p-writing-line"></div>
+            </div>
+        </div>
+
+        <div class="footer">• © 2026 Aly Hatfield. All Rights Reserved. •</div>
+    </div>
+
+    <!-- ================= PAGE 4: ANSWER KEY ================= -->
+    <div class="page">
+        <div class="header">
+            <div class="title-group">
+                <h1>Answer Key</h1>
+                <h2>Teacher Copy</h2>
+            </div>
+        </div>
+
+        <div class="key-grid">
+            <div class="key-item">1. <span class="key-ans">Union</span></div>
+            <div class="key-item">2. <span class="key-ans">Intersection</span></div>
+            <div class="key-item">3. <span class="key-ans">Complement A</span></div>
+            <div class="key-item">4. <span class="key-ans">Complement B</span></div>
+            <div class="key-item">5. <span class="key-ans">Union</span></div>
+            <div class="key-item">6. <span class="key-ans">Intersection</span></div>
+            <div class="key-item">7. <span class="key-ans">~A</span></div>
+            <div class="key-item">8. <span class="key-ans">Outside</span></div>
+            
+            <div class="key-item">9. <span class="key-ans">Region 2</span></div>
+            <div class="key-item">10. <span class="key-ans">Region 1</span></div>
+            <div class="key-item">11. <span class="key-ans">Region 3</span></div>
+            <div class="key-item">12. <span class="key-ans">Region 4</span></div>
+            <div class="key-item">13. <span class="key-ans">Region 2</span></div>
+            <div class="key-item">14. <span class="key-ans">Region 4</span></div>
+
+            <div class="key-item">15. <span class="key-ans">15</span></div>
+            <div class="key-item">16. <span class="key-ans">12</span></div>
+            <div class="key-item">17. <span class="key-ans">22 (10+5+7)</span></div>
+            <div class="key-item">18. <span class="key-ans">30</span></div>
+            <div class="key-item">19. <span class="key-ans">10</span></div>
+            <div class="key-item">20. <span class="key-ans">5</span></div>
+            <div class="key-item">21. <span class="key-ans">25</span></div>
+            <div class="key-item">22. <span class="key-ans">10/50 (1/5)</span></div>
+
+            <div class="key-item">23. <span class="key-ans">Subset</span></div>
+            <div class="key-item">24. <span class="key-ans">Disjoint</span></div>
+            <div class="key-item">25. <span class="key-ans">Subset (E inside I)</span></div>
+            <div class="key-item">26. <span class="key-ans">Overlap</span></div>
+            <div class="key-item">27. <span class="key-ans">Intersection</span></div>
+            <div class="key-item">28. <span class="key-ans">Q but not P</span></div>
+            <div class="key-item">29. <span class="key-ans">True</span></div>
+            <div class="key-item">30. <span class="key-ans">True</span></div>
+            <div class="key-item">31. <span class="key-ans">Yes</span></div>
+            <div class="key-item">32. <span class="key-ans">No</span></div>
+        </div>
+
+        <div class="footer">• © 2026 Aly Hatfield. All Rights Reserved. •</div>
+    </div>
+
+</body>
+</html>

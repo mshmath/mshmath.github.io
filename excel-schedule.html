@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Class Schedule</title>
+    
+    <!-- 1. FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* 2. GLOBAL STYLES */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            font-family: 'Quicksand', sans-serif;
+            color: #222;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* PAGE CONTAINER */
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            margin: 40px auto;
+            padding: 20px;
+            flex: 1;
+        }
+
+        /* HEADER */
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px 20px;
+            background: white;
+            border: 3px solid #000;
+            border-radius: 16px;
+            box-shadow: 8px 8px 0px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 2.8rem;
+            margin: 0 0 10px 0;
+            color: #000;
+            line-height: 1.1;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #555;
+            font-weight: 600;
+        }
+
+        /* GRID LAYOUT */
+        .schedule-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        /* CARD STYLE */
+        .schedule-card {
+            background: white;
+            border: 3px solid #000;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 6px 6px 0px rgba(0,0,0,0.1);
+        }
+
+        /* UPDATED: Ink-Friendly Header */
+        .card-header {
+            background: #fff;
+            color: #000;
+            padding: 15px 20px;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.5rem;
+            text-align: center;
+            border-bottom: 3px solid #000;
+            font-weight: 700;
+        }
+
+        /* LIST STYLES */
+        .schedule-list {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        .schedule-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+            transition: background 0.2s;
+        }
+
+        .schedule-row:last-child {
+            border-bottom: none;
+        }
+
+        .schedule-row:hover {
+            background: #f9f9f9;
+        }
+
+        /* Time & Block Styling */
+        .time-col {
+            font-weight: 700;
+            color: #555;
+            font-size: 0.95rem;
+            width: 45%;
+        }
+
+        .activity-col {
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-align: right;
+            width: 55%;
+            color: #000;
+        }
+
+        /* Special Rows (Breaks/Lunch) - Screen Colors */
+        .row-break {
+            background-color: #fff8e1; /* Light yellow */
+        }
+        .row-break .activity-col { color: #f57f17; }
+
+        .row-lunch {
+            background-color: #e3f2fd; /* Light blue */
+        }
+        .row-lunch .activity-col { color: #1565c0; }
+
+        /* Ms. H's Class List Specifics */
+        .class-row {
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            border-bottom: 2px dashed #ddd;
+        }
+        .class-row:last-child { border-bottom: none; }
+
+        .class-block-label {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1rem;
+            text-transform: uppercase;
+            color: #666;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .class-name {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #000;
+        }
+
+        /* Dot Indicators */
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        .dot-geo { background-color: #4caf50; }
+        .dot-alg { background-color: #2196f3; }
+        .dot-afda { background-color: #9c27b0; }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 40px;
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .schedule-grid { grid-template-columns: 1fr; }
+            h1 { font-size: 2.2rem; }
+        }
+
+        /* PRINT STYLES - Ink Saving */
+        @media print {
+            body { background-color: #fff; }
+            header { box-shadow: none; border: 2px solid #000; }
+            .container { margin: 0; max-width: 100%; padding: 0; }
+            .schedule-card { box-shadow: none; border: 2px solid #000; page-break-inside: avoid; }
+            
+            /* Force white background for colored rows */
+            .row-break, .row-lunch { background-color: transparent !important; border-bottom: 1px dashed #ccc; }
+            
+            /* Force black text */
+            .activity-col, .time-col, .class-block-label, .class-name { color: #000 !important; }
+            
+            footer { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- HEADER -->
+        <header>
+            <h1>Daily Class Schedule</h1>
+            <p class="subtitle">The Excel Center • 2025-2026</p>
+        </header>
+
+        <div class="schedule-grid">
+            
+            <!-- LEFT: BELL SCHEDULE -->
+            <div class="schedule-card">
+                <div class="card-header">Bell Schedule</div>
+                <ul class="schedule-list">
+                    <!-- Block 1 -->
+                    <li class="schedule-row">
+                        <span class="time-col">8:45 AM - 10:15 AM</span>
+                        <span class="activity-col">Block 1</span>
+                    </li>
+                    
+                    <!-- Break -->
+                    <li class="schedule-row row-break">
+                        <span class="time-col">10:15 AM - 10:20 AM</span>
+                        <span class="activity-col">Break</span>
+                    </li>
+                    
+                    <!-- Block 2 -->
+                    <li class="schedule-row">
+                        <span class="time-col">10:20 AM - 11:50 AM</span>
+                        <span class="activity-col">Block 2</span>
+                    </li>
+                    
+                    <!-- Lunch -->
+                    <li class="schedule-row row-lunch">
+                        <span class="time-col">11:50 AM - 12:35 PM</span>
+                        <span class="activity-col">Lunch</span>
+                    </li>
+                    
+                    <!-- Block 3 -->
+                    <li class="schedule-row">
+                        <span class="time-col">12:35 PM - 2:05 PM</span>
+                        <span class="activity-col">Block 3</span>
+                    </li>
+                    
+                    <!-- Break -->
+                    <li class="schedule-row row-break">
+                        <span class="time-col">2:05 PM - 2:10 PM</span>
+                        <span class="activity-col">Break</span>
+                    </li>
+                    
+                    <!-- Block 4 -->
+                    <li class="schedule-row">
+                        <span class="time-col">2:10 PM - 3:40 PM</span>
+                        <span class="activity-col">Block 4</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- RIGHT: TEACHER SCHEDULE -->
+            <div class="schedule-card">
+                <div class="card-header">
+                    Ms. Hatfield's Classes
+                </div>
+                <div class="schedule-list">
+                    <!-- Block 1 -->
+                    <div class="class-row">
+                        <span class="class-block-label"><span class="dot dot-geo"></span> 1st Block</span>
+                        <span class="class-name">Geometry</span>
+                    </div>
+
+                    <!-- Block 2 -->
+                    <div class="class-row">
+                        <span class="class-block-label"><span class="dot dot-alg"></span> 2nd Block</span>
+                        <span class="class-name">Algebra 1 (Part A)</span>
+                    </div>
+
+                    <!-- Block 3 -->
+                    <div class="class-row">
+                        <span class="class-block-label"><span class="dot dot-alg"></span> 3rd Block</span>
+                        <span class="class-name">Algebra 1 (Part A)</span>
+                    </div>
+
+                    <!-- Block 4 -->
+                    <div class="class-row">
+                        <span class="class-block-label"><span class="dot dot-afda"></span> 4th Block</span>
+                        <span class="class-name">AFDA</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <footer>
+        &copy; 2025 Aly Hatfield. All Rights Reserved.
+    </footer>
+
+</body>
+</html>

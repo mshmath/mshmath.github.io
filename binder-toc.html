@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editable Table of Contents</title>
+    
+    <!-- 1. FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* 2. GLOBAL STYLES */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            font-family: 'Quicksand', sans-serif;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* PAGE CONTAINER */
+        .container {
+            max-width: 900px;
+            width: 100%;
+            margin: 40px auto;
+            padding: 20px;
+            flex: 1; /* Pushes footer to bottom */
+        }
+
+        /* HEADER */
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px 20px;
+            background: white;
+            border: 3px solid #333;
+            border-radius: 16px;
+            box-shadow: 8px 8px 0px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 2.8rem;
+            margin: 0 0 10px 0;
+            color: #222;
+            line-height: 1.1;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        /* INSTRUCTION BOX (No Print) */
+        .instruction-box {
+            background: #fff;
+            border: 2px dashed #555;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .action-btn {
+            background: #333;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.1rem;
+            cursor: pointer;
+            margin: 10px 5px;
+            transition: transform 0.1s;
+        }
+
+        .action-btn:hover {
+            transform: scale(1.05);
+            background: #000;
+        }
+        
+        .action-btn.secondary {
+            background: #fff;
+            color: #333;
+            border: 2px solid #333;
+        }
+        .action-btn.secondary:hover {
+            background: #f0f0f0;
+        }
+
+        /* PRINTABLE SHEET STYLES */
+        .printable-sheet {
+            background: white;
+            border: 3px solid #333;
+            border-radius: 12px;
+            padding: 0.8in;
+            position: relative;
+            min-height: 11in;
+            box-shadow: 6px 6px 0px rgba(0,0,0,0.1);
+            /* Hole Punch Guide Visual (Screen Only) */
+            padding-left: 1.2in;
+        }
+
+        .hole-guide {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 0.8in;
+            border-right: 2px dashed #eee;
+            background: #fafafa;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            border-radius: 9px 0 0 9px;
+        }
+        .hole {
+            width: 15px;
+            height: 15px;
+            border: 1px solid #ccc;
+            border-radius: 50%;
+            background: #fff;
+        }
+
+        /* SHEET HEADER */
+        .sheet-header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #333;
+            padding-bottom: 15px;
+        }
+
+        .sheet-title {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            outline: none; /* Removes blue outline when editing */
+        }
+        
+        .sheet-subtitle {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1.2rem;
+            color: #555;
+            font-weight: 600;
+            margin-top: 5px;
+            outline: none;
+        }
+
+        /* TABLE STYLES */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 2px solid #333;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            font-size: 1.1rem;
+            vertical-align: top;
+        }
+
+        /* Editable visual cue */
+        [contenteditable]:hover, [contenteditable]:focus {
+            background-color: #f0f8ff;
+            border-radius: 4px;
+        }
+        
+        /* Specific Column Widths */
+        .col-topic { width: 60%; }
+        .col-date { width: 20%; }
+        .col-page { width: 20%; text-align: center; }
+        
+        td.col-page { text-align: center; }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            background: #fff;
+            border-top: 3px solid #333;
+            margin-top: auto;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* --- PRINT STYLES --- */
+        @media print {
+            @page {
+                size: letter portrait;
+                margin: 0.5in;
+            }
+            
+            body {
+                background: white;
+                display: block;
+            }
+
+            .container { max-width: 100%; margin: 0; padding: 0; }
+            
+            /* Hide Interface */
+            header, .instruction-box, footer, .hole-guide { display: none; }
+
+            .printable-sheet {
+                border: none;
+                box-shadow: none;
+                padding: 0; /* Remove screen padding */
+                padding-left: 0; /* No hole guide space needed on paper */
+                min-height: auto;
+                width: 100%;
+            }
+
+            /* Ensure Table looks good */
+            table { width: 100%; }
+            th { border-bottom: 2px solid #000; }
+            td { border-bottom: 1px solid #ccc; }
+
+            /* Remove edit highlights */
+            [contenteditable]:hover, [contenteditable]:focus {
+                background: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- HEADER (Screen Only) -->
+        <header>
+            <h1>Editable Table of Contents</h1>
+            <p class="subtitle">Keep your binder organized. Edit online or print blank.</p>
+        </header>
+
+        <!-- CONTROLS (Screen Only) -->
+        <div class="instruction-box">
+            <p><strong>Instructions:</strong> Click text to edit. Use "Add Row" for more lines.</p>
+            <div>
+                <button id="addRowBtn" class="action-btn secondary">+ Add Row</button>
+                <button onclick="window.print()" class="action-btn">🖨️ Print Page</button>
+            </div>
+        </div>
+
+        <!-- THE SHEET -->
+        <div class="printable-sheet">
+            <!-- Visual Hole Guide (Screen Only) -->
+            <div class="hole-guide">
+                <div class="hole"></div><div class="hole"></div><div class="hole"></div>
+            </div>
+
+            <div class="sheet-header">
+                <div class="sheet-title" contenteditable="true">Algebra 1</div>
+                <div class="sheet-subtitle" contenteditable="true">Table of Contents</div>
+            </div>
+
+            <table id="tocTable">
+                <thead>
+                    <tr>
+                        <th class="col-topic">Topic / Unit</th>
+                        <th class="col-date">Date</th>
+                        <th class="col-page">Page #</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td contenteditable="true">Unit 1: Expressions & Operations</td>
+                        <td contenteditable="true">08/28</td>
+                        <td contenteditable="true" class="col-page">1-15</td>
+                    </tr>
+                    <tr>
+                        <td contenteditable="true">Quiz: Chapter 1</td>
+                        <td contenteditable="true">09/04</td>
+                        <td contenteditable="true" class="col-page">16</td>
+                    </tr>
+                    <tr>
+                        <td contenteditable="true">Unit 2: Equations & Inequalities</td>
+                        <td contenteditable="true">09/11</td>
+                        <td contenteditable="true" class="col-page">17-30</td>
+                    </tr>
+                    <!-- Extra blank rows for starting out -->
+                    <tr><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true" class="col-page"></td></tr>
+                    <tr><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true" class="col-page"></td></tr>
+                    <tr><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true" class="col-page"></td></tr>
+                    <tr><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true" class="col-page"></td></tr>
+                    <tr><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true" class="col-page"></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <footer>
+        &copy; 2026 Aly Hatfield. All Rights Reserved.
+    </footer>
+
+    <!-- SCRIPT TO ADD ROWS -->
+    <script>
+        document.getElementById('addRowBtn').addEventListener('click', function() {
+            const tableBody = document.querySelector('#tocTable tbody');
+            const newRow = document.createElement('tr');
+            
+            // Create cells
+            newRow.innerHTML = `
+                <td contenteditable="true"></td>
+                <td contenteditable="true"></td>
+                <td contenteditable="true" class="col-page"></td>
+            `;
+            
+            tableBody.appendChild(newRow);
+        });
+    </script>
+
+</body>
+</html>

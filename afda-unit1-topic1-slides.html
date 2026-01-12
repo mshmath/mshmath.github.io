@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AFDA: Parent Functions</title>
+    
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- ICONS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* --- 1. CORE VARIABLES & RESET --- */
+        :root {
+            --bg-color: #f4f4f4;
+            --card-bg: #ffffff;
+            --border-color: #000000;
+            --shadow-color: rgba(0,0,0,0.1);
+            --font-heading: 'Fredoka', sans-serif;
+            --font-body: 'Quicksand', sans-serif;
+            --font-math: 'Times New Roman', serif;
+            
+            /* Function Colors */
+            --linear-blue: #3b82f6;
+            --quad-red: #ef4444;
+            --exp-green: #22c55e;
+            --abs-purple: #a855f7;
+            --sqrt-orange: #f97316;
+            --cubic-teal: #0d9488;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-color);
+            font-family: var(--font-body);
+            color: #222;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        /* --- 2. SLIDESHOW CONTAINER (1100px, 16:9) --- */
+        .slide-container {
+            width: 100%;
+            max-width: 1100px;
+            aspect-ratio: 16 / 9;
+            background: var(--card-bg);
+            border: 4px solid var(--border-color);
+            border-radius: 20px;
+            box-shadow: 12px 12px 0px rgba(0,0,0,0.15);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- 3. SLIDE STYLES --- */
+        .slide {
+            flex: 1;
+            display: none;
+            flex-direction: column;
+            justify-content: flex-start; /* Flow from top */
+            align-items: center;
+            padding: 30px 60px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .slide.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        /* TYPOGRAPHY */
+        h1, h2, h3 { 
+            font-family: var(--font-heading); 
+            text-transform: uppercase;
+            line-height: 1.2;
+            color: #000;
+        }
+
+        h1 { font-size: 3rem; margin-bottom: 10px; text-align: center; }
+        h2 { font-size: 2.2rem; margin-bottom: 25px; border-bottom: 3px solid #000; padding-bottom: 8px; width: 100%; text-align: center; }
+        h3 { font-size: 1.4rem; margin-bottom: 10px; }
+        
+        p, li { font-size: 1.25rem; line-height: 1.6; font-weight: 600; }
+        
+        /* High Quality Math Styling */
+        .math-font { 
+            font-family: var(--font-math); 
+            font-style: italic; 
+            font-weight: bold; 
+            font-size: 1.1em; 
+        }
+
+        /* Superscript Fix */
+        sup {
+            font-size: 0.6em;
+            vertical-align: super;
+            line-height: 0;
+        }
+
+        /* --- 4. COMPONENTS --- */
+        
+        /* Grid Layouts */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            width: 100%;
+            align-items: start;
+            margin-bottom: 40px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+            width: 100%;
+            align-items: start;
+        }
+
+        .card {
+            border: 3px solid #000;
+            border-radius: 12px;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 6px 6px 0px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            height: 100%;
+            align-items: center;
+        }
+
+        .card-title {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            border-bottom: 2px solid #eee;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            text-align: center;
+            width: 100%;
+        }
+
+        /* GRAPH VISUALS (SVG) */
+        .graph-box {
+            width: 250px;
+            height: 250px;
+            border: 2px solid #000;
+            position: relative;
+            background: #fff;
+            margin-bottom: 15px;
+            border-radius: 8px;
+        }
+        
+        .svg-graph {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Custom Parent Icon for Slide 3 */
+        .parent-icon-svg {
+            width: 200px;
+            height: 200px;
+        }
+
+        /* Vocab Box */
+        .vocab-box {
+            background: #fff;
+            border: 3px solid #000;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            width: 100%;
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.05);
+        }
+
+        /* Key Feature List */
+        .feature-list {
+            text-align: left;
+            width: 100%;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        .feature-label {
+            font-weight: 700;
+            color: #555;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            margin-right: 10px;
+        }
+
+        /* Guided Practice Reveal */
+        .guided-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px dashed #000;
+            padding: 15px 0;
+            width: 100%;
+        }
+        
+        .reveal-btn {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.1rem;
+            color: #fff;
+            background: #000;
+            padding: 8px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            border: none;
+            transition: transform 0.1s;
+        }
+        .reveal-btn:active { transform: scale(0.95); }
+
+        /* Level Headers */
+        .level-header {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            padding: 12px;
+            color: white;
+            text-align: center;
+            border-bottom: 3px solid rgba(0,0,0,0.2);
+            width: 100%;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+        .lh-1 { background: #22c55e; }
+        .lh-2 { background: #f97316; }
+        .lh-3 { background: #ef4444; }
+
+        /* Practice Problem Container */
+        .practice-card {
+            border: 3px solid #000;
+            border-radius: 12px;
+            padding: 0;
+            background: white;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+            box-shadow: 6px 6px 0px rgba(0,0,0,0.1);
+        }
+        .practice-content { 
+            padding: 25px; 
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Checklist Styles */
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .check-box {
+            width: 24px;
+            height: 24px;
+            border: 3px solid #000;
+            margin-right: 15px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+        }
+        .check-box i { font-size: 0.9rem; color: #000; }
+        .check-box.checked { background: #e0e0e0; }
+
+        /* IXL Buttons */
+        .ixl-btn {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border: 3px solid #000;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #000;
+            font-weight: 700;
+            font-size: 1.1rem;
+            background: #fff;
+            transition: transform 0.1s;
+            margin-bottom: 15px;
+        }
+        .ixl-btn:hover { transform: translateY(-2px); box-shadow: 4px 4px 0px rgba(0,0,0,0.2); }
+
+        /* --- 5. NAVIGATION --- */
+        .nav-bar {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 40px;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        .nav-btn {
+            pointer-events: auto;
+            background: #fff;
+            border: 3px solid #000;
+            color: #000;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.2);
+            transition: transform 0.1s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .nav-btn:hover { transform: scale(1.1); }
+
+        .slide-counter {
+            pointer-events: auto;
+            background: #000;
+            color: #fff;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-family: var(--font-heading);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* --- 6. PRINT STYLES --- */
+        .print-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 120px; 
+            background: #000;
+            color: #fff;
+            border: none;
+            padding: 10px 25px;
+            font-family: var(--font-heading);
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 30px;
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.3);
+            z-index: 1000;
+        }
+
+        @media print {
+            body { background: #fff; padding: 0; display: block; }
+            .print-btn, .nav-bar { display: none !important; }
+            .slide-container {
+                width: 100%; max-width: none; min-height: 0; border: none; box-shadow: none; border-radius: 0; display: block; overflow: visible;
+                aspect-ratio: auto;
+            }
+            .slide {
+                display: block !important; opacity: 1 !important; page-break-after: always; border-bottom: 2px dashed #000; padding: 30px; height: auto;
+            }
+            .reveal-btn { display: none; }
+            .guided-row div[id^="ans"] { display: block !important; }
+        }
+    </style>
+    
+    <!-- MATHJAX (For Equations) -->
+    <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+      chtml: { scale: 1.1 } 
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+    <button class="print-btn" onclick="window.print()">
+        <i class="fa-solid fa-print"></i> Print Notes
+    </button>
+
+    <div class="slide-container">
+        
+        <!-- Slide 1: Title -->
+        <div class="slide active" style="justify-content: center;">
+            <div style="border: 4px solid #000; padding: 40px; border-radius: 20px; text-align: center; box-shadow: 10px 10px 0px rgba(0,0,0,0.1); background: #fff; width: 80%;">
+                <div style="font-family: 'Fredoka'; font-size: 1.5rem; letter-spacing: 3px; margin-bottom: 15px;">AFDA UNIT 1 • TOPIC 1</div>
+                <h1>Parent Functions</h1>
+                <p style="color: #555; margin-top: 15px; font-size: 1.4rem;">The 6 Key Families</p>
+                <div style="margin-top: 25px; display: inline-block; background: #000; color: #fff; padding: 10px 30px; border-radius: 50px; font-weight: bold; font-family: 'Fredoka'; font-size: 1.1rem;">SOL AF.1.a</div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Objectives -->
+        <div class="slide">
+            <h2>Objectives & Standards</h2>
+            <div class="card" style="width: 100%; max-width: 900px; padding: 40px;">
+                <h3><i class="fa-solid fa-bullseye"></i> Today's Goals:</h3>
+                <ul style="list-style-type: square; padding-left: 20px; margin-top: 20px; font-size: 1.3rem; line-height: 1.8;">
+                    <li>Identify the graphs and equations of <strong>6 Parent Functions</strong>.</li>
+                    <li>Define key features: <span class="key-term">Domain</span>, <span class="key-term">Range</span>, <span class="key-term">Vertex</span>, <span class="key-term">Asymptote</span>, and <span class="key-term">Turning Point</span>.</li>
+                    <li>Recognize shapes: Linear, Quadratic, Exponential, Absolute Value, Square Root, Cubic.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 3: What is a Parent Function? (IMPROVED VISUAL) -->
+        <div class="slide">
+            <h2>What is a Parent Function?</h2>
+            <div class="grid-2">
+                <div class="card" style="justify-content: center; padding: 40px; align-items: center;">
+                    <!-- Custom SVG showing multiple functions from origin -->
+                    <svg class="parent-icon-svg" viewBox="0 0 100 100">
+                        <!-- Grid -->
+                        <line x1="50" y1="0" x2="50" y2="100" stroke="#ddd" stroke-width="2" />
+                        <line x1="0" y1="50" x2="100" y2="50" stroke="#ddd" stroke-width="2" />
+                        
+                        <!-- Line (Blue) -->
+                        <line x1="10" y1="90" x2="90" y2="10" stroke="var(--linear-blue)" stroke-width="3" />
+                        <!-- Parabola (Red) -->
+                        <path d="M 20 20 Q 50 100 80 20" stroke="var(--quad-red)" fill="none" stroke-width="3" />
+                        <!-- V-Shape (Purple) -->
+                        <polyline points="25,25 50,50 75,25" stroke="var(--abs-purple)" fill="none" stroke-width="3" stroke-dasharray="4" />
+                        
+                        <circle cx="50" cy="50" r="3" fill="#000" />
+                    </svg>
+                    <p style="margin-top: 15px; font-weight: bold;">"The Source"</p>
+                </div>
+                <div class="vocab-box">
+                    <p style="margin-bottom: 15px;"><span class="math-font" style="text-decoration: underline;">Definition:</span></p>
+                    <p style="margin-bottom: 15px;">The <strong>simplest</strong> form of a function family.</p>
+                    <p>It has no transformations (no shifts, no stretches, no flips).</p>
+                    <p style="margin-top: 15px; color: #555; font-style: italic;">All other graphs in the family are just modified versions of this one.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Anatomy of a Graph (UPDATED) -->
+        <div class="slide">
+            <h2>Anatomy of a Graph</h2>
+            <div class="grid-2">
+                <!-- Domain & Range -->
+                <div class="card">
+                    <div class="card-title">Inputs & Outputs</div>
+                    <div class="vocab-box">
+                        <p style="margin-bottom: 20px;">
+                            <span class="feature-label" style="color:var(--linear-blue); font-size:1.2rem;">Domain (Inputs: <span class="math-font">x</span>)</span><br>
+                            All possible <span class="math-font">x</span>-values. Read graph <strong>Left to Right</strong>.
+                        </p>
+                        <p>
+                            <span class="feature-label" style="color:var(--quad-red); font-size:1.2rem;">Range (Outputs: <span class="math-font">y</span>)</span><br>
+                            All possible <span class="math-font">y</span>-values. Read graph <strong>Bottom to Top</strong>.
+                        </p>
+                    </div>
+                </div>
+                <!-- Critical Points -->
+                <div class="card">
+                    <div class="card-title">Shape Changers</div>
+                    <div class="vocab-box">
+                        <p style="margin-bottom: 15px;">
+                            <span class="feature-label" style="color:var(--abs-purple); font-size:1.1rem;">Vertex</span><br>
+                            A sharp turning point (Maximum or Minimum).
+                        </p>
+                        <p style="margin-bottom: 15px;">
+                            <span class="feature-label" style="color:var(--exp-green); font-size:1.1rem;">Asymptote</span><br>
+                            A dashed line the graph gets closer to but <strong>never touches</strong>.
+                        </p>
+                        <p>
+                            <span class="feature-label" style="color:var(--cubic-teal); font-size:1.1rem;">Turning Point</span><br>
+                            Where a curve changes direction (e.g. from curving up to curving down).
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Family 1 - Linear -->
+        <div class="slide">
+            <h2>1. Linear Family</h2>
+            <div class="grid-2">
+                <div class="card">
+                    <div class="graph-box">
+                        <svg class="svg-graph" viewBox="0 0 100 100">
+                            <line x1="0" y1="50" x2="100" y2="50" stroke="#ccc" /> <!-- Axis -->
+                            <line x1="50" y1="0" x2="50" y2="100" stroke="#ccc" />
+                            <line x1="0" y1="100" x2="100" y2="0" stroke="var(--linear-blue)" stroke-width="3" />
+                        </svg>
+                    </div>
+                    <p style="font-weight: bold; color: var(--linear-blue);">Straight Line</p>
+                </div>
+                <div class="card">
+                    <p style="font-size: 3rem;" class="math-font">y = x</p>
+                    <div class="feature-list">
+                        <div><span class="feature-label">Domain:</span> All Real Numbers</div>
+                        <div><span class="feature-label">Range:</span> All Real Numbers</div>
+                        <div><span class="feature-label">Key Point:</span> (0, 0) Origin</div>
+                        <div><span class="feature-label">Feature:</span> Constant Slope</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Family 2 - Quadratic -->
+        <div class="slide">
+            <h2>2. Quadratic Family</h2>
+            <div class="grid-2">
+                <div class="card">
+                    <div class="graph-box">
+                        <svg class="svg-graph" viewBox="0 0 100 100">
+                            <line x1="0" y1="50" x2="100" y2="50" stroke="#ccc" />
+                            <line x1="50" y1="0" x2="50" y2="100" stroke="#ccc" />
+                            <path d="M 10 10 Q 50 100 90 10" stroke="var(--quad-red)" stroke-width="3" fill="none" />
+                        </svg>
+                    </div>
+                    <p style="font-weight: bold; color: var(--quad-red);">Parabola (U-Shape)</p>
+                </div>
+                <div class="card">
+                    <p style="font-size: 3rem;" class="math-font">y = x<sup>2</sup></p>
+                    <div class="feature-list">
+                        <div><span class="feature-label">Domain:</span> All Real Numbers</div>
+                        <div><span class="feature-label">Range:</span> $y \ge 0$</div>
+                        <div><span class="feature-label">Vertex:</span> (0, 0)</div>
+                        <div><span class="feature-label">Feature:</span> Symmetric</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Family 3 - Exponential -->
+        <div class="slide">
+            <h2>3. Exponential Family</h2>
+            <div class="grid-2">
+                <div class="card">
+                    <div class="graph-box">
+                        <svg class="svg-graph" viewBox="0 0 100 100">
+                            <line x1="0" y1="50" x2="100" y2="50" stroke="#ccc" />
+                            <line x1="50" y1="0" x2="50" y2="100" stroke="#ccc" />
+                            <path d="M 0 48 Q 50 45 90 5" stroke="var(--exp-green)" stroke-width="3" fill="none" />
+                        </svg>
+                    </div>
+                    <p style="font-weight: bold; color: var(--exp-green);">Exponential Curve</p>
+                </div>
+                <div class="card">
+                    <p style="font-size: 3rem;" class="math-font">y = 2<sup>x</sup></p>
+                    <div class="feature-list">
+                        <div><span class="feature-label">Domain:</span> All Real Numbers</div>
+                        <div><span class="feature-label">Range:</span> $y > 0$</div>
+                        <div><span class="feature-label">Asymptote:</span> $y = 0$ (x-axis)</div>
+                        <div><span class="feature-label">Feature:</span> Rapid Growth</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Family 4 - Absolute Value -->
+        <div class="slide">
+            <h2>4. Absolute Value</h2>
+            <div class="grid-2">
+                <div class="card">
+                    <div class="graph-box">
+                        <svg class="svg-graph" viewBox="0 0 100 100">
+                            <line x1="0" y1="50" x2="100" y2="50" stroke="#ccc" />
+                            <line x1="50" y1="0" x2="50" y2="100" stroke="#ccc" />
+                            <polyline points="10,10 50,50 90,10" stroke="var(--abs-purple)" stroke-width="3" fill="none" />
+                        </svg>
+                    </div>
+                    <p style="font-weight: bold; color: var(--abs-purple);">V-Shape</p>
+                </div>
+                <div class="card">
+                    <p style="font-size: 3rem;" class="math-font">y = |x|</p>
+                    <div class="feature-list">
+                        <div><span class="feature-label">Domain:</span> All Real Numbers</div>
+                        <div><span class="feature-label">Range:</span> $y \ge 0$</div>
+                        <div><span class="feature-label">Vertex:</span> (0, 0)</div>
+                        <div><span class="feature-label">Feature:</span> Sharp Turn</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Family 5 - Square Root -->
+        <div class="slide">
+            <h2>5. Square Root</h2>
+            <div class="grid-2">
+                <div class="card">
+                    <div class="graph-box">
+                        <svg class="svg-graph" viewBox="0 0 100 100">
+                            <line x1="0" y1="50" x2="100" y2="50" stroke="#ccc" />
+                            <line x1="50" y1="0" x2="50" y2="100" stroke="#ccc" />
+                            <path d="M 50 50 Q 60 20 95 15" stroke="var(--sqrt-orange)" stroke-width="3" fill="none" />
+                            <circle cx="50" cy="50" r="3" fill="var(--sqrt-orange)" />
+                        </svg>
+                    </div>
+                    <p style="font-weight: bold; color: var(--sqrt-orange);">Arc / Eyebrow</p>
+                </div>
+                <div class="card">
+                    <p style="font-size: 3rem;" class="math-font">y = &radic;x</p>
+                    <div class="feature-list">
+                        <div><span class="feature-label">Domain:</span> $x \ge 0$</div>
+                        <div><span class="feature-label">Range:</span> $y \ge 0$</div>
+                        <div><span class="feature-label">Start Point:</span> (0, 0)</div>
+                        <div><span class="feature-label">Feature:</span> One direction</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Family 6 - Cubic -->
+        <div class="slide">
+            <h2>6. Cubic Family</h2>
+            <div class="grid-2">
+                <div class="card">
+                    <div class="graph-box">
+                        <svg class="svg-graph" viewBox="0 0 100 100">
+                            <line x1="0" y1="50" x2="100" y2="50" stroke="#ccc" />
+                            <line x1="50" y1="0" x2="50" y2="100" stroke="#ccc" />
+                            <!-- S-Curve for Cubic -->
+                            <path d="M 20 90 C 55 90 45 10 80 10" stroke="var(--cubic-teal)" stroke-width="3" fill="none" />
+                        </svg>
+                    </div>
+                    <p style="font-weight: bold; color: var(--cubic-teal);">S-Curve / Snake</p>
+                </div>
+                <div class="card">
+                    <p style="font-size: 3rem;" class="math-font">y = x<sup>3</sup></p>
+                    <div class="feature-list">
+                        <div><span class="feature-label">Domain:</span> All Real Numbers</div>
+                        <div><span class="feature-label">Range:</span> All Real Numbers</div>
+                        <div><span class="feature-label">Key Feature:</span> Turning Point</div>
+                        <div><span class="feature-label">Center:</span> (0, 0)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Summary Table -->
+        <div class="slide">
+            <h2>Family Reunion</h2>
+            <table style="width: 100%; border-collapse: collapse; font-size: 1rem;">
+                <tr style="background: #000; color: white;">
+                    <th style="padding: 12px;">Name</th>
+                    <th>Equation</th>
+                    <th>Shape</th>
+                    <th>Key Feature</th>
+                </tr>
+                <tr>
+                    <td style="padding: 8px; border: 1px solid #ccc; font-weight: bold; color: var(--linear-blue);">Linear</td>
+                    <td style="padding: 8px; border: 1px solid #ccc;"><span class="math-font">y = x</span></td>
+                    <td style="padding: 8px; border: 1px solid #ccc;">Line</td>
+                    <td style="padding: 8px; border: 1px solid #ccc;">Slope</td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px; border: 1px solid #ccc; font-weight: bold; color: var(--quad-red);">Quadratic</td>
+                    <td style="padding: 8px; border: 1px solid #ccc;"><span class="math-font">y = x<sup>2</sup></span></td>
+                    <td style="padding: 8px; border: 1px solid #ccc;">Parabola</td>
+                    <td style="padding: 8px; border: 1px solid #ccc;">Vertex</td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px; border: 1px solid #ccc; font-weight: bold; color: var(--exp-green);">Exponential</td>
+                    <td style="padding: 8px; border: 1px solid #ccc;"><span class="math-font">y = 2<sup>x</sup></span></td>
+                    <td style="padding: 8px; border: 1px solid #ccc;">Curve</td>
+                    <td style="padding: 8px; border: 1px solid #ccc;">Asymptote</td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px; border: 1px solid #ccc; font-weight: bold; color: var(--abs-purple);">Abs Value</td>
+                    <td style="padding: 8px; border: 1px solid #ccc;"><span class="math-font">y = |x|</span></td>
+                    <td style="padding: 8px; border: 1px solid #ccc;">V-Shape</td>
+                    <td style="padding: 8px; border: 1px solid #ccc;">Sharp Vertex</td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px; border: 1px solid #ccc; font-weight: bold; color: var(--sqrt-orange);">Square Root</td>
+                    <td style="padding: 8px; border: 1px solid #ccc;"><span class="math-font">y = &radic;x</span></td>
+                    <td style="padding: 8px; border: 1px solid #ccc;">Arc</td>
+                    <td style="padding: 8px; border: 1px solid #ccc;">Endpoint</td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px; border: 1px solid #ccc; font-weight: bold; color: var(--cubic-teal);">Cubic</td>
+                    <td style="padding: 8px; border: 1px solid #ccc;"><span class="math-font">y = x<sup>3</sup></span></td>
+                    <td style="padding: 8px; border: 1px solid #ccc;">S-Curve</td>
+                    <td style="padding: 8px; border: 1px solid #ccc;">Turning Point</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Slide 12: Guided Practice -->
+        <div class="slide">
+            <h2>Guided Practice</h2>
+            <div style="width: 100%; max-width: 900px;">
+                <p style="font-size: 1.3rem; margin-bottom: 20px;">Name the function family based on the description.</p>
+                
+                <div class="guided-row">
+                    <div style="font-size: 1.4rem;">1. "I have a sharp V-shape."</div>
+                    <button class="reveal-btn" onclick="document.getElementById('ans1').style.display='block'; this.style.display='none';">Reveal</button>
+                    <div id="ans1" style="display: none; text-align: right; font-size: 1.4rem; font-weight: bold; color: var(--abs-purple);">Absolute Value</div>
+                </div>
+                
+                <div class="guided-row">
+                    <div style="font-size: 1.4rem;">2. "I look like a snake or S-curve."</div>
+                    <button class="reveal-btn" onclick="document.getElementById('ans2').style.display='block'; this.style.display='none';">Reveal</button>
+                    <div id="ans2" style="display: none; text-align: right; font-size: 1.4rem; font-weight: bold; color: var(--cubic-teal);">Cubic</div>
+                </div>
+
+                <div class="guided-row">
+                    <div style="font-size: 1.4rem;">3. "My domain is only positive numbers ($x \ge 0$)."</div>
+                    <button class="reveal-btn" onclick="document.getElementById('ans3').style.display='block'; this.style.display='none';">Reveal</button>
+                    <div id="ans3" style="display: none; text-align: right; font-size: 1.4rem; font-weight: bold; color: var(--sqrt-orange);">Square Root</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 13: Independent Practice Level 1 -->
+        <div class="slide">
+            <div class="practice-card">
+                <div class="level-header lh-1">Level 1: Identification</div>
+                <div class="practice-content">
+                    <p style="margin-bottom: 20px; font-weight: bold; font-size: 1.4rem;">Match the equation to the name.</p>
+                    <ol style="font-size: 1.5rem; line-height: 2; padding-left: 40px;">
+                        <li><span class="math-font">y = x<sup>3</sup></span> &nbsp;&nbsp;&rarr;&nbsp;&nbsp; _____________</li>
+                        <li><span class="math-font">y = |x|</span> &nbsp;&nbsp;&rarr;&nbsp;&nbsp; _____________</li>
+                        <li><span class="math-font">y = 2<sup>x</sup></span> &nbsp;&nbsp;&rarr;&nbsp;&nbsp; _____________</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 14: Independent Practice Level 2 -->
+        <div class="slide">
+            <div class="practice-card">
+                <div class="level-header lh-2">Level 2: Features</div>
+                <div class="practice-content">
+                    <p style="margin-bottom: 20px; font-weight: bold; font-size: 1.4rem;">Determine the missing feature.</p>
+                    <ol style="font-size: 1.4rem; line-height: 2; padding-left: 40px;">
+                        <li><strong>Quadratic:</strong> Does it have a Vertex or Asymptote?</li>
+                        <li><strong>Cubic:</strong> Does it have a max/min or a turning point?</li>
+                        <li><strong>Linear:</strong> What is the Range?</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 15: Independent Practice Level 3 -->
+        <div class="slide">
+            <div class="practice-card">
+                <div class="level-header lh-3">Level 3: Analysis</div>
+                <div class="practice-content">
+                    <p style="margin-bottom: 20px; font-weight: bold; font-size: 1.4rem;">Which function best models the situation?</p>
+                    <ol style="font-size: 1.3rem; line-height: 1.8; padding-left: 40px;">
+                        <li>A bacteria population doubles every hour.</li>
+                        <li>The path of a ball thrown into the air.</li>
+                        <li>The volume of a cube as the side length increases.</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 16: What's Next? -->
+        <div class="slide">
+            <div class="grid-2">
+                <!-- Checklist -->
+                <div class="card">
+                    <div class="card-title">What's Next?</div>
+                    <div style="display: flex; flex-direction: column; height: 100%; padding-left: 10px;">
+                        <div class="checklist-item"><div class="check-box checked"><i class="fa-solid fa-check"></i></div> Topic Warm Up</div>
+                        <div class="checklist-item"><div class="check-box checked"><i class="fa-solid fa-check"></i></div> Lesson Slides</div>
+                        <div class="checklist-item"><div class="check-box"></div> Practice Worksheet</div>
+                        <div class="checklist-item"><div class="check-box"></div> IXL Practice</div>
+                        <div class="checklist-item"><div class="check-box"></div> Topic 1 Exit Ticket</div>
+                    </div>
+                </div>
+
+                <!-- IXL Practice -->
+                <div class="card" style="background: #fcfcfc;">
+                    <div class="card-title">IXL Practice (AFDA.AF.1)</div>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 10px; overflow-y: auto;">
+                        <a href="https://www.ixl.com/math/algebra-1/identify-linear-quadratic-and-exponential-functions-from-graphs" target="_blank" class="ixl-btn" style="border-left: 12px solid var(--linear-blue);">
+                            <span>Identify Linear/Quad/Exp (Graphs)</span>
+                        </a>
+                        <a href="https://www.ixl.com/math/algebra-1/match-quadratic-functions-and-graphs" target="_blank" class="ixl-btn" style="border-left: 12px solid var(--quad-red);">
+                            <span>Match Quadratics</span>
+                        </a>
+                        <a href="https://www.ixl.com/math/algebra-1/match-exponential-functions-and-graphs" target="_blank" class="ixl-btn" style="border-left: 12px solid var(--exp-green);">
+                            <span>Match Exponentials</span>
+                        </a>
+                        <a href="https://www.ixl.com/math/algebra-1/graph-an-absolute-value-function" target="_blank" class="ixl-btn" style="border-left: 12px solid var(--abs-purple);">
+                            <span>Graph Absolute Value</span>
+                        </a>
+                        <a href="https://www.ixl.com/math/algebra-1/graph-square-root-functions" target="_blank" class="ixl-btn" style="border-left: 12px solid var(--sqrt-orange);">
+                            <span>Graph Square Root</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="nav-bar">
+            <button id="prevBtn" class="nav-btn"><i class="fa-solid fa-arrow-left"></i></button>
+            <div class="slide-counter">1 / 16</div>
+            <button id="nextBtn" class="nav-btn"><i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const counter = document.querySelector('.slide-counter');
+        let currentSlide = 0;
+
+        function updateSlides() {
+            slides.forEach((slide, index) => {
+                slide.classList.remove('active');
+                if (index === currentSlide) {
+                    slide.classList.add('active');
+                }
+            });
+            counter.textContent = `${currentSlide + 1} / ${slides.length}`;
+            prevBtn.style.opacity = currentSlide === 0 ? 0.3 : 1;
+            nextBtn.style.opacity = currentSlide === slides.length - 1 ? 0.3 : 1;
+        }
+
+        nextBtn.addEventListener('click', () => { if (currentSlide < slides.length - 1) { currentSlide++; updateSlides(); } });
+        prevBtn.addEventListener('click', () => { if (currentSlide > 0) { currentSlide--; updateSlides(); } });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' && currentSlide < slides.length - 1) { currentSlide++; updateSlides(); }
+            if (e.key === 'ArrowLeft' && currentSlide > 0) { currentSlide--; updateSlides(); }
+        });
+        updateSlides();
+    </script>
+    <footer style="margin-top: 2rem; color: #9ca3af; font-size: 0.9rem;">
+        &copy; 2026 Aly Hatfield. All rights reserved.
+    </footer>
+</body>
+</html>

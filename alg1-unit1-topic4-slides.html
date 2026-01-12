@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algebra 1: Simplifying Expressions</title>
+    
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- ICONS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* --- 1. CORE VARIABLES & RESET --- */
+        :root {
+            --bg-color: #f4f4f4;
+            --card-bg: #ffffff;
+            --border-color: #000000;
+            --shadow-color: rgba(0,0,0,0.1);
+            --font-heading: 'Fredoka', sans-serif;
+            --font-body: 'Quicksand', sans-serif;
+            --font-math: 'Times New Roman', serif;
+            
+            /* Difficulty Colors */
+            --level-1: #22c55e;
+            --level-2: #f59e0b;
+            --level-3: #ef4444;
+            
+            /* UI Colors */
+            --highlight-blue: #e0f2fe;
+            --highlight-red: #fee2e2;
+            --highlight-green: #dcfce7;
+            --highlight-yellow: #fef9c3;
+            
+            /* Accents */
+            --accent-blue: #4338ca;
+            --accent-green: #059669;
+            --accent-yellow: #ca8a04;
+            --accent-red: #d32f2f;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-color);
+            font-family: var(--font-body);
+            color: #222;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        /* --- 2. SLIDESHOW CONTAINER (1100px, 16:9) --- */
+        .slide-container {
+            width: 100%;
+            max-width: 1100px;
+            aspect-ratio: 16 / 9;
+            background: var(--card-bg);
+            border: 4px solid var(--border-color);
+            border-radius: 20px;
+            box-shadow: 12px 12px 0px rgba(0,0,0,0.15);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- 3. SLIDE STYLES --- */
+        .slide {
+            flex: 1;
+            display: none;
+            flex-direction: column;
+            justify-content: flex-start; /* Flow from top */
+            align-items: center;
+            padding: 40px 60px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        /* Custom Scrollbar */
+        .slide::-webkit-scrollbar { width: 10px; }
+        .slide::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
+        .slide::-webkit-scrollbar-thumb { background: #ccc; border-radius: 10px; }
+        .slide::-webkit-scrollbar-thumb:hover { background: #999; }
+
+        .slide.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        /* TYPOGRAPHY */
+        h1, h2, h3 { 
+            font-family: var(--font-heading); 
+            text-transform: uppercase;
+            line-height: 1.2;
+            color: #000;
+        }
+
+        h1 { font-size: 3rem; margin-bottom: 10px; text-align: center; }
+        h2 { font-size: 2rem; margin-bottom: 25px; border-bottom: 3px solid #000; padding-bottom: 8px; width: 100%; text-align: center; }
+        h3 { font-size: 1.4rem; margin-bottom: 10px; }
+        
+        p, li { font-size: 1.3rem; line-height: 1.6; font-weight: 600; }
+        
+        /* Math Styling */
+        .math { 
+            font-family: var(--font-math); 
+            font-style: italic; 
+            font-weight: bold; 
+            font-size: 1.3em; 
+        }
+
+        .math-display {
+            font-family: var(--font-math);
+            font-style: italic;
+            font-weight: bold;
+            font-size: 2.2rem;
+            display: block;
+            margin: 15px 0;
+            text-align: center;
+        }
+
+        .important-text {
+            text-decoration: underline;
+            text-decoration-thickness: 3px;
+            text-underline-offset: 4px;
+            font-weight: 800;
+        }
+
+        /* --- 4. COMPONENTS --- */
+        
+        /* Grid Layouts */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            width: 100%;
+            align-items: start;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            border: 3px solid #000;
+            border-radius: 12px;
+            padding: 25px;
+            background: #fff;
+            box-shadow: 6px 6px 0px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            height: 100%;
+        }
+
+        /* Border Color Variations */
+        .card-blue { border-left: 10px solid var(--accent-blue); }
+        .card-green { border-left: 10px solid var(--accent-green); }
+        .card-yellow { border-left: 10px solid var(--accent-yellow); }
+        .card-red { border-left: 10px solid var(--accent-red); }
+
+        .card-title {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            border-bottom: 2px solid #eee;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            text-align: center;
+        }
+
+        /* Like Term Visuals - Updated Logic */
+        .term-box {
+            display: inline-block;
+            padding: 8px 12px;
+            border-radius: 8px;
+            margin: 5px;
+            font-weight: bold;
+            font-family: var(--font-math);
+            font-size: 1.4rem;
+            border: 2px solid #000; /* Solid border for high contrast */
+            color: #000; /* Force black text */
+        }
+        
+        /* Background Colors for Matching */
+        .bg-blue { background-color: #bfdbfe; }
+        .bg-red { background-color: #fecaca; }
+        .bg-green { background-color: #bbf7d0; }
+        .bg-yellow { background-color: #fef08a; }
+        .bg-purple { background-color: #e9d5ff; }
+
+        /* Vocab Box */
+        .vocab-box {
+            background: #fff;
+            border: 3px solid #000;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            width: 100%;
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.05);
+        }
+
+        /* Guided Practice Reveal */
+        .guided-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px dashed #000;
+            padding: 20px 0;
+            width: 100%;
+        }
+        
+        .reveal-btn {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.1rem;
+            color: #fff;
+            background: #000;
+            padding: 10px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            border: none;
+            transition: transform 0.1s;
+        }
+        .reveal-btn:active { transform: scale(0.95); }
+        
+        .revealed-text {
+            font-size: 1.8rem;
+            color: #000;
+            font-weight: bold;
+            font-family: var(--font-math);
+            border: 3px solid var(--level-1);
+            padding: 5px 20px;
+            border-radius: 8px;
+            background-color: #fff;
+        }
+
+        /* Independent Practice Levels */
+        .practice-container {
+            width: 100%;
+            max-width: 900px;
+            text-align: center;
+            padding-bottom: 40px;
+        }
+        
+        .practice-problem {
+            font-size: 2rem;
+            font-family: var(--font-math);
+            margin: 20px 0;
+            padding: 20px;
+            background: #fff;
+            border: 3px solid #000;
+            border-radius: 15px;
+            box-shadow: 5px 5px 0px rgba(0,0,0,0.1);
+        }
+
+        .level-header {
+            color: #000;
+            padding: 10px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            border: 3px solid #000;
+            background: #fff;
+        }
+        
+        .lh-1 { border-left: 15px solid var(--level-1); }
+        .lh-2 { border-left: 15px solid var(--level-2); }
+        .lh-3 { border-left: 15px solid var(--level-3); }
+
+        /* Checklist Styles */
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .check-box {
+            width: 24px;
+            height: 24px;
+            border: 3px solid #000;
+            margin-right: 15px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+        }
+        .check-box i { font-size: 0.9rem; color: #000; }
+        .check-box.checked { background: #e0e0e0; }
+
+        /* IXL Buttons */
+        .ixl-btn {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border: 3px solid #000;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #000;
+            font-weight: 700;
+            font-size: 1.1rem;
+            background: #fff;
+            transition: transform 0.1s;
+            margin-bottom: 15px;
+        }
+        .ixl-btn:hover { transform: translateY(-2px); box-shadow: 4px 4px 0px rgba(0,0,0,0.2); }
+        .ixl-green { border-left: 12px solid var(--level-1); }
+        .ixl-orange { border-left: 12px solid var(--level-2); }
+        .ixl-red { border-left: 12px solid var(--level-3); }
+
+        /* --- 5. NAVIGATION --- */
+        .nav-bar {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 40px;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        .nav-btn {
+            pointer-events: auto;
+            background: #fff;
+            border: 3px solid #000;
+            color: #000;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.2);
+            transition: transform 0.1s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .nav-btn:hover { transform: scale(1.1); }
+
+        .slide-counter {
+            pointer-events: auto;
+            background: #000;
+            color: #fff;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-family: var(--font-heading);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* --- 6. PRINT STYLES --- */
+        .print-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 120px; 
+            background: #000;
+            color: #fff;
+            border: none;
+            padding: 10px 25px;
+            font-family: var(--font-heading);
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 30px;
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.3);
+            z-index: 1000;
+        }
+
+        @media print {
+            body { background: #fff; padding: 0; display: block; }
+            .print-btn, .nav-bar { display: none !important; }
+            .slide-container {
+                width: 100%; max-width: none; min-height: 0; border: none; box-shadow: none; border-radius: 0; display: block; overflow: visible;
+                aspect-ratio: auto;
+            }
+            .slide {
+                display: block !important; opacity: 1 !important; page-break-after: always; border-bottom: 2px dashed #000; padding: 30px; height: auto;
+            }
+            .card-green, .card-red, .card-yellow, .card-blue, .vocab-box, .card, .practice-problem { 
+                background-color: #fff !important; 
+                border: 2px solid #000 !important;
+                box-shadow: none !important;
+            }
+            .term-box { background: #fff !important; border: 1px solid #000 !important; }
+            .revealed-text { color: #000 !important; border-color: #000 !important; }
+            .reveal-btn { display: none; }
+            .guided-row div[id^="ans"] { display: block !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <button class="print-btn" onclick="window.print()">
+        <i class="fa-solid fa-print"></i> Print Notes
+    </button>
+
+    <div class="slide-container">
+        
+        <!-- Slide 1: Title -->
+        <div class="slide active" style="justify-content: center;">
+            <div style="border: 4px solid #000; padding: 40px; border-radius: 20px; text-align: center; box-shadow: 10px 10px 0px rgba(0,0,0,0.1); background: #fff; width: 80%;">
+                <div style="font-family: 'Fredoka'; font-size: 1.5rem; letter-spacing: 3px; margin-bottom: 15px;">UNIT 1 • TOPIC 4</div>
+                <h1>Simplifying Expressions</h1>
+                <p style="color: #555; margin-top: 15px; font-size: 1.4rem;">Combining Like Terms & Distributive Property</p>
+                <div style="margin-top: 25px; display: inline-block; background: #000; color: #fff; padding: 10px 30px; border-radius: 50px; font-weight: bold; font-family: 'Fredoka'; font-size: 1.1rem;">Standard A.EO.1</div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Objectives -->
+        <div class="slide">
+            <h2>Objectives & Standards</h2>
+            <div class="card" style="width: 100%; max-width: 900px; padding: 40px;">
+                <h3><i class="fa-solid fa-bullseye"></i> Today's Goals:</h3>
+                <ul style="list-style-type: square; padding-left: 20px; margin-top: 20px; font-size: 1.3rem; line-height: 1.8;">
+                    <li>Identify and <span class="important-text">Combine Like Terms</span>.</li>
+                    <li>Apply the <span class="important-text">Distributive Property</span>.</li>
+                    <li>Simplify complex algebraic expressions with multiple steps.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 3: Vocab - Like Terms (VISUAL FIX) -->
+        <div class="slide">
+            <h2>Part 1: Like Terms</h2>
+            <div class="vocab-box">
+                <h3 style="color: var(--accent-green);">Definition</h3>
+                <p style="margin-top: 10px;">Terms that have the <strong style="text-decoration: underline; text-decoration-thickness: 3px;">same variable</strong> raised to the <strong style="text-decoration: underline; text-decoration-thickness: 3px;">same exponent</strong>.</p>
+            </div>
+            
+            <div class="grid-2">
+                <div class="card card-green">
+                    <div class="card-title">Like Terms <i class="fa-solid fa-check"></i></div>
+                    <p style="text-align: center; margin-bottom: 15px;">They match!</p>
+                    <div style="text-align: center; margin-bottom: 10px;">
+                        <span class="term-box bg-blue">7x</span> and <span class="term-box bg-blue">3x</span>
+                    </div>
+                    <div style="text-align: center; margin-bottom: 10px;">
+                        <span class="term-box bg-red">5</span> and <span class="term-box bg-red">-2</span>
+                    </div>
+                    <div style="text-align: center;">
+                        <span class="term-box bg-green">4y²</span> and <span class="term-box bg-green">-y²</span>
+                    </div>
+                </div>
+                <div class="card card-red">
+                    <div class="card-title">NOT Like Terms <i class="fa-solid fa-xmark"></i></div>
+                    <p style="text-align: center; margin-bottom: 15px;">Different letter or power.</p>
+                    <div style="text-align: center; margin-bottom: 10px;">
+                        <span class="term-box bg-blue">7x</span> and <span class="term-box bg-yellow">7y</span>
+                    </div>
+                    <div style="text-align: center; margin-bottom: 10px;">
+                        <span class="term-box bg-green">x²</span> and <span class="term-box bg-blue">x</span>
+                    </div>
+                    <div style="text-align: center;">
+                        <span class="term-box bg-purple">5a</span> and <span class="term-box bg-red">5</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Guided Practice - Identifying Terms -->
+        <div class="slide">
+            <h2>Identify Like Terms</h2>
+            <p style="margin-bottom: 20px;">Expression: <span class="math">4x + 7 - 2x + 5</span></p>
+            <div style="width: 100%; max-width: 900px;">
+                <div class="guided-row">
+                    <div style="font-size: 1.5rem;">Find the x-terms:</div>
+                    <button class="reveal-btn" onclick="document.getElementById('ans1').style.display='block'; this.style.display='none';">Reveal</button>
+                    <div id="ans1" style="display: none; text-align: right;">
+                        <span class="term-box bg-blue">4x</span> and <span class="term-box bg-blue">-2x</span>
+                    </div>
+                </div>
+                <div class="guided-row">
+                    <div style="font-size: 1.5rem;">Find the numbers (Constants):</div>
+                    <button class="reveal-btn" onclick="document.getElementById('ans2').style.display='block'; this.style.display='none';">Reveal</button>
+                    <div id="ans2" style="display: none; text-align: right;">
+                        <span class="term-box bg-red">+7</span> and <span class="term-box bg-red">+5</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: The Process - Combining -->
+        <div class="slide">
+            <h2>Combining Like Terms</h2>
+            <div class="card" style="width: 100%; max-width: 900px; padding: 40px;">
+                <h3 style="border-bottom: 2px solid #000; padding-bottom: 10px; margin-bottom: 20px;">The 2 Steps:</h3>
+                <ol style="font-size: 1.4rem; line-height: 2;">
+                    <li><strong>Add/Subtract Coefficients:</strong> Combine the numbers in front.</li>
+                    <li><strong>Keep the Variable:</strong> The letter part stays EXACTLY the same.</li>
+                </ol>
+                <div style="text-align: center; margin-top: 30px; font-size: 2rem; font-weight: bold;">
+                    3 apples + 2 apples = 5 apples<br>
+                    <span class="math" style="color: var(--accent-blue);">3x + 2x = 5x</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Guided Practice - Combining -->
+        <div class="slide">
+            <h2>Guided Practice: Combining</h2>
+            <div style="width: 100%; max-width: 900px;">
+                <div class="guided-row">
+                    <div style="font-size: 1.8rem;" class="math">1. 8n + 4n</div>
+                    <button class="reveal-btn" onclick="document.getElementById('ans3').style.display='block'; this.style.display='none';">Reveal</button>
+                    <div id="ans3" style="display: none; text-align: right;">
+                        <div class="math" style="font-size: 1.8rem;">(8+4)n = <span class="revealed-text">12n</span></div>
+                    </div>
+                </div>
+                <div class="guided-row">
+                    <div style="font-size: 1.8rem;" class="math">2. 10y - 3y + 2</div>
+                    <button class="reveal-btn" onclick="document.getElementById('ans4').style.display='block'; this.style.display='none';">Reveal</button>
+                    <div id="ans4" style="display: none; text-align: right;">
+                        <div class="math" style="font-size: 1.8rem;">7y + 2</div>
+                    </div>
+                </div>
+                <div class="guided-row">
+                    <div style="font-size: 1.8rem;" class="math">3. 5x + 4 - 2x + 1</div>
+                    <button class="reveal-btn" onclick="document.getElementById('ans5').style.display='block'; this.style.display='none';">Reveal</button>
+                    <div id="ans5" style="display: none; text-align: right;">
+                        <div class="math" style="font-size: 1.8rem;">3x + 5</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Part 2 - Distributive Property -->
+        <div class="slide">
+            <h2>Part 2: Distributive Property</h2>
+            <div class="vocab-box">
+                <h3 style="color: var(--accent-blue);">The "Rainbow" Method</h3>
+                <p style="margin-top: 10px;">Multiply the term on the outside by <span class="important-text">EVERY</span> term on the inside.</p>
+                <div class="math-display">a(b + c) = ab + ac</div>
+            </div>
+            <div class="card card-blue" style="width: 100%; text-align: center;">
+                <div class="card-title">Example</div>
+                <div class="math-display">2(x + 4)</div>
+                <p>2 times x... and 2 times 4...</p>
+                <div style="font-weight: bold; font-size: 2rem; margin-top: 10px;">= 2x + 8</div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Guided Practice - Distributing -->
+        <div class="slide">
+            <h2>Guided Practice: Distributing</h2>
+            <div style="width: 100%; max-width: 900px;">
+                <div class="guided-row">
+                    <div style="font-size: 1.8rem;" class="math">1. 3(x + 5)</div>
+                    <button class="reveal-btn" onclick="document.getElementById('ans6').style.display='block'; this.style.display='none';">Reveal</button>
+                    <div id="ans6" style="display: none; text-align: right;">
+                        <div class="math" style="font-size: 1.8rem;">3x + 15</div>
+                    </div>
+                </div>
+                <div class="guided-row">
+                    <div style="font-size: 1.8rem;" class="math">2. -2(y - 4)</div>
+                    <button class="reveal-btn" onclick="document.getElementById('ans7').style.display='block'; this.style.display='none';">Reveal</button>
+                    <div id="ans7" style="display: none; text-align: right;">
+                        <div class="math" style="font-size: 1.8rem;">-2y + 8</div>
+                    </div>
+                </div>
+                <div class="guided-row">
+                    <div style="font-size: 1.8rem;" class="math">3. -(x + 2)</div>
+                    <button class="reveal-btn" onclick="document.getElementById('ans8').style.display='block'; this.style.display='none';">Reveal</button>
+                    <div id="ans8" style="display: none; text-align: right;">
+                        <div class="math" style="font-size: 1.8rem;">-x - 2</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Mixed Problems Strategy -->
+        <div class="slide">
+            <h2>Putting It All Together</h2>
+            <div class="card card-yellow" style="width: 100%; max-width: 900px; padding: 30px;">
+                <div class="card-title">Order of Operations</div>
+                <div class="math-display">2(3x + 1) + 4x</div>
+                <div class="grid-2">
+                    <div style="border-right: 2px dashed #000; padding-right: 20px;">
+                        <h3>Step 1: Distribute</h3>
+                        <p>Clear parentheses first!</p>
+                        <p class="math" style="margin-top: 10px;">6x + 2 + 4x</p>
+                    </div>
+                    <div style="padding-left: 20px;">
+                        <h3>Step 2: Combine</h3>
+                        <p>Combine like terms.</p>
+                        <p class="math" style="margin-top: 10px;">10x + 2</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Independent Practice Level 1 -->
+        <div class="slide">
+            <h2 class="level-header lh-1">Independent Practice: Level 1</h2>
+            <p style="margin-bottom: 20px;">Basic Combining & Distributing</p>
+            <div class="practice-container">
+                <div class="practice-problem">
+                    <span class="math">1) 5x + 2x</span>
+                </div>
+                <div class="practice-problem">
+                    <span class="math">2) 9y - 4y</span>
+                </div>
+                <div class="practice-problem">
+                    <span class="math">3) 4(a + 3)</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Independent Practice Level 2 -->
+        <div class="slide">
+            <h2 class="level-header lh-2">Independent Practice: Level 2</h2>
+            <p style="margin-bottom: 20px;">Negatives & Multi-Step</p>
+            <div class="practice-container">
+                <div class="practice-problem">
+                    <span class="math">1) -3(x - 5)</span>
+                </div>
+                <div class="practice-problem">
+                    <span class="math">2) 7n + 2 - 3n</span>
+                </div>
+                <div class="practice-problem">
+                    <span class="math">3) 2(x + 4) + 3x</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12: Independent Practice Level 3 -->
+        <div class="slide">
+            <h2 class="level-header lh-3">Independent Practice: Level 3</h2>
+            <p style="margin-bottom: 20px;">Complex Simplification</p>
+            <div class="practice-container">
+                <div class="practice-problem">
+                    <span class="math">1) -(2y - 9) + 5y</span>
+                </div>
+                <div class="practice-problem">
+                    <span class="math">2) 3(x + 2) - 2(x - 1)</span>
+                </div>
+                <div class="practice-problem">
+                    <span class="math">3) 4x - (x + 7)</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 13: What's Next? -->
+        <div class="slide">
+            <div class="grid-2">
+                <!-- Checklist -->
+                <div class="card">
+                    <div class="card-title">What's Next?</div>
+                    <div style="display: flex; flex-direction: column; height: 100%; padding-left: 10px;">
+                        <div class="checklist-item">
+                            <div class="check-box checked"><i class="fa-solid fa-check"></i></div> 
+                            Topic Warm Up
+                        </div>
+                        <div class="checklist-item">
+                            <div class="check-box checked"><i class="fa-solid fa-check"></i></div> 
+                            Lesson Slides
+                        </div>
+                        <div class="checklist-item"><div class="check-box"></div> Practice Worksheet</div>
+                        <div class="checklist-item"><div class="check-box"></div> IXL Practice</div>
+                        <div class="checklist-item"><div class="check-box"></div> Topic 4 Exit Ticket</div>
+                        <div class="checklist-item" style="margin-top: auto; font-weight: bold; font-size: 1.1rem; border: 3px solid #d32f2f; background: #fee2e2; padding: 15px; border-radius: 8px; text-align: center; color: #d32f2f;">
+                            <i class="fa-solid fa-triangle-exclamation"></i> <span style="text-decoration: underline; font-weight: 800;">Prepare for a Mini Quiz!</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- IXL Practice -->
+                <div class="card" style="background: #fcfcfc;">
+                    <div class="card-title">IXL Practice</div>
+                    <div style="text-align: center; color: #555; margin-bottom: 20px; font-weight: bold;">Standard A.EO.1</div>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <a href="https://www.ixl.com/math/algebra-1/distributive-property" target="_blank" class="ixl-btn ixl-green">
+                            <span>Distributive Property</span>
+                            <span style="margin-left: auto; background: #eee; padding: 2px 8px; border-radius: 4px; font-size: 0.9rem;">B.9</span>
+                        </a>
+                        <a href="https://www.ixl.com/math/algebra-1/simplify-variable-expressions" target="_blank" class="ixl-btn ixl-orange">
+                            <span>Simplify Expressions</span>
+                            <span style="margin-left: auto; background: #eee; padding: 2px 8px; border-radius: 4px; font-size: 0.9rem;">I.3</span>
+                        </a>
+                        <a href="https://www.ixl.com/math/algebra-1/simplify-variable-expressions-involving-like-terms-and-the-distributive-property" target="_blank" class="ixl-btn ixl-red">
+                            <span>Simplify Complex</span>
+                            <span style="margin-left: auto; background: #eee; padding: 2px 8px; border-radius: 4px; font-size: 0.9rem;">I.9</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="nav-bar">
+            <button id="prevBtn" class="nav-btn"><i class="fa-solid fa-arrow-left"></i></button>
+            <div class="slide-counter">1 / 13</div>
+            <button id="nextBtn" class="nav-btn"><i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const counter = document.querySelector('.slide-counter');
+        let currentSlide = 0;
+
+        function updateSlides() {
+            slides.forEach((slide, index) => {
+                slide.classList.remove('active');
+                if (index === currentSlide) {
+                    slide.classList.add('active');
+                }
+            });
+            counter.textContent = `${currentSlide + 1} / ${slides.length}`;
+            
+            prevBtn.style.opacity = currentSlide === 0 ? 0.3 : 1;
+            nextBtn.style.opacity = currentSlide === slides.length - 1 ? 0.3 : 1;
+        }
+
+        nextBtn.addEventListener('click', () => {
+            if (currentSlide < slides.length - 1) {
+                currentSlide++;
+                updateSlides();
+            }
+        });
+
+        prevBtn.addEventListener('click', () => {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateSlides();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' && currentSlide < slides.length - 1) {
+                currentSlide++;
+                updateSlides();
+            }
+            if (e.key === 'ArrowLeft' && currentSlide > 0) {
+                currentSlide--;
+                updateSlides();
+            }
+        });
+
+        updateSlides();
+    </script>
+    <footer style="margin-top: 2rem; color: #9ca3af; font-size: 0.9rem;">
+        &copy; 2026 Aly Hatfield. All rights reserved.
+    </footer>
+</body>
+</html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Topic 4: Warm Ups</title>
+    
+    <!-- Importing Clean, Readable Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Global Reset & Print Settings */
+        * {
+            box-sizing: border-box;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        @page {
+            size: letter;
+            margin: 0.25in;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            font-family: 'Quicksand', sans-serif;
+            color: #222;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* The Page Container */
+        .page {
+            width: 8in;
+            height: 10.5in;
+            margin: 20px auto;
+            background: white;
+            position: relative;
+            overflow: hidden;
+            page-break-after: always;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-content: space-between;
+        }
+
+        /* Problem Card (Quarter Page) */
+        .problem-card {
+            width: 49%;
+            height: 49%;
+            border: 4px solid #000;
+            border-radius: 20px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            background: white;
+            justify-content: space-between;
+        }
+
+        /* Cut Guides */
+        .cut-guide-h {
+            position: absolute; top: 50%; left: 0; width: 100%; border-bottom: 2px dashed #bbb; z-index: 0; pointer-events: none;
+        }
+        .cut-guide-v {
+            position: absolute; left: 50%; top: 0; height: 100%; border-right: 2px dashed #bbb; z-index: 0; pointer-events: none;
+        }
+        .cut-icon {
+            position: absolute; background: white; padding: 5px; color: #999; font-size: 16px; z-index: 1;
+        }
+
+        /* Card Header */
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        .card-title {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .card-id {
+            background: #000;
+            color: #fff;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        /* Problem Content */
+        .content-area {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .question-text {
+            font-size: 1.3rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .math-large {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 2.2rem;
+            margin: 15px 0;
+            color: #000;
+        }
+
+        /* Logic Symbols */
+        .logic-sym { font-family: 'Times New Roman', serif; font-weight: bold; }
+
+        /* Footer inside card */
+        .card-footer {
+            margin-top: auto;
+            background: #f4f4f4;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 1rem;
+            color: #555;
+            font-weight: 600;
+        }
+
+        @media print {
+            body { background: none; display: block; }
+            .page { margin: 0 auto; box-shadow: none; width: 100%; height: 100%; }
+            .problem-card { box-shadow: none; page-break-inside: avoid; border: 3px solid #000; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PAGE 1: TOPIC 4 WARM UPS -->
+    <div class="page">
+        <!-- Cut Guides -->
+        <div class="cut-guide-h"></div>
+        <div class="cut-guide-v"></div>
+        <div class="cut-icon" style="top: 49%; left: 1%;">✂</div>
+        <div class="cut-icon" style="top: 1%; left: 49%;">✂</div>
+
+        <!-- Card 1: Review Topic 3 (Truth Values) -->
+        <div class="problem-card">
+            <div class="card-header">
+                <span class="card-title">Warm Up</span>
+                <span class="card-id">Review 1</span>
+            </div>
+            <div class="content-area">
+                <div class="question-text">
+                    <strong>Topic 3 Review:</strong><br><br>
+                    Is this True or False?
+                </div>
+                <div class="math-large" style="font-size: 1.8rem;">
+                    (2+2=4) <span class="logic-sym">&or;</span> (5>10)
+                </div>
+                <div style="font-size: 1.2rem; margin-top: 10px;">
+                    True OR False
+                </div>
+            </div>
+            <div class="card-footer">OR is lenient!</div>
+        </div>
+
+        <!-- Card 2: Review Topic 3 (Symbols) -->
+        <div class="problem-card">
+            <div class="card-header">
+                <span class="card-title">Warm Up</span>
+                <span class="card-id">Review 2</span>
+            </div>
+            <div class="content-area">
+                <div class="question-text">
+                    <strong>Topic 3 Review:</strong><br><br>
+                    Translate to English:
+                </div>
+                <div class="math-large">
+                    <span class="logic-sym">p &and; ~q</span>
+                </div>
+                <div style="font-size: 1.2rem; margin-top: 10px;">
+                    (p = I study, q = I fail)
+                </div>
+            </div>
+            <div class="card-footer">"I study AND I do not fail"</div>
+        </div>
+
+        <!-- Card 3: Intro Topic 4 (Sorting) -->
+        <div class="problem-card">
+            <div class="card-header">
+                <span class="card-title">Warm Up</span>
+                <span class="card-id">Topic 4</span>
+            </div>
+            <div class="content-area">
+                <div class="question-text">
+                    <strong>Logic Check:</strong><br><br>
+                    Where does a <strong>Red Apple</strong> go?
+                </div>
+                <div style="font-size: 1.2rem; text-align: left; margin-top: 15px;">
+                    Circle A: All Red Things<br>
+                    Circle B: All Fruits
+                </div>
+            </div>
+            <div class="card-footer">Does it belong in BOTH circles?</div>
+        </div>
+
+        <!-- Card 4: Intro Topic 4 (Visualizing Overlap) -->
+        <div class="problem-card">
+            <div class="card-header">
+                <span class="card-title">Warm Up</span>
+                <span class="card-id">Topic 4</span>
+            </div>
+            <div class="content-area">
+                <div class="question-text">
+                    <strong>Visualize It:</strong><br><br>
+                    Draw two overlapping circles. Shade the part that represents "p <strong>AND</strong> q".
+                </div>
+                <div style="height: 100px; width: 100%; border: 1px dashed #ccc; margin-top: 10px;"></div>
+            </div>
+            <div class="card-footer">The Intersection (Middle)</div>
+        </div>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Foundations Syllabus</title>
+    
+    <!-- 1. FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* 2. GLOBAL STYLES */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            font-family: 'Quicksand', sans-serif;
+            color: #222;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* PAGE CONTAINER */
+        .container {
+            max-width: 900px;
+            width: 100%;
+            margin: 40px auto;
+            padding: 20px;
+            flex: 1;
+        }
+
+        /* HEADER */
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 40px 20px;
+            background: white;
+            border: 3px solid #000;
+            border-radius: 16px;
+            box-shadow: 8px 8px 0px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 3rem;
+            margin: 0 0 10px 0;
+            color: #000;
+            line-height: 1.1;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #555;
+        }
+
+        /* SYLLABUS CARD */
+        .syllabus-card {
+            background: white;
+            border: 3px solid #000;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 6px 6px 0px rgba(0,0,0,0.1);
+        }
+
+        /* SECTIONS */
+        .section-title {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.8rem;
+            color: #000;
+            border-bottom: 3px solid #eee;
+            padding-bottom: 10px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+        
+        .section-title:first-child { margin-top: 0; }
+
+        /* INSTRUCTOR INFO BOX */
+        .instructor-box {
+            background: #f9f9f9;
+            border: 2px dashed #ccc;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .info-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .info-list li {
+            margin-bottom: 10px;
+        }
+
+        /* LISTS */
+        ul { margin-left: 20px; }
+        li { margin-bottom: 10px; }
+        
+        /* Nested Lists */
+        ul ul {
+            margin-top: 5px;
+            font-size: 0.95rem;
+            color: #555;
+            list-style-type: circle;
+        }
+
+        /* PRINT BUTTON */
+        .print-container {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .print-btn {
+            display: inline-block;
+            background: #000;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: transform 0.2s;
+        }
+
+        .print-btn:hover {
+            transform: scale(1.05);
+            background: #333;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            background: #fff;
+            border-top: 3px solid #333;
+            margin-top: auto;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* ROUTINE STEPS */
+        .routine-step {
+            margin-bottom: 15px;
+            padding-left: 15px;
+            border-left: 4px solid #333;
+        }
+        .step-title {
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.95rem;
+            color: #444;
+            display: block;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 600px) {
+            h1 { font-size: 2.2rem; }
+            .syllabus-card { padding: 20px; }
+        }
+
+        /* PRINT STYLES */
+        @media print {
+            body { 
+                background: white; 
+                color: #000; 
+            }
+            .container { 
+                margin: 0; 
+                padding: 0; 
+                max-width: 100%; 
+            }
+            header, .print-container, footer { 
+                display: none; 
+            }
+            .syllabus-card { 
+                border: none; 
+                box-shadow: none; 
+                padding: 0; 
+            }
+            .section-title { 
+                border-bottom: 2px solid #000; 
+                margin-top: 20px;
+            }
+            .instructor-box {
+                border: 1px solid #000;
+                background: none;
+            }
+            a { text-decoration: underline; color: #000 !important; }
+            .subtitle, p, li { color: #000 !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- HEADER -->
+        <header>
+            <h1>Math Foundations</h1>
+            <p class="subtitle">Course Syllabus • The Excel Center</p>
+        </header>
+
+        <div class="print-container">
+            <a href="javascript:window.print()" class="print-btn">🖨️ Print Syllabus</a>
+        </div>
+
+        <div class="syllabus-card">
+            
+            <!-- INSTRUCTOR INFO -->
+            <div class="instructor-box">
+                <ul class="info-list">
+                    <li><strong>Instructor:</strong> Alexandra Hatfield (“Aly”)</li>
+                    <li><strong>Email:</strong> <a href="mailto:ahatfield@goodwillvalleys.com" style="color:#0074d9; text-decoration:none;">ahatfield@goodwillvalleys.com</a></li>
+                    <li><strong>Office Hours:</strong> Fridays 10:00 AM - 12:00 PM (or by appointment)</li>
+                    <li><strong>Communication:</strong> I respond within 24 hours on school days.</li>
+                </ul>
+            </div>
+
+            <!-- COURSE OVERVIEW -->
+            <h2 class="section-title">Course Overview</h2>
+            <p>Welcome to Math Foundations! This self-paced online course is designed to build the essential pre-algebra skills needed for success in Algebra 1.</p>
+            <p><strong>My Role:</strong> While the lessons are online, I am here to guide you, provide one-on-one help, and lead mini-lessons when you need extra support.</p>
+
+            <!-- MATERIALS -->
+            <h2 class="section-title">Materials Needed</h2>
+            <ul>
+                <li>Notebook or binder for notes</li>
+                <li>Pencils and erasers</li>
+                <li>Calculator (Scientific or Desmos)</li>
+                <li>Laptop/Computer with internet</li>
+            </ul>
+
+            <!-- DAILY ROUTINE -->
+            <h2 class="section-title">Class Routine & Flow</h2>
+            <div class="routine-step">
+                <span class="step-title">1. Start of Class</span>
+                Come in, grab your paper, pencil, and Chromebook. Be ready to work!
+            </div>
+            <div class="routine-step">
+                <span class="step-title">2. Warm Up</span>
+                Complete 1-2 problems on the board. We will discuss these together.
+            </div>
+            <div class="routine-step">
+                <span class="step-title">3. Main Lesson</span>
+                I use slides and examples on the board. Please take notes during this time.
+            </div>
+            <div class="routine-step">
+                <span class="step-title">4. Practice</span>
+                Work on a practice worksheet (Independent or Group work).
+            </div>
+            <div class="routine-step">
+                <span class="step-title">5. Closing</span>
+                Complete the Exit Ticket to show what you learned.
+            </div>
+            <p><strong>Submitting Work:</strong> All work must be turned into the tray or handed directly to me to be graded.</p>
+
+            <!-- MAKE UP & ACCOMMODATIONS -->
+            <h2 class="section-title">Make-Up Work & Support</h2>
+            <p><strong>Fridays</strong> are the best days for making up material, but we can talk and be flexible to accommodate your schedule as needed.</p>
+            <p><strong>Accommodations:</strong> If you have specific needs (such as larger fonts, printed notes, or preferential seating), please let me know immediately so I can ensure you have the tools to succeed.</p>
+
+            <!-- UNITS -->
+            <h2 class="section-title">Units & Topics</h2>
+            <p>Aligned with Virginia SOLs for Pre-Algebra.</p>
+            <ul>
+                <li><strong>Unit 1: Whole Number Foundations</strong>
+                    <ul>
+                        <li>Place value, estimation, operations (+, -, x, ÷), PEMDAS.</li>
+                    </ul>
+                </li>
+                <li><strong>Unit 2: Understanding Fractions</strong>
+                    <ul>
+                        <li>Visualizing fractions, simplifying, comparing sizes.</li>
+                    </ul>
+                </li>
+                <li><strong>Unit 3: Decimals & Percents</strong>
+                    <ul>
+                        <li>Connecting fractions, decimals, and percents ("out of 100").</li>
+                    </ul>
+                </li>
+                <li><strong>Unit 4: Operations</strong>
+                    <ul>
+                        <li>Real-world math with fractions and decimals (money, measurement).</li>
+                    </ul>
+                </li>
+                <li><strong>Unit 5: Ratios & Rates</strong>
+                    <ul>
+                        <li>Proportional reasoning, unit rates (cost per ounce).</li>
+                    </ul>
+                </li>
+                <li><strong>Unit 6: Applications</strong>
+                    <ul>
+                        <li>Solving everyday problems: discounts, tax, tips.</li>
+                    </ul>
+                </li>
+                <li><strong>Unit 7: Intro to Algebra</strong>
+                    <ul>
+                        <li>Integers (pos/neg numbers), variables, writing expressions.</li>
+                    </ul>
+                </li>
+                <li><strong>Unit 8: Equations & Graphing</strong>
+                    <ul>
+                        <li>Solving one- and two-step equations, plotting points (x, y).</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <!-- GRADING -->
+            <h2 class="section-title">Grading & Progress</h2>
+            <p>This is a <strong>Competency-Based</strong> course. There are no traditional letter grades assigned by me.</p>
+            <p><strong>Success = Completion.</strong> You must finish all required modules, practice sets, and assessments in the online platform to pass the course.</p>
+
+            <!-- LATE WORK POLICY -->
+            <h2 class="section-title">Late Work Policy</h2>
+            <p>I will accept assignments up to <strong>one week late</strong>; after that, it is considered missed.</p>
+            <p><strong>Communication is key!</strong> If you know you are not going to attend class, please communicate with me. I can have materials ready for you at the beginning of class when you return or send them home with you.</p>
+            <p>Please be respectful of everyone's time and be considerate.</p>
+
+            <!-- EXPECTATIONS -->
+            <h2 class="section-title">Expectations</h2>
+            <ol style="margin-left: 20px;">
+                <li><strong>Work Consistently:</strong> Log in and make progress every week.</li>
+                <li><strong>Take Notes:</strong> Treat the online videos like a real lecture.</li>
+                <li><strong>Ask for Help:</strong> Do not spin your wheels. If you are stuck, ask me!</li>
+            </ol>
+
+            <!-- RESOURCES -->
+            <h2 class="section-title">Resources</h2>
+            <ul>
+                <li><strong>Class Resource Page:</strong> <a href="https://www.ahatmath.com" target="_blank" style="color:#0074d9;">ahatmath.com</a> (Extra practice & guides)</li>
+                <li><strong>Synergy:</strong> Check your official status and attendance.</li>
+                <li><strong>Desmos:</strong> Free online calculator.</li>
+            </ul>
+
+        </div>
+
+    </div>
+
+    <footer>
+        &copy; 2026 Aly Hatfield. All Rights Reserved.
+    </footer>
+
+</body>
+</html>

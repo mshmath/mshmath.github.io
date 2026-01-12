@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geometry: Symbolic Logic & Compound Statements</title>
+    
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- ICONS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* --- 1. CORE VARIABLES & RESET --- */
+        :root {
+            --bg-color: #f4f4f4;
+            --card-bg: #ffffff;
+            --border-color: #000000;
+            --shadow-color: rgba(0,0,0,0.1);
+            --font-heading: 'Fredoka', sans-serif;
+            --font-body: 'Quicksand', sans-serif;
+            --font-math: 'Times New Roman', serif;
+            
+            /* Logic Colors */
+            --and-green: #22c55e;
+            --or-orange: #f97316;
+            --not-purple: #a855f7;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-color);
+            font-family: var(--font-body);
+            color: #222;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        /* --- 2. SLIDESHOW CONTAINER (1100px, 16:9) --- */
+        .slide-container {
+            width: 100%;
+            max-width: 1100px;
+            aspect-ratio: 16 / 9;
+            background: var(--card-bg);
+            border: 4px solid var(--border-color);
+            border-radius: 20px;
+            box-shadow: 12px 12px 0px rgba(0,0,0,0.15);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- 3. SLIDE STYLES --- */
+        .slide {
+            flex: 1;
+            display: none;
+            flex-direction: column;
+            justify-content: flex-start; /* Flow from top */
+            align-items: center;
+            padding: 40px 60px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .slide.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        /* TYPOGRAPHY */
+        h1, h2, h3 { 
+            font-family: var(--font-heading); 
+            text-transform: uppercase;
+            line-height: 1.2;
+            color: #000;
+        }
+
+        h1 { font-size: 3rem; margin-bottom: 10px; text-align: center; }
+        h2 { font-size: 2.2rem; margin-bottom: 25px; border-bottom: 3px solid #000; padding-bottom: 8px; width: 100%; text-align: center; }
+        h3 { font-size: 1.4rem; margin-bottom: 10px; }
+        
+        p, li { font-size: 1.3rem; line-height: 1.6; font-weight: 500; }
+        
+        /* Key Terms: Bold AND Underlined */
+        .key-term {
+            font-weight: 800;
+            text-decoration: underline;
+            text-decoration-thickness: 3px;
+            text-underline-offset: 4px;
+            color: #000;
+        }
+
+        /* Math/Logic Styling */
+        .logic-font { 
+            font-family: var(--font-math); 
+            font-style: italic; 
+            font-weight: bold; 
+            font-size: 1.2em; 
+        }
+
+        .logic-display {
+            font-family: var(--font-math);
+            font-style: italic;
+            font-weight: bold;
+            font-size: 2.5rem;
+            display: block;
+            margin: 15px 0;
+            text-align: center;
+        }
+
+        /* --- 4. COMPONENTS --- */
+        
+        /* Grid Layouts */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            width: 100%;
+            align-items: start;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            border: 3px solid #000;
+            border-radius: 12px;
+            padding: 25px;
+            background: #fff;
+            box-shadow: 6px 6px 0px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            height: 100%;
+        }
+
+        .card-title {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            border-bottom: 2px solid #eee;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            text-align: center;
+        }
+
+        /* Truth Table Styles */
+        .truth-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 1.3rem;
+            text-align: center;
+            font-family: var(--font-heading);
+        }
+        .truth-table th {
+            background-color: #000;
+            color: #fff;
+            padding: 10px;
+            border: 2px solid #000;
+        }
+        .truth-table td {
+            border: 2px solid #000;
+            padding: 10px;
+            font-weight: bold;
+        }
+        .tf-true { color: #166534; background-color: #dcfce7; }
+        .tf-false { color: #991b1b; background-color: #fee2e2; }
+
+        /* Guided Practice Reveal */
+        .guided-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px dashed #000;
+            padding: 20px 0;
+            width: 100%;
+        }
+        
+        .reveal-btn {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.1rem;
+            color: #fff;
+            background: #000;
+            padding: 10px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            border: none;
+            transition: transform 0.1s;
+        }
+        .reveal-btn:active { transform: scale(0.95); }
+        
+        /* Independent Practice Levels */
+        .practice-container {
+            width: 100%;
+            max-width: 900px;
+            text-align: center;
+            padding-bottom: 40px;
+        }
+        
+        .practice-problem {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 20px 0;
+            padding: 20px;
+            background: #fff;
+            border: 3px solid #000;
+            border-radius: 15px;
+            box-shadow: 5px 5px 0px rgba(0,0,0,0.1);
+            text-align: left;
+        }
+
+        .level-header {
+            color: #000;
+            padding: 10px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            border: 3px solid #000;
+            background: #fff;
+        }
+        
+        .lh-1 { border-left: 15px solid #22c55e; }
+        .lh-2 { border-left: 15px solid #f59e0b; }
+        .lh-3 { border-left: 15px solid #ef4444; }
+
+        /* Checklist Styles */
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .check-box {
+            width: 24px;
+            height: 24px;
+            border: 3px solid #000;
+            margin-right: 15px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+        }
+        .check-box i { font-size: 0.9rem; color: #000; }
+        .check-box.checked { background: #e0e0e0; }
+
+        /* IXL Buttons */
+        .ixl-btn {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border: 3px solid #000;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #000;
+            font-weight: 700;
+            font-size: 1.1rem;
+            background: #fff;
+            transition: transform 0.1s;
+            margin-bottom: 15px;
+        }
+        .ixl-btn:hover { transform: translateY(-2px); box-shadow: 4px 4px 0px rgba(0,0,0,0.2); }
+        .ixl-green { border-left: 12px solid #22c55e; }
+        .ixl-orange { border-left: 12px solid #f59e0b; }
+        .ixl-red { border-left: 12px solid #ef4444; }
+
+        /* --- 5. NAVIGATION --- */
+        .nav-bar {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 40px;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        .nav-btn {
+            pointer-events: auto;
+            background: #fff;
+            border: 3px solid #000;
+            color: #000;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.2);
+            transition: transform 0.1s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .nav-btn:hover { transform: scale(1.1); }
+
+        .slide-counter {
+            pointer-events: auto;
+            background: #000;
+            color: #fff;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-family: var(--font-heading);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* --- 6. PRINT STYLES --- */
+        .print-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 120px; 
+            background: #000;
+            color: #fff;
+            border: none;
+            padding: 10px 25px;
+            font-family: var(--font-heading);
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 30px;
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.3);
+            z-index: 1000;
+        }
+
+        @media print {
+            body { background: #fff; padding: 0; display: block; }
+            .print-btn, .nav-bar { display: none !important; }
+            .slide-container {
+                width: 100%; max-width: none; min-height: 0; border: none; box-shadow: none; border-radius: 0; display: block; overflow: visible;
+                aspect-ratio: auto;
+            }
+            .slide {
+                display: block !important; opacity: 1 !important; page-break-after: always; border-bottom: 2px dashed #000; padding: 30px; height: auto;
+            }
+            .reveal-btn { display: none; }
+            .guided-row div[id^="ans"] { display: block !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <button class="print-btn" onclick="window.print()">
+        <i class="fa-solid fa-print"></i> Print Notes
+    </button>
+
+    <div class="slide-container">
+        
+        <!-- Slide 1: Title -->
+        <div class="slide active" style="justify-content: center;">
+            <div style="border: 4px solid #000; padding: 40px; border-radius: 20px; text-align: center; box-shadow: 10px 10px 0px rgba(0,0,0,0.1); background: #fff; width: 80%;">
+                <div style="font-family: 'Fredoka'; font-size: 1.5rem; letter-spacing: 3px; margin-bottom: 15px;">UNIT 1 • TOPIC 3</div>
+                <h1>Symbolic Logic</h1>
+                <p style="color: #555; margin-top: 15px; font-size: 1.4rem;">Compound Statements & Truth Tables</p>
+                <div style="margin-top: 25px; display: inline-block; background: #000; color: #fff; padding: 10px 30px; border-radius: 50px; font-weight: bold; font-family: 'Fredoka'; font-size: 1.1rem;">Standard G.1</div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Objectives -->
+        <div class="slide">
+            <h2>Objectives & Standards</h2>
+            <div class="card" style="width: 100%; max-width: 900px; padding: 40px;">
+                <h3><i class="fa-solid fa-bullseye"></i> Today's Goals:</h3>
+                <ul style="list-style-type: square; padding-left: 20px; margin-top: 20px; font-size: 1.3rem; line-height: 1.8;">
+                    <li>Identify and write <span class="key-term">Compound Statements</span>.</li>
+                    <li>Use symbols for <span class="key-term">And</span> (&and;) and <span class="key-term">Or</span> (&or;).</li>
+                    <li>Construct and interpret <span class="key-term">Truth Tables</span>.</li>
+                    <li>Determine the validity of logical arguments.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 3: Vocab - Compound Statements -->
+        <div class="slide">
+            <h2>Compound Statements</h2>
+            <p style="font-size: 1.3rem; margin-bottom: 20px;">Combining two or more statements.</p>
+            <div class="grid-2">
+                <div class="card" style="border-left: 10px solid var(--and-green);">
+                    <div class="card-title">Conjunction (AND)</div>
+                    <div class="logic-display" style="color: var(--and-green);">p &and; q</div>
+                    <p style="text-align: center;">"P <strong>AND</strong> Q"</p>
+                    <p style="text-align: center; font-size: 1rem; margin-top: 10px;">Think: Intersection</p>
+                </div>
+                <div class="card" style="border-left: 10px solid var(--or-orange);">
+                    <div class="card-title">Disjunction (OR)</div>
+                    <div class="logic-display" style="color: var(--or-orange);">p &or; q</div>
+                    <p style="text-align: center;">"P <strong>OR</strong> Q"</p>
+                    <p style="text-align: center; font-size: 1rem; margin-top: 10px;">Think: Union</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Conjunctions (AND) -->
+        <div class="slide">
+            <h2>The Conjunction (&and;)</h2>
+            <div class="vocab-box">
+                <h3 style="color: var(--and-green);">The Strict Parent</h3>
+                <p style="margin-top: 10px;">A conjunction is TRUE <strong>only if BOTH</strong> parts are true.</p>
+            </div>
+            
+            <div class="card" style="width: 100%; max-width: 800px; padding: 30px;">
+                <p style="font-size: 1.4rem; text-align: center;">
+                    "I want a burger <strong>AND</strong> fries."
+                </p>
+                <hr style="margin: 20px 0;">
+                <ul style="font-size: 1.2rem; line-height: 1.8;">
+                    <li><i class="fa-solid fa-burger"></i> Burger only? <span style="color: red; font-weight: bold;">FALSE</span></li>
+                    <li><i class="fa-solid fa-utensils"></i> Fries only? <span style="color: red; font-weight: bold;">FALSE</span></li>
+                    <li><i class="fa-solid fa-check"></i> Both? <span style="color: green; font-weight: bold;">TRUE</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 5: Disjunctions (OR) -->
+        <div class="slide">
+            <h2>The Disjunction (&or;)</h2>
+            <div class="vocab-box">
+                <h3 style="color: var(--or-orange);">The Lenient Parent</h3>
+                <p style="margin-top: 10px;">A disjunction is TRUE if <strong>AT LEAST ONE</strong> part is true.</p>
+            </div>
+            
+            <div class="card" style="width: 100%; max-width: 800px; padding: 30px;">
+                <p style="font-size: 1.4rem; text-align: center;">
+                    "I want a burger <strong>OR</strong> fries."
+                </p>
+                <hr style="margin: 20px 0;">
+                <ul style="font-size: 1.2rem; line-height: 1.8;">
+                    <li><i class="fa-solid fa-burger"></i> Burger only? <span style="color: green; font-weight: bold;">TRUE</span></li>
+                    <li><i class="fa-solid fa-utensils"></i> Fries only? <span style="color: green; font-weight: bold;">TRUE</span></li>
+                    <li><i class="fa-solid fa-xmark"></i> Neither? <span style="color: red; font-weight: bold;">FALSE</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 6: Truth Table Basics -->
+        <div class="slide">
+            <h2>Intro to Truth Tables</h2>
+            <p style="margin-bottom: 20px;">A table showing all possible truth values for a statement.</p>
+            
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-title">Setup (2 Variables)</div>
+                    <p style="text-align: center;">Start with standard columns for p and q.</p>
+                    <table class="truth-table" style="margin-top: 15px;">
+                        <tr>
+                            <th>p</th>
+                            <th>q</th>
+                        </tr>
+                        <tr><td>T</td><td>T</td></tr>
+                        <tr><td>T</td><td>F</td></tr>
+                        <tr><td>F</td><td>T</td></tr>
+                        <tr><td>F</td><td>F</td></tr>
+                    </table>
+                </div>
+                <div class="card" style="justify-content: center; align-items: center;">
+                    <div style="font-size: 1.3rem; text-align: center;">
+                        <p><strong>T</strong> = True</p>
+                        <p><strong>F</strong> = False</p>
+                        <hr style="width: 50%; margin: 15px auto;">
+                        <p>We use these inputs to calculate complex logic.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Truth Table (Negation) -->
+        <div class="slide">
+            <h2>Truth Table: Negation (~)</h2>
+            <p style="margin-bottom: 20px;">Negation flips the truth value.</p>
+            
+            <div class="card" style="width: 100%; max-width: 600px; padding: 0;">
+                <table class="truth-table" style="border: none;">
+                    <tr>
+                        <th>p</th>
+                        <th style="color: var(--not-purple); background: #f3e8ff;">~p</th>
+                    </tr>
+                    <tr>
+                        <td>T</td>
+                        <td class="tf-false">F</td>
+                    </tr>
+                    <tr>
+                        <td>F</td>
+                        <td class="tf-true">T</td>
+                    </tr>
+                </table>
+            </div>
+            <p style="margin-top: 20px; font-size: 1.3rem;">If p is True, Not p is False.</p>
+        </div>
+
+        <!-- Slide 8: Truth Table (Conjunction) -->
+        <div class="slide">
+            <h2>Truth Table: Conjunction (&and;)</h2>
+            <p style="margin-bottom: 20px;">Remember: <strong>AND</strong> is Strict. Needs T-T.</p>
+            
+            <div class="card" style="width: 100%; max-width: 600px; padding: 0;">
+                <table class="truth-table" style="border: none;">
+                    <tr>
+                        <th>p</th>
+                        <th>q</th>
+                        <th style="color: var(--and-green); background: #dcfce7;">p &and; q</th>
+                    </tr>
+                    <tr>
+                        <td>T</td><td>T</td>
+                        <td class="tf-true">T</td>
+                    </tr>
+                    <tr>
+                        <td>T</td><td>F</td>
+                        <td class="tf-false">F</td>
+                    </tr>
+                    <tr>
+                        <td>F</td><td>T</td>
+                        <td class="tf-false">F</td>
+                    </tr>
+                    <tr>
+                        <td>F</td><td>F</td>
+                        <td class="tf-false">F</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- Slide 9: Truth Table (Disjunction) -->
+        <div class="slide">
+            <h2>Truth Table: Disjunction (&or;)</h2>
+            <p style="margin-bottom: 20px;">Remember: <strong>OR</strong> is Lenient. Just needs one T.</p>
+            
+            <div class="card" style="width: 100%; max-width: 600px; padding: 0;">
+                <table class="truth-table" style="border: none;">
+                    <tr>
+                        <th>p</th>
+                        <th>q</th>
+                        <th style="color: var(--or-orange); background: #ffedd5;">p &or; q</th>
+                    </tr>
+                    <tr>
+                        <td>T</td><td>T</td>
+                        <td class="tf-true">T</td>
+                    </tr>
+                    <tr>
+                        <td>T</td><td>F</td>
+                        <td class="tf-true">T</td>
+                    </tr>
+                    <tr>
+                        <td>F</td><td>T</td>
+                        <td class="tf-true">T</td>
+                    </tr>
+                    <tr>
+                        <td>F</td><td>F</td>
+                        <td class="tf-false">F</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- Slide 10: Guided Practice - Symbols -->
+        <div class="slide">
+            <h2>Guided Practice: Translating</h2>
+            <div style="width: 100%; max-width: 900px;">
+                <p style="font-size: 1.3rem; margin-bottom: 20px;">
+                    <strong>p:</strong> Math is fun. &nbsp;&nbsp; <strong>q:</strong> Logic is hard.
+                </p>
+                
+                <div class="guided-row">
+                    <div style="font-size: 1.4rem;">1. Translate: p &and; ~q</div>
+                    <button class="reveal-btn" onclick="document.getElementById('ans1').style.display='block'; this.style.display='none';">Reveal</button>
+                    <div id="ans1" style="display: none; text-align: right; font-size: 1.3rem;">
+                        "Math is fun <strong>AND</strong> logic is <strong>NOT</strong> hard."
+                    </div>
+                </div>
+                
+                <div class="guided-row">
+                    <div style="font-size: 1.4rem;">2. Translate: ~p &or; q</div>
+                    <button class="reveal-btn" onclick="document.getElementById('ans2').style.display='block'; this.style.display='none';">Reveal</button>
+                    <div id="ans2" style="display: none; text-align: right; font-size: 1.3rem;">
+                        "Math is <strong>NOT</strong> fun <strong>OR</strong> logic is hard."
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Guided Practice - Truth Values -->
+        <div class="slide">
+            <h2>Guided Practice: Truth Values</h2>
+            <div style="width: 100%; max-width: 900px;">
+                <p style="font-size: 1.3rem; margin-bottom: 20px;">
+                    <strong>p:</strong> 2 + 2 = 4 (T) &nbsp;&nbsp; <strong>q:</strong> 5 > 10 (F)
+                </p>
+                
+                <div class="guided-row">
+                    <div style="font-size: 1.4rem;">1. p &and; q (T AND F)</div>
+                    <button class="reveal-btn" onclick="document.getElementById('ans3').style.display='block'; this.style.display='none';">Reveal</button>
+                    <div id="ans3" style="display: none; text-align: right; font-size: 1.4rem; color: #991b1b; font-weight: bold;">
+                        FALSE
+                    </div>
+                </div>
+                
+                <div class="guided-row">
+                    <div style="font-size: 1.4rem;">2. p &or; q (T OR F)</div>
+                    <button class="reveal-btn" onclick="document.getElementById('ans4').style.display='block'; this.style.display='none';">Reveal</button>
+                    <div id="ans4" style="display: none; text-align: right; font-size: 1.4rem; color: #166534; font-weight: bold;">
+                        TRUE
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12: Independent Practice Level 1 -->
+        <div class="slide">
+            <h2 class="level-header lh-1">Independent Practice: Level 1</h2>
+            <p style="margin-bottom: 20px;">Write the Symbols.</p>
+            <div class="practice-container">
+                <div class="practice-problem">
+                    1) "Today is Monday AND it is sunny."
+                </div>
+                <div class="practice-problem">
+                    2) "I will eat pizza OR tacos."
+                </div>
+                <div class="practice-problem">
+                    3) "It is NOT raining."
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 13: Independent Practice Level 2 -->
+        <div class="slide">
+            <h2 class="level-header lh-2">Independent Practice: Level 2</h2>
+            <p style="margin-bottom: 20px;">Determine Truth Values (p=True, q=False)</p>
+            <div class="practice-container">
+                <div class="practice-problem">
+                    1) p &or; q
+                </div>
+                <div class="practice-problem">
+                    2) p &and; q
+                </div>
+                <div class="practice-problem">
+                    3) ~p &or; ~q <span style="font-size: 0.9rem; font-weight: normal;">(Hint: Translate first)</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 14: Independent Practice Level 3 (NEW) -->
+        <div class="slide">
+            <h2 class="level-header lh-3">Independent Practice: Level 3</h2>
+            <p style="margin-bottom: 20px;">Complex Logic (p=T, q=F, r=T)</p>
+            <div class="practice-container">
+                <div class="practice-problem">
+                    1) Determine Truth: (p &and; q) &or; r
+                    <br><span style="font-size: 1rem; color: #666; font-weight: normal;">(Hint: Solve parentheses first)</span>
+                </div>
+                <div class="practice-problem">
+                    2) Determine Truth: ~p &and; (q &or; r)
+                </div>
+                <div class="practice-problem">
+                    3) Is (p &or; q) true? Why?
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 15: What's Next? -->
+        <div class="slide">
+            <div class="grid-2">
+                <!-- Checklist -->
+                <div class="card">
+                    <div class="card-title">What's Next?</div>
+                    <div style="display: flex; flex-direction: column; height: 100%; padding-left: 10px;">
+                        <div class="checklist-item">
+                            <div class="check-box checked"><i class="fa-solid fa-check"></i></div> 
+                            Topic Warm Up
+                        </div>
+                        <div class="checklist-item">
+                            <div class="check-box checked"><i class="fa-solid fa-check"></i></div> 
+                            Lesson Slides
+                        </div>
+                        <div class="checklist-item"><div class="check-box"></div> Practice Worksheet</div>
+                        <div class="checklist-item"><div class="check-box"></div> IXL Practice</div>
+                        <div class="checklist-item"><div class="check-box"></div> Topic 3 Exit Ticket</div>
+                    </div>
+                </div>
+
+                <!-- IXL Practice -->
+                <div class="card" style="background: #fcfcfc;">
+                    <div class="card-title">IXL Practice</div>
+                    <div style="text-align: center; color: #555; margin-bottom: 20px; font-weight: bold;">Standard G.1</div>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <a href="https://www.ixl.com/math/geometry/truth-tables" target="_blank" class="ixl-btn ixl-green">
+                            <span>Truth Tables</span>
+                            <span style="margin-left: auto; background: #eee; padding: 2px 8px; border-radius: 4px; font-size: 0.9rem;">B.7</span>
+                        </a>
+                        <a href="https://www.ixl.com/math/geometry/truth-values" target="_blank" class="ixl-btn ixl-orange">
+                            <span>Truth Values</span>
+                            <span style="margin-left: auto; background: #eee; padding: 2px 8px; border-radius: 4px; font-size: 0.9rem;">B.8</span>
+                        </a>
+                        <a href="https://www.ixl.com/math/geometry/conjunctions-and-disjunctions" target="_blank" class="ixl-btn ixl-red">
+                            <span>Compound Logic</span>
+                            <span style="margin-left: auto; background: #eee; padding: 2px 8px; border-radius: 4px; font-size: 0.9rem;">B.9</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="nav-bar">
+            <button id="prevBtn" class="nav-btn"><i class="fa-solid fa-arrow-left"></i></button>
+            <div class="slide-counter">1 / 15</div>
+            <button id="nextBtn" class="nav-btn"><i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const counter = document.querySelector('.slide-counter');
+        let currentSlide = 0;
+
+        function updateSlides() {
+            slides.forEach((slide, index) => {
+                slide.classList.remove('active');
+                if (index === currentSlide) {
+                    slide.classList.add('active');
+                }
+            });
+            counter.textContent = `${currentSlide + 1} / ${slides.length}`;
+            
+            prevBtn.style.opacity = currentSlide === 0 ? 0.3 : 1;
+            nextBtn.style.opacity = currentSlide === slides.length - 1 ? 0.3 : 1;
+        }
+
+        nextBtn.addEventListener('click', () => {
+            if (currentSlide < slides.length - 1) {
+                currentSlide++;
+                updateSlides();
+            }
+        });
+
+        prevBtn.addEventListener('click', () => {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateSlides();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' && currentSlide < slides.length - 1) {
+                currentSlide++;
+                updateSlides();
+            }
+            if (e.key === 'ArrowLeft' && currentSlide > 0) {
+                currentSlide--;
+                updateSlides();
+            }
+        });
+
+        updateSlides();
+    </script>
+    <footer style="margin-top: 2rem; color: #9ca3af; font-size: 0.9rem;">
+        &copy; 2026 Aly Hatfield. All rights reserved.
+    </footer>
+</body>
+</html>

@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algebra 1: Class Materials</title>
+    
+    <!-- 1. FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* 2. GLOBAL STYLES */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            font-family: 'Quicksand', sans-serif;
+            color: #222;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* PAGE CONTAINER */
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 40px auto;
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            gap: 40px;
+        }
+
+        /* SIDEBAR (Navigation) */
+        .sidebar {
+            width: 280px;
+            flex-shrink: 0;
+        }
+
+        .sidebar-nav {
+            position: sticky;
+            top: 20px;
+            background: white;
+            border: 3px solid #000;
+            border-radius: 12px;
+            padding: 15px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .nav-section-title {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1rem;
+            text-transform: uppercase;
+            color: #555;
+            background-color: #eee;
+            padding: 8px 10px;
+            border-radius: 6px;
+            margin-top: 15px;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+        
+        .nav-section-title:first-child { margin-top: 0; }
+
+        .nav-item {
+            display: block;
+            padding: 8px 10px;
+            margin-bottom: 2px;
+            text-decoration: none;
+            color: #555;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border-radius: 6px;
+            transition: all 0.2s;
+            border-left: 3px solid transparent;
+        }
+
+        .nav-item:hover {
+            background-color: #f9f9f9;
+            color: #000;
+            border-left-color: #ccc;
+        }
+
+        .nav-item.active {
+            background-color: #000;
+            color: white;
+            border-left-color: #000;
+        }
+
+        /* MAIN CONTENT */
+        .main-content {
+            flex-grow: 1;
+        }
+
+        /* HEADER */
+        .page-header {
+            background: white;
+            border: 3px solid #000;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 6px 6px 0px rgba(0,0,0,0.1);
+        }
+
+        .header-text h1 {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 2.2rem;
+            margin: 0;
+            color: #000;
+            line-height: 1.1;
+        }
+
+        .header-text p {
+            color: #555;
+            margin-top: 5px;
+        }
+
+        .print-btn {
+            background: #000;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-family: 'Fredoka', sans-serif;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* UNIT CARDS DISPLAY */
+        .content-card {
+            background: white;
+            border: 3px solid #000;
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 30px;
+            display: none; /* Hidden by default */
+            flex-direction: column;
+        }
+        
+        .content-card.visible {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .unit-header {
+            text-align: center;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+
+        .unit-kicker {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1rem;
+            color: #666;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+            background: #f0f0f0;
+            padding: 4px 12px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        .unit-title {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 2.8rem;
+            color: #000;
+            margin: 10px 0 20px 0;
+            line-height: 1.1;
+        }
+
+        /* BUTTON */
+        .material-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: #000;
+            border: 2px solid #000;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: white;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: all 0.2s;
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.2);
+            font-family: 'Fredoka', sans-serif;
+            margin: 0 auto 20px auto; /* Centered */
+        }
+
+        .material-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 6px 6px 0px rgba(0,0,0,0.2);
+            background-color: #333;
+        }
+        
+        .btn-icon { width: 24px; height: 24px; fill: white; }
+
+        /* INFO SECTIONS */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            text-align: left;
+        }
+
+        .info-col h3 {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            border-bottom: 2px solid #333;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        /* TOPICS LIST */
+        .topic-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .topic-list li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            font-size: 1rem;
+            color: #444;
+        }
+        .topic-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #000;
+            font-weight: bold;
+        }
+
+        /* TERMS TAGS */
+        .terms-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .term-tag {
+            background: #f0f8ff;
+            color: #0050c0;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: 1px solid #cce0ff;
+        }
+
+        /* SOL BADGES */
+        .sol-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .sol-badge {
+            background: #eee;
+            color: #333;
+            padding: 5px 12px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-weight: 700;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: auto;
+            color: #888;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .container { flex-direction: column; }
+            .sidebar { width: 100%; }
+            .sidebar-nav { position: static; max-height: none; display: flex; flex-direction: column; }
+            .nav-section-title { margin-top: 20px; }
+            .unit-title { font-size: 2.2rem; }
+            .info-grid { grid-template-columns: 1fr; gap: 20px; }
+            .material-btn { width: 100%; }
+        }
+
+        /* PRINT STYLES */
+        @media print {
+            body { background: white; }
+            .sidebar, header, .print-btn, footer { display: none !important; }
+            .container { display: block; margin: 0; padding: 0; }
+            .content-card { 
+                display: flex !important;
+                border: 2px solid #000;
+                margin-bottom: 20px;
+                page-break-inside: avoid;
+                min-height: auto;
+                padding: 20px;
+                box-shadow: none;
+            }
+            .material-btn { display: none; } /* Hide button on print */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- SIDEBAR NAVIGATION -->
+        <aside class="sidebar">
+            <nav class="sidebar-nav" id="sidebarNav">
+                <!-- Javascript will populate this -->
+            </nav>
+        </aside>
+
+        <!-- MAIN CONTENT AREA -->
+        <main class="main-content">
+            
+            <div class="page-header">
+                <div class="header-text">
+                    <h1>Class Materials</h1>
+                    <p>Select a unit to view standards, topics, and resources.</p>
+                </div>
+                <button onclick="window.print()" class="print-btn">
+                    <svg style="width:20px;height:20px;fill:white;" viewBox="0 0 24 24"><path d="M18,3H6V7H18M19,12A1,1 0 0,1 18,11A1,1 0 0,1 19,10A1,1 0 0,1 20,11A1,1 0 0,1 19,12M16,19H8V14H16M19,8H5A3,3 0 0,0 2,11V17H6V21H18V17H22V11A3,3 0 0,0 19,8Z" /></svg>
+                    Print List
+                </button>
+            </div>
+
+            <div id="contentArea">
+                <!-- Javascript will populate cards here -->
+            </div>
+
+        </main>
+
+    </div>
+
+    <footer>
+        &copy; 2026 Aly Hatfield. All Rights Reserved.
+    </footer>
+
+    <script>
+        // --- DATA OBJECT ---
+        const courseData = [
+            {
+                part: "Part A: Foundations",
+                units: [
+                    { 
+                        id: 1, 
+                        title: "Expressions", 
+                        week: "Week 1",
+                        sols: ["SOL A.1", "SOL A.2a"],
+                        topics: ["Translating verbal expressions", "Order of Operations (PEMDAS)", "Evaluating expressions", "Properties of Real Numbers"],
+                        terms: ["Variable", "Constant", "Expression", "Commutative", "Associative"]
+                    },
+                    { 
+                        id: 2, 
+                        title: "Polynomials", 
+                        week: "Week 2",
+                        sols: ["SOL A.2b", "SOL A.2c"],
+                        topics: ["Adding & Subtracting Polynomials", "Multiplying Binomials (FOIL)", "Multiplying Polynomials", "Special Products"],
+                        terms: ["Monomial", "Binomial", "Trinomial", "Degree", "Like Terms"]
+                    },
+                    { 
+                        id: 3, 
+                        title: "Radicals", 
+                        week: "Week 3",
+                        sols: ["SOL A.3"],
+                        topics: ["Simplifying Square Roots", "Operations with Radicals (+, -, *, /)", "Rationalizing the Denominator"],
+                        terms: ["Radical", "Radicand", "Perfect Square", "Rationalize", "Index"]
+                    },
+                    { 
+                        id: 4, 
+                        title: "Linear Equations", 
+                        week: "Week 4",
+                        sols: ["SOL A.4a", "SOL A.4c"],
+                        topics: ["One & Two-Step Equations", "Multi-Step Equations", "Variables on Both Sides", "Literal Equations"],
+                        terms: ["Inverse Operation", "Coefficient", "Isolate", "Solution", "Identity"]
+                    },
+                    { 
+                        id: 5, 
+                        title: "Linear Inequalities", 
+                        week: "Week 5",
+                        sols: ["SOL A.5a", "SOL A.5b"],
+                        topics: ["Solving Inequalities", "Graphing on Number Line", "Compound Inequalities (And/Or)"],
+                        terms: ["Inequality", "Solution Set", "Compound", "Boundary Point", "Interval"]
+                    }
+                ]
+            },
+            {
+                part: "Part B: Applications",
+                units: [
+                    { 
+                        id: 6, 
+                        title: "Systems of Equations", 
+                        week: "Week 6",
+                        sols: ["SOL A.4d", "SOL A.4e"],
+                        topics: ["Solving by Graphing", "Substitution Method", "Elimination Method", "Word Problems"],
+                        terms: ["System", "Intersection", "Substitution", "Elimination", "Consistent"]
+                    },
+                    { 
+                        id: 7, 
+                        title: "Systems Inequalities", 
+                        week: "Week 7",
+                        sols: ["SOL A.5d"],
+                        topics: ["Graphing Linear Inequalities (2 variables)", "Solving Systems of Inequalities", "Identifying Solution Regions"],
+                        terms: ["Boundary Line", "Half-Plane", "Shaded Region", "Solid/Dashed Line"]
+                    },
+                    { 
+                        id: 8, 
+                        title: "Linear Functions", 
+                        week: "Week 8",
+                        sols: ["SOL A.6", "SOL A.7a"],
+                        topics: ["Slope & Rate of Change", "Slope-Intercept Form", "Point-Slope Form", "Standard Form"],
+                        terms: ["Slope (m)", "Y-Intercept (b)", "Parallel", "Perpendicular", "Rate of Change"]
+                    },
+                    { 
+                        id: 9, 
+                        title: "Function Types", 
+                        week: "Week 9",
+                        sols: ["SOL A.7"],
+                        topics: ["Function Notation f(x)", "Domain & Range", "Relations vs Functions", "Vertical Line Test"],
+                        terms: ["Function", "Input/Output", "Mapping", "Relation", "Independent Var"]
+                    },
+                    { 
+                        id: 10, 
+                        title: "Quadratics", 
+                        week: "Week 10",
+                        sols: ["SOL A.4b", "SOL A.7"],
+                        topics: ["Graphing Parabolas", "Vertex & Axis of Symmetry", "Solving by Factoring", "Quadratic Formula"],
+                        terms: ["Quadratic", "Parabola", "Vertex", "Zeros/Roots", "Discriminant"]
+                    },
+                    { 
+                        id: 11, 
+                        title: "Exponentials", 
+                        week: "Week 11",
+                        sols: ["SOL A.9"],
+                        topics: ["Exponent Rules Review", "Graphing Exponential Functions", "Growth & Decay Models"],
+                        terms: ["Base", "Exponent", "Growth Factor", "Decay Factor", "Asymptote"]
+                    },
+                    { 
+                        id: 12, 
+                        title: "Data & Stats", 
+                        week: "Week 12",
+                        sols: ["SOL A.8", "SOL A.9"],
+                        topics: ["Mean, Median, Mode, Range", "Box-and-Whisker Plots", "Scatter Plots", "Line of Best Fit"],
+                        terms: ["Outlier", "Quartile", "Interquartile Range", "Correlation", "Regression"]
+                    }
+                ]
+            }
+        ];
+
+        // --- RENDER FUNCTIONS ---
+        const navContainer = document.getElementById('sidebarNav');
+        const contentContainer = document.getElementById('contentArea');
+
+        let globalIndex = 0; 
+
+        courseData.forEach((section) => {
+            // 1. Create Section Header in Sidebar
+            const sectionHeader = document.createElement('div');
+            sectionHeader.className = 'nav-section-title';
+            sectionHeader.textContent = section.part;
+            navContainer.appendChild(sectionHeader);
+
+            // 2. Loop through units in this section
+            section.units.forEach((unit) => {
+                const currentIdx = globalIndex;
+
+                // -- Sidebar Link --
+                const navLink = document.createElement('a');
+                navLink.href = "#";
+                navLink.className = `nav-item ${currentIdx === 0 ? 'active' : ''}`;
+                navLink.textContent = `Unit ${unit.id}: ${unit.title}`;
+                navLink.onclick = (e) => {
+                    e.preventDefault();
+                    showUnit(currentIdx);
+                };
+                navContainer.appendChild(navLink);
+
+                // -- Build Content Card HTML parts --
+                // SOL Badges
+                const solBadges = unit.sols.map(sol => `<span class="sol-badge">${sol}</span>`).join('');
+                
+                // Topics List
+                const topicsList = unit.topics.map(topic => `<li>${topic}</li>`).join('');
+                
+                // Terms Tags
+                const termsTags = unit.terms.map(term => `<span class="term-tag">${term}</span>`).join('');
+
+                // -- Content Card Structure --
+                const card = document.createElement('div');
+                card.className = `content-card ${currentIdx === 0 ? 'visible' : ''}`;
+                card.id = `card-${currentIdx}`;
+                
+                card.innerHTML = `
+                    <div class="unit-header">
+                        <div class="unit-kicker">${unit.week}</div>
+                        <h2 class="unit-title">Unit ${unit.id}: ${unit.title}</h2>
+                        
+                        <a href="alg1-unit-1.html" target="_blank" class="material-btn">
+                            <svg class="btn-icon" viewBox="0 0 24 24"><path d="M20,6h-8l-2-2H4C2.9,4,2,4.9,2,6v12c0,1.1,0.9,2,2,2h16c1.1,0,2-0.9,2-2V8C22,6.9,21.1,6,20,6z M20,18H4V8h16V18z M14,14v-2h-3v-3H9v3H6v2h3v3h2v-3H14z"/></svg>
+                            Unit ${unit.id} Materials
+                        </a>
+
+                        <div class="sol-container">
+                            ${solBadges}
+                        </div>
+                    </div>
+
+                    <div class="info-grid">
+                        <div class="info-col">
+                            <h3>Key Topics</h3>
+                            <ul class="topic-list">
+                                ${topicsList}
+                            </ul>
+                        </div>
+                        <div class="info-col">
+                            <h3>Key Terms & Symbols</h3>
+                            <div class="terms-container">
+                                ${termsTags}
+                            </div>
+                        </div>
+                    </div>
+                `;
+                contentContainer.appendChild(card);
+
+                globalIndex++;
+            });
+        });
+
+        // --- INTERACTION ---
+        function showUnit(index) {
+            // Update Nav Classes
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(item => item.classList.remove('active'));
+            navItems[index].classList.add('active');
+
+            // Update Card Visibility
+            const cards = document.querySelectorAll('.content-card');
+            cards.forEach(card => {
+                card.classList.remove('visible');
+                card.style.display = 'none'; 
+            });
+            
+            const activeCard = document.getElementById(`card-${index}`);
+            activeCard.style.display = 'flex'; 
+            
+            // Timeout to allow display:flex to apply before adding opacity transition class
+            setTimeout(() => {
+                activeCard.classList.add('visible');
+            }, 10);
+            
+            // Scroll to top on mobile
+            if(window.innerWidth < 900) {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+    </script>
+</body>
+</html>

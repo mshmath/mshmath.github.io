@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Foundations</title>
+    
+    <!-- 1. FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* 2. GLOBAL STYLES */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            font-family: 'Quicksand', sans-serif;
+            color: #222;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* PAGE CONTAINER */
+        .container {
+            max-width: 800px;
+            width: 100%;
+            margin: 40px auto;
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* HEADER */
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 40px 20px;
+            background: white;
+            border: 3px solid #000;
+            border-radius: 16px;
+            box-shadow: 8px 8px 0px rgba(0,0,0,0.1);
+            width: 100%;
+        }
+
+        h1 {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 3rem;
+            margin: 0 0 10px 0;
+            color: #000;
+            line-height: 1.1;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #555;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* TERM NOTICE CARD */
+        .notice-card {
+            background-color: #fff3cd; /* Light yellow warning color */
+            border: 2px solid #856404;
+            color: #856404;
+            padding: 15px 25px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 40px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.05);
+            width: 100%;
+            max-width: 600px;
+        }
+
+        /* BUTTON GRID */
+        .btn-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .action-btn {
+            background: white;
+            border: 3px solid #000;
+            border-radius: 12px;
+            padding: 30px 20px;
+            text-align: center;
+            text-decoration: none;
+            color: #222;
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 160px;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 6px 6px 0px #000;
+            background: #fff;
+        }
+
+        .btn-icon {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 15px;
+            fill: #000;
+            transition: transform 0.2s;
+        }
+
+        .action-btn:hover .btn-icon {
+            transform: scale(1.1);
+        }
+
+        .btn-title {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .btn-desc {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: auto;
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 600px) {
+            h1 { font-size: 2.2rem; }
+            .btn-grid { grid-template-columns: 1fr; }
+            .action-btn { padding: 25px; min-height: auto; flex-direction: row; text-align: left; justify-content: start; gap: 20px; }
+            .btn-icon { margin-bottom: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- HEADER -->
+        <header>
+            <h1>Math Foundations</h1>
+            <p class="subtitle">Building essential skills for success in mathematics.</p>
+        </header>
+
+        <!-- TERM NOTICE -->
+        <div class="notice-card">
+            <svg style="width:24px;height:24px;fill:#856404;" viewBox="0 0 24 24"><path d="M12,2L1,21H23M12,6L19.53,19H4.47M11,10V14H13V10M11,16V18H13V16"/></svg>
+            <span>Note: This course is scheduled for <strong>Next Term</strong>.</span>
+        </div>
+
+        <!-- MAIN BUTTONS -->
+        <div class="btn-grid">
+            
+            <!-- Syllabus Button -->
+            <a href="math-f-syl-site.html" target="_blank" class="action-btn">
+                <!-- Book Icon -->
+                <svg class="btn-icon" viewBox="0 0 24 24"><path d="M14,2H6C4.9,2,4,2.9,4,4v16c0,1.1,0.9,2,2,2h12c1.1,0,2-0.9,2-2V8L14,2z M16,18H8v-2h8V18z M16,14H8v-2h8V14z M13,9V3.5L18.5,9H13z"/></svg>
+                <div style="display:flex; flex-direction:column;">
+                    <span class="btn-title">Syllabus</span>
+                    <span class="btn-desc">Course info & policies</span>
+                </div>
+            </a>
+
+            <!-- Class Materials Button -->
+            <a href="math-f-outline.html" target="_blank" class="action-btn">
+                <!-- Folder/Files Icon -->
+                <svg class="btn-icon" viewBox="0 0 24 24"><path d="M20,6h-8l-2-2H4C2.9,4,2,4.9,2,6v12c0,1.1,0.9,2,2,2h16c1.1,0,2-0.9,2-2V8C22,6.9,21.1,6,20,6z M20,18H4V8h16V18z M14,14v-2h-3v-3H9v3H6v2h3v3h2v-3H14z"/></svg>
+                <div style="display:flex; flex-direction:column;">
+                    <span class="btn-title">Class Materials</span>
+                    <span class="btn-desc">Slides, notes & pacing</span>
+                </div>
+            </a>
+
+        </div>
+
+    </div>
+
+    <footer>
+        &copy; 2026 Aly Hatfield. All Rights Reserved.
+    </footer>
+
+</body>
+</html>

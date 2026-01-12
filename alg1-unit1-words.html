@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Wall: Unit 1</title>
+    
+    <!-- 1. FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <!-- 2. MATHJAX -->
+    <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+      chtml: { scale: 1.4 } /* Larger math for wall display */
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        /* 3. GLOBAL STYLES */
+        * {
+            box-sizing: border-box;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            font-family: 'Quicksand', sans-serif;
+            color: #222;
+            line-height: 1.5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* PAGE CONTAINER */
+        .container {
+            max-width: 900px;
+            width: 100%;
+            margin: 40px auto;
+            padding: 20px;
+            flex: 1;
+        }
+
+        /* HEADER */
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: white;
+            border: 3px solid #000;
+            border-radius: 16px;
+            box-shadow: 8px 8px 0px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 3rem;
+            margin: 0 0 10px 0;
+            color: #000;
+            line-height: 1.1;
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            color: #444;
+            font-weight: 700;
+        }
+
+        /* PRINT BUTTON */
+        .print-btn-container {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .print-btn {
+            background: #000;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: transform 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .print-btn:hover {
+            transform: scale(1.05);
+            background: #333;
+        }
+
+        /* WORD WALL GRID */
+        .wall-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* 2 cards per row for landscape printing */
+            gap: 20px;
+        }
+
+        /* CARD STYLE */
+        .word-card {
+            background: white;
+            border: 4px solid #000;
+            border-radius: 12px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            min-height: 300px; /* Uniform height */
+            box-shadow: 6px 6px 0px rgba(0,0,0,0.1);
+            position: relative;
+            page-break-inside: avoid; /* Prevent cutting card in half when printing */
+        }
+
+        /* CARD CONTENT */
+        .word-title {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 2.2rem;
+            text-transform: uppercase;
+            color: #000;
+            margin-bottom: 15px;
+            border-bottom: 3px solid #000;
+            padding-bottom: 5px;
+            width: 100%;
+        }
+
+        .word-def {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #444;
+            margin-bottom: 20px;
+            flex-grow: 1; /* Pushes example to bottom */
+        }
+
+        .word-example {
+            background: #f0f0f0;
+            width: 100%;
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px dashed #888;
+            font-size: 1.5rem;
+            font-weight: bold;
+            font-family: 'Times New Roman', serif;
+        }
+
+        /* HIGHLIGHTING IN EXAMPLES */
+        .highlight {
+            color: #000;
+            background-color: #ddd;
+            padding: 0 4px;
+            border-radius: 4px;
+            border-bottom: 2px solid #000;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: auto;
+            color: #888;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 700px) {
+            h1 { font-size: 2.2rem; }
+            .wall-grid { grid-template-columns: 1fr; }
+        }
+
+        /* PRINT STYLES */
+        @media print {
+            body { background: white; }
+            .container { margin: 0; padding: 0; max-width: 100%; }
+            header, .print-btn-container, footer { display: none !important; }
+            .wall-grid { 
+                display: block; /* Use block to flow naturally */
+            }
+            .word-card { 
+                width: 100%; 
+                margin-bottom: 20px; 
+                border: 4px solid #000; 
+                box-shadow: none; 
+                height: 4.5in; /* Approximately half a page */
+                page-break-inside: avoid;
+            }
+            .word-example { background: #eee !important; border-color: #000; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- HEADER -->
+        <header>
+            <h1>Algebra 1 Word Wall</h1>
+            <p class="subtitle">Unit 1: Vocabulary & Key Concepts</p>
+        </header>
+
+        <!-- PRINT BUTTON -->
+        <div class="print-btn-container">
+            <button onclick="window.print()" class="print-btn">
+                <svg style="width:24px;height:24px;fill:white;" viewBox="0 0 24 24"><path d="M18,3H6V7H18M19,12A1,1 0 0,1 18,11A1,1 0 0,1 19,10A1,1 0 0,1 20,11A1,1 0 0,1 19,12M16,19H8V14H16M19,8H5A3,3 0 0,0 2,11V17H6V21H18V17H22V11A3,3 0 0,0 19,8Z" /></svg>
+                Print Cards
+            </button>
+        </div>
+
+        <div class="wall-grid">
+
+            <!-- CARD 1 -->
+            <div class="word-card">
+                <div class="word-title">Variable</div>
+                <div class="word-def">A letter or symbol used to represent a value that can change or is unknown.</div>
+                <div class="word-example">
+                    $3\mathbf{\color{red}x} + 5$
+                </div>
+            </div>
+
+            <!-- CARD 2 -->
+            <div class="word-card">
+                <div class="word-title">Coefficient</div>
+                <div class="word-def">The number multiplied in front of a variable.</div>
+                <div class="word-example">
+                    $\mathbf{\color{red}4}x - 7$
+                </div>
+            </div>
+
+            <!-- CARD 3 -->
+            <div class="word-card">
+                <div class="word-title">Constant</div>
+                <div class="word-def">A number on its own that does not change. It has no variable attached.</div>
+                <div class="word-example">
+                    $2x + \mathbf{\color{red}9}$
+                </div>
+            </div>
+
+            <!-- CARD 4 -->
+            <div class="word-card">
+                <div class="word-title">Expression</div>
+                <div class="word-def">A mathematical phrase that contains numbers, variables, and operations. <strong>No equal sign.</strong></div>
+                <div class="word-example">
+                    $5x^2 - 3x + 2$
+                </div>
+            </div>
+
+            <!-- CARD 5 -->
+            <div class="word-card">
+                <div class="word-title">Equation</div>
+                <div class="word-def">A mathematical statement that shows two expressions are equal. <strong>Has an equal sign.</strong></div>
+                <div class="word-example">
+                    $2x + 4 \mathbf{\color{red}=} 10$
+                </div>
+            </div>
+
+            <!-- CARD 6 -->
+            <div class="word-card">
+                <div class="word-title">Term</div>
+                <div class="word-def">Parts of an expression separated by addition or subtraction signs.</div>
+                <div class="word-example">
+                    $\underbrace{3x}_{\text{Term}} + \underbrace{5y}_{\text{Term}} - \underbrace{2}_{\text{Term}}$
+                </div>
+            </div>
+
+            <!-- CARD 7 -->
+            <div class="word-card">
+                <div class="word-title">Evaluate</div>
+                <div class="word-def">To find the numerical value of an expression by substituting numbers for variables.</div>
+                <div class="word-example">
+                    If $x=2$, then:<br>
+                    $3x \rightarrow 3(2) = \mathbf{6}$
+                </div>
+            </div>
+
+            <!-- CARD 8 -->
+            <div class="word-card">
+                <div class="word-title">Like Terms</div>
+                <div class="word-def">Terms that have the same variables raised to the same exponents.</div>
+                <div class="word-example">
+                    $\mathbf{3x}$ and $\mathbf{5x}$<br>
+                    $\mathbf{2y^2}$ and $\mathbf{-y^2}$
+                </div>
+            </div>
+
+            <!-- CARD 9 -->
+            <div class="word-card">
+                <div class="word-title">Base</div>
+                <div class="word-def">The big number that is being multiplied repeatedly in a power.</div>
+                <div class="word-example">
+                    $\mathbf{\color{red}5}^3$
+                </div>
+            </div>
+
+            <!-- CARD 10 -->
+            <div class="word-card">
+                <div class="word-title">Exponent</div>
+                <div class="word-def">The small number that tells how many times to multiply the base.</div>
+                <div class="word-example">
+                    $x^\mathbf{\color{red}4}$
+                </div>
+            </div>
+
+            <!-- CARD 11 -->
+            <div class="word-card">
+                <div class="word-title">Distributive Prop.</div>
+                <div class="word-def">Multiplying a term on the outside of parentheses to every term on the inside.</div>
+                <div class="word-example">
+                    $a(b+c) = \mathbf{ab + ac}$
+                </div>
+            </div>
+
+            <!-- CARD 12 -->
+            <div class="word-card">
+                <div class="word-title">Order of Operations</div>
+                <div class="word-def">The rules to follow when simplifying expressions (GEMDAS).</div>
+                <div class="word-example">
+                    1. <strong>G</strong>rouping<br>
+                    2. <strong>E</strong>xponents<br>
+                    3. <strong>M/D</strong> (L to R)<br>
+                    4. <strong>A/S</strong> (L to R)
+                </div>
+            </div>
+
+            <!-- CARD 13 -->
+            <div class="word-card">
+                <div class="word-title">Real Numbers</div>
+                <div class="word-def">The set of all rational and irrational numbers. Everything on the number line.</div>
+                <div class="word-example">
+                    $-2, \ 0, \ \frac{1}{2}, \ \sqrt{5}, \ \pi$
+                </div>
+            </div>
+
+            <!-- CARD 14 -->
+            <div class="word-card">
+                <div class="word-title">Absolute Value</div>
+                <div class="word-def">The distance of a number from zero. Always positive.</div>
+                <div class="word-example">
+                    $|-5| = \mathbf{5}$
+                </div>
+            </div>
+
+            <!-- CARD 15 -->
+            <div class="word-card">
+                <div class="word-title">Product Rule</div>
+                <div class="word-def">When multiplying terms with the same base, <strong style="color:#d00000">ADD</strong> the exponents.</div>
+                <div class="word-example">
+                    $x^2 \cdot x^3 = x^{\mathbf{2+3}} = x^5$
+                </div>
+            </div>
+
+            <!-- CARD 16 -->
+            <div class="word-card">
+                <div class="word-title">Quotient Rule</div>
+                <div class="word-def">When dividing terms with the same base, <strong style="color:#d00000">SUBTRACT</strong> the exponents.</div>
+                <div class="word-example">
+                    $\frac{x^5}{x^2} = x^{\mathbf{5-2}} = x^3$
+                </div>
+            </div>
+
+            <!-- CARD 17 -->
+            <div class="word-card">
+                <div class="word-title">Power Rule</div>
+                <div class="word-def">When raising a power to another power, <strong style="color:#d00000">MULTIPLY</strong> the exponents.</div>
+                <div class="word-example">
+                    $(x^2)^3 = x^{\mathbf{2 \cdot 3}} = x^6$
+                </div>
+            </div>
+
+            <!-- CARD 18 -->
+            <div class="word-card">
+                <div class="word-title">Negative Exponent</div>
+                <div class="word-def">A negative exponent means to take the reciprocal (flip the fraction).</div>
+                <div class="word-example">
+                    $x^{-2} = \frac{1}{x^2}$
+                </div>
+            </div>
+
+            <!-- CARD 19 -->
+            <div class="word-card">
+                <div class="word-title">Zero Exponent</div>
+                <div class="word-def">Any non-zero number raised to the power of zero equals 1.</div>
+                <div class="word-example">
+                    $5^0 = \mathbf{1}$
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <footer>
+        &copy; 2026 Aly Hatfield. All Rights Reserved.
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extra Credit Hub</title>
+    
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- ICONS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* --- GLOBAL STYLES --- */
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            font-family: 'Quicksand', sans-serif;
+            color: #222;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 40px auto;
+            padding: 20px;
+            flex: 1;
+        }
+
+        /* HEADER */
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 50px 20px;
+            background: white;
+            border: 3px solid #000;
+            border-radius: 20px;
+            box-shadow: 8px 8px 0px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 3.5rem;
+            margin: 0 0 15px 0;
+            color: #000;
+            line-height: 1.1;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* INSTRUCTIONS CARD */
+        .rules-card {
+            background: #fff;
+            border: 3px solid #000;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            box-shadow: 6px 6px 0px rgba(0,0,0,0.05);
+        }
+
+        .rules-title {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #f4f4f4;
+            padding-bottom: 10px;
+            width: 100%;
+        }
+
+        .rules-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            width: 100%;
+            text-align: left;
+        }
+
+        .rule-item h3 {
+            font-family: 'Fredoka', sans-serif;
+            color: #000;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .rule-item p {
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        /* CLASS SECTIONS */
+        .class-section {
+            margin-bottom: 80px;
+        }
+
+        .class-header {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 2.2rem;
+            color: #000;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: #fff;
+            padding: 15px 30px;
+            border: 3px solid #000;
+            border-radius: 15px;
+            width: 100%;
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.1);
+        }
+
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .topic-card {
+            background: white;
+            border: 2px solid #000;
+            border-radius: 16px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            transition: transform 0.2s;
+        }
+
+        .topic-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 6px 6px 0px rgba(0,0,0,0.1);
+        }
+
+        .topic-title {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.6rem;
+            margin-bottom: 5px;
+            color: #000;
+        }
+
+        .topic-subtitle {
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 15px;
+            font-weight: 600;
+            text-transform: uppercase;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .unit-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 20px 0;
+            font-size: 1rem;
+            color: #444;
+        }
+
+        .unit-list li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+            line-height: 1.4;
+        }
+
+        .unit-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #000;
+            font-weight: bold;
+            font-size: 1.2rem;
+            line-height: 1.2;
+        }
+
+        /* ACTION BUTTONS */
+        .btn-group {
+            margin-top: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .action-btn {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 15px;
+            border: 2px solid #000;
+            border-radius: 10px;
+            text-decoration: none;
+            color: #000;
+            background: #fff;
+            transition: all 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .action-btn:hover {
+            background: #f4f4f4;
+            transform: translateX(5px);
+            box-shadow: 3px 3px 0px rgba(0,0,0,0.1);
+        }
+
+        .btn-text {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+
+        .btn-source {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: #666;
+            letter-spacing: 0.5px;
+            margin-bottom: 2px;
+        }
+
+        .btn-main {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #000;
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        /* Color Coding Lines */
+        .tag-ixl { border-left: 8px solid #22c55e; }
+        .tag-kuta { border-left: 8px solid #ef4444; }
+        .tag-mathaids { border-left: 8px solid #3b82f6; }
+        .tag-edhelper { border-left: 8px solid #f59e0b; }
+
+        .btn-icon { font-size: 1.1rem; color: #444; }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: auto;
+            color: #888;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .rules-grid { grid-template-columns: 1fr; }
+            .class-header { flex-direction: column; text-align: center; gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <header>
+            <h1>Extra Credit Hub</h1>
+            <p class="subtitle">Select your class below. Complete IXL drills (Score 80+) or print worksheets to earn bonus points.</p>
+        </header>
+
+        <!-- INSTRUCTIONS -->
+        <div class="rules-card">
+            <h2 class="rules-title">How It Works</h2>
+            <div class="rules-grid">
+                <div class="rule-item">
+                    <h3><i class="fa-solid fa-laptop-code" style="color: #22c55e;"></i> IXL Drills</h3>
+                    <p>Log in to IXL. Find the specific skill code listed in the VA SOL Skill Plan.</p>
+                    <ul style="margin-top: 10px; text-align: left;">
+                        <li><strong>Goal:</strong> SmartScore of 80 or higher.</li>
+                        <li><strong>Submit:</strong> Show teacher your score screen.</li>
+                    </ul>
+                </div>
+                <div class="rule-item">
+                    <h3><i class="fa-solid fa-print" style="color: #3b82f6;"></i> Worksheets</h3>
+                    <p>Click the worksheet links to find a PDF. You can print it or solve on notebook paper.</p>
+                    <ul style="margin-top: 10px; text-align: left;">
+                        <li><strong>Goal:</strong> Complete all problems showing steps.</li>
+                        <li><strong>Submit:</strong> Turn in the physical paper.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ALGEBRA 1 SECTION (2023 Standards) -->
+        <div class="class-section">
+            <div class="class-header">
+                <i class="fa-solid fa-square-root-variable"></i> Algebra 1 (SOL)
+            </div>
+            <div class="topics-grid">
+                
+                <!-- A.1: Expressions & Operations -->
+                <div class="topic-card">
+                    <div class="topic-title">Expressions</div>
+                    <div class="topic-subtitle">Standards A.EO.1 - A.EO.2</div>
+                    <ul class="unit-list">
+                        <li>Translate verbal quantitative situations (A.EO.1a)</li>
+                        <li>Evaluate algebraic expressions (A.EO.1b)</li>
+                        <li>Calculate cube roots & square roots (A.EO.1c)</li>
+                        <li>Laws of Exponents (A.EO.3)</li>
+                        <li>Simplify Polynomials (A.EO.2)</li>
+                    </ul>
+                    <div class="btn-group">
+                        <a href="https://www.ixl.com/math/skill-plans/virginia-standards-of-learning-2023-algebra-1" target="_blank" class="action-btn tag-ixl">
+                            <div class="btn-text">
+                                <span class="btn-source">IXL Skill Plan</span>
+                                <span class="btn-main">Operations & Exponents</span>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square btn-icon"></i>
+                        </a>
+                        <a href="https://www.kutasoftware.com/free.html" target="_blank" class="action-btn tag-kuta">
+                            <div class="btn-text">
+                                <span class="btn-source">Kuta Software</span>
+                                <span class="btn-main">Polynomial Worksheets</span>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square btn-icon"></i>
+                        </a>
+                        <a href="https://www.math-aids.com/Algebra/Algebra_1/" target="_blank" class="action-btn tag-mathaids">
+                            <div class="btn-text">
+                                <span class="btn-source">Math-Aids</span>
+                                <span class="btn-main">Expressions Sheets</span>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square btn-icon"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- A.2: Equations & Inequalities -->
+                <div class="topic-card">
+                    <div class="topic-title">Equations</div>
+                    <div class="topic-subtitle">Standards A.EI.1 - A.EI.3</div>
+                    <ul class="unit-list">
+                        <li>Solve multistep linear equations (A.EI.1)</li>
+                        <li>Solve literal equations for a variable (A.EI.1)</li>
+                        <li>Solve systems of linear equations (A.EI.2)</li>
+                        <li>Solve linear inequalities (A.EI.3)</li>
+                        <li>Graph systems of inequalities (A.EI.3)</li>
+                    </ul>
+                    <div class="btn-group">
+                        <a href="https://www.ixl.com/math/skill-plans/virginia-standards-of-learning-2023-algebra-1" target="_blank" class="action-btn tag-ixl">
+                            <div class="btn-text">
+                                <span class="btn-source">IXL Skill Plan</span>
+                                <span class="btn-main">Solving Equations</span>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square btn-icon"></i>
+                        </a>
+                        <a href="https://www.kutasoftware.com/free.html" target="_blank" class="action-btn tag-kuta">
+                            <div class="btn-text">
+                                <span class="btn-source">Kuta Software</span>
+                                <span class="btn-main">Inequalities Sheets</span>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square btn-icon"></i>
+                        </a>
+                        <a href="https://www.edhelper.com/LinearEquations.htm" target="_blank" class="action-btn tag-edhelper">
+                            <div class="btn-text">
+                                <span class="btn-source">EdHelper</span>
+                                <span class="btn-main">Linear Eq. Practice</span>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square btn-icon"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- A.3: Functions -->
+                <div class="topic-card">
+                    <div class="topic-title">Functions</div>
+                    <div class="topic-subtitle">Standards A.F.1 - A.F.3</div>
+                    <ul class="unit-list">
+                        <li>Determine Relations & Functions (A.F.1)</li>
+                        <li>Domain, Range, Zeros, Intercepts (A.F.1)</li>
+                        <li>Slope & Rate of Change (A.F.2)</li>
+                        <li>Equations of Lines (y=mx+b) (A.F.2)</li>
+                        <li>Functional Notation f(x) (A.F.3)</li>
+                    </ul>
+                    <div class="btn-group">
+                        <a href="https://www.ixl.com/math/skill-plans/virginia-standards-of-learning-2023-algebra-1" target="_blank" class="action-btn tag-ixl">
+                            <div class="btn-text">
+                                <span class="btn-source">IXL Skill Plan</span>
+                                <span class="btn-main">Functions & Graphs</span>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square btn-icon"></i>
+                        </a>
+                        <a href="https://www.math-aids.com/Algebra/Algebra_1/Slope/" target="_blank" class="action-btn tag-mathaids">
+                            <div class="btn-text">
+                                <span class="btn-source">Math-Aids</span>
+                                <span class="btn-main">Slope & Lines Sheets</span>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square btn-icon"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- A.4: Statistics -->
+                <div class="topic-card">
+                    <div class="topic-title">Statistics</div>
+                    <div class="topic-subtitle">Standards A.ST.1 - A.ST.3</div>
+                    <ul class="unit-list">
+                        <li>Boxplots & Histograms (A.ST.1)</li>
+                        <li>Mean Absolute Deviation (A.ST.1)</li>
+                        <li>Line of Best Fit (Linear Regression) (A.ST.2)</li>
+                        <li>Correlation Coefficients (A.ST.3)</li>
+                    </ul>
+                    <div class="btn-group">
+                        <a href="https://www.ixl.com/math/skill-plans/virginia-standards-of-learning-2023-algebra-1" target="_blank" class="action-btn tag-ixl">
+                            <div class="btn-text">
+                                <span class="btn-source">IXL Skill Plan</span>
+                                <span class="btn-main">Statistics & Data</span>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square btn-icon"></i>
+                        </a>
+                        <a href="https://www.math-aids.com/Algebra/Algebra_1/Statistics/" target="_blank" class="action-btn tag-mathaids">
+                            <div class="btn-text">
+                                <span class="btn-source">Math-Aids</span>
+                                <span class="btn-main">Probability Sheets</span>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square btn-icon"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- GEOMETRY SECTION (2023 Standards) -->
+        <div class="class-section">
+            <div class="class-header">
+                <i class="fa-solid fa-shapes"></i> Geometry (SOL)
+            </div>
+            <div class="topics-grid">
+                
+                <!-- G.1-G.4: Reasoning & Lines -->
+                <div class="topic-card">
+                    <div class="topic-title">Logic & Lines</div>
+                    <div class="topic-subtitle">Standards G.1 - G.4</div>
+                    <ul class="unit-list">
+                        <li>Logic: Conditional Statements (G.1)</li>
+                        <li>Parallel Lines & Transversals (G.2)</li>
+                        <li>Slope & Parallel/Perpendicular Lines (G.3)</li>
+                        <li>Constructing Bisectors (G.4)</li>
+                    </ul>
+                    <div class="btn-group">
+                        <a href="https://www.ixl.com/math/skill-plans/virginia-standards-of-learning-2023-geometry" target="_blank" class="action-btn tag-ixl">
+                            <div class="btn-text">
+                                <span class="btn-source">IXL Skill Plan</span>
+                                <span class="btn-main">Logic & Lines</span>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square btn-icon"></i>
+                        </a>
+                        <a href="https://www.math-aids.com/Geometry/Parallel_Perpendicular/" target="_blank" class="action-btn tag-mathaids">
+                            <div class="btn-text">
+                                <span class="btn-source">Math-Aids</span>
+                                <span class="btn-main">Angle Worksheets</span>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square btn-icon"></i>
+                        </a>
+                        <a href="https://www.edhelper.com/geometry_highschool.htm" target="_blank" class="action-btn tag-edhelper">
+                            <div class="btn-text">
+                                <span class="btn-source">EdHelper</span>
+                                <span class="btn-main">Proof Drills</span>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square btn-icon"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- G.5-G.8: Triangles -->
+                <div class="topic-card">
+                    <div class="topic-title">Triangles</div>
+                    <div class="topic-subtitle">Standards G.5 - G.8</div>
+                    <ul class="unit-list">
+                        <li>Triangle Congruence (SSS, SAS, etc.) (G.6)</li>
+                        <li>Triangle Similarity (AA, SAS, SSS) (G.7)</li>
+                        <li>Pythagorean Theorem & Trig (G.8)</li>
+                        <li>Triangle Inequality Theorem (G.5)</li>
+                    </ul>
+                    <div class="btn-group">
+                        <a href="https://www.ixl.com/math/skill-plans/virginia-standards-of-learning-2023-geometry" target="_blank" class="action-btn tag-ixl">
+                            <div class="btn-text">
+                                <span class="btn-source">IXL Skill Plan</span>
+                                <span class="btn-main">Triangles & Trig</span>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square btn-icon"></i>
+                        </a>
+                        <a href="https://www.math-aids.com/Geometry/Pythagorean_Theorem/" target="_blank" class="action-btn tag-mathaids">
+                            <div class="btn-text">
+                                <span class="btn-source">Math-Aids</span>
+                                <span class="btn-main">Triangle Worksheets</span>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square btn-icon"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- G.9-G.12: Polygons & Circles -->
+                <div class="topic-card">
+                    <div class="topic-title">Polygons & Circles</div>
+                    <div class="topic-subtitle">Standards G.9 - G.12</div>
+                    <ul class="unit-list">
+                        <li>Properties of Quadrilaterals (G.9)</li>
+                        <li>Angles in Polygons (G.10)</li>
+                        <li>Circle Properties: Arcs & Angles (G.11)</li>
+                        <li>Arc Length & Sector Area (G.12)</li>
+                    </ul>
+                    <div class="btn-group">
+                        <a href="https://www.ixl.com/math/skill-plans/virginia-standards-of-learning-2023-geometry" target="_blank" class="action-btn tag-ixl">
+                            <div class="btn-text">
+                                <span class="btn-source">IXL Skill Plan</span>
+                                <span class="btn-main">Circles & Polygons</span>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square btn-icon"></i>
+                        </a>
+                        <a href="https://www.math-aids.com/Geometry/Circles/" target="_blank" class="action-btn tag-mathaids">
+                            <div class="btn-text">
+                                <span class="btn-source">Math-Aids</span>
+                                <span class="btn-main">Circle Worksheets</span>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square btn-icon"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- G.13-G.14: 3D Figures -->
+                <div class="topic-card">
+                    <div class="topic-title">3D Figures</div>
+                    <div class="topic-subtitle">Standards G.13 - G.14</div>
+                    <ul class="unit-list">
+                        <li>Surface Area & Volume (G.13)</li>
+                        <li>Composite 3D Figures (G.13)</li>
+                        <li>Similar Solids & Scaling (G.14)</li>
+                    </ul>
+                    <div class="btn-group">
+                        <a href="https://www.ixl.com/math/skill-plans/virginia-standards-of-learning-2023-geometry" target="_blank" class="action-btn tag-ixl">
+                            <div class="btn-text">
+                                <span class="btn-source">IXL Skill Plan</span>
+                                <span class="btn-main">Volume & Surface Area</span>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square btn-icon"></i>
+                        </a>
+                        <a href="https://www.math-aids.com/Geometry/Surface_Area/" target="_blank" class="action-btn tag-mathaids">
+                            <div class="btn-text">
+                                <span class="btn-source">Math-Aids</span>
+                                <span class="btn-main">3D Worksheets</span>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square btn-icon"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- AFDA SECTION -->
+        <div class="class-section">
+            <div class="class-header">
+                <i class="fa-solid fa-chart-pie"></i> AFDA
+            </div>
+            <div class="topics-grid">
+                <div class="topic-card">
+                    <div class="topic-title">Data & Functions</div>
+                    <ul class="unit-list">
+                        <li>Normal Distribution & Z-Scores</li>
+                        <li>Probability & Permutations</li>
+                        <li>Regression Models (Logarithmic/Exponential)</li>
+                        <li>Real World Data Modeling</li>
+                    </ul>
+                    <div class="btn-group">
+                        <a href="https://www.ixl.com/math/skill-plans/virginia-standards-of-learning-2023-algebra-functions-and-data-analysis" target="_blank" class="action-btn tag-ixl">
+                            <div class="btn-text">
+                                <span class="btn-source">IXL Skill Plan</span>
+                                <span class="btn-main">AFDA Skill Plan</span>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square btn-icon"></i>
+                        </a>
+                        <a href="https://www.kutasoftware.com/free.html" target="_blank" class="action-btn tag-kuta">
+                            <div class="btn-text">
+                                <span class="btn-source">Kuta Software</span>
+                                <span class="btn-main">Algebra 2 Review</span>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square btn-icon"></i>
+                        </a>
+                        <a href="https://www.edhelper.com/statistics.htm" target="_blank" class="action-btn tag-edhelper">
+                            <div class="btn-text">
+                                <span class="btn-source">EdHelper</span>
+                                <span class="btn-main">Statistics Drills</span>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square btn-icon"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MATH FOUNDATIONS SECTION -->
+        <div class="class-section">
+            <div class="class-header">
+                <i class="fa-solid fa-cubes-stacked"></i> Math Foundations
+            </div>
+            <div class="topics-grid">
+                <div class="topic-card">
+                    <div class="topic-title">Building Blocks</div>
+                    <ul class="unit-list">
+                        <li>Integer Operations (+, -, x, /)</li>
+                        <li>Fractions, Decimals, Percents</li>
+                        <li>Basic Equations & Inequalities</li>
+                        <li>Graphing on Coordinate Plane</li>
+                    </ul>
+                    <div class="btn-group">
+                        <a href="https://www.ixl.com/math/algebra-1" target="_blank" class="action-btn tag-ixl">
+                            <div class="btn-text">
+                                <span class="btn-source">IXL General</span>
+                                <span class="btn-main">Algebra 1 Basics</span>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square btn-icon"></i>
+                        </a>
+                        <a href="https://www.edhelper.com/middle_school_math.htm" target="_blank" class="action-btn tag-edhelper">
+                            <div class="btn-text">
+                                <span class="btn-source">EdHelper</span>
+                                <span class="btn-main">Middle School Math</span>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square btn-icon"></i>
+                        </a>
+                        <a href="https://www.math-aids.com/Pre-Algebra/" target="_blank" class="action-btn tag-mathaids">
+                            <div class="btn-text">
+                                <span class="btn-source">Math-Aids</span>
+                                <span class="btn-main">Pre-Algebra Sheets</span>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square btn-icon"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        &copy; 2026 Aly Hatfield. All Rights Reserved.
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,367 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Binder Covers</title>
+    
+    <!-- Importing Cute Fonts from Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Fredoka:wght@300;600&family=Quicksand:wght@300;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Global Reset & Print Settings */
+        * {
+            box-sizing: border-box;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        /* ENSURE STANDARD US LETTER SIZE */
+        @page {
+            size: letter;
+            margin: 0;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            font-family: sans-serif;
+        }
+
+        /* The Page Container - Represents 8.5 x 11 paper */
+        .page {
+            width: 8.5in;
+            height: 11in;
+            margin: 20px auto;
+            background: white;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            page-break-after: always;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* --- DESIGN 1: NOTEBOOK SKETCH --- */
+        .design-notebook {
+            font-family: 'Architects Daughter', cursive;
+            color: #333;
+            /* Lined paper background using CSS gradients */
+            background-image: linear-gradient(#999 1px, transparent 1px);
+            background-size: 100% 2rem;
+            background-color: #fff;
+            padding-top: 2rem; /* Align with lines */
+        }
+
+        /* A white card to make text readable over lines */
+        .notebook-card {
+            background: white;
+            border: 3px solid #333;
+            padding: 3rem;
+            width: 80%;
+            text-align: center;
+            transform: rotate(-1deg); /* Slight tilt for hand-drawn feel */
+            box-shadow: 5px 5px 0px rgba(0,0,0,0.1);
+            border-radius: 5px;
+        }
+
+        .notebook-title {
+            font-size: 5rem;
+            margin: 0;
+            letter-spacing: 5px;
+            border-bottom: 4px dashed #333;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .notebook-subtitle {
+            font-size: 1.8rem;
+            color: #555;
+            margin-bottom: 3rem;
+        }
+
+        .notebook-fields {
+            text-align: left;
+            font-size: 1.5rem;
+            line-height: 2.5;
+        }
+
+        .field-row {
+            display: flex;
+            align-items: baseline;
+            margin-bottom: 1rem;
+        }
+
+        .field-label {
+            font-weight: bold;
+            margin-right: 1rem;
+            white-space: nowrap;
+        }
+
+        .field-line {
+            flex-grow: 1;
+            border-bottom: 2px solid #333;
+        }
+
+        /* --- DESIGN 2: RETRO POP --- */
+        .design-retro {
+            font-family: 'Fredoka', sans-serif;
+            /* Polka Dot Background */
+            background-color: #fff;
+            background-image: radial-gradient(#d1d1d1 2px, transparent 2.2px);
+            background-size: 30px 30px;
+            border: 20px solid white; /* White margin */
+        }
+
+        .retro-container {
+            border: 8px solid #000;
+            border-radius: 50px;
+            padding: 4rem 2rem;
+            background: white;
+            width: 85%;
+            height: 90%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+        }
+
+        .retro-circle {
+            width: 250px;
+            height: 250px;
+            background: #000;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .retro-title {
+            font-size: 4rem;
+            margin: 0;
+            font-weight: 600;
+        }
+
+        .retro-fields {
+            width: 100%;
+            padding: 0 2rem;
+        }
+
+        .retro-field {
+            background: #f4f4f4;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            border: 2px solid #000;
+        }
+
+        .retro-label {
+            font-size: 1.5rem;
+            font-weight: 600;
+            width: 100px;
+        }
+
+        .retro-input {
+            border-bottom: 2px dashed #aaa;
+            flex-grow: 1;
+            height: 1.5rem;
+        }
+
+        /* --- DESIGN 3: MINIMALIST GRID --- */
+        .design-grid {
+            font-family: 'Quicksand', sans-serif;
+            /* Graph Paper Background */
+            background-size: 40px 40px;
+            background-image:
+                linear-gradient(to right, #e0e0e0 1px, transparent 1px),
+                linear-gradient(to bottom, #e0e0e0 1px, transparent 1px);
+            background-color: #fff;
+            align-items: flex-start;
+            padding: 4rem;
+        }
+
+        .grid-header {
+            border-left: 10px solid #000;
+            padding-left: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .grid-title {
+            font-size: 6rem;
+            font-weight: 700;
+            margin: 0;
+            line-height: 0.9;
+        }
+
+        .grid-sub {
+            font-size: 1.5rem;
+            margin-top: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .grid-box {
+            background: white;
+            border: 2px solid #000;
+            width: 100%;
+            padding: 3rem;
+            box-shadow: 10px 10px 0 #ddd;
+        }
+
+        .grid-row {
+            margin-bottom: 2.5rem;
+        }
+
+        .grid-label {
+            display: block;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        .grid-line {
+            width: 100%;
+            border-bottom: 1px solid #000;
+            height: 10px;
+        }
+
+        /* PRINT STYLES - Hides the web UI background */
+        @media print {
+            body {
+                background: none;
+            }
+            .page {
+                margin: 0;
+                box-shadow: none;
+                width: 100%;
+                height: 100%;
+                page-break-after: always;
+            }
+        }
+
+        /* Footer Style */
+        .footer {
+            position: absolute;
+            bottom: 20px;
+            left: 0; /* Ensures it spans the full width of the page, ignoring parent padding */
+            width: 100%;
+            text-align: center;
+            font-size: 9pt; /* Slightly smaller for subtle look */
+            color: #888;
+            font-family: sans-serif;
+            background: white; /* Clean background to hide any grid lines behind it */
+            padding: 5px 0;
+        }
+        
+        /* Specific tweak for Notebook design to blend better */
+        .design-notebook .footer {
+            background: transparent; /* Notebook lines can show through on this one */
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PAGE 1: NOTEBOOK SKETCH -->
+    <div class="page design-notebook">
+        <div class="notebook-card">
+            <h1 class="notebook-title">MATH</h1>
+            <div class="notebook-subtitle">Class Binder & Notes</div>
+            
+            <div class="notebook-fields">
+                <div class="field-row">
+                    <span class="field-label">Name:</span>
+                    <div class="field-line"></div>
+                </div>
+                <div class="field-row">
+                    <span class="field-label">Block:</span>
+                    <div class="field-line"></div>
+                </div>
+                <div class="field-row">
+                    <span class="field-label">Term:</span>
+                    <div class="field-line"></div>
+                </div>
+                <div class="field-row">
+                    <span class="field-label">Class:</span>
+                    <div class="field-line"></div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">• © 2025 Aly Hatfield. All Rights Reserved. •</div>
+    </div>
+
+    <!-- PAGE 2: RETRO POP -->
+    <div class="page design-retro">
+        <div class="retro-container">
+            <div class="retro-circle">
+                <h1 class="retro-title">MATH</h1>
+            </div>
+            
+            <div class="retro-fields">
+                <div class="retro-field">
+                    <span class="retro-label">Name</span>
+                    <div class="retro-input"></div>
+                </div>
+                <div class="retro-field">
+                    <span class="retro-label">Block</span>
+                    <div class="retro-input"></div>
+                </div>
+                <div class="retro-field">
+                    <span class="retro-label">Term</span>
+                    <div class="retro-input"></div>
+                </div>
+                <div class="retro-field">
+                    <span class="retro-label">Class</span>
+                    <div class="retro-input"></div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">• © 2025 Aly Hatfield. All Rights Reserved. •</div>
+    </div>
+
+    <!-- PAGE 3: MINIMALIST GRID -->
+    <div class="page design-grid">
+        <div class="grid-header">
+            <h1 class="grid-title">MATH</h1>
+            <div class="grid-sub">Student Portfolio</div>
+        </div>
+
+        <div class="grid-box">
+            <div class="grid-row">
+                <span class="grid-label">Student Name</span>
+                <div class="grid-line"></div>
+            </div>
+            
+            <div style="display: flex; gap: 2rem;">
+                <div class="grid-row" style="flex: 1;">
+                    <span class="grid-label">Block</span>
+                    <div class="grid-line"></div>
+                </div>
+                <div class="grid-row" style="flex: 1;">
+                    <span class="grid-label">Term</span>
+                    <div class="grid-line"></div>
+                </div>
+            </div>
+
+            <div class="grid-row">
+                <span class="grid-label">Class / Teacher</span>
+                <div class="grid-line"></div>
+            </div>
+        </div>
+        <div class="footer">• © 2026 Aly Hatfield. All Rights Reserved. •</div>
+    </div>
+
+</body>
+</html>

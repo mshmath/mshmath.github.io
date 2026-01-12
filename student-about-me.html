@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student About Me</title>
+    
+    <!-- 1. FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* 2. GLOBAL STYLES */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            font-family: 'Quicksand', sans-serif;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* PAGE CONTAINER */
+        .container {
+            max-width: 850px;
+            width: 100%;
+            margin: 40px auto;
+            padding: 20px;
+            flex: 1; /* Pushes footer to bottom */
+        }
+
+        /* HEADER */
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px 20px;
+            background: white;
+            border: 3px solid #333;
+            border-radius: 16px;
+            box-shadow: 8px 8px 0px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 3rem;
+            margin: 0;
+            color: #222;
+            line-height: 1.1;
+        }
+
+        /* INSTRUCTION BOX (No Print) */
+        .instruction-box {
+            background: #fff;
+            border: 2px dashed #555;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .print-btn {
+            background: #333;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.1rem;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: transform 0.1s;
+        }
+
+        .print-btn:hover {
+            transform: scale(1.05);
+            background: #000;
+        }
+
+        /* THE WORKSHEET (Printable Area) */
+        .worksheet {
+            background: white;
+            border: 3px solid #333;
+            border-radius: 12px;
+            padding: 0.8in;
+            position: relative;
+            box-shadow: 6px 6px 0px rgba(0,0,0,0.1);
+        }
+
+        .sheet-title {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-bottom: 4px solid #333;
+            padding-bottom: 10px;
+        }
+
+        /* INPUT GROUPS */
+        .input-row {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .input-group {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .label {
+            font-weight: 700;
+            font-size: 1.1rem;
+            white-space: nowrap;
+        }
+
+        .line-input {
+            flex-grow: 1;
+            border: none;
+            border-bottom: 2px solid #333;
+            font-family: 'Quicksand', sans-serif; /* Handwriting style optional */
+            font-size: 1.1rem;
+            padding: 5px;
+            outline: none;
+            background: transparent;
+        }
+
+        .line-input:focus {
+            border-bottom-color: #0074d9;
+            background-color: #f0f8ff;
+        }
+
+        /* SECTIONS GRID */
+        .grid-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .section-box {
+            border: 2px solid #333;
+            border-radius: 8px;
+            padding: 20px;
+            background: #fff;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .section-header {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.3rem;
+            background: #333;
+            color: white;
+            padding: 8px 15px;
+            margin: -20px -20px 15px -20px; /* Bleed to edges */
+            border-radius: 6px 6px 0 0;
+            text-align: center;
+        }
+
+        .text-area {
+            width: 100%;
+            border: none;
+            outline: none;
+            resize: none;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1rem;
+            line-height: 1.6;
+            background: transparent;
+            flex-grow: 1;
+            min-height: 150px;
+            /* Lined paper background effect */
+            background-image: linear-gradient(transparent 95%, #ddd 95%);
+            background-size: 100% 2rem;
+            background-position: 0 1.5rem;
+        }
+
+        /* Favorites List */
+        .favorites-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .fav-item {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+        }
+        
+        .fav-label {
+            font-weight: 700;
+            min-width: 60px;
+            text-align: right;
+            font-size: 0.95rem;
+        }
+
+        /* GOALS SECTION */
+        .goals-section {
+            margin-top: 30px;
+            border: 2px solid #333;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            background: #fff;
+            border-top: 3px solid #333;
+            margin-top: auto;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 700px) {
+            .grid-layout { grid-template-columns: 1fr; }
+            .input-group { min-width: 100%; }
+            .worksheet { padding: 20px; }
+        }
+
+        /* PRINT STYLES */
+        @media print {
+            body { background: white; display: block; }
+            .container { max-width: 100%; margin: 0; padding: 0; }
+            header, .instruction-box, footer { display: none; }
+            
+            .worksheet {
+                border: none;
+                box-shadow: none;
+                padding: 0;
+                width: 100%;
+                max-width: 100%;
+            }
+
+            .section-box, .goals-section {
+                border: 2px solid #333 !important;
+                page-break-inside: avoid;
+            }
+
+            .section-header {
+                background: #eee !important;
+                color: #000 !important;
+                border-bottom: 2px solid #333;
+            }
+
+            .line-input { border-bottom: 1px solid #333; }
+            ::placeholder { color: transparent; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- HEADER (Screen Only) -->
+        <header>
+            <h1>Student About Me</h1>
+        </header>
+
+        <!-- INSTRUCTIONS (Screen Only) -->
+        <div class="instruction-box">
+            <p><strong>Instructions:</strong> Type directly into the boxes below. <br>When finished, print it out to add to your binder!</p>
+            <button onclick="window.print()" class="print-btn">🖨️ Print Page</button>
+        </div>
+
+        <!-- THE WORKSHEET -->
+        <div class="worksheet">
+            <div class="sheet-title">All About Me</div>
+
+            <!-- Basic Info -->
+            <div class="input-row">
+                <div class="input-group">
+                    <span class="label">Name:</span>
+                    <input type="text" class="line-input">
+                </div>
+                <div class="input-group">
+                    <span class="label">Birthday:</span>
+                    <input type="text" class="line-input">
+                </div>
+            </div>
+            
+            <div class="input-row">
+                <div class="input-group">
+                    <span class="label">From:</span>
+                    <input type="text" class="line-input" placeholder="City/State">
+                </div>
+                <div class="input-group">
+                    <span class="label">Class:</span>
+                    <input type="text" class="line-input" placeholder="Grade/Period">
+                </div>
+            </div>
+
+            <!-- Main Grid -->
+            <div class="grid-layout">
+                
+                <!-- Left Column -->
+                <div style="display: flex; flex-direction: column; gap: 20px;">
+                    <div class="section-box">
+                        <div class="section-header">My Hobbies</div>
+                        <textarea class="text-area" placeholder="In my free time, I like to..."></textarea>
+                    </div>
+
+                    <div class="section-box">
+                        <div class="section-header">Fun Facts</div>
+                        <textarea class="text-area" placeholder="Something interesting about me is..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Right Column: Favorites -->
+                <div class="section-box">
+                    <div class="section-header">My Favorites</div>
+                    <div class="favorites-list">
+                        <div class="fav-item"><span class="fav-label">Color:</span><input type="text" class="line-input"></div>
+                        <div class="fav-item"><span class="fav-label">Food:</span><input type="text" class="line-input"></div>
+                        <div class="fav-item"><span class="fav-label">Music:</span><input type="text" class="line-input"></div>
+                        <div class="fav-item"><span class="fav-label">Movie:</span><input type="text" class="line-input"></div>
+                        <div class="fav-item"><span class="fav-label">Sport:</span><input type="text" class="line-input"></div>
+                        <div class="fav-item"><span class="fav-label">Subject:</span><input type="text" class="line-input"></div>
+                        <div class="fav-item"><span class="fav-label">Season:</span><input type="text" class="line-input"></div>
+                        <div class="fav-item"><span class="fav-label">Place:</span><input type="text" class="line-input"></div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Goals Section -->
+            <div class="goals-section">
+                <div style="font-family: 'Fredoka'; font-size: 1.3rem; margin-bottom: 10px; font-weight: 700;">My Goals for the Future...</div>
+                <textarea class="text-area" style="min-height: 100px;" placeholder="I hope to..."></textarea>
+            </div>
+
+        </div>
+
+    </div>
+
+    <footer>
+        &copy; 2026 Aly Hatfield. All Rights Reserved.
+    </footer>
+
+</body>
+</html>

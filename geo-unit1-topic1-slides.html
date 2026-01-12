@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geometry: Conditional Statements</title>
+    
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- ICONS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* --- 1. CORE VARIABLES & RESET --- */
+        :root {
+            --bg-color: #f4f4f4;
+            --card-bg: #ffffff;
+            --border-color: #000000;
+            --shadow-color: rgba(0,0,0,0.1);
+            --font-heading: 'Fredoka', sans-serif;
+            --font-body: 'Quicksand', sans-serif;
+            --font-math: 'Times New Roman', serif;
+            
+            /* Difficulty Colors */
+            --level-1: #22c55e;
+            --level-2: #f59e0b;
+            --level-3: #ef4444;
+            
+            /* Logic Colors */
+            --hyp-blue: #3b82f6; /* Hypothesis */
+            --conc-red: #ef4444; /* Conclusion */
+            --neg-purple: #a855f7; /* Negation */
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-color);
+            font-family: var(--font-body);
+            color: #222;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        /* --- 2. SLIDESHOW CONTAINER (1100px, 16:9) --- */
+        .slide-container {
+            width: 100%;
+            max-width: 1100px;
+            aspect-ratio: 16 / 9;
+            background: var(--card-bg);
+            border: 4px solid var(--border-color);
+            border-radius: 20px;
+            box-shadow: 12px 12px 0px rgba(0,0,0,0.15);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- 3. SLIDE STYLES --- */
+        .slide {
+            flex: 1;
+            display: none;
+            flex-direction: column;
+            justify-content: flex-start; /* Flow from top */
+            align-items: center;
+            padding: 40px 60px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        /* Custom Scrollbar */
+        .slide::-webkit-scrollbar { width: 10px; }
+        .slide::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
+        .slide::-webkit-scrollbar-thumb { background: #ccc; border-radius: 10px; }
+        .slide::-webkit-scrollbar-thumb:hover { background: #999; }
+
+        .slide.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        /* TYPOGRAPHY */
+        h1, h2, h3 { 
+            font-family: var(--font-heading); 
+            text-transform: uppercase;
+            line-height: 1.2;
+            color: #000;
+        }
+
+        h1 { font-size: 3rem; margin-bottom: 10px; text-align: center; }
+        h2 { font-size: 2.2rem; margin-bottom: 25px; border-bottom: 3px solid #000; padding-bottom: 8px; width: 100%; text-align: center; }
+        h3 { font-size: 1.4rem; margin-bottom: 10px; }
+        
+        p, li { font-size: 1.3rem; line-height: 1.6; font-weight: 600; }
+        
+        /* Math/Logic Styling */
+        .logic-font { 
+            font-family: var(--font-math); 
+            font-style: italic; 
+            font-weight: bold; 
+            font-size: 1.3em; 
+        }
+
+        .logic-display {
+            font-family: var(--font-math);
+            font-style: italic;
+            font-weight: bold;
+            font-size: 2.5rem;
+            display: block;
+            margin: 15px 0;
+            text-align: center;
+        }
+
+        .important-text {
+            text-decoration: underline;
+            text-decoration-thickness: 3px;
+            text-underline-offset: 4px;
+            font-weight: 800;
+        }
+
+        /* Highlight Boxes for p and q */
+        .p-box { color: var(--hyp-blue); border: 2px solid var(--hyp-blue); padding: 2px 6px; border-radius: 6px; background: #eff6ff; }
+        .q-box { color: var(--conc-red); border: 2px solid var(--conc-red); padding: 2px 6px; border-radius: 6px; background: #fef2f2; }
+
+        /* --- 4. COMPONENTS --- */
+        
+        /* Grid Layouts */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            width: 100%;
+            align-items: start;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            border: 3px solid #000;
+            border-radius: 12px;
+            padding: 25px;
+            background: #fff;
+            box-shadow: 6px 6px 0px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            height: 100%;
+        }
+
+        .card-title {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            border-bottom: 2px solid #eee;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            text-align: center;
+        }
+
+        /* Vocab Box */
+        .vocab-box {
+            background: #fff;
+            border: 3px solid #000;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            width: 100%;
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.05);
+        }
+
+        /* Guided Practice Reveal */
+        .guided-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px dashed #000;
+            padding: 20px 0;
+            width: 100%;
+        }
+        
+        .reveal-btn {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.1rem;
+            color: #fff;
+            background: #000;
+            padding: 10px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            border: none;
+            transition: transform 0.1s;
+        }
+        .reveal-btn:active { transform: scale(0.95); }
+        
+        .revealed-text {
+            font-size: 1.6rem;
+            color: #000;
+            font-weight: bold;
+            font-family: var(--font-body);
+            border: 3px solid var(--level-1);
+            padding: 5px 20px;
+            border-radius: 8px;
+            background-color: #fff;
+        }
+
+        /* Independent Practice Levels */
+        .practice-container {
+            width: 100%;
+            max-width: 900px;
+            text-align: center;
+            padding-bottom: 40px;
+        }
+        
+        .practice-problem {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 20px 0;
+            padding: 20px;
+            background: #fff;
+            border: 3px solid #000;
+            border-radius: 15px;
+            box-shadow: 5px 5px 0px rgba(0,0,0,0.1);
+            text-align: left;
+        }
+
+        .level-header {
+            color: #000;
+            padding: 10px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            border: 3px solid #000;
+            background: #fff;
+        }
+        
+        .lh-1 { border-left: 15px solid var(--level-1); }
+        .lh-2 { border-left: 15px solid var(--level-2); }
+        .lh-3 { border-left: 15px solid var(--level-3); }
+
+        /* Checklist Styles */
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .check-box {
+            width: 24px;
+            height: 24px;
+            border: 3px solid #000;
+            margin-right: 15px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+        }
+        .check-box i { font-size: 0.9rem; color: #000; }
+        .check-box.checked { background: #e0e0e0; }
+
+        /* IXL Buttons */
+        .ixl-btn {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border: 3px solid #000;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #000;
+            font-weight: 700;
+            font-size: 1.1rem;
+            background: #fff;
+            transition: transform 0.1s;
+            margin-bottom: 15px;
+        }
+        .ixl-btn:hover { transform: translateY(-2px); box-shadow: 4px 4px 0px rgba(0,0,0,0.2); }
+        .ixl-green { border-left: 12px solid var(--level-1); }
+        .ixl-orange { border-left: 12px solid var(--level-2); }
+        .ixl-red { border-left: 12px solid var(--level-3); }
+
+        /* --- 5. NAVIGATION --- */
+        .nav-bar {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 40px;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        .nav-btn {
+            pointer-events: auto;
+            background: #fff;
+            border: 3px solid #000;
+            color: #000;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.2);
+            transition: transform 0.1s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .nav-btn:hover { transform: scale(1.1); }
+
+        .slide-counter {
+            pointer-events: auto;
+            background: #000;
+            color: #fff;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-family: var(--font-heading);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* --- 6. PRINT STYLES --- */
+        .print-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 120px; 
+            background: #000;
+            color: #fff;
+            border: none;
+            padding: 10px 25px;
+            font-family: var(--font-heading);
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 30px;
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.3);
+            z-index: 1000;
+        }
+
+        @media print {
+            body { background: #fff; padding: 0; display: block; }
+            .print-btn, .nav-bar { display: none !important; }
+            .slide-container {
+                width: 100%; max-width: none; min-height: 0; border: none; box-shadow: none; border-radius: 0; display: block; overflow: visible;
+                aspect-ratio: auto;
+            }
+            .slide {
+                display: block !important; opacity: 1 !important; page-break-after: always; border-bottom: 2px dashed #000; padding: 30px; height: auto;
+            }
+            .reveal-btn { display: none; }
+            .guided-row div[id^="ans"] { display: block !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <button class="print-btn" onclick="window.print()">
+        <i class="fa-solid fa-print"></i> Print Notes
+    </button>
+
+    <div class="slide-container">
+        
+        <!-- Slide 1: Title -->
+        <div class="slide active" style="justify-content: center;">
+            <div style="border: 4px solid #000; padding: 40px; border-radius: 20px; text-align: center; box-shadow: 10px 10px 0px rgba(0,0,0,0.1); background: #fff; width: 80%;">
+                <div style="font-family: 'Fredoka'; font-size: 1.5rem; letter-spacing: 3px; margin-bottom: 15px;">UNIT 1 • TOPIC 1</div>
+                <h1>Conditional Statements</h1>
+                <p style="color: #555; margin-top: 15px; font-size: 1.4rem;">Logic, Reasoning & Truth Values</p>
+                <div style="margin-top: 25px; display: inline-block; background: #000; color: #fff; padding: 10px 30px; border-radius: 50px; font-weight: bold; font-family: 'Fredoka'; font-size: 1.1rem;">Standard G.1</div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Objectives -->
+        <div class="slide">
+            <h2>Objectives & Standards</h2>
+            <div class="card" style="width: 100%; max-width: 900px; padding: 40px;">
+                <h3><i class="fa-solid fa-bullseye"></i> Today's Goals:</h3>
+                <ul style="list-style-type: square; padding-left: 20px; margin-top: 20px; font-size: 1.3rem; line-height: 1.8;">
+                    <li>Identify the <span class="p-box">Hypothesis</span> and <span class="q-box">Conclusion</span>.</li>
+                    <li>Write statements in <span class="important-text">If-Then</span> form.</li>
+                    <li>Construct the <span class="important-text">Converse, Inverse, and Contrapositive</span>.</li>
+                    <li>Determine the <span class="important-text">Truth Value</span> of a statement.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 3: Anatomy -->
+        <div class="slide">
+            <h2>The "If-Then" Statement</h2>
+            <div class="vocab-box">
+                <h3 style="color: #000;">Conditional Statement (<span class="logic-font">p &rarr; q</span>)</h3>
+                <p style="margin-top: 10px;">A logical statement with two parts: a condition and a result.</p>
+                
+                <div style="margin-top: 30px; font-size: 2.2rem; font-weight: bold; text-align: center;">
+                    If <span class="p-box">it rains</span>, then <span class="q-box">I will get wet.</span>
+                </div>
+            </div>
+            
+            <div class="grid-2">
+                <div class="card" style="border-color: var(--hyp-blue);">
+                    <div class="card-title" style="color: var(--hyp-blue);">Hypothesis (p)</div>
+                    <p style="text-align: center;">The part following "If".<br><strong>(The Cause)</strong></p>
+                    <p style="text-align: center; font-size: 1.1rem; margin-top: 10px; color: #666;">Do NOT include the word "If".</p>
+                </div>
+                <div class="card" style="border-color: var(--conc-red);">
+                    <div class="card-title" style="color: var(--conc-red);">Conclusion (q)</div>
+                    <p style="text-align: center;">The part following "Then".<br><strong>(The Effect)</strong></p>
+                    <p style="text-align: center; font-size: 1.1rem; margin-top: 10px; color: #666;">Do NOT include the word "Then".</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Guided Practice - Parts -->
+        <div class="slide">
+            <h2>Guided Practice: Identify Parts</h2>
+            <p style="margin-bottom: 20px; font-size: 1.5rem;">"If an animal is a poodle, then it is a dog."</p>
+            <div style="width: 100%; max-width: 900px;">
+                <div class="guided-row">
+                    <div style="font-size: 1.5rem;">Identify the Hypothesis (p):</div>
+                    <button class="reveal-btn" onclick="document.getElementById('ans1').style.display='block'; this.style.display='none';">Reveal</button>
+                    <div id="ans1" style="display: none; text-align: right;">
+                        <span class="p-box">an animal is a poodle</span>
+                    </div>
+                </div>
+                <div class="guided-row">
+                    <div style="font-size: 1.5rem;">Identify the Conclusion (q):</div>
+                    <button class="reveal-btn" onclick="document.getElementById('ans2').style.display='block'; this.style.display='none';">Reveal</button>
+                    <div id="ans2" style="display: none; text-align: right;">
+                        <span class="q-box">it is a dog</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Symbols & Negation (UPDATED) -->
+        <div class="slide">
+            <h2>Logic Symbols</h2>
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-title">Key Symbols</div>
+                    <div style="font-size: 1.4rem; line-height: 1.8; text-align: left; padding-left: 20px;">
+                        <p><strong>p</strong> : Hypothesis</p>
+                        <p><strong>q</strong> : Conclusion</p>
+                        <p><strong>&rarr;</strong> : Implies (If...then)</p>
+                        <p><strong>&sim;</strong> : Negation (Not)</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Connectors</div>
+                    <div style="font-size: 1.4rem; line-height: 1.8; text-align: left; padding-left: 20px;">
+                        <p><strong>&wedge;</strong> : And (Conjunction)</p>
+                        <p><strong>&vee;</strong> : Or (Disjunction)</p>
+                        <p><strong>&harr;</strong> : Iff (Biconditional)</p>
+                        <p><strong>&there4;</strong> : Therefore</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Logic Forms (The Big 4) -->
+        <div class="slide">
+            <h2>The 4 Logical Statements</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; width: 100%;">
+                
+                <div class="card" style="border-left: 10px solid #000;">
+                    <div class="card-title">1. Conditional</div>
+                    <div class="logic-display">p &rarr; q</div>
+                    <p style="text-align: center;">If p, then q.</p>
+                </div>
+
+                <div class="card" style="border-left: 10px solid var(--level-2);">
+                    <div class="card-title">2. Converse</div>
+                    <div class="logic-display">q &rarr; p</div>
+                    <p style="text-align: center; font-weight: bold;">FLIP IT.</p>
+                    <p style="text-align: center;">If q, then p.</p>
+                </div>
+
+                <div class="card" style="border-left: 10px solid var(--hyp-blue);">
+                    <div class="card-title">3. Inverse</div>
+                    <div class="logic-display">&sim;p &rarr; &sim;q</div>
+                    <p style="text-align: center; font-weight: bold;">NEGATE IT.</p>
+                    <p style="text-align: center;">If NOT p, then NOT q.</p>
+                </div>
+
+                <div class="card" style="border-left: 10px solid var(--conc-red);">
+                    <div class="card-title">4. Contrapositive</div>
+                    <div class="logic-display">&sim;q &rarr; &sim;p</div>
+                    <p style="text-align: center; font-weight: bold;">FLIP & NEGATE.</p>
+                    <p style="text-align: center;">If NOT q, then NOT p.</p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Slide 7: Guided Practice - Writing Forms -->
+        <div class="slide">
+            <h2>Guided Practice: Writing Forms</h2>
+            <p style="margin-bottom: 20px;"><strong>Original:</strong> "If it is raining, then the grass is wet."</p>
+            <div style="width: 100%; max-width: 900px;">
+                <div class="guided-row">
+                    <div style="font-size: 1.4rem;">Converse (Flip):</div>
+                    <button class="reveal-btn" onclick="document.getElementById('ans3').style.display='block'; this.style.display='none';">Reveal</button>
+                    <div id="ans3" style="display: none; text-align: right; font-size: 1.2rem;">
+                        If the grass is wet, then it is raining.
+                    </div>
+                </div>
+                <div class="guided-row">
+                    <div style="font-size: 1.4rem;">Inverse (Negate):</div>
+                    <button class="reveal-btn" onclick="document.getElementById('ans4').style.display='block'; this.style.display='none';">Reveal</button>
+                    <div id="ans4" style="display: none; text-align: right; font-size: 1.2rem;">
+                        If it is NOT raining, then the grass is NOT wet.
+                    </div>
+                </div>
+                <div class="guided-row">
+                    <div style="font-size: 1.4rem;">Contrapositive (Both):</div>
+                    <button class="reveal-btn" onclick="document.getElementById('ans5').style.display='block'; this.style.display='none';">Reveal</button>
+                    <div id="ans5" style="display: none; text-align: right; font-size: 1.2rem;">
+                        If the grass is NOT wet, then it is NOT raining.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Counterexamples (NEW) -->
+        <div class="slide">
+            <h2>Proving it False: Counterexamples</h2>
+            <div class="vocab-box">
+                <h3 style="color: var(--conc-red);">Definition</h3>
+                <p style="margin-top: 10px;">A specific example that shows a statement is <strong>FALSE</strong>.</p>
+                <p style="margin-top: 10px;">You only need <strong>ONE</strong> counterexample to prove a statement false.</p>
+            </div>
+            <div class="card" style="width: 100%; max-width: 900px; padding: 30px;">
+                <p style="font-size: 1.6rem; margin-bottom: 20px;"><strong>Statement:</strong> "All birds can fly."</p>
+                <div style="display: flex; gap: 20px; align-items: center; justify-content: center;">
+                    <div style="font-size: 3rem;"><i class="fa-solid fa-xmark" style="color: red;"></i></div>
+                    <div style="text-align: left;">
+                        <p style="font-size: 1.4rem; font-weight: bold;">Counterexample:</p>
+                        <p style="font-size: 1.4rem;">A Penguin (It is a bird, but it cannot fly).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Equivalent Statements -->
+        <div class="slide">
+            <h2>Logically Equivalent</h2>
+            <div class="vocab-box">
+                <h3 style="color: #000;">Who Tells The Truth?</h3>
+                <p style="margin-top: 10px;">Some statements always have the same Truth Value.</p>
+            </div>
+            <div class="grid-2">
+                <div class="card" style="background: #eef2ff; border-color: var(--hyp-blue);">
+                    <div class="card-title">Pair 1</div>
+                    <p style="text-align: center; font-weight: bold;">Conditional &harr; Contrapositive</p>
+                    <p style="text-align: center;">If the original is True, the Contrapositive is also True!</p>
+                </div>
+                <div class="card" style="background: #fef2f2; border-color: var(--conc-red);">
+                    <div class="card-title">Pair 2</div>
+                    <p style="text-align: center; font-weight: bold;">Converse &harr; Inverse</p>
+                    <p style="text-align: center;">These two are logically linked to each other.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Biconditionals -->
+        <div class="slide">
+            <h2>Biconditional Statements</h2>
+            <div class="card" style="width: 100%; max-width: 800px; padding: 30px;">
+                <div class="logic-display">p &harr; q</div>
+                <p style="text-align: center; font-size: 1.5rem; margin-bottom: 20px;">"p <strong>if and only if</strong> q"</p>
+                <ul style="list-style-type: square; padding-left: 20px; font-size: 1.3rem;">
+                    <li>Use this when <strong>BOTH</strong> the Conditional AND Converse are true.</li>
+                    <li>Definitions are always biconditional.</li>
+                    <li>Example: "A triangle is equilateral <strong>if and only if</strong> all 3 sides are equal."</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 11: Independent Practice Level 1 -->
+        <div class="slide">
+            <h2 class="level-header lh-1">Independent Practice: Level 1</h2>
+            <p style="margin-bottom: 20px;">Identify Hypothesis (p) and Conclusion (q).</p>
+            <div class="practice-container">
+                <div class="practice-problem">
+                    1) If x = 5, then 2x = 10.
+                </div>
+                <div class="practice-problem">
+                    2) If angles are vertical, then they are congruent.
+                </div>
+                <div class="practice-problem">
+                    3) If I am in Virginia, then I am in the USA.
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12: Independent Practice Level 2 -->
+        <div class="slide">
+            <h2 class="level-header lh-2">Independent Practice: Level 2</h2>
+            <p style="margin-bottom: 20px;">Write the Converse, Inverse, and Contrapositive.</p>
+            <div class="practice-container">
+                <div class="practice-problem" style="text-align: center; font-weight: bold; background: #eee;">
+                    Original: "If a figure is a square, then it is a rectangle."
+                </div>
+                <div class="practice-problem">
+                    1) Write the Converse.
+                </div>
+                <div class="practice-problem">
+                    2) Write the Inverse.
+                </div>
+                <div class="practice-problem">
+                    3) Write the Contrapositive.
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 13: Independent Practice Level 3 -->
+        <div class="slide">
+            <h2 class="level-header lh-3">Independent Practice: Level 3</h2>
+            <p style="margin-bottom: 20px;">Truth Values & Counterexamples</p>
+            <div class="practice-container">
+                <div class="practice-problem">
+                    1) True or False? "If x² = 25, then x = 5."<br>
+                    <span style="font-size: 1rem; color: #666; font-weight: normal;">(Hint: What about -5?)</span>
+                </div>
+                <div class="practice-problem">
+                    2) Provide a counterexample:<br>
+                    "If a number is odd, then it is prime."
+                </div>
+                <div class="practice-problem">
+                    3) Can this be written as a Biconditional?<br>
+                    "If an angle is 90°, then it is a right angle."
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 14: What's Next? -->
+        <div class="slide">
+            <div class="grid-2">
+                <!-- Checklist -->
+                <div class="card">
+                    <div class="card-title">What's Next?</div>
+                    <div style="display: flex; flex-direction: column; height: 100%; padding-left: 10px;">
+                        <div class="checklist-item">
+                            <div class="check-box checked"><i class="fa-solid fa-check"></i></div> 
+                            Topic Warm Up
+                        </div>
+                        <div class="checklist-item">
+                            <div class="check-box checked"><i class="fa-solid fa-check"></i></div> 
+                            Lesson Slides
+                        </div>
+                        <div class="checklist-item"><div class="check-box"></div> Practice Worksheet</div>
+                        <div class="checklist-item"><div class="check-box"></div> IXL Practice</div>
+                        <div class="checklist-item"><div class="check-box"></div> Topic 1 Exit Ticket</div>
+                        <div class="checklist-item" style="margin-top: auto; font-weight: bold; font-size: 1.1rem; border: 3px solid #d32f2f; background: #fee2e2; padding: 15px; border-radius: 8px; text-align: center; color: #000;">
+                            <i class="fa-solid fa-triangle-exclamation" style="color: #d32f2f;"></i> <span style="text-decoration: underline; font-weight: 800;">Review Vocab & Symbols!</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- IXL Practice -->
+                <div class="card" style="background: #fcfcfc;">
+                    <div class="card-title">IXL Practice</div>
+                    <div style="text-align: center; color: #555; margin-bottom: 20px; font-weight: bold;">Standard G.1</div>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <a href="https://www.ixl.com/math/geometry/identify-hypotheses-and-conclusions" target="_blank" class="ixl-btn ixl-green">
+                            <span>Hypothesis & Conclusion</span>
+                            <span style="margin-left: auto; background: #eee; padding: 2px 8px; border-radius: 4px; font-size: 0.9rem;">B.1</span>
+                        </a>
+                        <a href="https://www.ixl.com/math/geometry/converses-inverses-and-contrapositives" target="_blank" class="ixl-btn ixl-orange">
+                            <span>Converse/Inverse/Contra</span>
+                            <span style="margin-left: auto; background: #eee; padding: 2px 8px; border-radius: 4px; font-size: 0.9rem;">B.4</span>
+                        </a>
+                        <a href="https://www.ixl.com/math/geometry/biconditionals" target="_blank" class="ixl-btn ixl-red">
+                            <span>Biconditionals</span>
+                            <span style="margin-left: auto; background: #eee; padding: 2px 8px; border-radius: 4px; font-size: 0.9rem;">B.5</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="nav-bar">
+            <button id="prevBtn" class="nav-btn"><i class="fa-solid fa-arrow-left"></i></button>
+            <div class="slide-counter">1 / 14</div>
+            <button id="nextBtn" class="nav-btn"><i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const counter = document.querySelector('.slide-counter');
+        let currentSlide = 0;
+
+        function updateSlides() {
+            slides.forEach((slide, index) => {
+                slide.classList.remove('active');
+                if (index === currentSlide) {
+                    slide.classList.add('active');
+                }
+            });
+            counter.textContent = `${currentSlide + 1} / ${slides.length}`;
+            
+            prevBtn.style.opacity = currentSlide === 0 ? 0.3 : 1;
+            nextBtn.style.opacity = currentSlide === slides.length - 1 ? 0.3 : 1;
+        }
+
+        nextBtn.addEventListener('click', () => {
+            if (currentSlide < slides.length - 1) {
+                currentSlide++;
+                updateSlides();
+            }
+        });
+
+        prevBtn.addEventListener('click', () => {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateSlides();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' && currentSlide < slides.length - 1) {
+                currentSlide++;
+                updateSlides();
+            }
+            if (e.key === 'ArrowLeft' && currentSlide > 0) {
+                currentSlide--;
+                updateSlides();
+            }
+        });
+
+        updateSlides();
+    </script>
+    <footer style="margin-top: 2rem; color: #9ca3af; font-size: 0.9rem;">
+        &copy; 2026 Aly Hatfield. All rights reserved.
+    </footer>
+</body>
+</html>
