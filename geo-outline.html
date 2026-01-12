@@ -421,7 +421,7 @@
         units.forEach((unit, index) => {
             // 1. Sidebar Link
             const navLink = document.createElement('a');
-            navLink.href = "geo-unit1.html";
+            navLink.href = "#";
             navLink.className = `nav-item ${index === 0 ? 'active' : ''}`;
             navLink.textContent = `Unit ${unit.id}: ${unit.title}`;
             navLink.onclick = (e) => {
@@ -447,7 +447,7 @@
                     <div class="unit-kicker">${unit.week}</div>
                     <h2 class="unit-title">Unit ${unit.id}: ${unit.title}</h2>
                     
-                    <a href="#" class="material-btn">
+                    <a href="geo-unit1.html" class="material-btn">
                         <svg class="btn-icon" viewBox="0 0 24 24"><path d="M20,6h-8l-2-2H4C2.9,4,2,4.9,2,6v12c0,1.1,0.9,2,2,2h16c1.1,0,2-0.9,2-2V8C22,6.9,21.1,6,20,6z M14,14v-2h-3v-3H9v3H6v2h3v3h2v-3H14z"/></svg>
                         Unit ${unit.id} Materials
                     </a>
@@ -508,3 +508,4 @@
 </body>
 
 </html>
+
