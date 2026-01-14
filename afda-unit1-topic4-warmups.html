@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AFDA Topic 4: Warm Ups</title>
+    
+    <!-- Importing Clean, Readable Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* Global Reset & Print Settings */
+        * {
+            box-sizing: border-box;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        @page {
+            size: letter;
+            margin: 0.25in;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            font-family: 'Quicksand', sans-serif;
+            color: #222;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* The Page Container */
+        .page {
+            width: 8in;
+            height: 10.5in;
+            margin: 20px auto;
+            background: white;
+            position: relative;
+            overflow: hidden;
+            page-break-after: always;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-content: space-between;
+        }
+
+        /* Problem Card (Quarter Page) */
+        .problem-card {
+            width: 49%;
+            height: 49%;
+            border: 4px solid #000;
+            border-radius: 20px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            background: white;
+            justify-content: space-between;
+        }
+
+        /* Cut Guides */
+        .cut-guide-h {
+            position: absolute; top: 50%; left: 0; width: 100%; border-bottom: 2px dashed #bbb; z-index: 0; pointer-events: none;
+        }
+        .cut-guide-v {
+            position: absolute; left: 50%; top: 0; height: 100%; border-right: 2px dashed #bbb; z-index: 0; pointer-events: none;
+        }
+        .cut-icon {
+            position: absolute; background: white; padding: 5px; color: #999; font-size: 16px; z-index: 1;
+        }
+
+        /* Card Header */
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        .card-title {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .card-id {
+            background: #000;
+            color: #fff;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        /* Problem Content */
+        .content-area {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .question-text {
+            font-size: 1.3rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-weight: 500;
+            width: 100%;
+        }
+
+        .math-large {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 2.2rem;
+            margin: 15px 0;
+            color: #000;
+        }
+
+        /* Logic Symbols */
+        .math-font { font-family: 'Times New Roman', serif; font-weight: bold; font-style: italic; }
+
+        /* Footer inside card */
+        .card-footer {
+            margin-top: auto;
+            background: #f4f4f4;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 1rem;
+            color: #555;
+            font-weight: 600;
+        }
+
+        /* Table inside card */
+        .mini-table {
+            width: 80%;
+            border-collapse: collapse;
+            margin: 10px auto;
+        }
+        .mini-table th { background: #eee; padding: 5px; border: 1px solid #999; }
+        .mini-table td { border: 1px solid #999; padding: 5px; font-weight: bold; }
+
+        @media print {
+            body { background: none; display: block; }
+            .page { margin: 0 auto; box-shadow: none; width: 100%; height: 100%; }
+            .problem-card { box-shadow: none; page-break-inside: avoid; border: 3px solid #000; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PAGE 1: AFDA TOPIC 4 WARM UPS -->
+    <div class="page">
+        <!-- Cut Guides -->
+        <div class="cut-guide-h"></div>
+        <div class="cut-guide-v"></div>
+        <div class="cut-icon" style="top: 49%; left: 1%;">✂</div>
+        <div class="cut-icon" style="top: 1%; left: 49%;">✂</div>
+
+        <!-- Card 1: Review Topic 3 (Keywords) -->
+        <div class="problem-card">
+            <div class="card-header">
+                <span class="card-title">Warm Up</span>
+                <span class="card-id">Review 1</span>
+            </div>
+            <div class="content-area">
+                <div class="question-text">
+                    <strong>Topic 3 Review:</strong><br><br>
+                    Which keyword implies an <strong>Exponential</strong> model?
+                </div>
+                <div style="font-size: 1.3rem; margin-top: 15px; text-align: left; width: 100%;">
+                    A) "Constant Rate"<br>
+                    B) "Doubles Every Year"
+                </div>
+            </div>
+            <div class="card-footer">Multiplication vs Addition</div>
+        </div>
+
+        <!-- Card 2: Review Topic 3 (Scenario) -->
+        <div class="problem-card">
+            <div class="card-header">
+                <span class="card-title">Warm Up</span>
+                <span class="card-id">Review 2</span>
+            </div>
+            <div class="content-area">
+                <div class="question-text">
+                    <strong>Topic 3 Review:</strong><br><br>
+                    A ball is thrown into the air and falls back down. What type of function models this path?
+                </div>
+                <div class="math-large">
+                    ?
+                </div>
+            </div>
+            <div class="card-footer">Quadratic (Gravity)</div>
+        </div>
+
+        <!-- Card 3: Intro Topic 4 (Tables) -->
+        <div class="problem-card">
+            <div class="card-header">
+                <span class="card-title">Warm Up</span>
+                <span class="card-id">Topic 4</span>
+            </div>
+            <div class="content-area">
+                <div class="question-text">
+                    <strong>Pattern Check:</strong><br>
+                    Which output is growing faster?
+                </div>
+                <div style="display: flex; gap: 10px; width: 100%; justify-content: center;">
+                    <table class="mini-table">
+                        <tr><th>x</th><th>y (A)</th></tr>
+                        <tr><td>1</td><td>2</td></tr>
+                        <tr><td>2</td><td>4</td></tr>
+                        <tr><td>3</td><td>6</td></tr>
+                    </table>
+                    <table class="mini-table">
+                        <tr><th>x</th><th>y (B)</th></tr>
+                        <tr><td>1</td><td>2</td></tr>
+                        <tr><td>2</td><td>4</td></tr>
+                        <tr><td>3</td><td>8</td></tr>
+                    </table>
+                </div>
+            </div>
+            <div class="card-footer">Adding 2 vs Multiplying by 2</div>
+        </div>
+
+        <!-- Card 4: Intro Topic 4 (Visualizing Growth) -->
+        <div class="problem-card">
+            <div class="card-header">
+                <span class="card-title">Warm Up</span>
+                <span class="card-id">Topic 4</span>
+            </div>
+            <div class="content-area">
+                <div class="question-text">
+                    <strong>The Long Run:</strong><br><br>
+                    If you wait long enough, which graph will always be higher?
+                </div>
+                <div style="font-size: 1.3rem; margin-top: 15px; text-align: left; width: 100%;">
+                    A) A straight line going up.<br>
+                    B) A curved line swooping up (Exponential).
+                </div>
+            </div>
+            <div class="card-footer">Multiplication wins over addition!</div>
+        </div>
+
+    </div>
+
+</body>
+</html>
