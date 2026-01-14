@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Topic 4: Exit Tickets</title>
+    
+    <!-- Importing Clean, Readable Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+
+    <!-- MATHJAX -->
+    <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+      chtml: { scale: 1.1 } 
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        /* Global Reset & Print Settings */
+        * {
+            box-sizing: border-box;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        @page {
+            size: letter;
+            margin: 0.25in;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            font-family: 'Quicksand', sans-serif;
+            color: #222;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* The Page Container */
+        .page {
+            width: 8in;
+            height: 10.5in;
+            margin: 20px auto;
+            background: white;
+            position: relative;
+            overflow: hidden;
+            page-break-after: always;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-content: space-between;
+        }
+
+        /* Problem Card (Quarter Page) */
+        .problem-card {
+            width: 49%;
+            height: 49%;
+            border: 4px solid #000;
+            border-radius: 20px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            background: white;
+            justify-content: space-between;
+        }
+
+        /* Cut Guides */
+        .cut-guide-h {
+            position: absolute; top: 50%; left: 0; width: 100%; border-bottom: 2px dashed #bbb; z-index: 0; pointer-events: none;
+        }
+        .cut-guide-v {
+            position: absolute; left: 50%; top: 0; height: 100%; border-right: 2px dashed #bbb; z-index: 0; pointer-events: none;
+        }
+        .cut-icon {
+            position: absolute; background: white; padding: 5px; color: #999; font-size: 16px; z-index: 1;
+        }
+
+        /* Card Header */
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
+
+        .card-title {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .card-id {
+            background: #000;
+            color: #fff;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        /* Problem Content */
+        .content-area {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            gap: 10px;
+        }
+
+        .question-text {
+            font-size: 1.3rem;
+            line-height: 1.4;
+            margin-bottom: 5px;
+            font-weight: 500;
+            width: 100%;
+        }
+
+        /* Highlight Boxes */
+        .highlight-box {
+            background: #fff;
+            border: 2px solid #000;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* Table */
+        .mini-table {
+            width: 80%;
+            border-collapse: collapse;
+            font-size: 1.1rem;
+            margin: 10px auto;
+        }
+        .mini-table td, .mini-table th { border: 1px solid #000; padding: 5px; text-align: center; }
+
+        /* Answer Line */
+        .answer-box {
+            width: 100%;
+            margin-top: 10px;
+            text-align: left;
+        }
+        .answer-label {
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            color: #666;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .answer-line {
+            width: 100%;
+            height: 40px;
+            border-bottom: 3px solid #000;
+            background-color: #f9f9f9;
+        }
+
+        /* Footer inside card */
+        .card-footer {
+            margin-top: auto;
+            background: #f4f4f4;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #555;
+            font-weight: 600;
+        }
+
+        @media print {
+            body { background: none; display: block; }
+            .page { margin: 0 auto; box-shadow: none; width: 100%; height: 100%; }
+            .problem-card { box-shadow: none; page-break-inside: avoid; border: 3px solid #000; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PAGE 1: EXIT TICKETS -->
+    <div class="page">
+        <!-- Cut Guides -->
+        <div class="cut-guide-h"></div>
+        <div class="cut-guide-v"></div>
+        <div class="cut-icon" style="top: 49%; left: 1%;">✂</div>
+        <div class="cut-icon" style="top: 1%; left: 49%;">✂</div>
+
+        <!-- Card 1: Identifying from Table -->
+        <div class="problem-card">
+            <div class="card-header">
+                <span class="card-title">Exit Ticket</span>
+                <span class="card-id">#1</span>
+            </div>
+            <div class="content-area">
+                <div class="question-text">
+                    <strong>Identify the Family:</strong>
+                </div>
+                <table class="mini-table">
+                    <tr><th>x</th><td>1</td><td>2</td><td>3</td><td>4</td></tr>
+                    <tr><th>y</th><td>5</td><td>10</td><td>20</td><td>40</td></tr>
+                </table>
+                <div class="answer-box">
+                    <span class="answer-label">Linear, Quadratic, or Exponential?</span>
+                    <div class="answer-line"></div>
+                </div>
+            </div>
+            <div class="card-footer">Check Differences vs Ratios</div>
+        </div>
+
+        <!-- Card 2: Visual Comparison -->
+        <div class="problem-card">
+            <div class="card-header">
+                <span class="card-title">Exit Ticket</span>
+                <span class="card-id">#2</span>
+            </div>
+            <div class="content-area">
+                <div class="question-text">
+                    <strong>Identify the Graph:</strong>
+                </div>
+                <!-- U-Shape Graph -->
+                <svg width="120" height="80" viewBox="0 0 100 60" style="border: 1px solid #ccc;">
+                    <path d="M 10 10 Q 50 100 90 10" stroke="black" stroke-width="3" fill="none" />
+                </svg>
+                <div class="answer-box">
+                    <span class="answer-label">Name the Function Family:</span>
+                    <div class="answer-line"></div>
+                </div>
+            </div>
+            <div class="card-footer">Look at the shape!</div>
+        </div>
+
+        <!-- Card 3: Comparing Growth -->
+        <div class="problem-card">
+            <div class="card-header">
+                <span class="card-title">Exit Ticket</span>
+                <span class="card-id">#3</span>
+            </div>
+            <div class="content-area">
+                <div class="question-text">
+                    <strong>Who Wins?</strong>
+                </div>
+                <div class="question-text" style="font-size: 1.1rem; margin-bottom: 15px;">
+                    Which function has the greatest value as $x \to \infty$?
+                </div>
+                <div style="font-size: 1.2rem; font-weight: bold; margin-bottom: 10px;">
+                    A) $y = 100x$ (Linear)<br>
+                    B) $y = 2^x$ (Exponential)
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">Answer:</span>
+                    <div class="answer-line"></div>
+                </div>
+            </div>
+            <div class="card-footer">Fastest Growth Rate</div>
+        </div>
+
+        <!-- Card 4: Contextual Problem -->
+        <div class="problem-card">
+            <div class="card-header">
+                <span class="card-title">Exit Ticket</span>
+                <span class="card-id">#4</span>
+            </div>
+            <div class="content-area">
+                <div class="question-text">
+                    <strong>Identify the Model:</strong>
+                </div>
+                <div class="highlight-box">
+                    "A plumber charges a flat fee of \$50 plus \$30 per hour."
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">Linear, Quadratic, or Exponential?</span>
+                    <div class="answer-line"></div>
+                </div>
+            </div>
+            <div class="card-footer">Constant Rate of Change</div>
+        </div>
+
+    </div>
+
+</body>
+</html>
