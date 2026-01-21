@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polynomials Practice Worksheet</title>
+    
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- MATHJAX -->
+    <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+      chtml: { scale: 1.0 } 
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        /* --- GLOBAL STYLES --- */
+        * { box-sizing: border-box; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        
+        @page { size: letter; margin: 0.5in; }
+        
+        body {
+            margin: 0; padding: 20px;
+            background-color: #f0f0f0;
+            font-family: 'Quicksand', sans-serif;
+            color: #222;
+        }
+
+        /* PAGE CONTAINER */
+        .page {
+            width: 8.5in; min-height: 11in; height: auto;
+            margin: 20px auto; background: white; padding: 0.5in;
+            position: relative; page-break-after: always;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            overflow: hidden; border-top: 5px solid #000;
+        }
+
+        /* HEADER */
+        .header {
+            display: flex; justify-content: space-between; align-items: flex-end;
+            border-bottom: 3px solid #000; padding-bottom: 15px; margin-bottom: 25px;
+        }
+        .title-group h1 {
+            font-family: 'Fredoka', sans-serif; font-size: 2.2rem; margin: 0;
+            text-transform: uppercase; letter-spacing: 1px;
+        }
+        .title-group h2 {
+            font-size: 1.1rem; margin: 5px 0 0 0; color: #555; font-weight: 600;
+        }
+        .name-group { text-align: right; font-weight: 700; font-size: 1.1rem; min-width: 150px; }        
+        .name-line { display: inline-block; width: 180px; border-bottom: 2px solid #000; margin-left: 5px; }
+
+        /* STUDY GUIDE BOXES */
+        .concept-box {
+            border: 2px solid #000;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 20px;
+            background: #fff;
+        }
+        .concept-title {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        /* New Anatomy Grid Layout */
+        .anatomy-grid {
+            display: grid;
+            grid-template-columns: auto auto auto auto auto;
+            gap: 5px;
+            text-align: center;
+            align-items: center;
+            margin: 20px 0;
+            font-family: 'Times New Roman', serif;
+        }
+
+        .anatomy-label-top {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 0.85rem;
+            font-weight: bold;
+            color: #444;
+            padding-bottom: 5px;
+            border-bottom: 1px dashed #999;
+            margin-bottom: 5px;
+            display: inline-block;
+        }
+        
+        .anatomy-label-bottom {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 0.85rem;
+            font-weight: bold;
+            color: #444;
+            padding-top: 5px;
+            border-top: 1px dashed #999;
+            margin-top: 5px;
+            display: inline-block;
+        }
+
+        .equation-part {
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+
+        .highlight-circle { border: 3px solid #000; border-radius: 50%; padding: 5px 12px; display: inline-block; }
+        .highlight-box { border: 3px solid #000; padding: 2px 6px; display: inline-block; }
+        .highlight-under { border-bottom: 4px double #000; display: inline-block; line-height: 1; }
+
+        /* Definition Text */
+        .def-text {
+            font-size: 0.95rem;
+            line-height: 1.4;
+            margin-top: 15px;
+            border-top: 1px dashed #ccc;
+            padding-top: 10px;
+        }
+
+        /* Tables for Vocab */
+        .vocab-table { width: 100%; border-collapse: collapse; margin-bottom: 10px; font-size: 0.95rem; }
+        .vocab-table th { background: #000; color: #fff; padding: 6px 10px; text-align: left; font-family: 'Fredoka'; }
+        .vocab-table td { border: 1px solid #ccc; padding: 6px 10px; vertical-align: middle; }
+        .vocab-table tr:nth-child(even) { background: #f9f9f9; }
+
+        /* SECTIONS */
+        .section-header {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.4rem;
+            background: #eee;
+            padding: 8px 15px;
+            border-radius: 6px;
+            border: 2px solid #000;
+            margin-top: 20px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        /* PROBLEM GRID */
+        .problem-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+        .problem-item { margin-bottom: 15px; }
+        .p-num { font-weight: bold; font-size: 1.1rem; display: inline-block; width: 25px; }
+        .p-content { display: inline-block; width: 90%; font-size: 1.2rem; }
+        .p-line { border-bottom: 1px solid #000; height: 30px; width: 100%; margin-top: 5px; }
+
+        /* Visual Standard Form */
+        .std-form-visual {
+            display: flex; gap: 15px; align-items: center; justify-content: center;
+            border: 2px dashed #000; padding: 15px; border-radius: 8px; margin: 10px 0;
+            font-family: 'Times New Roman', serif; font-size: 1.4rem; font-weight: bold;
+        }
+        .term-box { border: 2px solid #000; padding: 5px 12px; border-radius: 6px; background: #fff; }
+
+        /* FOOTER */
+        .footer {
+            margin-top: auto;
+            width: 100%;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #888;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+            position: absolute; bottom: 20px; left: 0;
+        }
+
+        /* ANSWER KEY */
+        .key-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            font-size: 0.9rem;
+        }
+        .key-item { border-bottom: 1px solid #eee; padding: 5px 0; }
+        .key-ans { font-weight: bold; }
+
+        @media print {
+            body { background: none; padding: 0; }
+            .page { margin: 0; box-shadow: none; border: none; width: 100%; min-height: auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ================= PAGE 1: NOTES ================= -->
+    <div class="page">
+        <div class="header">
+            <div class="title-group">
+                <h1>Polynomials</h1>
+                <h2>Notes & Study Guide</h2>
+            </div>
+            <div class="name-group">
+                Name: <span class="name-line"></span><br>
+                Date: <span class="name-line"></span>
+            </div>
+        </div>
+
+        <!-- 1. ANATOMY -->
+        <div class="concept-box">
+            <div class="concept-title">1. Anatomy of a Polynomial</div>
+            <div style="text-align: center; margin-bottom: 15px;">
+                <strong>Polynomial:</strong> An expression with many terms added or subtracted.
+            </div>
+            
+            <!-- CLEANER ANATOMY GRID -->
+            <div class="anatomy-grid">
+                <!-- Row 1: Labels -->
+                <div style="padding-bottom: 5px;"><span class="anatomy-label-top">Leading Coefficient</span></div>
+                <div></div>
+                <div style="padding-bottom: 5px; text-align: left;"><span class="anatomy-label-top" style="margin-left: 10px;">Degree</span></div>
+                <div></div>
+                <div></div>
+
+                <!-- Row 2: Equation Parts -->
+                <div class="equation-part"><span class="highlight-circle">2</span></div>
+                <div class="equation-part">x</div>
+                <div class="equation-part" style="vertical-align: super; font-size: 1.5rem; text-align: left;"><span class="highlight-box">3</span></div>
+                <div class="equation-part" style="font-size: 1.8rem; color: #666;">+ 5x</div>
+                <div class="equation-part" style="color: #000;">- <span class="highlight-under">7</span></div>
+
+                <!-- Row 3: Labels -->
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div style="padding-top: 5px;"><span class="anatomy-label-bottom">Constant</span></div>
+            </div>
+
+            <div class="def-text">
+                <ul style="list-style-type: square; padding-left: 20px; columns: 2;">
+                    <li><strong>Term:</strong> Parts separated by + or - signs.</li>
+                    <li><strong>Degree:</strong> The highest exponent.</li>
+                    <li><strong>Leading Coefficient:</strong> The number in front of the term with the highest degree.</li>
+                    <li><strong>Constant:</strong> A number with no variable.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 2. CLASSIFYING -->
+        <div class="concept-box">
+            <div class="concept-title">2. Classifying Polynomials</div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <!-- By Degree -->
+                <div>
+                    <div style="font-weight: bold; text-align: center; margin-bottom: 5px;">By Degree (Highest Power)</div>
+                    <table class="vocab-table">
+                        <tr><th>Deg</th><th>Name</th><th>Example</th></tr>
+                        <tr><td>0</td><td>Constant</td><td>$5$</td></tr>
+                        <tr><td>1</td><td>Linear</td><td>$x + 4$</td></tr>
+                        <tr><td>2</td><td>Quadratic</td><td>$x^2 - 9$</td></tr>
+                        <tr><td>3</td><td>Cubic</td><td>$x^3 + 2x$</td></tr>
+                    </table>
+                </div>
+                <!-- By Terms -->
+                <div>
+                    <div style="font-weight: bold; text-align: center; margin-bottom: 5px;">By Number of Terms</div>
+                    <table class="vocab-table">
+                        <tr><th>#</th><th>Name</th><th>Example</th></tr>
+                        <tr><td>1</td><td>Monomial</td><td>$3x^2$</td></tr>
+                        <tr><td>2</td><td>Binomial</td><td>$x + 5$</td></tr>
+                        <tr><td>3</td><td>Trinomial</td><td>$x^2 + 2x + 1$</td></tr>
+                        <tr><td>4+</td><td>Polynomial</td><td>$x^3 + 2x^2 + x - 1$</td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. STANDARD FORM -->
+        <div class="concept-box">
+            <div class="concept-title">3. Standard Form</div>
+            <p>Arrange terms from <strong>Highest</strong> Exponent to <strong>Lowest</strong> Exponent.</p>
+            <div class="std-form-visual">
+                <div>Start: $5 + x^3 - 2x$</div>
+                <i class="fa-solid fa-arrow-right"></i>
+                <div class="term-box" style="border-width: 4px;">$x^3$</div>
+                <div class="term-box">$- 2x$</div>
+                <div class="term-box">$+ 5$</div>
+            </div>
+        </div>
+
+        <!-- 4. OPERATIONS -->
+        <div class="concept-box">
+            <div class="concept-title">4. Adding & Subtracting</div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div>
+                    <strong>Adding (+)</strong><br>
+                    Just combine <strong>Like Terms</strong>.<br>
+                    (Same Variable, Same Exponent)<br><br>
+                    $2x + 5x = \mathbf{7x}$
+                </div>
+                <div style="border-left: 2px dashed #ccc; padding-left: 20px;">
+                    <strong>Subtracting (-)</strong><br>
+                    1. <strong>Distribute</strong> the Negative Sign to the entire second group.<br>
+                    2. Combine Like Terms.<br>
+                    $-(2x + 1) \rightarrow \mathbf{-2x - 1}$
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">• © 2026 Aly Hatfield. All Rights Reserved. •</div>
+    </div>
+
+    <!-- ================= PAGE 2: PRACTICE ================= -->
+    <div class="page">
+        <div class="header">
+            <div class="title-group">
+                <h1>Polynomials Drill</h1>
+                <h2>Classifying & Standard Form</h2>
+            </div>
+        </div>
+
+        <div class="section-header">Part 1: Classifying Polynomials</div>
+        <p style="margin-bottom: 20px;">Classify by <strong>Degree</strong> (Linear, Quad, etc.) and <strong>Number of Terms</strong> (Monomial, etc.).</p>
+        
+        <div class="problem-grid">
+            <div class="problem-item">
+                <div class="p-num">1.</div>
+                <div class="p-content">$5x + 1$<div class="p-line"></div></div>
+            </div>
+            <div class="problem-item">
+                <div class="p-num">2.</div>
+                <div class="p-content">$3x^2$<div class="p-line"></div></div>
+            </div>
+            <div class="problem-item">
+                <div class="p-num">3.</div>
+                <div class="p-content">$2x^3 - 5x + 4$<div class="p-line"></div></div>
+            </div>
+            <div class="problem-item">
+                <div class="p-num">4.</div>
+                <div class="p-content">$-8$<div class="p-line"></div></div>
+            </div>
+            <div class="problem-item">
+                <div class="p-num">5.</div>
+                <div class="p-content">$x^2 - 9$<div class="p-line"></div></div>
+            </div>
+            <div class="problem-item">
+                <div class="p-num">6.</div>
+                <div class="p-content">$4x^3 + x$<div class="p-line"></div></div>
+            </div>
+        </div>
+
+        <div class="section-header">Part 2: Standard Form</div>
+        <p style="margin-bottom: 20px;">Rewrite in Standard Form and identify the <strong>Leading Coefficient (LC)</strong>.</p>
+
+        <div class="problem-grid">
+            <div class="problem-item">
+                <div class="p-num">7.</div>
+                <div class="p-content">$5 - 3x$<br>Standard: _______________ LC: _____</div>
+            </div>
+            <div class="problem-item">
+                <div class="p-num">8.</div>
+                <div class="p-content">$x + 4x^2 - 1$<br>Standard: _______________ LC: _____</div>
+            </div>
+            <div class="problem-item">
+                <div class="p-num">9.</div>
+                <div class="p-content">$9 - x^3$<br>Standard: _______________ LC: _____</div>
+            </div>
+            <div class="problem-item">
+                <div class="p-num">10.</div>
+                <div class="p-content">$2x - 5 + x^2$<br>Standard: _______________ LC: _____</div>
+            </div>
+        </div>
+
+        <div class="section-header">Part 3: Adding Polynomials</div>
+        <div class="problem-grid">
+            <div class="problem-item"><span class="p-num">11.</span> $(2x + 4) + (3x + 1)$<div class="p-line"></div></div>
+            <div class="problem-item"><span class="p-num">12.</span> $(x^2 - 5) + (2x^2 + 3)$<div class="p-line"></div></div>
+            <div class="problem-item"><span class="p-num">13.</span> $(3n - 1) + (n + 5)$<div class="p-line"></div></div>
+            <div class="problem-item"><span class="p-num">14.</span> $(4a^2 + 2a) + (a^2 - 5a)$<div class="p-line"></div></div>
+        </div>
+
+        <div class="footer">• © 2026 Aly Hatfield. All Rights Reserved. •</div>
+    </div>
+
+    <!-- ================= PAGE 3: SUBTRACTION & MIXED ================= -->
+    <div class="page">
+        <div class="header">
+            <div class="title-group">
+                <h1>Polynomials Drill</h1>
+                <h2>Adding & Subtracting</h2>
+            </div>
+        </div>
+
+        <div class="section-header">Part 4: Subtracting Polynomials</div>
+        <div style="background: #fee2e2; padding: 10px; border-radius: 5px; margin-bottom: 20px; border: 1px solid #ef4444;">
+            <strong>REMINDER:</strong> Distribute the negative sign to the second group!
+        </div>
+
+        <div class="problem-grid">
+            <div class="problem-item"><span class="p-num">15.</span> $(5x + 8) - (2x + 3)$<div class="p-line"></div></div>
+            <div class="problem-item"><span class="p-num">16.</span> $(3x - 4) - (x - 2)$<div class="p-line"></div></div>
+            <div class="problem-item"><span class="p-num">17.</span> $(x^2 + 5x) - (2x^2 - x)$<div class="p-line"></div></div>
+            <div class="problem-item"><span class="p-num">18.</span> $(7n + 2) - (4n + 5)$<div class="p-line"></div></div>
+            <div class="problem-item"><span class="p-num">19.</span> $(y^2 - 3) - (y^2 + 4)$<div class="p-line"></div></div>
+            <div class="problem-item"><span class="p-num">20.</span> $(2a - 1) - (3a - 5)$<div class="p-line"></div></div>
+        </div>
+
+        <div class="section-header">Part 5: Mixed Practice</div>
+        <div class="problem-grid">
+            <div class="problem-item"><span class="p-num">21.</span> $(x + 3) + (2x - 7)$<div class="p-line"></div></div>
+            <div class="problem-item"><span class="p-num">22.</span> $(4x + 1) - (2x - 3)$<div class="p-line"></div></div>
+            <div class="problem-item"><span class="p-num">23.</span> Write in Standard Form: $4 - x + 3x^2$<div class="p-line"></div></div>
+            <div class="problem-item"><span class="p-num">24.</span> Classify: $2x^3 - 5$<div class="p-line"></div></div>
+            <div class="problem-item"><span class="p-num">25.</span> Find the Perimeter of a triangle with sides: $x$, $2x+1$, and $3x-2$.<div class="p-line"></div></div>
+            <div class="problem-item"><span class="p-num">26.</span> Subtract: $(10x^2 + 5) - (3x^2 + 5)$<div class="p-line"></div></div>
+        </div>
+
+        <div class="footer">• © 2026 Aly Hatfield. All Rights Reserved. •</div>
+    </div>
+
+    <!-- ================= PAGE 4: ANSWER KEY ================= -->
+    <div class="page">
+        <div class="header">
+            <div class="title-group">
+                <h1>Answer Key</h1>
+                <h2>Teacher Copy</h2>
+            </div>
+        </div>
+
+        <div class="key-grid">
+            <div class="key-item">1. <span class="key-ans">Linear Binomial</span></div>
+            <div class="key-item">2. <span class="key-ans">Quad Monomial</span></div>
+            <div class="key-item">3. <span class="key-ans">Cubic Trinomial</span></div>
+            <div class="key-item">4. <span class="key-ans">Constant Mono</span></div>
+            <div class="key-item">5. <span class="key-ans">Quad Binomial</span></div>
+            <div class="key-item">6. <span class="key-ans">Cubic Binomial</span></div>
+
+            <div class="key-item">7. <span class="key-ans">-3x + 5 (LC:-3)</span></div>
+            <div class="key-item">8. <span class="key-ans">4x² + x - 1 (LC:4)</span></div>
+            <div class="key-item">9. <span class="key-ans">-x³ + 9 (LC:-1)</span></div>
+            <div class="key-item">10. <span class="key-ans">x² + 2x - 5 (LC:1)</span></div>
+
+            <div class="key-item">11. <span class="key-ans">5x + 5</span></div>
+            <div class="key-item">12. <span class="key-ans">3x² - 2</span></div>
+            <div class="key-item">13. <span class="key-ans">4n + 4</span></div>
+            <div class="key-item">14. <span class="key-ans">5a² - 3a</span></div>
+
+            <div class="key-item">15. <span class="key-ans">3x + 5</span></div>
+            <div class="key-item">16. <span class="key-ans">2x - 2</span></div>
+            <div class="key-item">17. <span class="key-ans">-x² + 6x</span></div>
+            <div class="key-item">18. <span class="key-ans">3n - 3</span></div>
+            <div class="key-item">19. <span class="key-ans">-7</span></div>
+            <div class="key-item">20. <span class="key-ans">-a + 4</span></div>
+
+            <div class="key-item">21. <span class="key-ans">3x - 4</span></div>
+            <div class="key-item">22. <span class="key-ans">2x + 4</span></div>
+            <div class="key-item">23. <span class="key-ans">3x² - x + 4</span></div>
+            <div class="key-item">24. <span class="key-ans">Cubic Binomial</span></div>
+            <div class="key-item">25. <span class="key-ans">6x - 1</span></div>
+            <div class="key-item">26. <span class="key-ans">7x²</span></div>
+        </div>
+
+        <div class="footer">• © 2026 Aly Hatfield. All Rights Reserved. •</div>
+    </div>
+
+</body>
+</html>
