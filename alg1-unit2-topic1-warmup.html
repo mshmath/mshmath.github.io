@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Topic 1 Warm Ups</title>
+    
+    <!-- Importing Clean, Readable Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Global Reset & Print Settings */
+        * {
+            box-sizing: border-box;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        @page {
+            size: letter;
+            margin: 0.25in;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            font-family: 'Quicksand', sans-serif;
+            color: #222;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* The Page Container */
+        .page {
+            width: 8in;
+            height: 10.5in;
+            margin: 20px auto;
+            background: white;
+            position: relative;
+            overflow: hidden;
+            page-break-after: always;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-content: space-between;
+        }
+
+        /* Problem Card (Quarter Page) */
+        .problem-card {
+            width: 49%;
+            height: 49%;
+            border: 4px solid #000;
+            border-radius: 20px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            background: white;
+            justify-content: space-between;
+        }
+
+        /* Card Header */
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        .card-title {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* The "Pill" Style for Numbers/Labels */
+        .card-id {
+            background: #000;
+            color: #fff;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        /* Problem Content */
+        .content-area {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .question-text {
+            font-size: 1.3rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .math-large {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 2.2rem;
+            margin: 15px 0;
+            color: #000;
+        }
+
+        /* Footer inside card */
+        .card-footer {
+            margin-top: auto;
+            background: #f4f4f4;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 1rem;
+            color: #555;
+            font-weight: 600;
+        }
+
+        @media print {
+            body { background: none; display: block; }
+            .page { margin: 0 auto; box-shadow: none; width: 100%; height: 100%; }
+            .problem-card { box-shadow: none; page-break-inside: avoid; border: 3px solid #000; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PAGE 1: WARM UPS -->
+    <div class="page">
+        
+        <!-- Card 1: Review (Like Terms) -->
+        <div class="problem-card">
+            <div class="card-header">
+                <span class="card-title">Warm Up</span>
+                <span class="card-id">#1 Review</span>
+            </div>
+            <div class="content-area">
+                <div class="question-text">
+                    <strong>Unit 1 Review:</strong><br>
+                    Simplify by combining like terms:
+                </div>
+                <div class="math-large">
+                    3x + 5 - 2x + 4
+                </div>
+            </div>
+            <div class="card-footer">Combine x's and constants separately!</div>
+        </div>
+
+        <!-- Card 2: Review (Negatives) -->
+        <div class="problem-card">
+            <div class="card-header">
+                <span class="card-title">Warm Up</span>
+                <span class="card-id">#2 Review</span>
+            </div>
+            <div class="content-area">
+                <div class="question-text">
+                    <strong>Sign Check:</strong><br>
+                    Distribute the negative sign:
+                </div>
+                <div class="math-large">
+                    -(2x - 5)
+                </div>
+            </div>
+            <div class="card-footer">Flip ALL the signs inside!</div>
+        </div>
+
+        <!-- Card 3: Intro (Vocab) -->
+        <div class="problem-card">
+            <div class="card-header">
+                <span class="card-title">Warm Up</span>
+                <span class="card-id">#3 Intro</span>
+            </div>
+            <div class="content-area">
+                <div class="question-text">
+                    <strong>Vocab Guess:</strong><br>
+                    The prefix "Poly" means:
+                </div>
+                <div style="font-size: 1.5rem; text-align: center; margin-top: 20px;">
+                    A) One<br>
+                    B) Many<br>
+                    C) None
+                </div>
+            </div>
+            <div class="card-footer">Think "Polygon" (Many sides)</div>
+        </div>
+
+        <!-- Card 4: Intro (Ordering) -->
+        <div class="problem-card">
+            <div class="card-header">
+                <span class="card-title">Warm Up</span>
+                <span class="card-id">#4 Intro</span>
+            </div>
+            <div class="content-area">
+                <div class="question-text">
+                    <strong>Ordering:</strong><br>
+                    Put these numbers in order from largest to smallest:
+                </div>
+                <div class="math-large">
+                    5, 2, 8, 1
+                </div>
+            </div>
+            <div class="card-footer">This helps with "Standard Form"!</div>
+        </div>
+
+    </div>
+
+</body>
+</html>
