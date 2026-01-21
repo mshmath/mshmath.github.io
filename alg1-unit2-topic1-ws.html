@@ -35,17 +35,26 @@
 
         /* PAGE CONTAINER */
         .page {
-            width: 8.5in; min-height: 11in; height: auto;
-            margin: 20px auto; background: white; padding: 0.5in;
-            position: relative; page-break-after: always;
+            width: 8.5in;
+            height: 11in; /* Fixed height for consistent pages */
+            margin: 20px auto;
+            background: white;
+            padding: 0.5in;
+            position: relative;
+            page-break-after: always; /* Force new page when printing */
+            break-after: page;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            overflow: hidden; border-top: 5px solid #000;
+            overflow: hidden; /* Prevent overflow content */
+            border-top: 5px solid #000;
+            display: flex;
+            flex-direction: column;
         }
 
         /* HEADER */
         .header {
             display: flex; justify-content: space-between; align-items: flex-end;
             border-bottom: 3px solid #000; padding-bottom: 15px; margin-bottom: 25px;
+            flex-shrink: 0;
         }
         .title-group h1 {
             font-family: 'Fredoka', sans-serif; font-size: 2.2rem; margin: 0;
@@ -62,8 +71,9 @@
             border: 2px solid #000;
             border-radius: 12px;
             padding: 15px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             background: #fff;
+            break-inside: avoid; /* Prevent printing split */
         }
         .concept-title {
             font-family: 'Fredoka', sans-serif;
@@ -75,61 +85,68 @@
             font-weight: 700;
         }
 
-        /* New Anatomy Grid Layout */
-        .anatomy-grid {
-            display: grid;
-            grid-template-columns: auto auto auto auto auto;
-            gap: 5px;
+        /* Anatomy Section Styles */
+        .anatomy-example {
             text-align: center;
-            align-items: center;
-            margin: 20px 0;
-            font-family: 'Times New Roman', serif;
+            background: #f9f9f9;
+            border: 2px solid #000;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
         }
-
-        .anatomy-label-top {
-            font-family: 'Quicksand', sans-serif;
-            font-size: 0.85rem;
+        .anatomy-math {
+            font-family: 'Times New Roman', serif;
+            font-size: 2.5rem;
             font-weight: bold;
-            color: #444;
-            padding-bottom: 5px;
-            border-bottom: 1px dashed #999;
-            margin-bottom: 5px;
+            line-height: 1;
+        }
+        
+        .breakdown-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .breakdown-item {
+            border: 1px solid #ccc;
+            padding: 8px;
+            border-radius: 6px;
+        }
+        
+        .bd-label {
+            font-weight: 800;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            margin-bottom: 2px;
+            color: #000;
+            border-bottom: 1px dashed #ccc;
             display: inline-block;
         }
         
-        .anatomy-label-bottom {
-            font-family: 'Quicksand', sans-serif;
+        .bd-def {
             font-size: 0.85rem;
-            font-weight: bold;
+            margin-bottom: 5px;
+            line-height: 1.2;
             color: #444;
-            padding-top: 5px;
-            border-top: 1px dashed #999;
-            margin-top: 5px;
-            display: inline-block;
+            font-style: italic;
         }
-
-        .equation-part {
-            font-size: 2.5rem;
+        
+        .bd-val {
+            font-family: 'Times New Roman', serif;
             font-weight: bold;
+            font-size: 1.1rem;
+            background: #eee;
+            padding: 2px 6px;
+            text-align: center;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            display: block;
         }
-
-        .highlight-circle { border: 3px solid #000; border-radius: 50%; padding: 5px 12px; display: inline-block; }
-        .highlight-box { border: 3px solid #000; padding: 2px 6px; display: inline-block; }
-        .highlight-under { border-bottom: 4px double #000; display: inline-block; line-height: 1; }
-
-        /* Definition Text */
-        .def-text {
-            font-size: 0.95rem;
-            line-height: 1.4;
-            margin-top: 15px;
-            border-top: 1px dashed #ccc;
-            padding-top: 10px;
-        }
-
+        
         /* Tables for Vocab */
-        .vocab-table { width: 100%; border-collapse: collapse; margin-bottom: 10px; font-size: 0.95rem; }
-        .vocab-table th { background: #000; color: #fff; padding: 6px 10px; text-align: left; font-family: 'Fredoka'; }
-        .vocab-table td { border: 1px solid #ccc; padding: 6px 10px; vertical-align: middle; }
+        .vocab-table { width: 100%; border-collapse: collapse; margin-bottom: 5px; font-size: 0.9rem; }
+        .vocab-table th { background: #000; color: #fff; padding: 5px 8px; text-align: left; font-family: 'Fredoka'; }
+        .vocab-table td { border: 1px solid #ccc; padding: 5px 8px; vertical-align: middle; }
         .vocab-table tr:nth-child(even) { background: #f9f9f9; }
 
         /* SECTIONS */
@@ -140,30 +157,31 @@
             padding: 8px 15px;
             border-radius: 6px;
             border: 2px solid #000;
-            margin-top: 20px;
+            margin-top: 10px;
             margin-bottom: 15px;
             font-weight: 600;
+            break-inside: avoid;
         }
 
         /* PROBLEM GRID */
         .problem-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            margin-bottom: 20px;
+            gap: 20px 30px;
+            margin-bottom: 10px;
         }
-        .problem-item { margin-bottom: 15px; }
+        .problem-item { margin-bottom: 10px; break-inside: avoid; }
         .p-num { font-weight: bold; font-size: 1.1rem; display: inline-block; width: 25px; }
-        .p-content { display: inline-block; width: 90%; font-size: 1.2rem; }
-        .p-line { border-bottom: 1px solid #000; height: 30px; width: 100%; margin-top: 5px; }
+        .p-content { display: inline-block; width: 90%; font-size: 1.1rem; }
+        .p-line { border-bottom: 1px solid #000; height: 25px; width: 100%; margin-top: 5px; }
 
         /* Visual Standard Form */
         .std-form-visual {
             display: flex; gap: 15px; align-items: center; justify-content: center;
-            border: 2px dashed #000; padding: 15px; border-radius: 8px; margin: 10px 0;
-            font-family: 'Times New Roman', serif; font-size: 1.4rem; font-weight: bold;
+            border: 2px dashed #000; padding: 10px; border-radius: 8px; margin: 10px 0;
+            font-family: 'Times New Roman', serif; font-size: 1.3rem; font-weight: bold;
         }
-        .term-box { border: 2px solid #000; padding: 5px 12px; border-radius: 6px; background: #fff; }
+        .term-box { border: 2px solid #000; padding: 4px 10px; border-radius: 6px; background: #fff; }
 
         /* FOOTER */
         .footer {
@@ -174,7 +192,6 @@
             color: #888;
             border-top: 1px solid #eee;
             padding-top: 10px;
-            position: absolute; bottom: 20px; left: 0;
         }
 
         /* ANSWER KEY */
@@ -189,7 +206,7 @@
 
         @media print {
             body { background: none; padding: 0; }
-            .page { margin: 0; box-shadow: none; border: none; width: 100%; min-height: auto; }
+            .page { margin: 0; box-shadow: none; border: none; width: 100%; height: 100%; min-height: 11in; }
         }
     </style>
 </head>
@@ -208,44 +225,50 @@
             </div>
         </div>
 
-        <!-- 1. ANATOMY -->
+        <!-- 1. ANATOMY (REVAMPED) -->
         <div class="concept-box">
             <div class="concept-title">1. Anatomy of a Polynomial</div>
-            <div style="text-align: center; margin-bottom: 15px;">
+            <p style="text-align: center; margin-bottom: 10px; font-size: 1rem;">
                 <strong>Polynomial:</strong> An expression with many terms added or subtracted.
-            </div>
+            </p>
             
-            <!-- CLEANER ANATOMY GRID -->
-            <div class="anatomy-grid">
-                <!-- Row 1: Labels -->
-                <div style="padding-bottom: 5px;"><span class="anatomy-label-top">Leading Coefficient</span></div>
-                <div></div>
-                <div style="padding-bottom: 5px; text-align: left;"><span class="anatomy-label-top" style="margin-left: 10px;">Degree</span></div>
-                <div></div>
-                <div></div>
-
-                <!-- Row 2: Equation Parts -->
-                <div class="equation-part"><span class="highlight-circle">2</span></div>
-                <div class="equation-part">x</div>
-                <div class="equation-part" style="vertical-align: super; font-size: 1.5rem; text-align: left;"><span class="highlight-box">3</span></div>
-                <div class="equation-part" style="font-size: 1.8rem; color: #666;">+ 5x</div>
-                <div class="equation-part" style="color: #000;">- <span class="highlight-under">7</span></div>
-
-                <!-- Row 3: Labels -->
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div style="padding-top: 5px;"><span class="anatomy-label-bottom">Constant</span></div>
+            <!-- Main Example -->
+            <div class="anatomy-example">
+                <div style="font-size: 0.8rem; text-transform: uppercase; color: #666; font-weight: bold; margin-bottom: 5px;">Example Polynomial</div>
+                <div class="anatomy-math">
+                    2x<sup>3</sup> + 5x - 7
+                </div>
             </div>
 
-            <div class="def-text">
-                <ul style="list-style-type: square; padding-left: 20px; columns: 2;">
-                    <li><strong>Term:</strong> Parts separated by + or - signs.</li>
-                    <li><strong>Degree:</strong> The highest exponent.</li>
-                    <li><strong>Leading Coefficient:</strong> The number in front of the term with the highest degree.</li>
-                    <li><strong>Constant:</strong> A number with no variable.</li>
-                </ul>
+            <!-- Breakdown Grid -->
+            <div class="breakdown-grid">
+                <!-- Term -->
+                <div class="breakdown-item">
+                    <div class="bd-label">TERMS</div>
+                    <div class="bd-def">Parts separated by + or - signs.</div>
+                    <div class="bd-val">2x³, 5x, -7</div>
+                </div>
+
+                <!-- Degree -->
+                <div class="breakdown-item">
+                    <div class="bd-label">DEGREE</div>
+                    <div class="bd-def">The highest exponent (power).</div>
+                    <div class="bd-val">3</div>
+                </div>
+
+                <!-- Leading Coefficient -->
+                <div class="breakdown-item">
+                    <div class="bd-label">LEADING COEFFICIENT</div>
+                    <div class="bd-def">Number in front of the highest power term.</div>
+                    <div class="bd-val">2</div>
+                </div>
+
+                <!-- Constant -->
+                <div class="breakdown-item">
+                    <div class="bd-label">CONSTANT</div>
+                    <div class="bd-def">A number with no variable.</div>
+                    <div class="bd-val">-7</div>
+                </div>
             </div>
         </div>
 
@@ -255,9 +278,9 @@
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
                 <!-- By Degree -->
                 <div>
-                    <div style="font-weight: bold; text-align: center; margin-bottom: 5px;">By Degree (Highest Power)</div>
+                    <div style="font-weight: bold; text-align: center; margin-bottom: 5px; font-size: 0.9rem;">By Degree (Highest Power)</div>
                     <table class="vocab-table">
-                        <tr><th>Deg</th><th>Name</th><th>Example</th></tr>
+                        <tr><th>Deg</th><th>Name</th><th>Ex</th></tr>
                         <tr><td>0</td><td>Constant</td><td>$5$</td></tr>
                         <tr><td>1</td><td>Linear</td><td>$x + 4$</td></tr>
                         <tr><td>2</td><td>Quadratic</td><td>$x^2 - 9$</td></tr>
@@ -266,13 +289,13 @@
                 </div>
                 <!-- By Terms -->
                 <div>
-                    <div style="font-weight: bold; text-align: center; margin-bottom: 5px;">By Number of Terms</div>
+                    <div style="font-weight: bold; text-align: center; margin-bottom: 5px; font-size: 0.9rem;">By Number of Terms</div>
                     <table class="vocab-table">
-                        <tr><th>#</th><th>Name</th><th>Example</th></tr>
+                        <tr><th>#</th><th>Name</th><th>Ex</th></tr>
                         <tr><td>1</td><td>Monomial</td><td>$3x^2$</td></tr>
                         <tr><td>2</td><td>Binomial</td><td>$x + 5$</td></tr>
                         <tr><td>3</td><td>Trinomial</td><td>$x^2 + 2x + 1$</td></tr>
-                        <tr><td>4+</td><td>Polynomial</td><td>$x^3 + 2x^2 + x - 1$</td></tr>
+                        <tr><td>4+</td><td>Polynomial</td><td>...</td></tr>
                     </table>
                 </div>
             </div>
@@ -281,9 +304,9 @@
         <!-- 3. STANDARD FORM -->
         <div class="concept-box">
             <div class="concept-title">3. Standard Form</div>
-            <p>Arrange terms from <strong>Highest</strong> Exponent to <strong>Lowest</strong> Exponent.</p>
+            <p style="font-size: 0.9rem;">Arrange terms from <strong>Highest</strong> Exponent to <strong>Lowest</strong> Exponent.</p>
             <div class="std-form-visual">
-                <div>Start: $5 + x^3 - 2x$</div>
+                <div>$5 + x^3 - 2x$</div>
                 <i class="fa-solid fa-arrow-right"></i>
                 <div class="term-box" style="border-width: 4px;">$x^3$</div>
                 <div class="term-box">$- 2x$</div>
@@ -292,19 +315,17 @@
         </div>
 
         <!-- 4. OPERATIONS -->
-        <div class="concept-box">
+        <div class="concept-box" style="margin-bottom: 0;">
             <div class="concept-title">4. Adding & Subtracting</div>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
                 <div>
                     <strong>Adding (+)</strong><br>
-                    Just combine <strong>Like Terms</strong>.<br>
-                    (Same Variable, Same Exponent)<br><br>
+                    <span style="font-size:0.9rem;">Combine <strong>Like Terms</strong>.<br>(Same Variable, Same Exponent)</span><br>
                     $2x + 5x = \mathbf{7x}$
                 </div>
                 <div style="border-left: 2px dashed #ccc; padding-left: 20px;">
                     <strong>Subtracting (-)</strong><br>
-                    1. <strong>Distribute</strong> the Negative Sign to the entire second group.<br>
-                    2. Combine Like Terms.<br>
+                    <span style="font-size:0.9rem;">1. <strong>Distribute</strong> the Negative Sign.<br>2. Combine Like Terms.</span><br>
                     $-(2x + 1) \rightarrow \mathbf{-2x - 1}$
                 </div>
             </div>
