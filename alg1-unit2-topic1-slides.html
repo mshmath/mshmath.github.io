@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 2 Topic 1: Polynomials</title>
+    
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- ICONS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- MATHJAX -->
+    <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+      chtml: { scale: 1.1 } 
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        /* --- 1. CORE VARIABLES & RESET --- */
+        :root {
+            --bg-color: #f4f4f4;
+            --card-bg: #ffffff;
+            --border-color: #000000;
+            --shadow-color: rgba(0,0,0,0.1);
+            --font-heading: 'Fredoka', sans-serif;
+            --font-body: 'Quicksand', sans-serif;
+            --font-math: 'Times New Roman', serif;
+            
+            /* Topic Colors */
+            --poly-blue: #3b82f6;    /* Classifying */
+            --std-green: #22c55e;    /* Standard Form */
+            --add-yellow: #f59e0b;   /* Adding */
+            --sub-red: #ef4444;      /* Subtracting */
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-color);
+            font-family: var(--font-body);
+            color: #222;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        /* --- 2. SLIDESHOW CONTAINER (1100px, 16:9) --- */
+        .slide-container {
+            width: 100%;
+            max-width: 1100px;
+            aspect-ratio: 16 / 9;
+            background: var(--card-bg);
+            border: 4px solid var(--border-color);
+            border-radius: 20px;
+            box-shadow: 12px 12px 0px rgba(0,0,0,0.15);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- 3. SLIDE STYLES --- */
+        .slide {
+            flex: 1;
+            display: none;
+            flex-direction: column;
+            justify-content: flex-start; 
+            align-items: center;
+            padding: 30px 60px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .slide.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        /* TYPOGRAPHY */
+        h1, h2, h3 { 
+            font-family: var(--font-heading); 
+            text-transform: uppercase;
+            line-height: 1.2;
+            color: #000;
+        }
+
+        h1 { font-size: 3rem; margin-bottom: 10px; text-align: center; }
+        h2 { font-size: 2.2rem; margin-bottom: 25px; border-bottom: 3px solid #000; padding-bottom: 8px; width: 100%; text-align: center; }
+        h3 { font-size: 1.4rem; margin-bottom: 10px; }
+        
+        p, li { font-size: 1.25rem; line-height: 1.6; font-weight: 600; }
+        
+        /* Math Styling */
+        .math-font { 
+            font-family: var(--font-math); 
+            font-style: italic; 
+            font-weight: bold; 
+            font-size: 1.1em; 
+        }
+
+        /* Math Display Box */
+        .math-box {
+            font-family: var(--font-math);
+            font-style: italic;
+            font-weight: bold;
+            font-size: 2.5rem;
+            background: #f8fafc;
+            border: 3px dashed #000;
+            padding: 15px 40px;
+            border-radius: 20px;
+            margin: 20px 0;
+            text-align: center;
+            box-shadow: 4px 4px 0 rgba(0,0,0,0.05);
+        }
+
+        /* Highlight Box for Definitions */
+        .def-card {
+            background: #fff;
+            border: 2px solid #000;
+            padding: 15px;
+            margin-bottom: 0;
+            text-align: left;
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .def-term {
+            font-weight: 800;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 5px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        /* --- 4. COMPONENTS --- */
+        
+        /* Grid Layouts */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            width: 100%;
+            align-items: start;
+            margin-bottom: 40px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+            width: 100%;
+            align-items: start;
+        }
+
+        /* Cards */
+        .card {
+            border: 3px solid #000;
+            border-radius: 12px;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 6px 6px 0px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            height: 100%;
+            align-items: center;
+            text-align: center;
+        }
+
+        .card-title {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            border-bottom: 2px solid #eee;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            text-align: center;
+            width: 100%;
+        }
+
+        /* Vocab Box */
+        .vocab-box {
+            background: #fff;
+            border: 3px solid #000;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            width: 100%;
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        /* Guided Practice Reveal */
+        .guided-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px dashed #000;
+            padding: 15px 0;
+            width: 100%;
+        }
+        
+        .reveal-btn {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.1rem;
+            color: #fff;
+            background: #000;
+            padding: 8px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            border: none;
+            transition: transform 0.1s;
+        }
+        .reveal-btn:active { transform: scale(0.95); }
+        
+        .answer-box {
+            display: none;
+            margin-left: 10px;
+            padding: 5px 15px;
+            border: 2px solid #000;
+            border-radius: 8px;
+            background: #dcfce7;
+            color: #14532d;
+            font-weight: 800;
+            font-size: 1.3rem;
+        }
+
+        /* Level Headers */
+        .level-header {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            padding: 15px;
+            color: #000;
+            text-align: center;
+            border: 4px solid #000; /* Bold Black Border */
+            background: #fff;
+            border-radius: 12px;
+            width: 100%;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            box-shadow: 4px 4px 0 rgba(0,0,0,0.1);
+        }
+        
+        /* Bar beneath header for color coding */
+        .level-bar {
+            height: 8px;
+            width: 100%;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        .lb-1 { background: var(--poly-blue); }
+        .lb-2 { background: var(--std-green); }
+        .lb-3 { background: var(--sub-red); }
+
+        /* Checklist Styles */
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .check-box {
+            width: 24px;
+            height: 24px;
+            border: 3px solid #000;
+            margin-right: 15px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+        }
+        .check-box i { font-size: 0.9rem; color: #000; }
+        .check-box.checked { background: #e0e0e0; }
+
+        /* IXL Buttons */
+        .ixl-btn {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border: 3px solid #000;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #000;
+            font-weight: 700;
+            font-size: 1.1rem;
+            background: #fff;
+            transition: transform 0.1s;
+            margin-bottom: 15px;
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.05);
+        }
+        .ixl-btn:hover { transform: translateY(-2px); box-shadow: 6px 6px 0px rgba(0,0,0,0.15); }
+        .ixl-green { border-left: 12px solid var(--std-green); }
+        .ixl-blue { border-left: 12px solid var(--poly-blue); }
+        .ixl-red { border-left: 12px solid var(--sub-red); }
+        .ixl-yellow { border-left: 12px solid var(--add-yellow); }
+
+        /* --- 5. NAVIGATION --- */
+        .nav-bar {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 40px;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        .nav-btn {
+            pointer-events: auto;
+            background: #fff;
+            border: 3px solid #000;
+            color: #000;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.2);
+            transition: transform 0.1s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .nav-btn:hover { transform: scale(1.1); }
+
+        .slide-counter {
+            pointer-events: auto;
+            background: #000;
+            color: #fff;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-family: var(--font-heading);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* --- 6. PRINT STYLES --- */
+        .print-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 120px; 
+            background: #000;
+            color: #fff;
+            border: none;
+            padding: 10px 25px;
+            font-family: var(--font-heading);
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 30px;
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.3);
+            z-index: 1000;
+        }
+
+        @media print {
+            body { background: #fff; padding: 0; display: block; }
+            .print-btn, .nav-bar { display: none !important; }
+            .slide-container {
+                width: 100%; max-width: none; min-height: 0; border: none; box-shadow: none; border-radius: 0; display: block; overflow: visible;
+                aspect-ratio: auto;
+            }
+            .slide {
+                display: block !important; opacity: 1 !important; page-break-after: always; border-bottom: 2px dashed #000; padding: 30px; height: auto;
+            }
+            .reveal-btn { display: none; }
+            .guided-row div[id^="ans"] { display: block !important; }
+            .answer-box { display: inline-block !important; border: 1px solid #000; background: #fff; color: #000; }
+        }
+    </style>
+</head>
+<body>
+
+    <button class="print-btn" onclick="window.print()">
+        <i class="fa-solid fa-print"></i> Print Notes
+    </button>
+
+    <div class="slide-container">
+
+        <!-- SLIDE 1: TITLE -->
+        <div class="slide active" style="justify-content: center;">
+            <div style="border: 4px solid #000; padding: 40px; border-radius: 20px; text-align: center; box-shadow: 10px 10px 0px rgba(0,0,0,0.1); background: #fff; width: 80%;">
+                <div style="font-family: 'Fredoka'; font-size: 1.5rem; letter-spacing: 3px; margin-bottom: 15px;">UNIT 2 • TOPIC 1</div>
+                <h1>Intro to Polynomials</h1>
+                <p style="color: #555; margin-top: 15px; font-size: 1.4rem;">Classify, Add, Subtract</p>
+                <div style="margin-top: 25px; display: inline-block; background: #000; color: #fff; padding: 10px 30px; border-radius: 50px; font-weight: bold; font-family: 'Fredoka'; font-size: 1.1rem;">SOL A.2b</div>
+            </div>
+        </div>
+
+        <!-- SLIDE 2: OBJECTIVES -->
+        <div class="slide">
+            <h2>Objectives & Standards</h2>
+            <div class="card" style="width: 100%; max-width: 900px; padding: 40px;">
+                <h3><i class="fa-solid fa-bullseye"></i> Today's Goals:</h3>
+                <ul style="list-style-type: square; padding-left: 20px; margin-top: 20px; font-size: 1.3rem; line-height: 1.8;">
+                    <li><span style="color:var(--poly-blue); font-weight:bold;">Classify</span> polynomials by degree and number of terms.</li>
+                    <li>Write polynomials in <span style="color:var(--std-green); font-weight:bold;">Standard Form</span>.</li>
+                    <li><span style="color:var(--add-yellow); font-weight:bold;">Add</span> polynomials by combining like terms.</li>
+                    <li><span style="color:var(--sub-red); font-weight:bold;">Subtract</span> polynomials by distributing the negative.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- SLIDE 3: ANATOMY (UNCLUTTERED & DEFINED) -->
+        <div class="slide">
+            <h2>Anatomy of a Polynomial</h2>
+            
+            <div style="width: 100%; max-width: 950px; text-align: center;">
+                
+                <!-- The Equation Visual -->
+                <div style="font-size: 3.5rem; font-family: 'Times New Roman', serif; font-weight: bold; margin: 20px 0 40px 0;">
+                    2x<sup style="font-size: 0.6em;">3</sup> + 5x - 7
+                </div>
+
+                <!-- Definition Cards Grid -->
+                <div class="grid-2">
+                    
+                    <!-- Box 1: Terms -->
+                    <div class="def-card">
+                        <span class="def-term" style="color: #444;">Term</span>
+                        <div style="font-size: 1.3rem; margin-bottom: 5px; font-family: 'Times New Roman'; font-weight: bold;">
+                            $2x^3$, $5x$, $-7$
+                        </div>
+                        <p>Parts of the expression separated by $+$ or $-$ signs.</p>
+                    </div>
+
+                    <!-- Box 2: Leading Coefficient -->
+                    <div class="def-card">
+                        <span class="def-term" style="color: #444;">Leading Coefficient</span>
+                        <div style="font-size: 1.3rem; margin-bottom: 5px; font-family: 'Times New Roman'; font-weight: bold;">
+                            2
+                        </div>
+                        <p>The number in front of the variable with the highest exponent.</p>
+                    </div>
+
+                    <!-- Box 3: Degree -->
+                    <div class="def-card">
+                        <span class="def-term" style="color: #444;">Degree</span>
+                        <div style="font-size: 1.3rem; margin-bottom: 5px; font-family: 'Times New Roman'; font-weight: bold;">
+                            3
+                        </div>
+                        <p>The highest exponent (power) in the entire polynomial.</p>
+                    </div>
+
+                    <!-- Box 4: Constant -->
+                    <div class="def-card">
+                        <span class="def-term" style="color: #444;">Constant</span>
+                        <div style="font-size: 1.3rem; margin-bottom: 5px; font-family: 'Times New Roman'; font-weight: bold;">
+                            -7
+                        </div>
+                        <p>A specific number with no variable attached.</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 4: VOCABULARY - TERMS -->
+        <div class="slide">
+            <h2>Classifying by Terms</h2>
+            <p style="margin-bottom: 20px;">Count the parts separated by $+$ or $-$ signs.</p>
+            <div class="grid-3">
+                <div class="def-card" style="border-left-color: var(--poly-blue);">
+                    <span class="def-term" style="color: var(--poly-blue);">Monomial</span>
+                    <strong>1 Term</strong><br>
+                    Example: $3x^2$
+                </div>
+                <div class="def-card" style="border-left-color: var(--poly-blue);">
+                    <span class="def-term" style="color: var(--poly-blue);">Binomial</span>
+                    <strong>2 Terms</strong><br>
+                    Example: $x + 5$
+                </div>
+                <div class="def-card" style="border-left-color: var(--poly-blue);">
+                    <span class="def-term" style="color: var(--poly-blue);">Trinomial</span>
+                    <strong>3 Terms</strong><br>
+                    Example: $x^2 + 2x + 1$
+                </div>
+            </div>
+            <div class="def-card" style="text-align: center; border-left: 10px solid #000; margin-top: 10px;">
+                <span class="def-term">Polynomial</span>
+                "Poly" = Many. A general name for expressions with many terms.
+            </div>
+        </div>
+
+        <!-- SLIDE 5: VOCABULARY - DEGREE (SIMPLIFIED) -->
+        <div class="slide">
+            <h2>Naming by Degree</h2>
+            
+            <!-- Simple Visual Hook -->
+            <div style="background: white; border: 3px solid var(--poly-blue); border-radius: 12px; padding: 20px; text-align: center; margin-bottom: 30px;">
+                <p style="font-size: 1.5rem; margin-bottom: 10px;">Look for the <strong>Exponent</strong> on the variable.</p>
+                <div style="font-size: 3rem; font-weight: bold;">
+                    $5x$<sup style="color: var(--sub-red); font-size: 0.7em;">2</sup>
+                </div>
+                <p style="color: var(--sub-red); font-weight: bold; margin-top: 5px;">&uarr; The Degree is 2 (Quadratic)</p>
+            </div>
+
+            <div class="card" style="width: 100%; max-width: 900px;">
+                <table style="width: 100%; font-size: 1.4rem; border-collapse: collapse; text-align: left;">
+                    <tr style="border-bottom: 2px solid #ddd;">
+                        <th style="padding: 10px;">Degree</th>
+                        <th>Name</th>
+                        <th>Example</th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 15px;">0</td>
+                        <td style="color: var(--poly-blue); font-weight: bold;">Constant</td>
+                        <td>$5$</td>
+                    </tr>
+                    <tr style="background: #f9f9f9;">
+                        <td style="padding: 15px;">1</td>
+                        <td style="color: var(--poly-blue); font-weight: bold;">Linear</td>
+                        <td>$2x + 1$</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 15px;">2</td>
+                        <td style="color: var(--poly-blue); font-weight: bold;">Quadratic</td>
+                        <td>$x^2 - 4$</td>
+                    </tr>
+                    <tr style="background: #f9f9f9;">
+                        <td style="padding: 15px;">3</td>
+                        <td style="color: var(--poly-blue); font-weight: bold;">Cubic</td>
+                        <td>$x^3 + 2x$</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- SLIDE 6: STANDARD FORM (B&W Friendly) -->
+        <div class="slide">
+            <h2>Standard Form</h2>
+            <div class="vocab-box">
+                <h3 style="color: var(--std-green);">Highest to Lowest</h3>
+                <p style="margin-top: 10px;">Re-order the terms so the exponents count down.</p>
+            </div>
+            
+            <div class="card" style="width: 100%; max-width: 900px; padding: 30px;">
+                <p style="font-size: 1.4rem; margin-bottom: 20px;">Example: $-2x + 5 + x^2$</p>
+                
+                <div style="display: flex; gap: 15px; justify-content: center; align-items: center; font-size: 1.8rem; font-weight: bold; flex-wrap: wrap;">
+                    <!-- First Term: Solid Thick Border -->
+                    <div style="border: 4px solid #000; padding: 15px 25px; border-radius: 8px; background: white; color: black;">
+                        $x^2$
+                    </div>
+                    <i class="fa-solid fa-arrow-right" style="color: #000; font-size: 1.5rem;"></i>
+                    <!-- Second Term: Dashed Border -->
+                    <div style="border: 2px dashed #000; padding: 15px 25px; border-radius: 8px; background: white; color: black;">
+                        $-2x$
+                    </div>
+                    <i class="fa-solid fa-arrow-right" style="color: #000; font-size: 1.5rem;"></i>
+                    <!-- Third Term: Dotted Border -->
+                    <div style="border: 2px dotted #000; padding: 15px 25px; border-radius: 8px; background: white; color: black;">
+                        $+5$
+                    </div>
+                </div>
+                
+                <div style="margin-top: 30px; font-size: 1.3rem; border-top: 2px solid #000; padding-top: 20px;">
+                    <strong>Leading Coefficient:</strong> The number in front of the first term.
+                    <br>Here, it's <strong>1</strong> (because $1x^2$).
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 7: GUIDED PRACTICE - BASICS -->
+        <div class="slide">
+            <h2>Guided Practice: Basics</h2>
+            <div style="width: 100%; max-width: 900px;">
+                <div class="guided-row">
+                    <div style="font-size: 1.5rem;">1. Name $5x + 2$:</div>
+                    <div>
+                        <button class="reveal-btn" onclick="this.nextElementSibling.style.display='inline-block'; this.style.display='none'">Check</button>
+                        <span class="answer-box">Linear Binomial</span>
+                    </div>
+                </div>
+                <div class="guided-row">
+                    <div style="font-size: 1.5rem;">2. Name $3x^2$:</div>
+                    <div>
+                        <button class="reveal-btn" onclick="this.nextElementSibling.style.display='inline-block'; this.style.display='none'">Check</button>
+                        <span class="answer-box">Quadratic Monomial</span>
+                    </div>
+                </div>
+                <div class="guided-row">
+                    <div style="font-size: 1.5rem;">3. Rewrite $5 - x^2 + 3x$:</div>
+                    <div>
+                        <button class="reveal-btn" onclick="this.nextElementSibling.style.display='inline-block'; this.style.display='none'">Check</button>
+                        <span class="answer-box">$-x^2 + 3x + 5$</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 8: ADDING POLYNOMIALS -->
+        <div class="slide">
+            <h2>Adding Polynomials</h2>
+            <div class="grid-2">
+                <div class="card" style="align-items: start; text-align: left; border-left: 10px solid var(--add-yellow);">
+                    <div class="card-title" style="color: var(--add-yellow);">The Method</div>
+                    <ol style="margin-top: 10px; line-height: 1.8; font-size: 1.3rem;">
+                        <li><strong>Drop</strong> the parentheses (they don't matter for addition).</li>
+                        <li><strong>Combine</strong> Like Terms (Same letter, Same exponent).</li>
+                    </ol>
+                    <p style="margin-top: 20px; color: #666;">Think: "Apples with Apples, Oranges with Oranges"</p>
+                </div>
+                <div class="card">
+                    <p style="font-size: 1.8rem; margin-bottom: 20px;">$(2x + 5) + (3x - 2)$</p>
+                    <div style="text-align: center; font-size: 1.5rem;">
+                        <p>$2x + 3x = \mathbf{5x}$</p>
+                        <p>$5 - 2 = \mathbf{3}$</p>
+                    </div>
+                    <div class="math-box" style="margin-top: 20px;">
+                        $5x + 3$
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 9: GUIDED PRACTICE - ADDING -->
+        <div class="slide">
+            <h2>Guided Practice: Adding</h2>
+            <div style="width: 100%; max-width: 900px;">
+                <div class="guided-row">
+                    <div style="font-size: 1.5rem;">1. $(3x + 4) + (2x + 5)$</div>
+                    <div>
+                        <button class="reveal-btn" onclick="this.nextElementSibling.style.display='inline-block'; this.style.display='none'">Reveal</button>
+                        <span class="answer-box">$5x + 9$</span>
+                    </div>
+                </div>
+                <div class="guided-row">
+                    <div style="font-size: 1.5rem;">2. $(x^2 - 3) + (2x^2 + 7)$</div>
+                    <div>
+                        <button class="reveal-btn" onclick="this.nextElementSibling.style.display='inline-block'; this.style.display='none'">Reveal</button>
+                        <span class="answer-box">$3x^2 + 4$</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 10: SUBTRACTING POLYNOMIALS -->
+        <div class="slide">
+            <h2>Subtracting Polynomials</h2>
+            <div class="vocab-box">
+                <h3 style="color: var(--sub-red);">Strategy: Distribute the Negative</h3>
+                <p style="margin-top: 10px;">That minus sign belongs to EVERYTHING in the second group.</p>
+            </div>
+            
+            <div class="grid-2">
+                <div class="card" style="border-left: 10px solid var(--sub-red); text-align: left;">
+                    <p style="font-size: 1.3rem;">When you see a minus sign outside parenthesis:</p>
+                    <p style="font-size: 1.5rem; text-align: center; font-weight: bold; margin: 20px 0;">$-(x - 3)$</p>
+                    <p style="font-size: 1.3rem;">It changes <strong>every sign</strong> inside.</p>
+                    <p style="text-align: center; color: var(--sub-red); font-weight: bold;">$+x$ becomes $-x$<br>$-3$ becomes $+3$</p>
+                </div>
+                <div class="card">
+                    <p style="font-size: 1.6rem;">$(4x + 7) \mathbf{- (x - 3)}$</p>
+                    <div style="color: var(--sub-red); font-weight: bold; font-size: 2rem; margin: 15px 0;">&darr; Distribute &darr;</div>
+                    <p style="font-size: 1.6rem; margin-bottom: 20px;">$4x + 7 \mathbf{- x + 3}$</p>
+                    <div class="math-box" style="margin-top: 20px;">$3x + 10$</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 11: GUIDED PRACTICE - SUBTRACTING -->
+        <div class="slide">
+            <h2>Guided Practice: Subtracting</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 20px;">Don't forget to distribute the negative!</p>
+            <div style="width: 100%; max-width: 900px;">
+                <div class="guided-row">
+                    <div style="font-size: 1.5rem;">1. $(5x + 8) - (2x + 3)$</div>
+                    <div>
+                        <button class="reveal-btn" onclick="this.nextElementSibling.style.display='inline-block'; this.style.display='none'">Reveal</button>
+                        <span class="answer-box">$3x + 5$</span>
+                    </div>
+                </div>
+                <div class="guided-row">
+                    <div style="font-size: 1.5rem;">2. $(3x - 4) - (x + 2)$</div>
+                    <div>
+                        <button class="reveal-btn" onclick="this.nextElementSibling.style.display='inline-block'; this.style.display='none'">Reveal</button>
+                        <span class="answer-box">$2x - 6$</span>
+                    </div>
+                </div>
+                <div class="guided-row">
+                    <div style="font-size: 1.5rem;">3. $(x^2 + 5) - (x^2 - 2)$</div>
+                    <div>
+                        <button class="reveal-btn" onclick="this.nextElementSibling.style.display='inline-block'; this.style.display='none'">Reveal</button>
+                        <span class="answer-box">$7$ (Watch signs!)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 12: INDEPENDENT PRACTICE 1 -->
+        <div class="slide">
+            <div class="level-header lh-1">Level 1: Naming Polynomials</div>
+            <div class="level-bar lb-1"></div>
+            <div class="grid-3">
+                <div class="card">
+                    <p style="font-size: 2rem;">$7x$</p>
+                    <p>Degree: 1<br>Terms: 1</p>
+                    <button class="reveal-btn" onclick="this.nextElementSibling.style.display='block'; this.style.display='none'">Check</button>
+                    <div class="answer-box">Linear Monomial</div>
+                </div>
+                <div class="card">
+                    <p style="font-size: 2rem;">$x^2 + 5$</p>
+                    <p>Degree: 2<br>Terms: 2</p>
+                    <button class="reveal-btn" onclick="this.nextElementSibling.style.display='block'; this.style.display='none'">Check</button>
+                    <div class="answer-box">Quadratic Binomial</div>
+                </div>
+                <div class="card">
+                    <p style="font-size: 2rem;">$5$</p>
+                    <p>Degree: 0<br>Terms: 1</p>
+                    <button class="reveal-btn" onclick="this.nextElementSibling.style.display='block'; this.style.display='none'">Check</button>
+                    <div class="answer-box">Constant Monomial</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 13: INDEPENDENT PRACTICE 2 -->
+        <div class="slide">
+            <div class="level-header lh-2">Level 2: Standard Form</div>
+            <div class="level-bar lb-2"></div>
+            <p style="margin-bottom: 20px;">Reorder from Highest Exponent to Lowest.</p>
+            <div class="grid-3">
+                <div class="card">
+                    <p style="font-size: 1.5rem;">$3 + 4x^2$</p>
+                    <button class="reveal-btn" onclick="this.nextElementSibling.style.display='block'; this.style.display='none'">Check</button>
+                    <div class="answer-box">$4x^2 + 3$</div>
+                </div>
+                <div class="card">
+                    <p style="font-size: 1.5rem;">$x - 8 + x^3$</p>
+                    <button class="reveal-btn" onclick="this.nextElementSibling.style.display='block'; this.style.display='none'">Check</button>
+                    <div class="answer-box">$x^3 + x - 8$</div>
+                </div>
+                <div class="card">
+                    <p style="font-size: 1.5rem;">$-5x + 2x^2 - 1$</p>
+                    <button class="reveal-btn" onclick="this.nextElementSibling.style.display='block'; this.style.display='none'">Check</button>
+                    <div class="answer-box">$2x^2 - 5x - 1$</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 14: INDEPENDENT PRACTICE 3 -->
+        <div class="slide">
+            <div class="level-header lh-3">Level 3: Add & Subtract</div>
+            <div class="level-bar lb-3"></div>
+            <div class="grid-3">
+                <div class="card">
+                    <p class="math-font">$(2x + 3) + (x + 4)$</p>
+                    <button class="reveal-btn" onclick="this.nextElementSibling.style.display='block'; this.style.display='none'">Answer</button>
+                    <div class="answer-box">$3x + 7$</div>
+                </div>
+                <div class="card">
+                    <p class="math-font">$(5x - 2) - (2x + 1)$</p>
+                    <button class="reveal-btn" onclick="this.nextElementSibling.style.display='block'; this.style.display='none'">Answer</button>
+                    <div class="answer-box">$3x - 3$</div>
+                </div>
+                <div class="card">
+                    <p class="math-font">$(x^2 + 3x) - (x^2 - 2x)$</p>
+                    <button class="reveal-btn" onclick="this.nextElementSibling.style.display='block'; this.style.display='none'">Answer</button>
+                    <div class="answer-box">$5x$</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 15: WHAT'S NEXT -->
+        <div class="slide">
+            <div class="grid-2">
+                <!-- Checklist -->
+                <div class="card">
+                    <div class="card-title">What's Next?</div>
+                    <div style="display: flex; flex-direction: column; height: 100%; padding-left: 10px;">
+                        <div class="checklist-item"><div class="check-box checked"><i class="fa-solid fa-check"></i></div> Topic Warm Up</div>
+                        <div class="checklist-item"><div class="check-box checked"><i class="fa-solid fa-check"></i></div> Lesson Slides</div>
+                        <div class="checklist-item"><div class="check-box"></div> Practice Worksheet</div>
+                        <div class="checklist-item"><div class="check-box"></div> IXL Practice</div>
+                        <div class="checklist-item"><div class="check-box"></div> Topic 1 Exit Ticket</div>
+                    </div>
+                </div>
+
+                <!-- IXL Practice -->
+                <div class="card" style="background: #fcfcfc;">
+                    <div class="card-title">IXL Practice (SOL A.2b)</div>
+                    <p style="font-size: 1rem; color: #555; margin-bottom: 20px;">Complete to SmartScore 60</p>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 10px; width: 100%; overflow-y: auto;">
+                        <a href="https://www.ixl.com/math/algebra-1/polynomial-vocabulary" target="_blank" class="ixl-btn ixl-blue">
+                            <span>Polynomial Vocabulary</span>
+                        </a>
+                        <a href="https://www.ixl.com/math/algebra-1/add-and-subtract-polynomials" target="_blank" class="ixl-btn ixl-yellow">
+                            <span>Add & Subtract Polynomials</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="nav-bar">
+            <button id="prevBtn" class="nav-btn"><i class="fa-solid fa-arrow-left"></i></button>
+            <div class="slide-counter">1 / 15</div>
+            <button id="nextBtn" class="nav-btn"><i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const counter = document.querySelector('.slide-counter');
+        let currentSlide = 0;
+
+        function updateSlides() {
+            slides.forEach((slide, index) => {
+                slide.classList.remove('active');
+                if (index === currentSlide) {
+                    slide.classList.add('active');
+                }
+            });
+            counter.textContent = `${currentSlide + 1} / ${slides.length}`;
+            
+            prevBtn.style.opacity = currentSlide === 0 ? 0.3 : 1;
+            nextBtn.style.opacity = currentSlide === slides.length - 1 ? 0.3 : 1;
+        }
+
+        nextBtn.addEventListener('click', () => {
+            if (currentSlide < slides.length - 1) {
+                currentSlide++;
+                updateSlides();
+            }
+        });
+
+        prevBtn.addEventListener('click', () => {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateSlides();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' && currentSlide < slides.length - 1) {
+                currentSlide++;
+                updateSlides();
+            }
+            if (e.key === 'ArrowLeft' && currentSlide > 0) {
+                currentSlide--;
+                updateSlides();
+            }
+        });
+
+        updateSlides();
+    </script>
+    <footer style="margin-top: 2rem; color: #9ca3af; font-size: 0.9rem;">
+        &copy; 2026 Aly Hatfield. All Rights Reserved.
+    </footer>
+</body>
+</html>
