@@ -240,8 +240,9 @@
         /* Level Headers */
         .level-header {
             font-family: var(--font-heading);
-            font-size: 1.4rem;
-            padding: 8px;
+            font-size: 1.8rem; /* Increased size */
+            font-weight: bold;
+            padding: 15px; /* Increased padding */
             color: white;
             text-align: center;
             border-bottom: 3px solid rgba(0,0,0,0.2);
@@ -249,10 +250,23 @@
             margin-bottom: 15px;
             letter-spacing: 1px;
             border-radius: 8px 8px 0 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Added shadow for pop */
         }
         .lh-1 { background: var(--linear-blue); }
         .lh-2 { background: var(--quad-red); }
         .lh-3 { background: var(--exp-green); }
+
+        /* Instruction Text for Levels */
+        .instruction-text {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            font-weight: 500;
+            color: #333;
+            text-align: center;
+            border-bottom: 2px dashed #ccc;
+            padding-bottom: 10px;
+            width: 100%;
+        }
 
         /* Checklist Styles */
         .checklist-item {
@@ -713,7 +727,8 @@
         
         <!-- Slide 12: Independent Level 1 -->
         <div class="slide independent-practice">            
-            <div class="level-header lh-1">Level 1: Tables</div>            
+            <div class="level-header lh-1">Level 1: Tables</div>
+            <p class="instruction-text">Determine if the pattern represents a Linear, Quadratic, or Exponential function.</p>
             <div class="grid-3">                
                 <div class="card">                    
                     <p>y: 5, 8, 11, 14...</p>                    
@@ -735,7 +750,8 @@
         
         <!-- Slide 13: Independent Level 2 -->        
         <div class="slide independent-practice">            
-            <div class="level-header lh-2">Level 2: Graphs</div>            
+            <div class="level-header lh-2">Level 2: Graphs</div>
+            <p class="instruction-text">Identify the function family based on the shape description.</p>
             <div class="grid-3">                
                 <div class="card">                    
                     <p>U-Shape</p>                    
@@ -757,12 +773,8 @@
         
         <!-- Slide 14: Independent Level 3 -->        
         <div class="slide independent-practice">            
-            <div class="level-header lh-3">Level 3: Context</div>            
-            <div class="card" style="width: 100%; margin-bottom: 10px; text-align: left; padding: 15px;">                
-                <p>3. You pay \$20 to enter and \$5 per ride.</p>                
-                <button class="reveal-btn" onclick="this.nextElementSibling.style.display='block'">Check</button>                
-                <div class="answer-box">Linear</div>            
-            </div>            
+            <div class="level-header lh-3">Level 3: Context</div>
+            <p class="instruction-text">Read the scenario and decide which model fits best.</p>
             <div class="card" style="width: 100%; margin-bottom: 10px; text-align: left; padding: 15px;">                
                 <p>1. A rocket is launched and falls back to earth.</p>                
                 <button class="reveal-btn" onclick="this.nextElementSibling.style.display='block'">Check</button>                
@@ -772,6 +784,11 @@
                 <p>2. A population of rabbits doubles every month.</p>                
                 <button class="reveal-btn" onclick="this.nextElementSibling.style.display='block'">Check</button>                
                 <div class="answer-box">Exponential</div>            
+            </div>            
+            <div class="card" style="width: 100%; text-align: left; padding: 15px;">                
+                <p>3. You pay \$20 to enter and \$5 per ride.</p>                
+                <button class="reveal-btn" onclick="this.nextElementSibling.style.display='block'">Check</button>                
+                <div class="answer-box">Linear</div>            
             </div>
         </div>
         
@@ -818,7 +835,7 @@
                 <!-- IXL Practice -->                
                 <div class="card" style="background: #fcfcfc;">                    
                     <div class="card-title">IXL Practice (SOL AF.1)</div>                    
-                    <p style="font-size: 1rem; color: #555; margin-bottom: 20px;">Complete to SmartScore 60</p>                                        
+                    <p style="font-size: 1rem; color: #555; margin-bottom: 20px;">Complete to SmartScore 80</p>                                        
                     <div class="ixl-container">                        
                         <a href="https://www.ixl.com/math/algebra-1/compare-linear-exponential-and-quadratic-growth" target="_blank" class="ixl-btn ixl-red">                            
                             <span>Compare All 3 Growth</span>                        
