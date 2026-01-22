@@ -191,6 +191,7 @@
             background: white;
             position: sticky;
             top: 0;
+            z-index: 1;
         }
         .summary-table td {
             background: #f9f9f9;
@@ -373,6 +374,67 @@
         /* SVG Graph Styles */
         svg { overflow: visible; }
         .axis { stroke: #ccc; stroke-width: 2; }
+
+        @media print {
+            /* Reset Layout */
+            html, body {
+                height: auto !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                overflow: visible !important;
+                display: block !important;
+                background: #fff !important;
+            }
+
+            /* Hide Navigation */
+            .nav-bar, .print-btn, .slide-counter { display: none !important; }
+
+            /* Container */
+            .slide-container {
+                width: 100% !important;
+                max-width: none !important;
+                height: auto !important;
+                aspect-ratio: auto !important;
+                border: none !important;
+                box-shadow: none !important;
+                display: block !important;
+                overflow: visible !important;
+            }
+
+            /* Slide Settings */
+            .slide {
+                display: block !important;
+                opacity: 1 !important;
+                height: auto !important;
+                overflow: visible !important;
+                page-break-after: always;
+                break-after: page;
+                border-bottom: 2px dashed #000;
+                padding: 40px !important;
+            }
+
+            /* Internal Scrollables */
+            .table-scroll { max-height: none !important; overflow: visible !important; }
+
+            /* Reveal Logic - Show for Guided, Hide for Independent */
+            .reveal-btn { display: none !important; }
+            .answer-box { 
+                display: block !important; 
+                border: 1px solid #000 !important; 
+                background: #fff !important; 
+                color: #000 !important; 
+            }
+
+            /* HIDE answers for Independent Practice slides */
+            .independent-practice .answer-box { display: none !important; }
+
+            /* Cards */
+            .card {
+                border: 2px solid #000 !important;
+                box-shadow: none !important;
+                break-inside: avoid;
+            }
+        }
     </style>
 </head>
 <body>
@@ -382,473 +444,455 @@
     </button>
 
     <div class="slide-container">
-
-        <!-- Slide 1: Title -->
-        <div class="slide active" style="justify-content: center;">
-            <div style="border: 4px solid #000; padding: 40px; border-radius: 20px; text-align: center; box-shadow: 10px 10px 0px rgba(0,0,0,0.1); background: #fff; width: 80%;">
-                <div style="font-family: 'Fredoka'; font-size: 1.5rem; letter-spacing: 3px; margin-bottom: 15px;">AFDA UNIT 1 • TOPIC 4</div>
-                <h1>Comparing Functions</h1>
-                <p style="color: #555; margin-top: 15px; font-size: 1.4rem;">Linear vs. Quadratic vs. Exponential</p>
-                <div style="margin-top: 25px; display: flex; gap: 15px; justify-content: center;">
-                    <div style="background: var(--linear-blue); color: #fff; padding: 5px 15px; border-radius: 20px; font-weight: bold;">Tables</div>
-                    <div style="background: var(--quad-red); color: #fff; padding: 5px 15px; border-radius: 20px; font-weight: bold;">Graphs</div>
-                    <div style="background: var(--exp-green); color: #fff; padding: 5px 15px; border-radius: 20px; font-weight: bold;">Words</div>
-                </div>
+        <!-- Slide 1: Title -->        
+        <div class="slide active" style="justify-content: center;">            
+            <div style="border: 4px solid #000; padding: 40px; border-radius: 20px; text-align: center; box-shadow: 10px 10px 0px rgba(0,0,0,0.1); background: #fff; width: 80%;">                
+                <div style="font-family: 'Fredoka'; font-size: 1.5rem; letter-spacing: 3px; margin-bottom: 15px;">AFDA UNIT 1 • TOPIC 4</div>                
+                <h1>Comparing Functions</h1>                
+                <p style="color: #555; margin-top: 15px; font-size: 1.4rem;">Linear vs. Quadratic vs. Exponential</p>                
+                <div style="margin-top: 25px; display: flex; gap: 15px; justify-content: center;">                    
+                    <div style="background: var(--linear-blue); color: #fff; padding: 5px 15px; border-radius: 20px; font-weight: bold;">Tables</div>                    
+                    <div style="background: var(--quad-red); color: #fff; padding: 5px 15px; border-radius: 20px; font-weight: bold;">Graphs</div>                    
+                    <div style="background: var(--exp-green); color: #fff; padding: 5px 15px; border-radius: 20px; font-weight: bold;">Words</div>                
+                </div>            
+            </div>        
+        </div>
+        
+        <!-- Slide 2: Objectives -->        
+        <div class="slide">            
+            <h2>Objectives & Standards</h2>            
+            <div class="card" style="width: 100%; max-width: 900px; padding: 40px;">                
+                <h3><i class="fa-solid fa-bullseye"></i> Today's Goals:</h3>                
+                <ul style="list-style-type: square; padding-left: 20px; margin-top: 20px; font-size: 1.3rem; line-height: 1.8;">                    
+                    <li>Compare properties of <span style="color:var(--linear-blue); font-weight:bold;">Linear</span>, <span style="color:var(--quad-red); font-weight:bold;">Quadratic</span>, and <span style="color:var(--exp-green); font-weight:bold;">Exponential</span> functions.</li>                    
+                    <li>Identify function families using <strong>tables of values</strong> (Differences vs. Ratios).</li>                    
+                    <li>Analyze <strong>graphs</strong> to determine end behavior (Who grows fastest?).</li>                    
+                    <li>Distinguish models using <strong>verbal descriptions</strong>.</li>                
+                </ul>                
+                <div style="margin-top: 20px; font-weight: bold; color: #555;">SOL AF.1.g</div>            
+            </div>        
+        </div>
+        
+        <!-- Slide 3: The Big 3 Overview -->        
+        <div class="slide">            
+            <h2>The "Big 3" Overview</h2>            
+            <div class="grid-3">                
+                <div class="card" style="border-top: 10px solid var(--linear-blue);">                    
+                    <h3 style="color: var(--linear-blue);">Linear</h3>                    
+                    <p><strong>Straight Line</strong></p>                    
+                    <svg width="100" height="80" viewBox="0 0 100 80">                        
+                        <line x1="10" y1="70" x2="90" y2="10" stroke="var(--linear-blue)" stroke-width="3" />                    
+                    </svg>                    
+                    <p style="font-size:0.9rem;">Analogy: Walking at a steady speed.</p>                
+                </div>                
+                <div class="card" style="border-top: 10px solid var(--quad-red);">                    
+                    <h3 style="color: var(--quad-red);">Quadratic</h3>                    
+                    <p><strong>U-Shape</strong></p>                    
+                    <svg width="100" height="80" viewBox="0 0 100 80">                        
+                        <path d="M 10 10 Q 50 130 90 10" stroke="var(--quad-red)" stroke-width="3" fill="none" />                    
+                    </svg>                    
+                    <p style="font-size:0.9rem;">Analogy: Throwing a ball in the air.</p>                
+                </div>                
+                <div class="card" style="border-top: 10px solid var(--exp-green);">                    
+                    <h3 style="color: var(--exp-green);">Exponential</h3>                    
+                    <p><strong>J-Curve</strong></p>                    
+                    <svg width="100" height="80" viewBox="0 0 100 80">                        
+                        <path d="M 10 70 Q 60 70 90 10" stroke="var(--exp-green)" stroke-width="3" fill="none" />                    
+                    </svg>                    
+                    <p style="font-size:0.9rem;">Analogy: A viral video exploding.</p>                
+                </div>            
+            </div>        
+        </div>
+        
+        <!-- Slide 4: Comparing Patterns -->        
+        <div class="slide">            
+            <h2>Comparing Data Patterns</h2>            
+            <div class="grid-2">                
+                <div class="card" style="text-align: left;">                    
+                    <h3 style="color: var(--linear-blue);">Adding Pattern (+)</h3>                    
+                    <p>Linear functions grow by <strong>adding</strong> the same amount each time.</p>                    
+                    <div style="background:#e0f2fe; padding:10px; border-radius:8px; margin-top:10px;">                        
+                        2, 4, 6, 8, 10... <br>                        
+                        <strong>(+2 each step)</strong>                    
+                    </div>                
+                </div>                
+                <div class="card" style="text-align: left;">                    
+                    <h3 style="color: var(--exp-green);">Multiplying Pattern (×)</h3>                    
+                    <p>Exponential functions grow by <strong>multiplying</strong> by the same amount each time.</p>                    
+                    <div style="background:#dcfce7; padding:10px; border-radius:8px; margin-top:10px;">                        
+                        2, 4, 8, 16, 32... <br>                        
+                        <strong>(×2 each step)</strong>                    
+                    </div>                
+                </div>            
+            </div>        
+        </div>
+        
+        <!-- Slide 5: Analyzing Tables -->        
+        <div class="slide">            
+            <h2>Analyzing Tables</h2>            
+            <div class="grid-3">                
+                <div class="card">                    
+                    <div class="card-title" style="color:var(--linear-blue);">Linear</div>                    
+                    <table class="mini-table">                        
+                        <tr><th>x</th><th>y</th></tr>                        
+                        <tr><td>0</td><td>3</td></tr>                        
+                        <tr><td>1</td><td>5</td></tr>                        
+                        <tr><td>2</td><td>7</td></tr>                    
+                    </table>                    
+                    <p style="font-size:0.9rem; color:var(--linear-blue);"><strong>+2</strong> each time</p>                
+                </div>                
+                <div class="card">                    
+                    <div class="card-title" style="color:var(--quad-red);">Quadratic</div>                    
+                    <table class="mini-table">                        
+                        <tr><th>x</th><th>y</th></tr>                        
+                        <tr><td>0</td><td>0</td></tr>                        
+                        <tr><td>1</td><td>1</td></tr>                        
+                        <tr><td>2</td><td>4</td></tr>                        
+                        <tr><td>3</td><td>9</td></tr>                    
+                    </table>                    
+                    <p style="font-size:0.9rem; color:var(--quad-red);">Difference changes (+1, +3, +5)</p>                
+                </div>                
+                <div class="card">                    
+                    <div class="card-title" style="color:var(--exp-green);">Exponential</div>                    
+                    <table class="mini-table">                        
+                        <tr><th>x</th><th>y</th></tr>                        
+                        <tr><td>0</td><td>3</td></tr>                        
+                        <tr><td>1</td><td>6</td></tr>                        
+                        <tr><td>2</td><td>12</td></tr>                    
+                    </table>                    
+                    <p style="font-size:0.9rem; color:var(--exp-green);"><strong>×2</strong> each time</p>                
+                </div>            
+            </div>        
+        </div>
+        
+        <!-- Slide 6: Who Wins the Race? -->        
+        <div class="slide">            
+            <h2>Who Wins the Race?</h2>            
+            <div class="grid-2">                
+                <div class="card" style="justify-content: center;">                    
+                    <p>In the long run (as $x \to \infty$):</p>                    
+                    <div class="math-box" style="font-size: 1.5rem;">                        
+                        <span style="color:var(--exp-green);">Exponential</span> > <span style="color:var(--quad-red);">Quadratic</span> > <span style="color:var(--linear-blue);">Linear</span>                    
+                    </div>                    
+                    <p><strong>Exponential growth</strong> will eventually overtake everything else.</p>                
+                </div>                
+                <div class="card" style="padding:0; overflow:hidden;">                    
+                    <svg width="400" height="300" viewBox="0 0 100 100">                        
+                        <line x1="10" y1="90" x2="90" y2="90" class="axis" />                        
+                        <line x1="10" y1="90" x2="10" y2="10" class="axis" />                        
+                        <!-- Linear -->                        
+                        <line x1="10" y1="80" x2="90" y2="60" stroke="var(--linear-blue)" stroke-width="2" />                        
+                        <text x="80" y="65" font-size="6" fill="var(--linear-blue)">Linear</text>                        
+                        <!-- Quad -->                        
+                        <path d="M 10 80 Q 50 80 90 20" stroke="var(--quad-red)" stroke-width="2" fill="none" />                        
+                        <text x="85" y="25" font-size="6" fill="var(--quad-red)">Quadratic</text>                        
+                        <!-- Exp -->                        
+                        <path d="M 10 85 Q 60 85 90 5" stroke="var(--exp-green)" stroke-width="3" fill="none" />                        
+                        <text x="75" y="10" font-size="6" fill="var(--exp-green)">Exponential</text>                    
+                    </svg>                
+                </div>            
+            </div>        
+        </div>
+        
+        <!-- Slide 7: Keywords -->        
+        <div class="slide">            
+            <h2>Keywords to Look For</h2>            
+            <div class="card" style="width: 100%; max-width: 900px; padding: 20px;">                
+                <table class="summary-table">                    
+                    <tr>                        
+                        <th style="color:var(--linear-blue);">Linear</th>                        
+                        <td>Constant rate, Per, Every, Flat fee</td>                    
+                    </tr>                    
+                    <tr>                        
+                        <th style="color:var(--quad-red);">Quadratic</th>                        
+                        <td>Projectile, Thrown ball, Max height, Gravity</td>                    
+                    </tr>                    
+                    <tr>                        
+                        <th style="color:var(--exp-green);">Exponential</th>                        
+                        <td>Doubles, Triples, Percent growth, Population</td>                    
+                    </tr>                
+                </table>            
+            </div>        
+        </div>
+        
+        <!-- Slide 8: Cheat Sheet -->        
+        <div class="slide">            
+            <h2>Comparison Matrix</h2>            
+            <div class="card" style="width: 100%; max-width: 1100px; padding: 20px;">                
+                <div class="table-scroll">                    
+                    <table class="summary-table">                        
+                        <tr>                            
+                            <th>Feature</th>                            
+                            <th>Linear</th>                            
+                            <th>Quadratic</th>                            
+                            <th>Exponential</th>                        
+                        </tr>                        
+                        <tr>                            
+                            <td><strong>Equation</strong></td>                            
+                            <td>$y = mx + b$</td>                            
+                            <td>$y = x^2$</td>                            
+                            <td>$y = 2^x$</td>                        
+                        </tr>                        
+                        <tr>                            
+                            <td><strong>Pattern</strong></td>                            
+                            <td>Add/Subtract (+)</td>                            
+                            <td>Symmetry</td>                            
+                            <td>Multiply/Divide (×)</td>                        
+                        </tr>                        
+                        <tr>                            
+                            <td><strong>Shape</strong></td>                            
+                            <td>Straight Line</td>                            
+                            <td>U-Shape</td>                            
+                            <td>J-Curve</td>                        
+                        </tr>                        
+                        <tr>                            
+                            <td><strong>Speed</strong></td>                            
+                            <td>Constant</td>                            
+                            <td>Speeding Up</td>                            
+                            <td>Explosive</td>                        
+                        </tr>                    
+                    </table>                
+                </div>            
+            </div>        
+        </div>
+        
+        <!-- Slide 9: Guided Practice 1 -->        
+        <div class="slide">            
+            <h2>Guided Practice: Check the Table</h2>            
+            <div class="card" style="max-width: 800px; padding: 30px;">                
+                <table class="mini-table">                    
+                    <tr><th>x</th><td>1</td><td>2</td><td>3</td><td>4</td></tr>                    
+                    <tr><th>y</th><td>4</td><td>8</td><td>16</td><td>32</td></tr>                
+                </table>                
+                <div style="text-align: left; margin-top: 20px;">                    
+                    <p>1. Is it adding the same number? (+4, +8... <strong>No</strong>)</p>                    
+                    <p>2. Is it multiplying by the same number? (x2, x2... <strong>Yes</strong>)</p>                    
+                    <button class="reveal-btn" onclick="this.nextElementSibling.style.display='block'">Show Model</button>                    
+                    <div class="answer-box">Exponential</div>                
+                </div>            
+            </div>        
+        </div>
+        
+        <!-- Slide 10: Guided Practice 2 -->        
+        <div class="slide">            
+            <h2>Guided Practice: Check the Graph</h2>            
+            <div class="grid-2">                
+                <div class="card">                    
+                    <svg width="200" height="150" viewBox="0 0 100 100">                        
+                        <line x1="5" y1="95" x2="95" y2="95" class="axis" />                        
+                        <line x1="5" y1="95" x2="5" y2="5" class="axis" />                        
+                        <path d="M 5 90 Q 50 0 95 90" stroke="var(--quad-red)" stroke-width="3" fill="none" />                    
+                    </svg>                
+                </div>                
+                <div class="card" style="align-items: flex-start; text-align: left;">                    
+                    <p><strong>Questions:</strong></p>                    
+                    <ul>                        
+                        <li>Is it straight? (No)</li>                        
+                        <li>Does it go up and stay up? (No)</li>                        
+                        <li>Does it turn around? (Yes)</li>                    
+                    </ul>                    
+                    <button class="reveal-btn" onclick="this.nextElementSibling.style.display='block'">Identify</button>                    
+                    <div class="answer-box">Quadratic (U-Shape)</div>                
+                </div>            
+            </div>        
+        </div>
+        
+        <!-- Slide 11: Guided Practice 3 -->        
+        <div class="slide">            
+            <h2>Guided Practice: Read the Context</h2>            
+            <div class="card" style="max-width: 800px; padding: 40px;">                
+                <p style="margin-bottom: 20px;"><strong>Scenario:</strong> "A bacteria population <strong>doubles</strong> every hour."</p>                
+                <div style="text-align: left;">                    
+                    <p><strong>Clue:</strong> "Doubles" means multiply by 2.</p>                    
+                    <p><strong>Logic:</strong> Multiplication = Exponential.</p>                    
+                    <button class="reveal-btn" onclick="this.nextElementSibling.style.display='block'">Identify</button>                    
+                    <div class="answer-box">Exponential Growth</div>                
+                </div>            
+            </div>        
+        </div>
+        
+        <!-- Slide 12: Independent Level 1 -->
+        <div class="slide independent-practice">            
+            <div class="level-header lh-1">Level 1: Tables</div>            
+            <div class="grid-3">                
+                <div class="card">                    
+                    <p>y: 5, 8, 11, 14...</p>                    
+                    <button class="reveal-btn" onclick="this.nextElementSibling.style.display='block'">Check</button>                    
+                    <div class="answer-box">Linear (+3)</div>                
+                </div>                
+                <div class="card">                    
+                    <p>y: 3, 9, 27, 81...</p>                    
+                    <button class="reveal-btn" onclick="this.nextElementSibling.style.display='block'">Check</button>                    
+                    <div class="answer-box">Exponential (x3)</div>                
+                </div>                
+                <div class="card">                    
+                    <p>y: 1, 4, 9, 16...</p>                    
+                    <button class="reveal-btn" onclick="this.nextElementSibling.style.display='block'">Check</button>                    
+                    <div class="answer-box">Quadratic</div>                
+                </div>            
+            </div>        
+        </div>
+        
+        <!-- Slide 13: Independent Level 2 -->        
+        <div class="slide independent-practice">            
+            <div class="level-header lh-2">Level 2: Graphs</div>            
+            <div class="grid-3">                
+                <div class="card">                    
+                    <p>U-Shape</p>                    
+                    <button class="reveal-btn" onclick="this.nextElementSibling.style.display='block'">Check</button>                    
+                    <div class="answer-box">Quadratic</div>                
+                </div>                
+                <div class="card">                    
+                    <p>Straight Line</p>                    
+                    <button class="reveal-btn" onclick="this.nextElementSibling.style.display='block'">Check</button>                    
+                    <div class="answer-box">Linear</div>                
+                </div>                
+                <div class="card">                    
+                    <p>J-Curve</p>                    
+                    <button class="reveal-btn" onclick="this.nextElementSibling.style.display='block'">Check</button>                    
+                    <div class="answer-box">Exponential</div>                
+                </div>            
+            </div>        
+        </div>
+        
+        <!-- Slide 14: Independent Level 3 -->        
+        <div class="slide independent-practice">            
+            <div class="level-header lh-3">Level 3: Context</div>            
+            <div class="card" style="width: 100%; margin-bottom: 10px; text-align: left; padding: 15px;">                
+                <p>3. You pay \$20 to enter and \$5 per ride.</p>                
+                <button class="reveal-btn" onclick="this.nextElementSibling.style.display='block'">Check</button>                
+                <div class="answer-box">Linear</div>            
+            </div>            
+            <div class="card" style="width: 100%; margin-bottom: 10px; text-align: left; padding: 15px;">                
+                <p>1. A rocket is launched and falls back to earth.</p>                
+                <button class="reveal-btn" onclick="this.nextElementSibling.style.display='block'">Check</button>                
+                <div class="answer-box">Quadratic</div>            
+            </div>            
+            <div class="card" style="width: 100%; margin-bottom: 10px; text-align: left; padding: 15px;">                
+                <p>2. A population of rabbits doubles every month.</p>                
+                <button class="reveal-btn" onclick="this.nextElementSibling.style.display='block'">Check</button>                
+                <div class="answer-box">Exponential</div>            
             </div>
         </div>
-
-        <!-- Slide 2: Objectives -->
-        <div class="slide">
-            <h2>Objectives & Standards</h2>
-            <div class="card" style="width: 100%; max-width: 900px; padding: 40px;">
-                <h3><i class="fa-solid fa-bullseye"></i> Today's Goals:</h3>
-                <ul style="list-style-type: square; padding-left: 20px; margin-top: 20px; font-size: 1.3rem; line-height: 1.8;">
-                    <li>Compare properties of <span style="color:var(--linear-blue); font-weight:bold;">Linear</span>, <span style="color:var(--quad-red); font-weight:bold;">Quadratic</span>, and <span style="color:var(--exp-green); font-weight:bold;">Exponential</span> functions.</li>
-                    <li>Identify function families using <strong>tables of values</strong> (Differences vs. Ratios).</li>
-                    <li>Analyze <strong>graphs</strong> to determine end behavior (Who grows fastest?).</li>
-                    <li>Distinguish models using <strong>verbal descriptions</strong>.</li>
-                </ul>
-                <div style="margin-top: 20px; font-weight: bold; color: #555;">SOL AF.1.g</div>
-            </div>
+        
+        <!-- Slide 15: Real World Application -->        
+        <div class="slide">            
+            <h2>Real World: Which Job?</h2>            
+            <div class="grid-2">                
+                <div class="card" style="text-align: left;">                    
+                    <h3 style="color:var(--linear-blue);">Job A</h3>                    
+                    <p>Raise of <strong>\$2,000</strong> per year.</p>                    
+                    <p><em>(Linear Growth)</em></p>                
+                </div>                
+                <div class="card" style="text-align: left;">                    
+                    <h3 style="color:var(--exp-green);">Job B</h3>                    
+                    <p>Raise of <strong>5%</strong> per year.</p>                    
+                    <p><em>(Exponential Growth)</em></p>                
+                </div>            
+            </div>            
+            <div class="card" style="margin-top: 20px;">                
+                <p><strong>The Winner?</strong></p>
+                <p style="font-size: 1rem; margin-bottom: 10px;">Which job pays more after 20 years?</p>
+                <button class="reveal-btn" onclick="this.nextElementSibling.style.display='block'">Reveal Winner</button>
+                <div class="answer-box">
+                    Job B wins! <br>
+                    Exponential growth eventually overtakes Linear.
+                </div>
+            </div>        
         </div>
-
-        <!-- Slide 3: The Big 3 Overview -->
-        <div class="slide">
-            <h2>The "Big 3" Overview</h2>
-            <div class="grid-3">
-                <div class="card" style="border-top: 10px solid var(--linear-blue);">
-                    <h3 style="color: var(--linear-blue);">Linear</h3>
-                    <p><strong>Straight Line</strong></p>
-                    <svg width="100" height="80" viewBox="0 0 100 80">
-                        <line x1="10" y1="70" x2="90" y2="10" stroke="var(--linear-blue)" stroke-width="3" />
-                    </svg>
-                    <p style="font-size:0.9rem;">Constant Rate of Change</p>
+        
+        <!-- Slide 16: What's Next? -->        
+        <div class="slide">            
+            <div class="grid-2">                
+                <!-- Checklist -->                
+                <div class="card">                    
+                    <div class="card-title">What's Next?</div>                    
+                    <div style="display: flex; flex-direction: column; height: 100%; padding-left: 10px;">                        
+                        <div class="checklist-item"><div class="check-box checked"><i class="fa-solid fa-check"></i></div> Topic Warm Up</div>                        
+                        <div class="checklist-item"><div class="check-box checked"><i class="fa-solid fa-check"></i></div> Lesson Slides</div>                        
+                        <div class="checklist-item"><div class="check-box"></div> Practice Worksheet</div>                        
+                        <div class="checklist-item"><div class="check-box"></div> IXL Practice</div>                        
+                        <div class="checklist-item"><div class="check-box"></div> Topic 4 Exit Ticket</div>                    
+                    </div>                
                 </div>
-                <div class="card" style="border-top: 10px solid var(--quad-red);">
-                    <h3 style="color: var(--quad-red);">Quadratic</h3>
-                    <p><strong>U-Shape</strong></p>
-                    <svg width="100" height="80" viewBox="0 0 100 80">
-                        <path d="M 10 10 Q 50 130 90 10" stroke="var(--quad-red)" stroke-width="3" fill="none" />
-                    </svg>
-                    <p style="font-size:0.9rem;">Symmetric (Up then Down)</p>
-                </div>
-                <div class="card" style="border-top: 10px solid var(--exp-green);">
-                    <h3 style="color: var(--exp-green);">Exponential</h3>
-                    <p><strong>J-Curve</strong></p>
-                    <svg width="100" height="80" viewBox="0 0 100 80">
-                        <path d="M 10 70 Q 60 70 90 10" stroke="var(--exp-green)" stroke-width="3" fill="none" />
-                    </svg>
-                    <p style="font-size:0.9rem;">Rapid Growth/Decay</p>
-                </div>
-            </div>
+                <!-- IXL Practice -->                
+                <div class="card" style="background: #fcfcfc;">                    
+                    <div class="card-title">IXL Practice (SOL AF.1)</div>                    
+                    <p style="font-size: 1rem; color: #555; margin-bottom: 20px;">Complete to SmartScore 80</p>                                        
+                    <div class="ixl-container">                        
+                        <a href="https://www.ixl.com/math/algebra-1/compare-linear-exponential-and-quadratic-growth" target="_blank" class="ixl-btn ixl-red">                            
+                            <span>Compare All 3 Growth</span>                        
+                        </a>                        
+                        <a href="https://www.ixl.com/math/algebra-1/compare-linear-and-exponential-growth" target="_blank" class="ixl-btn ixl-green">                            
+                            <span>Compare Lin vs Exp</span>                        
+                        </a>                                                
+                        <a href="https://www.ixl.com/math/algebra-1/identify-linear-quadratic-and-exponential-functions-from-tables" target="_blank" class="ixl-btn ixl-blue">                            
+                            <span>ID from Tables</span>                        
+                        </a>                        
+                        <a href="https://www.ixl.com/math/algebra-1/identify-linear-quadratic-and-exponential-functions-from-graphs" target="_blank" class="ixl-btn ixl-purple">                            
+                            <span>ID from Graphs</span>                        
+                        </a>                    
+                    </div>                
+                </div>            
+            </div>        
         </div>
-
-        <!-- Slide 4: Comparing Rates -->
-        <div class="slide">
-            <h2>Comparing Rates of Change</h2>
-            <div class="grid-2">
-                <div class="card" style="text-align: left;">
-                    <h3 style="color: var(--linear-blue);">Additive Growth</h3>
-                    <p>Linear functions grow by <strong>adding</strong> the same amount.</p>
-                    <div style="background:#e0f2fe; padding:10px; border-radius:8px; margin-top:10px;">
-                        Example: $2, 4, 6, 8, 10...$ <br>
-                        <strong>(+2 each step)</strong>
-                    </div>
-                </div>
-                <div class="card" style="text-align: left;">
-                    <h3 style="color: var(--exp-green);">Multiplicative Growth</h3>
-                    <p>Exponential functions grow by <strong>multiplying</strong> by the same factor.</p>
-                    <div style="background:#dcfce7; padding:10px; border-radius:8px; margin-top:10px;">
-                        Example: $2, 4, 8, 16, 32...$ <br>
-                        <strong>(x2 each step)</strong>
-                    </div>
-                </div>
-            </div>
+        
+        <!-- Navigation -->        
+        <div class="nav-bar">            
+            <button id="prevBtn" class="nav-btn"><i class="fa-solid fa-arrow-left"></i></button>            
+            <div class="slide-counter">1 / 16</div>            
+            <button id="nextBtn" class="nav-btn"><i class="fa-solid fa-arrow-right"></i></button>        
         </div>
-
-        <!-- Slide 5: Comparing Tables -->
-        <div class="slide">
-            <h2>Comparing Tables</h2>
-            <div class="grid-3">
-                <div class="card">
-                    <div class="card-title" style="color:var(--linear-blue);">Linear</div>
-                    <table class="mini-table">
-                        <tr><th>x</th><th>y</th></tr>
-                        <tr><td>0</td><td>3</td></tr>
-                        <tr><td>1</td><td>5</td></tr>
-                        <tr><td>2</td><td>7</td></tr>
-                    </table>
-                    <p style="font-size:0.9rem;"><strong>1st Difference</strong> is constant (+2).</p>
-                </div>
-                <div class="card">
-                    <div class="card-title" style="color:var(--quad-red);">Quadratic</div>
-                    <table class="mini-table">
-                        <tr><th>x</th><th>y</th></tr>
-                        <tr><td>0</td><td>0</td></tr>
-                        <tr><td>1</td><td>1</td></tr>
-                        <tr><td>2</td><td>4</td></tr>
-                        <tr><td>3</td><td>9</td></tr>
-                    </table>
-                    <p style="font-size:0.9rem;"><strong>2nd Difference</strong> is constant (+2).</p>
-                </div>
-                <div class="card">
-                    <div class="card-title" style="color:var(--exp-green);">Exponential</div>
-                    <table class="mini-table">
-                        <tr><th>x</th><th>y</th></tr>
-                        <tr><td>0</td><td>3</td></tr>
-                        <tr><td>1</td><td>6</td></tr>
-                        <tr><td>2</td><td>12</td></tr>
-                    </table>
-                    <p style="font-size:0.9rem;"><strong>Ratio</strong> is constant (x2).</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Slide 6: Comparing Graphs (End Behavior) -->
-        <div class="slide">
-            <h2>"Who Wins?" (End Behavior)</h2>
-            <div class="grid-2">
-                <div class="card" style="justify-content: center;">
-                    <p>In the long run (as $x \to \infty$):</p>
-                    <div class="math-box" style="font-size: 1.5rem;">
-                        <span style="color:var(--exp-green);">Exponential</span> > <span style="color:var(--quad-red);">Quadratic</span> > <span style="color:var(--linear-blue);">Linear</span>
-                    </div>
-                    <p>Exponential growth will <strong>always</strong> eventually overtake the others.</p>
-                </div>
-                <div class="card" style="padding:0; overflow:hidden;">
-                    <svg width="400" height="300" viewBox="0 0 100 100">
-                        <line x1="10" y1="90" x2="90" y2="90" class="axis" />
-                        <line x1="10" y1="90" x2="10" y2="10" class="axis" />
-                        <!-- Linear -->
-                        <line x1="10" y1="80" x2="90" y2="60" stroke="var(--linear-blue)" stroke-width="2" />
-                        <text x="80" y="65" font-size="6" fill="var(--linear-blue)">Lin</text>
-                        <!-- Quad -->
-                        <path d="M 10 80 Q 50 80 90 20" stroke="var(--quad-red)" stroke-width="2" fill="none" />
-                        <text x="85" y="25" font-size="6" fill="var(--quad-red)">Quad</text>
-                        <!-- Exp -->
-                        <path d="M 10 85 Q 60 85 90 5" stroke="var(--exp-green)" stroke-width="3" fill="none" />
-                        <text x="75" y="10" font-size="6" fill="var(--exp-green)">Exp</text>
-                    </svg>
-                </div>
-            </div>
-        </div>
-
-        <!-- Slide 7: Verbal Descriptions -->
-        <div class="slide">
-            <h2>Verbal Descriptions</h2>
-            <div class="card" style="width: 100%; max-width: 900px; padding: 20px;">
-                <table class="summary-table">
-                    <tr>
-                        <th style="color:var(--linear-blue);">Linear Keywords</th>
-                        <td>Constant rate, Per, Every, Flat fee, Steady speed</td>
-                    </tr>
-                    <tr>
-                        <th style="color:var(--quad-red);">Quadratic Keywords</th>
-                        <td>Projectile, Thrown, Dropped, Maximum height, Area, Gravity</td>
-                    </tr>
-                    <tr>
-                        <th style="color:var(--exp-green);">Exponential Keywords</th>
-                        <td>Doubles, Triples, Half-life, Percent growth, Population</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-
-        <!-- Slide 8: Summary Cheat Sheet -->
-        <div class="slide">
-            <h2>Comparison Matrix</h2>
-            <div class="card" style="width: 100%; max-width: 1100px; padding: 20px;">
-                <div class="table-scroll">
-                    <table class="summary-table">
-                        <tr>
-                            <th>Feature</th>
-                            <th>Linear</th>
-                            <th>Quadratic</th>
-                            <th>Exponential</th>
-                        </tr>
-                        <tr>
-                            <td><strong>Equation</strong></td>
-                            <td>$y = mx + b$</td>
-                            <td>$y = ax^2 + bx + c$</td>
-                            <td>$y = a(b)^x$</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Pattern</strong></td>
-                            <td>Add/Subtract same #</td>
-                            <td>2nd Difference constant</td>
-                            <td>Multiply/Divide same #</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Shape</strong></td>
-                            <td>Straight Line</td>
-                            <td>Parabola (U)</td>
-                            <td>J-Curve</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Growth</strong></td>
-                            <td>Constant</td>
-                            <td>Accelerating (Sym)</td>
-                            <td>Explosive/Rapid</td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        <!-- Slide 9: Guided Practice 1 (Table) -->
-        <div class="slide">
-            <h2>Guided Practice: Table Analysis</h2>
-            <div class="card" style="max-width: 800px; padding: 30px;">
-                <table class="mini-table">
-                    <tr><th>x</th><td>1</td><td>2</td><td>3</td><td>4</td></tr>
-                    <tr><th>y</th><td>4</td><td>8</td><td>16</td><td>32</td></tr>
-                </table>
-                <div style="text-align: left; margin-top: 20px;">
-                    <p>1. Check Differences: $8-4=4$, $16-8=8$ (Not constant)</p>
-                    <p>2. Check Ratios: $8/4=2$, $16/8=2$, $32/16=2$</p>
-                    <button class="reveal-btn" onclick="this.nextElementSibling.style.display='block'">Show Model</button>
-                    <div class="answer-box">Exponential (Multiplying by 2)</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Slide 10: Guided Practice 2 (Graph) -->
-        <div class="slide">
-            <h2>Guided Practice: Visual Analysis</h2>
-            <div class="grid-2">
-                <div class="card">
-                    <svg width="200" height="150" viewBox="0 0 100 100">
-                        <line x1="5" y1="95" x2="95" y2="95" class="axis" />
-                        <line x1="5" y1="95" x2="5" y2="5" class="axis" />
-                        <path d="M 5 90 Q 50 0 95 90" stroke="var(--quad-red)" stroke-width="3" fill="none" />
-                    </svg>
-                </div>
-                <div class="card" style="align-items: flex-start; text-align: left;">
-                    <p><strong>Observe:</strong></p>
-                    <ul>
-                        <li>Does it go straight? (No)</li>
-                        <li>Does it curve up and stay up? (No)</li>
-                        <li>Does it go up then down? (Yes)</li>
-                    </ul>
-                    <button class="reveal-btn" onclick="this.nextElementSibling.style.display='block'">Identify</button>
-                    <div class="answer-box">Quadratic (Parabola)</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Slide 11: Guided Practice 3 (Context) -->
-        <div class="slide">
-            <h2>Guided Practice: Context</h2>
-            <div class="card" style="max-width: 800px; padding: 40px;">
-                <p style="margin-bottom: 20px;"><strong>Scenario:</strong> "A savings account earns 5% interest compounded annually."</p>
-                <div style="text-align: left;">
-                    <p><strong>Clue:</strong> "5% interest" implies multiplication (x 1.05).</p>
-                    <p><strong>Clue:</strong> "Compounded" means growth on top of growth.</p>
-                    <button class="reveal-btn" onclick="this.nextElementSibling.style.display='block'">Identify</button>
-                    <div class="answer-box">Exponential Growth</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Slide 12: Independent Level 1 (Tables - 3 Problems) -->
-        <div class="slide">
-            <div class="level-header lh-1">Level 1: Tables</div>
-            <div class="grid-3">
-                <div class="card">
-                    <p>y: 5, 8, 11, 14...</p>
-                    <button class="reveal-btn" onclick="this.nextElementSibling.style.display='block'">Check</button>
-                    <div class="answer-box">Linear (+3)</div>
-                </div>
-                <div class="card">
-                    <p>y: 3, 9, 27, 81...</p>
-                    <button class="reveal-btn" onclick="this.nextElementSibling.style.display='block'">Check</button>
-                    <div class="answer-box">Exponential (x3)</div>
-                </div>
-                <div class="card">
-                    <p>y: 1, 4, 9, 16...</p>
-                    <button class="reveal-btn" onclick="this.nextElementSibling.style.display='block'">Check</button>
-                    <div class="answer-box">Quadratic</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Slide 13: Independent Level 2 (Graphs - 3 Problems) -->
-        <div class="slide">
-            <div class="level-header lh-2">Level 2: Graphs</div>
-            <div class="grid-3">
-                <div class="card">
-                    <p>U-Shape</p>
-                    <button class="reveal-btn" onclick="this.nextElementSibling.style.display='block'">Check</button>
-                    <div class="answer-box">Quadratic</div>
-                </div>
-                <div class="card">
-                    <p>Straight Line</p>
-                    <button class="reveal-btn" onclick="this.nextElementSibling.style.display='block'">Check</button>
-                    <div class="answer-box">Linear</div>
-                </div>
-                <div class="card">
-                    <p>Rapid Rise (J)</p>
-                    <button class="reveal-btn" onclick="this.nextElementSibling.style.display='block'">Check</button>
-                    <div class="answer-box">Exponential</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Slide 14: Independent Level 3 (Context - 3 Problems) -->
-        <div class="slide">
-            <div class="level-header lh-3">Level 3: Context</div>
-            <div class="card" style="width: 100%; margin-bottom: 10px; text-align: left; padding: 15px;">
-                <p>1. A rocket is launched and falls back to earth.</p>
-                <button class="reveal-btn" onclick="this.nextElementSibling.style.display='block'">Check</button>
-                <div class="answer-box">Quadratic</div>
-            </div>
-            <div class="card" style="width: 100%; margin-bottom: 10px; text-align: left; padding: 15px;">
-                <p>2. A population of rabbits doubles every month.</p>
-                <button class="reveal-btn" onclick="this.nextElementSibling.style.display='block'">Check</button>
-                <div class="answer-box">Exponential</div>
-            </div>
-            <div class="card" style="width: 100%; text-align: left; padding: 15px;">
-                <p>3. You pay $20 to enter and $5 per ride.</p>
-                <button class="reveal-btn" onclick="this.nextElementSibling.style.display='block'">Check</button>
-                <div class="answer-box">Linear</div>
-            </div>
-        </div>
-
-        <!-- Slide 15: Real World Application -->
-        <div class="slide">
-            <h2>Real World: Choosing a Job</h2>
-            <div class="grid-2">
-                <div class="card" style="text-align: left;">
-                    <h3 style="color:var(--linear-blue);">Option A</h3>
-                    <p>Start at $50k. Raise of <strong>$2,000</strong> per year.</p>
-                    <p><em>(Linear Growth)</em></p>
-                </div>
-                <div class="card" style="text-align: left;">
-                    <h3 style="color:var(--exp-green);">Option B</h3>
-                    <p>Start at $40k. Raise of <strong>5%</strong> per year.</p>
-                    <p><em>(Exponential Growth)</em></p>
-                </div>
-            </div>
-            <div class="card" style="margin-top: 20px;">
-                <p><strong>Which is better?</strong></p>
-                <p>Option A is better short-term. Option B wins in the long run because exponential growth eventually overtakes linear.</p>
-            </div>
-        </div>
-
-        <!-- Slide 16: What's Next? -->
-        <div class="slide">
-            <div class="grid-2">
-                <!-- Checklist -->
-                <div class="card">
-                    <div class="card-title">What's Next?</div>
-                    <div style="display: flex; flex-direction: column; height: 100%; padding-left: 10px;">
-                        <div class="checklist-item"><div class="check-box checked"><i class="fa-solid fa-check"></i></div> Topic Warm Up</div>
-                        <div class="checklist-item"><div class="check-box checked"><i class="fa-solid fa-check"></i></div> Lesson Slides</div>
-                        <div class="checklist-item"><div class="check-box"></div> Practice Worksheet</div>
-                        <div class="checklist-item"><div class="check-box"></div> IXL Practice</div>
-                        <div class="checklist-item"><div class="check-box"></div> Topic 4 Exit Ticket</div>
-                    </div>
-                </div>
-
-                <!-- IXL Practice -->
-                <div class="card" style="background: #fcfcfc;">
-                    <div class="card-title">IXL Practice (SOL AF.1)</div>
-                    <p style="font-size: 1rem; color: #555; margin-bottom: 20px;">Complete to SmartScore 80</p>
-                    
-                    <div class="ixl-container">
-                        <!-- Comparison Skills -->
-                        <a href="https://www.ixl.com/math/algebra-1/compare-linear-exponential-and-quadratic-growth" target="_blank" class="ixl-btn ixl-red">
-                            <span>Compare All 3 Growth</span>
-                        </a>
-                        <a href="https://www.ixl.com/math/algebra-1/compare-linear-and-exponential-growth" target="_blank" class="ixl-btn ixl-green">
-                            <span>Compare Lin vs Exp</span>
-                        </a>
-                        
-                        <!-- Identification Skills -->
-                        <a href="https://www.ixl.com/math/algebra-1/identify-linear-quadratic-and-exponential-functions-from-tables" target="_blank" class="ixl-btn ixl-blue">
-                            <span>ID from Tables</span>
-                        </a>
-                        <a href="https://www.ixl.com/math/algebra-1/identify-linear-quadratic-and-exponential-functions-from-graphs" target="_blank" class="ixl-btn ixl-purple">
-                            <span>ID from Graphs</span>
-                        </a>
-
-                        <!-- Transformation Skills -->
-                        <a href="https://www.ixl.com/math/algebra-1/transformations-of-linear-functions" target="_blank" class="ixl-btn ixl-blue">
-                            <span>Linear Transformations</span>
-                        </a>
-                        <a href="https://www.ixl.com/math/algebra-1/transformations-of-quadratic-functions" target="_blank" class="ixl-btn ixl-red">
-                            <span>Quadratic Transformations</span>
-                        </a>
-                        <a href="https://www.ixl.com/math/algebra-1/match-exponential-functions-and-graphs" target="_blank" class="ixl-btn ixl-green">
-                            <span>Match Exp Graphs</span>
-                        </a>
-                         <a href="https://www.ixl.com/math/algebra-1/exponential-growth-and-decay-word-problems" target="_blank" class="ixl-btn ixl-green">
-                            <span>Exp Growth/Decay Context</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Navigation -->
-        <div class="nav-bar">
-            <button id="prevBtn" class="nav-btn"><i class="fa-solid fa-arrow-left"></i></button>
-            <div class="slide-counter">1 / 16</div>
-            <button id="nextBtn" class="nav-btn"><i class="fa-solid fa-arrow-right"></i></button>
-        </div>
-
     </div>
-
-    <!-- JAVASCRIPT LOGIC -->
-    <script>
-        const slides = document.querySelectorAll('.slide');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-        const counter = document.querySelector('.slide-counter');
+    <!-- JAVASCRIPT LOGIC -->    
+    <script>        
+        const slides = document.querySelectorAll('.slide');        
+        const prevBtn = document.getElementById('prevBtn');        
+        const nextBtn = document.getElementById('nextBtn');        
+        const counter = document.querySelector('.slide-counter');        
         let currentSlide = 0;
-
-        function updateSlides() {
-            slides.forEach((slide, index) => {
-                slide.classList.remove('active');
-                if (index === currentSlide) {
-                    slide.classList.add('active');
-                }
-            });
-            counter.textContent = `${currentSlide + 1} / ${slides.length}`;
-            
-            prevBtn.style.opacity = currentSlide === 0 ? 0.3 : 1;
-            nextBtn.style.opacity = currentSlide === slides.length - 1 ? 0.3 : 1;
+        
+        function updateSlides() {            
+            slides.forEach((slide, index) => {                
+                slide.classList.remove('active');                
+                if (index === currentSlide) {                    
+                    slide.classList.add('active');                
+                }            
+            });            
+            counter.textContent = `${currentSlide + 1} / ${slides.length}`;                        
+            prevBtn.style.opacity = currentSlide === 0 ? 0.3 : 1;            
+            nextBtn.style.opacity = currentSlide === slides.length - 1 ? 0.3 : 1;        
         }
-
-        nextBtn.addEventListener('click', () => {
-            if (currentSlide < slides.length - 1) {
-                currentSlide++;
-                updateSlides();
-            }
+        
+        nextBtn.addEventListener('click', () => {            
+            if (currentSlide < slides.length - 1) {                
+                currentSlide++;                
+                updateSlides();            
+            }        
         });
-
-        prevBtn.addEventListener('click', () => {
-            if (currentSlide > 0) {
-                currentSlide--;
-                updateSlides();
-            }
+        
+        prevBtn.addEventListener('click', () => {            
+            if (currentSlide > 0) {                
+                currentSlide--;                
+                updateSlides();            
+            }        
         });
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowRight' && currentSlide < slides.length - 1) {
-                currentSlide++;
-                updateSlides();
-            }
-            if (e.key === 'ArrowLeft' && currentSlide > 0) {
-                currentSlide--;
-                updateSlides();
-            }
+        
+        document.addEventListener('keydown', (e) => {            
+            if (e.key === 'ArrowRight' && currentSlide < slides.length - 1) {                
+                currentSlide++;                
+                updateSlides();            
+            }            
+            if (e.key === 'ArrowLeft' && currentSlide > 0) {                
+                currentSlide--;                
+                updateSlides();            
+            }        
         });
-
-        updateSlides();
-    </script>
-    <footer style="margin-top: 2rem; color: #9ca3af; font-size: 0.9rem;">
-        &copy; 2026 Aly Hatfield. All Rights Reserved.
+        
+        updateSlides();    
+    </script>    
+    <footer style="margin-top: 2rem; color: #9ca3af; font-size: 0.9rem;">        
+        &copy; 2026 Aly Hatfield. All Rights Reserved.    
     </footer>
 </body>
 </html>
